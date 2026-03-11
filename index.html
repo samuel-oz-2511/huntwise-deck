@@ -1070,8 +1070,75 @@
         </div>
     </div>
 
-    <!-- SLIDE 7: BUSINESS MODEL -->
+    <!-- SLIDE: MOAT / DEFENSIBILITY -->
     <div class="slide bg-dark" data-index="8">
+        <div class="slide-inner">
+            <span class="slide-label">Defensibility</span>
+            <h2>Why this can't be rebuilt <span style="color: var(--primary);">in a weekend.</span></h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px;">
+                <!-- Left column: 3 moat pillars -->
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 8px;">LLM-Free Matching Engine</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px;">Thousands of jobs matched in milliseconds. Zero LLM cost.</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;">Embedding-based scoring with batch pre-loading. Competitors call an LLM per match at $0.01-0.03/job. We use cached embeddings + SQL filtering for instant results at ~$0.</div>
+                    </div>
+                    <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 8px;">17-Rule ATS Intelligence System</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px;">30+ empirical ATS tests. Non-obvious discoveries.</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;">AI-based ATS assigns a fixed total penalty, then distributes it. Overclaim costs more than gaps (-6 to -8 vs -3 to -5). Tech and non-tech roles need entirely different strategies. Months to rediscover.</div>
+                    </div>
+                    <div style="background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #A78BFA; margin-bottom: 8px;">Structured Intelligence Pipeline</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px;">CV + JD enrichment into structured, matchable data.</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;">Cloud Functions extract 10+ structured fields per CV and JD: skills with proficiency levels, work history, seniority, domain expertise. Every analysis feeds the data flywheel.</div>
+                    </div>
+                </div>
+                <!-- Right column: build stats + speed -->
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 12px;">Codebase Scale</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div>
+                                <div style="font-size: 28px; font-weight: 800; color: var(--primary);">73.5K</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Lines of Code</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 28px; font-weight: 800; color: var(--primary);">160</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Source Files</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 28px; font-weight: 800; color: var(--primary);">15</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Backend Services</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 28px; font-weight: 800; color: var(--primary);">23</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">DB Migrations</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #FCD34D; margin-bottom: 8px;">Built with Claude Code</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px;">8 weeks. 2 engineers. Ship speed of a 6-person team.</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;">AI-native development creates a compounding advantage: prompt engineering expertise from building the product feeds back into faster iteration. 5-10 cycles/day vs. 2-3/week.</div>
+                    </div>
+                    <div style="background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2); border-radius: 12px; padding: 20px;">
+                        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #22D3EE; margin-bottom: 8px;">Data Flywheel</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px;">Every analysis makes the next one smarter.</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;">Skill embeddings, gap patterns, ATS scoring feedback, and match quality data compound over time. More users = better matching = more users.</div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 16px; padding: 14px 20px; background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08)); border: 1px solid rgba(37,99,235,0.15); border-radius: 10px;">
+                <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; text-align: center;">
+                    <strong style="color: var(--white);">The moat is not the code. It's the empirical knowledge baked into every rule, every scoring formula, and every edge case.</strong> That took months of real-world ATS testing to discover, and it compounds with every user.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE: BUSINESS MODEL -->
+    <div class="slide bg-dark" data-index="9">
         <div class="slide-inner">
             <span class="slide-label">Business Model</span>
             <h2>One product. Three revenue engines.</h2>
@@ -1138,7 +1205,7 @@
     </div>
 
     <!-- SLIDE 8: GO-TO-MARKET -->
-    <div class="slide bg-dark" data-index="9">
+    <div class="slide bg-dark" data-index="10">
         <div class="slide-inner">
             <span class="slide-label">Go-To-Market</span>
             <h2>Three channels. <span style="color: var(--green);">Each with a built-in edge.</span></h2>
@@ -1212,7 +1279,7 @@
     </div>
 
     <!-- SLIDE 9: FINANCIAL PROJECTIONS -->
-    <div class="slide bg-dark" data-index="10">
+    <div class="slide bg-dark" data-index="11">
         <div class="slide-inner">
             <span class="slide-label">Financial Projections</span>
             <h2>Path to <span style="color: var(--green);">$157K MRR</span> in 18 months.</h2>
@@ -1312,7 +1379,7 @@
     </div>
 
     <!-- SLIDE 12: TEAM -->
-    <div class="slide bg-dark" data-index="11">
+    <div class="slide bg-dark" data-index="12">
         <div class="slide-inner">
             <span class="slide-label">The Team</span>
             <h2>Built to crack this problem.</h2>
@@ -1363,7 +1430,7 @@
     </div>
 
     <!-- SLIDE 13: THE ASK -->
-    <div class="slide bg-dark" data-index="12">
+    <div class="slide bg-dark" data-index="13">
         <div class="slide-inner">
             <span class="slide-label">The Ask</span>
             <h2>Seed Round | 18 Months of Runway</h2>
@@ -1563,7 +1630,7 @@
     </div>
 
     <!-- SLIDE: THE ASK, $2M -->
-    <div class="slide bg-gradient" data-index="13">
+    <div class="slide bg-gradient" data-index="14">
         <div class="slide-inner" style="text-align: center;">
             <span class="slide-label" style="color: rgba(255,255,255,0.5);">The Ask</span>
             <div style="margin-top: 40px;">
@@ -1574,7 +1641,7 @@
     </div>
 
     <!-- SLIDE: CLOSING -->
-    <div class="slide bg-gradient" data-index="14">
+    <div class="slide bg-gradient" data-index="15">
         <div class="slide-inner" style="text-align: center;">
             <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin-bottom: 32px;">
                 <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.15)"/>
