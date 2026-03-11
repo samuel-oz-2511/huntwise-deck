@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuntWise - Teaser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --white: #FFFFFF;
+            --gray-900: #0F172A;
+            --green: #10B981;
+            --red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        .deck { width: 100%; height: 100%; position: relative; }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 60px 80px;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+        }
+        .slide.active { opacity: 1; pointer-events: all; }
+        .slide-inner { max-width: 1100px; width: 100%; }
+
+        .nav-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 40px;
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255,255,255,0.08); z-index: 100;
+        }
+        .nav-bar .logo-small { font-weight: 700; font-size: 14px; color: var(--primary); letter-spacing: -0.02em; }
+        .nav-controls { display: flex; align-items: center; gap: 16px; }
+        .nav-btn {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            color: var(--white); width: 40px; height: 40px; border-radius: 8px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; transition: all 0.2s;
+        }
+        .nav-btn:hover { background: var(--primary); border-color: var(--primary); }
+        .slide-counter { font-size: 13px; color: #64748B; font-weight: 500; min-width: 60px; text-align: center; }
+
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); transition: width 0.4s ease; z-index: 100; }
+
+        .bg-dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+        .bg-gradient { background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%); }
+
+        .slide-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 16px; }
+
+        h1 { font-size: 56px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
+        h2 { font-size: 42px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
+
+        .subtitle { font-size: 20px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 700px; }
+
+        .pill { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .pill-blue { background: rgba(37, 99, 235, 0.2); color: #93C5FD; }
+        .pill-green { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; }
+        .pill-orange { background: rgba(245, 158, 11, 0.2); color: #FCD34D; }
+
+        .stat-row { display: flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+        .stat-value { font-size: 48px; font-weight: 800; color: var(--primary); letter-spacing: -0.03em; line-height: 1; }
+        .bg-gradient .stat-value { color: var(--white); }
+        .stat-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 6px; font-weight: 500; }
+
+        .card-grid { display: grid; gap: 20px; margin-top: 32px; }
+        .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .card {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 28px; transition: all 0.3s;
+        }
+        .card:hover { background: rgba(255,255,255,0.1); border-color: rgba(37, 99, 235, 0.4); transform: translateY(-2px); }
+        .card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+        .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+        .confidential-badge {
+            position: fixed; top: 16px; right: 24px;
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: rgba(255,255,255,0.3); z-index: 100;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(124, 58, 237, 0.15));
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 20px; padding: 48px; text-align: center; margin-top: 32px;
+        }
+
+        /* Password Gate */
+        #passwordGate {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #passwordGate.hidden { opacity: 0; pointer-events: none; }
+        #passwordGate .gate-logo { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+        #passwordGate .gate-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+        #passwordGate input {
+            width: 300px; padding: 14px 20px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
+            color: white; font-size: 16px; font-family: 'Inter', sans-serif;
+            text-align: center; outline: none; transition: border-color 0.3s;
+        }
+        #passwordGate input:focus { border-color: var(--primary); }
+        #passwordGate input::placeholder { color: rgba(255,255,255,0.3); }
+        #passwordGate .gate-error { color: var(--red); font-size: 13px; margin-top: 12px; height: 20px; }
+        #passwordGate .gate-footer { position: absolute; bottom: 32px; font-size: 11px; color: rgba(255,255,255,0.25); }
+
+        @media (max-width: 900px) {
+            .slide { padding: 40px 32px; }
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .stat-value { font-size: 36px; }
+            .stat-row { gap: 24px; }
+            .nav-bar { padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="passwordGate">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin-bottom: 16px;">
+        <rect width="56" height="56" rx="14" fill="#2563EB"/>
+        <circle cx="24" cy="24" r="10" stroke="white" stroke-width="3" fill="none"/>
+        <line x1="31" y1="31" x2="42" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="gate-logo">HuntWise</div>
+    <div class="gate-sub">Teaser &middot; Confidential</div>
+    <input type="password" id="gateInput" placeholder="Enter access code" autocomplete="off" autofocus>
+    <div class="gate-error" id="gateError"></div>
+    <div class="gate-footer">This deck is confidential and tracked. Unauthorized sharing is prohibited.</div>
+</div>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="confidential-badge">Confidential</div>
+
+<div class="deck" id="deck" style="display: none;">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide bg-gradient active" data-index="0">
+        <div class="slide-inner" style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 24px;">
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="vertical-align: middle;">
+                    <rect width="56" height="56" rx="14" fill="#2563EB"/>
+                    <circle cx="24" cy="24" r="10" stroke="white" stroke-width="3" fill="none"/>
+                    <line x1="31" y1="31" x2="42" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span style="font-size: 42px; font-weight: 800; letter-spacing: -0.03em; margin-left: 12px; vertical-align: middle;">HuntWise</span>
+            </div>
+            <h1 style="font-size: 48px; max-width: 800px; margin: 0 auto 24px;">The AI-Native Talent Intelligence Platform</h1>
+            <p class="subtitle" style="margin: 0 auto 40px; max-width: 600px;">The candidate intelligence layer that LinkedIn is missing.</p>
+            <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+                <span class="pill pill-blue">Vertical AI</span>
+                <span class="pill pill-green">Live Product</span>
+                <span class="pill pill-orange">Seed Round</span>
+            </div>
+            <p style="margin-top: 48px; font-size: 14px; color: rgba(255,255,255,0.35);">March 2026 &middot; Confidential Teaser</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <div class="slide bg-dark" data-index="1">
+        <div class="slide-inner">
+            <span class="slide-label">The Problem</span>
+            <h2>Job seekers are drowning. <br><span style="color: var(--primary);">The system works against them.</span></h2>
+            <div class="card-grid grid-3" style="margin-top: 36px;">
+                <div class="card">
+                    <span class="card-icon">72%</span>
+                    <h3>Feel like a "black box"</h3>
+                    <p>72% of Americans say applying for jobs feels like sending a resume into a black box. No feedback, no insight, no guidance.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">61%</span>
+                    <h3>Ghosted after interviews</h3>
+                    <p>61% of job seekers have been ghosted after an interview, up 9 points from early 2024. Candidates are on their own.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon" style="color: var(--red);">245K</span>
+                    <h3>AI is replacing them</h3>
+                    <p>245K tech jobs cut in 2025. 30K+ already in the first 6 weeks of 2026. Companies post record profits while replacing roles with AI. The candidates left behind have zero tools to navigate what comes next.</p>
+                </div>
+            </div>
+            <div style="border-left: 4px solid var(--primary); padding-left: 24px; margin-top: 36px; max-width: 800px; font-size: 24px; font-weight: 600; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.4;">
+                "AI is taking their jobs, and no one is giving them the intelligence to fight back."
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: WHAT WE BUILT -->
+    <div class="slide bg-dark" data-index="2">
+        <div class="slide-inner">
+            <span class="slide-label">What We Built</span>
+            <h2>6 capabilities. One platform. <span style="color: var(--primary);">Candidate-first.</span></h2>
+            <p class="subtitle" style="margin-bottom: 36px;">We don't just match keywords. We understand skills, challenge assumptions, and tell candidates the truth about where they stand.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F9E0;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">Deep Skill Graphs</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">363 unique skills mapped at 4 proficiency levels</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F3AF;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">AI-Powered Matching</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">56K enriched jobs, multi-dimensional scoring</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F4A1;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">Honest Positioning</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">We push candidates up or tell them the truth</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F4C4;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">1-Click ATS CVs</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">80-95% ATS scores, tested on Comeet, Greenhouse, Niloos</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F310;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">Multi-Market Intel</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">5 countries in week one, geo expansion = config change</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 20px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#x1F6E1;</div>
+                    <div style="font-size: 14px; font-weight: 700; color: var(--white);">Interview Prep</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px;">Gap analysis shows exactly where interviewers will challenge</div>
+                </div>
+            </div>
+            <div style="margin-top: 24px; display: flex; gap: 24px; justify-content: center;">
+                <a href="https://huntwise-frontend-376610797809.us-central1.run.app/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--primary-dark); padding: 12px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.3s;">&#x1F680; Try the Live Beta</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: TRACTION SNAPSHOT -->
+    <div class="slide bg-dark" data-index="3">
+        <div class="slide-inner" style="text-align: center;">
+            <span class="slide-label">13 Days of Beta</span>
+            <h2>Not scale. <span style="color: var(--green);">Velocity.</span></h2>
+            <div class="stat-row" style="justify-content: center; margin-top: 48px;">
+                <div class="stat" style="text-align: center;">
+                    <div class="stat-value">864</div>
+                    <div class="stat-label">AI Analyses Run</div>
+                </div>
+                <div class="stat" style="text-align: center;">
+                    <div class="stat-value">97%</div>
+                    <div class="stat-label">Completed Onboarding</div>
+                </div>
+                <div class="stat" style="text-align: center;">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-label">Organic D1+ Retention</div>
+                </div>
+                <div class="stat" style="text-align: center;">
+                    <div class="stat-value">$0.013</div>
+                    <div class="stat-label">Cost Per Analysis</div>
+                </div>
+                <div class="stat" style="text-align: center;">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Acquisition Cost</div>
+                </div>
+            </div>
+            <div style="margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--green);">25% hit the credit cap</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px;">No onboarding flow, no push notifications. Pure product pull.</div>
+                </div>
+                <div style="background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--primary);">3 revenue engines</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px;">B2C direct, B2B outplacement, professional services (50% rev-share).</div>
+                </div>
+                <div style="background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 20px; font-weight: 800; color: #A78BFA;">Junior to C-level</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px;">2-33 years experience. 27 industries. Works across the board.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: CTA -->
+    <div class="slide bg-gradient" data-index="4">
+        <div class="slide-inner" style="text-align: center;">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin-bottom: 32px;">
+                <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="24" cy="24" r="10" stroke="white" stroke-width="3" fill="none"/>
+                <line x1="31" y1="31" x2="42" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <h1 style="font-size: 48px; max-width: 800px; margin: 0 auto 24px;">Want to see the full picture?</h1>
+            <p class="subtitle" style="margin: 0 auto 20px; max-width: 650px; color: rgba(255,255,255,0.7); font-size: 20px;">
+                Live product demo. Financial projections. Competitive landscape with 15 mapped players. Technical moat. Team. The full seed deck.
+            </p>
+            <div style="display: flex; gap: 16px; justify-content: center; margin-top: 24px; margin-bottom: 48px;">
+                <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--white);">$642B</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Recruitment Market</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--white);">$1.9M</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4);">ARR at Month 18</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--white);">73.5K</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Lines of Code</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 20px; font-weight: 800; color: var(--white);">$300K</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Founder Skin in Game</div>
+                </div>
+            </div>
+            <div class="cta-box" style="max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 20px; color: rgba(255,255,255,0.9); margin-bottom: 16px; font-weight: 600;">Let's schedule a walkthrough.</p>
+                <p style="font-size: 26px; font-weight: 700;">sam@sparqlee.com</p>
+                <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px;">Samuel Kemper &middot; CEO & Co-Founder &middot; HuntWise</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Navigation Bar -->
+<div class="nav-bar" id="navBar" style="display: none;">
+    <div class="logo-small">
+        <svg width="20" height="20" viewBox="0 0 56 56" fill="none" style="vertical-align: middle; margin-right: 6px;">
+            <rect width="56" height="56" rx="14" fill="#2563EB"/>
+            <circle cx="24" cy="24" r="10" stroke="white" stroke-width="3" fill="none"/>
+            <line x1="31" y1="31" x2="42" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        HuntWise
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&#8592;</button>
+        <span class="slide-counter" id="slideCounter">1 / 5</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&#8594;</button>
+    </div>
+</div>
+
+<script>
+    // === PASSWORD GATE + SLACK NOTIFICATIONS ===
+    const VC_KEYS = {
+        'a584ab134eb9aa8fc33892a7119d601ba32e37b7fc44d353f0b489ae2e22690e': 'Tomer | FutureFirst Ventures'
+    };
+
+    const _SW = atob('aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDA5TkJFVUJWRjAvQjBBS0s1UzBOR1AvR25RbzJpU0xweUk2N2ZDU1hWVUU3dHdt');
+
+    async function sha256(str) {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function notifySlack(vcName) {
+        const now = new Date().toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' });
+        const device = /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+        const browser = navigator.userAgent.match(/(Chrome|Safari|Firefox|Edge|Opera)\//)?.[1] || 'Unknown';
+        const payload = {
+            text: `:eyes: *Teaser Deck Opened*\n*Viewer:* ${vcName}\n*Time:* ${now} (IL)\n*Device:* ${device} / ${browser}\n*URL:* ${window.location.href}`
+        };
+        try {
+            await fetch(_SW, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        } catch (e) { /* silent */ }
+    }
+
+    function unlockDeck(vcName) {
+        document.getElementById('passwordGate').classList.add('hidden');
+        document.getElementById('deck').style.display = '';
+        document.getElementById('navBar').style.display = '';
+        document.querySelector('.progress-bar').style.display = '';
+        document.querySelector('.confidential-badge').textContent = 'Confidential | ' + vcName;
+        setTimeout(() => document.getElementById('passwordGate').remove(), 600);
+        notifySlack(vcName);
+    }
+
+    document.getElementById('gateInput').addEventListener('keydown', async (e) => {
+        if (e.key !== 'Enter') return;
+        const hash = await sha256(e.target.value.trim().toLowerCase());
+        if (VC_KEYS[hash]) {
+            unlockDeck(VC_KEYS[hash]);
+        } else {
+            document.getElementById('gateError').textContent = 'Invalid access code';
+            e.target.value = '';
+            e.target.style.borderColor = '#EF4444';
+            setTimeout(() => { e.target.style.borderColor = ''; document.getElementById('gateError').textContent = ''; }, 2000);
+        }
+    });
+
+    // === DECK NAVIGATION ===
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+
+    function showSlide(index) {
+        if (index < 0 || index >= total) return;
+        slides[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${total}`;
+        document.getElementById('progressBar').style.width = `${((currentSlide + 1) / total) * 100}%`;
+    }
+
+    function navigate(dir) { showSlide(currentSlide + dir); }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+    });
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+    });
+
+    showSlide(0);
+</script>
+
+</body>
+</html>
