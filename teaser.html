@@ -124,14 +124,50 @@
         #passwordGate .gate-footer { position: absolute; bottom: 32px; font-size: 11px; color: rgba(255,255,255,0.25); }
 
         @media (max-width: 900px) {
-            .slide { padding: 40px 32px; }
-            h1 { font-size: 36px; }
-            h2 { font-size: 28px; }
-            .subtitle { font-size: 16px; }
+            .slide { padding: 30px 20px 70px; overflow-y: auto; justify-content: flex-start; align-items: stretch; }
+            .slide-inner { max-width: 100%; }
+            h1 { font-size: 28px; margin-bottom: 16px; }
+            h2 { font-size: 22px; margin-bottom: 14px; }
+            .subtitle { font-size: 14px; }
+            .slide-label { font-size: 10px; margin-bottom: 10px; }
             .grid-3 { grid-template-columns: 1fr; }
-            .stat-value { font-size: 36px; }
-            .stat-row { gap: 24px; }
-            .nav-bar { padding: 12px 20px; }
+            .card { padding: 18px; }
+            .card h3 { font-size: 15px; }
+            .card p { font-size: 12px; }
+            .card-icon { font-size: 24px; margin-bottom: 10px; }
+            .stat-value { font-size: 28px; }
+            .stat-row { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .stat { text-align: center; min-width: 80px; }
+            .nav-bar { padding: 10px 16px; }
+            .nav-btn { width: 36px; height: 36px; font-size: 16px; }
+            .slide-counter { font-size: 12px; }
+            .confidential-badge { font-size: 9px; top: 10px; right: 12px; }
+            .cta-box { padding: 28px 20px; }
+            .pill { font-size: 11px; padding: 3px 10px; }
+            .quote { font-size: 18px; padding-left: 16px; }
+            #passwordGate input { width: 260px; font-size: 14px; padding: 12px 16px; }
+            #passwordGate .gate-logo { font-size: 26px; }
+            #passwordGate .gate-sub { font-size: 12px; margin-bottom: 28px; }
+            #passwordGate .gate-footer { font-size: 9px; bottom: 20px; padding: 0 20px; text-align: center; }
+
+            /* 6-cap grid */
+            [style*="grid-template-columns: 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+
+            /* Traction 3-col detail cards */
+            [style*="grid-template-columns: 1fr 1fr 1fr;"][style*="max-width: 800px"] { grid-template-columns: 1fr !important; }
+
+            /* CTA stat boxes */
+            [style*="display: flex; gap: 16px; justify-content: center"] { flex-wrap: wrap; }
+            [style*="display: flex; gap: 16px; justify-content: center"] > div { flex: 1 1 40%; }
+        }
+
+        @media (max-width: 480px) {
+            .slide { padding: 20px 14px 70px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+            .stat-value { font-size: 24px; }
+            .stat-row { gap: 12px; }
+            [style*="grid-template-columns: 1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
