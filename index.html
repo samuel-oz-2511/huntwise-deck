@@ -810,53 +810,64 @@
     <div class="slide bg-dark" data-index="6">
         <div class="slide-inner">
             <span class="slide-label">Business Model</span>
-            <h2>B2C acquires users. B2B generates revenue.</h2>
-            <div class="two-col" style="margin-top: 36px;">
-                <div>
-                    <h3 style="color: var(--primary);">B2C — Acquisition Engine</h3>
-                    <div style="display: flex; gap: 12px; margin-top: 8px;">
-                        <div style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 4px;">Free</div>
-                            <div style="font-size: 20px; font-weight: 800;">$0</div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">3 credits/mo<br>Limited matches<br>1 CV upload</div>
+            <h2>One product. Three revenue engines.</h2>
+            <div class="card-grid grid-3" style="margin-top: 32px;">
+                <!-- B2C -->
+                <div class="card" style="padding: 28px; border-color: rgba(37,99,235,0.3);">
+                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--primary); margin-bottom: 12px;">1. B2C Direct</div>
+                    <h3 style="font-size: 17px; margin-bottom: 8px;">Candidates pay directly</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 16px;">Standard SaaS acquisition — lean and effective. Candidates find us, sign up, and upgrade for deeper intelligence.</p>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Free</div>
+                            <div style="font-size: 16px; font-weight: 800;">$0</div>
                         </div>
-                        <div style="flex: 1; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.3); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: var(--primary); margin-bottom: 4px;">Pro</div>
-                            <div style="font-size: 20px; font-weight: 800;">$49<span style="font-size: 12px; font-weight: 400;">/mo</span></div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">120 credits/mo<br>Unlimited matches<br>3 CV replacements</div>
+                        <div style="flex: 1; background: rgba(37,99,235,0.15); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: var(--primary);">Pro</div>
+                            <div style="font-size: 16px; font-weight: 800;">$49<span style="font-size: 10px; font-weight: 400;">/mo</span></div>
                         </div>
-                        <div style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: #A78BFA; margin-bottom: 4px;">VIP</div>
-                            <div style="font-size: 20px; font-weight: 800;">$149<span style="font-size: 12px; font-weight: 400;">/mo</span></div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">Unlimited credits<br>5 CV replacements<br>1-on-1 Strategy Session</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: #A78BFA;">VIP</div>
+                            <div style="font-size: 16px; font-weight: 800;">$149<span style="font-size: 10px; font-weight: 400;">/mo</span></div>
                         </div>
-                    </div>
-                    <div style="margin-top: 12px; padding: 12px 16px; background: rgba(37,99,235,0.1); border-radius: 10px; border: 1px solid rgba(37,99,235,0.2);">
-                        <p style="font-size: 13px; color: rgba(255,255,255,0.7);">Unit economics: <strong style="color: var(--green);">$0.013</strong> per credit. Total LLM cost for 35 beta users: <strong>$0.61</strong></p>
                     </div>
                 </div>
-                <div>
-                    <h3 style="color: var(--green);">B2B — Revenue Engine</h3>
-                    <div style="display: flex; gap: 12px; margin-top: 8px;">
-                        <div style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 4px;">Starter</div>
-                            <div style="font-size: 20px; font-weight: 800;">$99<span style="font-size: 11px; font-weight: 400;">/employee</span></div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">120 credits/mo<br>Unlimited matches<br>3 months access</div>
+                <!-- B2B Outplacement -->
+                <div class="card" style="padding: 28px; border-color: rgba(16,185,129,0.3);">
+                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); margin-bottom: 12px;">2. B2B Outplacement</div>
+                    <h3 style="font-size: 17px; margin-bottom: 8px;">Employers pay as a farewell benefit</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 16px;">Companies laying off employees purchase HuntWise as an outplacement tool. Same B2C product — the employer pays, not the candidate.</p>
+                    <div style="display: flex; gap: 8px;">
+                        <div style="flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Starter</div>
+                            <div style="font-size: 16px; font-weight: 800;">$99<span style="font-size: 9px; font-weight: 400;">/emp</span></div>
                         </div>
-                        <div style="flex: 1; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: var(--green); margin-bottom: 4px;">Professional</div>
-                            <div style="font-size: 20px; font-weight: 800;">$169<span style="font-size: 11px; font-weight: 400;">/employee</span></div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">200 credits/mo<br>ATS-optimized CVs<br>6 months access</div>
+                        <div style="flex: 1; background: rgba(16,185,129,0.15); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: var(--green);">Pro</div>
+                            <div style="font-size: 16px; font-weight: 800;">$169<span style="font-size: 9px; font-weight: 400;">/emp</span></div>
                         </div>
-                        <div style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px;">
-                            <div style="font-size: 12px; font-weight: 600; color: #FCD34D; margin-bottom: 4px;">Enterprise</div>
-                            <div style="font-size: 20px; font-weight: 800;">Custom</div>
-                            <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px;">50+ employees<br>HR analytics dashboard<br>Dedicated success mgr</div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; text-align: center;">
+                            <div style="font-size: 10px; color: #FCD34D;">Enterprise</div>
+                            <div style="font-size: 16px; font-weight: 800;">Custom</div>
                         </div>
                     </div>
-                    <div style="margin-top: 12px; padding: 12px 16px; background: rgba(16,185,129,0.1); border-radius: 10px; border: 1px solid rgba(16,185,129,0.2);">
-                        <p style="font-size: 13px; color: rgba(255,255,255,0.7);">Charged only after onboarding. 144 HR leads mapped with layoff intelligence — outbound starts <strong style="color: var(--green);">April 2026</strong></p>
+                </div>
+                <!-- Professional Services -->
+                <div class="card" style="padding: 28px; border-color: rgba(245,158,11,0.3);">
+                    <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #FCD34D; margin-bottom: 12px;">3. Professional Services</div>
+                    <h3 style="font-size: 17px; margin-bottom: 8px;">Headhunter rev-share on placements</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 16px;">We proactively hunt positions that match our existing candidates, then connect with headhunters to place them. Revenue is a rev-share on successful placements.</p>
+                    <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; padding: 12px;">
+                        <p style="font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5;"><strong style="color: #FCD34D;">Zero data sharing without consent.</strong> We never share candidate data without explicit, case-by-case approval from the candidate.</p>
                     </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 16px;">
+                <div style="flex: 1; padding: 14px 18px; background: rgba(37,99,235,0.08); border-radius: 10px; border: 1px solid rgba(37,99,235,0.15);">
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7);">Unit economics: <strong style="color: var(--green);">$0.013</strong> per credit. Total LLM cost for 35 beta users: <strong>$0.61</strong></p>
+                </div>
+                <div style="flex: 1; padding: 14px 18px; background: rgba(16,185,129,0.08); border-radius: 10px; border: 1px solid rgba(16,185,129,0.15);">
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7);">144 HR leads at layoff companies mapped — B2B outbound starts <strong style="color: var(--green);">April 2026</strong></p>
                 </div>
             </div>
         </div>
