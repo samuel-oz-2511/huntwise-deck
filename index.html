@@ -539,6 +539,49 @@
             z-index: 100;
         }
 
+        /* Password Gate */
+        #passwordGate {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #passwordGate.hidden { opacity: 0; pointer-events: none; }
+        #passwordGate .gate-logo { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+        #passwordGate .gate-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+        #passwordGate input {
+            width: 300px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        #passwordGate input:focus { border-color: var(--primary); }
+        #passwordGate input::placeholder { color: rgba(255,255,255,0.3); }
+        #passwordGate .gate-error {
+            color: var(--red);
+            font-size: 13px;
+            margin-top: 12px;
+            height: 20px;
+        }
+        #passwordGate .gate-footer {
+            position: absolute;
+            bottom: 32px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.25);
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .slide { padding: 40px 32px; }
@@ -561,10 +604,24 @@
 </head>
 <body>
 
+<!-- Password Gate -->
+<div id="passwordGate">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" style="margin-bottom: 16px;">
+        <rect width="56" height="56" rx="14" fill="#2563EB"/>
+        <circle cx="24" cy="24" r="10" stroke="white" stroke-width="3" fill="none"/>
+        <line x1="31" y1="31" x2="42" y2="42" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="gate-logo">HuntWise</div>
+    <div class="gate-sub">Seed Deck &middot; Confidential</div>
+    <input type="password" id="gateInput" placeholder="Enter access code" autocomplete="off" autofocus>
+    <div class="gate-error" id="gateError"></div>
+    <div class="gate-footer">This deck is confidential and tracked. Unauthorized sharing is prohibited.</div>
+</div>
+
 <div class="progress-bar" id="progressBar"></div>
 <div class="confidential-badge">Confidential</div>
 
-<div class="deck" id="deck">
+<div class="deck" id="deck" style="display: none;">
 
     <!-- SLIDE 1: COVER -->
     <div class="slide bg-gradient active" data-index="0">
@@ -1570,7 +1627,7 @@
 </div>
 
 <!-- Navigation Bar -->
-<div class="nav-bar">
+<div class="nav-bar" id="navBar" style="display: none;">
     <div class="logo-small">
         <svg width="20" height="20" viewBox="0 0 56 56" fill="none" style="vertical-align: middle; margin-right: 6px;">
             <rect width="56" height="56" rx="14" fill="#2563EB"/>
@@ -1587,6 +1644,59 @@
 </div>
 
 <script>
+    // === PASSWORD GATE + SLACK NOTIFICATIONS ===
+    const VC_KEYS = {
+        '35ede316213a800fb8d187fe1d8d6b9f1a085b9d2a44ae120181b32573013cda': 'Tomer | FutureFirst Ventures'
+    };
+
+    const _SW = atob('aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDA5TkJFVUJWRjAvQjBBS0s1UzBOR1AvR25RbzJpU0xweUk2N2ZDU1hWVUU3dHdt');
+
+    async function sha256(str) {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function notifySlack(vcName) {
+        const now = new Date().toLocaleString('en-IL', { timeZone: 'Asia/Jerusalem' });
+        const device = /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+        const browser = navigator.userAgent.match(/(Chrome|Safari|Firefox|Edge|Opera)\//)?.[1] || 'Unknown';
+        const payload = {
+            text: `:eyes: *Deck Opened*\n*Viewer:* ${vcName}\n*Time:* ${now} (IL)\n*Device:* ${device} / ${browser}\n*URL:* ${window.location.href}`
+        };
+        try {
+            await fetch(_SW, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        } catch (e) { /* silent */ }
+    }
+
+    function unlockDeck(vcName) {
+        document.getElementById('passwordGate').classList.add('hidden');
+        document.getElementById('deck').style.display = '';
+        document.getElementById('navBar').style.display = '';
+        document.querySelector('.progress-bar').style.display = '';
+        document.querySelector('.confidential-badge').textContent = 'Confidential | ' + vcName;
+        setTimeout(() => document.getElementById('passwordGate').remove(), 600);
+        notifySlack(vcName);
+    }
+
+    document.getElementById('gateInput').addEventListener('keydown', async (e) => {
+        if (e.key !== 'Enter') return;
+        const hash = await sha256(e.target.value.trim().toLowerCase());
+        if (VC_KEYS[hash]) {
+            unlockDeck(VC_KEYS[hash]);
+        } else {
+            document.getElementById('gateError').textContent = 'Invalid access code';
+            e.target.value = '';
+            e.target.style.borderColor = '#EF4444';
+            setTimeout(() => { e.target.style.borderColor = ''; document.getElementById('gateError').textContent = ''; }, 2000);
+        }
+    });
+
+    // === DECK NAVIGATION ===
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const total = slides.length;
