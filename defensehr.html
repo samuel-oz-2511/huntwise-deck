@@ -265,6 +265,49 @@
             #passwordGate .gate-sub { font-size: 12px; margin-bottom: 28px; }
             #passwordGate .gate-footer { font-size: 9px; bottom: 20px; padding: 0 20px; text-align: center; }
             [style*="font-size: 120px"] { font-size: 72px !important; }
+
+            /* Force ALL inline grids to single-column on mobile */
+            .slide-inner > div[style*="grid-template-columns"],
+            .slide-inner div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Product demo: stack left/right panels vertically */
+            .slide[data-index="5"] .slide-inner > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                height: auto !important;
+            }
+
+            /* Threat stats: 2-col grid instead of 5 */
+            .slide[data-index="1"] > .slide-inner > div[style*="repeat(5"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* The Ask: 2x2 instead of 4-col */
+            .slide[data-index="13"] div[style*="grid-template-columns: 1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Business model: 2-col instead of 4 */
+            .slide[data-index="9"] > .slide-inner > div[style*="1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* "What We Already Have" grid: 2-col instead of 5 */
+            .slide[data-index="12"] div[style*="1fr 1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Tables: allow horizontal scroll */
+            .use-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+            /* Competitive landscape table scroll hint */
+            .slide[data-index="7"] div[style*="overflow-x"] { -webkit-overflow-scrolling: touch; }
+
+            /* Smaller threat stat boxes */
+            .threat-stat { padding: 12px; }
+            .threat-stat .stat-value { font-size: 20px; }
+            .threat-stat p { font-size: 11px; }
         }
 
         @media (max-width: 480px) {
@@ -272,8 +315,27 @@
             h1 { font-size: 24px; }
             h2 { font-size: 20px; }
             .stat-value { font-size: 24px; }
-            .threat-stat .stat-value { font-size: 20px; }
+            .threat-stat .stat-value { font-size: 18px; }
+            .threat-stat p { font-size: 10px; }
             [style*="font-size: 120px"] { font-size: 56px !important; }
+
+            /* All grids single-column on small phones */
+            .slide-inner div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+
+            /* Team cards full width */
+            .team-card { padding: 20px 16px; }
+            .team-avatar { width: 56px; height: 56px; font-size: 22px; }
+            .team-name { font-size: 17px; }
+            .team-bio { font-size: 12px; }
+
+            /* Smaller font for sources */
+            .sources p { font-size: 9px; }
+
+            /* CTA box tighter */
+            .cta-box p { font-size: 16px !important; }
         }
     </style>
 </head>
