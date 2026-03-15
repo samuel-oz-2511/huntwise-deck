@@ -453,6 +453,9 @@
                 <p style="font-size: 15px; color: rgba(255,255,255,0.8);">
                     <strong style="color: var(--white);">This is how the best security companies are born.</strong> Wiz came from Azure cloud security. CrowdStrike's founders came from McAfee. We came from building the attack.
                 </p>
+                <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 8px;">
+                    HuntWise transitions to a controlled red-team research engine once Verace launches &mdash; no longer consumer-facing. The attack lab feeds the defense. Same model as Mandiant's red team powering their threat intelligence.
+                </p>
             </div>
         </div>
     </div>
@@ -545,8 +548,146 @@
         </div>
     </div>
 
-    <!-- SLIDE 6: MARKET -->
+    <!-- SLIDE 6: PRODUCT DEMO -->
     <div class="slide bg-dark" data-index="6">
+        <div class="slide-inner">
+            <span class="slide-label">Product Preview</span>
+            <h2>Same engine. <span style="color: var(--red);">Flipped perspective.</span></h2>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px;">HuntWise scores candidates for fit. Verace scores applications for fraud. Same AI, opposite side.</p>
+            <div style="display: grid; grid-template-columns: 340px 1fr; gap: 0; height: 400px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); background: #0B1220;">
+                <!-- LEFT: Application Queue -->
+                <div style="border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto; background: rgba(255,255,255,0.02);">
+                    <div style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                            <svg width="18" height="18" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,170 326,350 186,350" fill="#0B1220"/></svg>
+                            <span style="font-weight: 700; font-size: 14px; color: var(--primary);">Verace</span>
+                        </div>
+                        <div style="display: flex; gap: 8px; font-size: 11px;">
+                            <span style="padding: 4px 10px; background: var(--primary); color: white; border-radius: 6px; font-weight: 600;">All 247</span>
+                            <span style="padding: 4px 10px; background: rgba(239,68,68,0.15); color: #FCA5A5; border-radius: 6px;">Flagged 23</span>
+                            <span style="padding: 4px 10px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border-radius: 6px;">Verified 89</span>
+                        </div>
+                    </div>
+                    <!-- Candidate cards -->
+                    <div style="padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(239,68,68,0.06); border-left: 3px solid var(--red);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">Alex Chen</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Senior Backend Engineer</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px;">via Greenhouse &middot; 2h ago</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--red);">92%</div>
+                                <div style="font-size: 9px; color: #FCA5A5; font-weight: 600;">HIGH RISK</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--orange);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">Maria Ivanova</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">DevOps Engineer</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px;">via Lever &middot; 5h ago</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--orange);">61%</div>
+                                <div style="font-size: 9px; color: #FCD34D; font-weight: 600;">REVIEW</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--green);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">James Park</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Product Manager</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px;">via Workday &middot; 6h ago</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--green);">12%</div>
+                                <div style="font-size: 9px; color: #6EE7B7; font-weight: 600;">VERIFIED</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); border-left: 3px solid var(--green);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">Sarah Kim</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Data Analyst</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px;">via Greenhouse &middot; 8h ago</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--green);">8%</div>
+                                <div style="font-size: 9px; color: #6EE7B7; font-weight: 600;">VERIFIED</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 12px; border-left: 3px solid var(--red);">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">David Okonkwo</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Full Stack Developer</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px;">via iCIMS &middot; 12h ago</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 18px; font-weight: 800; color: var(--red);">87%</div>
+                                <div style="font-size: 9px; color: #FCA5A5; font-weight: 600;">HIGH RISK</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- RIGHT: Detail Panel -->
+                <div style="padding: 20px 24px; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <div style="font-size: 18px; font-weight: 700; color: var(--white);">Alex Chen</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Senior Backend Engineer &middot; Applied via Greenhouse</div>
+                        </div>
+                        <div style="padding: 8px 16px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; text-align: center;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--red);">92%</div>
+                            <div style="font-size: 10px; color: #FCA5A5; font-weight: 600;">FRAUD RISK</div>
+                        </div>
+                    </div>
+                    <!-- Action tabs (mirroring HuntWise) -->
+                    <div style="display: flex; gap: 0; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <div style="padding: 10px 16px; font-size: 12px; font-weight: 600; color: var(--primary); border-bottom: 2px solid var(--primary);">Why Flagged</div>
+                        <div style="padding: 10px 16px; font-size: 12px; color: rgba(255,255,255,0.4);">Verify Identity</div>
+                        <div style="padding: 10px 16px; font-size: 12px; color: rgba(255,255,255,0.4);">Deep Scan</div>
+                        <div style="padding: 10px 16px; font-size: 12px; color: rgba(255,255,255,0.4);">Audit Log</div>
+                    </div>
+                    <!-- Risk breakdown -->
+                    <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Risk Breakdown</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(239,68,68,0.08); border-radius: 8px; border: 1px solid rgba(239,68,68,0.15);">
+                            <span style="font-size: 12px; color: rgba(255,255,255,0.7);">AI-generated content detected</span>
+                            <span style="font-size: 12px; font-weight: 700; color: var(--red);">+35</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(239,68,68,0.08); border-radius: 8px; border: 1px solid rgba(239,68,68,0.15);">
+                            <span style="font-size: 12px; color: rgba(255,255,255,0.7);">Hidden keyword injection (14 terms)</span>
+                            <span style="font-size: 12px; font-weight: 700; color: var(--red);">+25</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(245,158,11,0.08); border-radius: 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <span style="font-size: 12px; color: rgba(255,255,255,0.7);">Auto-apply bot pattern (batch timing)</span>
+                            <span style="font-size: 12px; font-weight: 700; color: var(--orange);">+18</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(245,158,11,0.08); border-radius: 8px; border: 1px solid rgba(245,158,11,0.15);">
+                            <span style="font-size: 12px; color: rgba(255,255,255,0.7);">Skill overclaim: 3 skills without evidence</span>
+                            <span style="font-size: 12px; font-weight: 700; color: var(--orange);">+14</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 6px;">RECOMMENDATION</div>
+                        <div style="font-size: 13px; color: var(--red); font-weight: 600;">Block &mdash; Do not advance to interview. Require identity verification before any further contact.</div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 12px; display: flex; gap: 16px; justify-content: center; font-size: 11px; color: rgba(255,255,255,0.35);">
+                <span>Conceptual product preview &mdash; built on the same scoring engine powering HuntWise's ATS analysis</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: MARKET -->
+    <div class="slide bg-dark" data-index="7">
         <div class="slide-inner">
             <span class="slide-label">Market Opportunity</span>
             <h2>$2-5B addressable. <span style="color: var(--primary);">Cybersecurity multiples.</span></h2>
@@ -609,8 +750,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 7: COMPETITIVE LANDSCAPE -->
-    <div class="slide bg-dark" data-index="7">
+    <!-- SLIDE 8: COMPETITIVE LANDSCAPE -->
+    <div class="slide bg-dark" data-index="8">
         <div class="slide-inner">
             <span class="slide-label">Competitive Landscape</span>
             <h2>Everyone does one thing. <span style="color: var(--primary);">Nobody does it all.</span></h2>
@@ -695,11 +836,16 @@
                     <strong style="color: var(--white);">The key gap:</strong> Ashby and Phenom only protect their own customers. The 200K+ companies on Greenhouse, Lever, Workday, iCIMS have <strong style="color: var(--red);">zero protection</strong>. That's our market.
                 </p>
             </div>
+            <div style="margin-top: 12px; padding: 16px 24px; background: rgba(37,99,235,0.06); border-radius: 12px; border: 1px solid rgba(37,99,235,0.15);">
+                <p style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                    <strong style="color: var(--primary);">Why won't ATS vendors just build this?</strong> Detection quality requires offensive-security R&amp;D &mdash; reverse-engineering how AI manipulates their own systems. ATS vendors won't invest in attacking themselves. Email providers didn't build spam detection; they bought it. ATS platforms will buy fraud detection the same way. We're the <a href="https://www.proofpoint.com/" target="_blank" style="color: var(--primary);">Proofpoint</a> of hiring.
+                </p>
+            </div>
         </div>
     </div>
 
-    <!-- SLIDE 8: GO-TO-MARKET -->
-    <div class="slide bg-dark" data-index="8">
+    <!-- SLIDE 9: GO-TO-MARKET -->
+    <div class="slide bg-dark" data-index="9">
         <div class="slide-inner">
             <span class="slide-label">Go-To-Market</span>
             <h2>Two buyers. Two budgets. <span style="color: var(--primary);">Same product.</span></h2>
@@ -769,8 +915,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 9: BUSINESS MODEL -->
-    <div class="slide bg-dark" data-index="9">
+    <!-- SLIDE 10: BUSINESS MODEL -->
+    <div class="slide bg-dark" data-index="10">
         <div class="slide-inner">
             <span class="slide-label">Business Model</span>
             <h2>Pure B2B SaaS. <span style="color: var(--primary);">Annual contracts. No churn paradox.</span></h2>
@@ -815,8 +961,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 10: REGULATORY TAILWINDS -->
-    <div class="slide bg-dark" data-index="10">
+    <!-- SLIDE 11: REGULATORY TAILWINDS -->
+    <div class="slide bg-dark" data-index="11">
         <div class="slide-inner">
             <span class="slide-label">Regulatory Tailwinds</span>
             <h2>Compliance is our <span style="color: var(--orange);">sales engine.</span></h2>
@@ -885,8 +1031,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 11: TEAM -->
-    <div class="slide bg-dark" data-index="11">
+    <!-- SLIDE 12: TEAM -->
+    <div class="slide bg-dark" data-index="12">
         <div class="slide-inner">
             <span class="slide-label">Team</span>
             <h2>Security, operations, <span style="color: var(--primary);">and data science.</span></h2>
@@ -943,8 +1089,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 12: ROADMAP -->
-    <div class="slide bg-dark" data-index="12">
+    <!-- SLIDE 13: ROADMAP -->
+    <div class="slide bg-dark" data-index="13">
         <div class="slide-inner">
             <span class="slide-label">Roadmap &amp; Milestones</span>
             <h2>From prototype to <span style="color: var(--primary);">$1M ARR.</span></h2>
@@ -1004,8 +1150,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 13: THE ASK -->
-    <div class="slide bg-cyber" data-index="13">
+    <!-- SLIDE 14: THE ASK -->
+    <div class="slide bg-cyber" data-index="14">
         <div class="slide-inner" style="text-align: center;">
             <span class="slide-label" style="color: rgba(255,255,255,0.5);">The Ask</span>
             <div style="margin-top: 40px;">
@@ -1034,7 +1180,7 @@
                 <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                         <td style="padding: 10px 0; color: rgba(255,255,255,0.6); text-align: left;">Valuation</td>
-                        <td style="padding: 10px 0; text-align: right; font-weight: 600;">$15-25M pre-money</td>
+                        <td style="padding: 10px 0; text-align: right; font-weight: 600;">$12-16M pre-money</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
                         <td style="padding: 10px 0; color: rgba(255,255,255,0.6); text-align: left;">Runway</td>
@@ -1053,8 +1199,131 @@
         </div>
     </div>
 
-    <!-- SLIDE 14: WHY UPWEST -->
-    <div class="slide bg-dark" data-index="14">
+    <!-- SLIDE 15: FINANCIAL PLAN -->
+    <div class="slide bg-dark" data-index="15">
+        <div class="slide-inner">
+            <span class="slide-label">Financial Plan</span>
+            <h2>$4M over 24 months. <span style="color: var(--primary);">Every dollar mapped.</span></h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+                <div>
+                    <h3 style="font-size: 16px; margin-bottom: 16px;">Headcount Plan</h3>
+                    <table class="use-table" style="font-size: 13px;">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>When</th>
+                                <th>Cost/yr</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>3 Co-Founders</strong> <span style="color: var(--green); font-size: 11px;">(active)</span></td>
+                                <td>Now</td>
+                                <td style="color: rgba(255,255,255,0.5);">Below-market</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ML Engineer</strong> (detection models)</td>
+                                <td>Q2 2026</td>
+                                <td>$180K</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Backend Engineer</strong> (ATS integrations)</td>
+                                <td>Q2 2026</td>
+                                <td>$160K</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Full-Stack Engineer</strong> (dashboard)</td>
+                                <td>Q3 2026</td>
+                                <td>$150K</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Head of Sales</strong> (enterprise GTM)</td>
+                                <td>Q3 2026</td>
+                                <td>$140K + comm.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DevOps / Security</strong> (SOC 2)</td>
+                                <td>Q4 2026</td>
+                                <td>$150K</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2nd ML Engineer</strong> (deepfake)</td>
+                                <td>Q1 2027</td>
+                                <td>$180K</td>
+                            </tr>
+                            <tr style="border-top: 2px solid rgba(255,255,255,0.15);">
+                                <td><strong style="color: var(--primary);">Team by H1 2027</strong></td>
+                                <td><strong>9 people</strong></td>
+                                <td><strong style="color: var(--primary);">~$160K/mo</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3 style="font-size: 16px; margin-bottom: 16px;">Revenue Forecast</h3>
+                    <table class="use-table" style="font-size: 13px;">
+                        <thead>
+                            <tr>
+                                <th>Quarter</th>
+                                <th>Customers</th>
+                                <th>MRR</th>
+                                <th>ARR Run Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Q3 2026</td>
+                                <td>3 design partners</td>
+                                <td>$5K</td>
+                                <td style="color: rgba(255,255,255,0.5);">$60K</td>
+                            </tr>
+                            <tr>
+                                <td>Q4 2026</td>
+                                <td>8</td>
+                                <td>$25K</td>
+                                <td>$300K</td>
+                            </tr>
+                            <tr>
+                                <td>Q1 2027</td>
+                                <td>14</td>
+                                <td>$55K</td>
+                                <td>$660K</td>
+                            </tr>
+                            <tr style="background: rgba(37,99,235,0.08);">
+                                <td><strong>Q2 2027</strong></td>
+                                <td><strong>20+</strong></td>
+                                <td><strong>$90K</strong></td>
+                                <td><strong style="color: var(--primary);">$1.08M</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.04); border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
+                        <h3 style="font-size: 14px; margin-bottom: 10px;">Use of Funds</h3>
+                        <div style="display: flex; gap: 4px; height: 24px; border-radius: 6px; overflow: hidden; margin-bottom: 10px;">
+                            <div style="width: 40%; background: var(--primary);" title="Product"></div>
+                            <div style="width: 30%; background: #7C3AED;" title="Team"></div>
+                            <div style="width: 20%; background: var(--green);" title="GTM"></div>
+                            <div style="width: 10%; background: var(--orange);" title="Compliance"></div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 11px;">
+                            <div><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--primary); margin-right: 6px;"></span><span style="color: rgba(255,255,255,0.6);">Product $1.6M</span> <span style="color: rgba(255,255,255,0.3);">(3 engineers)</span></div>
+                            <div><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #7C3AED; margin-right: 6px;"></span><span style="color: rgba(255,255,255,0.6);">Team $1.2M</span> <span style="color: rgba(255,255,255,0.3);">(founders + ops)</span></div>
+                            <div><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--green); margin-right: 6px;"></span><span style="color: rgba(255,255,255,0.6);">GTM $800K</span> <span style="color: rgba(255,255,255,0.3);">(sales + design partners)</span></div>
+                            <div><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--orange); margin-right: 6px;"></span><span style="color: rgba(255,255,255,0.6);">Compliance $400K</span> <span style="color: rgba(255,255,255,0.3);">(SOC 2 + legal)</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 16px; padding: 14px 24px; background: rgba(16,185,129,0.06); border-radius: 12px; border: 1px solid rgba(16,185,129,0.15); text-align: center;">
+                <p style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                    <strong style="color: var(--green);">Monthly burn: $120K (Q2 2026) &rarr; $180K (Q2 2027).</strong> 24-month runway at full spend. Series A trigger: $1M ARR + 2 enterprise logos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16: WHY UPWEST -->
+    <div class="slide bg-dark" data-index="16">
         <div class="slide-inner">
             <span class="slide-label">Partnership Fit</span>
             <h2>Why we think we match <span style="color: var(--primary);">UpWest.</span></h2>
@@ -1110,8 +1379,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 15: CLOSING -->
-    <div class="slide bg-cyber" data-index="15">
+    <!-- SLIDE 17: CLOSING -->
+    <div class="slide bg-cyber" data-index="17">
         <div class="slide-inner" style="text-align: center;">
             <div style="margin-bottom: 32px;">
                 <svg width="56" height="56" viewBox="0 0 512 512">
@@ -1150,7 +1419,7 @@
     </div>
     <div class="nav-controls">
         <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&#8592;</button>
-        <span class="slide-counter" id="slideCounter">1 / 16</span>
+        <span class="slide-counter" id="slideCounter">1 / 18</span>
         <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&#8594;</button>
     </div>
 </div>
