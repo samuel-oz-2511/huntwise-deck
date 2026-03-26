@@ -181,22 +181,86 @@
             .card h3 { font-size: 15px; }
             .card p { font-size: 12px; }
             .confidential-badge { font-size: 9px; top: 10px; right: 12px; }
+            .cta-btn { font-size: 15px; padding: 14px 32px; }
 
+            /* Force all inline grids to single column */
             .slide-inner div[style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
             }
+
+            /* Traction stats: 2x2 grid */
+            .slide[data-index="1"] .slide-inner > div[style*="1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Attack economy cards: single column */
+            .slide[data-index="2"] .slide-inner > div[style*="1fr 1fr 1fr"]:first-of-type {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Threat stat boxes: 2x2 */
+            .slide[data-index="2"] .slide-inner > div[style*="1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Solution slide: hide the "+" column, stack vertically */
+            .slide[data-index="3"] .slide-inner > div[style*="1fr 60px 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            .slide[data-index="3"] .slide-inner > div[style*="1fr 60px 1fr"] > div:nth-child(2) {
+                display: none !important;
+            }
+
+            /* CTA stats: 2x2 */
+            .slide[data-index="5"] .slide-inner > div[style*="1fr 1fr 1fr 1fr"] {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            /* Inline font-size overrides */
+            [style*="font-size: 52px"] { font-size: 32px !important; }
+            [style*="font-size: 44px"] { font-size: 24px !important; }
+            [style*="font-size: 38px"] { font-size: 28px !important; }
+            [style*="font-size: 36px"] { font-size: 26px !important; }
+            [style*="font-size: 24px"][class="subtitle"] { font-size: 16px !important; }
+
+            /* Pill text smaller */
+            .pill { font-size: 11px; padding: 5px 12px; }
         }
 
         @media (max-width: 480px) {
             .slide { padding: 20px 14px 70px; }
             h1 { font-size: 24px; }
             h2 { font-size: 20px; }
-            .stat-value { font-size: 24px; }
+            .stat-value { font-size: 22px; }
+            .cta-btn { font-size: 14px; padding: 12px 28px; }
 
+            /* Everything single column on small phones */
             .slide-inner div[style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
                 gap: 10px !important;
             }
+
+            /* Inline font-size overrides */
+            [style*="font-size: 52px"] { font-size: 26px !important; }
+            [style*="font-size: 44px"] { font-size: 22px !important; }
+            [style*="font-size: 38px"] { font-size: 22px !important; }
+            [style*="font-size: 36px"] { font-size: 20px !important; }
+            [style*="font-size: 22px"][style*="font-weight: 800"] { font-size: 18px !important; }
+            [style*="font-size: 18px"][style*="font-weight: 800"] { font-size: 15px !important; }
+
+            /* Team card avatar row */
+            .card > div[style*="display: flex"][style*="align-items: center"] {
+                gap: 12px !important;
+            }
+            .card > div[style*="display: flex"] > div[style*="width: 64px"] {
+                width: 48px !important; height: 48px !important; font-size: 20px !important;
+            }
+
+            /* Pill text even smaller */
+            .pill { font-size: 10px; padding: 4px 10px; }
+
+            /* Smaller source/footer text */
+            .confidential-badge { font-size: 8px; }
         }
     </style>
 </head>
