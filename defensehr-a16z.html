@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq — a16z Speedrun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #EFF6FF;
+            --primary-50: #DBEAFE;
+            --text-dark: #0F172A;
+            --text-medium: #334155;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --cyan: #06B6D4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        @media (max-height: 800px) {
+            h1 { font-size: clamp(28px, 4.5vw, 56px) !important; }
+            h2 { font-size: clamp(22px, 3.5vw, 42px) !important; }
+            h3 { font-size: clamp(14px, 2vw, 24px) !important; }
+            .subtitle { font-size: clamp(14px, 1.8vw, 20px) !important; }
+            .card { padding: 16px !important; }
+            .card-grid { margin-top: 16px !important; gap: 12px !important; }
+            .stat-value { font-size: clamp(28px, 4vw, 48px) !important; }
+            .slide-label { margin-bottom: 8px !important; }
+        }
+        @media (max-height: 650px) {
+            h1 { font-size: clamp(22px, 3.5vw, 40px) !important; }
+            h2 { font-size: clamp(18px, 2.8vw, 32px) !important; }
+            h3 { font-size: clamp(12px, 1.6vw, 18px) !important; }
+            .card { padding: 12px !important; }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        .deck { width: 100%; height: 100%; position: relative; }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            justify-content: flex-start; align-items: center;
+            padding: clamp(24px, 4vh, 60px) clamp(24px, 5vw, 80px);
+            padding-bottom: 80px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .slide > .slide-inner { margin: auto 0; }
+        .slide.active { opacity: 1; pointer-events: all; overflow-y: auto; }
+        .slide .slide-inner {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            opacity: 0; transform: translateY(12px);
+        }
+        .slide.active .slide-inner { opacity: 1; transform: translateY(0); }
+
+        .key-hint {
+            position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+            font-size: 12px; color: rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 20px; border-radius: 8px; z-index: 200;
+            backdrop-filter: blur(8px);
+            transition: opacity 1s ease;
+        }
+        .key-hint.hidden { opacity: 0; pointer-events: none; }
+
+        .slide-inner { max-width: 1100px; width: 100%; position: relative; z-index: 1; }
+
+        .nav-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 40px;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            z-index: 100;
+        }
+        .nav-bar .logo-small { font-weight: 700; font-size: 14px; color: var(--primary); letter-spacing: -0.02em; }
+        .nav-controls { display: flex; align-items: center; gap: 16px; }
+        .nav-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--white); width: 40px; height: 40px;
+            border-radius: 8px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; transition: all 0.3s ease;
+        }
+        .nav-btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 -2px 8px rgba(37, 99, 235, 0.25); }
+        .slide-counter { font-size: 13px; color: var(--text-light); font-weight: 500; min-width: 60px; text-align: center; background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 12px; }
+
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: linear-gradient(90deg, #2563EB, #7C3AED);
+            box-shadow: 0 0 12px rgba(37, 99, 235, 0.4), 0 0 4px rgba(124, 58, 237, 0.3);
+            transition: width 0.4s ease; z-index: 100;
+        }
+
+        .bg-dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+        .bg-cyber { background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%); }
+        .bg-light { background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%); color: var(--text-dark); }
+
+        .slide-label {
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--primary); margin-bottom: 16px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .slide-label::before {
+            content: '';
+            display: inline-block;
+            width: 24px; height: 2px;
+            background: currentColor;
+            opacity: 0.6;
+        }
+        .slide-inner[style*="text-align: center"] .slide-label { justify-content: center; }
+        .slide-inner[style*="text-align: center"] .slide-label::before { display: none; }
+
+        h1 { font-size: clamp(30px, 4.5vw, 56px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; text-shadow: 0 2px 16px rgba(0,0,0,0.2); }
+        h2 { font-size: clamp(22px, 3.2vw, 42px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; text-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+        h3 { font-size: clamp(15px, 1.6vw, 24px); font-weight: 600; line-height: 1.3; margin-bottom: 12px; }
+
+        .subtitle { font-size: clamp(14px, 1.5vw, 20px); font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 700px; }
+
+        .card-grid { display: grid; gap: clamp(10px, 1.5vw, 20px); margin-top: clamp(16px, 2.5vh, 32px); }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+        .card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 28px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.04);
+        }
+        .card:hover { background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.06)); border-color: rgba(37, 99, 235, 0.4); transform: translateY(-2px); box-shadow: inset 0 1px 1px rgba(255,255,255,0.06), 0 4px 16px rgba(0,0,0,0.15); }
+
+        .card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+        .card h3 { font-size: 18px; margin-bottom: 8px; }
+        .card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+        .stat-row { display: flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+        .stat { text-align: left; }
+        .stat-value { font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: var(--primary); letter-spacing: -0.03em; line-height: 1; }
+        .stat-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 6px; font-weight: 500; }
+
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
+        .team-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 32px 24px; text-align: center;
+            transition: all 0.3s ease;
+        }
+        .team-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12); border-color: rgba(37, 99, 235, 0.25); }
+        .team-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #7C3AED);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: 700; margin: 0 auto 16px; color: white;
+            box-shadow: 0 0 0 3px rgba(15, 23, 42, 1), 0 0 0 5px rgba(37, 99, 235, 0.3);
+        }
+        .team-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .team-role { font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+        .team-bio { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+        .team-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; }
+        .team-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(6, 182, 212, 0.15); color: #93C5FD; font-weight: 500; }
+
+        .pill { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+        .pill-cyan { background: rgba(37, 99, 235, 0.2); color: #93C5FD; border-color: rgba(37, 99, 235, 0.2); }
+        .pill-green { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.2); }
+        .pill-red { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; border-color: rgba(239, 68, 68, 0.2); }
+        .pill-orange { background: rgba(245, 158, 11, 0.2); color: #FCD34D; border-color: rgba(245, 158, 11, 0.2); }
+
+        .threat-stat {
+            text-align: center; padding: 20px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 14px;
+            transition: all 0.3s;
+        }
+        .threat-stat .stat-value { color: var(--red); font-size: 36px; animation: statPulse 3s ease-in-out infinite; }
+        .threat-stat p { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 6px; }
+        @keyframes statPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.75; } }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .shimmer-text {
+            background: linear-gradient(90deg, #FFFFFF 0%, #93C5FD 25%, #FFFFFF 50%, #93C5FD 75%, #FFFFFF 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .bg-cyber-animated {
+            background: linear-gradient(135deg, #0F172A, #1E3A8A, #2563EB, #1E3A8A, #0F172A);
+            background-size: 300% 300%;
+            animation: gradientShift 12s ease infinite;
+        }
+
+        .confidential-badge {
+            position: fixed; top: 16px; right: 24px;
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: rgba(255,255,255,0.3); z-index: 100;
+        }
+
+        .sources {
+            margin-top: 16px;
+            background: rgba(255,255,255,0.03); border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .sources-toggle {
+            display: block; width: 100%;
+            padding: 8px 16px;
+            background: none; border: none; cursor: pointer;
+            font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600;
+            font-family: inherit; text-align: left;
+            transition: color 0.3s;
+        }
+        .sources-toggle:hover { color: rgba(255,255,255,0.6); }
+        .sources-toggle::after { content: ' \25B8'; }
+        .sources.open .sources-toggle::after { content: ' \25BE'; }
+        .sources-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 16px; }
+        .sources.open .sources-content { max-height: 300px; padding: 0 16px 12px; }
+        .sources p { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.8; }
+        .sources a { color: rgba(255,255,255,0.45); text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .slide { padding: 30px 20px 70px; overflow-y: auto; justify-content: flex-start; align-items: stretch; }
+            .slide-inner { max-width: 100%; }
+            h1 { font-size: 28px; margin-bottom: 16px; }
+            h2 { font-size: 22px; margin-bottom: 14px; }
+            h3 { font-size: 18px; }
+            .subtitle { font-size: 14px; }
+            .slide-label { font-size: 10px; margin-bottom: 10px; }
+            .key-hint { display: none; }
+            .slide-label::before { width: 16px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .card { padding: 18px; }
+            .card h3 { font-size: 15px; }
+            .card p { font-size: 12px; }
+            .stat-value { font-size: 28px; }
+            .stat-row { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .stat { text-align: center; min-width: 80px; }
+            .nav-bar { padding: 10px 16px; }
+            .nav-btn { width: 36px; height: 36px; font-size: 16px; }
+            .slide-counter { font-size: 12px; }
+            .confidential-badge { font-size: 9px; top: 10px; right: 12px; }
+            .threat-stat .stat-value { font-size: 24px; }
+            .slide-inner > div[style*="grid-template-columns"],
+            .slide-inner div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide { padding: 20px 14px 70px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; }
+            .stat-value { font-size: 24px; }
+            .threat-stat .stat-value { font-size: 18px; }
+            .team-card { padding: 20px 16px; }
+            .team-avatar { width: 56px; height: 56px; font-size: 22px; }
+            .team-name { font-size: 17px; }
+            .team-bio { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="confidential-badge">Confidential</div>
+
+<div class="deck" id="deck">
+
+    <!-- SLIDE 0: COVER -->
+    <div class="slide bg-cyber-animated active" data-index="0">
+        <div class="slide-inner" style="text-align: center;">
+            <div style="margin-bottom: 28px;">
+                <svg width="80" height="80" viewBox="0 0 512 512" style="filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));">
+                    <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
+                    <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+                </svg>
+            </div>
+            <h1 style="font-size: 56px; max-width: 900px; margin: 0 auto 16px;">Sentriq</h1>
+            <p class="subtitle" style="margin: 0 auto 12px; max-width: 680px; font-size: 26px; color: rgba(255,255,255,0.9); font-weight: 600;">AI broke the hiring signal.</p>
+            <p class="subtitle" style="margin: 0 auto 32px; max-width: 680px; font-size: 22px; color: rgba(255,255,255,0.7);">We built the trust layer.</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+                <span class="pill pill-cyan">Candidate Application Firewall</span>
+                <span class="pill pill-green">Hiring Integrity Infrastructure</span>
+                <span class="pill pill-orange">$4M Seed</span>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.3);">April 2026 &middot; Confidential &middot; samuel@sentriq.co</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 1: THE PROBLEM -->
+    <div class="slide bg-dark" data-index="1">
+        <div class="slide-inner">
+            <span class="slide-label">The Problem</span>
+            <h2>The hiring signal is <span style="color: var(--red);">collapsing.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px;">
+                <div class="threat-stat">
+                    <div class="stat-value" style="font-size: 42px;">41%</div>
+                    <p>of companies already hired a <strong style="color: var(--red);">fake candidate</strong></p>
+                </div>
+                <div class="threat-stat">
+                    <div class="stat-value" style="font-size: 42px;">1,500+</div>
+                    <p>applications per day from a <strong style="color: var(--red);">single bot user</strong>. 90% are noise.</p>
+                </div>
+                <div class="threat-stat">
+                    <div class="stat-value" style="font-size: 42px;">$240K</div>
+                    <p>maximum cost of <strong style="color: var(--red);">one fraudulent hire</strong>. FBI has issued PSAs.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div style="padding: 20px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 14px;">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;">Signal flooding</div>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">Tools like Tsenta (YC S26), Simplify (1M+ users), and LazyApply turned applying into a spam operation. One Deel role received 6,500 applications in under two weeks. Recruiters can no longer find real candidates inside the noise.</p>
+                </div>
+                <div style="padding: 20px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 14px;">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;">Fraud went mainstream</div>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">320+ DPRK operatives confirmed inside Fortune 500 technical teams. A convincing deepfake identity takes 70 minutes to manufacture. Interview cheating doubled in 6 months. This is no longer a fringe risk.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 18px 24px; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 14px; display: flex; align-items: center; gap: 16px;">
+                <div style="flex-shrink: 0; width: 4px; height: 48px; background: var(--primary); border-radius: 2px;"></div>
+                <p style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.6;">The ATS gives every recruiter a fit score. <strong style="color: var(--white);">Nobody is giving them a trust score.</strong> That gap is what Sentriq fills.</p>
+            </div>
+
+            <div class="sources">
+                <p>
+                    GetReal Security (668 IT leaders, Dec 2025) &middot; Gartner (Jul 2025) &middot; CrowdStrike via TechCrunch (Aug 2025) &middot; Pindrop / HR Dive (Jun 2025) &middot; FBI IC3 PSA (Jan 2025) &middot; YC S26: Tsenta
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: WHY NOW -->
+    <div class="slide bg-dark" data-index="2">
+        <div class="slide-inner">
+            <span class="slide-label">Why Now</span>
+            <h2>Three forces converging. <span style="color: var(--primary);">The window is open.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 28px;">
+                <div style="padding: 28px 24px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 16px;">
+                    <div style="font-size: 28px; margin-bottom: 14px;">01</div>
+                    <h3 style="color: var(--red); font-size: 16px; margin-bottom: 10px;">AI Destroyed the Signal</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">Every resume is now ATS-optimized and AI-polished. Mass-apply bots made applying frictionless. The signal-to-noise ratio in hiring collapsed from manageable to broken in under 18 months. YC is funding the attack. Nobody was building the defense.</p>
+                </div>
+                <div style="padding: 28px 24px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 16px;">
+                    <div style="font-size: 28px; margin-bottom: 14px;">02</div>
+                    <h3 style="color: var(--orange); font-size: 16px; margin-bottom: 10px;">Fraud Is Now Enterprise Risk</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">State-sponsored hiring fraud (DPRK inside Fortune 500), synthetic identities, and AI deepfakes elevated this from an HR inconvenience to a security and compliance issue. CISOs are now paying attention. The budget moved from HR to security.</p>
+                </div>
+                <div style="padding: 28px 24px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.2); border-radius: 16px;">
+                    <div style="font-size: 28px; margin-bottom: 14px;">03</div>
+                    <h3 style="color: var(--primary); font-size: 16px; margin-bottom: 10px;">EU AI Act: August 2026</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">Companies using AI in hiring must prove human oversight or face regulatory penalties across 27 countries. This is a forced compliance purchase event — not an optional upgrade. It creates a hard deadline and a non-discretionary budget line for what Sentriq provides.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 18px 28px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; text-align: center;">
+                <p style="font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    This could not have been built 3 years ago: the fraud volume wasn't there, the AI tooling didn't exist, and the regulation hadn't passed.
+                    <strong style="color: var(--white);"> The window opened in 2025. It is open now.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: EARNED SECRET -->
+    <div class="slide bg-dark" data-index="3">
+        <div class="slide-inner">
+            <span class="slide-label">Earned Secret</span>
+            <h2>We built the attack. <span style="color: var(--primary);">We know every angle.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 24px;">
+                <div style="padding: 24px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--primary); font-size: 15px; margin-bottom: 10px;">Chapter 1: Huntwise</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;">Built a tool to help candidates beat ATS systems. Real product. Real users. 73.5K lines of production code. $300K founders' capital. We didn't theorize about hiring signal. We manipulated it, at scale, across three enterprise ATS platforms.</p>
+                </div>
+                <div style="padding: 24px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--orange); font-size: 15px; margin-bottom: 10px;">Chapter 2: The Experiments</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;">To build Huntwise right, we reverse-engineered how ATS scoring works. 30+ live scoring experiments across Comeet, Greenhouse, and Niloos. We discovered 17 rules companies didn't know they were enforcing. We learned exactly where signal breaks.</p>
+                </div>
+                <div style="padding: 24px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--green); font-size: 15px; margin-bottom: 10px;">Chapter 3: The Flip</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;">Everything we learned about breaking signal became a detection signature. Huntwise made us experts on the attack surface. Sentriq is what you build when you flip that knowledge. We are the only team that took this path.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 20px 28px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; align-items: center;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--primary);">30+</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Live ATS experiments</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--orange);">17</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Scoring rules documented</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; color: var(--green);">3</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">ATS platforms tested</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 28px; font-weight: 800; color: rgba(255,255,255,0.8);">$300K</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Founders' capital invested</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center;">
+                    <p style="font-size: 14px; color: rgba(255,255,255,0.75); font-style: italic;">"We built the tool that breaks hiring. So we know exactly how to fix it."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: THE PRODUCT -->
+    <div class="slide bg-dark" data-index="4">
+        <div class="slide-inner">
+            <span class="slide-label">The Product</span>
+            <h2>The Candidate Application Firewall. <span style="color: var(--primary);">CAF.</span></h2>
+
+            <!-- CAF FLOW -->
+            <div style="margin-top: 20px; padding: 16px 24px; background: rgba(37,99,235,0.07); border-radius: 14px; border: 1px solid rgba(37,99,235,0.2);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                    <div style="text-align: center; padding: 12px 16px; background: rgba(255,255,255,0.05); border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">Candidate</div>
+                        <div style="font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8);">Application</div>
+                    </div>
+                    <div style="font-size: 20px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 12px 20px; background: rgba(37,99,235,0.15); border: 2px solid rgba(37,99,235,0.4); border-radius: 10px; min-width: 160px;">
+                        <div style="font-size: 11px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">Sentriq CAF</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white);">Trust Score Layer</div>
+                    </div>
+                    <div style="font-size: 20px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 12px 16px; background: rgba(255,255,255,0.05); border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">ATS</div>
+                        <div style="font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8);">Fit Score</div>
+                    </div>
+                    <div style="font-size: 20px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 12px 16px; background: rgba(255,255,255,0.05); border-radius: 10px; min-width: 120px;">
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">Recruiter</div>
+                        <div style="font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8);">Decides</div>
+                    </div>
+                </div>
+                <p style="font-size: 11px; color: rgba(255,255,255,0.35); text-align: center; margin-top: 10px;">Integrates with Greenhouse, Workday, Lever, Comeet, iCIMS, and 50+ ATS platforms via API. Not a replacement. A layer on top.</p>
+            </div>
+
+            <!-- THREE LAYERS -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 18px;">
+                <div style="padding: 22px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 14px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 1: Auto-Flag</div>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65;">Every application analyzed for integrity signals: fabricated credentials, timeline manipulation, skill inflation, behavioral anomalies. Suspicious applications routed to a review queue. Nothing removed silently.</p>
+                </div>
+                <div style="padding: 22px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 14px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 2: Async Challenge</div>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65;">Flagged candidates receive a 2-minute verification task targeting the specific gaps detected. Results feed back into the integrity signal. Honest candidates clear. Fabricated profiles collapse.</p>
+                </div>
+                <div style="padding: 22px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 3: Human Review</div>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65;">Recruiters see evidence cards, not scores. Every flag is backed by specific evidence. A human always makes the final call. <strong style="color: var(--white);">Zero automated rejections. Ever.</strong> Human-in-the-loop is core architecture.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 14px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: var(--primary);">Not an ATS</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px;">Sits above existing systems</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: var(--green);">Not an AI detector</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px;">Detects distortion, not AI use</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: var(--orange);">Not a background check</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px;">Operates before any interview</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: LIVE DEMO -->
+    <div class="slide bg-dark" data-index="5">
+        <div class="slide-inner" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <span class="slide-label">Live Demo</span>
+            <h2 style="max-width: 700px;">See it in action. <span style="color: var(--primary);">Real product. Real signal.</span></h2>
+            <p style="font-size: 16px; color: rgba(255,255,255,0.55); max-width: 560px; margin: 16px auto 40px;">The Sentriq demo walks through the full integrity workflow: from the Command Center to evidence cards, version comparison, and the ROI calculator.</p>
+            <a href="http://167.86.90.69/sentriq-demo/demo" target="_blank" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: var(--primary); color: white; border-radius: 14px; font-size: 18px; font-weight: 700; text-decoration: none; letter-spacing: 0.01em; box-shadow: 0 0 40px rgba(37,99,235,0.4); transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                &#x25B6;&nbsp; Launch Demo
+            </a>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; max-width: 680px;">
+                <div style="padding: 16px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">Command Center</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Volume proof &middot; Integrity Inbox &middot; Real-time intake across Greenhouse, Workday, Lever</div>
+                </div>
+                <div style="padding: 16px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 4px;">Evidence Cards</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Material Risk &middot; Needs Review &middot; Clear &mdash; every flag backed by specific evidence</div>
+                </div>
+                <div style="padding: 16px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--orange); margin-bottom: 4px;">ROI Calculator</div>
+                    <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Input your volume, team size, contractor exposure. See hours saved and risk avoided.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: TRACTION + MARKET -->
+    <div class="slide bg-dark" data-index="6">
+        <div class="slide-inner">
+            <span class="slide-label">Traction &amp; Market</span>
+            <h2>Early proof. <span style="color: var(--primary);">Large ground.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+
+                <!-- TRACTION -->
+                <div style="padding: 28px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;">Traction</div>
+
+                    <div style="margin-bottom: 20px; padding: 16px; background: rgba(16,185,129,0.08); border-radius: 12px; border-left: 3px solid var(--green);">
+                        <div style="font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px;">First design partner signed</div>
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6;">A global Big 4 professional services firm. Active production exploration. Their hiring integrity risk is exactly the wedge Sentriq addresses.</div>
+                    </div>
+
+                    <div style="margin-bottom: 16px; padding: 14px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                        <div style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 3px;">Pre-revenue by design</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Raising to build, not to prove. The moat is the dataset and the network effect, not early revenue.</div>
+                    </div>
+
+                    <div style="padding: 14px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                        <div style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 3px;">Active design partner conversations</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Additional enterprise conversations in progress. Remote-first and contractor-heavy hiring teams.</div>
+                    </div>
+                </div>
+
+                <!-- MARKET -->
+                <div style="padding: 28px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.2); border-radius: 16px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 18px;">Market</div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px;">
+                        <div style="text-align: center; padding: 14px; background: rgba(37,99,235,0.08); border-radius: 10px;">
+                            <div style="font-size: 26px; font-weight: 800; color: var(--primary);">250K+</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Companies using ATS globally</div>
+                        </div>
+                        <div style="text-align: center; padding: 14px; background: rgba(37,99,235,0.08); border-radius: 10px;">
+                            <div style="font-size: 26px; font-weight: 800; color: var(--primary);">97.8%</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Fortune 500 on ATS</div>
+                        </div>
+                        <div style="text-align: center; padding: 14px; background: rgba(37,99,235,0.08); border-radius: 10px;">
+                            <div style="font-size: 26px; font-weight: 800; color: var(--primary);">$7.8B</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Employment screening market</div>
+                        </div>
+                        <div style="text-align: center; padding: 14px; background: rgba(37,99,235,0.08); border-radius: 10px;">
+                            <div style="font-size: 26px; font-weight: 800; color: var(--green);">15-25x</div>
+                            <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px;">Infrastructure ARR multiples</div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 14px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                        <p style="font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6;">
+                            SMB: $500-$2,000/mo &middot; Enterprise: $5,000-$15,000/mo &middot; Annual contracts &middot; One prevented fraudulent hire pays for 5+ years of Sentriq &middot; Budget sits in security and compliance, not HR
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 18px; padding: 16px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;">
+                <p style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; text-align: center;">
+                    The network effect: every company on Sentriq adds to a shared detection network. More companies means stronger signal for everyone. This is not a data moat claim. It is a genuine cross-company network effect &mdash; the same mechanic that powers Cloudflare's global threat intelligence.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: TEAM -->
+    <div class="slide bg-dark" data-index="7">
+        <div class="slide-inner">
+            <span class="slide-label">Team</span>
+            <h2>Two IDF intelligence veterans. <span style="color: var(--primary);">One unfair insight.</span></h2>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">S</div>
+                    <div class="team-name"><a href="https://www.linkedin.com/in/samuel-kemper-cucher/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3);">Samuel Kemper</a></div>
+                    <div class="team-role">CEO &amp; Co-Founder</div>
+                    <div class="team-bio">
+                        2x founder. Raised $1.1M for CYou Retail (Nielsen Innovate Fund). Innovation Officer in IDF Unit 81, interfacing with cyber units on classified defense missions. 12+ month active reservist, 2023 war. Founded TechRuiter IL (talent acquisition, team of 7). Head of Ops at Upword. Director of Ops at ReaLo. Deal Partner at Boardy Ventures. Technion EMBA. Ran every Huntwise ATS experiment personally.
+                    </div>
+                    <div class="team-tags">
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">Unit 81</span>
+                        <span class="team-tag">2x Founder</span>
+                        <span class="team-tag">Technion EMBA</span>
+                        <span class="team-tag">Talent Acquisition</span>
+                        <span class="team-tag">Operations</span>
+                    </div>
+                </div>
+
+                <div class="team-card" style="border-color: rgba(239,68,68,0.2);">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #DC2626, #991B1B);">B</div>
+                    <div class="team-name"><a href="https://www.linkedin.com/in/benczarninski/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3);">Ben Czarninski</a></div>
+                    <div class="team-role" style="color: var(--red);">CTO &amp; Co-Founder</div>
+                    <div class="team-bio">
+                        Cybersecurity from day one. 4+ years in IDF Military Intelligence as security researcher and full-stack developer (Gama unit graduate). Penetration tester at KPMG, analyzing behavioral signals and deception patterns across financial services. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA. TAU MBA and BSc CS. Designed and built Sentriq's integrity detection architecture.
+                    </div>
+                    <div class="team-tags">
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">IDF Intelligence</span>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">Pentesting</span>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">CISO</span>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">AppSec</span>
+                        <span class="team-tag">TAU MBA &amp; BSc CS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px; padding: 20px 28px; background: rgba(255,255,255,0.04); border-radius: 14px; border: 1px solid rgba(255,255,255,0.08);">
+                <p style="font-size: 15px; color: rgba(255,255,255,0.85); text-align: center; line-height: 1.7;">
+                    <strong style="color: var(--white);">Why this team wins:</strong> Samuel ran a recruiting firm and built the tool that weaponized hiring signal. Ben spent his career finding how systems are deceived. Together, they are the only founding team that built the attack, documented it, and flipped it into the defense. No competitor took this path.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: THE ASK + WHY a16z -->
+    <div class="slide bg-dark" data-index="8">
+        <div class="slide-inner">
+            <span class="slide-label">The Ask</span>
+            <h2><span class="shimmer-text">$4M Seed.</span> <span style="color: rgba(255,255,255,0.6); font-size: 0.8em;">Why a16z Speedrun.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+
+                <!-- THE ASK -->
+                <div style="padding: 28px; background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.25); border-radius: 16px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;">$4M Seed Round</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: 800; color: var(--primary); min-width: 44px;">40%</div>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">AI Detection Engine</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Core ML for document forensics and behavioral analysis</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: 800; color: var(--primary); min-width: 44px;">30%</div>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">Engineering</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">3 hires, AI-leveraged, Israel-based R&amp;D</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: 800; color: var(--primary); min-width: 44px;">20%</div>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">First Customers</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Founder-led enterprise sales into US market</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: rgba(255,255,255,0.04); border-radius: 10px;">
+                            <div style="font-size: 18px; font-weight: 800; color: var(--primary); min-width: 44px;">10%</div>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--white);">SOC 2 / Compliance / Legal</div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.4);">Required for enterprise sales cycle</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 16px; padding: 12px 16px; background: rgba(37,99,235,0.1); border-radius: 10px; text-align: center;">
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Q2 2026 raise &middot; Q3 2026 close &middot; Series A trigger: $1M+ ARR + 2 enterprise logos</div>
+                    </div>
+                </div>
+
+                <!-- WHY a16z -->
+                <div style="padding: 28px; background: rgba(124,58,237,0.07); border: 1px solid rgba(124,58,237,0.25); border-radius: 16px;">
+                    <div style="font-size: 12px; font-weight: 700; color: #A78BFA; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;">Why a16z Speedrun</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A78BFA; margin-top: 6px; flex-shrink: 0;"></div>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">Portfolio fit:</strong> You backed Rippling ($11B) and Deel ($12B). You understand workforce infrastructure. Sentriq is the integrity layer those platforms don't provide.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A78BFA; margin-top: 6px; flex-shrink: 0;"></div>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">You believe in network effects:</strong> Our cross-company signal is a genuine network effect — more companies means better detection for everyone. This is the mechanic you look for.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A78BFA; margin-top: 6px; flex-shrink: 0;"></div>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">Founder-market fit is your thesis:</strong> We didn't research this problem. We built the tool that created it, invested $300K of our own capital, and ran 30+ live experiments to understand it from the inside.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A78BFA; margin-top: 6px; flex-shrink: 0;"></div>
+                            <p style="font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">The Speedrun platform:</strong> We need velocity, US enterprise access, and operator support, not just capital. 12 weeks to ship, sell, and scale. That is how we operate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <p style="font-size: 16px; color: rgba(255,255,255,0.6);">Ready to build the trust layer hiring has never had.</p>
+                <p style="font-size: 18px; font-weight: 700; color: var(--white); margin-top: 6px;">samuel@sentriq.co</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Navigation Bar -->
+<div class="nav-bar" id="navBar">
+    <div class="logo-small">
+        <svg width="20" height="20" viewBox="0 0 512 512" style="vertical-align: middle; margin-right: 6px;">
+            <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
+            <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+        </svg>
+        Sentriq
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">&#8592;</button>
+        <span class="slide-counter" id="slideCounter">1 / 9</span>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&#8594;</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+
+    function showSlide(index) {
+        if (index < 0 || index >= total) return;
+        slides[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${total}`;
+        document.getElementById('progressBar').style.width = `${((currentSlide + 1) / total) * 100}%`;
+    }
+
+    function navigate(dir) { showSlide(currentSlide + dir); }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+    });
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+    });
+
+    showSlide(0);
+
+    document.querySelectorAll('.sources').forEach(src => {
+        const content = src.innerHTML;
+        src.innerHTML = '<button class="sources-toggle">Sources</button><div class="sources-content">' + content + '</div>';
+        src.querySelector('.sources-toggle').addEventListener('click', () => {
+            src.classList.toggle('open');
+        });
+    });
+
+    (function() {
+        const hint = document.createElement('div');
+        hint.className = 'key-hint';
+        hint.textContent = 'Use arrow keys or swipe to navigate';
+        document.body.appendChild(hint);
+        setTimeout(() => { hint.classList.add('hidden'); }, 3000);
+        setTimeout(() => { hint.remove(); }, 4000);
+    })();
+</script>
+
+</body>
+</html>
