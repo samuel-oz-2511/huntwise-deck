@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq - a16z Speedrun (PDF)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --white: #FFFFFF;
+            --gray-900: #0F172A;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --cyan: #06B6D4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @page { size: landscape; margin: 0; }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+            padding: 44px 72px;
+        }
+        .slide:last-child { page-break-after: avoid; }
+
+        .slide-inner { max-width: 1100px; width: 100%; }
+
+        /* Backgrounds */
+        .bg-dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+        .bg-cyber-animated { background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%); }
+
+        .slide-label {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--primary); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .slide-label::before { content: ''; display: inline-block; width: 20px; height: 2px; background: currentColor; opacity: 0.6; }
+        .slide-inner[style*="text-align: center"] .slide-label { justify-content: center; }
+        .slide-inner[style*="text-align: center"] .slide-label::before { display: none; }
+
+        h1 { font-size: 52px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
+        h2 { font-size: 36px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+        h3 { font-size: 16px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; }
+
+        .subtitle { font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+        .pill { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+        .pill-cyan { background: rgba(37, 99, 235, 0.2); color: #93C5FD; border-color: rgba(37, 99, 235, 0.2); }
+        .pill-green { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.2); }
+        .pill-orange { background: rgba(245, 158, 11, 0.2); color: #FCD34D; border-color: rgba(245, 158, 11, 0.2); }
+
+        .team-avatar {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #7C3AED);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; font-weight: 700; margin: 0 auto 14px; color: white;
+        }
+        .team-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(6, 182, 212, 0.15); color: #93C5FD; font-weight: 500; display: inline-block; margin: 2px; }
+
+        .shimmer-text { color: #93C5FD; }
+
+        /* Sources hidden in PDF */
+        .sources { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide bg-cyber-animated">
+        <div class="slide-inner" style="text-align: center;">
+            <div style="margin-bottom: 24px;">
+                <svg width="72" height="72" viewBox="0 0 512 512" style="filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));">
+                    <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
+                    <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+                </svg>
+            </div>
+            <h1 style="font-size: 56px; max-width: 900px; margin: 0 auto 14px;">Sentriq</h1>
+            <p class="subtitle" style="margin: 0 auto 10px; max-width: 680px; font-size: 26px; color: rgba(255,255,255,0.9); font-weight: 600;">AI broke the hiring signal.</p>
+            <p class="subtitle" style="margin: 0 auto 28px; max-width: 680px; font-size: 22px; color: rgba(255,255,255,0.7);">We built the trust layer.</p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+                <span class="pill pill-cyan">Candidate Application Firewall</span>
+                <span class="pill pill-green">Hiring Integrity Infrastructure</span>
+                <span class="pill pill-orange">$4M Seed</span>
+            </div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.3);">April 2026 &middot; Confidential &middot; samuel@sentriq.co</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">The Problem</span>
+            <h2>The hiring signal is <span style="color: var(--red);">collapsing.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 18px;">
+                <div style="text-align: center; padding: 18px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px;">
+                    <div style="font-size: 42px; font-weight: 800; color: var(--red);">41%</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px;">of companies already hired a <strong style="color: var(--red);">fake candidate</strong></p>
+                </div>
+                <div style="text-align: center; padding: 18px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px;">
+                    <div style="font-size: 42px; font-weight: 800; color: var(--red);">1,500+</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px;">applications per day from a <strong style="color: var(--red);">single bot user.</strong> 90% are noise.</p>
+                </div>
+                <div style="text-align: center; padding: 18px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px;">
+                    <div style="font-size: 42px; font-weight: 800; color: var(--red);">$240K</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px;">maximum cost of <strong style="color: var(--red);">one fraudulent hire.</strong> FBI has issued PSAs.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div style="padding: 18px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Signal flooding</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.65;">Tools like Tsenta (YC S26), Simplify (1M+ users), and LazyApply turned applying into a spam operation. One Deel role received 6,500 applications in under two weeks. Recruiters can no longer find real candidates inside the noise.</p>
+                </div>
+                <div style="padding: 18px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Fraud went mainstream</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.65;">320+ DPRK operatives confirmed inside Fortune 500 technical teams. A convincing deepfake identity takes 70 minutes to manufacture. Interview cheating doubled in 6 months. This is no longer a fringe risk.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 14px; padding: 16px 22px; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.2); border-radius: 12px; display: flex; align-items: center; gap: 14px;">
+                <div style="flex-shrink: 0; width: 4px; height: 44px; background: var(--primary); border-radius: 2px;"></div>
+                <p style="font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.6;">The ATS gives every recruiter a fit score. <strong style="color: var(--white);">Nobody is giving them a trust score.</strong> That gap is what Sentriq fills.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: WHY NOW -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">Why Now</span>
+            <h2>Three forces converging. <span style="color: var(--primary);">The window is open.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px;">
+                <div style="padding: 24px 20px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 14px;">
+                    <div style="font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.15); margin-bottom: 12px;">01</div>
+                    <h3 style="color: var(--red); font-size: 15px; margin-bottom: 8px;">AI Destroyed the Signal</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.65;">Every resume is now ATS-optimized and AI-polished. Mass-apply bots made applying frictionless. The signal-to-noise ratio in hiring collapsed from manageable to broken in under 18 months. YC is funding the attack. Nobody was building the defense.</p>
+                </div>
+                <div style="padding: 24px 20px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 14px;">
+                    <div style="font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.15); margin-bottom: 12px;">02</div>
+                    <h3 style="color: var(--orange); font-size: 15px; margin-bottom: 8px;">Fraud Is Now Enterprise Risk</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.65;">State-sponsored hiring fraud (DPRK inside Fortune 500), synthetic identities, and AI deepfakes elevated this from an HR inconvenience to a security and compliance issue. CISOs are now paying attention. The budget moved from HR to security.</p>
+                </div>
+                <div style="padding: 24px 20px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.2); border-radius: 14px;">
+                    <div style="font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.15); margin-bottom: 12px;">03</div>
+                    <h3 style="color: var(--primary); font-size: 15px; margin-bottom: 8px;">EU AI Act: August 2026</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.65;">Companies using AI in hiring must prove human oversight or face regulatory penalties across 27 countries. This is a forced compliance purchase event: not an optional upgrade. Hard deadline. Non-discretionary budget line.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 18px; padding: 16px 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; text-align: center;">
+                <p style="font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6;">This could not have been built 3 years ago: the fraud volume was not there, the AI tooling did not exist, and the regulation had not passed. <strong style="color: var(--white);">The window opened in 2025. It is open now.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: EARNED SECRET -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">Earned Secret</span>
+            <h2>We built the attack. <span style="color: var(--primary);">We know every angle.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 20px;">
+                <div style="padding: 22px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--primary); font-size: 14px; margin-bottom: 8px;">Chapter 1: Huntwise</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.65;">Built a tool to help candidates beat ATS systems. Real product. Real users. 73.5K lines of production code. $300K founders capital. We did not theorize about hiring signal. We manipulated it, at scale, across three enterprise ATS platforms.</p>
+                </div>
+                <div style="padding: 22px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--orange); font-size: 14px; margin-bottom: 8px;">Chapter 2: The Experiments</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.65;">To build Huntwise right, we reverse-engineered how ATS scoring works. 30+ live scoring experiments across Comeet, Greenhouse, and Niloos. We discovered 17 rules companies did not know they were enforcing. We learned exactly where signal breaks.</p>
+                </div>
+                <div style="padding: 22px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px;">
+                    <h3 style="color: var(--green); font-size: 14px; margin-bottom: 8px;">Chapter 3: The Flip</h3>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.65;">Everything we learned about breaking signal became a detection signature. Huntwise made us experts on the attack surface. Sentriq is what you build when you flip that knowledge. We are the only team that took this path.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 18px 24px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; align-items: center; margin-bottom: 14px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 26px; font-weight: 800; color: var(--primary);">30+</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;">Live ATS experiments</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 26px; font-weight: 800; color: var(--orange);">17</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;">Scoring rules documented</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 26px; font-weight: 800; color: var(--green);">3</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;">ATS platforms tested</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 26px; font-weight: 800; color: rgba(255,255,255,0.8);">$300K</div>
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px;">Founders capital invested</div>
+                    </div>
+                </div>
+                <div style="padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center;">
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.75); font-style: italic;">"We built the tool that breaks hiring. So we know exactly how to fix it."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: THE PRODUCT -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">The Product</span>
+            <h2>The Candidate Application Firewall. <span style="color: var(--primary);">CAF.</span></h2>
+
+            <div style="margin-top: 16px; padding: 14px 20px; background: rgba(37,99,235,0.07); border-radius: 12px; border: 1px solid rgba(37,99,235,0.2);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.05); border-radius: 8px; min-width: 110px;">
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px;">Candidate</div>
+                        <div style="font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);">Application</div>
+                    </div>
+                    <div style="font-size: 18px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 10px 18px; background: rgba(37,99,235,0.15); border: 2px solid rgba(37,99,235,0.4); border-radius: 8px; min-width: 150px;">
+                        <div style="font-size: 10px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px;">Sentriq CAF</div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--white);">Trust Score Layer</div>
+                    </div>
+                    <div style="font-size: 18px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.05); border-radius: 8px; min-width: 110px;">
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px;">ATS</div>
+                        <div style="font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);">Fit Score</div>
+                    </div>
+                    <div style="font-size: 18px; color: rgba(255,255,255,0.3);">&#8594;</div>
+                    <div style="text-align: center; padding: 10px 14px; background: rgba(255,255,255,0.05); border-radius: 8px; min-width: 110px;">
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px;">Recruiter</div>
+                        <div style="font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.8);">Decides</div>
+                    </div>
+                </div>
+                <p style="font-size: 10px; color: rgba(255,255,255,0.35); text-align: center; margin-top: 8px;">Integrates with Greenhouse, Workday, Lever, Comeet, iCIMS, and 50+ ATS platforms. Not a replacement. A layer on top.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 14px;">
+                <div style="padding: 20px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 1: Auto-Flag</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Every application analyzed for integrity signals: fabricated credentials, timeline manipulation, skill inflation, behavioral anomalies. Suspicious applications routed to review queue. Nothing removed silently.</p>
+                </div>
+                <div style="padding: 20px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 2: Async Challenge</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Flagged candidates receive a 2-minute verification task targeting the specific gaps detected. Results feed back into the integrity signal. Honest candidates clear. Fabricated profiles collapse.</p>
+                </div>
+                <div style="padding: 20px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Layer 3: Human Review</div>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.6;">Recruiters see evidence cards backed by specific findings. A human always makes the final call. <strong style="color: var(--white);">Zero automated rejections. Ever.</strong> Human-in-the-loop is core architecture, not a disclaimer.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 14px; padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; display: flex; gap: 28px; justify-content: center;">
+                <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--primary);">Not an ATS</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">Sits above existing systems</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--green);">Not an AI detector</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">Detects distortion, not AI use</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--orange);">Not a background check</div>
+                    <div style="font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px;">Operates before any interview</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: TRACTION + MARKET -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">Traction &amp; Market</span>
+            <h2>Early proof. <span style="color: var(--primary);">Large ground.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 20px;">
+                <div style="padding: 24px; background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;">Traction</div>
+
+                    <div style="margin-bottom: 14px; padding: 14px; background: rgba(16,185,129,0.08); border-radius: 10px; border-left: 3px solid var(--green);">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px;">First design partner signed</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6;">A global Big 4 professional services firm. Active production exploration. Their hiring integrity risk is exactly the wedge Sentriq addresses.</div>
+                    </div>
+
+                    <div style="margin-bottom: 12px; padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                        <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 2px;">Pre-revenue by design</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Raising to build. The moat is the dataset and the network effect, not early revenue.</div>
+                    </div>
+
+                    <div style="padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                        <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 2px;">Active design partner conversations</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Additional enterprise conversations in progress. Remote-first and contractor-heavy hiring teams.</div>
+                    </div>
+                </div>
+
+                <div style="padding: 24px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.2); border-radius: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;">Market</div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+                        <div style="text-align: center; padding: 12px; background: rgba(37,99,235,0.08); border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">250K+</div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">Companies using ATS globally</div>
+                        </div>
+                        <div style="text-align: center; padding: 12px; background: rgba(37,99,235,0.08); border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">97.8%</div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">Fortune 500 on ATS</div>
+                        </div>
+                        <div style="text-align: center; padding: 12px; background: rgba(37,99,235,0.08); border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">$7.8B</div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">Employment screening market</div>
+                        </div>
+                        <div style="text-align: center; padding: 12px; background: rgba(37,99,235,0.08); border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: 800; color: var(--green);">15-25x</div>
+                            <div style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px;">Infrastructure ARR multiples</div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 12px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                        <p style="font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.6;">SMB: $500-$2,000/mo &middot; Enterprise: $5,000-$15,000/mo &middot; Annual contracts &middot; One prevented fraudulent hire pays for 5+ years of Sentriq &middot; Budget sits in security and compliance, not HR</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 14px; padding: 14px 22px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; text-align: center;">
+                <p style="font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6;">The network effect: every company on Sentriq adds to a shared detection network. More companies means stronger signal for everyone. This is not a data moat claim. It is a genuine cross-company network effect: the same mechanic that powers Cloudflare's global threat intelligence.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: TEAM -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">Team</span>
+            <h2>Two IDF intelligence veterans. <span style="color: var(--primary);">One unfair insight.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+                <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 22px; text-align: center;">
+                    <div class="team-avatar">S</div>
+                    <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">Samuel Kemper</div>
+                    <div style="font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 10px;">CEO &amp; Co-Founder</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 10px;">
+                        2x founder. Raised $1.1M for CYou Retail (Nielsen Innovate Fund). Innovation Officer in IDF Unit 81, interfacing with cyber units on classified defense missions. 12+ month active reservist, 2023 war. Founded TechRuiter IL (talent acquisition, team of 7). Head of Ops at Upword. Director of Ops at ReaLo. Deal Partner at Boardy Ventures. Technion EMBA.
+                    </div>
+                    <div>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">Unit 81</span>
+                        <span class="team-tag">2x Founder</span>
+                        <span class="team-tag">Technion EMBA</span>
+                        <span class="team-tag">Talent Acquisition</span>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(239,68,68,0.2); border-radius: 14px; padding: 28px 22px; text-align: center;">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #DC2626, #991B1B);">B</div>
+                    <div style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">Ben Czarninski</div>
+                    <div style="font-size: 13px; color: var(--red); font-weight: 600; margin-bottom: 10px;">CTO &amp; Co-Founder</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 10px;">
+                        Cybersecurity from day one. 4+ years in IDF Military Intelligence, security researcher and full-stack developer (Gama unit graduate). Penetration tester at KPMG, analyzing behavioral signals and deception patterns. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA. TAU MBA and BSc CS.
+                    </div>
+                    <div>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">IDF Intelligence</span>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">Pentesting</span>
+                        <span class="team-tag" style="background: rgba(239,68,68,0.15); color: #FCA5A5;">CISO</span>
+                        <span class="team-tag">TAU MBA &amp; BSc CS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding: 18px 26px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+                <p style="font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7;">
+                    <strong style="color: var(--white);">Why this team wins:</strong> Samuel ran a recruiting firm and built the tool that weaponized hiring signal. Ben spent his career finding how systems are deceived. Together, they are the only founding team that built the attack, documented it, and flipped it into the defense.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: THE ASK + WHY a16z -->
+    <div class="slide bg-dark">
+        <div class="slide-inner">
+            <span class="slide-label">The Ask</span>
+            <h2><span style="color: #93C5FD;">$4M Seed.</span> <span style="color: rgba(255,255,255,0.5); font-size: 0.75em;">Why a16z Speedrun.</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 20px;">
+                <div style="padding: 24px; background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.25); border-radius: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;">$4M Seed Round</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                            <div style="font-size: 16px; font-weight: 800; color: var(--primary); min-width: 40px;">40%</div>
+                            <div>
+                                <div style="font-size: 12px; font-weight: 600; color: var(--white);">AI Detection Engine</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Core ML for document forensics and behavioral analysis</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                            <div style="font-size: 16px; font-weight: 800; color: var(--primary); min-width: 40px;">30%</div>
+                            <div>
+                                <div style="font-size: 12px; font-weight: 600; color: var(--white);">Engineering</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.4);">3 hires, AI-leveraged, Israel-based R&amp;D</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                            <div style="font-size: 16px; font-weight: 800; color: var(--primary); min-width: 40px;">20%</div>
+                            <div>
+                                <div style="font-size: 12px; font-weight: 600; color: var(--white);">First Customers</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Founder-led enterprise sales into US market</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+                            <div style="font-size: 16px; font-weight: 800; color: var(--primary); min-width: 40px;">10%</div>
+                            <div>
+                                <div style="font-size: 12px; font-weight: 600; color: var(--white);">SOC 2 / Compliance / Legal</div>
+                                <div style="font-size: 10px; color: rgba(255,255,255,0.4);">Required for enterprise sales cycle</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 12px; padding: 10px 14px; background: rgba(37,99,235,0.1); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">Q2 2026 raise &middot; Q3 2026 close &middot; Series A trigger: $1M+ ARR + 2 enterprise logos</div>
+                    </div>
+                </div>
+
+                <div style="padding: 24px; background: rgba(124,58,237,0.07); border: 1px solid rgba(124,58,237,0.25); border-radius: 14px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #A78BFA; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;">Why a16z Speedrun</div>
+
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #A78BFA; margin-top: 5px; flex-shrink: 0;"></div>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">Portfolio fit:</strong> You backed Rippling ($11B) and Deel ($12B). You understand workforce infrastructure. Sentriq is the integrity layer those platforms do not provide.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #A78BFA; margin-top: 5px; flex-shrink: 0;"></div>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">You believe in network effects:</strong> Our cross-company signal is a genuine network effect: more companies means better detection for everyone. This is the mechanic you look for.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #A78BFA; margin-top: 5px; flex-shrink: 0;"></div>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">Founder-market fit is your thesis:</strong> We did not research this problem. We built the tool that created it, invested $300K of our own capital, and ran 30+ live experiments to understand it from the inside.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <div style="width: 5px; height: 5px; border-radius: 50%; background: #A78BFA; margin-top: 5px; flex-shrink: 0;"></div>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;"><strong style="color: var(--white);">The Speedrun platform:</strong> We need velocity, US enterprise access, and operator support, not just capital. 12 weeks to ship, sell, and scale. That is how we operate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 18px; text-align: center;">
+                <p style="font-size: 15px; color: rgba(255,255,255,0.6);">Ready to build the trust layer hiring has never had.</p>
+                <p style="font-size: 17px; font-weight: 700; color: var(--white); margin-top: 5px;">samuel@sentriq.co</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
