@@ -159,6 +159,17 @@
             .nav-bar { padding: 10px 16px; }
             div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
         }
+
+        /* Collapsible source footnotes */
+        .sources { margin-top: 14px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+        .src-toggle { display: block; width: 100%; padding: 7px 14px; background: none; border: none; cursor: pointer; font-size: 10px; color: var(--text-dim); font-weight: 600; font-family: inherit; text-align: left; transition: color 0.2s; }
+        .src-toggle:hover { color: rgba(255,255,255,0.6); }
+        .src-toggle::after { content: ' ▸'; }
+        .sources.open .src-toggle::after { content: ' ▾'; }
+        .src-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 14px; }
+        .sources.open .src-content { max-height: 200px; padding: 0 14px 10px; }
+        .src-content p { font-size: 10px; color: var(--text-dim); line-height: 1.8; }
+        .src-content a { color: rgba(255,255,255,0.4); text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -234,6 +245,20 @@
         <div style="margin-top:14px; padding:14px 22px; background:rgba(37,99,235,0.08); border:1px solid rgba(37,99,235,0.2); border-radius:12px; display:flex; align-items:center; gap:14px;">
             <div style="flex-shrink:0; width:3px; height:40px; background:var(--primary); border-radius:2px;"></div>
             <p style="font-size:14px; color:rgba(255,255,255,0.9);">The ATS gives a fit score. <strong style="color:var(--white);">Nobody surfaces a trust signal.</strong> This could not have been built 3 years ago. The window is open now.</p>
+        </div>
+
+        <div class="sources">
+            <sup>1</sup> <a href="https://www.prnewswire.com/news-releases/new-getreal-security-research-302638982.html" target="_blank">GetReal Security, 668 IT/cybersecurity leaders, Dec 2025</a> &middot;
+            <sup>2</sup> <a href="https://www.hrdive.com/news/fake-job-candidates-ai/757126/" target="_blank">Gartner Research, Jul 2025</a> &middot;
+            <sup>3</sup> <a href="https://techcrunch.com/2025/08/04/north-korean-spies-posing-as-remote-workers-have-infiltrated-hundreds-of-companies-says-crowdstrike/" target="_blank">CrowdStrike via TechCrunch, Aug 2025 (220% YoY increase)</a> &middot;
+            <sup>4</sup> <a href="https://www.hrdive.com/news/fake-job-applicant-deepfake-70-minutes/745924/" target="_blank">Pindrop / HR Dive, Jun 2025</a> &middot;
+            <sup>5</sup> <a href="https://www.fabrichq.ai/blogs/state-of-cheating-in-interviews-in-2026-tools-trends-and-prevention" target="_blank">Fabric, 50K+ candidates analyzed, 2025/2026</a> &middot;
+            <sup>6</sup> <a href="https://www.ic3.gov/PSA/2025/PSA250123" target="_blank">FBI IC3 PSA, Jan 2025</a> &middot; <a href="https://www.justice.gov/opa/pr/justice-department-announces-coordinated-nationwide-actions-combat-north-korean-remote" target="_blank">DOJ, Nov 2024</a> &middot;
+            <sup>7</sup> <a href="https://www.ycombinator.com/companies/tsenta" target="_blank">YC S26: Tsenta</a>; <a href="https://gracker.ai/blog/ai-job-apply-bots-2025" target="_blank">GrackerAI, 2025</a> &middot;
+            <sup>8</sup> <a href="https://checkr.com/resources/articles/hiring-hoax-manager-survey-2025" target="_blank">Checkr Hiring Hoax Survey, 3,000 managers, 2025</a> &middot;
+            <a href="https://artificialintelligenceact.eu/article/6/" target="_blank">EU AI Act, Article 6 + Annex III</a> &middot;
+            <a href="https://artificialintelligenceact.eu/implementation-timeline/" target="_blank">EU AI Act Timeline</a> &middot;
+            <a href="https://www.hunton.com/insights/legal/the-impact-of-the-eu-ai-act-on-human-resources-activities" target="_blank">Hunton: Impact on HR Activities</a>
         </div>
     </div>
 </div>
@@ -433,6 +458,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="sources">
+            <a href="https://www.nfx.com/post/network-effects-manual" target="_blank">NFX: "70% of value in tech created by network effects"</a> &middot;
+            <a href="https://www.jobscan.co/blog/fortune-500-use-applicant-tracking-systems/" target="_blank">Jobscan: 97.8% of Fortune 500 use ATS</a> &middot;
+            <a href="https://mobilityforesights.com/product/usa-employment-screening-services-market" target="_blank">Mobility Foresights: Employment Screening $7.8B to $15.6B by 2032, 10.4% CAGR</a> &middot;
+            <a href="https://techcrunch.com/2025/08/04/north-korean-spies-posing-as-remote-workers-have-infiltrated-hundreds-of-companies-says-crowdstrike/" target="_blank">CrowdStrike / TechCrunch, Aug 2025</a>
+        </div>
     </div>
 </div>
 
@@ -490,6 +522,14 @@
                     <p style="font-size:11px; color:var(--text-dim);">A full-featured ATS can be built in weeks. The cross-company trust layer cannot. That is our product.</p>
                 </div>
             </div>
+        </div>
+
+        <div class="sources">
+            <a href="https://artificialintelligenceact.eu/article/6/" target="_blank">EU AI Act, Article 6 + Annex III</a> &middot;
+            <a href="https://artificialintelligenceact.eu/implementation-timeline/" target="_blank">EU AI Act Implementation Timeline</a> &middot;
+            <a href="https://www.hunton.com/insights/legal/the-impact-of-the-eu-ai-act-on-human-resources-activities" target="_blank">Hunton: Impact on HR Activities</a> &middot;
+            <a href="https://www.ic3.gov/PSA/2025/PSA250123" target="_blank">FBI IC3 PSA, Jan 2025</a> &middot;
+            <a href="https://www.justice.gov/opa/pr/justice-department-announces-coordinated-nationwide-actions-combat-north-korean-remote" target="_blank">DOJ DPRK Action, Nov 2024</a>
         </div>
     </div>
 </div>
@@ -662,6 +702,12 @@
     });
 
     showSlide(0);
+
+    document.querySelectorAll('.sources').forEach(s => {
+        const c = s.innerHTML;
+        s.innerHTML = '<button class="src-toggle">Sources</button><div class="src-content"><p>' + c + '</p></div>';
+        s.querySelector('.src-toggle').addEventListener('click', () => s.classList.toggle('open'));
+    });
 </script>
 </body>
 </html>
