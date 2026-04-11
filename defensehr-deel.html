@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq - The Pitch by Deel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --white: #FFFFFF;
+            --gray-900: #0F172A;
+            --gray-800: #1E293B;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --text: rgba(255,255,255,0.7);
+            --text-dim: rgba(255,255,255,0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @page { size: landscape; margin: 0; }
+
+        .slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+            padding: clamp(22px, 3.8vh, 50px) clamp(22px, 4.5vw, 76px) 54px;
+        }
+        .slide:last-child { page-break-after: avoid; }
+
+        .bg-dark {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        .bg-cover {
+            background: linear-gradient(135deg, #0F172A 10%, #1E3A8A 55%, #2563EB 100%);
+            -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+
+        /* Subtle grid on problem slide */
+        .slide[data-index="1"]::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(239,68,68,0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239,68,68,0.012) 1px, transparent 1px);
+            background-size: 44px 44px; pointer-events: none; z-index: 0;
+        }
+
+        .slide-inner {
+            max-width: 1100px; width: 100%;
+            position: relative; z-index: 1;
+        }
+
+        /* Label */
+        .slide-label {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.16em; color: var(--primary); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .slide-label::before {
+            content: ''; display: inline-block;
+            width: 22px; height: 2px; background: currentColor; opacity: 0.5;
+        }
+        .label-center { justify-content: center; }
+        .label-center::before { display: none; }
+
+        /* Type scale */
+        h1 { font-size: clamp(30px, 4.8vw, 58px); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 18px; }
+        h2 { font-size: clamp(20px, 3.2vw, 38px); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; margin-bottom: 14px; }
+        h3 { font-size: clamp(13px, 1.4vw, 17px); font-weight: 600; line-height: 1.3; margin-bottom: 7px; }
+        .subtitle { font-size: clamp(13px, 1.5vw, 17px); color: var(--text); line-height: 1.65; }
+
+        /* Grids */
+        .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.4vw, 16px); margin-top: clamp(12px, 2.2vh, 22px); }
+        .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(10px, 1.4vw, 16px); margin-top: clamp(12px, 2.2vh, 22px); }
+        .g4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: clamp(8px, 1.2vw, 14px); margin-top: clamp(12px, 2.2vh, 22px); }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 14px; padding: clamp(14px, 2vh, 22px);
+        }
+        .card p { font-size: 12px; color: var(--text); line-height: 1.65; }
+
+        /* Tinted cards */
+        .cr { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.18); border-radius: 14px; padding: clamp(14px,2vh,22px); }
+        .cg { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 14px; padding: clamp(14px,2vh,22px); }
+        .cb { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.2); border-radius: 14px; padding: clamp(14px,2vh,22px); }
+        .co { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 14px; padding: clamp(14px,2vh,22px); }
+
+        /* Stat */
+        .stat-val { font-size: clamp(28px, 3.8vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+        .stat-desc { font-size: 12px; color: var(--text); margin-top: 6px; line-height: 1.55; }
+
+        /* Colors */
+        .cr-txt { color: var(--red); }
+        .cg-txt { color: var(--green); }
+        .cb-txt { color: var(--primary); }
+        .co-txt { color: var(--orange); }
+
+        /* Flow */
+        .flow { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+        .fn { text-align: center; padding: 10px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; }
+        .fn .fnl { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+        .fn .fnv { font-size: 13px; font-weight: 700; }
+        .fn-caf { padding: 10px 22px; background: rgba(37,99,235,0.18); border: 2px solid rgba(37,99,235,0.45); border-radius: 10px; }
+        .fn-caf .fnl { color: var(--primary); }
+        .flow-arr { color: var(--text-dim); font-size: 18px; }
+
+        /* Team */
+        .team-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: clamp(18px,2.5vh,28px) 20px; text-align: center; }
+        .team-av { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #7C3AED); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; margin: 0 auto 12px; color: white; }
+        .team-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+        .team-role { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 10px; }
+        .team-bio { font-size: 12px; color: var(--text); line-height: 1.6; }
+
+        /* Layer label */
+        .ly { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 7px; }
+
+        /* Fund bar */
+        .fund-bar { display: flex; height: 9px; border-radius: 5px; overflow: hidden; margin: 12px 0 18px; }
+        .fs { height: 100%; }
+
+        /* Competitive row */
+        .comp-row { display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 9px 0; }
+        .comp-row:last-child { border-bottom: none; }
+        .comp-name { font-size: 13px; font-weight: 600; color: var(--white); width: 160px; flex-shrink: 0; }
+        .comp-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin: 0 8px; }
+        .comp-attr { font-size: 11px; color: var(--text-dim); }
+
+        /* Footer */
+        .footer-bar {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 10px 38px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: rgba(15,23,42,0.55);
+        }
+        .footer-logo { font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: -0.01em; display: flex; align-items: center; gap: 6px; }
+        .footer-contact { font-size: 11px; color: var(--text-dim); }
+        .footer-slide { font-size: 11px; color: rgba(255,255,255,0.2); }
+
+        .icon-svg { display: inline-block; }
+
+        @media print {
+            html, body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .slide { page-break-after: always; page-break-inside: avoid; }
+            .slide:last-child { page-break-after: avoid; }
+            .bg-dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .bg-cover { background: linear-gradient(135deg, #0F172A 10%, #1E3A8A 55%, #2563EB 100%) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- ==========================================
+     SLIDE 1: COVER
+========================================== -->
+<div class="slide bg-cover" data-index="0">
+    <div class="slide-inner" style="text-align:center;">
+
+        <div style="margin-bottom:20px;">
+            <svg width="54" height="54" viewBox="0 0 512 512">
+                <rect x="96" y="96" width="320" height="320" rx="52" fill="#2563EB"/>
+                <polygon points="256,168 334,352 178,352" fill="#0F172A"/>
+            </svg>
+        </div>
+
+        <div style="display:inline-block; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); padding:4px 16px; border-radius:20px; margin-bottom:18px;">
+            Seed Stage &nbsp;|&nbsp; Hiring Integrity Infrastructure
+        </div>
+
+        <h1>Sentriq</h1>
+
+        <p style="font-size:clamp(16px,2.2vw,21px); color:rgba(255,255,255,0.72); max-width:580px; margin:0 auto 30px; line-height:1.55; font-weight:400;">
+            The Candidate Application Firewall.<br>
+            <span style="color:rgba(255,255,255,0.42);">The integrity layer between candidates and hiring teams.</span>
+        </p>
+
+        <div style="display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap;">
+            <div style="text-align:center;">
+                <div style="font-size:30px; font-weight:800; color:var(--red); letter-spacing:-0.03em;">41%</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">companies hired a fake person</div>
+            </div>
+            <div style="width:1px; height:38px; background:rgba(255,255,255,0.12);"></div>
+            <div style="text-align:center;">
+                <div style="font-size:30px; font-weight:800; color:var(--orange); letter-spacing:-0.03em;">$240K</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">max cost of one fraudulent hire</div>
+            </div>
+            <div style="width:1px; height:38px; background:rgba(255,255,255,0.12);"></div>
+            <div style="text-align:center;">
+                <div style="font-size:30px; font-weight:800; color:var(--primary); letter-spacing:-0.03em;">Aug 2026</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">EU AI Act enforcement begins</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo">
+            <svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg>
+            Sentriq
+        </div>
+        <div class="footer-contact">samuel@sentriq.co &nbsp;|&nbsp; sentriq.co</div>
+        <div class="footer-slide">1 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 2: PROBLEM
+========================================== -->
+<div class="slide bg-dark" data-index="1">
+    <div class="slide-inner">
+        <span class="slide-label">The Problem</span>
+        <h2>The hiring signal is <span class="cr-txt">collapsing.</span></h2>
+
+        <div class="g3">
+            <div class="cr" style="text-align:center;">
+                <div class="stat-val cr-txt">4,000+</div>
+                <div class="stat-desc">
+                    Applications on a single Deel job posting. LinkedIn shows 4K+ visible — the real number is likely higher. Recruiters cannot find real candidates in the noise.
+                </div>
+            </div>
+            <div class="cr" style="text-align:center;">
+                <div class="stat-val cr-txt">41%</div>
+                <div class="stat-desc">
+                    of companies have already hired a fake person. 320+ DPRK operatives confirmed inside Fortune 500 technical teams. FBI issued public warnings.
+                </div>
+            </div>
+            <div class="cr" style="text-align:center;">
+                <div class="stat-val cr-txt">$240K</div>
+                <div class="stat-desc">
+                    max cost of one fraudulent hire, factoring legal exposure, security remediation, and team disruption. One caught fraud pays for 5+ years of Sentriq.
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:14px; padding:15px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+            <div>
+                <div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:7px;">The attack</div>
+                <p style="font-size:12px; color:var(--text); line-height:1.65;">AI bots send 1,500+ applications per day per user. Every resume is now AI-polished and ATS-optimized. Signal-to-noise collapsed in under 18 months. The problem is structural, not cyclical.</p>
+            </div>
+            <div>
+                <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:7px;">The gap</div>
+                <p style="font-size:12px; color:var(--text); line-height:1.65;">ATS platforms score fit. Nobody scores integrity. There is no infrastructure layer between the candidate and the hiring team. That layer does not exist yet. That is what we are building.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">2 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 3: WHY NOW
+========================================== -->
+<div class="slide bg-dark" data-index="2">
+    <div class="slide-inner">
+        <span class="slide-label">Why Now</span>
+        <h2>Three forces. <span class="cb-txt">The window opened in 2025.</span></h2>
+
+        <div class="g3" style="margin-top:20px;">
+            <div class="cr" style="padding:24px 20px;">
+                <div style="font-size:28px; font-weight:900; color:rgba(239,68,68,0.18); margin-bottom:12px; line-height:1;">01</div>
+                <h3 class="cr-txt">AI destroyed the signal</h3>
+                <p>Mass-apply bots and AI-polished CVs made applying frictionless. YC is funding the attack side. Nobody was building the defense. The signal-to-noise ratio collapsed in under 18 months, permanently.</p>
+            </div>
+            <div class="co" style="padding:24px 20px;">
+                <div style="font-size:28px; font-weight:900; color:rgba(245,158,11,0.18); margin-bottom:12px; line-height:1;">02</div>
+                <h3 class="co-txt">Fraud became enterprise risk</h3>
+                <p>DPRK operatives, deepfake interviews, synthetic identities. The budget moved from HR to security and compliance. CISOs are now the economic buyer. That changes the sales motion entirely.</p>
+            </div>
+            <div class="cb" style="padding:24px 20px;">
+                <div style="font-size:28px; font-weight:900; color:rgba(37,99,235,0.18); margin-bottom:12px; line-height:1;">03</div>
+                <h3 class="cb-txt">EU AI Act: August 2026</h3>
+                <p>Companies using AI in hiring must prove human oversight across 27 countries or face regulatory penalties. This is a compliance purchase event with a hard deadline. Not an optional upgrade.</p>
+            </div>
+        </div>
+
+        <div style="margin-top:16px; padding:14px 24px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-align:center;">
+            <p style="font-size:13px; color:rgba(255,255,255,0.78); line-height:1.6;">This could not have been built 3 years ago. The fraud volume was not there, the AI tooling did not exist, the regulation had not passed. <strong style="color:var(--white);">The window is open now.</strong></p>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">3 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 4: EARNED SECRET / ORIGIN
+========================================== -->
+<div class="slide bg-dark" data-index="3">
+    <div class="slide-inner">
+        <span class="slide-label">Earned Secret</span>
+        <h2>We built the attack. <span class="cb-txt">We know every angle.</span></h2>
+
+        <div class="g3" style="margin-top:20px;">
+            <div class="cb" style="padding:22px 18px;">
+                <h3 class="cb-txt" style="margin-bottom:10px;">Chapter 1: Huntwise</h3>
+                <p>Built a tool helping candidates beat ATS systems. Real product, 100 beta users, $300K of our own capital. We did not theorize about hiring signal. We manipulated it at scale across three enterprise platforms.</p>
+            </div>
+            <div class="co" style="padding:22px 18px;">
+                <h3 class="co-txt" style="margin-bottom:10px;">Chapter 2: The Experiments</h3>
+                <p>30+ live scoring experiments across Comeet, Greenhouse, and Niloos. Discovered 17 rules companies did not know they were enforcing. We mapped exactly where and how signal breaks under manipulation.</p>
+            </div>
+            <div class="cg" style="padding:22px 18px;">
+                <h3 class="cg-txt" style="margin-bottom:10px;">Chapter 3: The Flip</h3>
+                <p>Every exploit we discovered became a detection signature. No competitor approached this from the inside. We are the only team that built the weapon before building the defense. That dataset is irreproducible.</p>
+            </div>
+        </div>
+
+        <div style="margin-top:14px; padding:14px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; text-align:center;">
+            <div>
+                <div style="font-size:28px; font-weight:800; color:var(--primary); letter-spacing:-0.03em;">30+</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">Live ATS experiments</div>
+            </div>
+            <div>
+                <div style="font-size:28px; font-weight:800; color:var(--orange); letter-spacing:-0.03em;">17</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">Scoring rules documented</div>
+            </div>
+            <div>
+                <div style="font-size:28px; font-weight:800; color:var(--green); letter-spacing:-0.03em;">3</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-top:3px;">Enterprise ATS platforms cracked</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">4 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 5: PRODUCT
+========================================== -->
+<div class="slide bg-dark" data-index="4">
+    <div class="slide-inner">
+        <span class="slide-label">The Product</span>
+        <h2>The Candidate Application Firewall. <span class="cb-txt">CAF.</span></h2>
+
+        <div class="flow">
+            <div class="fn">
+                <div class="fnl">Candidate</div>
+                <div class="fnv">Application</div>
+            </div>
+            <div class="flow-arr">&#8594;</div>
+            <div class="fn fn-caf">
+                <div class="fnl">Sentriq CAF</div>
+                <div class="fnv">Trust Signal</div>
+            </div>
+            <div class="flow-arr">&#8594;</div>
+            <div class="fn">
+                <div class="fnl">Recruiter</div>
+                <div class="fnv">Decides</div>
+            </div>
+        </div>
+        <p style="font-size:11px; color:var(--text-dim); text-align:center; margin-bottom:14px;">ATS-agnostic. Works with any system: Greenhouse, Comeet, Workday, paper, or no ATS at all.</p>
+
+        <div class="g3">
+            <div class="cr">
+                <div class="ly cr-txt">Layer 1: Auto-Flag</div>
+                <p>Incoming applications analyzed for integrity signals: credential fabrication, timeline manipulation, mass-apply patterns, behavioral anomalies. Suspicious applications routed to review. Nothing silently removed. Ever.</p>
+            </div>
+            <div class="co">
+                <div class="ly co-txt">Layer 2: Async Challenge</div>
+                <p>A 2-minute task sent to flagged candidates. Captures keystroke dynamics, response timing, copy-paste behavior, and revision patterns. Surfaces what a live interview would miss. Results feed back into the signal layer.</p>
+            </div>
+            <div class="cg">
+                <div class="ly cg-txt">Layer 3: Human Review</div>
+                <p>Recruiter sees evidence cards, not scores. A human always decides. Zero automated rejections, ever. EU AI Act-compliant by design: every decision logged, timestamped, and traceable.</p>
+            </div>
+        </div>
+
+        <div style="margin-top:12px; padding:10px 18px; background:rgba(37,99,235,0.07); border:1px solid rgba(37,99,235,0.15); border-radius:10px; display:flex; gap:28px; justify-content:center; flex-wrap:wrap;">
+            <span style="font-size:12px; color:var(--text);"><strong style="color:var(--white);">Not an ATS.</strong> Not an AI detector. Not a background check.</span>
+            <span style="font-size:12px; color:var(--text);"><strong style="color:var(--white);">ATS gives fit score. Sentriq gives trust signal.</strong></span>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">5 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 6: DEFENSIBILITY
+========================================== -->
+<div class="slide bg-dark" data-index="5">
+    <div class="slide-inner">
+        <span class="slide-label">Defensibility</span>
+        <h2>Four structural advantages. <span class="cb-txt">Each compounds with usage.</span></h2>
+
+        <div class="g2" style="margin-top:18px;">
+            <div class="cb" style="padding:20px;">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px;">
+                    <div style="width:28px; height:28px; border-radius:7px; background:rgba(37,99,235,0.18); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--primary); flex-shrink:0;">01</div>
+                    <h3 class="cb-txt">Behavioral biometrics baseline</h3>
+                </div>
+                <p>The async challenge captures keystroke dynamics, time-to-first-response, and revision behavior. After thousands of sessions, we build baseline distributions of what genuine expertise looks like under pressure vs. AI-assisted responses. This calibration is time-gated. A competitor starting today starts with zero data.</p>
+            </div>
+            <div class="cg" style="padding:20px;">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px;">
+                    <div style="width:28px; height:28px; border-radius:7px; background:rgba(16,185,129,0.18); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--green); flex-shrink:0;">02</div>
+                    <h3 class="cg-txt">Cross-company graph — legally unavailable to ATS</h3>
+                </div>
+                <p>ATS platforms contractually cannot share candidate data across employers. Sentriq sits between the candidate and the human, getting direct candidate consent as an independent layer. That consent mechanism is structurally unavailable to any ATS, ever. At 15 companies, our graph detects fraud no single company sees alone.</p>
+            </div>
+            <div class="co" style="padding:20px;">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px;">
+                    <div style="width:28px; height:28px; border-radius:7px; background:rgba(245,158,11,0.18); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--orange); flex-shrink:0;">03</div>
+                    <h3 class="co-txt">Regulatory audit trail as switching cost</h3>
+                </div>
+                <p>Every hiring decision through Sentriq is logged, timestamped, and tied to a human review action. For financial services, healthcare, and defense contractors, that audit history has legal value under EU AI Act. Switching means starting the compliance record from zero.</p>
+            </div>
+            <div class="cr" style="padding:20px;">
+                <div style="display:flex; gap:10px; align-items:flex-start; margin-bottom:8px;">
+                    <div style="width:28px; height:28px; border-radius:7px; background:rgba(239,68,68,0.18); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--red); flex-shrink:0;">04</div>
+                    <h3 class="cr-txt">Proprietary ground-truth dataset</h3>
+                </div>
+                <p>Two years of Huntwise experiments produced the only known dataset of how hiring signal breaks from the inside: which fabrications pass which ATS, which patterns fool which scoring engines. No academic corpus, no synthetic data. Real manipulation, real platform responses.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">6 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 7: MARKET
+========================================== -->
+<div class="slide bg-dark" data-index="6">
+    <div class="slide-inner">
+        <span class="slide-label">Market Opportunity</span>
+        <h2>A new category. <span class="cb-txt">Not a feature in an existing one.</span></h2>
+
+        <div class="g2" style="margin-top:18px;">
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="cb" style="padding:20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Total Addressable Market</div>
+                    <div style="font-size:36px; font-weight:800; color:var(--primary); letter-spacing:-0.03em; line-height:1; margin-bottom:6px;">$14B+</div>
+                    <p>Global HR software market with strong growth driven by remote hiring. The compliance and fraud prevention layer is currently zero. Every company using AI in hiring is a potential buyer after August 2026.</p>
+                </div>
+                <div class="cg" style="padding:20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Serviceable Wedge</div>
+                    <div style="font-size:36px; font-weight:800; color:var(--green); letter-spacing:-0.03em; line-height:1; margin-bottom:6px;">Remote Tech Hiring</div>
+                    <p>Highest fraud risk. Clearest ROI. CISO already owns the budget. Contractor and vendor hiring is the entry point. Expands to all hiring once the cross-company graph has critical mass.</p>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="card" style="padding:20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;">Why Sentriq is not an ATS feature</div>
+                    <div class="comp-row">
+                        <div class="comp-name" style="font-size:12px;">ATS (Greenhouse, etc.)</div>
+                        <div class="comp-dot" style="background:rgba(239,68,68,0.6);"></div>
+                        <div class="comp-attr">Scores fit. Single employer. Legally blocked from cross-company data sharing.</div>
+                    </div>
+                    <div class="comp-row">
+                        <div class="comp-name" style="font-size:12px;">Background check (Checkr)</div>
+                        <div class="comp-dot" style="background:rgba(239,68,68,0.6);"></div>
+                        <div class="comp-attr">Post-offer, not pre-application. Verifies identity, not signal integrity.</div>
+                    </div>
+                    <div class="comp-row">
+                        <div class="comp-name" style="font-size:12px;">AI detectors</div>
+                        <div class="comp-dot" style="background:rgba(239,68,68,0.6);"></div>
+                        <div class="comp-attr">Binary output. No human review layer. No behavioral signal. Easily gamed.</div>
+                    </div>
+                    <div class="comp-row">
+                        <div class="comp-name" style="font-size:12px; color:var(--primary); font-weight:700;">Sentriq</div>
+                        <div class="comp-dot" style="background:var(--green);"></div>
+                        <div class="comp-attr" style="color:rgba(255,255,255,0.7);">Full CAF: pre-application integrity layer, behavioral signal, human review, cross-company graph, EU AI Act audit trail.</div>
+                    </div>
+                </div>
+                <div class="co" style="padding:18px 20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Two-stakeholder GTM</div>
+                    <p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">Head of Talent</strong> is the champion and entry point. <strong style="color:var(--white);">CISO</strong> is the economic buyer and closer. Annual contracts. Selling to security, not HR.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">7 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 8: BUSINESS MODEL
+========================================== -->
+<div class="slide bg-dark" data-index="7">
+    <div class="slide-inner">
+        <span class="slide-label">Business Model</span>
+        <h2>Annual contracts. <span class="cg-txt">Security budget, not HR budget.</span></h2>
+
+        <div class="g2" style="margin-top:18px;">
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="padding:18px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Pricing tiers</div>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(37,99,235,0.08); border-radius:8px; border:1px solid rgba(37,99,235,0.18);">
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--white);">SMB</div>
+                                <div style="font-size:11px; color:var(--text-dim);">50-500 hires/yr</div>
+                            </div>
+                            <div style="font-size:16px; font-weight:800; color:var(--primary);">$500-$2K/mo</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:rgba(16,185,129,0.08); border-radius:8px; border:1px solid rgba(16,185,129,0.18);">
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--white);">Enterprise</div>
+                                <div style="font-size:11px; color:var(--text-dim);">500+ hires/yr, contractor-heavy</div>
+                            </div>
+                            <div style="font-size:16px; font-weight:800; color:var(--green);">$5K-$15K/mo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding:16px 20px; background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.15); border-radius:12px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Unit economics anchor</div>
+                    <p style="font-size:12px; color:var(--text); line-height:1.65;">One caught fraudulent hire at a $50K salary costs up to $240K in total exposure. At $500/month, Sentriq pays for itself with a single detection in the first month. The ROI conversation is closed before it starts.</p>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="padding:18px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Why annual contracts hold</div>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <div style="width:6px; height:6px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
+                            <p style="font-size:12px; color:var(--text); line-height:1.6;">Companies always hire. No "success churn" like B2C. Remote hiring is permanent infrastructure, not a one-time project.</p>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <div style="width:6px; height:6px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
+                            <p style="font-size:12px; color:var(--text); line-height:1.6;">EU AI Act audit trail is a compliance asset. Canceling means losing the documented decision history. Switching cost compounds from day one.</p>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <div style="width:6px; height:6px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
+                            <p style="font-size:12px; color:var(--text); line-height:1.6;">The cross-company graph improves with every customer added. Detection quality increases as the network grows. Customers get better signal the longer they stay.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding:14px 20px; background:rgba(37,99,235,0.07); border:1px solid rgba(37,99,235,0.15); border-radius:10px; text-align:center;">
+                    <p style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.6;">Selling to the <strong style="color:var(--white);">CISO</strong>, not the recruiter. Security budget is larger, more stable, and already primed for this category after DPRK headlines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">8 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 9: TEAM
+========================================== -->
+<div class="slide bg-dark" data-index="8">
+    <div class="slide-inner">
+        <span class="slide-label">Team</span>
+        <h2>Two IDF intelligence veterans. <span class="cb-txt">One unfair insight.</span></h2>
+
+        <div class="g2" style="margin-top:22px;">
+            <div class="team-card">
+                <div class="team-av">S</div>
+                <div class="team-name">Samuel Kemper</div>
+                <div class="team-role">CEO &amp; Co-Founder</div>
+                <div class="team-bio">IDF intelligence background. Built Huntwise end-to-end: 100 beta users, $300K founders' capital, 30+ live ATS experiments across Comeet, Greenhouse, and Niloos. Discovered 17 scoring rules enterprise companies did not know they were enforcing. That proprietary dataset is Sentriq's detection foundation. Fundraising, product strategy, GTM.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-av">B</div>
+                <div class="team-name">Ben</div>
+                <div class="team-role">CTO &amp; Co-Founder</div>
+                <div class="team-bio">IDF intelligence background. Architect of Huntwise's scoring manipulation engine: 73,500 lines of production code. Designed the behavioral signal extraction framework that now powers Sentriq's detection layer. Deep expertise in cross-platform data extraction, behavioral biometrics, and adversarial signal processing.</div>
+            </div>
+        </div>
+
+        <div style="margin-top:18px; padding:14px 26px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-align:center;">
+            <p style="font-size:13px; color:rgba(255,255,255,0.8); line-height:1.65;">"We built the tool that breaks hiring. So we know exactly how to fix it."</p>
+            <p style="font-size:11px; color:var(--text-dim); margin-top:6px;">No competitor approached this from the inside. The offense became the detection engine.</p>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co</div>
+        <div class="footer-slide">9 / 10</div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     SLIDE 10: TRACTION + ASK
+========================================== -->
+<div class="slide bg-cover" data-index="9">
+    <div class="slide-inner">
+        <span class="slide-label">Traction &amp; The Ask</span>
+        <h2>Pre-revenue. <span class="cb-txt">$4M seed.</span></h2>
+
+        <div class="g2" style="margin-top:18px;">
+
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="cb" style="padding:18px 20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Where we are today</div>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <div style="padding:9px 13px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:2px;">Active design partner conversations</div>
+                            <div style="font-size:11px; color:var(--text-dim);">Remote-first and contractor-heavy hiring teams. No contracts signed yet.</div>
+                        </div>
+                        <div style="padding:9px 13px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:2px;">$300K founders' capital invested</div>
+                            <div style="font-size:11px; color:var(--text-dim);">30+ live ATS experiments. 17 scoring rules documented. No outside funding to date.</div>
+                        </div>
+                        <div style="padding:9px 13px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:2px;">Working product demo live</div>
+                            <div style="font-size:11px; color:var(--text-dim);">Command Center, evidence cards, behavioral signal layer, ROI calculator.</div>
+                        </div>
+                        <div style="padding:9px 13px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                            <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:2px;">Fundraising: Q2 2026, close: Q3 2026</div>
+                            <div style="font-size:11px; color:var(--text-dim);">UpWest, NFX FAST Israel conversations active.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="cg" style="padding:18px 20px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">$4M seed round</div>
+                    <div style="font-size:11px; color:var(--text-dim); margin-bottom:6px;">Use of funds</div>
+                    <div class="fund-bar">
+                        <div class="fs" style="width:40%; background:var(--primary);"></div>
+                        <div class="fs" style="width:30%; background:var(--green);"></div>
+                        <div class="fs" style="width:20%; background:var(--orange);"></div>
+                        <div class="fs" style="width:10%; background:rgba(255,255,255,0.22);"></div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+                        <div style="padding:9px 12px; background:rgba(37,99,235,0.12); border-radius:8px;">
+                            <div style="font-size:14px; font-weight:800; color:var(--primary);">40%</div>
+                            <div style="font-size:11px; color:var(--text-dim); margin-top:2px;">AI detection engine</div>
+                        </div>
+                        <div style="padding:9px 12px; background:rgba(16,185,129,0.12); border-radius:8px;">
+                            <div style="font-size:14px; font-weight:800; color:var(--green);">30%</div>
+                            <div style="font-size:11px; color:var(--text-dim); margin-top:2px;">Engineering (3 hires, AI-leveraged)</div>
+                        </div>
+                        <div style="padding:9px 12px; background:rgba(245,158,11,0.12); border-radius:8px;">
+                            <div style="font-size:14px; font-weight:800; color:var(--orange);">20%</div>
+                            <div style="font-size:11px; color:var(--text-dim); margin-top:2px;">Sales, first paying customers</div>
+                        </div>
+                        <div style="padding:9px 12px; background:rgba(255,255,255,0.07); border-radius:8px;">
+                            <div style="font-size:14px; font-weight:800; color:rgba(255,255,255,0.55);">10%</div>
+                            <div style="font-size:11px; color:var(--text-dim); margin-top:2px;">SOC 2, legal, compliance</div>
+                        </div>
+                    </div>
+                    <div style="padding:10px 14px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">
+                        <div style="font-size:11px; color:var(--text-dim);">Annual contracts &nbsp;|&nbsp; $500-$15K/mo &nbsp;|&nbsp; CISO as economic buyer</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="footer-logo"><svg width="14" height="14" viewBox="0 0 512 512"><rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/><polygon points="256,168 334,352 178,352" fill="#0F172A"/></svg> Sentriq</div>
+        <div class="footer-contact">samuel@sentriq.co &nbsp;|&nbsp; sentriq.co</div>
+        <div class="footer-slide">10 / 10</div>
+    </div>
+</div>
+
+
+</body>
+</html>
