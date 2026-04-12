@@ -203,7 +203,7 @@
         <h1>We built something.<br>We want to know<br>what you think.</h1>
         <p class="sub" style="margin-bottom:28px;">For Gideon Rosenberg &mdash; Head of HR Israel &amp; Deputy General Counsel, NVIDIA</p>
         <div class="div"></div>
-        <p class="body" style="color:rgba(255,255,255,0.35); font-size:13px; max-width:580px;">We are a small team building a product in a space you know well. This is not a pitch. It is six slides and a genuine question: does this make sense to you?</p>
+        <p class="body" style="color:rgba(255,255,255,0.35); font-size:13px; max-width:520px;">Not a pitch. Eight slides and a genuine question.</p>
     </div>
 </div>
 
@@ -212,21 +212,20 @@
     <div class="slide-inner">
         <div class="label">The Problem</div>
         <h2>You cannot tell who is real<br>anymore. Nobody can.</h2>
-        <p class="body" style="margin-bottom:24px; max-width:680px;">AI tools have made it trivial to generate a perfect CV, pass keyword screening, and deliver polished async video answers. Every recruiter knows the signal has degraded. The pipeline is fuller than ever and harder than ever to read. That is the everyday problem. Then there is the extreme version of it.</p>
 
-        <div class="two-col">
+        <div class="two-col" style="margin-top:28px;">
             <div class="box">
                 <div class="box-label">The everyday version</div>
-                <div class="box-text">AI-generated applications flood pipelines at a volume no team can manually review. Screening tools are gamed by the same methods that create them. Recruiters spend most of their time on candidates they cannot verify, and the ones they miss are not random.</div>
+                <div class="box-text">AI tools generate perfect CVs, pass keyword screening, feed live video answers. Recruiters process more applications than ever and trust fewer of them.</div>
             </div>
             <div class="box">
                 <div class="box-label">The extreme version</div>
-                <div class="box-text">North Korea runs a documented operation placing workers inside Western technology companies using the exact same techniques. KnowBe4 hired one in 2024. He passed four video interviews and a full background check. He was caught on day one when his laptop started installing malware.</div>
+                <div class="box-text">North Korea places 100,000+ workers inside Western tech companies using the same techniques. KnowBe4 hired one in 2024. Four video interviews, full background check. Caught day one installing malware.</div>
             </div>
         </div>
 
         <div class="highlight-line">
-            The method is the same. The stakes differ. Sentriq addresses both because the fix is identical.
+            The method is the same. The stakes differ. The fix is identical.
         </div>
     </div>
 </div>
@@ -236,28 +235,28 @@
     <div class="slide-inner">
         <div class="label">What We Built</div>
         <h2>We built the attack first.<br>Now we build the defense.</h2>
-        <p class="body" style="margin-bottom:24px; max-width:680px;">Last year we built Huntwise &mdash; a tool that exploits applicant tracking systems the same way adversaries do. 73,500 lines of code. 30 live experiments across three ATS platforms. 17 documented exploitation techniques the ATS vendors themselves did not know existed. That research is the foundation of Sentriq. We know exactly how the fraud works because we built it.</p>
+        <p class="body" style="margin-bottom:24px; max-width:660px; font-size:14px;">Huntwise is a live tool that exploits ATS systems the way adversaries do. 17 techniques the vendors didn't know existed. Sentriq is the defense built directly from that research.</p>
 
         <div class="layers">
             <div class="layer">
                 <div class="layer-num">1</div>
                 <div>
                     <div class="layer-title">Application Integrity</div>
-                    <div class="layer-desc">Behavioral signals captured at submission. Keystroke dynamics, copy-paste detection, session timing, field navigation patterns. Passive. No candidate friction.</div>
+                    <div class="layer-desc">Passive behavioral signals at submission &mdash; keystroke dynamics, copy-paste, session timing. No candidate friction.</div>
                 </div>
             </div>
             <div class="layer">
                 <div class="layer-num">2</div>
                 <div>
                     <div class="layer-title">Async Challenge</div>
-                    <div class="layer-desc">When anomalies are detected, the candidate completes a short task. We score behavioral biometrics during the response, not just the content. A proxy cannot replicate the behavioral baseline of the person they are impersonating.</div>
+                    <div class="layer-desc">Anomaly detected: candidate completes a short task. We score behavior, not content. A proxy cannot replicate the baseline of the person they are impersonating.</div>
                 </div>
             </div>
             <div class="layer">
                 <div class="layer-num">3</div>
                 <div>
                     <div class="layer-title">Human Review</div>
-                    <div class="layer-desc">Flagged cases go to a trained analyst before anything reaches a recruiter. The hiring team always makes the final call. This is also the EU AI Act answer &mdash; Annex III classifies hiring AI as high-risk; human review in the loop is the legal requirement.</div>
+                    <div class="layer-desc">Flagged cases reach an analyst, not a recruiter. Hiring team always decides. This is also the EU AI Act Annex III compliance answer.</div>
                 </div>
             </div>
         </div>
@@ -267,26 +266,26 @@
 <!-- SLIDE 3: CAF + NETWORK EFFECT -->
 <div class="slide" data-index="3">
     <div class="slide-inner">
-        <div class="label">The Data Moat</div>
-        <h2>Every company that joins<br>makes it better for all of them.</h2>
-        <p class="body" style="margin-bottom:28px; max-width:680px;">The three detection layers are the product. The cross-company graph is the moat. When Sentriq flags a behavioral pattern at one company, that signal enters a shared framework. When the same identity attempts another company the next day, they are already known. No ATS vendor can build this. Their contracts prohibit cross-employer data sharing. Sentriq operates as a neutral third party and collects directly from candidates under its own consent architecture. The graph is permanently unavailable to any competitor that sits inside the hiring stack.</p>
+        <div class="label">The Network Effect</div>
+        <h2>Each new company makes it<br>stronger for all of them.</h2>
+        <p class="body" style="margin-bottom:24px; max-width:660px; font-size:14px;">The three layers are the product. The cross-company graph is the moat. ATS vendors are contractually barred from cross-employer data sharing. Sentriq is a neutral third party — candidates consent to us directly. No one inside the hiring stack can build this.</p>
 
         <div class="two-col">
             <div class="box">
                 <div class="box-label">Customer 1</div>
-                <div class="box-text">Detection is based on absolute behavioral anomalies. The system flags deviations from normal human typing and session behavior. No history required to be useful from day one.</div>
+                <div class="box-text">Flags absolute behavioral anomalies. Useful on day one with no prior data.</div>
             </div>
             <div class="box">
                 <div class="box-label">Customer 10</div>
-                <div class="box-text">Cross-company patterns emerge. The same synthetic identity that tried three other companies in the past 30 days is flagged the moment they apply to a fourth. The signal compounds without any individual company sharing data with another.</div>
+                <div class="box-text">Same identity tried three other companies last month? Flagged immediately on the fourth application.</div>
             </div>
             <div class="box">
                 <div class="box-label">Customer 100</div>
-                <div class="box-text">The graph becomes a real-time watchlist. Coordinated campaigns — multiple fake identities from the same behavioral cluster — are detected at the campaign level, not just the individual application level.</div>
+                <div class="box-text">Coordinated campaigns detected at the cluster level — not just individual applications.</div>
             </div>
             <div class="box">
                 <div class="box-label">Why it cannot be copied</div>
-                <div class="box-text">Building the graph requires operating as a neutral third party at scale, holding direct candidate consent, and running the behavioral detection engine that generates the signal in the first place. All three conditions must be true simultaneously. No existing player has all three.</div>
+                <div class="box-text">Requires neutral third-party status + direct candidate consent + behavioral detection running at scale. Simultaneously. No existing player has all three.</div>
             </div>
         </div>
     </div>
@@ -296,22 +295,21 @@
 <div class="slide" data-index="4">
     <div class="slide-inner">
         <div class="label">Why We Reached Out</div>
-        <h2>You have lived both sides<br>of this problem.</h2>
-        <p class="body" style="margin-bottom:24px; max-width:680px;">Most people we talk to own one function. Either they run hiring and understand the noise, or they own legal and think about compliance. You run both, at a company that hires engineers at scale in one of the most competitive and sensitive talent markets in the world. The feedback we need is not theoretical. It comes from someone who has actually dealt with this on a Tuesday afternoon.</p>
+        <h2>Most people own one side.<br>You own both.</h2>
 
-        <div class="two-col">
+        <div class="two-col" style="margin-top:28px;">
             <div class="box">
-                <div class="box-label">From the HR side</div>
-                <div class="box-text">What does the pipeline actually look like at NVIDIA scale? Where does recruiter time get burned? What would make a screening layer useful versus just more friction? We want to design around those constraints, not discover them after launch.</div>
+                <div class="box-label">HR at NVIDIA scale</div>
+                <div class="box-text">You know where recruiter time gets burned, what candidates will tolerate, and where the process breaks. We want to design around that — not discover it after launch.</div>
             </div>
             <div class="box">
-                <div class="box-label">From the legal side</div>
-                <div class="box-text">EU AI Act Annex III, GDPR legitimate interest, export control exposure. You know where the procurement wall is and why it exists. That shapes what we build before we write a single contract.</div>
+                <div class="box-label">Legal and compliance</div>
+                <div class="box-text">EU AI Act, GDPR legitimate interest, export controls. You know where the procurement wall is and why. That shapes what we build before we write a contract.</div>
             </div>
         </div>
 
         <div class="highlight-line">
-            We are not looking for validation. We want someone who will tell us where we are wrong before we build the wrong thing.
+            We want someone who will tell us where we are wrong before we build the wrong thing.
         </div>
     </div>
 </div>
@@ -321,32 +319,29 @@
     <div class="slide-inner">
         <div class="label">Where We Are</div>
         <h2>Seed stage. Honest about it.</h2>
-        <p class="body" style="margin-bottom:24px; max-width:660px;">We are not going to oversell the current state. Here is what is true:</p>
 
-        <div class="status-row">
+        <div class="status-row" style="margin-top:28px;">
             <div class="status-item">
                 <div><span class="status-dot green"></span></div>
-                <div class="status-title">Research complete</div>
-                <div class="status-desc">17 ATS exploitation techniques documented. DPRK infiltration playbook mapped. Architecture designed from attack-first perspective.</div>
+                <div class="status-title">Research done</div>
+                <div class="status-desc">17 ATS exploitation techniques documented. Attack-first architecture.</div>
             </div>
             <div class="status-item">
                 <div><span class="status-dot green"></span></div>
                 <div class="status-title">Product in development</div>
-                <div class="status-desc">Behavioral detection layer built. Layer 1 running in test environments. Active POC with first enterprise partners.</div>
+                <div class="status-desc">Layer 1 in test environments. POC with first enterprise partners.</div>
             </div>
             <div class="status-item">
                 <div><span class="status-dot orange"></span></div>
                 <div class="status-title">SOC 2 in progress</div>
-                <div class="status-desc">Type I target: Q3 2026. No production enterprise deployment until it is done. That is the right call and we are not rushing it.</div>
+                <div class="status-desc">Type I target Q3 2026. No production deployment before it is done.</div>
             </div>
             <div class="status-item">
                 <div><span class="status-dot gray"></span></div>
-                <div class="status-title">Backed, not closed</div>
-                <div class="status-desc">NFX FAST Israel, Lool Ventures, Upwest. Active seed round. We are selective about who we bring in.</div>
+                <div class="status-title">Backed, round open</div>
+                <div class="status-desc">NFX FAST Israel &middot; Lool Ventures &middot; Upwest</div>
             </div>
         </div>
-
-        <p class="body" style="font-size:13px; color:rgba(255,255,255,0.35); margin-top:8px;">We are early. What we are not is uncertain about the problem or the approach.</p>
     </div>
 </div>
 
@@ -354,19 +349,19 @@
 <div class="slide" data-index="6">
     <div class="slide-inner">
         <div class="label">The Ask</div>
-        <h2>Twenty minutes.<br>Tell us if we are<br>thinking about this wrong.</h2>
+        <h2>Twenty minutes.<br>Tell us if we are wrong.</h2>
 
-        <div class="highlight-line" style="margin-bottom:28px;">
-            That is it. A short call. You tell us where the product does not work, where the legal framing is off, or where we are solving the wrong version of the problem. That is the conversation we want.
+        <div class="highlight-line" style="margin-top:28px; margin-bottom:28px;">
+            Where does the product not work? Where is the legal framing off? Where are we solving the wrong version of the problem? That is the conversation we want.
         </div>
 
-        <p class="body" style="margin-bottom:16px; max-width:660px;">If after that call you think there is something here &mdash; and only if you do &mdash; we would like to continue the conversation about how you might stay involved as we build. But we are not asking for that now. We are asking for twenty minutes and an honest reaction.</p>
+        <p class="body" style="margin-bottom:28px; max-width:580px; font-size:14px; color:rgba(255,255,255,0.5);">If after that call you think there is something here, we would like to continue the conversation. But we are not asking for that now.</p>
 
         <div class="div"></div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
             <div>
-                <p class="body" style="font-size:13px; color:rgba(255,255,255,0.4);">Reach out directly:</p>
+                <p class="body" style="font-size:13px; color:rgba(255,255,255,0.4);">Reach out directly</p>
                 <p class="body" style="font-size:15px; margin-top:4px; font-weight:600;">Samuel Kemper &nbsp;&middot;&nbsp; <span style="color:var(--primary); font-weight:400;">samuel@huntwise.io</span></p>
             </div>
             <div style="text-align:right;">
@@ -387,19 +382,17 @@
                 <div class="avatar">SK</div>
                 <div class="person-name">Samuel Kemper</div>
                 <div class="person-title">Co-Founder, GTM</div>
-                <div class="person-body">Unit 81, IDF. Serial entrepreneur. 10 years in talent acquisition &mdash; built and ran TechRuiter, a recruiting firm for Israeli tech companies. Built the Huntwise attack tool. Has watched AI-generated candidates flood hiring pipelines from the inside. Understands the recruiter's pain and the attacker's playbook.</div>
+                <div class="person-body" style="margin-bottom:12px;">Unit 81, IDF. 10 years in talent acquisition — built TechRuiter. Built the Huntwise attack tool. Knows the recruiter's pain and the attacker's playbook.</div>
+                <a href="https://www.linkedin.com/in/samuel-kemper" target="_blank" style="font-size:12px; color:var(--primary); text-decoration:none;">LinkedIn &rarr;</a>
             </div>
             <div class="person">
                 <div class="avatar">BC</div>
                 <div class="person-name">Ben Czarninski</div>
                 <div class="person-title">Co-Founder, Engineering</div>
-                <div class="person-body">IDF Gama (elite intelligence cyber unit). KPMG penetration testing. CISO. AppsFlyer. CPA. TAU MBA. Worked on the defensive side of exactly this threat at enterprise scale. Designed the behavioral detection architecture and the cross-company fraud graph.</div>
+                <div class="person-body" style="margin-bottom:12px;">IDF Gama. KPMG pen testing. CISO. AppsFlyer. CPA. TAU MBA. Designed the behavioral detection architecture and the cross-company graph.</div>
+                <a href="https://www.linkedin.com/in/ben-czarninski" target="_blank" style="font-size:12px; color:var(--primary); text-decoration:none;">LinkedIn &rarr;</a>
             </div>
         </div>
-
-        <div class="div"></div>
-
-        <p class="body" style="font-size:13px; color:rgba(255,255,255,0.3); max-width:600px;">We are the right team for this problem. We have the attack research, the engineering, and the domain knowledge. What we are looking for now are the right people to pressure-test it with us.</p>
     </div>
 </div>
 
