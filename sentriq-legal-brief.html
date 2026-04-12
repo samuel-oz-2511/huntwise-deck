@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Sentriq — Legal & Privacy Brief</title>
+    <style>
+        :root {
+            --ink: #1a1a2e;
+            --ink-light: #4a4a6a;
+            --ink-faint: #8888aa;
+            --rule: #e2e2ee;
+            --bg: #fafafa;
+            --accent: #2563EB;
+            --green: #059669;
+            --orange: #d97706;
+            --red: #dc2626;
+            --yellow-bg: #fffbeb;
+            --yellow-border: #fcd34d;
+            --blue-bg: #eff6ff;
+            --blue-border: #bfdbfe;
+            --green-bg: #f0fdf4;
+            --green-border: #bbf7d0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.7;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--ink);
+            color: white;
+            padding: 32px 24px 28px;
+        }
+
+        .header-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .header-meta {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
+        .content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 32px 0 24px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section-num {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: var(--ink);
+        }
+
+        .section h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 22px 0 8px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--ink-light);
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+
+        strong { color: var(--ink); font-weight: 600; }
+
+        /* CALLOUTS */
+        .callout {
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin: 18px 0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .callout.blue {
+            background: var(--blue-bg);
+            border-left: 3px solid var(--accent);
+            color: #1e3a8a;
+        }
+
+        .callout.yellow {
+            background: var(--yellow-bg);
+            border-left: 3px solid var(--yellow-border);
+            color: #78350f;
+        }
+
+        .callout.green {
+            background: var(--green-bg);
+            border-left: 3px solid var(--green-border);
+            color: #14532d;
+        }
+
+        .callout-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 6px;
+            opacity: 0.65;
+        }
+
+        /* Q&A BLOCKS */
+        .qa {
+            margin: 20px 0;
+            padding: 18px;
+            background: white;
+            border: 1px solid var(--rule);
+            border-radius: 10px;
+        }
+
+        .qa-q {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .qa-a {
+            font-size: 14px;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        .qa-status {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .qa-status.decided { background: #dcfce7; color: #166534; }
+        .qa-status.pending { background: #fef9c3; color: #713f12; }
+        .qa-status.open { background: #fee2e2; color: #991b1b; }
+
+        /* ROADMAP */
+        .roadmap { margin: 16px 0; }
+
+        .rm-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--rule);
+            align-items: flex-start;
+        }
+
+        .rm-item:last-child { border-bottom: none; }
+
+        .rm-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .rm-dot.done { background: var(--green); }
+        .rm-dot.soon { background: var(--orange); }
+        .rm-dot.later { background: #d1d5db; }
+
+        .rm-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+
+        .rm-desc {
+            font-size: 13px;
+            color: var(--ink-faint);
+            line-height: 1.6;
+        }
+
+        /* TABLE */
+        .simple-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+            margin: 14px 0;
+        }
+
+        .simple-table th {
+            text-align: left;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            font-weight: 700;
+            padding: 8px 10px;
+            border-bottom: 2px solid var(--rule);
+        }
+
+        .simple-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--rule);
+            color: var(--ink-light);
+            vertical-align: top;
+        }
+
+        .simple-table td strong { color: var(--ink); }
+
+        /* FOOTER */
+        .footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+            text-align: center;
+            padding: 24px 20px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-label">Internal &middot; Legal Review</div>
+    <h1>Sentriq<br>Privacy &amp; Regulatory Brief</h1>
+    <div class="header-meta">
+        Prepared for legal review &middot; April 2026<br>
+        This document covers every privacy and regulatory question that needs to be answered before the first enterprise deployment.
+    </div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1: WHAT THE PRODUCT DOES -->
+<div class="section">
+    <div class="section-num">Section 1</div>
+    <h2>What Sentriq does (in plain language)</h2>
+
+    <p>Sentriq sits between a job applicant and the employer's hiring system. When someone submits a job application, Sentriq passively observes behavioral signals during that process — how they type, whether they copy-paste, how long they spend on each field. This is Layer 1.</p>
+
+    <p>If anomalies are detected, the candidate is asked to complete a short 2-3 minute task. Sentriq scores behavioral patterns during the response — not just the content. This is Layer 2.</p>
+
+    <p>If the score is flagged, a trained human analyst reviews the case before it reaches the employer's recruiter. The employer always makes the final hiring decision. This is Layer 3.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">The core legal design principle</div>
+        Sentriq is a <strong>neutral third party</strong>. It does not sit inside the employer's ATS. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice. The employer does not collect the behavioral data — Sentriq does. This distinction is legally critical and intentional.
+    </div>
+
+    <h3>What Sentriq does NOT do</h3>
+    <p>It does not verify identity. It does not make hiring decisions. It does not create a permanent record of candidates. It does not share data across employers. Each candidate's data is isolated and deleted on a defined schedule.</p>
+</div>
+
+<!-- SECTION 2: DATA COLLECTED -->
+<div class="section">
+    <div class="section-num">Section 2</div>
+    <h2>What data is collected</h2>
+
+    <table class="simple-table">
+        <tr>
+            <th>Data type</th>
+            <th>What it is</th>
+            <th>Classification</th>
+        </tr>
+        <tr>
+            <td><strong>Keystroke timing</strong></td>
+            <td>How fast someone types, rhythm between keystrokes</td>
+            <td>Pseudonymous behavioral metadata</td>
+        </tr>
+        <tr>
+            <td><strong>Copy-paste events</strong></td>
+            <td>Whether text was typed or pasted</td>
+            <td>Session behavioral metadata</td>
+        </tr>
+        <tr>
+            <td><strong>Field navigation</strong></td>
+            <td>Order fields were filled, time per field</td>
+            <td>Session behavioral metadata</td>
+        </tr>
+        <tr>
+            <td><strong>Challenge response</strong></td>
+            <td>Behavioral patterns during the async task</td>
+            <td>Pseudonymous behavioral metadata</td>
+        </tr>
+        <tr>
+            <td><strong>IP / device</strong></td>
+            <td>Standard web session data</td>
+            <td>Personal data (GDPR Art. 4)</td>
+        </tr>
+    </table>
+
+    <div class="callout yellow">
+        <div class="callout-label">Key classification question — needs legal opinion</div>
+        Under <strong>GDPR Article 9</strong> and <strong>Illinois BIPA</strong>, biometric data is a special category requiring explicit consent. The position we are taking is that Sentriq's keystroke data is <strong>not</strong> biometric — it is never used to uniquely identify a person, only to detect anomalous patterns. A formal written legal opinion confirming this classification is one of the four pending documents.
+    </div>
+</div>
+
+<!-- SECTION 3: THE 9 REGULATORY QUESTIONS -->
+<div class="section">
+    <div class="section-num">Section 3</div>
+    <h2>The nine regulatory questions</h2>
+
+    <p>These are the specific questions that govern whether Sentriq can legally operate in each jurisdiction. Current position and status for each:</p>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">1. Is keystroke data biometric under GDPR Art. 9 or BIPA?</div>
+        <div class="qa-a">Our position: no. Keystroke timing patterns are pseudonymous behavioral metadata. They detect behavioral anomalies and are never used to create a biometric identifier for a specific person. The product is architecturally blocked from being used for identity verification. <strong>Requires: written legal opinion from privacy counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">2. What is the lawful basis for processing under GDPR Article 6?</div>
+        <div class="qa-a"><strong>Legitimate Interest (Art. 6(1)(f))</strong> is the primary basis. The legitimate interest is fraud prevention and workforce security. A formal Legitimate Interest Assessment (LIA) is required to document the balancing test — weighing Sentriq's and the employer's interest against the candidate's rights. <strong>Requires: LIA drafted by counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">3. Is candidate consent valid in an employment context?</div>
+        <div class="qa-a">Under GDPR, consent in an employment context is generally not freely given due to the power imbalance between employer and candidate. Sentriq solves this by operating as a neutral third party: the candidate interacts with Sentriq's interface under Sentriq's own privacy notice <em>before</em> any data is collected, independent of the employer's ATS flow. This structure breaks the employer-candidate power dynamic. <strong>Requires: privacy notice reviewed by counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">4. Can Sentriq legally build a cross-company fraud signal?</div>
+        <div class="qa-a">ATS vendors are contractually prohibited from sharing data across employers. Sentriq is not an ATS vendor. It collects data directly from candidates under its own privacy notice. The cross-company graph is built on direct candidate consent to a neutral platform. This architecture is permanently unavailable to any ATS vendor. <strong>Requires: review of data sharing provisions in standard enterprise DPA.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status pending">Mitigation in place</span>
+        <div class="qa-q">5. Illinois BIPA — biometric data law, one of the strictest in the world</div>
+        <div class="qa-a"><strong>Phase 1 (current):</strong> Illinois candidates are identified by IP and geo-fenced from the behavioral challenge. They go directly to Layer 3 human review. No behavioral data collected. <strong>Phase 2 (pre-first US customer):</strong> Full BIPA compliance package required — written policy, written release obtained at challenge entry, data destruction schedule documented (90-day maximum retention), registered agent filing in Illinois. <strong>Requires: BIPA compliance package from US counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Compliance built in</span>
+        <div class="qa-q">6. EU AI Act — Annex III (High-Risk AI systems)</div>
+        <div class="qa-a">Hiring AI is classified as high-risk under EU AI Act Annex III. Deadline for compliance: <strong>August 2, 2026.</strong> Requirements: human oversight mechanisms, technical documentation, candidate transparency, conformity assessment. Sentriq's Layer 3 human review directly satisfies the human oversight requirement. This is a sales advantage, not a burden — every EU enterprise with AI-assisted hiring needs exactly this. <strong>Requires: conformity assessment self-declaration drafted by counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">7. Data controller allocation — who is responsible for what?</div>
+        <div class="qa-a">Sentriq is the data controller for challenge data and the cross-company graph. Each employer is the data controller for their own application data. A standard Data Processing Agreement (DPA) is required for every enterprise contract. Clean separation limits liability for both parties and is a prerequisite for enterprise procurement. <strong>Requires: standard DPA template drafted by counsel.</strong></div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture decided</span>
+        <div class="qa-q">8. CCPA / CPRA (California)</div>
+        <div class="qa-a">Business-to-business exemption applies to the employer relationship. For candidates who are California residents, CCPA rights apply: right to know, right to delete, right to opt out of sale. Sentriq does not sell candidate data. The privacy notice covers these rights. The geo-fencing system built for BIPA can be extended to California-specific requirements.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status pending">Needs review</span>
+        <div class="qa-q">9. FCRA (US Fair Credit Reporting Act)</div>
+        <div class="qa-a">FCRA governs consumer reporting agencies and applies if a third party provides information used in employment decisions. The position is that Sentriq's behavioral signal is <strong>not</strong> a consumer report — it is a fraud detection signal, not a background check, and the employer makes all hiring decisions independently. However, if Sentriq's output is treated as a factor in employment decisions, FCRA obligations could attach. This needs explicit confirmation.</div>
+    </div>
+</div>
+
+<!-- SECTION 4: FOUR DOCUMENTS NEEDED -->
+<div class="section">
+    <div class="section-num">Section 4</div>
+    <h2>The four documents that need to be drafted</h2>
+
+    <p>These are the specific legal deliverables blocking the first enterprise contract. Nothing can be signed until these exist.</p>
+
+    <div class="callout yellow">
+        <div class="callout-label">Current status</div>
+        None of the four documents have been formally drafted or signed off. The architecture decisions above represent the positions we intend to take. Legal counsel needs to validate each position and produce the documents.
+    </div>
+
+    <div class="roadmap">
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">1. Legal Opinion — Biometric Classification</div>
+                <div class="rm-desc">Written opinion confirming that keystroke dynamics and behavioral timing data are not biometric identifiers under GDPR Article 9 or Illinois BIPA. This is the foundational document — everything else builds on this classification.</div>
+            </div>
+        </div>
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">2. Legitimate Interest Assessment (LIA)</div>
+                <div class="rm-desc">EU-required document under GDPR that formally documents the three-part balancing test: (a) Sentriq's legitimate interest in fraud detection, (b) necessity of the processing, (c) balancing against candidate rights. Must be on file before processing begins in the EU.</div>
+            </div>
+        </div>
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">3. Candidate Privacy Notice</div>
+                <div class="rm-desc">Plain-language notice shown to candidates before the behavioral challenge begins. Must cover: what is collected, why, how long it is kept, candidate rights (access, deletion, objection), data controller identity, contact for data requests. Must comply with GDPR Articles 13-14.</div>
+            </div>
+        </div>
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">4. Standard Data Processing Agreement (DPA) Template</div>
+                <div class="rm-desc">The contract between Sentriq and each enterprise customer. Must define: controller/processor roles, processing purposes and limits, data retention and deletion obligations, sub-processor disclosure, security requirements, breach notification timelines, GDPR Chapter V transfer mechanisms (Standard Contractual Clauses for non-EU transfers).</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 5: OPEN QUESTIONS -->
+<div class="section">
+    <div class="section-num">Section 5</div>
+    <h2>Open questions that need your view</h2>
+
+    <p>These are the specific points where we have not locked in a position and genuinely need legal judgment before proceeding.</p>
+
+    <div class="qa">
+        <span class="qa-status open">Needs your view</span>
+        <div class="qa-q">A. Does the neutral third party structure actually break the GDPR employment consent problem?</div>
+        <div class="qa-a">We have designed Sentriq so that the candidate deals with Sentriq directly, not through the employer. Our argument is that this removes the employer-candidate power imbalance. Is that argument solid? Or would a regulator look through the structure and treat the interaction as employment-context consent regardless?</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status open">Needs your view</span>
+        <div class="qa-q">B. How do we handle candidate rights requests (deletion, access) in the cross-company graph?</div>
+        <div class="qa-a">If a candidate requests deletion of their data, we can delete their individual record. But behavioral patterns contribute to a shared fraud detection model. Does deleting the individual record satisfy GDPR Article 17, or does the model itself need to be addressed? What is the correct architecture for model-level deletion requests?</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status open">Needs your view</span>
+        <div class="qa-q">C. What is the right approach for Israel specifically?</div>
+        <div class="qa-a">Israeli privacy law (Protection of Privacy Law, 1981 and the new PDPL amendments) is distinct from GDPR. NVIDIA Israel is one of our target early conversations. What does processing behavioral data from Israeli candidates require under Israeli law? Is there an adequate protection finding or do we need separate mechanisms?</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status open">Needs your view</span>
+        <div class="qa-q">D. FCRA — are we a consumer reporting agency?</div>
+        <div class="qa-a">If yes, the obligations are significant (adverse action notices, accuracy requirements, candidate dispute rights). The business argument that we are a fraud detection tool, not a background check, seems strong — but we need explicit confirmation before we touch US enterprise customers.</div>
+    </div>
+</div>
+
+<!-- SECTION 6: TIMELINE -->
+<div class="section">
+    <div class="section-num">Section 6</div>
+    <h2>Why the timing matters</h2>
+
+    <p>Two external deadlines are driving the legal timeline:</p>
+
+    <div class="callout blue">
+        <div class="callout-label">EU AI Act — August 2, 2026</div>
+        <strong>Every EU enterprise with AI-assisted hiring must comply by this date.</strong> Companies that have not implemented human oversight for high-risk hiring AI face fines up to 3% of global annual turnover. This is a hard purchase trigger for Sentriq — but only if we have our own compliance architecture documented before we approach those customers.
+    </div>
+
+    <div class="callout yellow">
+        <div class="callout-label">First enterprise customer — target Q3 2026</div>
+        SOC 2 Type I completion is our deployment gate. Legal compliance architecture needs to be ready at the same time — it is the other half of the enterprise readiness requirement. No procurement team at a Fortune 500 will sign a contract without reviewing the DPA and privacy notice.
+    </div>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">
+    Sentriq &middot; Internal &middot; Legal &amp; Privacy Brief &middot; April 2026<br>
+    Questions: samuel@huntwise.io
+</div>
+
+</body>
+</html>
