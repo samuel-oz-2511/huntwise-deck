@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Sentriq — Deep Dive</title>
+    <title>Sentriq - Deep Dive</title>
     <style>
         :root {
             --ink: #0f1729;
@@ -237,11 +237,11 @@
         </div>
         <div class="card">
             <div class="card-label">The method</div>
-            <div class="card-text">Stolen US Social Security numbers. Fabricated LinkedIn and GitHub histories. AI-generated profile photos. Live AI tools that feed answers during video interviews. Standard background checks verify the identity — not the person at the keyboard.</div>
+            <div class="card-text">Stolen US Social Security numbers. Fabricated LinkedIn and GitHub histories. AI-generated profile photos. Live AI tools that feed answers during video interviews. Standard background checks verify the identity - not the person at the keyboard.</div>
         </div>
         <div class="card">
             <div class="card-label">KnowBe4, July 2024</div>
-            <div class="card-text">A 1,000-person US security company hired a DPRK agent. He passed four rounds of video interviews and a full background check. On day one, his MacBook began installing infostealer malware. He was caught because the laptop was monitored — not because the hiring process worked.</div>
+            <div class="card-text">A 1,000-person US security company hired a DPRK agent. He passed four rounds of video interviews and a full background check. On day one, his MacBook began installing infostealer malware. He was caught because the laptop was monitored - not because the hiring process worked.</div>
         </div>
         <div class="card">
             <div class="card-label">The regulatory response</div>
@@ -251,21 +251,21 @@
 
     <div class="callout blue">
         <div class="callout-label">Why NVIDIA specifically</div>
-        NVIDIA's GPU and AI architecture is explicitly named in DPRK threat intelligence as a primary target. The combination of export-controlled technology, remote-first engineering hiring, and high-value IP makes NVIDIA's pipeline one of the highest-risk in the world. This is not a generic risk — it is a specific, documented targeting pattern.
+        NVIDIA's GPU and AI architecture is explicitly named in DPRK threat intelligence as a primary target. The combination of export-controlled technology, remote-first engineering hiring, and high-value IP makes NVIDIA's pipeline one of the highest-risk in the world. This is not a generic risk - it is a specific, documented targeting pattern.
     </div>
 
     <div class="callout yellow">
         <div class="callout-label">The broader problem</div>
-        DPRK is the extreme case. The underlying method — using AI tools to fabricate a credible candidate identity — is now mainstream. LazyApply sends 1,500 automated applications per day. AI tools generate polished CVs and coach candidates through async video screens in real time. The signal-to-noise ratio in hiring pipelines is collapsing industry-wide. DPRK exploits the exact same vulnerability at a higher stakes level.
+        DPRK is the extreme case. The underlying method - using AI tools to fabricate a credible candidate identity - is now mainstream. LazyApply sends 1,500 automated applications per day. AI tools generate polished CVs and coach candidates through async video screens in real time. The signal-to-noise ratio in hiring pipelines is collapsing industry-wide. DPRK exploits the exact same vulnerability at a higher stakes level.
     </div>
 
     <div class="src">
         <div class="src-title">Sources</div>
         <ul class="src-list">
-            <li><a href="https://www.fbi.gov/news/press-releases/fbi-cyber-division-advisory-north-korean-it-workers" target="_blank">FBI Cyber Division Advisory — DPRK IT Worker Infiltration (May 2024)</a></li>
-            <li><a href="https://www.justice.gov/opa/pr/four-individuals-charged-involvement-north-korean-it-worker-scheme" target="_blank">DOJ — Four Individuals Charged, DPRK IT Worker Scheme (October 2024)</a></li>
-            <li><a href="https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us" target="_blank">KnowBe4 Blog — How a North Korean fake IT worker tried to infiltrate us (July 2024)</a></li>
-            <li><a href="https://www.armed-services.senate.gov/hearings/the-north-korean-it-worker-threat" target="_blank">US Senate Armed Services Committee Hearing — DPRK IT Worker Threat (March 2025)</a></li>
+            <li><a href="https://www.fbi.gov/news/press-releases/fbi-cyber-division-advisory-north-korean-it-workers" target="_blank">FBI Cyber Division Advisory - DPRK IT Worker Infiltration (May 2024)</a></li>
+            <li><a href="https://www.justice.gov/opa/pr/four-individuals-charged-involvement-north-korean-it-worker-scheme" target="_blank">DOJ - Four Individuals Charged, DPRK IT Worker Scheme (October 2024)</a></li>
+            <li><a href="https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us" target="_blank">KnowBe4 Blog - How a North Korean fake IT worker tried to infiltrate us (July 2024)</a></li>
+            <li><a href="https://www.armed-services.senate.gov/hearings/the-north-korean-it-worker-threat" target="_blank">US Senate Armed Services Committee Hearing - DPRK IT Worker Threat (March 2025)</a></li>
         </ul>
     </div>
 </div>
@@ -275,7 +275,7 @@
     <div class="section-tag">Section 2</div>
     <h2>Product Architecture</h2>
 
-    <p>Sentriq operates at the application layer — before a recruiter ever sees a candidate. A working demo has been built. Engineering is underway. Nothing is in a production environment yet.</p>
+    <p>Sentriq operates at the application layer - before a recruiter ever sees a candidate. A working demo has been built. Engineering is underway. Nothing is in a production environment yet.</p>
 
     
     <!-- LIFECYCLE SLIDE: THE SHIFT-LEFT ADVANTAGE -->
@@ -283,7 +283,7 @@
         <div class="slide-inner">
             <span class="slide-label">The Shift-Left Advantage</span>
             <h2>By the time enterprises verify integrity, <span style="color:var(--primary);">$1,700 per candidate is already spent.</span></h2>
-            <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:700px;margin:10px 0 18px;line-height:1.6;">Sentriq is the only verification layer that operates at the moment of application — before a single recruiter, engineer, or executive minute is invested.</p>
+            <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:700px;margin:10px 0 18px;line-height:1.6;">Sentriq is the only verification layer that operates at the moment of application - before a single recruiter, engineer, or executive minute is invested.</p>
             <div style="display:grid;grid-template-columns:repeat(8,1fr);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-bottom:16px;">
                 <div style="padding:14px 8px;background:rgba(5,150,105,0.12);border-right:1px solid rgba(255,255,255,0.08);text-align:center;border-bottom:3px solid #059669;">
                     <div style="font-size:9px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">&#x25BC; Sentriq</div>
@@ -357,36 +357,36 @@
         <div class="layer">
             <div class="layer-num">1</div>
             <div>
-                <div class="layer-title">Application Integrity — passive, always on</div>
+                <div class="layer-title">Application Integrity - passive, always on</div>
                 <div class="layer-desc">When a candidate fills out an application, Sentriq captures behavioral metadata in the background: keystroke timing and rhythm, copy-paste events (text typed vs. pasted), time spent per field, field navigation order, session duration patterns. No candidate friction. No candidate awareness. The signals alone are sufficient to flag a large share of synthetic applications.</div>
             </div>
         </div>
         <div class="layer">
             <div class="layer-num">2</div>
             <div>
-                <div class="layer-title">Async Challenge — triggered on anomaly</div>
-                <div class="layer-desc">When Layer 1 flags an anomaly above threshold, the candidate is invited to complete a 2-3 minute task — a short written or practical response relevant to the role, calibrated to their claimed profile. Sentriq evaluates behavioral signals <em>and</em> content quality during the response: typing pattern, hesitation, correction behavior, response timing, and demonstrated knowledge. A person being coached or impersonated cannot replicate both the behavioral fingerprint and the knowledge depth of the individual whose CV was submitted. This is the core detection mechanism for DPRK-style proxy fraud.</div>
+                <div class="layer-title">Async Challenge - triggered on anomaly</div>
+                <div class="layer-desc">When Layer 1 flags an anomaly above threshold, the candidate is invited to complete a 2-3 minute task - a short written or practical response relevant to the role, calibrated to their claimed profile. Sentriq evaluates behavioral signals <em>and</em> content quality during the response: typing pattern, hesitation, correction behavior, response timing, and demonstrated knowledge. A person being coached or impersonated cannot replicate both the behavioral fingerprint and the knowledge depth of the individual whose CV was submitted. This is the core detection mechanism for DPRK-style proxy fraud.</div>
             </div>
         </div>
         <div class="layer">
             <div class="layer-num">3</div>
             <div>
-                <div class="layer-title">Human Review — analyst, not recruiter</div>
-                <div class="layer-desc">Cases flagged by Layer 2 are reviewed by a Sentriq-trained analyst before anything reaches the employer's recruiting team. The analyst reviews the behavioral signal, the challenge response, and any corroborating indicators. The employer's hiring team always makes the final decision — Sentriq never rejects a candidate unilaterally. This layer is also the EU AI Act Annex III compliance answer: high-risk AI hiring systems must have human oversight in the decision loop.</div>
+                <div class="layer-title">Human Review - analyst, not recruiter</div>
+                <div class="layer-desc">Cases flagged by Layer 2 are reviewed by a Sentriq-trained analyst before anything reaches the employer's recruiting team. The analyst reviews the behavioral signal, the challenge response, and any corroborating indicators. The employer's hiring team always makes the final decision - Sentriq never rejects a candidate unilaterally. This layer is also the EU AI Act Annex III compliance answer: high-risk AI hiring systems must have human oversight in the decision loop.</div>
             </div>
         </div>
     </div>
 
     <div class="callout green">
         <div class="callout-label">Why behavioral signals and not identity verification</div>
-        Identity verification confirms that a credential exists — not that the person in front of you matches the credential. DPRK agents use real stolen Social Security numbers. They pass identity checks. Behavioral signals detect whether the person applying now behaves like the person who built that profile. That is a fundamentally different and complementary signal. Sentriq does not replace background checks — it detects what background checks cannot.
+        Identity verification confirms that a credential exists - not that the person in front of you matches the credential. DPRK agents use real stolen Social Security numbers. They pass identity checks. Behavioral signals detect whether the person applying now behaves like the person who built that profile. That is a fundamentally different and complementary signal. Sentriq does not replace background checks - it detects what background checks cannot.
     </div>
 
     <div class="src">
         <div class="src-title">Sources</div>
         <ul class="src-list">
-            <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act — Annex III, High-Risk AI Systems in Employment (Regulation 2024/1689)</a></li>
-            <li>Huntwise attack corpus — 73,500 lines, 17 documented ATS exploitation techniques. Available on request.</li>
+            <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act - Annex III, High-Risk AI Systems in Employment (Regulation 2024/1689)</a></li>
+            <li>Huntwise attack corpus - 73,500 lines, 17 documented ATS exploitation techniques. Available on request.</li>
         </ul>
     </div>
 </div>
@@ -400,7 +400,7 @@
 
     <div class="callout blue">
         <div class="callout-label">Why ATS vendors cannot build this</div>
-        Every major ATS vendor — Greenhouse, Lever, Workday, SAP SuccessFactors — holds ATS contracts that explicitly prohibit cross-employer data sharing. This is a legal constraint, not a technical one. They cannot build a cross-company fraud signal without violating their own customer contracts. This constraint is permanent. It does not change if they acquire better detection technology.
+        Every major ATS vendor - Greenhouse, Lever, Workday, SAP SuccessFactors - holds ATS contracts that explicitly prohibit cross-employer data sharing. This is a legal constraint, not a technical one. They cannot build a cross-company fraud signal without violating their own customer contracts. This constraint is permanent. It does not change if they acquire better detection technology.
     </div>
 
     <h3>How the graph compounds</h3>
@@ -411,15 +411,15 @@
     </div>
     <div class="moat-row">
         <div class="moat-stage">Customer 10</div>
-        <div class="moat-desc">Cross-company patterns emerge. The same behavioral fingerprint or synthetic identity that applied to three other companies in the past 30 days is flagged the moment they apply to a fourth — without any company sharing data with another.</div>
+        <div class="moat-desc">Cross-company patterns emerge. The same behavioral fingerprint or synthetic identity that applied to three other companies in the past 30 days is flagged the moment they apply to a fourth - without any company sharing data with another.</div>
     </div>
     <div class="moat-row">
         <div class="moat-stage">Customer 100</div>
-        <div class="moat-desc">Coordinated campaigns detected at the cluster level. Multiple fake identities originating from the same behavioral cluster — the signature of a DPRK-style operation — are identified as a campaign, not just individual suspicious applications.</div>
+        <div class="moat-desc">Coordinated campaigns detected at the cluster level. Multiple fake identities originating from the same behavioral cluster - the signature of a DPRK-style operation - are identified as a campaign, not just individual suspicious applications.</div>
     </div>
 
     <h3>The consent architecture that makes it legal</h3>
-    <p>Sentriq is a neutral third party. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice before any behavioral data is collected. The employer does not collect the behavioral data — Sentriq does. This means the cross-company graph is built on direct candidate consent to a neutral platform, not on employer-to-employer data sharing. This architecture is permanently unavailable to any player that sits inside the hiring stack.</p>
+    <p>Sentriq is a neutral third party. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice before any behavioral data is collected. The employer does not collect the behavioral data - Sentriq does. This means the cross-company graph is built on direct candidate consent to a neutral platform, not on employer-to-employer data sharing. This architecture is permanently unavailable to any player that sits inside the hiring stack.</p>
 </div>
 
 <!-- SECTION 4: WHY NOW -->
@@ -430,8 +430,8 @@
     <p>Two external events create a narrow and specific market window that does not repeat.</p>
 
     <div class="callout blue">
-        <div class="callout-label">EU AI Act — August 2, 2026</div>
-        Every EU-facing enterprise with an AI-assisted hiring process must have compliant human oversight in place by this date. Fines for non-compliance reach 3% of global annual turnover. This is a hard purchase trigger — not a "nice to have" evaluation. Sentriq's Layer 3 human review is the compliance answer. Companies that have not deployed a compliant system will be looking for one under time pressure in Q1-Q2 2026.
+        <div class="callout-label">EU AI Act - August 2, 2026</div>
+        Every EU-facing enterprise with an AI-assisted hiring process must have compliant human oversight in place by this date. Fines for non-compliance reach 3% of global annual turnover. This is a hard purchase trigger - not a "nice to have" evaluation. Sentriq's Layer 3 human review is the compliance answer. Companies that have not deployed a compliant system will be looking for one under time pressure in Q1-Q2 2026.
     </div>
 
     <div class="callout yellow">
@@ -439,7 +439,7 @@
         The FBI advisory, DOJ indictments, and Senate hearings in 2024-2025 have moved this from a niche security concern to a boardroom topic. CISOs and General Counsels are now being asked directly about their exposure. The KnowBe4 incident gave every enterprise security team a concrete, named case to point to. The awareness is there. The tooling is not.
     </div>
 
-    <p style="font-size:14px; color:var(--ink-light); margin-top:8px;">Both triggers are external and time-bound. They are not created by Sentriq's marketing — they exist independently and create a defined adoption window.</p>
+    <p style="font-size:14px; color:var(--ink-light); margin-top:8px;">Both triggers are external and time-bound. They are not created by Sentriq's marketing - they exist independently and create a defined adoption window.</p>
 </div>
 
 </div><!-- end content -->
