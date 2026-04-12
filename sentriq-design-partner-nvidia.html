@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq &mdash; A Briefing for Gideon Rosenberg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --gray-900: #0F172A;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-400: #94A3B8;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* TOPBAR */
+        #topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            height: 48px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(15,23,42,0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .tb-left { font-size: 13px; font-weight: 700; color: var(--primary); letter-spacing: -0.01em; }
+        .tb-right { font-size: 12px; color: rgba(255,255,255,0.35); }
+        .tb-dots { display: flex; gap: 6px; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.15); cursor: pointer; transition: background 0.2s; }
+        .dot.active { background: var(--primary); }
+
+        /* SLIDES */
+        .slides { height: 100vh; padding-top: 48px; position: relative; }
+
+        .slide {
+            position: absolute; top: 48px; left: 0; right: 0; bottom: 0;
+            display: flex; align-items: center; justify-content: center;
+            padding: 60px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .slide.active { opacity: 1; pointer-events: all; }
+
+        .slide-inner { max-width: 860px; width: 100%; }
+
+        .label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--primary);
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 52px; font-weight: 800; letter-spacing: -0.03em;
+            line-height: 1.05; margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 36px; font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.1; margin-bottom: 20px;
+        }
+        .sub {
+            font-size: 18px; color: rgba(255,255,255,0.55);
+            line-height: 1.6; max-width: 640px;
+        }
+        .body {
+            font-size: 15px; color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+        }
+
+        .div { height: 1px; background: rgba(255,255,255,0.08); margin: 28px 0; }
+
+        .layers { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+        .layer {
+            display: flex; align-items: flex-start; gap: 20px;
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+        }
+        .layer-num {
+            font-size: 11px; font-weight: 700; color: var(--primary);
+            background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3);
+            width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 1px;
+        }
+        .layer-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .layer-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+        .box {
+            padding: 20px 22px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+        }
+        .box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+        .box-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+
+        .highlight-line {
+            padding: 16px 20px;
+            border-left: 3px solid var(--primary);
+            background: rgba(37,99,235,0.06);
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.65;
+        }
+
+        .status-row { display: flex; gap: 16px; margin: 24px 0; flex-wrap: wrap; }
+        .status-item {
+            flex: 1; min-width: 180px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+        }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            display: inline-block; margin-right: 8px; margin-bottom: 10px;
+        }
+        .status-dot.green { background: var(--green); }
+        .status-dot.orange { background: var(--orange); }
+        .status-dot.gray { background: rgba(255,255,255,0.2); }
+        .status-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .status-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.55; }
+
+        .team-row { display: flex; gap: 24px; margin: 28px 0; }
+        .person {
+            flex: 1; padding: 22px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+        }
+        .avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(37,99,235,0.2); border: 1px solid rgba(37,99,235,0.4);
+            font-size: 14px; font-weight: 700; color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+        .person-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .person-title { font-size: 12px; color: var(--primary); margin-bottom: 10px; }
+        .person-body { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+        /* NAV */
+        .nav {
+            position: fixed; bottom: 32px; right: 40px;
+            display: flex; gap: 10px; z-index: 100;
+        }
+        .nav-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6); cursor: pointer;
+            font-size: 16px; display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s;
+        }
+        .nav-btn:hover { background: rgba(37,99,235,0.2); border-color: rgba(37,99,235,0.5); color: var(--white); }
+        .nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+        .slide-count {
+            position: fixed; bottom: 38px; left: 40px;
+            font-size: 12px; color: rgba(255,255,255,0.25);
+            z-index: 100;
+        }
+
+        @media (max-width: 700px) {
+            .slide { padding: 32px 24px; }
+            h1 { font-size: 34px; }
+            h2 { font-size: 26px; }
+            .two-col { grid-template-columns: 1fr; }
+            .team-row { flex-direction: column; }
+            .status-row { flex-direction: column; }
+            #topbar { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="topbar">
+    <div class="tb-left">Sentriq</div>
+    <div class="tb-dots" id="dotNav"></div>
+    <div class="tb-right">Confidential &nbsp;&middot;&nbsp; April 2026</div>
+</div>
+
+<div class="slides">
+
+<!-- SLIDE 0: COVER -->
+<div class="slide active" data-index="0">
+    <div class="slide-inner">
+        <div class="label">A short brief</div>
+        <h1>We built something.<br>We want to know<br>what you think.</h1>
+        <p class="sub" style="margin-bottom:28px;">For Gideon Rosenberg &mdash; Head of HR Israel &amp; Deputy General Counsel, NVIDIA</p>
+        <div class="div"></div>
+        <p class="body" style="color:rgba(255,255,255,0.35); font-size:13px; max-width:580px;">We are a small team building a product in a space you know well. This is not a pitch. It is six slides and a genuine question: does this make sense to you?</p>
+    </div>
+</div>
+
+<!-- SLIDE 1: THE PROBLEM -->
+<div class="slide" data-index="1">
+    <div class="slide-inner">
+        <div class="label">The Problem</div>
+        <h2>NVIDIA hires the people DPRK wants inside.</h2>
+        <p class="body" style="margin-bottom:24px;">North Korea runs a documented operation placing 100,000+ workers inside Western technology companies. They target AI, semiconductors, and GPU architecture. They use stolen US Social Security numbers, fabricated work histories, and AI-generated identities that pass standard background checks. They pass because background checks verify that a person exists &mdash; not that the person applying is the person sitting at the keyboard.</p>
+
+        <div class="two-col">
+            <div class="box">
+                <div class="box-label">The FBI said it clearly</div>
+                <div class="box-text">An advisory issued May 2024 declared DPRK IT worker infiltration a national security threat. The DOJ followed with indictments in October 2024. The Senate held hearings in March 2025.</div>
+            </div>
+            <div class="box">
+                <div class="box-label">The scale is not theoretical</div>
+                <div class="box-text">KnowBe4, a 1,000-person security company, hired a North Korean agent in July 2024. He passed four video interviews and a standard background check. He was caught only after his laptop began installing malware on day one.</div>
+            </div>
+        </div>
+
+        <div class="highlight-line">
+            NVIDIA's hiring pipeline for engineers is one of the most targeted in the world. The IP is the objective. The hiring process is the entry point.
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: WHAT WE BUILT -->
+<div class="slide" data-index="2">
+    <div class="slide-inner">
+        <div class="label">What We Built</div>
+        <h2>We built the attack first.<br>Now we build the defense.</h2>
+        <p class="body" style="margin-bottom:24px; max-width:680px;">Last year we built Huntwise &mdash; a tool that exploits applicant tracking systems the same way adversaries do. 73,500 lines of code. 30 live experiments across three ATS platforms. 17 documented exploitation techniques the ATS vendors themselves did not know existed. That research is the foundation of Sentriq. We know exactly how the fraud works because we built it.</p>
+
+        <div class="layers">
+            <div class="layer">
+                <div class="layer-num">1</div>
+                <div>
+                    <div class="layer-title">Application Integrity</div>
+                    <div class="layer-desc">Behavioral signals captured at submission. Keystroke dynamics, copy-paste detection, session timing, field navigation patterns. Passive. No candidate friction.</div>
+                </div>
+            </div>
+            <div class="layer">
+                <div class="layer-num">2</div>
+                <div>
+                    <div class="layer-title">Async Challenge</div>
+                    <div class="layer-desc">When anomalies are detected, the candidate completes a short task. We score behavioral biometrics during the response, not just the content. A proxy cannot replicate the behavioral baseline of the person they are impersonating.</div>
+                </div>
+            </div>
+            <div class="layer">
+                <div class="layer-num">3</div>
+                <div>
+                    <div class="layer-title">Human Review</div>
+                    <div class="layer-desc">Flagged cases go to a trained analyst before anything reaches a recruiter. The hiring team always makes the final call. This is also the EU AI Act answer &mdash; Annex III classifies hiring AI as high-risk; human review in the loop is the legal requirement.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: WHY THIS CONVERSATION -->
+<div class="slide" data-index="3">
+    <div class="slide-inner">
+        <div class="label">Why We Reached Out</div>
+        <h2>You sit at the intersection<br>of everything this touches.</h2>
+        <p class="body" style="margin-bottom:24px; max-width:680px;">Most people in this space own one side of the problem. Security teams understand the threat but do not run hiring. HR leaders understand the process but are not thinking about adversarial insertion. You are one of the few people who owns both, at a company that is the named target in the intelligence.</p>
+
+        <div class="two-col">
+            <div class="box">
+                <div class="box-label">The HR side</div>
+                <div class="box-text">Recruiting at NVIDIA scale means processing thousands of applications under real adversarial pressure. You know what creates friction for recruiters, what candidates will and will not tolerate, and where the process breaks down.</div>
+            </div>
+            <div class="box">
+                <div class="box-label">The legal side</div>
+                <div class="box-text">EU AI Act Annex III, GDPR, export controls, IP liability. You know where the procurement wall is and why. That is exactly the feedback we need while we are still designing the product.</div>
+            </div>
+        </div>
+
+        <div class="highlight-line">
+            We are not looking for validation. We are looking for someone who will tell us where we are wrong before we build the wrong thing.
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: WHERE WE ARE -->
+<div class="slide" data-index="4">
+    <div class="slide-inner">
+        <div class="label">Where We Are</div>
+        <h2>Seed stage. Honest about it.</h2>
+        <p class="body" style="margin-bottom:24px; max-width:660px;">We are not going to oversell the current state. Here is what is true:</p>
+
+        <div class="status-row">
+            <div class="status-item">
+                <div><span class="status-dot green"></span></div>
+                <div class="status-title">Research complete</div>
+                <div class="status-desc">17 ATS exploitation techniques documented. DPRK infiltration playbook mapped. Architecture designed from attack-first perspective.</div>
+            </div>
+            <div class="status-item">
+                <div><span class="status-dot green"></span></div>
+                <div class="status-title">Product in development</div>
+                <div class="status-desc">Behavioral detection layer built. Layer 1 running in test environments. Active POC with first enterprise partners.</div>
+            </div>
+            <div class="status-item">
+                <div><span class="status-dot orange"></span></div>
+                <div class="status-title">SOC 2 in progress</div>
+                <div class="status-desc">Type I target: Q3 2026. No production enterprise deployment until it is done. That is the right call and we are not rushing it.</div>
+            </div>
+            <div class="status-item">
+                <div><span class="status-dot gray"></span></div>
+                <div class="status-title">Backed, not closed</div>
+                <div class="status-desc">NFX FAST Israel, Lool Ventures, Upwest. Active seed round. We are selective about who we bring in.</div>
+            </div>
+        </div>
+
+        <p class="body" style="font-size:13px; color:rgba(255,255,255,0.35); margin-top:8px;">We are early. What we are not is uncertain about the problem or the approach.</p>
+    </div>
+</div>
+
+<!-- SLIDE 5: THE ASK -->
+<div class="slide" data-index="5">
+    <div class="slide-inner">
+        <div class="label">The Ask</div>
+        <h2>Twenty minutes.<br>Tell us if we are<br>thinking about this wrong.</h2>
+
+        <div class="highlight-line" style="margin-bottom:28px;">
+            That is it. A short call. You tell us where the product does not work, where the legal framing is off, or where we are solving the wrong version of the problem. That is the conversation we want.
+        </div>
+
+        <p class="body" style="margin-bottom:16px; max-width:660px;">If after that call you think there is something here &mdash; and only if you do &mdash; we would like to continue the conversation about how you might stay involved as we build. But we are not asking for that now. We are asking for twenty minutes and an honest reaction.</p>
+
+        <div class="div"></div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <div>
+                <p class="body" style="font-size:13px; color:rgba(255,255,255,0.4);">Reach out directly:</p>
+                <p class="body" style="font-size:15px; margin-top:4px; font-weight:600;">Samuel Kemper &nbsp;&middot;&nbsp; <span style="color:var(--primary); font-weight:400;">samuel@huntwise.io</span></p>
+            </div>
+            <div style="text-align:right;">
+                <p class="body" style="font-size:11px; color:rgba(255,255,255,0.2); text-transform:uppercase; letter-spacing:0.1em;">Sentriq &middot; Seed 2026 &middot; Confidential</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: WHO WE ARE -->
+<div class="slide" data-index="6">
+    <div class="slide-inner">
+        <div class="label">The Team</div>
+        <h2>Two people who know<br>this problem from the inside.</h2>
+
+        <div class="team-row">
+            <div class="person">
+                <div class="avatar">SK</div>
+                <div class="person-name">Samuel Kemper</div>
+                <div class="person-title">Co-Founder, GTM</div>
+                <div class="person-body">Unit 81, IDF. Serial entrepreneur. 10 years in talent acquisition &mdash; built and ran TechRuiter, a recruiting firm for Israeli tech companies. Built the Huntwise attack tool. Has watched AI-generated candidates flood hiring pipelines from the inside. Understands the recruiter's pain and the attacker's playbook.</div>
+            </div>
+            <div class="person">
+                <div class="avatar">BC</div>
+                <div class="person-name">Ben Czarninski</div>
+                <div class="person-title">Co-Founder, Engineering</div>
+                <div class="person-body">IDF Gama (elite intelligence cyber unit). KPMG penetration testing. CISO. AppsFlyer. CPA. TAU MBA. Worked on the defensive side of exactly this threat at enterprise scale. Designed the behavioral detection architecture and the cross-company fraud graph.</div>
+            </div>
+        </div>
+
+        <div class="div"></div>
+
+        <p class="body" style="font-size:13px; color:rgba(255,255,255,0.3); max-width:600px;">We are the right team for this problem. We have the attack research, the engineering, and the domain knowledge. What we are looking for now are the right people to pressure-test it with us.</p>
+    </div>
+</div>
+
+</div><!-- end slides -->
+
+<!-- NAV -->
+<div class="nav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>&#8592;</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)">&#8594;</button>
+</div>
+<div class="slide-count" id="slideCount">1 / 7</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const dotNav = document.getElementById('dotNav');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goTo(i);
+        dotNav.appendChild(d);
+    });
+
+    function goTo(n) {
+        slides[current].classList.remove('active');
+        dotNav.children[current].classList.remove('active');
+        current = Math.max(0, Math.min(n, slides.length - 1));
+        slides[current].classList.add('active');
+        dotNav.children[current].classList.add('active');
+        document.getElementById('prevBtn').disabled = current === 0;
+        document.getElementById('nextBtn').disabled = current === slides.length - 1;
+        document.getElementById('slideCount').textContent = (current + 1) + ' / ' + slides.length;
+    }
+
+    function navigate(dir) { goTo(current + dir); }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+    });
+
+    let startX = 0;
+    document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+    });
+</script>
+</body>
+</html>
