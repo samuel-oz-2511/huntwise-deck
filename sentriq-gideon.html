@@ -175,6 +175,34 @@
             z-index: 100;
         }
 
+        /* COLLAPSIBLE SOURCES */
+        .sources {
+            margin-top: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .sources-toggle {
+            display: block; width: 100%;
+            padding: 8px 16px;
+            background: none; border: none; cursor: pointer;
+            font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600;
+            font-family: inherit; text-align: left;
+            transition: color 0.2s;
+        }
+        .sources-toggle:hover { color: rgba(255,255,255,0.6); }
+        .sources-toggle::after { content: ' \25B8'; }
+        .sources.open .sources-toggle::after { content: ' \25BE'; }
+        .sources-content {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 16px;
+        }
+        .sources.open .sources-content { max-height: 300px; padding: 0 16px 12px; }
+        .sources p { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.9; margin: 0; }
+        .sources a { color: rgba(255,255,255,0.45); text-decoration: underline; }
+
         @media (max-width: 700px) {
             .slide { padding: 32px 24px; }
             h1 { font-size: 34px; }
@@ -227,6 +255,12 @@
         <div class="highlight-line">
             The method is the same. The stakes differ. The fix is identical.
         </div>
+
+        <div class="sources">
+            <p><sup>1</sup> <a href="https://www.fbi.gov/news/press-releases/fbi-cyber-division-advisory-north-korean-it-workers" target="_blank">FBI Cyber Division Advisory — DPRK IT Worker Infiltration, May 2024</a></p>
+            <p><sup>2</sup> <a href="https://www.justice.gov/opa/pr/four-individuals-charged-involvement-north-korean-it-worker-scheme" target="_blank">DOJ Indictments — DPRK IT Worker Scheme, October 2024</a></p>
+            <p><sup>3</sup> <a href="https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us" target="_blank">KnowBe4 — How a North Korean fake IT worker tried to infiltrate us, July 2024</a></p>
+        </div>
     </div>
 </div>
 
@@ -259,6 +293,11 @@
                     <div class="layer-desc">Flagged cases reach an analyst, not a recruiter. Hiring team always decides. This is also the EU AI Act Annex III compliance answer.</div>
                 </div>
             </div>
+        </div>
+
+        <div class="sources">
+            <p><sup>4</sup> <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act — Annex III, High-Risk AI Systems (Regulation 2024/1689)</a></p>
+            <p><sup>5</sup> Huntwise attack corpus — 73,500 lines, 17 documented ATS exploitation techniques (internal research, available on request)</p>
         </div>
     </div>
 </div>
@@ -393,6 +432,13 @@
                 <a href="https://www.linkedin.com/in/ben-czarninski" target="_blank" style="font-size:12px; color:var(--primary); text-decoration:none;">LinkedIn &rarr;</a>
             </div>
         </div>
+
+        <div class="div"></div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+            <p class="body" style="font-size:13px; color:rgba(255,255,255,0.3);">Want to go deeper into the research, architecture, and compliance framework?</p>
+            <a href="https://samuel-oz-2511.github.io/huntwise-deck/sentriq-gideon-deep.html" target="_blank" style="font-size:13px; font-weight:600; color:var(--primary); text-decoration:none; white-space:nowrap;">Full brief &rarr;</a>
+        </div>
     </div>
 </div>
 
@@ -433,6 +479,13 @@
     document.addEventListener('keydown', e => {
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
         if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+    });
+
+    // Collapsible sources
+    document.querySelectorAll('.sources').forEach(src => {
+        const content = src.innerHTML;
+        src.innerHTML = '<button class="sources-toggle">Sources</button><div class="sources-content">' + content + '</div>';
+        src.querySelector('.sources-toggle').addEventListener('click', () => src.classList.toggle('open'));
     });
 
     let startX = 0;

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Sentriq — Deep Dive</title>
+    <style>
+        :root {
+            --ink: #0f1729;
+            --ink-mid: #3a4060;
+            --ink-light: #5a6080;
+            --ink-faint: #9098b8;
+            --rule: #e4e7f0;
+            --bg: #f8f9fc;
+            --card: #ffffff;
+            --accent: #2563EB;
+            --green: #059669;
+            --orange: #d97706;
+            --red: #dc2626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--ink);
+            color: white;
+            padding: 36px 24px 32px;
+        }
+        .header-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
+        }
+        .header h1 {
+            font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.2; margin-bottom: 10px;
+        }
+        .header-sub {
+            font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.6;
+        }
+
+        /* TOC */
+        .toc {
+            background: white;
+            border-bottom: 1px solid var(--rule);
+            padding: 16px 24px;
+            display: flex; gap: 6px; flex-wrap: wrap;
+        }
+        .toc a {
+            font-size: 12px; font-weight: 600; color: var(--accent);
+            text-decoration: none; padding: 5px 12px;
+            background: rgba(37,99,235,0.07); border-radius: 20px;
+            white-space: nowrap;
+        }
+        .toc a:hover { background: rgba(37,99,235,0.14); }
+
+        /* CONTENT */
+        .content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 40px 0 32px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .section:last-child { border-bottom: none; }
+
+        .section-tag {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .section h2 {
+            font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.2; margin-bottom: 16px; color: var(--ink);
+        }
+        .section h3 {
+            font-size: 15px; font-weight: 700; color: var(--ink);
+            margin: 24px 0 8px;
+        }
+
+        p {
+            font-size: 15px; color: var(--ink-light);
+            margin-bottom: 14px; line-height: 1.75;
+        }
+        strong { color: var(--ink); font-weight: 600; }
+
+        /* CARDS */
+        .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .card {
+            background: var(--card); border: 1px solid var(--rule);
+            border-radius: 10px; padding: 18px;
+        }
+        .card-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--ink-faint);
+            margin-bottom: 6px;
+        }
+        .card-text { font-size: 13px; color: var(--ink-light); line-height: 1.65; }
+        .card-text strong { color: var(--ink); }
+
+        /* CALLOUT */
+        .callout {
+            border-radius: 10px; padding: 16px 18px;
+            margin: 18px 0; font-size: 14px; line-height: 1.7;
+        }
+        .callout.blue {
+            background: #eff6ff; border-left: 3px solid var(--accent); color: #1e3a8a;
+        }
+        .callout.yellow {
+            background: #fffbeb; border-left: 3px solid #fcd34d; color: #78350f;
+        }
+        .callout.green {
+            background: #f0fdf4; border-left: 3px solid #86efac; color: #14532d;
+        }
+        .callout-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; margin-bottom: 6px; opacity: 0.65;
+        }
+
+        /* LAYERS */
+        .layers { display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
+        .layer {
+            display: flex; gap: 16px; align-items: flex-start;
+            background: var(--card); border: 1px solid var(--rule);
+            border-radius: 10px; padding: 16px;
+        }
+        .layer-num {
+            width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.25);
+            font-size: 11px; font-weight: 700; color: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 1px;
+        }
+        .layer-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+        .layer-desc { font-size: 13px; color: var(--ink-light); line-height: 1.6; }
+
+        /* QA */
+        .qa {
+            background: var(--card); border: 1px solid var(--rule);
+            border-radius: 10px; padding: 18px; margin: 12px 0;
+        }
+        .qa-status {
+            display: inline-block; font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 3px 8px; border-radius: 20px; margin-bottom: 8px;
+        }
+        .qa-status.decided { background: #dcfce7; color: #166534; }
+        .qa-status.pending { background: #fef9c3; color: #713f12; }
+        .qa-q { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+        .qa-a { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
+
+        /* MOAT TABLE */
+        .moat-row {
+            display: flex; gap: 14px; padding: 14px 0;
+            border-bottom: 1px solid var(--rule); align-items: flex-start;
+        }
+        .moat-row:last-child { border-bottom: none; }
+        .moat-stage {
+            font-size: 12px; font-weight: 700; color: var(--accent);
+            width: 90px; flex-shrink: 0; padding-top: 2px;
+        }
+        .moat-desc { font-size: 13px; color: var(--ink-light); line-height: 1.65; }
+
+        /* SOURCES */
+        .src { margin-top: 16px; }
+        .src-title {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 6px;
+        }
+        .src-list { list-style: none; }
+        .src-list li {
+            font-size: 12px; color: var(--ink-faint); line-height: 1.8;
+            padding-left: 12px; position: relative;
+        }
+        .src-list li::before {
+            content: '↗'; position: absolute; left: 0;
+            font-size: 10px; top: 3px;
+        }
+        .src-list a { color: var(--accent); text-decoration: underline; }
+
+        /* FOOTER */
+        .footer {
+            background: var(--ink); color: rgba(255,255,255,0.35);
+            font-size: 12px; text-align: center;
+            padding: 24px 20px; line-height: 1.7;
+        }
+        .footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .cards { grid-template-columns: 1fr; }
+            .header h1 { font-size: 22px; }
+            .toc { padding: 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-label">Sentriq &middot; Deep Dive &middot; Confidential</div>
+    <h1>The Research, the Architecture,<br>and the Regulatory Framework</h1>
+    <div class="header-sub">For Gideon Rosenberg &middot; April 2026<br>This document expands on the short brief. No financial information is included.</div>
+</div>
+
+<div class="toc">
+    <a href="#threat">The Threat</a>
+    <a href="#product">Product Architecture</a>
+    <a href="#moat">The Data Moat</a>
+    <a href="#regulatory">Regulatory Framework</a>
+    <a href="#why-now">Why Now</a>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1: THE THREAT -->
+<div class="section" id="threat">
+    <div class="section-tag">Section 1</div>
+    <h2>The Threat in Detail</h2>
+
+    <p>The North Korea IT worker operation is not a niche concern. It is a documented, scaled, and active campaign targeting the exact companies that Sentriq is built to protect. The key facts:</p>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-label">The operation</div>
+            <div class="card-text">The DPRK Munitions Industry Department runs a program placing IT workers inside Western companies. Estimated 100,000+ workers active globally. Revenue funds weapons programs. Targets: AI research, semiconductor design, GPU architecture.</div>
+        </div>
+        <div class="card">
+            <div class="card-label">The method</div>
+            <div class="card-text">Stolen US Social Security numbers. Fabricated LinkedIn and GitHub histories. AI-generated profile photos. Live AI tools that feed answers during video interviews. Standard background checks verify the identity — not the person at the keyboard.</div>
+        </div>
+        <div class="card">
+            <div class="card-label">KnowBe4, July 2024</div>
+            <div class="card-text">A 1,000-person US security company hired a DPRK agent. He passed four rounds of video interviews and a full background check. On day one, his MacBook began installing infostealer malware. He was caught because the laptop was monitored — not because the hiring process worked.</div>
+        </div>
+        <div class="card">
+            <div class="card-label">The regulatory response</div>
+            <div class="card-text">FBI Cyber Advisory, May 2024. DOJ indictments, October 2024. Senate Armed Services Committee hearings, March 2025. The US government has officially classified DPRK IT worker infiltration as a national security threat.</div>
+        </div>
+    </div>
+
+    <div class="callout blue">
+        <div class="callout-label">Why NVIDIA specifically</div>
+        NVIDIA's GPU and AI architecture is explicitly named in DPRK threat intelligence as a primary target. The combination of export-controlled technology, remote-first engineering hiring, and high-value IP makes NVIDIA's pipeline one of the highest-risk in the world. This is not a generic risk — it is a specific, documented targeting pattern.
+    </div>
+
+    <div class="callout yellow">
+        <div class="callout-label">The broader problem</div>
+        DPRK is the extreme case. The underlying method — using AI tools to fabricate a credible candidate identity — is now mainstream. LazyApply sends 1,500 automated applications per day. AI tools generate polished CVs and coach candidates through async video screens in real time. The signal-to-noise ratio in hiring pipelines is collapsing industry-wide. DPRK exploits the exact same vulnerability at a higher stakes level.
+    </div>
+
+    <div class="src">
+        <div class="src-title">Sources</div>
+        <ul class="src-list">
+            <li><a href="https://www.fbi.gov/news/press-releases/fbi-cyber-division-advisory-north-korean-it-workers" target="_blank">FBI Cyber Division Advisory — DPRK IT Worker Infiltration (May 2024)</a></li>
+            <li><a href="https://www.justice.gov/opa/pr/four-individuals-charged-involvement-north-korean-it-worker-scheme" target="_blank">DOJ — Four Individuals Charged, DPRK IT Worker Scheme (October 2024)</a></li>
+            <li><a href="https://blog.knowbe4.com/how-a-north-korean-fake-it-worker-tried-to-infiltrate-us" target="_blank">KnowBe4 Blog — How a North Korean fake IT worker tried to infiltrate us (July 2024)</a></li>
+            <li><a href="https://www.armed-services.senate.gov/hearings/the-north-korean-it-worker-threat" target="_blank">US Senate Armed Services Committee Hearing — DPRK IT Worker Threat (March 2025)</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- SECTION 2: PRODUCT ARCHITECTURE -->
+<div class="section" id="product">
+    <div class="section-tag">Section 2</div>
+    <h2>Product Architecture</h2>
+
+    <p>Sentriq operates at the application layer — before a recruiter ever sees a candidate. It is passive by design and does not require any change to the employer's existing ATS or hiring workflow.</p>
+
+    <div class="layers">
+        <div class="layer">
+            <div class="layer-num">1</div>
+            <div>
+                <div class="layer-title">Application Integrity — passive, always on</div>
+                <div class="layer-desc">When a candidate fills out an application, Sentriq captures behavioral metadata in the background: keystroke timing and rhythm, copy-paste events (text typed vs. pasted), time spent per field, field navigation order, session duration patterns. No candidate friction. No candidate awareness. The signals alone are sufficient to flag a large share of synthetic applications.</div>
+            </div>
+        </div>
+        <div class="layer">
+            <div class="layer-num">2</div>
+            <div>
+                <div class="layer-title">Async Challenge — triggered on anomaly</div>
+                <div class="layer-desc">When Layer 1 flags an anomaly above threshold, the candidate is invited to complete a 2-3 minute task — a short written or practical response relevant to the role. Sentriq scores behavioral biometrics <em>during</em> the response: typing pattern, hesitation, correction behavior, response timing. The content is secondary. A person being coached or impersonated cannot replicate the behavioral fingerprint of the individual whose CV was submitted. This is the core detection mechanism for DPRK-style proxy fraud.</div>
+            </div>
+        </div>
+        <div class="layer">
+            <div class="layer-num">3</div>
+            <div>
+                <div class="layer-title">Human Review — analyst, not recruiter</div>
+                <div class="layer-desc">Cases flagged by Layer 2 are reviewed by a Sentriq-trained analyst before anything reaches the employer's recruiting team. The analyst reviews the behavioral signal, the challenge response, and any corroborating indicators. The employer's hiring team always makes the final decision — Sentriq never rejects a candidate unilaterally. This layer is also the EU AI Act Annex III compliance answer: high-risk AI hiring systems must have human oversight in the decision loop.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout green">
+        <div class="callout-label">Why behavioral signals and not identity verification</div>
+        Identity verification confirms that a credential exists — not that the person in front of you matches the credential. DPRK agents use real stolen Social Security numbers. They pass identity checks. Behavioral biometrics detect whether the person applying now behaves like the person who built that profile. That is a fundamentally different and complementary signal. Sentriq does not replace background checks — it detects what background checks cannot.
+    </div>
+
+    <div class="src">
+        <div class="src-title">Sources</div>
+        <ul class="src-list">
+            <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act — Annex III, High-Risk AI Systems in Employment (Regulation 2024/1689)</a></li>
+            <li>Huntwise attack corpus — 73,500 lines, 17 documented ATS exploitation techniques. Available on request.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- SECTION 3: THE DATA MOAT -->
+<div class="section" id="moat">
+    <div class="section-tag">Section 3</div>
+    <h2>The Data Moat</h2>
+
+    <p>The three detection layers are the product. The cross-company anomaly graph is the structural advantage that compounds over time and cannot be replicated by any incumbent.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">Why ATS vendors cannot build this</div>
+        Every major ATS vendor — Greenhouse, Lever, Workday, SAP SuccessFactors — holds ATS contracts that explicitly prohibit cross-employer data sharing. This is a legal constraint, not a technical one. They cannot build a cross-company fraud signal without violating their own customer contracts. This constraint is permanent. It does not change if they acquire better detection technology.
+    </div>
+
+    <h3>How the graph compounds</h3>
+
+    <div class="moat-row">
+        <div class="moat-stage">Customer 1</div>
+        <div class="moat-desc">Detection based on absolute behavioral anomalies. Deviations from normal human typing and session behavior are flagged. No prior data required. Useful from day one.</div>
+    </div>
+    <div class="moat-row">
+        <div class="moat-stage">Customer 10</div>
+        <div class="moat-desc">Cross-company patterns emerge. The same behavioral fingerprint or synthetic identity that applied to three other companies in the past 30 days is flagged the moment they apply to a fourth — without any company sharing data with another.</div>
+    </div>
+    <div class="moat-row">
+        <div class="moat-stage">Customer 100</div>
+        <div class="moat-desc">Coordinated campaigns detected at the cluster level. Multiple fake identities originating from the same behavioral cluster — the signature of a DPRK-style operation — are identified as a campaign, not just individual suspicious applications.</div>
+    </div>
+
+    <h3>The consent architecture that makes it legal</h3>
+    <p>Sentriq is a neutral third party. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice before any behavioral data is collected. The employer does not collect the behavioral data — Sentriq does. This means the cross-company graph is built on direct candidate consent to a neutral platform, not on employer-to-employer data sharing. This architecture is permanently unavailable to any player that sits inside the hiring stack.</p>
+</div>
+
+<!-- SECTION 4: REGULATORY FRAMEWORK -->
+<div class="section" id="regulatory">
+    <div class="section-tag">Section 4</div>
+    <h2>Regulatory Framework</h2>
+
+    <p>This section covers the specific legal positions Sentriq has taken and the four documents currently pending formal legal sign-off. The architecture is designed to be compliant by default — not bolted on after launch.</p>
+
+    <div class="qa">
+        <span class="qa-status decided">Position taken</span>
+        <div class="qa-q">Is keystroke data biometric under GDPR Art. 9 or Illinois BIPA?</div>
+        <div class="qa-a">Our position: no. Keystroke timing patterns are pseudonymous behavioral metadata used for anomaly detection — not to create a biometric identifier for a specific person. The system is architecturally blocked from identity verification use cases. A formal written legal opinion confirming this classification is one of four pending documents.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Position taken</span>
+        <div class="qa-q">What is the lawful basis under GDPR Article 6?</div>
+        <div class="qa-a"><strong>Legitimate Interest (Art. 6(1)(f))</strong> — fraud prevention and workforce security. A Legitimate Interest Assessment (LIA) documenting the three-part balancing test is required before EU processing begins. This is one of the four pending documents.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Position taken</span>
+        <div class="qa-q">Does the neutral third-party structure break the GDPR employment consent problem?</div>
+        <div class="qa-a">GDPR generally treats employment consent as not freely given due to the employer-candidate power imbalance. Sentriq's structure addresses this: the candidate interacts with Sentriq's interface under Sentriq's privacy notice, independent of the employer's ATS flow. Our position is that this breaks the power dynamic. This is one of the questions we would like your view on.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Mitigation in place</span>
+        <div class="qa-q">Illinois BIPA</div>
+        <div class="qa-a"><strong>Phase 1 (current):</strong> Illinois candidates are geo-fenced from the behavioral challenge and routed directly to Layer 3 human review. No behavioral data collected. <strong>Phase 2 (pre-first US customer):</strong> Full BIPA compliance package — written policy, written release at challenge entry, 90-day destruction schedule, registered agent filing in Illinois.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Built into product</span>
+        <div class="qa-q">EU AI Act Annex III — High-Risk Classification</div>
+        <div class="qa-a">Hiring AI is high-risk under Annex III. <strong>Deadline: August 2, 2026.</strong> Requirements: human oversight, technical documentation, candidate transparency, conformity assessment. Layer 3 human review directly satisfies the human oversight requirement. A self-declaration conformity assessment is one of four pending documents.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status decided">Architecture defined</span>
+        <div class="qa-q">Data controller separation</div>
+        <div class="qa-a">Sentriq is data controller for challenge data and the cross-company graph. Each employer is data controller for their own application data. A standard DPA template is required for every enterprise contract — this is the fourth pending document. Clean separation limits liability for both parties.</div>
+    </div>
+
+    <h3>Four documents pending formal sign-off</h3>
+
+    <div class="callout yellow">
+        <div class="callout-label">Status</div>
+        The positions above represent the architecture decisions we have made. The four documents below need to be drafted and signed off by privacy counsel before the first enterprise deployment.
+        <br><br>
+        <strong>1. Legal Opinion — Biometric Classification</strong> (GDPR Art. 9 / BIPA)<br>
+        <strong>2. Legitimate Interest Assessment (LIA)</strong> — EU three-part balancing test<br>
+        <strong>3. Candidate Privacy Notice</strong> — plain language, pre-challenge, GDPR Arts. 13-14<br>
+        <strong>4. Standard DPA Template</strong> — controller/processor roles, retention, SCCs for non-EU transfers
+    </div>
+
+    <div class="src">
+        <div class="src-title">Sources</div>
+        <ul class="src-list">
+            <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act — Annex III (Regulation 2024/1689)</a></li>
+            <li><a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank">GDPR Article 6 — Lawfulness of Processing</a></li>
+            <li><a href="https://gdpr-info.eu/art-9-gdpr/" target="_blank">GDPR Article 9 — Special Categories of Personal Data</a></li>
+            <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004" target="_blank">Illinois Biometric Information Privacy Act (BIPA)</a></li>
+            <li><a href="https://www.hunton.com/insights/legal/the-impact-of-the-eu-ai-act-on-human-resources-activities" target="_blank">Hunton: Impact of EU AI Act on HR Activities</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- SECTION 5: WHY NOW -->
+<div class="section" id="why-now">
+    <div class="section-tag">Section 5</div>
+    <h2>Why Now</h2>
+
+    <p>Two external events create a narrow and specific market window that does not repeat.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">EU AI Act — August 2, 2026</div>
+        Every EU-facing enterprise with an AI-assisted hiring process must have compliant human oversight in place by this date. Fines for non-compliance reach 3% of global annual turnover. This is a hard purchase trigger — not a "nice to have" evaluation. Sentriq's Layer 3 human review is the compliance answer. Companies that have not deployed a compliant system will be looking for one under time pressure in Q1-Q2 2026.
+    </div>
+
+    <div class="callout yellow">
+        <div class="callout-label">DPRK threat escalation</div>
+        The FBI advisory, DOJ indictments, and Senate hearings in 2024-2025 have moved this from a niche security concern to a boardroom topic. CISOs and General Counsels are now being asked directly about their exposure. The KnowBe4 incident gave every enterprise security team a concrete, named case to point to. The awareness is there. The tooling is not.
+    </div>
+
+    <p style="font-size:14px; color:var(--ink-light); margin-top:8px;">Both triggers are external and time-bound. They are not created by Sentriq's marketing — they exist independently and create a defined adoption window.</p>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">
+    Sentriq &middot; Confidential &middot; April 2026 &middot; No financial information included<br>
+    Questions: <a href="mailto:samuel@huntwise.io">samuel@huntwise.io</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://samuel-oz-2511.github.io/huntwise-deck/sentriq-gideon.html">Back to the brief &rarr;</a>
+</div>
+
+</body>
+</html>
