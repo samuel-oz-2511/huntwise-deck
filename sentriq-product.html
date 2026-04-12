@@ -56,7 +56,7 @@
 
         /* SIGNAL SPECTRUM */
         .spectrum {
-            display: grid; grid-template-columns: repeat(5, 1fr);
+            display: grid; grid-template-columns: repeat(6, 1fr);
             border: 1px solid #e4e8f0; border-radius: 7px; overflow: hidden;
             margin-bottom: 9px;
         }
@@ -67,6 +67,7 @@
         .spec-cell:last-child { border-right: none; }
         .spec-title { font-size: 9.5px; font-weight: 700; margin-bottom: 3px; }
         .spec-tag { font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+        .s0 { background: #f8fafc; } .s0 .spec-title { color: #475569; } .s0 .spec-tag { color: #64748b; }
         .s1 { background: #faf5ff; } .s1 .spec-title { color: #7c3aed; } .s1 .spec-tag { color: #7c3aed; }
         .s2 { background: #eff6ff; } .s2 .spec-title { color: #2563EB; } .s2 .spec-tag { color: #2563EB; }
         .s3 { background: #fffbeb; } .s3 .spec-title { color: #d97706; } .s3 .spec-tag { color: #d97706; }
@@ -96,6 +97,29 @@
             background: #eff6ff; border-left: 2px solid #2563EB;
             border-radius: 0 5px 5px 0; font-size: 8.5px; color: #1e3a8a; line-height: 1.5;
         }
+
+        /* LIFECYCLE STRIP */
+        .lifecycle-stages {
+            display: grid; grid-template-columns: repeat(8, 1fr);
+            border: 1px solid #e4e8f0; border-radius: 7px; overflow: hidden;
+            margin-bottom: 9px;
+        }
+        .lc-stage {
+            padding: 5px 5px 4px; border-right: 1px solid #e4e8f0;
+            text-align: center; font-size: 7.5px; color: #526080; line-height: 1.4;
+        }
+        .lc-stage:last-child { border-right: none; }
+        .lc-name { font-size: 8px; font-weight: 700; color: #0f1729; margin-bottom: 1px; }
+        .lc-tool { font-size: 7px; color: #8898b8; }
+        .lc-cost { font-size: 7px; font-weight: 700; margin-top: 2px; color: #526080; }
+        .lc-marker { font-size: 7px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+        .lc-stage.lc-sentriq { background: #f0fdf4; border-bottom: 2px solid #059669; }
+        .lc-stage.lc-sentriq .lc-name { color: #059669; }
+        .lc-stage.lc-sentriq .lc-marker { color: #059669; }
+        .lc-stage.lc-bgcheck { background: #fff7ed; border-bottom: 2px solid #ea580c; }
+        .lc-stage.lc-bgcheck .lc-name { color: #c2410c; }
+        .lc-stage.lc-bgcheck .lc-marker { color: #ea580c; }
+        .lc-stage.lc-bgcheck .lc-cost { color: #ea580c; }
 
         /* BOTTOM */
         .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 7px; }
@@ -165,8 +189,13 @@
 </div>
 
 <!-- SIGNAL SPECTRUM -->
-<div class="sec-label">Signal spectrum — behavioral patterns Sentriq detects, low to high severity</div>
+<div class="sec-label">Signal spectrum — behavioral patterns Sentriq detects, foundation to highest severity</div>
 <div class="spectrum">
+    <div class="spec-cell s0">
+        <div class="spec-tag">Passive</div>
+        <div class="spec-title">Behavioral Baseline</div>
+        Typing dynamics, mouse movement, fill patterns. Establishes whether a human is completing this form — before any scoring begins.
+    </div>
     <div class="spec-cell s1">
         <div class="spec-tag">Automated</div>
         <div class="spec-title">Mass-Apply Bots</div>
@@ -240,6 +269,53 @@
         </div>
     </div>
 
+</div>
+
+<!-- HIRING LIFECYCLE -->
+<div class="sec-label">Shift-left advantage — Sentriq is the earliest verification layer. Every other tool runs after costs are already bled.</div>
+<div class="lifecycle-stages">
+    <div class="lc-stage lc-sentriq">
+        <div class="lc-marker">&#x25BC; Sentriq</div>
+        <div class="lc-name">Application</div>
+        <div class="lc-tool">CAF active</div>
+        <div class="lc-cost">$0 spent</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">ATS Screen</div>
+        <div class="lc-tool">Greenhouse / Lever</div>
+        <div class="lc-cost">~$25</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">Assessment</div>
+        <div class="lc-tool">HireVue</div>
+        <div class="lc-cost">~$50</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">Phone Screen</div>
+        <div class="lc-tool">Recruiter time</div>
+        <div class="lc-cost">~$125</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">Tech Interview</div>
+        <div class="lc-tool">CodeSignal</div>
+        <div class="lc-cost">~$525</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">Final Panel</div>
+        <div class="lc-tool">Greenhouse</div>
+        <div class="lc-cost">~$1,700</div>
+    </div>
+    <div class="lc-stage lc-bgcheck">
+        <div class="lc-marker">&#x26A0; Most verify here</div>
+        <div class="lc-name">Background Check</div>
+        <div class="lc-tool">Checkr / HireRight</div>
+        <div class="lc-cost">$1,700 already bled</div>
+    </div>
+    <div class="lc-stage">
+        <div class="lc-name">Onboarding</div>
+        <div class="lc-tool">Rippling / Deel</div>
+        <div class="lc-cost">$3,200+ total</div>
+    </div>
 </div>
 
 <!-- BOTTOM: NETWORK + MOAT -->
