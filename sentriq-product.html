@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Sentriq — Product Brief</title>
+    <style>
+        :root {
+            --ink: #0f1729;
+            --ink-mid: #2e3a55;
+            --ink-light: #526080;
+            --ink-faint: #8898b8;
+            --rule: #e4e8f0;
+            --bg: #f7f9fc;
+            --card: #ffffff;
+            --accent: #2563EB;
+            --accent-bg: #eff6ff;
+            --accent-border: #bfdbfe;
+            --green: #059669;
+            --green-bg: #f0fdf4;
+            --green-border: #86efac;
+            --orange: #d97706;
+            --orange-bg: #fffbeb;
+            --orange-border: #fcd34d;
+            --red: #dc2626;
+            --red-bg: #fef2f2;
+            --red-border: #fecaca;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* HEADER */
+        .header {
+            background: #0f1729;
+            color: white;
+            padding: 40px 24px 36px;
+        }
+        .header-eyebrow {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: rgba(255,255,255,0.35);
+            margin-bottom: 14px;
+        }
+        .header h1 {
+            font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.15; margin-bottom: 14px;
+            color: white;
+        }
+        .header h1 span { color: #60a5fa; }
+        .header-sub {
+            font-size: 15px; color: rgba(255,255,255,0.5);
+            line-height: 1.65; max-width: 600px;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 40px 0 32px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .section:last-child { border-bottom: none; }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .section h2 {
+            font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+            line-height: 1.2; margin-bottom: 6px;
+        }
+        .section-lead {
+            font-size: 15px; color: var(--ink-light);
+            margin-bottom: 24px; line-height: 1.75;
+            max-width: 640px;
+        }
+        h3 {
+            font-size: 15px; font-weight: 700; color: var(--ink);
+            margin: 26px 0 8px;
+        }
+        p {
+            font-size: 14px; color: var(--ink-light);
+            margin-bottom: 12px; line-height: 1.75;
+        }
+        strong { color: var(--ink); font-weight: 600; }
+
+        /* LAYER CARDS */
+        .layer-card {
+            background: var(--card);
+            border: 1px solid var(--rule);
+            border-radius: 12px;
+            margin: 14px 0;
+            overflow: hidden;
+        }
+        .layer-header {
+            display: flex; align-items: center; gap: 14px;
+            padding: 18px 20px 14px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .layer-badge {
+            width: 32px; height: 32px; border-radius: 50%;
+            font-size: 12px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .layer-badge.l1 { background: #fef2f2; color: var(--red); border: 1px solid var(--red-border); }
+        .layer-badge.l2 { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+        .layer-badge.l3 { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+        .layer-name { font-size: 15px; font-weight: 700; color: var(--ink); }
+        .layer-tag { font-size: 11px; color: var(--ink-faint); margin-top: 1px; }
+        .layer-body { padding: 18px 20px; }
+        .layer-body p { margin-bottom: 10px; }
+        .layer-body p:last-child { margin-bottom: 0; }
+
+        /* SIGNAL PILLS */
+        .signals { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+        .signal {
+            font-size: 12px; font-weight: 600;
+            padding: 5px 12px; border-radius: 20px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent-border);
+        }
+
+        /* UNIQUE BOX */
+        .unique {
+            margin-top: 14px;
+            padding: 14px 16px;
+            background: #f8faff;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px; color: var(--ink-mid); line-height: 1.7;
+        }
+        .unique-label {
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--accent); margin-bottom: 5px;
+        }
+
+        /* CAF DIAGRAM */
+        .caf-flow {
+            display: flex; flex-direction: column; gap: 0;
+            margin: 24px 0;
+            border: 1px solid var(--rule); border-radius: 12px;
+            overflow: hidden;
+            background: var(--card);
+        }
+        .caf-row {
+            display: flex; align-items: stretch;
+            border-bottom: 1px solid var(--rule);
+        }
+        .caf-row:last-child { border-bottom: none; }
+        .caf-step {
+            width: 90px; flex-shrink: 0;
+            padding: 16px 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; text-align: center;
+            border-right: 1px solid var(--rule);
+        }
+        .caf-step.input { background: #f1f5f9; color: var(--ink-faint); }
+        .caf-step.l1 { background: var(--red-bg); color: var(--red); }
+        .caf-step.l2 { background: var(--orange-bg); color: var(--orange); }
+        .caf-step.l3 { background: var(--green-bg); color: var(--green); }
+        .caf-step.out { background: #f0fdf4; color: var(--green); }
+        .caf-desc {
+            padding: 14px 18px; flex: 1;
+            font-size: 13px; color: var(--ink-light); line-height: 1.65;
+        }
+        .caf-desc strong { color: var(--ink); }
+
+        /* SIGNAL DIMENSIONS */
+        .dims { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .dim {
+            background: var(--card); border: 1px solid var(--rule);
+            border-radius: 10px; padding: 16px;
+        }
+        .dim-icon { font-size: 20px; margin-bottom: 8px; }
+        .dim-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+        .dim-desc { font-size: 12px; color: var(--ink-faint); line-height: 1.6; }
+
+        /* NETWORK EFFECT */
+        .net-rows { margin: 20px 0; }
+        .net-row {
+            display: flex; gap: 16px; padding: 16px 0;
+            border-bottom: 1px solid var(--rule); align-items: flex-start;
+        }
+        .net-row:last-child { border-bottom: none; }
+        .net-stage {
+            width: 110px; flex-shrink: 0;
+            font-size: 12px; font-weight: 700; color: var(--accent);
+            padding-top: 2px;
+        }
+        .net-desc { font-size: 14px; color: var(--ink-light); line-height: 1.65; }
+        .net-desc strong { color: var(--ink); }
+
+        /* MOAT TABLE */
+        .moat { margin: 20px 0; }
+        .moat-row {
+            display: flex; gap: 14px; padding: 14px 0;
+            border-bottom: 1px solid var(--rule); align-items: flex-start;
+        }
+        .moat-row:last-child { border-bottom: none; }
+        .moat-label {
+            width: 160px; flex-shrink: 0;
+            font-size: 13px; font-weight: 700; color: var(--ink);
+        }
+        .moat-text { font-size: 13px; color: var(--ink-light); line-height: 1.65; }
+
+        /* CALLOUT */
+        .callout {
+            padding: 16px 18px; border-radius: 10px;
+            margin: 16px 0; font-size: 14px; line-height: 1.7;
+        }
+        .callout.blue { background: var(--accent-bg); border-left: 3px solid var(--accent); color: #1e3a8a; }
+        .callout.green { background: var(--green-bg); border-left: 3px solid var(--green-border); color: #14532d; }
+        .callout-label {
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; margin-bottom: 6px; opacity: 0.6;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--ink); color: rgba(255,255,255,0.35);
+            font-size: 12px; text-align: center;
+            padding: 24px 20px; line-height: 1.7;
+        }
+        .footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .dims { grid-template-columns: 1fr; }
+            .header h1 { font-size: 22px; }
+            .caf-step { width: 70px; font-size: 9px; }
+            .moat-label { width: 120px; }
+            .net-stage { width: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-eyebrow">Sentriq &middot; Product Brief &middot; Confidential</div>
+    <h1>CAF — <span>Candidate Application Firewall.</span><br>How it works and why it compounds.</h1>
+    <div class="header-sub">A detailed walkthrough of the three detection layers, the cross-company signal architecture, and the structural moat that makes this defensible at scale.</div>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1: WHAT SENTRIQ IS -->
+<div class="section">
+    <div class="section-tag">Overview</div>
+    <h2>The signal layer between candidates and companies.</h2>
+    <p class="section-lead">Sentriq sits inside the hiring process and detects distortion before it reaches a recruiter. Not identity verification — behavioral authentication. We do not ask whether a credential exists. We detect whether the person behaving in front of us matches the person who built that profile.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">Attack-first foundation</div>
+        Sentriq was built on top of Huntwise — a live tool that exploits ATS systems the same way adversaries do. 73,500 lines of code. 30 live experiments across three ATS platforms. 17 documented exploitation techniques the vendors themselves did not know existed. We know exactly how the fraud works because we built it. No other company in this space has that foundation.
+    </div>
+
+    <p>The product is ATS-agnostic. It works alongside Greenhouse, Lever, Workday, iCIMS, and 50+ other platforms without requiring any change to the employer's existing workflow. Candidates interact with Sentriq's own interface — making Sentriq a neutral third party, not a vendor embedded inside the employer's stack. That structural distinction is what makes the cross-company graph legally possible.</p>
+</div>
+
+<!-- SECTION 2: THE THREE LAYERS -->
+<div class="section">
+    <div class="section-tag">The Product</div>
+    <h2>Three layers. Each one closes a gap the previous cannot.</h2>
+    <p class="section-lead">The layers are sequential. Most applications are cleared by Layer 1 alone. Layers 2 and 3 activate only when needed. The system scales without adding recruiter workload.</p>
+
+    <!-- LAYER 1 -->
+    <div class="layer-card">
+        <div class="layer-header">
+            <div class="layer-badge l1">1</div>
+            <div>
+                <div class="layer-name">Application Integrity</div>
+                <div class="layer-tag">Passive &middot; Always on &middot; Zero candidate friction</div>
+            </div>
+        </div>
+        <div class="layer-body">
+            <p>When a candidate fills out an application, Sentriq captures behavioral metadata in the background. The candidate does not know it is happening. There is no extra step, no checkbox, no additional interface. The signals are captured from the natural act of completing the form.</p>
+
+            <div class="signals">
+                <span class="signal">Keystroke dynamics</span>
+                <span class="signal">Typing rhythm &amp; speed</span>
+                <span class="signal">Copy-paste detection</span>
+                <span class="signal">Field dwell time</span>
+                <span class="signal">Navigation order</span>
+                <span class="signal">Session timing</span>
+                <span class="signal">Correction behavior</span>
+                <span class="signal">Mouse patterns</span>
+            </div>
+
+            <p>Each signal has a specific fraud fingerprint. A human typing their own CV produces a distinct pattern from someone copy-pasting from an AI tool. A person who knows their own work history navigates fields in a different sequence than someone reading off a fabricated document. These micro-behaviors are individually weak signals — combined, they form a reliable anomaly profile.</p>
+
+            <div class="unique">
+                <div class="unique-label">Why this matters</div>
+                A DPRK operative using a stolen identity can pass a background check. They cannot replicate the behavioral signature of the person whose CV they stole. The Layer 1 baseline is built before the candidate knows they are being evaluated. It cannot be coached, prepared for, or gamed with AI tools — because it captures behavior that happens before any screening signal is visible.
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 2 -->
+    <div class="layer-card">
+        <div class="layer-header">
+            <div class="layer-badge l2">2</div>
+            <div>
+                <div class="layer-name">Async Challenge</div>
+                <div class="layer-tag">Triggered on anomaly &middot; 2-3 minutes &middot; Behavioral scoring</div>
+            </div>
+        </div>
+        <div class="layer-body">
+            <p>When Layer 1 flags an anomaly above threshold, the candidate is invited to complete a short targeted task — typically addressing a gap in their profile, or demonstrating knowledge relevant to the role. The task takes 2-3 minutes. It is framed as part of the application process. It does not feel like a security check.</p>
+
+            <p><strong>The content of the response is secondary.</strong> What Sentriq scores is the behavioral fingerprint produced during the response: typing consistency with the Layer 1 baseline, hesitation patterns, correction rate, response timing, task approach. A person being coached in real time by a proxy — or a person who is not who they claim to be — produces a behavioral signature that diverges from their application baseline. That divergence is the signal.</p>
+
+            <div class="unique">
+                <div class="unique-label">The core innovation</div>
+                Every other verification system evaluates what a candidate says or submits — a credential, an ID, a background check result. Sentriq Layer 2 evaluates how they behave while producing a response. A proxy operating on behalf of someone else cannot replicate the behavioral fingerprint of the person they are impersonating. This is the detection mechanism that catches DPRK-style proxy fraud — the exact fraud type that passed four video interviews and a full background check at KnowBe4.
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 3 -->
+    <div class="layer-card">
+        <div class="layer-header">
+            <div class="layer-badge l3">3</div>
+            <div>
+                <div class="layer-name">Human Review</div>
+                <div class="layer-tag">Analyst-led &middot; Before recruiter sees it &middot; EU AI Act compliant</div>
+            </div>
+        </div>
+        <div class="layer-body">
+            <p>Cases flagged by Layer 2 go to a Sentriq-trained analyst before anything reaches the employer's recruiting team. The analyst reviews the full behavioral signal stack — Layer 1 baseline, Layer 2 challenge response, cross-company graph indicators, and any corroborating flags. The recruiter sees only a clean queue and a flagged queue, with analyst notes where relevant.</p>
+
+            <p>The employer's hiring team always makes the final decision. Sentriq never rejects a candidate unilaterally. Every flag is a recommendation, not a verdict. This is intentional — both for accuracy and for legal defensibility.</p>
+
+            <div class="unique">
+                <div class="unique-label">The EU AI Act compliance answer</div>
+                EU AI Act Annex III classifies AI systems used in recruitment as high-risk. Compliant systems must have human oversight in the decision loop. Layer 3 is that oversight — not added on for compliance, but built as the architecture from the start. Deadline for enterprise compliance: August 2, 2026. Sentriq is the only behavioral screening product with human review built into the core loop, not as an optional add-on.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 3: CAF ARCHITECTURE -->
+<div class="section">
+    <div class="section-tag">Architecture</div>
+    <h2>How the CAF processes a candidate.</h2>
+    <p class="section-lead">The Candidate Application Firewall routes every application through a cascade. Each layer activates only when the previous one flags an anomaly. The result: clean candidates flow through without friction. Suspicious candidates are examined with increasing depth before a recruiter ever touches them.</p>
+
+    <div class="caf-flow">
+        <div class="caf-row">
+            <div class="caf-step input">Candidate submits</div>
+            <div class="caf-desc">Application submitted to the employer's ATS. Sentriq is running in the background. The candidate is unaware.</div>
+        </div>
+        <div class="caf-row">
+            <div class="caf-step l1">Layer 1<br>Auto-flag</div>
+            <div class="caf-desc"><strong>Behavioral baseline captured passively.</strong> Keystroke dynamics, copy-paste events, session timing, field navigation. Score calculated in real time. If score is clean: candidate passes to recruiter immediately. If anomaly detected: Layer 2 triggered.</div>
+        </div>
+        <div class="caf-row">
+            <div class="caf-step l2">Layer 2<br>Challenge</div>
+            <div class="caf-desc"><strong>Targeted async task sent to candidate.</strong> 2-3 minutes. Behavioral biometrics scored during response — not just content. If baseline matches: candidate cleared. If behavioral divergence confirmed: Layer 3 triggered.</div>
+        </div>
+        <div class="caf-row">
+            <div class="caf-step l3">Layer 3<br>Human review</div>
+            <div class="caf-desc"><strong>Sentriq analyst reviews full signal stack.</strong> Cross-company graph checked. Analyst notes prepared. Recruiter receives recommendation — never raw data. Employer makes final hiring decision.</div>
+        </div>
+        <div class="caf-row">
+            <div class="caf-step out">Output</div>
+            <div class="caf-desc"><strong>Recruiter sees a clean, reviewed queue.</strong> High-confidence candidates. Flagged cases with analyst context. No change to ATS workflow. Full audit trail for regulatory defense.</div>
+        </div>
+    </div>
+
+    <h3>Three signal dimensions powering the CAF</h3>
+
+    <div class="dims">
+        <div class="dim">
+            <div class="dim-icon">⌨</div>
+            <div class="dim-title">Behavioral Signal</div>
+            <div class="dim-desc">Passive keystroke and session behavioral data. Typing rhythm, copy-paste, hesitation, correction patterns. Impossible to coach or fake at the micro level.</div>
+        </div>
+        <div class="dim">
+            <div class="dim-icon">🔍</div>
+            <div class="dim-title">Identity Verification</div>
+            <div class="dim-desc">Standard identity signals cross-checked against behavioral baseline. A real credential attached to fabricated behavior creates the flag. Neither signal alone is sufficient.</div>
+        </div>
+        <div class="dim">
+            <div class="dim-icon">🕸</div>
+            <div class="dim-title">Cross-Company Intel</div>
+            <div class="dim-desc">Behavioral fingerprints matched across all Sentriq customers. Same identity pattern flagged at three other companies in the past 30 days? Known on arrival at the fourth.</div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 4: NETWORK EFFECT -->
+<div class="section">
+    <div class="section-tag">The Network Effect</div>
+    <h2>Every company that joins makes it stronger for all of them.</h2>
+    <p class="section-lead">The three detection layers are the product. The cross-company graph is the moat. ATS vendors are contractually barred from sharing data across employers — this is a permanent legal constraint, not a technical one. Sentriq is a neutral third party that collects directly from candidates under its own consent architecture. No player inside the hiring stack can build this.</p>
+
+    <div class="net-rows">
+        <div class="net-row">
+            <div class="net-stage">Customer 1</div>
+            <div class="net-desc">Detection is based on <strong>absolute behavioral anomalies</strong> — deviations from normal human typing and session patterns. Useful from day one with no prior data. Flags copy-paste-heavy applications, AI-generated responses, and behavioral inconsistencies within the single application.</div>
+        </div>
+        <div class="net-row">
+            <div class="net-stage">Customer 10</div>
+            <div class="net-desc"><strong>Cross-company patterns emerge.</strong> The same behavioral fingerprint that applied to three other Sentriq customers in the past 30 days is flagged the moment it appears at a fourth — without any company sharing data with another. The signal compounds through Sentriq's neutral position, not through employer data sharing.</div>
+        </div>
+        <div class="net-row">
+            <div class="net-stage">Customer 100</div>
+            <div class="net-desc"><strong>Coordinated campaigns detected at the cluster level.</strong> Multiple fake identities originating from the same behavioral cluster — the signature of a state-backed operation — are identified as a campaign, not just individual suspicious applications. The graph connects dots that no single employer can see.</div>
+        </div>
+        <div class="net-row">
+            <div class="net-stage">At scale</div>
+            <div class="net-desc"><strong>Real-time threat intelligence for the hiring layer.</strong> A DPRK cell that has infiltrated five enterprise customers is visible to Sentriq before it reaches the sixth. The graph becomes a living watchlist — continuously updated, impossible to evade without abandoning the behavioral patterns that make the fraud identifiable in the first place.</div>
+        </div>
+    </div>
+
+    <div class="callout green">
+        <div class="callout-label">The Huntwise flywheel</div>
+        Huntwise — the attack tool — is live with 100 beta users. Every candidate who uses Huntwise to optimize their CV is contributing, with consent, to the dataset that trains Sentriq's detection engine. The attack tool feeds the defense tool. This flywheel cannot be replicated by any competitor without first being willing to build and operate an attack tool in the market — a position no enterprise security company can take.
+    </div>
+</div>
+
+<!-- SECTION 5: WHY IT CANNOT BE COPIED -->
+<div class="section">
+    <div class="section-tag">Structural Moat</div>
+    <h2>Why existing players cannot build this.</h2>
+    <p class="section-lead">This is not a feature gap. Each of the three structural barriers below is permanent. They do not change if a competitor raises more money or acquires better technology.</p>
+
+    <div class="moat">
+        <div class="moat-row">
+            <div class="moat-label">ATS vendors</div>
+            <div class="moat-text">Greenhouse, Workday, Lever, iCIMS. Their customer contracts explicitly prohibit cross-employer data sharing. They legally cannot build the cross-company graph. This constraint does not change. They can add behavioral detection — they cannot build the network.</div>
+        </div>
+        <div class="moat-row">
+            <div class="moat-label">Background check cos.</div>
+            <div class="moat-text">Checkr, HireRight, Sterling. They verify identity — not behavioral authenticity. Their infrastructure is built for static credential verification. Adding behavioral biometrics requires a completely different collection architecture and a neutral third-party relationship with candidates that background check companies do not have.</div>
+        </div>
+        <div class="moat-row">
+            <div class="moat-label">Identity vendors</div>
+            <div class="moat-text">Persona, Socure, CLEAR. They confirm that a credential is real. DPRK operatives use real stolen credentials. Identity verification does not detect behavioral proxy fraud — it is defeated by the exact fraud type Sentriq is built to catch.</div>
+        </div>
+        <div class="moat-row">
+            <div class="moat-label">Deepfake detection</div>
+            <div class="moat-text">GetReal Security, others. Media forensics for live video — detecting AI-manipulated interview footage. No pre-application layer. No behavioral challenge. No cross-company graph. A different problem in the same category.</div>
+        </div>
+        <div class="moat-row">
+            <div class="moat-label">Building from scratch</div>
+            <div class="moat-text">Requires: neutral third-party status with direct candidate consent architecture + behavioral detection engine running at scale + cross-company graph already seeded with signal. All three simultaneously. A new entrant would be building into a network that compounds every month.</div>
+        </div>
+    </div>
+
+    <div class="callout blue">
+        <div class="callout-label">The detection network requires scale to build — and scale to replicate</div>
+        Like every security infrastructure layer that became a category — Cloudflare, SentinelOne, CrowdStrike — the moat is built during the build window, not after. Each new Sentriq customer makes detection better for all existing customers. A competitor starting from zero today would be behind a compounding graph from day one.
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    Sentriq &middot; Product Brief &middot; Confidential &middot; April 2026<br>
+    <a href="mailto:ben@sentriq.co">ben@sentriq.co</a> &nbsp;&middot;&nbsp;
+    <a href="mailto:samuel@sentriq.co">samuel@sentriq.co</a> &nbsp;&middot;&nbsp;
+    <a href="https://samuel-oz-2511.github.io/huntwise-deck/sentriq-gideon.html">Back to brief &rarr;</a>
+</div>
+
+</body>
+</html>
