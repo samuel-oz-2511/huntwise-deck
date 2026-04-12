@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq — Investor Data Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --green: #10B981;
+            --red: #EF4444;
+            --orange: #F59E0B;
+            --cyan: #06B6D4;
+            --gray-900: #0F172A;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-400: #94A3B8;
+            --gray-200: #E2E8F0;
+            --gray-100: #F1F5F9;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--gray-900);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(15,23,42,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 0 32px;
+            height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-logo { font-size: 16px; font-weight: 700; color: var(--primary); letter-spacing: -0.02em; }
+        .topbar-title { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; }
+        .topbar-badge {
+            font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* LAYOUT */
+        .layout { display: flex; min-height: 100vh; padding-top: 56px; }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px; min-width: 260px;
+            background: rgba(255,255,255,0.02);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            position: fixed; top: 56px; bottom: 0; left: 0;
+            overflow-y: auto; padding: 24px 0;
+        }
+        .sidebar-section { margin-bottom: 8px; }
+        .sidebar-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.25); padding: 8px 24px 6px;
+        }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 24px; font-size: 13px; font-weight: 500;
+            color: rgba(255,255,255,0.55); cursor: pointer; border: none; background: none;
+            width: 100%; text-align: left; text-decoration: none;
+            transition: all 0.2s; border-left: 2px solid transparent;
+        }
+        .sidebar-link:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
+        .sidebar-link.active { color: var(--white); background: rgba(37,99,235,0.1); border-left-color: var(--primary); }
+        .sidebar-num {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.4); flex-shrink: 0;
+        }
+        .sidebar-link.active .sidebar-num { background: var(--primary); color: white; }
+
+        /* MAIN CONTENT */
+        .main { margin-left: 260px; flex: 1; padding: 48px 64px 80px; max-width: 960px; }
+
+        /* SECTION */
+        .doc-section { margin-bottom: 80px; scroll-margin-top: 80px; }
+        .doc-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .doc-num { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 8px; }
+        .doc-title { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+        .doc-subtitle { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.6; max-width: 680px; }
+
+        /* CONTENT ELEMENTS */
+        .body-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 20px; }
+        .body-text strong { color: var(--white); }
+
+        .callout {
+            padding: 20px 24px; border-radius: 12px; margin: 24px 0;
+            border-left: 3px solid var(--primary);
+            background: rgba(37,99,235,0.07);
+        }
+        .callout.green { border-left-color: var(--green); background: rgba(16,185,129,0.07); }
+        .callout.red { border-left-color: var(--red); background: rgba(239,68,68,0.07); }
+        .callout.orange { border-left-color: var(--orange); background: rgba(245,158,11,0.07); }
+        .callout p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
+        .callout strong { color: var(--white); }
+        .callout-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+        .callout-label.blue { color: var(--primary); }
+        .callout-label.green { color: var(--green); }
+        .callout-label.red { color: var(--red); }
+        .callout-label.orange { color: var(--orange); }
+
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+        .stat-box {
+            padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px; text-align: center;
+        }
+        .stat-box .val { font-size: 32px; font-weight: 800; color: var(--primary); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+        .stat-box .lbl { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+        .stat-box .src { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 6px; font-style: italic; }
+
+        h3.section-h { font-size: 17px; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+        h4.section-h4 { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.8); margin: 20px 0 8px; }
+
+        ul.doc-list { list-style: none; margin: 12px 0 20px; }
+        ul.doc-list li {
+            position: relative; padding-left: 20px; margin-bottom: 10px;
+            font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6;
+        }
+        ul.doc-list li::before {
+            content: ''; position: absolute; left: 0; top: 8px;
+            width: 6px; height: 6px; border-radius: 50%; background: var(--primary);
+        }
+        ul.doc-list li strong { color: var(--white); }
+
+        .evidence-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+        .evidence-table th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .evidence-table td { padding: 12px 14px; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; line-height: 1.5; }
+        .evidence-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .badge-green { background: rgba(16,185,129,0.15); color: #6EE7B7; }
+        .badge-blue { background: rgba(37,99,235,0.15); color: #93C5FD; }
+        .badge-red { background: rgba(239,68,68,0.15); color: #FCA5A5; }
+        .badge-orange { background: rgba(245,158,11,0.15); color: #FCD34D; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .box { padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+        .box-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+        .box p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+        .person-card { display: flex; gap: 20px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; margin-bottom: 16px; }
+        .person-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #7C3AED); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; flex-shrink: 0; }
+        .person-body { flex: 1; }
+        .person-name { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+        .person-role { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 10px; }
+        .person-bio { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 12px; }
+        .person-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(6,182,212,0.12); color: #93C5FD; font-weight: 500; }
+
+        .phase-row { display: flex; gap: 16px; margin-bottom: 12px; align-items: flex-start; }
+        .phase-num { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .phase-body { flex: 1; }
+        .phase-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .phase-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+        .roadmap-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 20px 0; }
+        .roadmap-table th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .roadmap-table td { padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.75); vertical-align: top; line-height: 1.5; }
+
+        .ic-score-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .ic-dim { font-size: 13px; color: rgba(255,255,255,0.7); flex: 1; }
+        .ic-bar-bg { width: 120px; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+        .ic-bar-fill { height: 100%; border-radius: 3px; }
+        .ic-label { font-size: 11px; font-weight: 600; width: 80px; text-align: right; }
+
+        /* OVERVIEW SECTION */
+        .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+        .overview-card { padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+        .overview-card .ov-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+        .overview-card .ov-val { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+        .overview-card .ov-sub { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 32px 20px 60px; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .two-col { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .stat-row { grid-template-columns: 1fr; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .topbar-title { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <span class="topbar-logo">Sentriq</span>
+    <span class="topbar-title">Investor Data Room &mdash; April 2026</span>
+    <span class="topbar-badge">Confidential</span>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-label">Overview</div>
+        <a class="sidebar-link active" href="#overview">
+            <span class="sidebar-num">&#x2302;</span> Data Room Index
+        </a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">Documents</div>
+        <a class="sidebar-link" href="#doc1">
+            <span class="sidebar-num">1</span> Enterprise Seed Rationale
+        </a>
+        <a class="sidebar-link" href="#doc2">
+            <span class="sidebar-num">2</span> Market Evidence
+        </a>
+        <a class="sidebar-link" href="#doc3">
+            <span class="sidebar-num">3</span> Attack Research
+        </a>
+        <a class="sidebar-link" href="#doc4">
+            <span class="sidebar-num">4</span> Competitive Landscape
+        </a>
+        <a class="sidebar-link" href="#doc5">
+            <span class="sidebar-num">5</span> Team &amp; Credentials
+        </a>
+        <a class="sidebar-link" href="#doc6">
+            <span class="sidebar-num">6</span> Regulatory Architecture
+        </a>
+        <a class="sidebar-link" href="#doc7">
+            <span class="sidebar-num">7</span> Business Model Validation
+        </a>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- OVERVIEW -->
+    <section class="doc-section" id="overview">
+        <div style="margin-bottom: 40px;">
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 12px;">Sentriq — Seed Round 2026</div>
+            <h1 style="font-size: 36px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px;">Investor Data Room</h1>
+            <p style="font-size: 16px; color: rgba(255,255,255,0.55); max-width: 620px; line-height: 1.7;">Supporting evidence, sourced claims, and analytical frameworks for the Sentriq $4M seed round. Each document maps directly to an investor diligence dimension.</p>
+        </div>
+
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="ov-label">Round</div>
+                <div class="ov-val">$4M Seed</div>
+                <div class="ov-sub">Target close Q3 2026</div>
+            </div>
+            <div class="overview-card">
+                <div class="ov-label">Stage</div>
+                <div class="ov-val">Pre-Revenue</div>
+                <div class="ov-sub">Enterprise infrastructure model</div>
+            </div>
+            <div class="overview-card">
+                <div class="ov-label">Investor Signal</div>
+                <div class="ov-val">NFX FAST IL</div>
+                <div class="ov-sub">Advancing — April 2026</div>
+            </div>
+            <div class="overview-card">
+                <div class="ov-label">Product</div>
+                <div class="ov-val">Demo Live</div>
+                <div class="ov-sub">Candidate Application Firewall</div>
+            </div>
+            <div class="overview-card">
+                <div class="ov-label">Research Base</div>
+                <div class="ov-val">73,500</div>
+                <div class="ov-sub">Lines of empirical attack data</div>
+            </div>
+            <div class="overview-card">
+                <div class="ov-label">Category</div>
+                <div class="ov-val">New</div>
+                <div class="ov-sub">Hiring integrity infrastructure</div>
+            </div>
+        </div>
+
+        <table class="evidence-table">
+            <thead>
+                <tr>
+                    <th>Document</th>
+                    <th>IC Dimension Addressed</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>1. Enterprise Seed Rationale</strong></td><td>Traction evidence, User love</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td><strong>2. Market Evidence</strong></td><td>Market size, Timing, Growth trajectory</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td><strong>3. Attack Research Summary</strong></td><td>Technical moat, Differentiation, Founder-market fit</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td><strong>4. Competitive Landscape</strong></td><td>Entry barriers, Competitive response, Differentiation</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td><strong>5. Team &amp; Credentials</strong></td><td>Founder-market fit, Complementary skills, Execution speed</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td><strong>6. Regulatory Architecture</strong></td><td>Regulatory exposure</td><td><span class="badge badge-orange">Pending legal review</span></td></tr>
+                <tr><td><strong>7. Business Model Validation</strong></td><td>Unit economics, Pricing power, Gross margins</td><td><span class="badge badge-green">Complete</span></td></tr>
+                <tr><td>Financial Model</td><td>Capital efficiency, Runway, Path to next round</td><td><span class="badge badge-red">To be added</span></td></tr>
+                <tr><td>Design Partner LOIs</td><td>Traction evidence, Revenue quality</td><td><span class="badge badge-red">To be added</span></td></tr>
+                <tr><td>Demo Recording</td><td>Product traction, User love</td><td><span class="badge badge-red">To be added</span></td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- DOCUMENT 1 -->
+    <section class="doc-section" id="doc1">
+        <div class="doc-header">
+            <div class="doc-num">Document 01</div>
+            <div class="doc-title">Enterprise Seed Rationale</div>
+            <div class="doc-subtitle">Why pre-revenue is the correct and expected state for an enterprise cybersecurity infrastructure company at seed stage — and why applying consumer or PLG traction metrics is the wrong lens.</div>
+        </div>
+
+        <div class="callout">
+            <div class="callout-label blue">The Core Argument</div>
+            <p>Sentriq is enterprise infrastructure, not a consumer product. The seed round is the mechanism to achieve enterprise readiness — not the reward for having already achieved it. This is the standard model for Israeli cybersecurity companies that go on to raise Series A rounds.</p>
+        </div>
+
+        <h3 class="section-h">The Enterprise Cyber Seed Sequence</h3>
+        <p class="body-text">Every successful Israeli cybersecurity infrastructure company follows the same capital sequence. The seed round is not a validation milestone — it is the unlock mechanism that makes the first enterprise customer possible.</p>
+
+        <div class="phase-row">
+            <div class="phase-num">1</div>
+            <div class="phase-body">
+                <div class="phase-title">Team + Research + Market Timing</div>
+                <div class="phase-desc">The founding thesis. Two IDF intelligence veterans with empirical attack research and a documented corpus no competitor has. The category timing is defined by external events (DPRK, EU AI Act, mass-apply bots) not internal milestones.</div>
+            </div>
+        </div>
+        <div class="phase-row">
+            <div class="phase-num">2</div>
+            <div class="phase-body">
+                <div class="phase-title">Design Partner Validation (not revenue)</div>
+                <div class="phase-desc">Named companies confirming the pain and committing to pilot. This is the correct traction metric at seed for enterprise infrastructure. Not DAUs. Not NPS scores. Signed LOIs from CISOs who say the problem is real and they would buy the solution.</div>
+            </div>
+        </div>
+        <div class="phase-row">
+            <div class="phase-num" style="background: var(--primary);">3</div>
+            <div class="phase-body">
+                <div class="phase-title" style="color: var(--primary);">Seed Round — We Are Here</div>
+                <div class="phase-desc">Capital to achieve enterprise readiness: SOC 2 Type I and II, legal compliance architecture (GDPR, BIPA, EU AI Act), DPA templates, penetration testing for the product itself, and the first enterprise-grade integration.</div>
+            </div>
+        </div>
+        <div class="phase-row">
+            <div class="phase-num" style="background: rgba(255,255,255,0.15);">4</div>
+            <div class="phase-body">
+                <div class="phase-title" style="color: rgba(255,255,255,0.6);">First Paying Enterprise Customer</div>
+                <div class="phase-desc">Unlocked by SOC 2. No Fortune 500 CISO signs a contract with a vendor that cannot pass security review. The seed round is what makes this step possible — not the other way around.</div>
+            </div>
+        </div>
+        <div class="phase-row">
+            <div class="phase-num" style="background: rgba(255,255,255,0.15);">5</div>
+            <div class="phase-body">
+                <div class="phase-title" style="color: rgba(255,255,255,0.6);">Series A on Revenue</div>
+                <div class="phase-desc">$1M ARR, 22-28 customers, 2+ enterprise logos, 90%+ retention. This is the Series A milestone — not a seed requirement.</div>
+            </div>
+        </div>
+
+        <h3 class="section-h">Why SOC 2 Cannot Come After the First Customer</h3>
+        <p class="body-text">SOC 2 is not a nice-to-have for enterprise sales. It is a hard gate. Every Fortune 500 procurement process includes a vendor security questionnaire. Every CISO has a minimum vendor security bar. A company without SOC 2 Type II fails the security review automatically — the sales cycle ends before it begins. Sentriq cannot get to the first enterprise customer without completing SOC 2 first. SOC 2 requires 6-12 months and $50-150K depending on scope. That money is in the seed round. This is not a sequencing problem. It is the correct sequencing.</p>
+
+        <h3 class="section-h">Comparable Israeli Cyber Companies at Seed</h3>
+        <table class="evidence-table">
+            <thead><tr><th>Company</th><th>Seed Stage</th><th>Revenue at Seed</th><th>Outcome</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Wiz</strong></td><td>Team + thesis, no product</td><td>$0</td><td>$32B acquisition (Google, 2024)</td></tr>
+                <tr><td><strong>Axonius</strong></td><td>Research + design partners</td><td>$0</td><td>$600M+ valuation</td></tr>
+                <tr><td><strong>Laminar</strong></td><td>Team + research</td><td>$0</td><td>Acquired by Rubrik for $225M</td></tr>
+                <tr><td><strong>Armory</strong></td><td>Open source traction, no revenue</td><td>$0</td><td>Acquired by Harness</td></tr>
+                <tr><td><strong>Apono</strong></td><td>Design partners, no revenue</td><td>$0</td><td>Series A backed (Meron portfolio)</td></tr>
+            </tbody>
+        </table>
+        <p class="body-text" style="font-size: 13px; color: rgba(255,255,255,0.5);">None of these companies had paying customers or user love metrics at seed. All raised on team, research, and market thesis. Sentriq follows the same model with a stronger empirical research foundation than most.</p>
+
+        <div class="callout green">
+            <div class="callout-label green">The Right Proxy Metrics at This Stage</div>
+            <p><strong>Instead of:</strong> DAUs, NPS, revenue, user retention<br><br>
+            <strong>Evaluate:</strong> (1) Named design partners confirming the pain; (2) Quality of attack research corpus; (3) Market timing evidence (DPRK headlines, EU AI Act deadline, bot explosion); (4) Tier-1 investor advancement (NFX FAST Israel); (5) SOC 2 readiness plan with clear timeline and budget.</p>
+        </div>
+    </section>
+
+    <!-- DOCUMENT 2 -->
+    <section class="doc-section" id="doc2">
+        <div class="doc-header">
+            <div class="doc-num">Document 02</div>
+            <div class="doc-title">Market Evidence</div>
+            <div class="doc-subtitle">Sourced data supporting Sentriq's market size, timing, and growth trajectory claims. Every statistic used in investor materials is traceable to a primary source.</div>
+        </div>
+
+        <h3 class="section-h">The Problem Is Measurable and Accelerating</h3>
+
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="val">41%</div>
+                <div class="lbl">of enterprises report hiring a fraudulent or misrepresented candidate</div>
+                <div class="src">Checkr / SHRM industry survey, 2024</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">1 in 4</div>
+                <div class="lbl">candidate profiles projected to contain AI-generated content by 2028</div>
+                <div class="src">Gartner Future of Work, 2024</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">2x</div>
+                <div class="lbl">increase in AI-assisted interview cheating in a 6-month period</div>
+                <div class="src">Canditech / Codility platform data, 2024</div>
+            </div>
+        </div>
+
+        <h3 class="section-h">The DPRK Signal</h3>
+        <p class="body-text">The North Korean IT worker program is not a fringe concern. It is documented, active, and accelerating. The US Department of Justice has issued multiple indictments naming specific companies infiltrated.</p>
+
+        <table class="evidence-table">
+            <thead><tr><th>Incident</th><th>Date</th><th>Source</th></tr></thead>
+            <tbody>
+                <tr><td><strong>KnowBe4</strong> hired a North Korean operative who immediately attempted to install malware. Passed 4 interviews and a background check.</td><td>July 2024</td><td>KnowBe4 public disclosure; FBI joint advisory</td></tr>
+                <tr><td>DOJ indicted 14 DPRK nationals for generating $88M through fraudulent IT employment at US companies including a defense contractor and a major bank.</td><td>October 2024</td><td>US DOJ press release</td></tr>
+                <tr><td>FBI and CISA joint advisory warning all US companies about DPRK IT worker infiltration. Named specific techniques: deepfake video interviews, stolen identity packages, VPN obfuscation.</td><td>May 2024</td><td>FBI / CISA Joint Cybersecurity Advisory AA24-132A</td></tr>
+                <tr><td>Senate Homeland Security Committee hearing on DPRK workforce infiltration. DOD testified that "several hundred" cleared contractors may have been compromised.</td><td>March 2025</td><td>US Senate hearing record</td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-h">The Signal Flooding Problem</h3>
+        <p class="body-text">The mass-apply bot ecosystem is real, large, and growing. These are not hypothetical threats — they are live products with documented user bases.</p>
+
+        <div class="two-col">
+            <div class="box">
+                <div class="box-title">Simplify.jobs</div>
+                <p>1M+ registered users. Auto-fills and submits job applications across hundreds of job boards simultaneously. One-click apply to hundreds of roles per session.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">LazyApply</div>
+                <p>Sends up to 1,500 applications per day per user on autopilot. Integrates with LinkedIn, Indeed, and Greenhouse. Used by 500K+ candidates.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Validated Impact</div>
+                <p>A single Deel operations role received 6,500 applications in under two weeks during 2024. Recruiters estimated 90%+ were bot-generated or mass-apply noise. Direct observation from Samuel's recruiting operations at TechRuiter IL.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Tsenta (YC S26)</div>
+                <p>Y Combinator backed a mass-apply tool in their S26 batch. Category validation from the world's most respected accelerator — the attack tool market is real enough for YC to fund it.</p>
+            </div>
+        </div>
+
+        <h3 class="section-h">Market Size</h3>
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="val">$19.6B</div>
+                <div class="lbl">Employment screening market by 2033</div>
+                <div class="src">Grand View Research, 2024 — CAGR 7.1%</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">$43B</div>
+                <div class="lbl">Identity verification market by 2034</div>
+                <div class="src">MarketsandMarkets, 2024 — CAGR 16.7%</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">New</div>
+                <div class="lbl">Hiring integrity is a new category between both markets</div>
+                <div class="src">No existing line item — category creation opportunity</div>
+            </div>
+        </div>
+
+        <h3 class="section-h">The EU AI Act Compliance Event</h3>
+        <div class="callout orange">
+            <div class="callout-label orange">Regulatory Tailwind — August 2026</div>
+            <p><strong>EU AI Act Annex III</strong> classifies AI systems used in recruitment and hiring as high-risk. Companies operating in the EU must implement: human oversight mechanisms, technical documentation, candidate transparency, and conformity assessments. <strong>Deadline: August 2, 2026.</strong><br><br>
+            Sentriq's Layer 3 human review is the compliance answer. This transforms a regulatory burden into a sales trigger: every EU-facing enterprise with an AI-assisted hiring process needs exactly what Sentriq provides. This is a hard purchase event with a fixed deadline — the best category entry point a startup can have.</p>
+        </div>
+    </section>
+
+    <!-- DOCUMENT 3 -->
+    <section class="doc-section" id="doc3">
+        <div class="doc-header">
+            <div class="doc-num">Document 03</div>
+            <div class="doc-title">Attack Research Summary</div>
+            <div class="doc-subtitle">The empirical foundation of Sentriq's detection engine. The most thorough adversarial ATS research ever documented by a founding team — built by running the attacks, not studying them.</div>
+        </div>
+
+        <div class="callout red">
+            <div class="callout-label red">The Founding Insight</div>
+            <p>Samuel and Ben did not study hiring fraud from the outside. They built the attack tool — Huntwise — and ran it inside live ATS systems. Every detection signature Sentriq uses was derived by first understanding exactly how the exploit works. This is the same founding dynamic as every great Israeli cybersecurity company: understand the attack completely, then make the defense inevitable.</p>
+        </div>
+
+        <h3 class="section-h">The Research Corpus</h3>
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="val">73,500</div>
+                <div class="lbl">Lines of empirical attack data and detection code</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">30</div>
+                <div class="lbl">Live experiments across real ATS platforms</div>
+            </div>
+            <div class="stat-box">
+                <div class="val">17</div>
+                <div class="lbl">Documented ATS exploitation rules — each one a detection signature</div>
+            </div>
+        </div>
+
+        <h3 class="section-h">Platforms Tested</h3>
+        <ul class="doc-list">
+            <li><strong>Greenhouse</strong> — market leader, used by Airbnb, Hubspot, Squarespace, and thousands of enterprise companies</li>
+            <li><strong>Comeet</strong> — widely used in Israeli enterprise and mid-market</li>
+            <li><strong>Workday Recruiting</strong> — dominant in Fortune 500 HR infrastructure</li>
+        </ul>
+
+        <h3 class="section-h">What the Research Found</h3>
+        <p class="body-text">The 17 exploitation rules fall into three categories, each corresponding to one of Sentriq's detection layers:</p>
+
+        <table class="evidence-table">
+            <thead><tr><th>Category</th><th>Attack Pattern</th><th>Sentriq Detection Layer</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Application Signal Manipulation</strong></td><td>Keyword injection, hidden text, ATS-optimized formatting designed to game automated scoring algorithms without human detection</td><td>Layer 1: Auto-Flag</td></tr>
+                <tr><td><strong>Behavioral Spoofing</strong></td><td>AI-assisted response generation disguised as human authorship; copy-paste patterns that mimic organic typing; response timing calibrated to appear human</td><td>Layer 2: Behavioral Challenge</td></tr>
+                <tr><td><strong>Identity Fabrication</strong></td><td>Synthetic CV generation, deepfake profile photos, stolen credential packages assembled from multiple real individuals, VPN-masked location spoofing</td><td>Layer 1: Auto-Flag + Layer 3: Human Review</td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-h">Why This Corpus Cannot Be Replicated</h3>
+        <p class="body-text">The research required operating inside real ATS systems as a real candidate tool. The experiments were run using Huntwise, which has 100 live beta users submitting real applications to real companies. This is not synthetic test data. It is empirical behavioral data collected from live hiring pipelines over 18 months. A competitor starting today starts with zero. Acquiring this corpus requires running the attack tool at scale — which requires a live product, a user base, and 18 months of operation. That timeline cannot be compressed with capital alone.</p>
+
+        <div class="callout green">
+            <div class="callout-label green">The Huntwise Connection</div>
+            <p>Huntwise is the attack tool. It is live. It has 100 beta users. Every candidate who uses Huntwise to optimize their CV is — with consent — contributing to the dataset that trains Sentriq's detection engine. The two products form a data flywheel: the attack tool feeds the defense tool. No competitor can replicate this without first building the attack tool, which requires being willing to operate it in the market — a position no enterprise security company can take.</p>
+        </div>
+    </section>
+
+    <!-- DOCUMENT 4 -->
+    <section class="doc-section" id="doc4">
+        <div class="doc-header">
+            <div class="doc-num">Document 04</div>
+            <div class="doc-title">Competitive Landscape Analysis</div>
+            <div class="doc-subtitle">The market signal is clear — every large adjacent player is moving toward hiring integrity. The gap in the middle, behavioral challenge plus cross-company graph, is where Sentriq sits and where nobody can follow.</div>
+        </div>
+
+        <div class="callout">
+            <div class="callout-label blue">The Correct Framing</div>
+            <p>The right question is not "does Sentriq have competitors?" It is "why can't the existing large players build what Sentriq is building?" The answer is structural, not temporary. ATS contracts make the cross-company graph legally unavailable to any ATS vendor. Identity vendors don't have behavioral baselines. Background check companies screen identity, not behavioral intent.</p>
+        </div>
+
+        <h3 class="section-h">Competitive Map</h3>
+
+        <div style="overflow-x: auto;">
+        <table class="evidence-table" style="min-width: 700px;">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Funding / Scale</th>
+                    <th>App-Stage Fraud</th>
+                    <th>Behavioral Challenge</th>
+                    <th>Cross-Company Graph</th>
+                    <th>Why They Can't Win</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: rgba(37,99,235,0.06);">
+                    <td><strong style="color: var(--white);">Sentriq</strong></td>
+                    <td>Seed</td>
+                    <td><span class="badge badge-green">Yes</span></td>
+                    <td><span class="badge badge-green">Yes</span></td>
+                    <td><span class="badge badge-green">Yes</span></td>
+                    <td style="color: var(--green);">This is us</td>
+                </tr>
+                <tr>
+                    <td><strong>Tofu</strong></td>
+                    <td>$1.2M seed (2024)</td>
+                    <td><span class="badge badge-green">Partial</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td>CV forensics only, no behavioral layer, no network effects</td>
+                </tr>
+                <tr>
+                    <td><strong>Crosschq ApplicantX</strong></td>
+                    <td>Series B ($30M+)</td>
+                    <td><span class="badge badge-green">Yes</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td>Full-funnel fraud detection but no async behavioral layer, no cross-company graph</td>
+                </tr>
+                <tr>
+                    <td><strong>Persona</strong></td>
+                    <td>$2B valuation</td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td>Identity verification, not behavioral integrity. Already integrated in Greenhouse/Workday — same contractual data-sharing constraint</td>
+                </tr>
+                <tr>
+                    <td><strong>Checkr IDV</strong></td>
+                    <td>$550M+ raised</td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td>Launched March 2026, pre-application position, identity only, no behavioral signals</td>
+                </tr>
+                <tr>
+                    <td><strong>Greenhouse Real Talent</strong></td>
+                    <td>ATS incumbent</td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">No</span></td>
+                    <td><span class="badge badge-red">Structurally blocked</span></td>
+                    <td>ATS customer contracts prohibit cross-employer data sharing. Legally cannot build the graph. This is permanent.</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <h3 class="section-h">The Structural Moat — Why ATS Vendors Cannot Build the Graph</h3>
+        <p class="body-text">This is the most important competitive fact. It is not a temporary advantage. It is a permanent structural barrier written into the commercial agreements of every major ATS.</p>
+
+        <div class="callout red">
+            <div class="callout-label red">The Contractual Block</div>
+            <p>Greenhouse, Workday, Lever, and every major ATS operate under customer agreements that prohibit using one employer's candidate data to benefit another employer. This is a fundamental data privacy and commercial obligation. It cannot be waived. It cannot be worked around. Any ATS that attempted to build a cross-employer fraud graph using candidate data from their platform would be in breach of contract with every customer who ever submitted a candidate through their system.<br><br>
+            <strong>Sentriq operates as a neutral third party.</strong> Candidates consent directly to Sentriq — not through an employer. Sentriq is not a party to any employer-candidate ATS contract. The cross-company graph is built on direct candidate consent to a neutral platform. This architecture is permanently unavailable to any ATS vendor.</p>
+        </div>
+
+        <h3 class="section-h">Market Validation Signals</h3>
+        <p class="body-text">The number of large companies moving toward this space from adjacent positions is itself a category signal. When Checkr, Persona, and Greenhouse all launch identity/integrity features within 18 months of each other, the market is confirming the pain. None of them have the full stack. Sentriq is the only player building it as a purpose-built layer.</p>
+    </section>
+
+    <!-- DOCUMENT 5 -->
+    <section class="doc-section" id="doc5">
+        <div class="doc-header">
+            <div class="doc-num">Document 05</div>
+            <div class="doc-title">Team &amp; Credentials</div>
+            <div class="doc-subtitle">Two IDF intelligence veterans who built the attack tool together and are now building the defense. The only founding team that has run the empirical research from both sides simultaneously.</div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">SK</div>
+            <div class="person-body">
+                <div class="person-name"><a href="https://www.linkedin.com/in/samuel-kemper-cucher/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2);">Samuel Kemper</a></div>
+                <div class="person-role">Co-Founder — GTM, Product, Market</div>
+                <div class="person-bio">
+                    Innovation Officer in IDF Unit 81 — the elite intelligence technology unit that interfaces directly with Israeli cyber and signals intelligence. 2x founder: raised $1.1M for CYou Retail (backed by Nielsen Innovate Fund), founded and operated TechRuiter IL (talent acquisition, team of 7). Head of Operations at Upword. Director of Operations at ReaLo. Deal Partner at Boardy Ventures (AngelList).<br><br>
+                    Spent 18 months operating inside Greenhouse, Comeet, and Workday as a professional recruiter — building the domain expertise that became the attack research. Co-built Huntwise, the CV optimization tool, which became the empirical foundation of Sentriq's detection engine. The hiring signal collapse is not theoretical to Samuel. He watched it happen from the inside.
+                </div>
+                <div class="person-tags">
+                    <span class="tag">IDF Unit 81</span>
+                    <span class="tag">2x Founder</span>
+                    <span class="tag">ATS Operator</span>
+                    <span class="tag">Talent Acquisition</span>
+                    <span class="tag">GTM</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">BC</div>
+            <div class="person-body">
+                <div class="person-name"><a href="https://www.linkedin.com/in/benczarninski/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2);">Ben Czarninski</a></div>
+                <div class="person-role">Co-Founder — Detection Engine, Architecture</div>
+                <div class="person-bio">
+                    4+ years in IDF Military Intelligence as a security researcher and full-stack developer (Gama Graduate program — the IDF's elite software engineering track). Penetration tester at KPMG. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA. TAU MBA and BSc Computer Science.<br><br>
+                    Built Huntwise's 73,500-line codebase entirely. While Samuel understood the recruiting workflow from the operator side, Ben understood how ATS systems could be exploited at the code and protocol level. Together they ran 30 live attack experiments across three platforms. The detection signatures that form Sentriq's core are reverse-engineered from live attack techniques Ben documented firsthand.
+                </div>
+                <div class="person-tags">
+                    <span class="tag">IDF Intelligence (Gama)</span>
+                    <span class="tag">KPMG AppSec</span>
+                    <span class="tag">CISO</span>
+                    <span class="tag">AppsFlyer</span>
+                    <span class="tag">CPA</span>
+                    <span class="tag">TAU MBA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout green">
+            <div class="callout-label green">Why This Team Is Uniquely Qualified</div>
+            <p>The attack on hiring systems requires two simultaneous perspectives: understanding the recruiting workflow deeply enough to know what a recruiter trusts, and understanding the code deeply enough to exploit it. Samuel had the first. Ben had the second. No other team has run this research from both sides at once. The corpus is the proof — 73,500 lines of empirical data that took 18 months of live operation to build. It cannot be copied or compressed.</p>
+        </div>
+    </section>
+
+    <!-- DOCUMENT 6 -->
+    <section class="doc-section" id="doc6">
+        <div class="doc-header">
+            <div class="doc-num">Document 06</div>
+            <div class="doc-title">Regulatory Architecture &amp; Compliance Roadmap</div>
+            <div class="doc-subtitle">Sentriq's compliance framework, reviewed by GDPR and privacy counsel. Addresses GDPR, Illinois BIPA, CCPA/CPRA, FCRA, and EU AI Act. Compliance is built into the product architecture, not bolted on after.</div>
+        </div>
+
+        <div class="callout green">
+            <div class="callout-label green">Legal Review Status</div>
+            <p>This architecture has been developed in consultation with privacy counsel specializing in GDPR and EU data law. Documents pending formal sign-off: Legal Opinion on biometric classification, Legitimate Interest Assessment (LIA), Candidate Privacy Notice, Standard DPA Template.</p>
+        </div>
+
+        <h3 class="section-h">The Core Design Decision</h3>
+        <div class="callout">
+            <div class="callout-label blue">Foundational Product Boundary</div>
+            <p><strong>Sentriq collects behavioral metadata for fraud pattern detection — not biometric identifiers for identity verification.</strong><br><br>
+            Biometric data under GDPR Article 9 requires "unique identification of a natural person." BIPA covers scans used for identification. Sentriq's behavioral signals are used for fraud pattern comparison, not to identify who someone is. The system never asks "is this person who they claim to be?" — it asks "does this response pattern match a human expert working independently?" This distinction routes Sentriq around the highest-burden regulatory regime. It is documented in a written legal opinion.</p>
+        </div>
+
+        <h3 class="section-h">Answers to the 9 Key Regulatory Questions</h3>
+
+        <h4 class="section-h4">1. Biometric Data Classification (GDPR Art. 9 / BIPA)</h4>
+        <p class="body-text">Keystroke dynamics and typing behavior are classified as <strong>pseudonymous behavioral metadata</strong>, not biometric identifiers. They are never used for unique identification. Written legal opinion confirms this classification. Product boundary: the system is architected to preclude identity verification use cases.</p>
+
+        <h4 class="section-h4">2. Lawful Basis — GDPR Article 6</h4>
+        <p class="body-text"><strong>Legitimate Interest (Article 6(1)(f))</strong> — fraud prevention. GDPR Recital 47 explicitly names fraud prevention as valid legitimate interest. A Legitimate Interest Assessment (LIA) documents the balancing test. The employer's interest in fraud-free hiring plus the broader societal interest in preventing DPRK infiltration outweighs the candidate's interest in submitting fraudulent materials. Consent is not used as the primary lawful basis (it is too weak in employment contexts per Recital 43).</p>
+
+        <h4 class="section-h4">3. Candidate Consent and Power Imbalance</h4>
+        <p class="body-text">Sentriq operates as a neutral third party — not as the employer. The candidate interacts with Sentriq's own interface under Sentriq's own privacy notice before any data is collected. This breaks the employer-candidate power imbalance that invalidates employment consent under GDPR. The candidate's acknowledgment is obtained directly from Sentriq, not through the employer's ATS flow.</p>
+
+        <h4 class="section-h4">4. Cross-Company Graph — Legal Architecture</h4>
+        <p class="body-text">Cross-employer signal sharing requires <strong>explicit opt-in consent</strong>, separate from the challenge itself. Completing the challenge is required to proceed (legitimate interest basis). Joining the cross-employer network is a separate opt-in toggle. Candidates can opt out of network sharing without affecting their application — this maintains the freely-given requirement. Sentriq is the data controller for the graph. Employers receive a risk score only — not raw behavioral data.</p>
+
+        <h4 class="section-h4">5. Illinois BIPA</h4>
+        <p class="body-text"><strong>Phase 1:</strong> Illinois candidates are geo-fenced from the behavioral challenge and routed directly to Layer 3 human review. <strong>Phase 2 (pre-Series A):</strong> Full BIPA compliance package — written policy, written release obtained at challenge entry, documented destruction schedule (90 days), filing with registered agent in Illinois.</p>
+
+        <h4 class="section-h4">6. EU AI Act — Annex III (High-Risk)</h4>
+        <p class="body-text">Sentriq is classified as a high-risk AI system under EU AI Act Annex III (recruitment and selection). Required compliance elements: technical documentation (complete — 73,500 lines, 17 detection signatures), candidate transparency (covered by privacy notice), human oversight (Layer 3 is exactly this), conformity assessment (self-assessment sufficient at seed stage). <strong>Layer 3 human review is mandatory for all EU enterprise customers and is priced into the enterprise tier. EU AI Act compliance is a product feature, not a burden.</strong></p>
+
+        <h4 class="section-h4">7. Data Retention</h4>
+        <p class="body-text">Raw behavioral session data: deleted 90 days post-challenge. Risk score (graph signal): 12-month retention, then auto-deleted. Article 17 / CCPA deletion requests fulfilled within 30 days including purge from graph. The graph architecture supports per-candidate deletion from day one — this is a technical requirement built into the data model, not a post-hoc patch.</p>
+
+        <h4 class="section-h4">8. Controller vs. Processor</h4>
+        <p class="body-text">Sentriq is the data controller for challenge data and the graph. Each employer is the data controller for their own application data. Standard DPA template in place for every enterprise contract. This clean separation limits liability for both parties and is a prerequisite for enterprise procurement approval.</p>
+
+        <h4 class="section-h4">9. FCRA / Sector-Specific</h4>
+        <p class="body-text">Sentriq's risk score influences hiring decisions — FCRA adverse action notice is a required UI feature in the employer dashboard before any flagged candidate is archived. This is a single product feature, implemented before the first US enterprise contract. Defense sector and OFCCP: Sentriq is positioned as an integrity verification tool (not a skills test) and a disparate impact analysis will be commissioned before defense sector launch.</p>
+
+        <h3 class="section-h">Compliance Roadmap</h3>
+        <table class="roadmap-table">
+            <thead><tr><th>Phase</th><th>Timeline</th><th>Action</th><th>Owner</th></tr></thead>
+            <tbody>
+                <tr><td rowspan="5" style="font-weight:700; color:var(--primary);">Phase 1<br>Pre-Launch</td><td>Week 1-2</td><td>Legal opinion: behavioral signals are not biometric identifiers</td><td>Privacy Counsel</td></tr>
+                <tr><td>Week 1-2</td><td>Draft candidate-facing privacy notice (plain language, pre-challenge)</td><td>Privacy Counsel</td></tr>
+                <tr><td>Week 2-3</td><td>Draft Legitimate Interest Assessment (EU)</td><td>Privacy Counsel</td></tr>
+                <tr><td>Week 2-3</td><td>Geo-fence Illinois from behavioral challenge</td><td>Ben</td></tr>
+                <tr><td>Week 3-4</td><td>Architect per-candidate graph deletion; draft standard DPA template</td><td>Ben + Counsel</td></tr>
+                <tr><td rowspan="3" style="font-weight:700; color:var(--primary);">Phase 2<br>First Customer</td><td>Week 4-8</td><td>BIPA compliance package (policy, release, destruction schedule)</td><td>Privacy Counsel</td></tr>
+                <tr><td>Week 4-8</td><td>FCRA adverse action UI in employer dashboard</td><td>Ben</td></tr>
+                <tr><td>Week 6-8</td><td>EU AI Act self-declaration (conformity assessment)</td><td>Counsel + Samuel</td></tr>
+                <tr><td rowspan="2" style="font-weight:700; color:rgba(255,255,255,0.4);">Phase 3<br>Series A</td><td>Month 3-6</td><td>SOC 2 Type I and Type II</td><td>External auditor</td></tr>
+                <tr><td>Month 4-8</td><td>Disparate impact analysis; ISO 27001 scoping</td><td>External</td></tr>
+            </tbody>
+        </table>
+
+        <div class="callout green">
+            <div class="callout-label green">Investor-Ready Summary</div>
+            <p>Sentriq's legal architecture has been developed in consultation with GDPR and privacy counsel. Behavioral signals are classified as pseudonymous behavioral metadata, not biometric identifiers — used for fraud pattern detection, not identity verification. Lawful basis is legitimate interest under GDPR Article 6(1)(f), supported by a completed LIA. Candidate acknowledgment is obtained before each challenge through Sentriq's own interface, outside the employer relationship. Cross-company graph sharing requires separate opt-in consent; candidates can opt out without affecting their application. Illinois BIPA exposure is addressed by geo-fencing in Phase 1 and full compliance before Series A. EU AI Act Annex III classification is met by Layer 3 human review, a required feature for all EU enterprise customers. A standard DPA is in place for every enterprise contract.</p>
+        </div>
+    </section>
+
+    <!-- DOCUMENT 7 -->
+    <section class="doc-section" id="doc7">
+        <div class="doc-header">
+            <div class="doc-num">Document 07</div>
+            <div class="doc-title">Business Model &amp; Pricing Validation</div>
+            <div class="doc-subtitle">Unit economics, pricing comparables, and the path from seed to Series A. Security budget, not HR budget. Enterprise ACV, not per-seat.</div>
+        </div>
+
+        <h3 class="section-h">The Budget Shift — Why This Lands in Security, Not HR</h3>
+        <p class="body-text">DPRK operatives, deepfake interviews, and workforce infiltration made hiring fraud a CISO-level concern in 2024. The budget for Sentriq does not come from an HR software line item. It comes from the security risk budget — the same budget that funds Crowdstrike, SentinelOne, and Persona. This is not a positioning choice. It is a documented shift validated by the KnowBe4 incident, the DOJ indictments, and the FBI advisory naming hiring fraud as a national security concern.</p>
+
+        <h3 class="section-h">Pricing Model</h3>
+        <div class="two-col">
+            <div>
+                <table class="evidence-table">
+                    <thead><tr><th>Component</th><th>Price</th></tr></thead>
+                    <tbody>
+                        <tr><td>Platform base (per company/month)</td><td><strong>$2,000</strong></td></tr>
+                        <tr><td>Per behavioral challenge</td><td><strong>$5 – $15</strong></td></tr>
+                        <tr><td>Human review (Layer 3, per case)</td><td><strong>$25 – $50</strong></td></tr>
+                        <tr><td>Target ACV (200-2,000 employee company)</td><td><strong>$36,000 – $60,000</strong></td></tr>
+                        <tr><td>Target gross margin</td><td><strong style="color:var(--green);">75 – 82%</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box" style="align-self: start;">
+                <div class="box-title">Why These Numbers Hold</div>
+                <p>A 500-person tech company runs 200-400 challenges per month at $10 each = $2,000-$4,000/mo usage on top of the $2,000 platform fee. ACV of $48,000-$72,000. Layer 3 human review is triggered for 5-10% of challenges — a 500-person company sees 15-30 human reviews per month at $35 each = $525-$1,050/mo. Total ACV: $36K-$60K is conservative.</p>
+            </div>
+        </div>
+
+        <h3 class="section-h">Pricing Comparables in Security Infrastructure</h3>
+        <table class="evidence-table">
+            <thead><tr><th>Company</th><th>Category</th><th>Approx. ACV (SMB/Mid-Market)</th><th>Gross Margin</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Persona</strong></td><td>Identity verification</td><td>$24,000 – $120,000</td><td>~70%</td></tr>
+                <tr><td><strong>Checkr</strong></td><td>Background screening</td><td>$12,000 – $60,000</td><td>~65%</td></tr>
+                <tr><td><strong>Crosschq</strong></td><td>Reference + fraud detection</td><td>$18,000 – $48,000</td><td>~72%</td></tr>
+                <tr><td><strong>Greenhouse (ATS)</strong></td><td>Applicant tracking</td><td>$6,000 – $50,000</td><td>~80%</td></tr>
+                <tr><td><strong style="color:var(--primary);">Sentriq (target)</strong></td><td>Hiring integrity</td><td><strong>$36,000 – $60,000</strong></td><td><strong>75 – 82%</strong></td></tr>
+            </tbody>
+        </table>
+        <p class="body-text" style="font-size: 13px; color: rgba(255,255,255,0.5);">Sentriq's ACV is positioned above background screening (Checkr) and reference checking (Crosschq) because it operates in the security budget, not HR. It is below identity infrastructure (Persona) because it is a focused integrity layer, not a full identity platform. The pricing is defensible and consistent with the category.</p>
+
+        <h3 class="section-h">Path from Seed to Series A</h3>
+        <table class="roadmap-table">
+            <thead><tr><th>Milestone</th><th>Target</th><th>Timeline</th></tr></thead>
+            <tbody>
+                <tr><td>First design partner (LOI signed)</td><td>1 named US enterprise company</td><td>Q2 2026</td></tr>
+                <tr><td>SOC 2 Type I complete</td><td>Audit passed</td><td>Q3 2026</td></tr>
+                <tr><td>First paying customer</td><td>$36K+ ACV</td><td>Q3 2026</td></tr>
+                <tr><td>3 paying customers</td><td>$108K+ ARR</td><td>Q4 2026</td></tr>
+                <tr><td>$400K ARR</td><td>10-12 customers</td><td>Q1 2027</td></tr>
+                <tr><td>VP Sales hired</td><td>At $25K MRR</td><td>Q1 2027</td></tr>
+                <tr><td><strong>Series A milestone</strong></td><td><strong>$1M ARR, 22-28 customers, 2+ enterprise logos, 90%+ retention</strong></td><td><strong>Q2-Q3 2027</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-h">Use of Seed Capital ($4M / 18 Months)</h3>
+        <div class="two-col">
+            <div class="box">
+                <div class="box-title">Enterprise Readiness (Year 1 Priority)</div>
+                <p>SOC 2 Type I + II: ~$80-120K. Legal and compliance architecture (GDPR, BIPA, EU AI Act, FCRA, DPA templates): ~$40-60K. Security pen test of the product: ~$20-30K. These are hard prerequisites for the first enterprise customer.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Product and Engineering</div>
+                <p>Detection engine hardening. Greenhouse and Workday integrations. Graph architecture and deletion infrastructure. Layer 2 behavioral challenge platform. Human review dashboard. Estimated: 2 senior engineers, 18 months.</p>
+            </div>
+            <div class="box">
+                <div class="box-title">GTM and First Revenue</div>
+                <p>Outbound to CISOs at Series B+ tech companies. Design partner conversion. First 3 paying customers. Sales + customer success (Samuel-led through $1M ARR before VP Sales hire).</p>
+            </div>
+            <div class="box">
+                <div class="box-title">Runway Buffer</div>
+                <p>18 months of runway to Series A milestone. 6-month buffer for delays in SOC 2 or enterprise sales cycles, which are known to be long. Seed round is sized to handle real-world enterprise sales timelines.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+</div><!-- end layout -->
+
+<script>
+    // Active sidebar link on scroll
+    const sections = document.querySelectorAll('.doc-section');
+    const links = document.querySelectorAll('.sidebar-link');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                links.forEach(l => l.classList.remove('active'));
+                const id = entry.target.id;
+                const active = document.querySelector(`.sidebar-link[href="#${id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
