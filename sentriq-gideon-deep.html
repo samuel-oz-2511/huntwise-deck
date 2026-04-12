@@ -218,7 +218,6 @@
     <a href="#threat">The Threat</a>
     <a href="#product">Product Architecture</a>
     <a href="#moat">The Data Moat</a>
-    <a href="#regulatory">Regulatory Framework</a>
     <a href="#why-now">Why Now</a>
 </div>
 
@@ -347,76 +346,9 @@
     <p>Sentriq is a neutral third party. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice before any behavioral data is collected. The employer does not collect the behavioral data — Sentriq does. This means the cross-company graph is built on direct candidate consent to a neutral platform, not on employer-to-employer data sharing. This architecture is permanently unavailable to any player that sits inside the hiring stack.</p>
 </div>
 
-<!-- SECTION 4: REGULATORY FRAMEWORK -->
-<div class="section" id="regulatory">
-    <div class="section-tag">Section 4</div>
-    <h2>Regulatory Framework</h2>
-
-    <p>This section covers the specific legal positions Sentriq has taken and the four documents currently pending formal legal sign-off. The architecture is designed to be compliant by default — not bolted on after launch.</p>
-
-    <div class="qa">
-        <span class="qa-status decided">Position taken</span>
-        <div class="qa-q">Is keystroke data biometric under GDPR Art. 9 or Illinois BIPA?</div>
-        <div class="qa-a">Our position: no. Keystroke timing patterns are pseudonymous behavioral metadata used for anomaly detection — not to create a biometric identifier for a specific person. The system is architecturally blocked from identity verification use cases. A formal written legal opinion confirming this classification is one of four pending documents.</div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Position taken</span>
-        <div class="qa-q">What is the lawful basis under GDPR Article 6?</div>
-        <div class="qa-a"><strong>Legitimate Interest (Art. 6(1)(f))</strong> — fraud prevention and workforce security. A Legitimate Interest Assessment (LIA) documenting the three-part balancing test is required before EU processing begins. This is one of the four pending documents.</div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Position taken</span>
-        <div class="qa-q">Does the neutral third-party structure break the GDPR employment consent problem?</div>
-        <div class="qa-a">GDPR generally treats employment consent as not freely given due to the employer-candidate power imbalance. Sentriq's structure addresses this: the candidate interacts with Sentriq's interface under Sentriq's privacy notice, independent of the employer's ATS flow. Our position is that this breaks the power dynamic. This is one of the questions we would like your view on.</div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Mitigation in place</span>
-        <div class="qa-q">Illinois BIPA</div>
-        <div class="qa-a"><strong>Phase 1 (at launch):</strong> Illinois candidates geo-fenced from the behavioral challenge, routed directly to Layer 3 human review. No behavioral data collected. <strong>Phase 2 (pre-first US customer):</strong> Full BIPA compliance package — written policy, written release at challenge entry, 90-day destruction schedule, registered agent filing in Illinois.</div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Designed into architecture</span>
-        <div class="qa-q">EU AI Act Annex III — High-Risk Classification</div>
-        <div class="qa-a">Hiring AI is high-risk under Annex III. <strong>Deadline: August 2, 2026.</strong> Requirements: human oversight, technical documentation, candidate transparency, conformity assessment. Layer 3 human review directly satisfies the human oversight requirement. A self-declaration conformity assessment is one of four pending documents.</div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Architecture defined</span>
-        <div class="qa-q">Data controller separation</div>
-        <div class="qa-a">Sentriq is data controller for challenge data and the cross-company graph. Each employer is data controller for their own application data. A standard DPA template is required for every enterprise contract — this is the fourth pending document. Clean separation limits liability for both parties.</div>
-    </div>
-
-    <h3>Four documents pending formal sign-off</h3>
-
-    <div class="callout yellow">
-        <div class="callout-label">Status</div>
-        The positions above represent the architecture decisions we have made. The four documents below need to be drafted and signed off by privacy counsel before the first enterprise deployment.
-        <br><br>
-        <strong>1. Legal Opinion — Biometric Classification</strong> (GDPR Art. 9 / BIPA)<br>
-        <strong>2. Legitimate Interest Assessment (LIA)</strong> — EU three-part balancing test<br>
-        <strong>3. Candidate Privacy Notice</strong> — plain language, pre-challenge, GDPR Arts. 13-14<br>
-        <strong>4. Standard DPA Template</strong> — controller/processor roles, retention, SCCs for non-EU transfers
-    </div>
-
-    <div class="src">
-        <div class="src-title">Sources</div>
-        <ul class="src-list">
-            <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank">EU AI Act — Annex III (Regulation 2024/1689)</a></li>
-            <li><a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank">GDPR Article 6 — Lawfulness of Processing</a></li>
-            <li><a href="https://gdpr-info.eu/art-9-gdpr/" target="_blank">GDPR Article 9 — Special Categories of Personal Data</a></li>
-            <li><a href="https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004" target="_blank">Illinois Biometric Information Privacy Act (BIPA)</a></li>
-            <li><a href="https://www.hunton.com/insights/legal/the-impact-of-the-eu-ai-act-on-human-resources-activities" target="_blank">Hunton: Impact of EU AI Act on HR Activities</a></li>
-        </ul>
-    </div>
-</div>
-
-<!-- SECTION 5: WHY NOW -->
+<!-- SECTION 4: WHY NOW -->
 <div class="section" id="why-now">
-    <div class="section-tag">Section 5</div>
+    <div class="section-tag">Section 4</div>
     <h2>Why Now</h2>
 
     <p>Two external events create a narrow and specific market window that does not repeat.</p>
