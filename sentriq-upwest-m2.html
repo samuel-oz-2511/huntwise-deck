@@ -452,9 +452,129 @@
 </div>
 
 <!-- ─────────────────────────────────────────────
-     SLIDE 7: WHY NOW
+     SLIDE 7: COMPETITIVE LANDSCAPE
 ───────────────────────────────────────────── -->
 <div class="slide bg-dark" data-index="6">
+    <div class="slide-inner">
+        <span class="label">Competitive Landscape</span>
+        <h2>The ATS gives a fit score. <span style="color:var(--primary);">Nobody surfaces a trust signal.</span></h2>
+
+        <div style="overflow-x:auto; margin-top:14px; margin-bottom:12px;">
+            <table style="width:100%; border-collapse:collapse; font-size:11px;">
+                <thead>
+                    <tr style="background:rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600; width:20%;">Company</th>
+                        <th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:12%;">Top-of-Funnel</th>
+                        <th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:14%;">Behavioral Signal</th>
+                        <th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:12%;">Cross-ATS</th>
+                        <th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:14%;">Cross-Company Intel</th>
+                        <th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:13%;">Human-in-Loop</th>
+                        <th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600;">Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Tier 1: Direct fraud detection -->
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Tofu</div><div style="font-size:9px; color:var(--text-dim);">$1.2M seed · Direct competitor</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">Partial</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">CV forensics only. No behavioral challenge, no cross-company graph. Flags after application enters funnel.</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Crosschq ApplicantX</div><div style="font-size:9px; color:var(--text-dim);">Series B · Full-funnel fraud</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Launched Nov 2025. No behavioral challenge — cannot catch proxy fraud. No cross-company graph.</td>
+                    </tr>
+                    <!-- Tier 2: Identity expanding upstream -->
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Persona</div><div style="font-size:9px; color:var(--text-dim);">$2B valuation · Already in Greenhouse</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Identity only. Blocks deepfakes at the door — not behavioral fraud inside. Contractually blocked from cross-company graph.</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Checkr IDV</div><div style="font-size:9px; color:var(--text-dim);">$550M+ raised · Launched Mar 2026</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Biometric identity check — confirms real person at the door. DPRK operatives use real stolen SSNs. Wrong detection layer.</td>
+                    </tr>
+                    <!-- Tier 3: ATS incumbents -->
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Greenhouse Real Talent</div><div style="font-size:9px; color:var(--text-dim);">ATS-native · Launched Fall 2025</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center;">—</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Greenhouse-only. Customer contracts legally prohibit cross-employer data sharing. Permanent structural gap.</td>
+                    </tr>
+                    <!-- Tier 4: Point solutions -->
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">GetReal Security</div><div style="font-size:9px; color:var(--text-dim);">$24.5M · Cisco, In-Q-Tel backed</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Deepfake detection for live video interviews. Downstream — by then the recruiter already spent hours.</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">GPTZero / Canditech</div><div style="font-size:9px; color:var(--text-dim);">Point solutions</div></td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">Partial</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
+                        <td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
+                        <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Text detection or assessment anti-cheat only. Single dimension. No cross-company graph. No behavioral identity.</td>
+                    </tr>
+                    <!-- Sentriq -->
+                    <tr style="background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.3);">
+                        <td style="padding:8px 10px;"><div style="font-weight:800; color:var(--white);">Sentriq</div><div style="font-size:9px; color:var(--primary);">Hiring Integrity Infrastructure</div></td>
+                        <td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
+                        <td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
+                        <td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
+                        <td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
+                        <td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
+                        <td style="padding:8px 10px; font-size:10.5px; color:#93C5FD; font-weight:600;">Only player with all five. Cross-company graph is architecturally unavailable to every ATS incumbent.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+            <div style="padding:14px 16px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); border-radius:10px;">
+                <div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Tofu &amp; Crosschq</div>
+                <p style="font-size:11.5px; color:var(--text); line-height:1.55;">Both flag fraud after the application enters the funnel. Neither has a behavioral challenge. Neither shares signals across employers. Sentriq screens before the first recruiter review.</p>
+            </div>
+            <div style="padding:14px 16px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:10px;">
+                <div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Persona &amp; Checkr IDV</div>
+                <p style="font-size:11.5px; color:var(--text); line-height:1.55;">Confirm credentials are real. DPRK operatives use real stolen SSNs — they pass identity checks. Wrong detection layer. No behavioral proxy fraud detection.</p>
+            </div>
+            <div style="padding:14px 16px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.15); border-radius:10px;">
+                <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Greenhouse Real Talent</div>
+                <p style="font-size:11.5px; color:var(--text); line-height:1.55;">Customer contracts legally prohibit cross-employer data sharing. Greenhouse-only. Cannot build the graph. Permanent architectural constraint — not a feature gap.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     SLIDE 8: WHY NOW
+───────────────────────────────────────────── -->
+<div class="slide bg-dark" data-index="7">
     <div class="slide-inner">
         <span class="label">Why Now</span>
         <h2>Three forces. <span style="color:var(--primary);">All peaking in 2026.</span></h2>
@@ -496,9 +616,9 @@
 </div>
 
 <!-- ─────────────────────────────────────────────
-     SLIDE 8: WHY WE'RE THE ONES
+     SLIDE 9: WHY WE'RE THE ONES
 ───────────────────────────────────────────── -->
-<div class="slide bg-dark" data-index="7">
+<div class="slide bg-dark" data-index="8">
     <div class="slide-inner">
         <span class="label">Earned Secret</span>
         <h2>We built the attack. <span style="color:var(--primary);">We own the defense.</span></h2>
@@ -545,7 +665,7 @@
 <!-- ─────────────────────────────────────────────
      SLIDE 9: WHERE WE ARE
 ───────────────────────────────────────────── -->
-<div class="slide bg-dark" data-index="8">
+<div class="slide bg-dark" data-index="9">
     <div class="slide-inner">
         <span class="label">Current Stage</span>
         <h2>Honest about where we stand. <span style="color:var(--primary);">Clear about where we're going.</span></h2>
@@ -602,7 +722,7 @@
 <!-- ─────────────────────────────────────────────
      SLIDE 10: NETWORK EFFECT
 ───────────────────────────────────────────── -->
-<div class="slide bg-dark" data-index="9">
+<div class="slide bg-dark" data-index="10">
     <div class="slide-inner">
         <span class="label">Network Effects</span>
         <h2>Every customer makes the product <span style="color:var(--primary);">better for everyone else.</span></h2>
@@ -646,7 +766,7 @@
 <!-- ─────────────────────────────────────────────
      SLIDE 11: TEAM
 ───────────────────────────────────────────── -->
-<div class="slide bg-dark" data-index="10">
+<div class="slide bg-dark" data-index="11">
     <div class="slide-inner">
         <span class="label">The Team</span>
         <h2>Built for this specific problem. <span style="color:var(--primary);">From both sides.</span></h2>
@@ -714,7 +834,7 @@
 <!-- ─────────────────────────────────────────────
      SLIDE 12: THE ASK
 ───────────────────────────────────────────── -->
-<div class="slide bg-dark" data-index="11">
+<div class="slide bg-dark" data-index="12">
     <div class="slide-inner">
         <span class="label">The Ask</span>
         <h2>$4M seed. <span style="color:var(--primary);">One window.</span></h2>
@@ -786,7 +906,7 @@
     </div>
     <div class="nav-controls">
         <button class="nav-btn" onclick="navigate(-1)">&#8592;</button>
-        <span class="slide-counter" id="slideCounter">1 / 12</span>
+        <span class="slide-counter" id="slideCounter">1 / 13</span>
         <button class="nav-btn" onclick="navigate(1)">&#8594;</button>
     </div>
 </div>
