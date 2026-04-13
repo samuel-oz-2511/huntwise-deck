@@ -1,9 +1,22 @@
 <!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ DATA ROOM — NFX VERSION
+Password: sentriqnfx2026
+=============================================================
+
+ANALYTICS — LIVE via ntfy.sh
+Topic: sentriq-nfx-dr-k9x2
+Subscribe: https://ntfy.sh/sentriq-nfx-dr-k9x2
+iOS/Android: install ntfy app → add topic sentriq-nfx-dr-k9x2
+Every time Nimrod unlocks this data room, you get a push notification.
+=============================================================
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentriq - Investor Data Room</title>
+    <title>Sentriq - NFX Fast Investor Data Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -292,6 +305,29 @@
 </div>
 
 <script>
+    // ─────────────────────────────────────────────────────
+    // ANALYTICS — ntfy.sh push notifications
+    // Samuel: install ntfy app (iOS/Android) or visit
+    // https://ntfy.sh/sentriq-nfx-dr-k9x2 in browser
+    // and click Subscribe to get notified on every unlock.
+    // ─────────────────────────────────────────────────────
+    function trackAccess() {
+        const ts = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour12: false });
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        try {
+            fetch('https://ntfy.sh/sentriq-nfx-dr-k9x2', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Title': 'NFX Data Room Opened',
+                    'Priority': 'high',
+                    'Tags': 'unlock,briefcase'
+                },
+                body: 'Nimrod (NFX) just unlocked the Sentriq investor data room.\nTime: ' + ts + '\nViewer timezone: ' + tz
+            });
+        } catch(e) {}
+    }
+
     // Keep layout hidden until correct password entered
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('topbar') && (document.getElementById('topbar').style.display = 'none');
@@ -300,12 +336,12 @@
 
     function checkPass() {
         const val = document.getElementById('gateInput').value;
-        const hash = btoa(val); // simple obfuscation
-        // Password: sentriq2026
-        if (val === atob('c2VudHJpcTIwMjY=')) {
+        // Password: sentriqnfx2026
+        if (val === atob('c2VudHJpcW5meDIwMjY=')) {
             document.getElementById('gate').style.display = 'none';
             document.getElementById('topbar').style.display = '';
             document.getElementById('appLayout').style.display = '';
+            trackAccess();
         } else {
             const err = document.getElementById('gateError');
             err.style.opacity = '1';
@@ -320,8 +356,8 @@
 <!-- TOP BAR -->
 <div class="topbar" id="topbar" style="display:none;">
     <span class="topbar-logo">Sentriq</span>
-    <span class="topbar-title">Investor Data Room &mdash; April 2026</span>
-    <span class="topbar-badge">Confidential</span>
+    <span class="topbar-title">NFX Fast Israel &mdash; Investor Data Room &mdash; April 2026</span>
+    <span class="topbar-badge">NFX | Confidential</span>
 </div>
 
 <div class="layout" id="appLayout" style="display:none;">
@@ -372,9 +408,31 @@
     <!-- OVERVIEW -->
     <section class="doc-section" id="overview">
         <div style="margin-bottom: 40px;">
-            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 12px;">Sentriq - Seed Round 2026</div>
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 12px;">Sentriq - Seed Round 2026 &mdash; Prepared for NFX Fast Israel</div>
             <h1 style="font-size: 36px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px;">Investor Data Room</h1>
             <p style="font-size: 16px; color: rgba(255,255,255,0.55); max-width: 620px; line-height: 1.7;">Supporting evidence, sourced claims, and analytical frameworks for the Sentriq $5M seed round. Each document maps directly to an investor diligence dimension.</p>
+
+        <div style="margin-top:28px; padding:20px 24px; background:rgba(37,99,235,0.07); border:1px solid rgba(37,99,235,0.2); border-radius:14px; border-left:3px solid var(--primary);">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--primary); margin-bottom:10px;">For Nimrod / NFX Fast Israel</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div>
+                    <div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">Portfolio alignment</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6;">Rippling, Deel, and Vendict are NFX portfolio companies operating in or adjacent to workforce infrastructure. Sentriq is the trust layer between every one of them and their own hiring pipelines.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">Why NFX specifically</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6;">The cross-company graph is a classic NFX network effect asset. Every company that joins Sentriq makes the signal stronger for every other company. The graph cannot be replicated by a single-employer ATS. Value compounds with adoption.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">Design partner update</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6;">Per our conversation: US enterprise design partner conversations are active. Document 09 has the full pipeline. We will update you directly when a US enterprise signs a design partner LOI.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">The ask and the change</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6;">We presented $4M in our first meeting. After modeling the full enterprise sales cycle (SOC 2, CISO buyer, 18-month runway to $1M ARR), the correct number is <strong style="color:var(--white);">$5M</strong>. Same milestones. More room to execute without bridging.</div>
+                </div>
+            </div>
+        </div>
         </div>
 
         <div class="overview-grid">
@@ -504,7 +562,7 @@
         <div class="callout green">
             <div class="callout-label green">The Right Proxy Metrics at This Stage</div>
             <p><strong>Instead of:</strong> DAUs, NPS, revenue, user retention<br><br>
-            <strong>Evaluate:</strong> (1) Named design partners confirming the pain; (2) Quality of attack research corpus; (3) Market timing evidence (DPRK headlines, EU AI Act deadline, bot explosion); (4) Tier-1 investor advancement (NFX FAST Israel); (5) SOC 2 readiness plan with clear timeline and budget.</p>
+            <strong>Evaluate:</strong> (1) Named design partners confirming the pain; (2) Quality of attack research corpus; (3) Market timing evidence (DPRK headlines, EU AI Act deadline, bot explosion); (4) Tier-1 investor advancement &mdash; this data room was prepared for NFX Fast Israel; (5) SOC 2 readiness plan with clear timeline and budget.</p>
         </div>
     </section>
 
@@ -746,6 +804,13 @@
 
         <h3 class="section-h">Market Validation Signals</h3>
         <p class="body-text">The number of large companies moving toward this space from adjacent positions is itself a category signal. When Checkr, Persona, and Greenhouse all launch identity/integrity features within 18 months of each other, the market is confirming the pain. None of them have the full stack. Sentriq is the only player building it as a purpose-built layer.</p>
+
+        <h3 class="section-h" style="margin-top:32px;">The Network Effect Asset</h3>
+        <div class="callout" style="border-left-color:#A78BFA; background:rgba(124,58,237,0.07);">
+            <div class="callout-label" style="color:#A78BFA;">NFX Thesis Alignment</div>
+            <p>The cross-company graph is a direct network effect product. <strong>Every additional company that plugs into Sentriq makes the fraud signal richer for every other company already on the platform.</strong> A candidate who fabricated credentials at Company A is flagged when they apply to Company B &mdash; with zero additional effort from Company B. This is the same compounding dynamic that makes marketplace networks defensible.<br><br>
+            The ATS contractual block (see above) makes this graph permanently unavailable to Greenhouse, Workday, or any single-employer platform. NFX portfolio companies Rippling and Deel could integrate Sentriq as a trust layer for their own hiring pipelines &mdash; and in doing so become nodes in the graph, making the signal stronger for every other Sentriq customer. <strong>The infrastructure that makes Rippling and Deel valuable to employers also makes them natural on-ramps to Sentriq.</strong></p>
+        </div>
     </section>
 
     <!-- DOCUMENT 5 -->
