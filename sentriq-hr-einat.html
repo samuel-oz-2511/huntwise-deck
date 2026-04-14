@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ HR BRIEFING — EINAT FRISH (SALESFORCE)
+Password: sentriqeinat2026
+=============================================================
+
+ANALYTICS — LIVE via ntfy.sh
+Topic: sentriq-hr-einat-m4p8
+Subscribe: https://ntfy.sh/sentriq-hr-einat-m4p8
+iOS/Android: install ntfy app, add topic sentriq-hr-einat-m4p8
+Every time Einat unlocks this deck, you get a push notification.
+=============================================================
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -554,6 +567,89 @@
     </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0F172A;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', -apple-system, sans-serif;
+">
+    <div style="width: 100%; max-width: 360px; padding: 0 24px; text-align: center;">
+        <div style="margin-bottom: 32px;">
+            <div style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">Sentriq</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 500;">HR Briefing &mdash; Confidential</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Enter access code"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            onkeydown="if(event.key==='Enter')checkPass()"
+            style="
+                width: 100%; padding: 14px 18px; border-radius: 10px;
+                border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+                color: #fff; font-size: 15px; font-family: inherit;
+                outline: none; margin-bottom: 12px; text-align: center; letter-spacing: 0.05em;
+            ">
+        <button onclick="checkPass()" style="
+            width: 100%; padding: 14px; border-radius: 10px; border: none;
+            background: #2563EB; color: #fff; font-size: 14px; font-weight: 600;
+            font-family: inherit; cursor: pointer; transition: background 0.2s;
+            " onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">
+            View Briefing
+        </button>
+        <div id="gateError" style="
+            font-size: 12px; color: #FCA5A5; margin-top: 10px; opacity: 0;
+            transition: opacity 0.3s;
+        ">Incorrect access code. Please try again.</div>
+        <div style="margin-top: 32px; font-size: 11px; color: rgba(255,255,255,0.2); line-height: 1.6;">
+            This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.
+        </div>
+    </div>
+</div>
+
+<script>
+    // ─────────────────────────────────────────────────────
+    // ANALYTICS — ntfy.sh push notifications
+    // Samuel: install ntfy app (iOS/Android) or visit
+    // https://ntfy.sh/sentriq-hr-einat-m4p8 in browser
+    // and click Subscribe to get notified on every unlock.
+    // ─────────────────────────────────────────────────────
+    function trackAccess() {
+        const ts = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour12: false });
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        try {
+            fetch('https://ntfy.sh/sentriq-hr-einat-m4p8', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Title': 'Einat Deck Opened',
+                    'Priority': 'high',
+                    'Tags': 'unlock,briefcase'
+                },
+                body: 'Einat just unlocked the Sentriq HR briefing.\nTime: ' + ts + '\nViewer timezone: ' + tz
+            });
+        } catch(e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.page').style.display = 'none';
+    });
+
+    function checkPass() {
+        const val = document.getElementById('gateInput').value;
+        // Password: sentriqeinat2026
+        if (val === atob('c2VudHJpcWVpbmF0MjAyNg==')) {
+            document.getElementById('gate').style.display = 'none';
+            document.querySelector('.page').style.display = '';
+            trackAccess();
+        } else {
+            const err = document.getElementById('gateError');
+            err.style.opacity = '1';
+            setTimeout(function() { err.style.opacity = '0'; }, 2500);
+            document.getElementById('gateInput').value = '';
+        }
+    }
+</script>
+
 <div class="page">
 
     <div class="logo">Sentriq</div>
