@@ -425,6 +425,91 @@
             color: #94a3b8;
         }
 
+        /* Solution layers */
+        .layers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+        .layer-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 22px;
+        }
+        .layer-num {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #2563eb;
+            background: #eff6ff;
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin-bottom: 12px;
+        }
+        .layer-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        .layer-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+        .layer-bullets {
+            list-style: none;
+            padding: 0;
+        }
+        .layer-bullets li {
+            font-size: 12px;
+            color: #64748b;
+            padding: 4px 0 4px 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .layer-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            background: #2563eb;
+            border-radius: 50%;
+        }
+        .layer-output {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 0;
+        }
+        .layer-output .output-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 6px;
+        }
+        .layer-output .output-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .layer-output .output-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
         /* Lifecycle diagram */
         .lifecycle-grid {
             display: grid;
@@ -473,14 +558,14 @@
 
     <div class="logo">Sentriq</div>
 
-    <!-- Hero -->
+    <!-- 1. PROBLEM: Hero -->
     <div class="hero">
         <div class="hero-label">For Einat Frish - Director, Tech Recruiting EMEA</div>
         <h1>You have spent 20 years building pipelines. <span>AI has spent two years poisoning them.</span></h1>
         <p>You are a data geek running EMEA tech recruiting at Salesforce scale. You know what a healthy pipeline looks like. What you are seeing now - the look-alike CVs, the candidates who pass screening and collapse in technical interviews, the noise your team absorbs before a single real conversation happens - that is not a recruiter problem. It is an infrastructure problem.</p>
     </div>
 
-    <!-- Pain stats -->
+    <!-- 2. PROBLEM: Pain stats -->
     <div class="section">
         <div class="section-label">The signal in the data</div>
         <div class="pain-grid">
@@ -492,7 +577,7 @@
             <div class="pain-card">
                 <div class="pain-num">~$500</div>
                 <div class="pain-label">cost of a single wasted technical interview - 4 hours of senior engineering time, before the candidate even sits with a hiring manager</div>
-                <div class="pain-source">Based on US average fully-loaded engineering comp<sup>2</sup></div>
+                <div class="pain-source">Based on fully-loaded engineering comp<sup>2</sup></div>
             </div>
             <div class="pain-card">
                 <div class="pain-num">30%+</div>
@@ -502,35 +587,7 @@
         </div>
     </div>
 
-    <!-- Team multiplier -->
-    <div class="section">
-        <div class="section-label">The team multiplier</div>
-        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">This is not your individual problem. Every recruiter on your team absorbs the same noise independently. The cost is not one wasted screen - it is every recruiter, every role, every cycle.</p>
-        <div class="multiplier">
-            <div class="mult-item">
-                <div class="mult-num">169</div>
-                <div class="mult-label">Salesforce EMEA HR results<br><span style="font-size:10px;color:#94a3b8;">LinkedIn Recruiter, April 2026<sup>5</sup></span></div>
-            </div>
-            <div class="mult-op">&#8594;</div>
-            <div class="mult-item">
-                <div class="mult-num">~68</div>
-                <div class="mult-label">in recruiting roles<br><span style="font-size:10px;color:#94a3b8;">est. 40% of total</span></div>
-            </div>
-            <div class="mult-op">&#8594;</div>
-            <div class="mult-item">
-                <div class="mult-num">~20</div>
-                <div class="mult-label">in tech recruiting<br><span style="font-size:10px;color:#94a3b8;">est. 30% of recruiters</span></div>
-            </div>
-            <div class="mult-op">x</div>
-            <div class="mult-item mult-result">
-                <div class="mult-num">~42 hrs</div>
-                <div class="mult-label">wasted per recruiter<br><span style="font-size:10px;color:#94a3b8;">844 hrs / 20 people</span></div>
-            </div>
-        </div>
-        <p class="mult-estimate-note">These are illustrative estimates based on LinkedIn Recruiter data - actual team composition will differ. Use the calculator below with your real numbers.</p>
-    </div>
-
-    <!-- Lifecycle diagram -->
+    <!-- 3. LIFECYCLE: Where Sentriq sits -->
     <div class="section">
         <div class="section-label">The full hiring cycle - where Sentriq sits</div>
         <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">Every stage adds cost. The deeper a fraudulent or misrepresented candidate gets into your funnel, the more expensive the mistake. Sentriq operates at stage one - before your team has spent a minute.</p>
@@ -600,43 +657,71 @@
         </div>
     </div>
 
-    <!-- Captcha callout -->
+    <!-- 4. SOLUTION: Two layers + async tests -->
+    <div class="section">
+        <div class="section-label">How Sentriq works - two layers</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">Two independent layers. The first runs silently on every application. The second activates only when the first flags an anomaly. Legitimate candidates see nothing. Your team sees one signal.</p>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1 - Always on</div>
+                <h3>Passive behavioral detection</h3>
+                <div class="layer-desc">Runs silently on every submission. Zero candidate friction. Zero recruiter action required. Nothing changes about your current process.</div>
+                <ul class="layer-bullets">
+                    <li>Bot-submitted applications stopped before they reach ATS</li>
+                    <li>Mass-apply tool fingerprints flagged (Simplify, LazyApply, Tsenta)</li>
+                    <li>Submission metadata and behavioral timing analyzed</li>
+                    <li>Copy-paste and templated application patterns detected</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2 - Triggered on anomaly</div>
+                <h3>Async challenge - 15 minutes</h3>
+                <div class="layer-desc">Activated only when Layer 1 flags something. Candidate completes it on their own time. No scheduling required. Result is ready within hours.</div>
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;margin-bottom:8px;">Calibrated by role type</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">SWE / Product / Infra</div>
+                        <div style="font-size:11px;color:#64748b;">Technical scenario, tool reasoning</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">Solution Engineers</div>
+                        <div style="font-size:11px;color:#64748b;">Technical troubleshooting, product scenario</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">Customer Success</div>
+                        <div style="font-size:11px;color:#64748b;">Scenario response, communication calibration</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">All roles</div>
+                        <div style="font-size:11px;color:#64748b;">Experience consistency, baseline verification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div>
+                <div class="output-label">The output</div>
+                <div class="output-text">A trust signal injected directly into your existing system - no new platform, no new login for your recruiters.</div>
+                <div class="output-sub">One signal per candidate, surfaced where your team already works. Your ATS, your workflow, your process - unchanged.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. SOCIAL PROOF: Captcha quote -->
     <div class="captcha-block">
         <div class="quote">"You are basically a candidate hiring captcha."</div>
         <div class="quote-source">First reaction from a seasoned tech executive, 30 minutes into a Sentriq pitch</div>
     </div>
 
-    <!-- How it works -->
+    <!-- 6. SALESFORCE: Your pipeline + painpoints -->
     <div class="section">
-        <div class="section-label">How it works - for your team</div>
-        <div class="steps">
-            <div class="step">
-                <div class="step-num">1</div>
-                <h3>Candidate applies</h3>
-                <p>Your careers page, your ATS - nothing changes on your team's end. Sentriq sits above the process as a passive layer.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <h3>Sentriq runs silently</h3>
-                <p>Passive behavioral signals are collected. Bots and mass-apply tools are stopped before they reach your team. Anomalies trigger a short async challenge - 15 minutes, calibrated to the role and seniority level.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <h3>Trust signal in your existing system</h3>
-                <p>The result is injected directly into your ATS. No new platform, no new workflow for your recruiters. One signal per candidate, surfaced where your team already works.</p>
-            </div>
+        <div class="section-label">Your Salesforce pipeline - what the noise costs</div>
+
+        <div class="equality-block" style="margin-bottom:24px;">
+            <h3>A side effect worth naming: it levels the playing field</h3>
+            <p>AI application tools are not equally distributed. Candidates who can afford coaching, premium CV tools, and AI-assisted prep have a structural advantage over those who cannot. When Sentriq removes the noise, it does not just protect your team's time - it means the candidates who earn their way through do so on merit. That is the pipeline you want to build.</p>
         </div>
-    </div>
 
-    <!-- Equality block -->
-    <div class="equality-block">
-        <h3>A side effect worth naming: it levels the playing field</h3>
-        <p>AI application tools are not equally distributed. Candidates who can afford coaching, premium CV tools, and AI-assisted screening prep have a structural advantage over those who cannot. When Sentriq removes the noise, it does not just protect your team's time - it means the candidates who earn their way through do so on merit. That is the pipeline you want to build.</p>
-    </div>
-
-    <!-- Current open roles + hours -->
-    <div class="section">
-        <div class="section-label">Your current open roles - what the noise costs</div>
         <p class="roles-note">112 active technical roles across 18 countries as of April 14, 2026, sourced from careers.salesforce.com. Application volumes and flag rates are estimated based on location and role type.<sup>4</sup></p>
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:16px;">
             <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
@@ -709,23 +794,52 @@
                 </tfoot>
             </table>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px;">
+    </div>
+
+    <!-- 7. ROI: Team impact + calculator -->
+    <div class="section">
+        <div class="section-label">The ROI for your team</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">This is not your individual problem. Every recruiter on your team absorbs the same noise independently. The cost is not one wasted screen - it is every recruiter, every role, every cycle.</p>
+
+        <div class="multiplier">
+            <div class="mult-item">
+                <div class="mult-num">169</div>
+                <div class="mult-label">Salesforce EMEA HR results<br><span style="font-size:10px;color:#94a3b8;">LinkedIn Recruiter, April 2026<sup>5</sup></span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">~68</div>
+                <div class="mult-label">in recruiting roles<br><span style="font-size:10px;color:#94a3b8;">est. 40% of total</span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">~20</div>
+                <div class="mult-label">in tech recruiting<br><span style="font-size:10px;color:#94a3b8;">est. 30% of recruiters</span></div>
+            </div>
+            <div class="mult-op">x</div>
+            <div class="mult-item mult-result">
+                <div class="mult-num">~42 hrs</div>
+                <div class="mult-label">wasted per recruiter<br><span style="font-size:10px;color:#94a3b8;">844 hrs / 20 people</span></div>
+            </div>
+        </div>
+        <p class="mult-estimate-note">Illustrative estimates based on LinkedIn Recruiter data. Use the calculator below with your actual team size.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px;margin-top:20px;">
             <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
                 <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">844 hrs</div>
-                <div style="font-size:12px;color:#15803d;line-height:1.5;">recruiter hours at risk across your 100 current open roles this cycle</div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">recruiter hours at risk across 100 current open roles this cycle</div>
             </div>
             <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
                 <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">~42 hrs / recruiter</div>
-                <div style="font-size:12px;color:#15803d;line-height:1.5;">per tech recruiter, based on est. team of ~20 - adjust below with your real number<sup>5</sup></div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">per tech recruiter, est. team of ~20 - adjust below with your real number<sup>5</sup></div>
             </div>
-            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 18px;text-align:center;">
-                <div style="font-size:22px;font-weight:800;color:#2563eb;margin-bottom:4px;">Every quarter</div>
-                <div style="font-size:12px;color:#3b82f6;line-height:1.5;">roles close and reopen - this cost resets with every new hiring cycle</div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px 18px;text-align:center;">
+                <div style="font-size:22px;font-weight:800;color:#ea580c;margin-bottom:4px;">Resets every cycle</div>
+                <div style="font-size:12px;color:#c2410c;line-height:1.5;">roles close and reopen - this cost accumulates every quarter, compounding per hire</div>
             </div>
         </div>
-        <p style="font-size:11px;color:#94a3b8;margin-top:10px;font-style:italic;">Each flagged candidate = one avoided 30-min phone screen. Does not include technical interview stages or bad hire risk.</p>
+        <p style="font-size:11px;color:#94a3b8;margin-top:10px;font-style:italic;">Each flagged candidate = one avoided 30-min phone screen. Does not include technical interview stages or bad hire risk. One avoided bad hire for a senior role covers this cost many times over.</p>
 
-        <!-- Calculator -->
         <div class="calc-block">
             <div class="calc-title">Run it with your actual numbers</div>
             <div class="calc-row">
@@ -747,7 +861,7 @@
         </script>
     </div>
 
-    <!-- Design partner ask -->
+    <!-- 8. ASK -->
     <div class="section">
         <div class="section-label">What we are asking for</div>
         <div class="ask-grid">
@@ -774,7 +888,7 @@
         </div>
     </div>
 
-    <!-- CTA -->
+    <!-- 9. CTA -->
     <div class="cta">
         <div class="cta-left">
             <h2>30 minutes with someone who has built this problem from both sides.</h2>
@@ -793,7 +907,7 @@
         <p><sup>2</sup> Calculated from US average fully-loaded senior engineering compensation of approximately $125/hr. Four hours represents a typical technical screening round including prep, interview, and debrief.</p>
         <p><sup>3</sup> US Department of Labor estimate. Actual cost including re-hiring, lost productivity, and management time is typically significantly higher for senior technical roles.</p>
         <p><sup>4</sup> Role list sourced from careers.salesforce.com RSS feed, April 14, 2026. 112 roles across 18 countries. Application volume and flag rate estimates are based on regional LinkedIn benchmarks by role type and location.</p>
-        <p><sup>5</sup> LinkedIn Recruiter search for Salesforce EMEA HR and talent acquisition profiles returned 169 results (April 2026). The result set includes a mix of recruiters, HRBPs, employee relations, and non-HR Salesforce employees matched by keyword. Conservative estimate: ~40% of results are in active recruiting roles (~68), of which ~30% are in technical recruiting (~20). These figures are illustrative. 844 total hrs / 20 tech recruiters = ~42 hrs per recruiter per cycle. The in-deck calculator lets you apply your actual team size.</p>
+        <p><sup>5</sup> LinkedIn Recruiter search for Salesforce EMEA HR and talent acquisition profiles returned 169 results (April 2026). Conservative estimate: ~40% in active recruiting roles (~68), of which ~30% in technical recruiting (~20). 844 total hrs / 20 = ~42 hrs per recruiter per cycle. Use the calculator above with your actual team size.</p>
         <p class="disclaimer">All cost figures reflect US and Western European market benchmarks. Actual costs vary by region, role seniority, and company size.</p>
     </div>
 
