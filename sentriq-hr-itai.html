@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ HR BRIEFING — ITAI GOLDICH (OPTIMOVE)
+Password: sentriqitai2026
+=============================================================
+
+ANALYTICS — LIVE via ntfy.sh
+Topic: sentriq-hr-itai-p9x1
+Subscribe: https://ntfy.sh/sentriq-hr-itai-p9x1
+iOS/Android: install ntfy app, add topic sentriq-hr-itai-p9x1
+Every time Itai unlocks this deck, you get a push notification.
+=============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq - For Itai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .logo {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #2563eb;
+            text-transform: uppercase;
+            margin-bottom: 72px;
+        }
+
+        .hero { margin-bottom: 64px; }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #2563eb;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.18;
+            color: #0f172a;
+            margin-bottom: 20px;
+            max-width: 720px;
+        }
+
+        .hero h1 span { color: #2563eb; }
+
+        .hero p {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.75;
+            max-width: 600px;
+        }
+
+        .section { margin-bottom: 60px; }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .pain-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 20px;
+        }
+
+        .pain-card .pain-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ef4444;
+            margin-bottom: 6px;
+        }
+
+        .pain-card .pain-label {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.55;
+        }
+
+        .pain-card .pain-source {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .multiplier {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 0;
+        }
+
+        .mult-item { text-align: center; }
+
+        .mult-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .mult-label {
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .mult-op {
+            font-size: 24px;
+            font-weight: 300;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 0 6px;
+        }
+
+        .mult-result .mult-num { color: #ef4444; }
+
+        .mult-estimate-note {
+            font-size: 11px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .calc-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 60px;
+        }
+
+        .calc-block .calc-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .calc-label {
+            font-size: 13px;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .calc-input {
+            width: 80px;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            background: #fff;
+            text-align: center;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .calc-eq {
+            font-size: 20px;
+            color: #cbd5e1;
+        }
+
+        .calc-result {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ef4444;
+        }
+
+        .calc-result-label {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .step {
+            padding: 28px 24px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .step:last-child { border-right: none; }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .step h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .captcha-block {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-left: 4px solid #2563eb;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 60px;
+        }
+
+        .captcha-block .quote {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .captcha-block .quote-source {
+            font-size: 13px;
+            color: #3b82f6;
+        }
+
+        .geo-block {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-left: 4px solid #0284c7;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+        }
+
+        .geo-block h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0c4a6e;
+            margin-bottom: 8px;
+        }
+
+        .geo-block p {
+            font-size: 13px;
+            color: #0369a1;
+            line-height: 1.65;
+        }
+
+        .roles-note {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .ask-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .ask-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 22px;
+        }
+
+        .ask-card .ask-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .ask-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .ask-card p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .ask-card.highlight {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .ask-card.highlight h3 { color: #166534; }
+        .ask-card.highlight p { color: #15803d; }
+
+        .cta {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 40px 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .cta-left h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .cta-left p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        .cta-right {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .cta-right .contact {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .cta-right .contact-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footnotes {
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footnotes p {
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 4px;
+        }
+
+        .footnotes .disclaimer {
+            font-size: 11px;
+            color: #cbd5e1;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .layers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+        .layer-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 22px;
+        }
+        .layer-num {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #2563eb;
+            background: #eff6ff;
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin-bottom: 12px;
+        }
+        .layer-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        .layer-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+        .layer-bullets {
+            list-style: none;
+            padding: 0;
+        }
+        .layer-bullets li {
+            font-size: 12px;
+            color: #64748b;
+            padding: 4px 0 4px 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .layer-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            background: #2563eb;
+            border-radius: 50%;
+        }
+        .layer-output {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 0;
+        }
+        .layer-output .output-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 6px;
+        }
+        .layer-output .output-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .layer-output .output-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+        }
+
+        .lifecycle-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+        .lc-stage {
+            padding: 14px 8px;
+            border-right: 1px solid #e2e8f0;
+            text-align: center;
+            background: #fff;
+        }
+        .lc-stage:last-child { border-right: none; }
+        .lc-badge { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent; }
+        .lc-name { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
+        .lc-tool { font-size: 10px; color: #94a3b8; line-height: 1.4; }
+        .lc-cost { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; }
+        .lc-stage.lc-sentriq { background: rgba(5,150,105,0.06); border-bottom: 3px solid #059669; }
+        .lc-stage.lc-sentriq .lc-badge { color: #059669; }
+        .lc-stage.lc-sentriq .lc-name { color: #065f46; }
+        .lc-stage.lc-sentriq .lc-cost { color: #059669; font-weight: 800; font-size: 12px; }
+        .lc-stage.lc-danger { background: rgba(234,88,12,0.06); border-bottom: 3px solid #ea580c; }
+        .lc-stage.lc-danger .lc-cost { color: #ea580c; font-weight: 800; }
+        .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
+        .lc-callout.lc-green { background: #f0fdf4; border-color: #bbf7d0; }
+        .lc-callout.lc-orange { background: #fff7ed; border-color: #fed7aa; }
+        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
+        .lc-callout.lc-green h4 { color: #166534; }
+        .lc-callout.lc-orange h4 { color: #9a3412; }
+        .lc-callout p { font-size: 12px; color: #64748b; line-height: 1.55; }
+
+        /* ── MOBILE ─────────────────────────────────────── */
+        @media (max-width: 640px) {
+            .page { padding: 36px 20px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 15px; }
+            .logo { margin-bottom: 40px; }
+            .hero { margin-bottom: 40px; }
+            .section { margin-bottom: 40px; }
+            .pain-grid { grid-template-columns: 1fr; }
+            .layers-grid { grid-template-columns: 1fr; }
+            .lifecycle-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+            .lifecycle-grid { min-width: 560px; }
+            .lc-callouts { grid-template-columns: 1fr; }
+            .multiplier {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                text-align: center;
+            }
+            .mult-op { display: none; }
+            .mult-item { border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+            .mult-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .calc-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .calc-input { width: 100%; font-size: 18px; }
+            .ask-grid { grid-template-columns: 1fr; }
+            .cta { flex-direction: column; padding: 28px 24px; text-align: center; }
+            .cta-right { text-align: center; }
+            .steps { grid-template-columns: 1fr; }
+            .step { border-right: none; border-bottom: 1px solid #e2e8f0; }
+            .step:last-child { border-bottom: none; }
+            .captcha-block .quote { font-size: 16px; }
+            table { font-size: 11px; }
+            table th, table td { padding: 8px 6px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0F172A;
+    display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+">
+    <div style="width: 100%; max-width: 360px; padding: 0 24px; text-align: center;">
+        <div style="margin-bottom: 32px;">
+            <div style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">Sentriq</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 500;">HR Briefing &mdash; Confidential</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Enter access code"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            onkeydown="if(event.key==='Enter')checkPass()"
+            style="
+                width: 100%; padding: 14px 18px; border-radius: 10px;
+                border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+                color: #fff; font-size: 15px; font-family: inherit;
+                outline: none; margin-bottom: 12px; text-align: center; letter-spacing: 0.05em;
+            ">
+        <button onclick="checkPass()" style="
+            width: 100%; padding: 14px; border-radius: 10px; border: none;
+            background: #2563EB; color: #fff; font-size: 14px; font-weight: 600;
+            font-family: inherit; cursor: pointer; transition: background 0.2s;
+            " onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">
+            View Briefing
+        </button>
+        <div id="gateError" style="
+            font-size: 12px; color: #FCA5A5; margin-top: 10px; opacity: 0;
+            transition: opacity 0.3s;
+        ">Incorrect access code. Please try again.</div>
+        <div style="margin-top: 32px; font-size: 11px; color: rgba(255,255,255,0.2); line-height: 1.6;">
+            This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.
+        </div>
+    </div>
+</div>
+
+<script>
+    // ─────────────────────────────────────────────────────
+    // ANALYTICS — ntfy.sh push notifications
+    // Samuel: install ntfy app (iOS/Android) or visit
+    // https://ntfy.sh/sentriq-hr-itai-p9x1 in browser
+    // and click Subscribe to get notified on every unlock.
+    // ─────────────────────────────────────────────────────
+    function trackAccess() {
+        const ts = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour12: false });
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        try {
+            fetch('https://ntfy.sh/sentriq-hr-itai-p9x1', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: 'Itai Deck Opened\nItai (Optimove) just unlocked the Sentriq HR briefing.\nTime: ' + ts + '\nViewer timezone: ' + tz
+            });
+        } catch(e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.page').style.display = 'none';
+    });
+
+    function checkPass() {
+        const val = document.getElementById('gateInput').value;
+        // Password: sentriqitai2026
+        if (val === atob('c2VudHJpcWl0YWkyMDI2')) {
+            document.getElementById('gate').style.display = 'none';
+            document.querySelector('.page').style.display = '';
+            trackAccess();
+        } else {
+            const err = document.getElementById('gateError');
+            err.style.opacity = '1';
+            setTimeout(function() { err.style.opacity = '0'; }, 2500);
+            document.getElementById('gateInput').value = '';
+        }
+    }
+</script>
+
+<div class="page">
+
+    <div class="logo">Sentriq</div>
+
+    <!-- 1. PROBLEM: Hero -->
+    <div class="hero">
+        <div class="hero-label">For Itai Goldich - Director of Talent Acquisition, Optimove</div>
+        <h1>You taught a graduate course on strategic recruiting. <span>What you are seeing in your pipeline now is not in the curriculum.</span></h1>
+        <p>You built sourcing infrastructure at Meta for some of its most complex, high-signal searches. You know what a healthy pipeline looks like and what a gamed one costs. What is happening now is different. AI application tooling is not a candidate edge case. It is the default behavior. And it lands in your ATS before you see a single profile.</p>
+    </div>
+
+    <!-- 2. PROBLEM: Pain stats -->
+    <div class="section">
+        <div class="section-label">The signal in the data</div>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-num">64%</div>
+                <div class="pain-label">of recruiters report a measurable rise in AI-generated, look-alike applications increasing screening workload</div>
+                <div class="pain-source">ResumeBuilder survey, 2024<sup>1</sup></div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">~$500</div>
+                <div class="pain-label">cost of a single wasted technical interview - 4 hours of senior engineering time, before the candidate even sits with a hiring manager</div>
+                <div class="pain-source">Based on fully-loaded engineering comp<sup>2</sup></div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">30%+</div>
+                <div class="pain-label">of first-year salary is the minimum cost when a misrepresented hire has to be removed - not counting team productivity loss</div>
+                <div class="pain-source">US Department of Labor<sup>3</sup></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. LIFECYCLE: Where Sentriq sits -->
+    <div class="section">
+        <div class="section-label">The full hiring cycle - where Sentriq sits</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">Every stage adds cost. The deeper a fraudulent or misrepresented candidate gets into your funnel, the more expensive the mistake. Sentriq operates at stage one - before your team has spent a minute.</p>
+        <div class="lifecycle-grid-wrap">
+        <div class="lifecycle-grid">
+            <div class="lc-stage lc-sentriq">
+                <div class="lc-badge">&#9660; Sentriq</div>
+                <div class="lc-name">Application</div>
+                <div class="lc-tool">Upstream of ATS</div>
+                <div class="lc-cost">0 recruiter hrs</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">ATS Screen</div>
+                <div class="lc-tool">Your ATS</div>
+                <div class="lc-cost">~$5 / application</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Assessment</div>
+                <div class="lc-tool">HireVue / Criteria</div>
+                <div class="lc-cost">~$30 / candidate</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Phone Screen</div>
+                <div class="lc-tool">Recruiter</div>
+                <div class="lc-cost">~$30 / screen</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Tech Interview</div>
+                <div class="lc-tool">Engineering team</div>
+                <div class="lc-cost">~$500 / candidate</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Final Panel</div>
+                <div class="lc-tool">Hiring manager</div>
+                <div class="lc-cost">~$1,800 / candidate</div>
+            </div>
+            <div class="lc-stage lc-danger">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Background Check</div>
+                <div class="lc-tool">Checkr / HireRight</div>
+                <div class="lc-cost">$1,900+ already bled</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Onboarding</div>
+                <div class="lc-tool">Rippling / Deel</div>
+                <div class="lc-cost">$3,200+ total</div>
+            </div>
+        </div>
+        </div><!-- /lifecycle-grid-wrap -->
+        <div class="lc-callouts">
+            <div class="lc-callout lc-green">
+                <h4>Sentriq screens at application</h4>
+                <p>Before the first calendar invite. Before any recruiter, engineer, or executive minute is spent.</p>
+            </div>
+            <div class="lc-callout lc-orange">
+                <h4>Traditional verification runs last</h4>
+                <p>After 6+ rounds and $1,900+ in human time already invested in a candidate who should not have been there.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>The shift-left principle</h4>
+                <p>Security learned this 20 years ago: catching problems earlier reduces cost dramatically. The same logic applies to hiring integrity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SOLUTION: Two layers + async tests -->
+    <div class="section">
+        <div class="section-label">How Sentriq works - two layers</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">Two independent layers. The first runs silently on every application. The second activates only when the first flags an anomaly. Legitimate candidates see nothing. Your team sees one signal.</p>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1 - Always on</div>
+                <h3>Passive behavioral detection</h3>
+                <div class="layer-desc">Runs silently on every submission. Zero candidate friction. Zero recruiter action required. Nothing changes about your current process.</div>
+                <ul class="layer-bullets">
+                    <li>Bot-submitted applications stopped before they reach ATS</li>
+                    <li>Mass-apply tool fingerprints flagged (Simplify, LazyApply, Tsenta)</li>
+                    <li>Submission metadata and behavioral timing analyzed</li>
+                    <li>Copy-paste and templated application patterns detected</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2 - Triggered on anomaly</div>
+                <h3>Async challenge - 15 minutes</h3>
+                <div class="layer-desc">Activated only when Layer 1 flags something. Candidate completes it on their own time. No scheduling required. Result is ready within hours.</div>
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;margin-bottom:8px;">Calibrated by role type</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">R&amp;D / Engineering / Data</div>
+                        <div style="font-size:11px;color:#64748b;">Technical scenario, algorithm reasoning</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">Product / ML / AI</div>
+                        <div style="font-size:11px;color:#64748b;">Product thinking, data interpretation</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">Customer Success / Sales</div>
+                        <div style="font-size:11px;color:#64748b;">Scenario response, domain knowledge check</div>
+                    </div>
+                    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;">
+                        <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:2px;">All roles</div>
+                        <div style="font-size:11px;color:#64748b;">Experience consistency, baseline verification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div>
+                <div class="output-label">The output</div>
+                <div class="output-text">A trust signal injected directly into your existing system - no new platform, no new login for your recruiters.</div>
+                <div class="output-sub">One signal per candidate, surfaced where your team already works. Your ATS, your workflow, your process - unchanged.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. SOCIAL PROOF: Captcha quote -->
+    <div class="captcha-block">
+        <div class="quote">"You are basically a candidate hiring captcha."</div>
+        <div class="quote-source">First reaction from a seasoned tech executive, 30 minutes into a Sentriq pitch</div>
+    </div>
+
+    <!-- 6. OPTIMOVE: Pipeline + context -->
+    <div class="section">
+        <div class="section-label">Your Optimove pipeline - what the noise costs</div>
+
+        <div class="geo-block" style="margin-bottom:24px;">
+            <h3>Three offices. Three talent markets. One team.</h3>
+            <p>Tel Aviv, New York, London - each with different application volumes, different AI tool penetration rates, and different candidate behaviors. A London Sales application looks nothing like a Tel Aviv R&amp;D application in terms of noise profile. The Smartico acquisition adds to that complexity. The volume is about to grow faster than the team does.</p>
+        </div>
+
+        <p class="roles-note">21 active roles across Tel Aviv, New York and London as of April 14, 2026, sourced from optimove.com/careers. Application volumes and recruiter hours are estimated based on role type and market benchmarks.<sup>4</sup></p>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:16px;overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:500px;">
+                <thead>
+                    <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0;">
+                        <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;">Department</th>
+                        <th style="text-align:left;padding:12px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;">Offices</th>
+                        <th style="text-align:center;padding:12px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;">Roles</th>
+                        <th style="text-align:right;padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#ef4444;">Recruiter hrs at risk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:10px 16px;color:#0f172a;font-weight:600;">R&amp;D / Engineering / SRE</td>
+                        <td style="padding:10px 10px;color:#64748b;font-size:12px;">Tel Aviv, New York</td>
+                        <td style="padding:10px 10px;text-align:center;color:#475569;">7</td>
+                        <td style="padding:10px 16px;text-align:right;color:#ef4444;font-weight:700;">74 hrs</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;">
+                        <td style="padding:10px 16px;color:#0f172a;font-weight:600;">Sales &amp; Partnerships</td>
+                        <td style="padding:10px 10px;color:#64748b;font-size:12px;">New York, London, APAC</td>
+                        <td style="padding:10px 10px;text-align:center;color:#475569;">6</td>
+                        <td style="padding:10px 16px;text-align:right;color:#ef4444;font-weight:700;">51 hrs</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;">
+                        <td style="padding:10px 16px;color:#0f172a;font-weight:600;">Customer Success</td>
+                        <td style="padding:10px 10px;color:#64748b;font-size:12px;">Tel Aviv, London</td>
+                        <td style="padding:10px 10px;text-align:center;color:#475569;">1</td>
+                        <td style="padding:10px 16px;text-align:right;color:#ef4444;font-weight:700;">8 hrs</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;">
+                        <td style="padding:10px 16px;color:#0f172a;font-weight:600;">Product &amp; UI/UX</td>
+                        <td style="padding:10px 10px;color:#64748b;font-size:12px;">Tel Aviv</td>
+                        <td style="padding:10px 10px;text-align:center;color:#475569;">2</td>
+                        <td style="padding:10px 16px;text-align:right;color:#ef4444;font-weight:700;">19 hrs</td>
+                    </tr>
+                    <tr style="background:#fafafa;">
+                        <td style="padding:10px 16px;color:#0f172a;font-weight:600;">Professional Services &amp; Other</td>
+                        <td style="padding:10px 10px;color:#64748b;font-size:12px;">Tel Aviv, New York</td>
+                        <td style="padding:10px 10px;text-align:center;color:#475569;">5</td>
+                        <td style="padding:10px 16px;text-align:right;color:#ef4444;font-weight:700;">25 hrs</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr style="background:#fff8f8;border-top:2px solid #fecaca;">
+                        <td colspan="2" style="padding:13px 16px;font-weight:700;color:#0f172a;">Total - 21 active roles</td>
+                        <td style="padding:13px 10px;text-align:center;font-weight:700;color:#0f172a;">21</td>
+                        <td style="padding:13px 16px;text-align:right;font-weight:800;font-size:16px;color:#ef4444;">~177 hrs</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- 7. ROI: Team impact + calculator -->
+    <div class="section">
+        <div class="section-label">What this means for your team</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">At a scale-up, the TA team is small. Every hour of noise your team absorbs is an hour not spent on sourcing, assessment quality, or hiring manager partnership. The cost per recruiter is higher - not lower - than at enterprise.</p>
+
+        <div class="multiplier">
+            <div class="mult-item">
+                <div class="mult-num">584</div>
+                <div class="mult-label">Optimove employees<br><span style="font-size:10px;color:#94a3b8;">2x growth since 2021</span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">21</div>
+                <div class="mult-label">active open roles<br><span style="font-size:10px;color:#94a3b8;">careers.optimove.com, April 2026</span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">~177 hrs</div>
+                <div class="mult-label">recruiter hours at risk<br><span style="font-size:10px;color:#94a3b8;">this cycle alone</span></div>
+            </div>
+            <div class="mult-op">&#247;</div>
+            <div class="mult-item mult-result">
+                <div class="mult-num">small team</div>
+                <div class="mult-label">every hour lands on<br><span style="font-size:10px;color:#94a3b8;">one of 2-3 people</span></div>
+            </div>
+        </div>
+        <p class="mult-estimate-note">This is a quiet cycle. The Smartico acquisition and Optimove's growth trajectory will push the next wave significantly higher. Use the calculator to model any scenario.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px;margin-top:20px;">
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
+                <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">~177 hrs</div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">recruiter hours at risk across 21 current open roles this cycle</div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
+                <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">~$10,600</div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">in recruiter capacity at risk this cycle, at $60/hr loaded cost<sup>5</sup></div>
+            </div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px 18px;text-align:center;">
+                <div style="font-size:22px;font-weight:800;color:#ea580c;margin-bottom:4px;">Resets every cycle</div>
+                <div style="font-size:12px;color:#c2410c;line-height:1.5;">and the next cycle comes faster - Smartico closes, growth resumes, pipeline doubles</div>
+            </div>
+        </div>
+        <p style="font-size:11px;color:#94a3b8;margin-top:10px;font-style:italic;">Each flagged candidate = one avoided 30-min phone screen. Does not include technical interview stages or bad hire risk. One avoided bad hire for a senior R&amp;D role covers this cost many times over.</p>
+
+        <div class="calc-block">
+            <div class="calc-title">Model your next hiring wave</div>
+            <div class="calc-row">
+                <input class="calc-input" id="openRoles" type="number" min="1" max="2000" value="21" oninput="calcUpdate()">
+                <span class="calc-label">open roles this cycle</span>
+                <span class="calc-eq">&times;</span>
+                <span class="calc-label">8.44 hrs avg per role</span>
+                <span class="calc-eq">=</span>
+                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;">
+                    <div style="display:flex;align-items:baseline;gap:6px;">
+                        <span class="calc-result" id="calcResult">177 hrs</span>
+                        <span class="calc-result-label">returned to your team</span>
+                    </div>
+                    <div style="display:flex;align-items:baseline;gap:6px;">
+                        <span class="calc-result" id="calcDollars" style="color:#16a34a;">$10,600</span>
+                        <span class="calc-result-label">in recruiter capacity recovered<sup style="font-size:9px;">5</sup></span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:10px;font-size:12px;color:#64748b;" id="calcWeeks">That is ~4 full recruiter-weeks your team gets back.</div>
+        </div>
+        <script>
+        function calcUpdate() {
+            var v = parseInt(document.getElementById('openRoles').value) || 1;
+            var hrs = Math.round(v * 8.44);
+            var dollars = Math.round(hrs * 60 / 100) * 100;
+            var weeks = Math.round(hrs / 40);
+            document.getElementById('calcResult').textContent = hrs + ' hrs';
+            document.getElementById('calcDollars').textContent = '$' + dollars.toLocaleString();
+            document.getElementById('calcWeeks').textContent = 'That is ~' + weeks + ' full recruiter-weeks your team gets back.';
+        }
+        </script>
+    </div>
+
+    <!-- 8. ASK -->
+    <div class="section">
+        <div class="section-label">What we are asking for</div>
+        <div class="ask-grid">
+            <div class="ask-card">
+                <div class="ask-icon">&#128337;</div>
+                <h3>30 minutes</h3>
+                <p>You have taught and practiced recruiting at a level most people in this space have not. This is not a vendor pitch. We want your professional read on whether the problem we are solving matches what you are actually seeing.</p>
+            </div>
+            <div class="ask-card">
+                <div class="ask-icon">&#128172;</div>
+                <h3>Your TA team's ground-level view</h3>
+                <p>The people doing the screening every day have the clearest signal on where the noise enters. What a trust signal in their workflow would actually change - that is the input we need to build this right.</p>
+            </div>
+            <div class="ask-card highlight">
+                <div class="ask-icon">&#10003;</div>
+                <h3>No commitment, no data shared</h3>
+                <p>Sentriq is not in production yet. No deployment, no candidate data, no integration required. We are building towards SOC 2 compliance before any company goes live.</p>
+            </div>
+            <div class="ask-card highlight">
+                <div class="ask-icon">&#128640;</div>
+                <h3>First access + direct product input</h3>
+                <p>Design partners shape the product before it launches. If Sentriq solves a real problem for Optimove's talent pipeline, you would be first in line - at preferred terms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>30 minutes with someone who has built this problem from both sides.</h2>
+            <p>One founder spent a decade in talent acquisition. The other is a career security engineer. They know what your pipeline is supposed to look like.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">Samuel Kemper</div>
+            <div class="contact-sub">samuel@sentriq.co</div>
+            <div class="contact-sub" style="margin-top:8px;">sentriq.co</div>
+        </div>
+    </div>
+
+    <!-- Footnotes -->
+    <div class="footnotes">
+        <p><sup>1</sup> ResumeBuilder.com, "7 in 10 Companies Will Use AI in the Hiring Process in 2025," 2024. Survey of HR professionals across US companies.</p>
+        <p><sup>2</sup> Calculated from US average fully-loaded senior engineering compensation of approximately $125/hr. Four hours represents a typical technical screening round including prep, interview, and debrief.</p>
+        <p><sup>3</sup> US Department of Labor estimate. Actual cost including re-hiring, lost productivity, and management time is typically significantly higher for senior technical roles.</p>
+        <p><sup>4</sup> Role list sourced from optimove.com/careers, April 14, 2026. 21 active roles across Tel Aviv, New York and London. Application volume and recruiter hours are estimates based on role type and market benchmarks.</p>
+        <p><sup>5</sup> Recruiter capacity valued at $60/hr fully loaded, derived from the $30 phone-screen benchmark in the lifecycle diagram above (30-min call). Conservative estimate; does not include coordination, scheduling, or ATS triage time between stages.</p>
+        <p class="disclaimer">All cost figures reflect US and Israeli market benchmarks. Actual costs vary by region, role seniority, and company size.</p>
+    </div>
+
+    <div class="footer">Sentriq - Hiring Integrity Infrastructure &nbsp;|&nbsp; sentriq.co &nbsp;|&nbsp; Confidential</div>
+
+</div>
+</body>
+</html>
