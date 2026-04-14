@@ -111,9 +111,9 @@
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 28px 32px;
-            margin-bottom: 60px;
+            margin-bottom: 16px;
             display: grid;
-            grid-template-columns: 1fr auto 1fr auto 1fr;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
             align-items: center;
             gap: 0;
         }
@@ -121,27 +121,100 @@
         .mult-item { text-align: center; }
 
         .mult-num {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 800;
             color: #0f172a;
             margin-bottom: 6px;
         }
 
         .mult-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #64748b;
             line-height: 1.5;
         }
 
         .mult-op {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 300;
             color: #cbd5e1;
             text-align: center;
-            padding: 0 8px;
+            padding: 0 6px;
         }
 
         .mult-result .mult-num { color: #ef4444; }
+
+        .mult-estimate-note {
+            font-size: 11px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        /* Calculator */
+        .calc-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 60px;
+        }
+
+        .calc-block .calc-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .calc-label {
+            font-size: 13px;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .calc-input {
+            width: 80px;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            background: #fff;
+            text-align: center;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .calc-eq {
+            font-size: 20px;
+            color: #cbd5e1;
+        }
+
+        .calc-result {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ef4444;
+        }
+
+        .calc-result-label {
+            font-size: 12px;
+            color: #64748b;
+        }
 
         /* How it works */
         .steps {
@@ -395,7 +468,29 @@
     <!-- Team multiplier -->
     <div class="section">
         <div class="section-label">The team multiplier</div>
-        <p style="font-size:13px;color:#64748b;line-height:1.6;">This is not your individual problem. Every recruiter on your team absorbs the same noise independently. The cost is not one wasted screen - it is every recruiter, every role, every cycle. At 100+ active roles across 18 countries, the volume means this scales fast across your team.</p>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">This is not your individual problem. Every recruiter on your team absorbs the same noise independently. The cost is not one wasted screen - it is every recruiter, every role, every cycle.</p>
+        <div class="multiplier">
+            <div class="mult-item">
+                <div class="mult-num">169</div>
+                <div class="mult-label">Salesforce EMEA HR results<br><span style="font-size:10px;color:#94a3b8;">LinkedIn Recruiter, April 2026<sup>5</sup></span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">~68</div>
+                <div class="mult-label">in recruiting roles<br><span style="font-size:10px;color:#94a3b8;">est. 40% of total</span></div>
+            </div>
+            <div class="mult-op">&#8594;</div>
+            <div class="mult-item">
+                <div class="mult-num">~20</div>
+                <div class="mult-label">in tech recruiting<br><span style="font-size:10px;color:#94a3b8;">est. 30% of recruiters</span></div>
+            </div>
+            <div class="mult-op">x</div>
+            <div class="mult-item mult-result">
+                <div class="mult-num">~42 hrs</div>
+                <div class="mult-label">wasted per recruiter<br><span style="font-size:10px;color:#94a3b8;">844 hrs / 20 people</span></div>
+            </div>
+        </div>
+        <p class="mult-estimate-note">These are illustrative estimates based on LinkedIn Recruiter data - actual team composition will differ. Use the calculator below with your real numbers.</p>
     </div>
 
     <!-- Captcha callout -->
@@ -507,17 +602,42 @@
                 </tfoot>
             </table>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px;">
             <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
                 <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">844 hrs</div>
-                <div style="font-size:12px;color:#15803d;line-height:1.5;">recruiter hours at risk across current open roles this cycle</div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">recruiter hours at risk across your 100 current open roles this cycle</div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;text-align:center;">
+                <div style="font-size:22px;font-weight:800;color:#16a34a;margin-bottom:4px;">~42 hrs / recruiter</div>
+                <div style="font-size:12px;color:#15803d;line-height:1.5;">per tech recruiter, based on est. team of ~20 - adjust below with your real number<sup>5</sup></div>
             </div>
             <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 18px;text-align:center;">
                 <div style="font-size:22px;font-weight:800;color:#2563eb;margin-bottom:4px;">Every quarter</div>
                 <div style="font-size:12px;color:#3b82f6;line-height:1.5;">roles close and reopen - this cost resets with every new hiring cycle</div>
             </div>
         </div>
-        <p style="font-size:11px;color:#94a3b8;margin-top:10px;font-style:italic;">Each flagged candidate = one avoided 30-min phone screen. Does not include technical interview stages or bad hire risk. Team-level breakdown available once recruiter headcount is confirmed.</p>
+        <p style="font-size:11px;color:#94a3b8;margin-top:10px;font-style:italic;">Each flagged candidate = one avoided 30-min phone screen. Does not include technical interview stages or bad hire risk.</p>
+
+        <!-- Calculator -->
+        <div class="calc-block">
+            <div class="calc-title">Run it with your actual numbers</div>
+            <div class="calc-row">
+                <span class="calc-label">844 hrs total</span>
+                <span class="calc-eq">&#247;</span>
+                <input class="calc-input" id="teamSize" type="number" min="1" max="200" value="20" oninput="calcUpdate()">
+                <span class="calc-label">tech recruiters on your team</span>
+                <span class="calc-eq">=</span>
+                <span class="calc-result" id="calcResult">42 hrs</span>
+                <span class="calc-result-label">per recruiter this cycle</span>
+            </div>
+        </div>
+        <script>
+        function calcUpdate() {
+            var v = parseInt(document.getElementById('teamSize').value) || 1;
+            var result = Math.round(844 / v);
+            document.getElementById('calcResult').textContent = result + ' hrs';
+        }
+        </script>
     </div>
 
     <!-- Design partner ask -->
@@ -565,7 +685,8 @@
         <p><sup>1</sup> ResumeBuilder.com, "7 in 10 Companies Will Use AI in the Hiring Process in 2025," 2024. Survey of HR professionals across US companies.</p>
         <p><sup>2</sup> Calculated from US average fully-loaded senior engineering compensation of approximately $125/hr. Four hours represents a typical technical screening round including prep, interview, and debrief.</p>
         <p><sup>3</sup> US Department of Labor estimate. Actual cost including re-hiring, lost productivity, and management time is typically significantly higher for senior technical roles.</p>
-        <p><sup>4</sup> Role list sourced from careers.salesforce.com RSS feed, April 14, 2026. 112 roles across 18 countries.</p>
+        <p><sup>4</sup> Role list sourced from careers.salesforce.com RSS feed, April 14, 2026. 112 roles across 18 countries. Application volume and flag rate estimates are based on regional LinkedIn benchmarks by role type and location.</p>
+        <p><sup>5</sup> LinkedIn Recruiter search for Salesforce EMEA HR and talent acquisition profiles returned 169 results (April 2026). The result set includes a mix of recruiters, HRBPs, employee relations, and non-HR Salesforce employees matched by keyword. Conservative estimate: ~40% of results are in active recruiting roles (~68), of which ~30% are in technical recruiting (~20). These figures are illustrative. 844 total hrs / 20 tech recruiters = ~42 hrs per recruiter per cycle. The in-deck calculator lets you apply your actual team size.</p>
         <p class="disclaimer">All cost figures reflect US and Western European market benchmarks. Actual costs vary by region, role seniority, and company size.</p>
     </div>
 
