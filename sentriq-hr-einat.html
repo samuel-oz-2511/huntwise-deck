@@ -848,8 +848,16 @@
                 <span class="calc-eq">&times;</span>
                 <span class="calc-label">8.44 hrs avg per role</span>
                 <span class="calc-eq">=</span>
-                <span class="calc-result" id="calcResult">844 hrs</span>
-                <span class="calc-result-label">returned to your team</span>
+                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;">
+                    <div style="display:flex;align-items:baseline;gap:6px;">
+                        <span class="calc-result" id="calcResult">844 hrs</span>
+                        <span class="calc-result-label">returned to your team</span>
+                    </div>
+                    <div style="display:flex;align-items:baseline;gap:6px;">
+                        <span class="calc-result" id="calcDollars" style="color:#16a34a;">$50,600</span>
+                        <span class="calc-result-label">in recruiter capacity recovered<sup style="font-size:9px;">6</sup></span>
+                    </div>
+                </div>
             </div>
             <div style="text-align:center;margin-top:10px;font-size:12px;color:#64748b;" id="calcWeeks">That is ~21 full recruiter-weeks your team gets back.</div>
         </div>
@@ -857,8 +865,10 @@
         function calcUpdate() {
             var v = parseInt(document.getElementById('openRoles').value) || 1;
             var hrs = Math.round(v * 8.44);
+            var dollars = Math.round(hrs * 60 / 100) * 100;
             var weeks = Math.round(hrs / 40);
             document.getElementById('calcResult').textContent = hrs + ' hrs';
+            document.getElementById('calcDollars').textContent = '$' + dollars.toLocaleString();
             document.getElementById('calcWeeks').textContent = 'That is ~' + weeks + ' full recruiter-weeks your team gets back.';
         }
         </script>
@@ -911,6 +921,7 @@
         <p><sup>3</sup> US Department of Labor estimate. Actual cost including re-hiring, lost productivity, and management time is typically significantly higher for senior technical roles.</p>
         <p><sup>4</sup> Role list sourced from careers.salesforce.com RSS feed, April 14, 2026. 112 roles across 18 countries. Application volume and flag rate estimates are based on regional LinkedIn benchmarks by role type and location.</p>
         <p><sup>5</sup> LinkedIn Recruiter search for Salesforce EMEA HR and talent acquisition profiles returned 169 results (April 2026). Conservative estimate: ~40% in active recruiting roles (~68), of which ~30% in technical recruiting (~20). 844 total hrs across 100 open roles = 8.44 avg hrs per role. Calculator above scales linearly with actual open role count.</p>
+        <p><sup>6</sup> Recruiter capacity valued at $60/hr fully loaded, derived from the $30 phone-screen benchmark in the lifecycle diagram above (30-min call). Conservative estimate; does not include coordination, scheduling, or ATS triage time between stages.</p>
         <p class="disclaimer">All cost figures reflect US and Western European market benchmarks. Actual costs vary by region, role seniority, and company size.</p>
     </div>
 
