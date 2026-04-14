@@ -425,6 +425,43 @@
             color: #94a3b8;
         }
 
+        /* Lifecycle diagram */
+        .lifecycle-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+        .lc-stage {
+            padding: 14px 8px;
+            border-right: 1px solid #e2e8f0;
+            text-align: center;
+            background: #fff;
+        }
+        .lc-stage:last-child { border-right: none; }
+        .lc-badge { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent; }
+        .lc-name { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
+        .lc-tool { font-size: 10px; color: #94a3b8; line-height: 1.4; }
+        .lc-cost { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; }
+        .lc-stage.lc-sentriq { background: rgba(5,150,105,0.06); border-bottom: 3px solid #059669; }
+        .lc-stage.lc-sentriq .lc-badge { color: #059669; }
+        .lc-stage.lc-sentriq .lc-name { color: #065f46; }
+        .lc-stage.lc-sentriq .lc-cost { color: #059669; font-weight: 800; font-size: 12px; }
+        .lc-stage.lc-danger { background: rgba(234,88,12,0.06); border-bottom: 3px solid #ea580c; }
+        .lc-stage.lc-danger .lc-cost { color: #ea580c; font-weight: 800; }
+        .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
+        .lc-callout.lc-green { background: #f0fdf4; border-color: #bbf7d0; }
+        .lc-callout.lc-orange { background: #fff7ed; border-color: #fed7aa; }
+        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
+        .lc-callout.lc-green h4 { color: #166534; }
+        .lc-callout.lc-orange h4 { color: #9a3412; }
+        .lc-callout p { font-size: 12px; color: #64748b; line-height: 1.55; }
+        .lc-callout.lc-green p { color: #15803d; }
+        .lc-callout.lc-orange p { color: #c2410c; }
+
         @media print {
             body { background: #fff; }
             .page { padding: 40px 32px; }
@@ -491,6 +528,76 @@
             </div>
         </div>
         <p class="mult-estimate-note">These are illustrative estimates based on LinkedIn Recruiter data - actual team composition will differ. Use the calculator below with your real numbers.</p>
+    </div>
+
+    <!-- Lifecycle diagram -->
+    <div class="section">
+        <div class="section-label">The full hiring cycle - where Sentriq sits</div>
+        <p style="font-size:13px;color:#64748b;line-height:1.6;margin-bottom:20px;">Every stage adds cost. The deeper a fraudulent or misrepresented candidate gets into your funnel, the more expensive the mistake. Sentriq operates at stage one - before your team has spent a minute.</p>
+        <div class="lifecycle-grid">
+            <div class="lc-stage lc-sentriq">
+                <div class="lc-badge">&#9660; Sentriq</div>
+                <div class="lc-name">Application</div>
+                <div class="lc-tool">Upstream of ATS</div>
+                <div class="lc-cost">0 recruiter hrs</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">ATS Screen</div>
+                <div class="lc-tool">Your ATS</div>
+                <div class="lc-cost">~$5 / application</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Assessment</div>
+                <div class="lc-tool">HireVue / Criteria</div>
+                <div class="lc-cost">~$30 / candidate</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Phone Screen</div>
+                <div class="lc-tool">Recruiter</div>
+                <div class="lc-cost">~$30 / screen</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Tech Interview</div>
+                <div class="lc-tool">Engineering team</div>
+                <div class="lc-cost">~$500 / candidate</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Final Panel</div>
+                <div class="lc-tool">Hiring manager</div>
+                <div class="lc-cost">~$1,800 / candidate</div>
+            </div>
+            <div class="lc-stage lc-danger">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Background Check</div>
+                <div class="lc-tool">Checkr / HireRight</div>
+                <div class="lc-cost">$1,900+ already bled</div>
+            </div>
+            <div class="lc-stage">
+                <div class="lc-badge">&nbsp;</div>
+                <div class="lc-name">Onboarding</div>
+                <div class="lc-tool">Rippling / Deel</div>
+                <div class="lc-cost">$3,200+ total</div>
+            </div>
+        </div>
+        <div class="lc-callouts">
+            <div class="lc-callout lc-green">
+                <h4>Sentriq screens at application</h4>
+                <p>Before the first calendar invite. Before any recruiter, engineer, or executive minute is spent.</p>
+            </div>
+            <div class="lc-callout lc-orange">
+                <h4>Traditional verification runs last</h4>
+                <p>After 6+ rounds and $1,900+ in human time already invested in a candidate who should not have been there.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>The shift-left principle</h4>
+                <p>Security learned this 20 years ago: catching problems earlier reduces cost dramatically. The same logic applies to hiring integrity.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Captcha callout -->
