@@ -154,53 +154,6 @@
 <div class="meeting-badge">SYN Ventures · Intro Meeting</div>
 <div class="deck" id="deck">
 
-<!-- /deck -->
-<div class="nav-bar">
-<div class="nav-logo">
-<svg height="18" viewbox="0 0 512 512" width="18"><rect fill="#2563EB" height="320" rx="40" width="320" x="96" y="96"></rect><polygon fill="#0F172A" points="256,170 326,350 186,350"></polygon></svg>
-        Sentriq — SYN Ventures
-    </div>
-<div class="nav-controls">
-<button class="nav-btn" onclick="navigate(-1)">←</button>
-<span class="slide-counter" id="slideCounter">1 / 13</span>
-<button class="nav-btn" onclick="navigate(1)">→</button>
-</div>
-</div>
-<script>
-    let cur = 0;
-    const slides = document.querySelectorAll('.slide');
-    const total = slides.length;
-
-    function showSlide(n) {
-        slides[cur].classList.remove('active');
-        cur = (n + total) % total;
-        slides[cur].classList.add('active');
-        document.getElementById('slideCounter').textContent = (cur + 1) + ' / ' + total;
-        document.getElementById('progressBar').style.width = ((cur + 1) / total * 100) + '%';
-    }
-
-    function navigate(dir) { showSlide(cur + dir); }
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
-    });
-
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    document.addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
-    });
-
-    showSlide(0);
-
-    document.querySelectorAll('.sources').forEach(s => {
-        const c = s.innerHTML;
-        s.innerHTML = '<button class="src-toggle">Sources</button><div class="src-content"><p>' + c + '</p></div>';
-        s.querySelector('.src-toggle').addEventListener('click', () => s.classList.toggle('open'));
-    });
-</script>
 <div class="slide bg-cover active" data-index="0">
 <div class="slide-inner center" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100%;">
 <div style="margin-bottom:26px;">
@@ -218,7 +171,8 @@
 <p style="font-size:14px; color:rgba(255,255,255,0.55);">Samuel Kemper &amp; Ben Czarninski  ·  Seed Round  ·  April 2026</p>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="3">
+</div>
+<div class="slide bg-dark" data-index="3">
 <div class="slide-inner">
 <span class="label">The Problem</span>
 <h2>Every recruiter is drowning. <span style="color:var(--red);">The queue is broken.</span></h2>
@@ -258,7 +212,8 @@
             <sup>6</sup> YC S26: Tsenta · GrackerAI, 2025
         </div>
 </div>
-</div><div class="slide bg-dark" data-index="8">
+</div>
+<div class="slide bg-dark" data-index="8">
 <div class="slide-inner">
 <span class="label">Why Now</span>
 <h2>Three forces. <span style="color:var(--primary);">All peaking in 2026.</span></h2>
@@ -294,7 +249,8 @@
             <a href="https://www.justice.gov/opa/pr/justice-department-announces-coordinated-nationwide-actions-combat-north-korean-remote" target="_blank">DOJ, Nov 2024</a>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="1">
+</div>
+<div class="slide bg-dark" data-index="1">
 <div class="slide-inner">
 <span class="label">The Team</span>
 <h2>The founders who built the attack. <span style="color:var(--primary);">Now building the defense.</span></h2>
@@ -352,7 +308,8 @@
 <p style="font-size:13px; color:var(--text);">Samuel (Unit 81) knows the buyer. Ben (Unit 8200) built the product. Two IDF intelligence veterans who understood what this threat looked like before it was in the news. <strong style="color:var(--white);">Ben designed the behavioral detection architecture from scratch: 73.5K lines of production code, zero third-party ML tooling, every signal layer proprietary.</strong></p>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="5">
+</div>
+<div class="slide bg-dark" data-index="5">
 <div class="slide-inner">
 <span class="label">The Product</span>
 <h2>The Candidate Hiring Captcha. <span style="color:var(--primary);">Not a filter. A signal.</span></h2>
@@ -404,7 +361,8 @@
 </div>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="4">
+</div>
+<div class="slide bg-dark" data-index="4">
 <div class="slide-inner">
 <span class="label">The Attack Spectrum</span>
 <h2>The problem isn't one thing. <span style="color:var(--primary);">It's a spectrum.</span></h2>
@@ -444,7 +402,8 @@
 <p style="font-size:14px; color:rgba(255,255,255,0.85); line-height:1.6;"><strong style="color:var(--white);">Every point on this spectrum is a real problem today.</strong> Background checks catch none of it. ATS systems accelerate it. Sentriq is the only layer that catches all six - because we built the attacks first.</p>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="lc">
+</div>
+<div class="slide bg-dark" data-index="lc">
 <div class="slide-inner">
 <span class="slide-label">The Shift-Left Advantage</span>
 <h2>By the time enterprises verify integrity, <span style="color:var(--primary);">$1,700 per candidate is already spent.</span></h2>
@@ -516,7 +475,8 @@
 <a href="https://www.shrm.org/topics-tools/news/talent-acquisition/real-costs-recruitment" target="_blank">SHRM 2025: avg. cost per hire $4,700–$5,475 (non-executive roles)</a> · Stage-level cost breakdown is an internal model anchored to this industry benchmark.
             </div>
 </div>
-</div><div class="slide bg-dark" data-index="7">
+</div>
+<div class="slide bg-dark" data-index="7">
 <div class="slide-inner">
 <span class="label">Competitive Landscape</span>
 <h2>The ATS gives a fit score. <span style="color:var(--primary);">Nobody surfaces a trust signal.</span></h2>
@@ -629,7 +589,8 @@
 </div>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="9">
+</div>
+<div class="slide bg-dark" data-index="9">
 <div class="slide-inner">
 <span class="label">Earned Secret</span>
 <h2>We built the attack first. <span style="color:var(--primary);">The corpus is the moat.</span></h2>
@@ -668,7 +629,8 @@
 <p style="font-size:14px; color:rgba(255,255,255,0.85); font-style:italic;">"We ran the attacks on production ATS systems. That corpus of adversarial experiments is what trains the detection engine. You cannot build the defense without first building the offense."</p>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="11">
+</div>
+<div class="slide bg-dark" data-index="11">
 <div class="slide-inner">
 <span class="label">Network Effects</span>
 <h2>The graph compounds. <span style="color:var(--primary);">Every node makes every other node smarter.</span></h2>
@@ -710,7 +672,8 @@
 <p style="font-size:12px; color:rgba(255,255,255,0.85); line-height:1.65;">A tool solves a problem for one company. <strong style="color:var(--primary);">The knowledge graph is the product.</strong> At 100 customers, the cross-company correlation engine is an asset no ATS, no background check vendor, and no point solution can replicate. Not because of technology: because it requires neutral ground and candidate consent at scale. Reveal Security detects behavioral anomalies after authentication succeeds. Sentriq does the same before the first login credential is ever issued. Same detection architecture. The upstream layer SYN has not yet backed.</p>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="6">
+</div>
+<div class="slide bg-dark" data-index="6">
 <div class="slide-inner">
 <span class="label">Go-to-Market</span>
 <h2>Two buyers. <span style="color:var(--primary);">One motion.</span> The data does the selling.</h2>
@@ -766,7 +729,8 @@
 </div>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="10">
+</div>
+<div class="slide bg-dark" data-index="10">
 <div class="slide-inner">
 <span class="label">Current Stage</span>
 <h2>Honest about where we stand. <span style="color:var(--primary);">Clear about where we're going.</span></h2>
@@ -815,7 +779,8 @@
 </div>
 </div>
 </div>
-</div><div class="slide bg-dark" data-index="12">
+</div>
+<div class="slide bg-dark" data-index="12">
 <div class="slide-inner">
 <span class="label">The Ask</span>
 <h2>$5M seed. <span style="color:var(--primary);">The right partner matters.</span></h2>
@@ -869,4 +834,53 @@
 </div>
 </div>
 </div></div></body>
+</html>
+<!-- /deck -->
+<div class="nav-bar">
+<div class="nav-logo">
+<svg height="18" viewbox="0 0 512 512" width="18"><rect fill="#2563EB" height="320" rx="40" width="320" x="96" y="96"></rect><polygon fill="#0F172A" points="256,170 326,350 186,350"></polygon></svg>
+        Sentriq — SYN Ventures
+    </div>
+<div class="nav-controls">
+<button class="nav-btn" onclick="navigate(-1)">←</button>
+<span class="slide-counter" id="slideCounter">1 / 13</span>
+<button class="nav-btn" onclick="navigate(1)">→</button>
+</div>
+</div>
+<script>
+    let cur = 0;
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+
+    function showSlide(n) {
+        slides[cur].classList.remove('active');
+        cur = (n + total) % total;
+        slides[cur].classList.add('active');
+        document.getElementById('slideCounter').textContent = (cur + 1) + ' / ' + total;
+        document.getElementById('progressBar').style.width = ((cur + 1) / total * 100) + '%';
+    }
+
+    function navigate(dir) { showSlide(cur + dir); }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+    });
+
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
+    });
+
+    showSlide(0);
+
+    document.querySelectorAll('.sources').forEach(s => {
+        const c = s.innerHTML;
+        s.innerHTML = '<button class="src-toggle">Sources</button><div class="src-content"><p>' + c + '</p></div>';
+        s.querySelector('.src-toggle').addEventListener('click', () => s.classList.toggle('open'));
+    });
+</script>
+</body>
 </html>
