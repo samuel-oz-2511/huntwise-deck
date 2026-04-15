@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ — Logo Concepts
+Password: sentriqlogo2026
+=============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq — Logo Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090F;
+      --card: #0D0E1A;
+      --border: #161728;
+      --muted: #4A4A6A;
+      --dim: #252540;
+      --amber: #E8A020;
+      --crimson: #C8273A;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      padding: 72px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .ph {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .ph .label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+    .ph h1 { font-size: 30px; font-weight: 500; }
+    .ph .date { font-size: 12px; color: var(--dim); }
+
+    /* Section */
+    .sec { margin-bottom: 56px; }
+    .sec-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--dim); margin-bottom: 24px; }
+
+    /* Grid */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .g1 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* Preview */
+    .preview {
+      min-height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 52px 44px;
+      border-bottom: 1px solid var(--border);
+      gap: 48px;
+    }
+    .preview.stacked { flex-direction: column; padding: 0; gap: 0; }
+
+    .pd {
+      padding: 44px 48px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pl {
+      background: #EBEBEB;
+      padding: 32px 48px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Logo unit */
+    .lu { display: flex; align-items: center; gap: 18px; }
+
+    /* Wordmarks */
+    .wm-caps-lg {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30px; font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #fff; text-transform: uppercase;
+    }
+    .wm-mixed-md {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 30px; font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .wm-infra {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px; font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #fff; text-transform: uppercase;
+    }
+    .wm-infra-lt {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px; font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #0D0F1A; text-transform: uppercase;
+    }
+    .underbar {
+      height: 1.5px;
+      background: linear-gradient(90deg, rgba(232,160,32,0.75) 0%, transparent 100%);
+      margin-top: 5px;
+    }
+    .underbar-lt {
+      height: 1.5px;
+      background: linear-gradient(90deg, rgba(160,100,0,0.6) 0%, transparent 100%);
+      margin-top: 4px;
+    }
+
+    /* Split wordmark */
+    .wm-split { display: flex; align-items: baseline; }
+    .sp-sentr {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px; font-weight: 300;
+      letter-spacing: 0.08em; color: #fff;
+    }
+    .sp-iq {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--amber);
+    }
+
+    /* Q-mark */
+    .wm-qm { display: flex; align-items: baseline; }
+    .qm-sentri {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 34px; font-weight: 700;
+      letter-spacing: 0.07em; color: #fff;
+    }
+    .qm-q {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 34px; font-weight: 700;
+      letter-spacing: 0.07em; color: var(--amber);
+    }
+
+    /* App icon */
+    .qi {
+      background: var(--amber);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; color: #0D0F1A; flex-shrink: 0;
+    }
+    .qi-64 { width: 64px; height: 64px; border-radius: 14px; font-size: 44px; line-height: 1; }
+    .qi-32 { width: 32px; height: 32px; border-radius: 7px;  font-size: 22px; line-height: 1; }
+    .qi-20 { width: 20px; height: 20px; border-radius: 4px;  font-size: 14px; line-height: 1; }
+
+    .icon-demo { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .icon-demo-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
+    .icon-sizes { display: flex; align-items: flex-end; gap: 6px; }
+
+    .vr { width: 1px; height: 60px; background: var(--border); flex-shrink: 0; }
+
+    /* Meta */
+    .meta { padding: 30px 36px; }
+    .meta-num { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+    .meta-name { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+    .meta-body { font-size: 12.5px; color: var(--muted); line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .tag { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; font-weight: 500; }
+    .ta { background: rgba(232,160,32,.08); color: #C98C10; border: 1px solid rgba(232,160,32,.15); }
+    .tc { background: rgba(200,39,58,.08);  color: #C8273A; border: 1px solid rgba(200,39,58,.15); }
+    .tn { background: rgba(255,255,255,.04); color: #444;   border: 1px solid rgba(255,255,255,.08); }
+
+    .divider { height: 1px; background: var(--border); margin: 52px 0; }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="
+    position: fixed; inset: 0; z-index: 9999;
+    background: #09090F;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+">
+  <div style="width: 100%; max-width: 340px; padding: 0 24px; text-align: center;">
+    <div style="margin-bottom: 36px;">
+      <div style="font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.04em;">Sentriq</div>
+      <div style="font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase;">Logo Concepts — Internal</div>
+    </div>
+    <input id="gateInput" type="password" placeholder="Access code"
+      autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter')checkPass()"
+      style="
+        width: 100%; padding: 14px 18px; border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
+        color: #fff; font-size: 15px; font-family: inherit;
+        outline: none; margin-bottom: 10px; text-align: center; letter-spacing: 0.1em;
+      ">
+    <button onclick="checkPass()" style="
+      width: 100%; padding: 14px; border-radius: 10px; border: none;
+      background: #E8A020; color: #0D0F1A; font-size: 14px; font-weight: 700;
+      font-family: inherit; cursor: pointer; letter-spacing: 0.04em;
+      transition: background 0.15s;
+      " onmouseover="this.style.background='#D4910A'" onmouseout="this.style.background='#E8A020'">
+      View Concepts
+    </button>
+    <div id="gateError" style="
+      font-size: 12px; color: rgba(200,39,58,0.9); margin-top: 10px; opacity: 0;
+      transition: opacity 0.3s;
+    ">Incorrect code. Try again.</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-content" style="display:none">
+
+<!-- Header -->
+<div class="ph">
+  <div>
+    <div class="label">Logo Exploration</div>
+    <h1>Sentriq</h1>
+  </div>
+  <div class="date">April 2026 — 5 Concepts</div>
+</div>
+
+<!-- 01: Icon + Wordmark -->
+<div class="sec">
+  <div class="sec-label">01 — Icon + Wordmark</div>
+  <div class="g2">
+
+    <!-- D01: The Beacon -->
+    <div class="card">
+      <div class="preview">
+        <div class="lu">
+          <svg width="52" height="52" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="28,4 49,16 49,40 28,52 7,40 7,16"
+              stroke="#E8A020" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+            <circle cx="28" cy="18" r="3.5" fill="#E8A020"/>
+            <line x1="28" y1="22.5" x2="28" y2="38" stroke="#E8A020" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="20" y1="38"   x2="36" y2="38" stroke="#E8A020" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <div class="wm-caps-lg">SENTRIQ</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-num">Design 01</div>
+        <div class="meta-name">The Beacon</div>
+        <div class="meta-body">Hexagonal security container with a watchtower beacon inside. The hex references network topology and infrastructure badge shapes without being literal. Amber signals alert presence, not alarm. The icon stands alone as a stamp or app mark without the wordmark.</div>
+        <div class="tags">
+          <span class="tag ta">Amber #E8A020</span>
+          <span class="tag tn">Icon + Wordmark</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D02: The Gate -->
+    <div class="card">
+      <div class="preview">
+        <div class="lu">
+          <svg width="52" height="52" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8"  y="18" width="8" height="30" rx="2" fill="#C8273A"/>
+            <rect x="40" y="18" width="8" height="30" rx="2" fill="#C8273A"/>
+            <path d="M8,26 Q28,4 48,26" stroke="#C8273A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <circle cx="28" cy="8" r="4" fill="#C8273A"/>
+          </svg>
+          <div class="wm-mixed-md">Sentriq</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-num">Design 02</div>
+        <div class="meta-name">The Gate</div>
+        <div class="meta-body">Two pillars, an arch, a signal beacon above. The product sits between candidate and company — this icon makes that physical. Crimson signals controlled access without aggression. Mixed-case wordmark keeps the tone approachable for HR buyers without losing technical credibility with CISOs.</div>
+        <div class="tags">
+          <span class="tag tc">Crimson #C8273A</span>
+          <span class="tag tn">Icon + Wordmark</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 02: Pure Wordmark -->
+<div class="sec">
+  <div class="sec-label">02 — Pure Wordmark</div>
+  <div class="g2">
+
+    <!-- D03: Infrastructure -->
+    <div class="card">
+      <div class="preview stacked">
+        <div class="pd">
+          <div>
+            <div class="wm-infra">SENTRIQ</div>
+            <div class="underbar"></div>
+          </div>
+        </div>
+        <div class="pl">
+          <div>
+            <div class="wm-infra-lt">SENTRIQ</div>
+            <div class="underbar-lt"></div>
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-num">Design 03</div>
+        <div class="meta-name">Infrastructure</div>
+        <div class="meta-body">No icon. Wide tracking, heavy weight, amber underline. Reads as a system identifier — a protocol name, a layer designation. Scales from email footer to slide header without adaptation. Dark and light both work without changing a single character. The underline is the only color element, which keeps attention on the name.</div>
+        <div class="tags">
+          <span class="tag ta">Amber Underline</span>
+          <span class="tag tn">Pure Wordmark</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D04: Binary Split -->
+    <div class="card">
+      <div class="preview">
+        <div class="wm-split">
+          <span class="sp-sentr">SENTR</span>
+          <span class="sp-iq">IQ</span>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-num">Design 04</div>
+        <div class="meta-name">Binary Split</div>
+        <div class="meta-body">SENTR in light weight, IQ in bold amber. The name breaks exactly where the meaning shifts: protection into intelligence. No separator, no decoration — the contrast does the work. Every time someone reads the name, the duality is visible in the mark itself. Collapses cleanly to monochrome if needed.</div>
+        <div class="tags">
+          <span class="tag ta">Amber IQ</span>
+          <span class="tag tn">Pure Wordmark</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 03: Mixed -->
+<div class="sec">
+  <div class="sec-label">03 — Mixed (Embedded Icon System)</div>
+  <div class="g1">
+
+    <!-- D05: Q-Mark -->
+    <div class="card">
+      <div class="preview" style="flex-wrap: wrap; min-height: 200px;">
+        <div class="wm-qm">
+          <span class="qm-sentri">SENTRI</span>
+          <span class="qm-q">Q</span>
+        </div>
+
+        <div class="vr"></div>
+
+        <div class="icon-demo">
+          <div class="qi qi-64">Q</div>
+          <div class="icon-demo-label">App icon</div>
+        </div>
+
+        <div class="icon-demo">
+          <div class="icon-sizes">
+            <div class="qi qi-32">Q</div>
+            <div class="qi qi-20">Q</div>
+          </div>
+          <div class="icon-demo-label">Scale</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-num">Design 05</div>
+        <div class="meta-name">Q-Mark</div>
+        <div class="meta-body">The Q is both a letter and an icon. In the wordmark, SENTRI carries in white, then the Q breaks to amber — heavier, warmer, branded. Used standalone, the amber Q-square is your app icon, favicon, email stamp, and slide watermark. No additional icon asset needed. Over time, the Q-mark becomes recognizable without the full name next to it — the same path Cloudflare's flame and Stripe's "S" traveled. One letter. One shape. One system.</div>
+        <div class="tags">
+          <span class="tag ta">Amber Q</span>
+          <span class="tag tn">Wordmark + Icon System</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /main-content -->
+
+<script>
+  function checkPass() {
+    var val = document.getElementById('gateInput').value;
+    // Password: sentriqlogo2026
+    if (val === atob('c2VudHJpcWxvZ28yMDI2')) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('main-content').style.display = '';
+    } else {
+      var err = document.getElementById('gateError');
+      err.style.opacity = '1';
+      setTimeout(function() { err.style.opacity = '0'; }, 2500);
+      document.getElementById('gateInput').value = '';
+    }
+  }
+</script>
+
+</body>
+</html>
