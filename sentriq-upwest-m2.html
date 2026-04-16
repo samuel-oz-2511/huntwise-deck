@@ -613,135 +613,99 @@
 <div class="slide-inner">
 <span class="label">Competitive Landscape</span>
 <h2>Over $2B in adjacent capital is flowing toward this problem. <span style="color:var(--primary);">Nobody has the application layer.</span></h2>
-<div style="overflow-x:auto; margin-top:14px; margin-bottom:12px;">
+<div style="overflow-x:auto; margin-top:14px; margin-bottom:16px;">
 <table style="width:100%; border-collapse:collapse; font-size:11px;">
 <thead>
 <tr style="background:rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.1);">
-<th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600; width:20%;">Company</th>
-<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:12%;">Top-of-Funnel</th>
-<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:14%;">Behavioral Signal</th>
-<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:12%;">Cross-ATS</th>
-<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:14%;">Cross-Company Intel</th>
-<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:13%;">Human-in-Loop</th>
-<th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600;">Gap</th>
+<th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600; width:22%;">Company</th>
+<th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600; width:13%;">Threat to Sentriq</th>
+<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:11%;">Behavioral Detection</th>
+<th style="padding:8px 6px; text-align:center; color:var(--text-dim); font-weight:600; width:13%;">Cross-Company Graph</th>
+<th style="padding:8px 10px; text-align:left; color:var(--text-dim); font-weight:600;">Sentriq's Edge</th>
 </tr>
 </thead>
 <tbody>
-<!-- Tier 1: Direct fraud detection -->
+<!-- DIRECT COMPETITORS -->
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(239,68,68,0.05);">
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Tofu</div><div style="font-size:9px; color:var(--text-dim);">$1.2M seed · hiretofu.com</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(239,68,68,0.18); color:#FCA5A5; border:1px solid rgba(239,68,68,0.35);">Direct</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Closest in problem space. CV forensics and a static Fraudbase of 5M profiles. No behavioral challenge, no live cross-company network. Sentriq's adversarial corpus comes from running the actual attacks. Detection signatures Tofu has never modeled.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(239,68,68,0.05);">
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Crosschq ApplicantX</div><div style="font-size:9px; color:var(--text-dim);">Series B · Launched Nov 2025</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(239,68,68,0.18); color:#FCA5A5; border:1px solid rgba(239,68,68,0.35);">Direct</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Full-funnel detection with Series B distribution. No behavioral challenge; cannot catch proxy fraud or AI-assisted impersonation. No cross-company graph. Series B overhead without a structural moat.</td>
+</tr>
+<!-- DISTRIBUTION RISKS -->
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(245,158,11,0.05);">
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Persona</div><div style="font-size:9px; color:var(--text-dim);">$2B valuation · Inside Greenhouse, Workday, Ashby</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(245,158,11,0.18); color:#FCD34D; border:1px solid rgba(245,158,11,0.35);">Distribution Risk</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:10px;">Blocked</td>
+<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Identity only. Confirms the face, not the intent. DPRK operatives use real stolen SSNs and pass Persona. The risk is distribution: already embedded in the top three ATS platforms. If they add a behavioral layer, they arrive with Greenhouse installed. Most important company to watch.</td>
+</tr>
+<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(245,158,11,0.05);">
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Greenhouse + Ashby + iCIMS</div><div style="font-size:9px; color:var(--text-dim);">ATS incumbents · Native fraud detection, 2025</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(245,158,11,0.18); color:#FCD34D; border:1px solid rgba(245,158,11,0.35);">Distribution Risk</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:10px;">Permanently blocked</td>
+<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">ATS customer contracts prohibit cross-employer data sharing. Each ATS can only see its own customers. The cross-company graph requires neutral ground, an architecture permanently unavailable to any ATS vendor regardless of funding or roadmap.</td>
+</tr>
+<!-- MONITOR -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Tofu</div><div style="font-size:9px; color:var(--text-dim);">$1.2M seed · Direct competitor</div></td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">Partial</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">CV forensics only. No behavioral challenge, no cross-company graph. Flags after application enters funnel.</td>
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Checkr IDV</div><div style="font-size:9px; color:var(--text-dim);">~$679M raised · Launched Mar 2026</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(251,191,36,0.12); color:#FDE68A; border:1px solid rgba(251,191,36,0.28);">Monitor</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Pre-hire biometric identity check before background screening. Same wrong detection layer as Persona: confirms real person, not behavioral intent. Threat escalates only if they partner with an ATS incumbent to bundle distribution.</td>
 </tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Crosschq ApplicantX</div><div style="font-size:9px; color:var(--text-dim);">Series B · Full-funnel fraud</div></td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Launched Nov 2025. No behavioral challenge - cannot catch proxy fraud. No cross-company graph.</td>
-</tr>
-<!-- Tier 2: Identity expanding upstream -->
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Persona</div><div style="font-size:9px; color:var(--text-dim);">$2B valuation · Already in Greenhouse</div></td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Identity only. Blocks deepfakes at the door - not behavioral fraud inside. Contractually blocked from cross-company graph.</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Checkr IDV</div><div style="font-size:9px; color:var(--text-dim);"><a href="https://sacra.com/c/checkr/" style="color:inherit;" target="_blank">~$679M raised (2025)</a> · Launched Mar 2026</div></td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Biometric identity check - confirms real person at the door. DPRK operatives use real stolen SSNs. Wrong detection layer.</td>
-</tr>
-<!-- Tier 3: ATS incumbents -->
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Greenhouse Real Talent</div><div style="font-size:9px; color:var(--text-dim);">ATS-native · Launched Fall 2025</div></td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center;"> - </td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Greenhouse-only. Customer contracts legally prohibit cross-employer data sharing. Permanent structural gap.</td>
-</tr>
-<!-- Tier 4: Point solutions -->
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.01);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">GetReal Security</div><div style="font-size:9px; color:var(--text-dim);">$24.5M · Cisco, In-Q-Tel backed</div></td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Deepfake detection for live video interviews. Downstream - by then the recruiter already spent hours.</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">GPTZero / Canditech</div><div style="font-size:9px; color:var(--text-dim);">Point solutions</div></td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">Partial</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Text detection or assessment anti-cheat only. Single dimension. No cross-company graph. No behavioral identity.</td>
-</tr>
-<!-- Tier 5: Market-validated complements -->
+<!-- COMPLEMENTS -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(139,92,246,0.04);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Clarity</div><div style="font-size:9px; color:#A78BFA;">$16M seed, Bessemer · Complement</div></td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 10px; font-size:10.5px; color:#C4B5FD;">Video interview stage. Operates after $1,700 in process cost is already spent. Deepfake detection, not behavioral. Employer-deployed model blocks graph access permanently. Complement, not competitor. Their $16M raise validates the category.</td>
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Clarity + GetReal + HireVue</div><div style="font-size:9px; color:#A78BFA;">$16M + $24.5M + $450M · Late-funnel deepfakes</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(139,92,246,0.18); color:#C4B5FD; border:1px solid rgba(139,92,246,0.35);">Complement</span></td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#FCA5A5; font-size:10px;">Permanently blocked</td>
+<td style="padding:7px 10px; font-size:10.5px; color:#C4B5FD;">All three operate at the video interview stage, after $1,700+ in process cost is already spent. Combined $490M+ in raised capital confirms hiring fraud is a fundable enterprise security problem. In a full enterprise security stack, all three sit downstream of Sentriq. Their raises validate the ask.</td>
 </tr>
-<tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(139,92,246,0.03);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">hireEZ</div><div style="font-size:9px; color:#A78BFA;">$100M+ raised · Workflow platform</div></td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 6px; text-align:center; color:#FCA5A5;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#6EE7B7;">✓</td>
-<td style="padding:7px 10px; font-size:10.5px; color:#C4B5FD;">Sourcing and workflow tool. Different buyer (recruiter headcount vs. security budget), different budget line. Client contracts silo data per employer, structurally blocking the fraud graph. Indirect threat only. Non-zero-sum market.</td>
+<!-- INDIRECT -->
+<tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(107,114,128,0.03);">
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">hireEZ</div><div style="font-size:9px; color:#9CA3AF;">$100M+ raised · Workflow platform</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(107,114,128,0.15); color:#9CA3AF; border:1px solid rgba(107,114,128,0.3);">Indirect</span></td>
+<td style="padding:7px 6px; text-align:center; color:#9CA3AF; font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:#9CA3AF; font-size:13px;">✗</td>
+<td style="padding:7px 10px; font-size:10.5px; color:#9CA3AF;">Sourcing and workflow tool. Different buyer (recruiter headcount budget vs. CISO security budget), different problem. Client data siloed per employer by contract. Non-zero-sum: their scale confirms enterprise buyers invest heavily in hiring infrastructure.</td>
 </tr>
-<!-- Sentriq -->
+<!-- SENTRIQ -->
 <tr style="background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.3);">
 <td style="padding:8px 10px;"><div style="font-weight:800; color:var(--white);">Sentriq</div><div style="font-size:9px; color:var(--primary);">Hiring Integrity Infrastructure</div></td>
-<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
-<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
-<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
-<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
-<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700;">✓</td>
-<td style="padding:8px 10px; font-size:10.5px; color:#93C5FD; font-weight:600;">Only player with all five. Cross-company graph is architecturally unavailable to every ATS incumbent.</td>
+<td style="padding:8px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(37,99,235,0.2); color:#93C5FD; border:1px solid rgba(37,99,235,0.4);">The Layer</span></td>
+<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700; font-size:13px;">✓</td>
+<td style="padding:8px 6px; text-align:center; color:#6EE7B7; font-weight:700; font-size:13px;">✓</td>
+<td style="padding:8px 10px; font-size:10.5px; color:#93C5FD; font-weight:600;">Only player at the application layer with both behavioral detection and a cross-company fraud graph. The graph requires neutral ground and direct candidate consent, architecturally unavailable to every ATS, background check company, and employer-deployed product. Permanent structural moat, not a feature gap.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
 <div style="padding:14px 16px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Tofu &amp; Crosschq</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.55;">Both flag fraud after the application enters the funnel. Neither has a behavioral challenge. Neither shares signals across employers. Sentriq screens before the first recruiter review.</p>
+<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Direct Competitors</div>
+<p style="font-size:11.5px; color:var(--text); line-height:1.55;">Tofu and Crosschq detect fraud after the application enters the funnel. Neither has a behavioral challenge layer. Neither shares signals across employers. Both are solving the right problem with the wrong architecture.</p>
 </div>
 <div style="padding:14px 16px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Persona &amp; Checkr IDV</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.55;">Confirm credentials are real. DPRK operatives use real stolen SSNs - they pass identity checks. Wrong detection layer. No behavioral proxy fraud detection.</p>
-</div>
-<div style="padding:14px 16px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.15); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Greenhouse Real Talent</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.55;">Customer contracts legally prohibit cross-employer data sharing. Greenhouse-only. Cannot build the graph. Permanent architectural constraint - not a feature gap.</p>
+<div style="font-size:10px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Distribution Risks</div>
+<p style="font-size:11.5px; color:var(--text); line-height:1.55;">Persona and ATS incumbents have distribution but not the detection. DPRK operatives pass identity checks using real stolen SSNs. ATS customer contracts permanently block the cross-company graph: not a temporary gap, a legal constraint written into every enterprise agreement.</p>
 </div>
 <div style="padding:14px 16px; background:rgba(139,92,246,0.05); border:1px solid rgba(139,92,246,0.2); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:#A78BFA; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Clarity + hireEZ: Market Validation</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.55;">When investors or prospects name these companies, they are confirming the category is real and funded. Clarity ($16M, Bessemer) operates at the video interview stage. hireEZ ($100M+) is a workflow platform with a different buyer and budget. Neither has the application layer. Neither can build the cross-company graph. Both validate the ask.</p>
+<div style="font-size:10px; font-weight:700; color:#A78BFA; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Clarity + GetReal + HireVue: Validation</div>
+<p style="font-size:11.5px; color:var(--text); line-height:1.55;">$490M+ in capital flowing to late-funnel deepfake detection confirms hiring fraud is a funded enterprise security category. All three operate after Sentriq in the funnel. All three validate the ask without competing for the same position.</p>
+</div>
+<div style="padding:14px 16px; background:rgba(37,99,235,0.05); border:1px solid rgba(37,99,235,0.15); border-radius:10px;">
+<div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">The Permanent Moat</div>
+<p style="font-size:11.5px; color:var(--text); line-height:1.55;">The cross-company graph is not a feature that can be built later. It requires direct candidate consent to a neutral party. Every ATS vendor and employer-deployed product is structurally excluded by their own commercial agreements. This constraint does not change with funding or time.</p>
 </div>
 </div>
 </div>
