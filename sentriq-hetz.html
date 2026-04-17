@@ -146,7 +146,13 @@
             .nav-bar { padding: 10px 16px; }
             div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
         }
-    </style>
+    
+  .stack-layer{display:flex;align-items:center;padding:9px 14px;border-radius:8px;border:1px solid rgba(37,99,235,0.18);background:rgba(37,99,235,0.05);margin-bottom:5px;}
+  .stack-layer-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);width:160px;flex-shrink:0;}
+  .stack-layer-vendors{font-size:11px;color:rgba(255,255,255,0.3);}
+  .stack-layer-badge{margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(37,99,235,0.12);color:#93C5FD;border:1px solid rgba(37,99,235,0.25);}
+  @media(max-width:600px){.stack-layer-label{width:100px;}}
+</style>
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
@@ -165,6 +171,70 @@
 
 
 
+
+<div class="slide bg-dark" data-index="gap">
+<div class="slide-inner">
+  <span class="label">The Structural Gap</span>
+  <h2>Every enterprise has 6 security layers. <span style="color:var(--red);">None defends the hiring funnel.</span></h2>
+  <p style="font-size:14px;color:rgba(255,255,255,0.55);max-width:760px;line-height:1.6;margin-bottom:16px;">State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen SSNs. The attack enters through hiring because hiring has no infrastructure layer. Every other perimeter is defended.</p>
+
+  <div style="margin-bottom:14px;">
+    <div class="stack-layer">
+      <span class="stack-layer-label">SIEM / SOC</span>
+      <span class="stack-layer-vendors">Splunk · IBM QRadar · Microsoft Sentinel · Sumo Logic</span>
+      <span class="stack-layer-badge">Protected</span>
+    </div>
+    <div class="stack-layer">
+      <span class="stack-layer-label">ENDPOINT (EDR)</span>
+      <span class="stack-layer-vendors">CrowdStrike · SentinelOne · Microsoft Defender · Cortex XDR</span>
+      <span class="stack-layer-badge">Protected</span>
+    </div>
+    <div class="stack-layer">
+      <span class="stack-layer-label">IDENTITY / AUTH</span>
+      <span class="stack-layer-vendors">Okta · CyberArk · Azure AD · BeyondTrust · Ping Identity</span>
+      <span class="stack-layer-badge">Protected</span>
+    </div>
+    <div class="stack-layer">
+      <span class="stack-layer-label">CLOUD SECURITY</span>
+      <span class="stack-layer-vendors">Wiz · Orca Security · Prisma Cloud · Lacework · Aqua</span>
+      <span class="stack-layer-badge">Protected</span>
+    </div>
+    <div class="stack-layer">
+      <span class="stack-layer-label">NETWORK / PERIMETER</span>
+      <span class="stack-layer-vendors">Cloudflare · Palo Alto Networks · Zscaler · Akamai · Fortinet</span>
+      <span class="stack-layer-badge">Protected</span>
+    </div>
+    <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(239,68,68,0.5);background:rgba(239,68,68,0.08);margin-bottom:5px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#FCA5A5;width:160px;flex-shrink:0;">HIRING FUNNEL</span>
+      <span style="font-size:11px;color:rgba(239,68,68,0.7);font-weight:600;">Every candidate. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span>
+      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(239,68,68,0.2);color:#FCA5A5;border:1px solid rgba(239,68,68,0.4);">UNDEFENDED</span>
+    </div>
+    <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(37,99,235,0.5);background:rgba(37,99,235,0.1);">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#93C5FD;width:160px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
+      <span style="font-size:11px;color:rgba(37,99,235,0.9);font-weight:600;">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything. The primitive that does not exist yet.</span>
+      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(37,99,235,0.2);color:#93C5FD;border:1px solid rgba(37,99,235,0.4);">BUILDING IT</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;">
+    <div style="padding:14px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;text-align:center;">
+      <div style="font-size:30px;font-weight:800;color:var(--red);">41%</div>
+      <p style="font-size:11px;color:var(--text);margin-top:5px;line-height:1.5;">of enterprises already hired a fraudulent employee. Not nearly. Hired. Onboarded. Given access.</p>
+    </div>
+    <div style="padding:14px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;text-align:center;">
+      <div style="font-size:30px;font-weight:800;color:var(--red);">$1,900+</div>
+      <p style="font-size:11px;color:var(--text);margin-top:5px;line-height:1.5;">in process cost spent before a background check runs. 6+ interviews. The fraud is already inside.</p>
+    </div>
+    <div style="padding:14px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;text-align:center;">
+      <div style="font-size:30px;font-weight:800;color:var(--red);">$2.5B</div>
+      <p style="font-size:11px;color:var(--text);margin-top:5px;line-height:1.5;">signal-destruction economy: mass-apply bots, AI resume tools, proxy fraud networks. YC-funded. Growing 20%+.</p>
+    </div>
+  </div>
+  <div style="padding:13px 18px;background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.18);border-radius:10px;border-left:3px solid var(--red);">
+    <p style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.65;"><strong style="color:var(--white);">KnowBe4: documented public incident.</strong> A security awareness company hired a North Korean state operative. The candidate passed four rounds of interviews and a standard background check using a real stolen US identity. Discovered only after the operative attempted to load malware on day one. Identity verification confirmed the face. Nothing confirmed the intent.</p>
+  </div>
+</div>
+</div>
 
 <div class="slide bg-cover active" data-index="0">
 <div class="slide-inner center" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100%;">
