@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sentriq: Privacy and Regulatory Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #F8F9FA;
+    --surface: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #1E293B;
+    --text-dim: #64748B;
+    --primary: #2563EB;
+    --green: #059669;
+    --orange: #D97706;
+    --red: #DC2626;
+    --purple: #7C3AED;
+    --yellow-bg: #FFFBEB;
+    --yellow-border: #FCD34D;
+    --green-bg: #F0FDF4;
+    --green-border: #86EFAC;
+    --red-bg: #FEF2F2;
+    --red-border: #FECACA;
+    --blue-bg: #EFF6FF;
+    --blue-border: #BFDBFE;
+    --purple-bg: #F5F3FF;
+    --purple-border: #DDD6FE;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
+  body { max-width:960px; margin:0 auto; padding:48px 32px 80px; }
+
+  /* Header */
+  .doc-header { border-bottom:2px solid var(--border); padding-bottom:24px; margin-bottom:40px; }
+  .doc-header h1 { font-size:26px; font-weight:700; margin-bottom:6px; }
+  .doc-header .subtitle { color:var(--text-dim); font-size:13px; }
+  .doc-meta { display:flex; gap:24px; margin-top:14px; flex-wrap:wrap; }
+  .doc-meta-item { font-size:12px; color:var(--text-dim); }
+  .doc-meta-item strong { color:var(--text); }
+
+  /* Section */
+  .section { margin-bottom:48px; }
+  .section-title { font-size:18px; font-weight:700; margin-bottom:6px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .section-subtitle { font-size:13px; color:var(--text-dim); margin-bottom:20px; }
+
+  /* Callout boxes */
+  .callout { border-radius:10px; padding:14px 18px; margin-bottom:12px; }
+  .callout-open { background:var(--yellow-bg); border:1px solid var(--yellow-border); }
+  .callout-decided { background:var(--green-bg); border:1px solid var(--green-border); }
+  .callout-risk { background:var(--red-bg); border:1px solid var(--red-border); }
+  .callout-info { background:var(--blue-bg); border:1px solid var(--blue-border); }
+  .callout-note { background:var(--purple-bg); border:1px solid var(--purple-border); }
+  .callout-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+  .callout-open .callout-label { color:var(--orange); }
+  .callout-decided .callout-label { color:var(--green); }
+  .callout-risk .callout-label { color:var(--red); }
+  .callout-info .callout-label { color:var(--primary); }
+  .callout-note .callout-label { color:var(--purple); }
+  .callout p { font-size:13px; line-height:1.65; }
+  .callout p + p { margin-top:8px; }
+
+  /* Legend */
+  .legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-dim); }
+  .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+  /* Data table */
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:16px; }
+  th { background:#F1F5F9; padding:8px 12px; text-align:left; font-weight:600; color:var(--text-dim); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; border-bottom:1px solid var(--border); }
+  td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+  tr:last-child td { border-bottom:none; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; }
+  .badge-open { background:#FEF3C7; color:#92400E; }
+  .badge-decided { background:#D1FAE5; color:#065F46; }
+  .badge-risk { background:#FEE2E2; color:#991B1B; }
+  .badge-info { background:#DBEAFE; color:#1E40AF; }
+
+  /* Diagrams */
+  .diagram { margin:20px 0; }
+  .diagram-title { font-size:12px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+
+  /* Flow diagram CSS */
+  .flow { display:flex; align-items:stretch; gap:0; border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:8px; }
+  .flow-node { flex:1; padding:14px 12px; text-align:center; border-right:1px solid var(--border); }
+  .flow-node:last-child { border-right:none; }
+  .flow-node-title { font-size:11px; font-weight:700; margin-bottom:4px; }
+  .flow-node-sub { font-size:10px; color:var(--text-dim); line-height:1.4; }
+  .flow-arrow { display:flex; align-items:center; padding:0 4px; color:var(--text-dim); font-size:16px; flex-shrink:0; }
+
+  /* Data subject boxes */
+  .subject-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
+  .subject-box { border:1px solid var(--border); border-radius:10px; padding:16px; }
+  .subject-box h4 { font-size:13px; font-weight:700; margin-bottom:10px; }
+  .subject-box ul { padding-left:16px; font-size:12px; color:var(--text-dim); line-height:1.8; }
+
+  /* Two col */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:640px) { .two-col { grid-template-columns:1fr; } .flow { flex-direction:column; } .flow-node { border-right:none; border-bottom:1px solid var(--border); } }
+
+  /* SVG diagrams */
+  svg { width:100%; height:auto; display:block; }
+
+  /* TOC */
+  .toc { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin-bottom:40px; }
+  .toc h3 { font-size:13px; font-weight:700; margin-bottom:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  .toc ol { padding-left:20px; }
+  .toc li { font-size:13px; line-height:2; }
+  .toc a { color:var(--primary); text-decoration:none; }
+
+  /* Page label */
+  .page-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-dim); margin-bottom:8px; }
+
+  hr { border:none; border-top:1px solid var(--border); margin:32px 0; }
+
+  ul.check-list { list-style:none; padding-left:0; }
+  ul.check-list li { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.6; margin-bottom:6px; }
+  ul.check-list li::before { content:""; width:6px; height:6px; border-radius:50%; margin-top:7px; flex-shrink:0; }
+  ul.check-list.open li::before { background:var(--orange); }
+  ul.check-list.decided li::before { background:var(--green); }
+  ul.check-list.risk li::before { background:var(--red); }
+  ul.check-list.info li::before { background:var(--primary); }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="page-label">Confidential: For Privacy Counsel</div>
+  <h1>Sentriq: Privacy &amp; Regulatory Briefing</h1>
+  <p class="subtitle">Product architecture, data flows, and regulatory exposure map. Prepared for privacy consultant review. No legal positions are taken in this document. All classifications and compliance determinations are for counsel.</p>
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Company:</strong> Sentriq</div>
+    <div class="doc-meta-item"><strong>Domain:</strong> sentriq.co</div>
+    <div class="doc-meta-item"><strong>Stage:</strong> Pre-product, demo only. No live production deployment.</div>
+    <div class="doc-meta-item"><strong>Founders:</strong> Samuel Kemper, Ben Czarninski</div>
+    <div class="doc-meta-item"><strong>Date:</strong> April 2026</div>
+    <div class="doc-meta-item"><strong>Target markets:</strong> US (primary), EU (from day 1), Israel</div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div> Founder decision: for counsel to validate or challenge</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div> Open question: counsel to determine</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red);"></div> High regulatory exposure: priority for counsel</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div> Context / factual background</div>
+</div>
+
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#s0">The Problem Sentriq Solves (Read First)</a></li>
+    <li><a href="#s1">Product Overview</a></li>
+    <li><a href="#s2">Data Subjects</a></li>
+    <li><a href="#s3">Architecture &amp; Data Flow Diagram</a></li>
+    <li><a href="#s4">Layer 1: Passive Behavioral Capture</a></li>
+    <li><a href="#s5">Layer 2: Async Challenge (Sentriq-hosted)</a></li>
+    <li><a href="#s6">Layer 3: Human Review &amp; CISO Escalation</a></li>
+    <li><a href="#s7">Cross-Company Fraud Graph</a></li>
+    <li><a href="#s8">Consent Architecture</a></li>
+    <li><a href="#s9">Data Inventory Summary</a></li>
+    <li><a href="#s10">Regulatory Exposure Map</a></li>
+    <li><a href="#s11">Open Questions for Counsel</a></li>
+    <li><a href="#s12">Founder Decisions Requiring Validation</a></li>
+  </ol>
+</div>
+
+
+<!-- ─── SECTION 0 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s0">
+  <div class="section-title">0. The Problem Sentriq Solves (Read First)</div>
+  <div class="section-subtitle">Context for understanding why this product exists and what it does. Not a legal section.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">The Market Problem</div>
+    <p>The hiring pipeline is under attack from multiple directions simultaneously. AI resume generators, mass-apply bots, and proxy fraud networks have made it impossible for employers to trust what arrives in their applicant queue. One operations role at a recent high-profile company drew 6,500 applications in two weeks. 41% of companies have already hired a fraudulent candidate, many of whom gained access to internal systems.</p>
+    <p>At the extreme end, North Korean state-backed operatives use stolen identities, fabricated GitHub histories, and live AI coaching during video interviews to gain employment at technology companies. One such operative passed four video interviews and a full background check before being discovered (KnowBe4, 2024). The US DOJ and FBI have issued coordinated indictments and public warnings.</p>
+    <p>No infrastructure layer exists to detect this at the point of application, before any recruiter time, interview slot, or system access is involved. Sentriq builds that layer.</p>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">The Candidate Hiring Captcha</div>
+    <p>Sentriq's product is called the Candidate Hiring Captcha. The name is intentional: just as a website CAPTCHA distinguishes a human from a bot before granting access, Sentriq's system surfaces a trust signal that distinguishes an authentic candidate from a fraudulent one, before the application enters the employer's ATS (Applicant Tracking System).</p>
+    <p>Sentriq does not block or reject candidates automatically. It surfaces a signal. Humans make the final decision. This architecture is intentional: it avoids automated decision-making liability and keeps a human in the loop at every stage.</p>
+  </div>
+
+  <div style="margin-top:20px;">
+    <div class="diagram-title">The Hiring Lifecycle: Where Sentriq Sits</div>
+    <div style="border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:grid; grid-template-columns:repeat(8,1fr);">
+        <div style="padding:14px 8px; background:#EFF6FF; border-right:1px solid var(--border); border-bottom:3px solid var(--primary); text-align:center;">
+          <div style="font-size:9px; font-weight:800; color:var(--primary); text-transform:uppercase; margin-bottom:5px;">Sentriq</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text);">Application</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Pre-ATS layer<br/>Trust signal generated</div>
+          <div style="font-size:10px; color:var(--primary); margin-top:6px; font-weight:600;">$0 cost<br/>to employer</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; border-right:1px solid var(--border); text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">ATS Screen</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Greenhouse<br/>Comeet / Lever</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">~$5 / app</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; border-right:1px solid var(--border); text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">Assessment</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">HireVue<br/>Criteria</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">~$30 / candidate</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; border-right:1px solid var(--border); text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">Phone Screen</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Recruiter time</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">~$30 / screen</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; border-right:1px solid var(--border); text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">Technical Interview</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Engineer time<br/>CodeSignal</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">~$500 / candidate</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; border-right:1px solid var(--border); text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">Final Panel</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Senior leadership</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">~$1,800 / candidate</div>
+        </div>
+        <div style="padding:14px 8px; background:#FFF7ED; border-right:1px solid var(--border); border-bottom:3px solid #EA580C; text-align:center;">
+          <div style="font-size:9px; font-weight:800; color:#EA580C; text-transform:uppercase; margin-bottom:5px;">Too Late</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text);">Background Check</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Checkr<br/>HireRight</div>
+          <div style="font-size:10px; color:#EA580C; margin-top:6px; font-weight:600;">$1,900+ already spent</div>
+        </div>
+        <div style="padding:14px 8px; background:#F8FAFC; text-align:center;">
+          <div style="font-size:9px; color:transparent; margin-bottom:5px;">.</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text-dim);">Onboarding</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:4px; line-height:1.4;">Rippling / Deel<br/>System access</div>
+          <div style="font-size:10px; color:var(--text-dim); margin-top:6px;">$3,200+ total</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:11px; color:var(--text-dim); margin-top:4px;">Sentriq operates at the application stage, before any cost is incurred. Background checks, which currently serve as the fraud detection mechanism, run after more than $1,900 in recruiter, engineer, and executive time has already been spent. They also only verify identity, not behavioral intent: state-backed operatives with real stolen identities pass them.</p>
+  </div>
+
+  <div style="margin-top:20px;">
+    <div class="diagram-title">The Attack Spectrum Sentriq Detects</div>
+    <div style="border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:8px;">
+      <div style="display:grid; grid-template-columns:repeat(6,1fr);">
+        <div style="padding:16px 12px; background:#F0FDF4; border-right:1px solid var(--border);">
+          <div style="font-size:9px; font-weight:700; color:#059669; text-transform:uppercase; margin-bottom:6px;">Passive</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">Bot Detection</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Typing dynamics, mouse movement, fill patterns. Determines whether a human is completing the form before any scoring begins.</p>
+        </div>
+        <div style="padding:16px 12px; background:#F5F3FF; border-right:1px solid var(--border);">
+          <div style="font-size:9px; font-weight:700; color:#7C3AED; text-transform:uppercase; margin-bottom:6px;">Automated</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">Mass-Apply Bots</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Tools sending 1,500+ applications per day from one user. Same behavioral fingerprint across many companies. YC-funded tools do this at scale.</p>
+        </div>
+        <div style="padding:16px 12px; background:#EFF6FF; border-right:1px solid var(--border);">
+          <div style="font-size:9px; font-weight:700; color:var(--primary); text-transform:uppercase; margin-bottom:6px;">Gaming</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">CV Overfitting</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Resumes engineered to beat ATS keyword matching. AI-generated content designed to score highly on automated screeners.</p>
+        </div>
+        <div style="padding:16px 12px; background:#FFFBEB; border-right:1px solid var(--border);">
+          <div style="font-size:9px; font-weight:700; color:#D97706; text-transform:uppercase; margin-bottom:6px;">Inflation</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">Skills Anomaly</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Claimed skills with no behavioral evidence. CV says senior engineer; behavioral profile says otherwise.</p>
+        </div>
+        <div style="padding:16px 12px; background:#FFF7ED; border-right:1px solid var(--border);">
+          <div style="font-size:9px; font-weight:700; color:#EA580C; text-transform:uppercase; margin-bottom:6px;">Fabrication</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">Profile Distortion</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Timeline manipulation, false credentials, AI-generated CVs. Real documents, fabricated history. Behavioral mismatch is the signal.</p>
+        </div>
+        <div style="padding:16px 12px; background:#FEF2F2;">
+          <div style="font-size:9px; font-weight:700; color:#DC2626; text-transform:uppercase; margin-bottom:6px;">State-Backed</div>
+          <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:6px;">Proxy Fraud</div>
+          <p style="font-size:11px; color:var(--text-dim); line-height:1.5;">Stolen SSNs, live AI coaching, real credentials, wrong person. The KnowBe4 operative passed four video interviews and a full background check.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info" style="margin-top:16px;">
+    <div class="callout-label">Why Existing Tools Cannot Solve This</div>
+    <p><strong>Background check companies (Checkr, HireRight):</strong> Run after 6+ interview rounds and $1,900+ in spent cost. Verify identity documents, not behavioral intent. DPRK operatives use real stolen SSNs and pass them.</p>
+    <p><strong>ATS platforms (Greenhouse, Lever, Comeet):</strong> Score candidate fit. They do not detect fraud. Their customer contracts prohibit sharing candidate data between employers, making a cross-company fraud signal structurally impossible.</p>
+    <p><strong>Identity verification platforms (Persona, Checkr IDV):</strong> Confirm a face matches a document. Cannot detect proxy fraud (right document, wrong person operating the account), behavioral anomalies, or coordinated campaigns.</p>
+    <p><strong>Deepfake detection at interviews (Clarity, GetReal):</strong> Operate at the video interview stage, after more than $1,700 in process cost is already spent. Complement to Sentriq, not a substitute.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 1 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s1">
+  <div class="section-title">1. Product Overview</div>
+  <div class="section-subtitle">What Sentriq does and who the parties are in plain language.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">What Sentriq Is</div>
+    <p>Sentriq is a pre-application integrity layer for hiring. It sits between the candidate and the employer's ATS (Applicant Tracking System). When a candidate fills out a job application form, Sentriq captures behavioral signals to determine whether the application is being made by an authentic human, a bot, a proxy, or an AI-assisted fraudulent actor.</p>
+    <p>Sentriq is not a product that makes hiring decisions. It surfaces a trust signal that humans review. No candidate is automatically rejected. All flags route to human review.</p>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="diagram-title">The Three Parties</div>
+    <div class="subject-grid">
+      <div class="subject-box">
+        <h4 style="color:var(--primary);">Employer (Sentriq Customer)</h4>
+        <ul>
+          <li>Integrates Sentriq into their application form</li>
+          <li>Receives the trust signal output</li>
+          <li>Sees raw behavioral data only when a high-probability fraud event is escalated</li>
+          <li>CISO owns outcome on confirmed fraud cases</li>
+          <li>Signs contract with Sentriq</li>
+        </ul>
+      </div>
+      <div class="subject-box">
+        <h4 style="color:var(--red);">Candidate (Data Subject)</h4>
+        <ul>
+          <li>Applies for a job on the employer's platform</li>
+          <li>Unaware of Sentriq during passive layer</li>
+          <li>Redirected to Sentriq-hosted page if flagged for async challenge</li>
+          <li>Gives consent to Sentriq only at the async challenge stage</li>
+          <li>Has data rights (extent TBD by counsel)</li>
+        </ul>
+      </div>
+      <div class="subject-box">
+        <h4 style="color:var(--green);">Sentriq</h4>
+        <ul>
+          <li>Operates the passive behavioral capture embedded in employer's form</li>
+          <li>Hosts the async challenge experience</li>
+          <li>Employs analysts who review flagged cases</li>
+          <li>Operates the cross-company fraud graph</li>
+          <li>Neutral third party, not the employer, not the candidate's agent</li>
+        </ul>
+      </div>
+      <div class="subject-box">
+        <h4 style="color:var(--purple);">Sentriq Analyst</h4>
+        <ul>
+          <li>Internal Sentriq staff member</li>
+          <li>Reviews flagged candidate signals</li>
+          <li>Accesses raw behavioral data only for flagged cases</li>
+          <li>Does not make the final hiring decision (employer does)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 2 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s2">
+  <div class="section-title">2. Data Subjects</div>
+  <div class="section-subtitle">Who the individuals are whose personal data Sentriq processes.</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Subject</th>
+        <th>Relationship to Sentriq</th>
+        <th>Data Collected</th>
+        <th>Aware of Sentriq?</th>
+        <th>Consent Given?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Job Candidate</strong></td>
+        <td>No direct relationship at Layer 1. Direct relationship established at Layer 2 (async challenge).</td>
+        <td>Behavioral signals, device/IP/geo, form content, async challenge responses, potentially AI phone call transcript</td>
+        <td>No (Layer 1). Yes (Layer 2+).</td>
+        <td><span class="badge badge-open">Open: see Section 8</span></td>
+      </tr>
+      <tr>
+        <td><strong>Employer Contact (HR / CISO)</strong></td>
+        <td>Contracting party. Named individual at employer who uses the Sentriq dashboard.</td>
+        <td>Name, email, role, usage logs</td>
+        <td>Yes</td>
+        <td>Via contract with employer</td>
+      </tr>
+      <tr>
+        <td><strong>Sentriq Analyst</strong></td>
+        <td>Employee</td>
+        <td>Employment data (out of scope for this briefing)</td>
+        <td>Yes</td>
+        <td>Employment contract</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-risk">
+    <div class="callout-label">High Exposure: Candidate has no direct relationship with Sentriq at Layer 1</div>
+    <p>At the passive layer, the candidate applies on the employer's platform and is unaware Sentriq is involved. The employer presents any relevant disclosure. This raises questions around legal basis, transparency obligations, and whether the employer's disclosure is sufficient for Sentriq to process data lawfully. Counsel to determine.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 3 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s3">
+  <div class="section-title">3. Architecture &amp; Data Flow Diagram</div>
+  <div class="section-subtitle">End-to-end data movement from application submission to fraud graph entry.</div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #E2E8F0; border-radius:12px; background:#FAFAFA;">
+
+      <!-- Title -->
+      <text x="450" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B" font-family="Inter,sans-serif">SENTRIQ DATA FLOW: END TO END</text>
+
+      <!-- CANDIDATE BOX -->
+      <rect x="20" y="50" width="120" height="60" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+      <text x="80" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#1E40AF" font-family="Inter,sans-serif">CANDIDATE</text>
+      <text x="80" y="93" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Applies for job</text>
+
+      <!-- Arrow: Candidate to Employer Form -->
+      <line x1="140" y1="80" x2="195" y2="80" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="167" y="73" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">fills form</text>
+
+      <!-- EMPLOYER FORM BOX -->
+      <rect x="195" y="50" width="130" height="60" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="260" y="73" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46" font-family="Inter,sans-serif">EMPLOYER FORM</text>
+      <text x="260" y="88" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Sentriq SDK</text>
+      <text x="260" y="101" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">embedded here</text>
+
+      <!-- Arrow: Employer Form to Layer 1 -->
+      <line x1="325" y1="80" x2="385" y2="80" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="355" y="73" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">signals</text>
+
+      <!-- LAYER 1 BOX -->
+      <rect x="385" y="40" width="145" height="80" rx="8" fill="#FEF3C7" stroke="#FCD34D" stroke-width="2"/>
+      <text x="458" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#92400E" font-family="Inter,sans-serif">LAYER 1</text>
+      <text x="458" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B" font-family="Inter,sans-serif">Passive Behavioral</text>
+      <text x="458" y="92" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Keystrokes, mouse, timing,</text>
+      <text x="458" y="105" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">copy-paste, device, IP, geo</text>
+
+      <!-- Arrow: Layer 1 to Decision Diamond -->
+      <line x1="530" y1="80" x2="590" y2="80" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- DECISION DIAMOND -->
+      <polygon points="620,60 660,80 620,100 580,80" fill="white" stroke="#94A3B8" stroke-width="1.5"/>
+      <text x="620" y="76" text-anchor="middle" font-size="9" font-weight="700" fill="#1E293B" font-family="Inter,sans-serif">Flag?</text>
+      <text x="620" y="88" text-anchor="middle" font-size="9" fill="#1E293B" font-family="Inter,sans-serif">YES/NO</text>
+
+      <!-- NO path: straight through to ATS -->
+      <line x1="660" y1="80" x2="730" y2="80" stroke="#059669" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="695" y="73" text-anchor="middle" font-size="9" fill="#059669" font-family="Inter,sans-serif">PASS</text>
+
+      <!-- ATS BOX -->
+      <rect x="730" y="54" width="100" height="52" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+      <text x="780" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#475569" font-family="Inter,sans-serif">ATS</text>
+      <text x="780" y="92" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Inter,sans-serif">+ Trust Signal</text>
+
+      <!-- Arrow ATS to Employer Dashboard -->
+      <line x1="830" y1="80" x2="875" y2="80" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="853" y="73" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">signal</text>
+
+      <!-- EMPLOYER DASHBOARD (right edge) -->
+      <rect x="875" y="54" width="20" height="52" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.5"/>
+      <text x="885" y="76" text-anchor="middle" font-size="8" fill="#1E40AF" transform="rotate(-90,885,80)" font-family="Inter,sans-serif">Employer</text>
+
+      <!-- YES path: down to Layer 2 -->
+      <line x1="620" y1="100" x2="620" y2="165" stroke="#DC2626" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="633" y="135" text-anchor="middle" font-size="9" fill="#DC2626" font-family="Inter,sans-serif">FLAG</text>
+
+      <!-- LAYER 2 BOX -->
+      <rect x="500" y="165" width="240" height="90" rx="8" fill="#FEE2E2" stroke="#FECACA" stroke-width="2"/>
+      <text x="620" y="187" text-anchor="middle" font-size="10" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">LAYER 2: ASYNC CHALLENGE</text>
+      <text x="620" y="203" text-anchor="middle" font-size="11" font-weight="700" fill="#1E293B" font-family="Inter,sans-serif">Sentriq-hosted page</text>
+      <text x="620" y="219" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Candidate redirected here. Candidate</text>
+      <text x="620" y="233" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">is now aware of Sentriq. Consent given.</text>
+      <text x="620" y="247" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Text responses. AI phone call (optional).</text>
+
+      <!-- Consent label -->
+      <rect x="740" y="195" width="90" height="24" rx="5" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1"/>
+      <text x="785" y="211" text-anchor="middle" font-size="9" font-weight="700" fill="#065F46" font-family="Inter,sans-serif">CONSENT HERE</text>
+
+      <!-- Arrow: Layer 2 to Layer 3 -->
+      <line x1="620" y1="255" x2="620" y2="310" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- LAYER 3 BOX -->
+      <rect x="490" y="310" width="260" height="70" rx="8" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="2"/>
+      <text x="620" y="332" text-anchor="middle" font-size="10" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">LAYER 3: HUMAN REVIEW</text>
+      <text x="620" y="349" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Sentriq analyst reviews full signal stack.</text>
+      <text x="620" y="364" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Employer CISO makes final determination.</text>
+
+      <!-- CISO Confirms Fraud path: down to graph -->
+      <line x1="620" y1="380" x2="620" y2="435" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr2)"/>
+      <text x="650" y="410" text-anchor="middle" font-size="9" fill="#7C3AED" font-family="Inter,sans-serif">CISO confirms</text>
+      <text x="650" y="421" text-anchor="middle" font-size="9" fill="#7C3AED" font-family="Inter,sans-serif">fraud only</text>
+
+      <!-- GRAPH BOX -->
+      <rect x="460" y="435" width="320" height="70" rx="8" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="2"/>
+      <text x="620" y="457" text-anchor="middle" font-size="10" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">CROSS-COMPANY FRAUD GRAPH</text>
+      <text x="620" y="473" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Only CISO-confirmed fraud cases enter.</text>
+      <text x="620" y="488" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Device fingerprint, behavioral hash, resume hash.</text>
+      <text x="620" y="503" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Shared across employers via Sentriq's neutral infrastructure.</text>
+
+      <!-- EMPLOYER (left side) connecting back to employer form -->
+      <rect x="20" y="190" width="120" height="55" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="80" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46" font-family="Inter,sans-serif">EMPLOYER</text>
+      <text x="80" y="228" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">HR / CISO</text>
+      <text x="80" y="241" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Dashboard</text>
+
+      <!-- Arrow: Layer 3 result to Employer -->
+      <line x1="490" y1="345" x2="180" y2="230" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+      <text x="330" y="278" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">Trust signal + flag</text>
+
+      <!-- Marker definitions -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#94A3B8"/>
+        </marker>
+        <marker id="arr2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/>
+        </marker>
+      </defs>
+    </svg>
+    <p style="font-size:11px; color:var(--text-dim); margin-top:6px; text-align:center;">Dashed lines indicate conditional flows. Solid lines are standard flows.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 4 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s4">
+  <div class="section-title">4. Layer 1: Passive Behavioral Capture</div>
+  <div class="section-subtitle">Embedded in the employer's application form. Candidate is unaware.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">How it works</div>
+    <p>Sentriq's SDK is embedded inside the employer's existing job application form. As the candidate fills in the form fields, Sentriq captures behavioral metadata passively in the background. No separate screen, no redirect, no visible Sentriq branding. The candidate does not know Sentriq is present.</p>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-title">Layer 1 Data Signals Captured</div>
+    <div class="flow">
+      <div class="flow-node" style="background:#FFF7ED;">
+        <div class="flow-node-title" style="color:#C2410C;">Behavioral</div>
+        <div class="flow-node-sub">Keystroke dynamics<br/>Mouse movement<br/>Copy-paste events<br/>Time to first response<br/>Field revision patterns<br/>Form completion speed</div>
+      </div>
+      <div class="flow-node" style="background:#F0FDF4;">
+        <div class="flow-node-title" style="color:#065F46;">Device</div>
+        <div class="flow-node-sub">Device fingerprint<br/>Browser fingerprint<br/>OS &amp; version<br/>Screen resolution<br/>Language settings</div>
+      </div>
+      <div class="flow-node" style="background:#EFF6FF;">
+        <div class="flow-node-title" style="color:#1E40AF;">Network</div>
+        <div class="flow-node-sub">IP address<br/>Geolocation (IP-derived)<br/>VPN / proxy signals<br/>Connection type</div>
+      </div>
+      <div class="flow-node" style="background:#F5F3FF;">
+        <div class="flow-node-title" style="color:#5B21B6;">Form Content</div>
+        <div class="flow-node-sub">CV / resume content<br/>Claimed location<br/>Claimed skills &amp; timeline<br/>Cross-referenced vs. device geo</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Signal</th><th>Purpose</th><th>Stored?</th><th>Regulatory Flag</th></tr></thead>
+    <tbody>
+      <tr><td>Keystroke dynamics / typing patterns</td><td>Detect bots, AI-completion, proxy filling</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-risk">Possible biometric: counsel to classify</span></td></tr>
+      <tr><td>Mouse movement, click patterns</td><td>Bot detection</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-risk">Possible biometric: counsel to classify</span></td></tr>
+      <tr><td>Copy-paste behavior</td><td>Detect AI-generated or auto-filled content</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-info">Standard UX signal</span></td></tr>
+      <tr><td>IP address</td><td>Geo vs. claimed location cross-check</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-risk">Personal data under GDPR</span></td></tr>
+      <tr><td>Geolocation (IP-derived)</td><td>Flag: CV says Israel, IP from Philippines</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-risk">Personal data. Transfer implications.</span></td></tr>
+      <tr><td>Device fingerprint</td><td>Cross-company fraud detection (graph)</td><td><span class="badge badge-decided">Yes</span></td><td><span class="badge badge-risk">Personal data. Consent basis unclear at L1.</span></td></tr>
+      <tr><td>Browser fingerprint</td><td>Bot detection, identity continuity</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-risk">ePrivacy Directive (cookies/tracking)</span></td></tr>
+      <tr><td>CV / resume text</td><td>Skills anomaly detection, timeline analysis</td><td><span class="badge badge-open">Open</span></td><td><span class="badge badge-info">Submitted by candidate to employer</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="callout callout-risk">
+      <div class="callout-label">High Exposure: Processing Without Candidate Awareness</div>
+      <p>At Layer 1, Sentriq processes candidate personal data (IP, device fingerprint, behavioral signals) without the candidate's direct knowledge. The legal basis for this processing is not yet determined. Counsel must advise on whether legitimate interests, employer contract necessity, or explicit consent is required: and whether employer disclosure is sufficient.</p>
+    </div>
+    <div class="callout callout-open">
+      <div class="callout-label">Open: Behavioral Biometric Classification</div>
+      <p>Keystroke dynamics and mouse movement patterns may constitute biometric data under GDPR Article 9 (special category) or under US state laws (Illinois BIPA, Texas CUBI, Washington MY). Counsel to classify. If classified as biometric, a separate legal basis and likely explicit consent will be required.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 5 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s5">
+  <div class="section-title">5. Layer 2: Async Challenge (Sentriq-Hosted)</div>
+  <div class="section-subtitle">Triggered only when Layer 1 surfaces anomalies. Candidate is redirected to a Sentriq-hosted page and becomes aware of Sentriq for the first time.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">How it works</div>
+    <p>When Layer 1 flags a candidate, they are redirected from the employer's application form to a Sentriq-hosted web page. This is analogous to the 3D Secure redirect that occurs when a bank wants to verify a card transaction during e-commerce checkout: the candidate leaves the employer's environment and enters Sentriq's. At this point, Sentriq presents its identity, explains the purpose, and obtains candidate consent before proceeding.</p>
+    <p style="margin-top:8px;">The candidate completes a short structured task designed to distinguish authentic human capability from AI-generated or proxy responses. Questions are designed around personal experience that AI cannot fabricate (e.g., "Describe the most interesting non-professional conversation you had with a manager. What was the topic?").</p>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-title">Layer 2 Data Collected</div>
+    <div class="flow">
+      <div class="flow-node" style="background:#FFF7ED;">
+        <div class="flow-node-title" style="color:#C2410C;">Text Responses</div>
+        <div class="flow-node-sub">Answers to structured questions<br/>Personal experience narratives<br/>Behavioral writing signals within responses</div>
+      </div>
+      <div class="flow-node" style="background:#F0FDF4;">
+        <div class="flow-node-title" style="color:#065F46;">AI Phone Call (Optional)</div>
+        <div class="flow-node-sub">Voice call initiated by Sentriq<br/>Transcript generated<br/>Analyzed for human authenticity,<br/>soft skills, lived experience signals</div>
+      </div>
+      <div class="flow-node" style="background:#EFF6FF;">
+        <div class="flow-node-title" style="color:#1E40AF;">Continued Behavioral</div>
+        <div class="flow-node-sub">All Layer 1 signals continue<br/>during the challenge session</div>
+      </div>
+      <div class="flow-node" style="background:#FEE2E2;">
+        <div class="flow-node-title" style="color:#991B1B;">Consent Record</div>
+        <div class="flow-node-sub">Timestamp, consent version,<br/>IP at time of consent,<br/>content of what was agreed to</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Data Type</th><th>Collected By</th><th>Regulatory Flag</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Text challenge responses</td><td>Sentriq (direct)</td><td>Personal data. May reveal personality, beliefs, style.</td><td><span class="badge badge-open">Open: retention period TBD</span></td></tr>
+      <tr><td>Voice call recording / transcript</td><td>Sentriq (direct)</td><td><span style="color:var(--red); font-weight:600;">High risk.</span> Voice is biometric data under GDPR Art.9. Wiretapping laws in some US states require two-party consent.</td><td><span class="badge badge-risk">Counsel: two-party consent, biometric classification</span></td></tr>
+      <tr><td>Consent record</td><td>Sentriq (direct)</td><td>Must be retained as proof of lawful processing</td><td><span class="badge badge-decided">Retain: duration TBD by counsel</span></td></tr>
+      <tr><td>Continued behavioral signals</td><td>Sentriq (direct)</td><td>Same as Layer 1 but now with consent</td><td><span class="badge badge-open">Open</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="callout callout-risk">
+      <div class="callout-label">High Exposure: Voice Recording</div>
+      <p>The AI phone call option involves recording a candidate's voice. Voice biometrics are explicitly classified as special category data under GDPR Article 9. In the US, California (CCPA/CPRA), Illinois (BIPA), Texas, and Washington have specific biometric data laws. Some US states (California, Florida, others) require all-party consent for call recording. Counsel must advise before this feature is built.</p>
+    </div>
+    <div class="callout callout-decided">
+      <div class="callout-label">Founder Decision: Consent at Redirect</div>
+      <p>Sentriq's current intent is to obtain candidate consent at the point of the async challenge redirect: before any Layer 2 data is collected. The consent mechanism, wording, and scope are open for counsel to design. The consent timing (redirect only, not at application start) is a founder position that counsel should validate.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 6 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s6">
+  <div class="section-title">6. Layer 3: Human Review &amp; CISO Escalation</div>
+  <div class="section-subtitle">Sentriq analysts review the full signal stack. Employer CISO makes the final call.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">How it works</div>
+    <p>Flagged candidates from Layer 2 are reviewed by a Sentriq analyst. The analyst has access to the full behavioral signal stack and the async challenge responses. The analyst does not make the hiring decision. They produce a structured assessment of the fraud signal that is shared with the employer. The employer's CISO or designated security officer determines whether the case is a confirmed fraud event.</p>
+    <p style="margin-top:8px;">Only CISO-confirmed fraud cases proceed to the cross-company graph. All other flagged cases that are not confirmed as fraud are retained by Sentriq per retention policy but do not enter the graph.</p>
+  </div>
+
+  <div class="diagram" style="margin-top:20px;">
+    <div class="diagram-title">The HR-to-CISO Escalation Path</div>
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #E2E8F0; border-radius:12px; background:#FAFAFA;">
+
+      <!-- STEP 1: HR starts POC -->
+      <rect x="20" y="40" width="155" height="90" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+      <text x="97" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#1E40AF" font-family="Inter,sans-serif">STEP 1: HR INTEGRATION</text>
+      <text x="97" y="80" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">VP HR installs Sentriq.</text>
+      <text x="97" y="95" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Sees trust signals next to</text>
+      <text x="97" y="110" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">each application. No CISO</text>
+      <text x="97" y="123" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">approval needed yet.</text>
+      <rect x="30" y="132" width="135" height="18" rx="4" fill="#DBEAFE"/>
+      <text x="97" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#1E40AF" font-family="Inter,sans-serif">HR case. Data: trust signal only.</text>
+
+      <!-- Arrow 1 to 2 -->
+      <line x1="175" y1="85" x2="222" y2="85" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrE)"/>
+
+      <!-- STEP 2: Fraud flag surfaces -->
+      <rect x="222" y="40" width="155" height="90" rx="8" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+      <text x="299" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#92400E" font-family="Inter,sans-serif">STEP 2: FLAG SURFACES</text>
+      <text x="299" y="80" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Real fraud detected in</text>
+      <text x="299" y="95" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">live pipeline. Sentriq</text>
+      <text x="299" y="110" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">analyst reviews full</text>
+      <text x="299" y="123" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">signal stack.</text>
+      <rect x="232" y="132" width="135" height="18" rx="4" fill="#FEF3C7"/>
+      <text x="299" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#92400E" font-family="Inter,sans-serif">Still HR case. Analyst accessed data.</text>
+
+      <!-- Arrow 2 to 3 -->
+      <line x1="377" y1="85" x2="424" y2="85" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrE)"/>
+
+      <!-- STEP 3: Security incident declared -->
+      <rect x="424" y="40" width="155" height="90" rx="8" fill="#FEE2E2" stroke="#FECACA" stroke-width="2"/>
+      <text x="501" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">STEP 3: SECURITY INCIDENT</text>
+      <text x="501" y="77" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">High-probability fraud</text>
+      <text x="501" y="92" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">confirmed by Sentriq analyst.</text>
+      <text x="501" y="107" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">HR escalates to CISO.</text>
+      <text x="501" y="122" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Raw signals shared with CISO.</text>
+      <rect x="434" y="132" width="135" height="18" rx="4" fill="#FEE2E2"/>
+      <text x="501" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">CISO case. Raw data disclosed.</text>
+
+      <!-- Arrow 3 to 4 -->
+      <line x1="579" y1="85" x2="626" y2="85" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrE)"/>
+
+      <!-- STEP 4: CISO confirms -->
+      <rect x="626" y="40" width="155" height="90" rx="8" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="2"/>
+      <text x="703" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">STEP 4: CISO CONFIRMS</text>
+      <text x="703" y="80" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">CISO reviews evidence</text>
+      <text x="703" y="95" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">and makes final call:</text>
+      <text x="703" y="110" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">confirmed fraud or</text>
+      <text x="703" y="123" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">cleared candidate.</text>
+      <rect x="636" y="132" width="135" height="18" rx="4" fill="#EDE9FE"/>
+      <text x="703" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">Final determination. CISO owns outcome.</text>
+
+      <!-- Branch lines from Step 4 -->
+      <!-- Confirmed path: down to graph -->
+      <line x1="703" y1="165" x2="703" y2="200" stroke="#7C3AED" stroke-width="1.5" marker-end="url(#arrE2)"/>
+      <text x="720" y="188" text-anchor="middle" font-size="9" fill="#7C3AED" font-family="Inter,sans-serif">Confirmed</text>
+
+      <rect x="610" y="200" width="185" height="50" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+      <text x="703" y="221" text-anchor="middle" font-size="10" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">FRAUD GRAPH ENTRY</text>
+      <text x="703" y="237" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Hashed signals added to cross-company network.</text>
+
+      <!-- Cleared path: right to end -->
+      <line x1="781" y1="85" x2="830" y2="85" stroke="#059669" stroke-width="1.5" marker-end="url(#arrE3)"/>
+      <text x="820" y="73" text-anchor="middle" font-size="9" fill="#059669" font-family="Inter,sans-serif">Cleared</text>
+      <rect x="830" y="60" width="20" height="52" rx="4" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1.5"/>
+
+      <!-- Data access escalation bar at bottom -->
+      <rect x="20" y="270" width="760" height="36" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1"/>
+      <text x="25" y="286" text-anchor="start" font-size="9" font-weight="700" fill="#64748B" font-family="Inter,sans-serif">DATA EXPOSURE TO EMPLOYER:</text>
+      <text x="97" y="298" text-anchor="middle" font-size="9" fill="#1E40AF" font-family="Inter,sans-serif">Trust signal</text>
+      <text x="299" y="298" text-anchor="middle" font-size="9" fill="#92400E" font-family="Inter,sans-serif">Trust signal + analyst summary</text>
+      <text x="501" y="298" text-anchor="middle" font-size="9" fill="#991B1B" font-family="Inter,sans-serif">Full raw signals (CISO)</text>
+      <text x="703" y="298" text-anchor="middle" font-size="9" fill="#5B21B6" font-family="Inter,sans-serif">Confirmation record + graph entry</text>
+
+      <defs>
+        <marker id="arrE" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#94A3B8"/></marker>
+        <marker id="arrE2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/></marker>
+        <marker id="arrE3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#059669"/></marker>
+      </defs>
+    </svg>
+    <p style="font-size:11px; color:var(--text-dim); margin-top:6px;">The bottom bar shows how the employer's data exposure expands at each stage. At Step 1, the employer sees only a trust signal. Raw behavioral data is not shared until the case becomes a security incident (Step 3). Only after CISO confirmation does data enter the cross-company graph.</p>
+  </div>
+
+  <div class="callout callout-info" style="margin-top:8px;">
+    <div class="callout-label">Why the Escalation Trigger Matters for Regulation</div>
+    <p>The shift from HR case to CISO case is not just an internal workflow: it changes the data access, the legal basis for further processing, and potentially the controller/processor relationship. At the HR stage, the employer receives a signal and Sentriq retains the underlying data. At the CISO stage, raw personal data is shared with a new actor (the CISO) who becomes a recipient under GDPR. This escalation path needs a documented legal basis and should be reflected in the employer DPA. Counsel to advise on what triggers, documentation, and disclosures are required at each transition point.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Actor</th><th>Access to Candidate Data</th><th>Role</th><th>Decision Power</th></tr></thead>
+    <tbody>
+      <tr><td>Sentriq Analyst</td><td>Full signal stack (Layer 1 + Layer 2 responses)</td><td>Reviews and assesses</td><td>No hiring decision</td></tr>
+      <tr><td>Employer HR</td><td>Trust signal output only (in normal flow)</td><td>Initial POC stakeholder</td><td>Forwards to CISO on fraud events</td></tr>
+      <tr><td>Employer CISO</td><td>Full signal stack on confirmed high-risk cases</td><td>Final fraud determination</td><td>Confirms fraud / clears candidate</td></tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="callout callout-risk">
+      <div class="callout-label">Exposure: EU AI Act: Automated Profiling</div>
+      <p>Sentriq's scoring of candidates constitutes automated profiling that produces a significant effect on their employment prospects. Under GDPR Article 22 and the EU AI Act (hiring AI = high risk, Annex III), specific obligations apply: human oversight (present), right to explanation, bias testing, audit trails. Sentriq's human-in-the-loop architecture partially addresses this. Counsel to map full EU AI Act compliance pathway.</p>
+    </div>
+    <div class="callout callout-open">
+      <div class="callout-label">Open: Candidate Right to Explanation</div>
+      <p>Under GDPR Article 22 and the EU AI Act, candidates subject to automated decision-making have a right to an explanation and to contest the outcome. At what point and in what form does Sentriq or the employer provide this? What can be disclosed without compromising the detection methodology? Counsel to advise.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 7 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s7">
+  <div class="section-title">7. Cross-Company Fraud Graph</div>
+  <div class="section-subtitle">The network intelligence layer. Only confirmed fraud cases enter. Shared across all Sentriq customers.</div>
+
+  <div class="callout callout-info">
+    <div class="callout-label">Architecture principle</div>
+    <p>The cross-company graph requires Sentriq to operate as a neutral third party. It receives a CISO-confirmed fraud signal from Employer A and uses derived identifiers from that candidate (device fingerprint, behavioral hash, resume hash) to flag matching patterns when the same candidate applies to Employer B. Employers do not share data directly with each other. All sharing occurs through Sentriq's infrastructure.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #E2E8F0; border-radius:12px; background:#FAFAFA;">
+      <text x="430" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B" font-family="Inter,sans-serif">CROSS-COMPANY FRAUD GRAPH: DATA FLOW</text>
+
+      <!-- Employer A -->
+      <rect x="20" y="50" width="140" height="70" rx="8" fill="#FEE2E2" stroke="#FECACA" stroke-width="1.5"/>
+      <text x="90" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">EMPLOYER A</text>
+      <text x="90" y="90" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">CISO confirms fraud</text>
+      <text x="90" y="104" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">on Candidate X</text>
+
+      <!-- Arrow A to Graph -->
+      <line x1="160" y1="85" x2="280" y2="140" stroke="#7C3AED" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr3)"/>
+      <text x="210" y="108" text-anchor="middle" font-size="9" fill="#7C3AED" font-family="Inter,sans-serif">Hashed signals only</text>
+
+      <!-- Employer B -->
+      <rect x="20" y="160" width="140" height="70" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+      <text x="90" y="184" text-anchor="middle" font-size="11" font-weight="700" fill="#1E40AF" font-family="Inter,sans-serif">EMPLOYER B</text>
+      <text x="90" y="200" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Receives pre-flag</text>
+      <text x="90" y="214" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">on same candidate</text>
+
+      <!-- Arrow Graph to B -->
+      <line x1="280" y1="160" x2="160" y2="205" stroke="#2563EB" stroke-width="1.5" marker-end="url(#arr4)"/>
+      <text x="210" y="195" text-anchor="middle" font-size="9" fill="#2563EB" font-family="Inter,sans-serif">Match alert</text>
+
+      <!-- Central Graph -->
+      <rect x="280" y="100" width="300" height="120" rx="10" fill="#F5F3FF" stroke="#7C3AED" stroke-width="2"/>
+      <text x="430" y="125" text-anchor="middle" font-size="11" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">SENTRIQ FRAUD GRAPH</text>
+      <text x="430" y="143" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Device fingerprint hash</text>
+      <text x="430" y="158" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Behavioral signal hash</text>
+      <text x="430" y="173" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Resume content hash</text>
+      <text x="430" y="190" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Confirmation source: CISO only</text>
+      <text x="430" y="207" text-anchor="middle" font-size="10" font-weight="700" fill="#7C3AED" font-family="Inter,sans-serif">No raw PII shared between employers</text>
+
+      <!-- Employer C -->
+      <rect x="700" y="50" width="140" height="70" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+      <text x="770" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46" font-family="Inter,sans-serif">EMPLOYER C</text>
+      <text x="770" y="90" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Same candidate applies.</text>
+      <text x="770" y="104" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Immediately flagged.</text>
+
+      <!-- Arrow Graph to C -->
+      <line x1="580" y1="130" x2="700" y2="88" stroke="#2563EB" stroke-width="1.5" marker-end="url(#arr4)"/>
+      <text x="645" y="102" text-anchor="middle" font-size="9" fill="#2563EB" font-family="Inter,sans-serif">Graph match</text>
+
+      <!-- Employer D -->
+      <rect x="700" y="160" width="140" height="70" rx="8" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+      <text x="770" y="184" text-anchor="middle" font-size="11" font-weight="700" fill="#92400E" font-family="Inter,sans-serif">EMPLOYER D</text>
+      <text x="770" y="200" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Different candidate, different</text>
+      <text x="770" y="214" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">device: no match. Clear.</text>
+
+      <defs>
+        <marker id="arr3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/></marker>
+        <marker id="arr4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563EB"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <table>
+    <thead><tr><th>Data in Graph</th><th>Format</th><th>Entry Condition</th><th>Regulatory Flag</th></tr></thead>
+    <tbody>
+      <tr><td>Device fingerprint</td><td>Hashed derived signal</td><td>CISO-confirmed fraud only</td><td><span class="badge badge-risk">Personal data even if hashed: re-identification risk</span></td></tr>
+      <tr><td>Behavioral signal</td><td>Hashed / derived score</td><td>CISO-confirmed fraud only</td><td><span class="badge badge-risk">Possible biometric: see Section 4</span></td></tr>
+      <tr><td>Resume content hash</td><td>Hashed</td><td>CISO-confirmed fraud only</td><td><span class="badge badge-info">Lower risk if non-reversible hash</span></td></tr>
+      <tr><td>Confirmation metadata</td><td>CISO employer, date, case ID</td><td>CISO-confirmed fraud only</td><td><span class="badge badge-open">Retention period TBD</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-risk">
+    <div class="callout-label">High Exposure: Cross-Border Sharing Without Candidate Knowledge</div>
+    <p>Data about a candidate confirmed as fraudulent at Employer A (e.g., a US company) may be shared via the graph with Employer B (e.g., an EU company). The candidate had no relationship with Employer B at the time their data was entered into the graph. This raises questions about: lawful basis for cross-employer sharing, cross-border transfer mechanisms (GDPR Chapter V), and whether the candidate must be notified of inclusion in the fraud graph. Counsel to advise.</p>
+  </div>
+
+  <div class="callout callout-decided">
+    <div class="callout-label">Founder Decision: Only CISO-Confirmed Fraud Enters the Graph</div>
+    <p>Founders have decided that the graph accepts only candidates explicitly confirmed as fraudulent by an employer CISO. Unconfirmed flags and cleared candidates do not enter the graph. This is a quality and liability design decision. Counsel should validate whether this threshold is sufficient from a data protection standpoint, and what documentation the CISO confirmation must include.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 8 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s8">
+  <div class="section-title">8. Consent Architecture</div>
+  <div class="section-subtitle">When the candidate is made aware of Sentriq and when consent is obtained.</div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #E2E8F0; border-radius:12px; background:#FAFAFA;">
+
+      <!-- Timeline line -->
+      <line x1="60" y1="80" x2="800" y2="80" stroke="#CBD5E1" stroke-width="2"/>
+
+      <!-- Stage 1 -->
+      <circle cx="120" cy="80" r="18" fill="#FEE2E2" stroke="#FECACA" stroke-width="2"/>
+      <text x="120" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">L1</text>
+      <text x="120" y="115" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Passive capture</text>
+      <text x="120" y="128" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">on employer form</text>
+      <text x="120" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#991B1B" font-family="Inter,sans-serif">Candidate unaware</text>
+      <text x="120" y="38" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">No direct consent</text>
+
+      <!-- Arrow -->
+      <line x1="138" y1="80" x2="262" y2="80" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr5)"/>
+      <text x="200" y="73" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">if flagged</text>
+
+      <!-- Stage 2 -->
+      <circle cx="280" cy="80" r="18" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="2"/>
+      <text x="280" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#065F46" font-family="Inter,sans-serif">L2</text>
+      <text x="280" y="115" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Redirect to</text>
+      <text x="280" y="128" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Sentriq page</text>
+      <text x="280" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#059669" font-family="Inter,sans-serif">CONSENT OBTAINED</text>
+      <text x="280" y="38" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">Candidate aware of Sentriq</text>
+
+      <!-- Arrow -->
+      <line x1="298" y1="80" x2="452" y2="80" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+      <!-- Stage 3 -->
+      <circle cx="470" cy="80" r="18" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="2"/>
+      <text x="470" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">L3</text>
+      <text x="470" y="115" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Human review</text>
+      <text x="470" y="128" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Sentriq analyst</text>
+      <text x="470" y="48" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">Covered by L2 consent</text>
+
+      <!-- Arrow -->
+      <line x1="488" y1="80" x2="622" y2="80" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr5)"/>
+      <text x="555" y="73" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Inter,sans-serif">if fraud confirmed</text>
+
+      <!-- Stage 4 -->
+      <circle cx="640" cy="80" r="18" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="2"/>
+      <text x="640" y="78" text-anchor="middle" font-size="9" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">Graph</text>
+      <text x="640" y="90" text-anchor="middle" font-size="9" font-weight="700" fill="#5B21B6" font-family="Inter,sans-serif">entry</text>
+      <text x="640" y="115" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">Cross-employer</text>
+      <text x="640" y="128" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter,sans-serif">fraud network</text>
+      <text x="640" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#DC2626" font-family="Inter,sans-serif">Consent scope unclear</text>
+
+      <defs>
+        <marker id="arr5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#94A3B8"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="callout callout-decided">
+    <div class="callout-label">Founder Position: Consent at Async Challenge Only</div>
+    <p>Current intent is to obtain consent at the point of async challenge redirect (Layer 2), not at the start of the application. The employer is responsible for any disclosure at Layer 1. Counsel must assess whether this is sufficient for GDPR, EU AI Act, and US state law compliance, and design the consent wording and scope.</p>
+  </div>
+
+  <div class="callout callout-open">
+    <div class="callout-label">Open: Does Layer 2 Consent Cover Graph Entry?</div>
+    <p>The consent obtained at Layer 2 covers the async challenge. Whether it also covers entry into the cross-company fraud graph (a separate, ongoing use of the data beyond the original employment context) is an open question. Counsel to determine whether a separate consent or legal basis is required for graph inclusion, and what the candidate must be told about it.</p>
+  </div>
+
+  <div class="callout callout-open">
+    <div class="callout-label">Open: Employer Disclosure Obligations at Layer 1</div>
+    <p>If the legal basis for Layer 1 processing rests on the employer's legitimate interests or their contract with the candidate (job application), the employer's privacy notice or application disclosure may need to reference Sentriq. What exactly must employers disclose? What template language must Sentriq contractually require of employers? Counsel to design.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 9 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s9">
+  <div class="section-title">9. Data Inventory Summary</div>
+  <div class="section-subtitle">All personal data processed by Sentriq across all layers.</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data Type</th>
+        <th>Layer</th>
+        <th>Collected From</th>
+        <th>Stored By</th>
+        <th>Shared With</th>
+        <th>Retention</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Keystroke / mouse behavioral signals</td><td>L1</td><td>Candidate (passive)</td><td>Sentriq</td><td>Employer (flagged cases)</td><td><span class="badge badge-open">TBD: counsel</span></td><td><span class="badge badge-risk">Possible biometric</span></td></tr>
+      <tr><td>IP address</td><td>L1</td><td>Candidate (passive)</td><td>Sentriq</td><td>Employer (flagged)</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-risk">Personal data</span></td></tr>
+      <tr><td>Geolocation (IP-derived)</td><td>L1</td><td>Candidate (passive)</td><td>Sentriq</td><td>Employer (flagged)</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-risk">Personal data</span></td></tr>
+      <tr><td>Device / browser fingerprint</td><td>L1 + L2</td><td>Candidate (passive)</td><td>Sentriq + Graph</td><td>Fraud graph (confirmed only)</td><td><span class="badge badge-decided">As long as permissible</span></td><td><span class="badge badge-risk">Re-ID risk even if hashed</span></td></tr>
+      <tr><td>Resume / CV content</td><td>L1</td><td>Candidate (submitted)</td><td>Sentriq</td><td>Employer (always)</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-info">Candidate-submitted</span></td></tr>
+      <tr><td>Text challenge responses</td><td>L2</td><td>Candidate (direct)</td><td>Sentriq</td><td>Employer (flagged)</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-info">Covered by L2 consent</span></td></tr>
+      <tr><td>Voice recording / transcript</td><td>L2 (optional)</td><td>Candidate (direct)</td><td>Sentriq</td><td>Employer (flagged)</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-risk">Voice = biometric. High priority.</span></td></tr>
+      <tr><td>Consent record</td><td>L2</td><td>Candidate (direct)</td><td>Sentriq</td><td>None</td><td><span class="badge badge-decided">Lifetime of processing</span></td><td><span class="badge badge-decided">Required</span></td></tr>
+      <tr><td>Fraud graph entry (hashed)</td><td>Graph</td><td>Derived from L1/L2</td><td>Sentriq</td><td>All Sentriq employers</td><td><span class="badge badge-decided">Fraud cases: extended retention</span></td><td><span class="badge badge-risk">Cross-border, re-ID, deletion rights</span></td></tr>
+      <tr><td>Employer user data (HR/CISO)</td><td>Platform</td><td>Employer</td><td>Sentriq</td><td>None</td><td><span class="badge badge-open">TBD</span></td><td><span class="badge badge-info">Standard B2B data</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-decided">
+    <div class="callout-label">Founder Decision: Fraudulent Candidates and Deletion Rights</div>
+    <p>Founders' position is that candidates confirmed as fraudulent lose the right to request deletion of their graph entry, on the basis that retaining the record protects other employers from harm. This position requires legal support. Counsel must advise on whether any GDPR or CCPA mechanism supports this, and whether alternative approaches (e.g., legitimate interests balancing test, public interest, legal claims basis) provide a defensible foundation. This is a high-priority item.</p>
+  </div>
+</div>
+
+
+<!-- ─── SECTION 10 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s10">
+  <div class="section-title">10. Regulatory Exposure Map</div>
+  <div class="section-subtitle">Key legal frameworks that apply. No compliance positions are taken here.</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Regulation</th>
+        <th>Jurisdiction</th>
+        <th>Trigger for Sentriq</th>
+        <th>Key Provisions</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GDPR</strong></td>
+        <td>EU / EEA</td>
+        <td>Any EU-based candidate or EU employer customer. Sentriq targets EU from day 1.</td>
+        <td>Legal basis (Art.6), special category (Art.9), automated decisions (Art.22), data subject rights (Art.15-22), cross-border transfers (Ch.V), DPIAs, controller/processor determination</td>
+        <td><span class="badge badge-risk">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong>EU AI Act</strong></td>
+        <td>EU</td>
+        <td>Hiring AI classified as high-risk (Annex III). Applies August 2, 2026.</td>
+        <td>Human oversight, bias testing, audit trail, transparency to candidates, conformity assessment, registration in EU database</td>
+        <td><span class="badge badge-risk">Critical: Q3 2026 deadline</span></td>
+      </tr>
+      <tr>
+        <td><strong>CCPA / CPRA</strong></td>
+        <td>California, US</td>
+        <td>California-based candidates applying to any employer using Sentriq</td>
+        <td>Right to know, delete, opt-out of sale/sharing. Sensitive personal information rules. Employee/job applicant carve-outs under review.</td>
+        <td><span class="badge badge-risk">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Illinois BIPA</strong></td>
+        <td>Illinois, US</td>
+        <td>If keystroke dynamics or voice classified as biometric under BIPA's broad definition</td>
+        <td>Written consent before collection, data retention policy, no sale of biometric data. Private right of action. $1,000-$5,000 per violation.</td>
+        <td><span class="badge badge-risk">High: private right of action</span></td>
+      </tr>
+      <tr>
+        <td><strong>Texas CUBI / Washington MY Data</strong></td>
+        <td>Texas, Washington, US</td>
+        <td>If behavioral signals classified as biometric</td>
+        <td>Similar to BIPA but enforced by AG, not private plaintiffs</td>
+        <td><span class="badge badge-open">Monitor</span></td>
+      </tr>
+      <tr>
+        <td><strong>EEOC / Title VII / ADA</strong></td>
+        <td>US Federal</td>
+        <td>If Sentriq's signals produce disparate impact on protected classes</td>
+        <td>Anti-discrimination in hiring. AI hiring tools increasingly under EEOC scrutiny. Audit trails and bias testing required.</td>
+        <td><span class="badge badge-risk">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Two-party consent laws</strong></td>
+        <td>CA, FL, IL, WA + others</td>
+        <td>AI phone call feature records candidate voice</td>
+        <td>Some US states require all parties to consent to call recording. Federal Wiretap Act also applies.</td>
+        <td><span class="badge badge-risk">High: blocks phone feature without compliant consent</span></td>
+      </tr>
+      <tr>
+        <td><strong>Israeli Privacy Protection Law</strong></td>
+        <td>Israel</td>
+        <td>Israeli candidates, Israeli employers, Sentriq incorporated in Israel</td>
+        <td>Database registration, data subject rights, cross-border transfer rules</td>
+        <td><span class="badge badge-open">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>ePrivacy Directive</strong></td>
+        <td>EU</td>
+        <td>Browser fingerprinting and device tracking at Layer 1</td>
+        <td>Requires prior consent for non-essential tracking on EU users' devices. May apply to the SDK embedded in employer forms.</td>
+        <td><span class="badge badge-risk">High</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ─── SECTION 11 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s11">
+  <div class="section-title">11. Open Questions for Counsel</div>
+  <div class="section-subtitle">All items below are open. No position has been taken by founders on these.</div>
+
+  <ul class="check-list open">
+    <li><strong>Controller vs. Processor classification.</strong> At Layer 1, Sentriq processes candidate data embedded in the employer's form. At Layer 2, Sentriq operates its own hosted service and collects data directly. For the fraud graph, Sentriq operates as an independent data controller. What is the correct classification at each layer, and what contractual structure does this require (DPA, joint controller agreement)?</li>
+    <li><strong>Legal basis for Layer 1 passive collection.</strong> What is the lawful basis under GDPR Article 6 for processing candidate data at the passive layer, where the candidate has no direct relationship with Sentriq and no consent has been obtained?</li>
+    <li><strong>Behavioral biometric classification.</strong> Do keystroke dynamics, mouse movement patterns, and typing behavior constitute biometric data under GDPR Article 9, BIPA, or other relevant laws? If yes, what changes to consent architecture and legal basis are required?</li>
+    <li><strong>Voice data classification and call recording compliance.</strong> The AI phone call option involves recording candidate voice. Is this biometric data? What consent is required for recording under applicable state and federal laws? What restrictions apply to the resulting transcript?</li>
+    <li><strong>Adequacy of employer-side disclosure at Layer 1.</strong> What must employers include in their job application privacy notice or terms for Sentriq's Layer 1 processing to be lawful? What template language must Sentriq require of employers contractually?</li>
+    <li><strong>Consent scope for graph entry.</strong> Does consent obtained at Layer 2 (async challenge) extend to inclusion in the cross-company fraud graph? Or does graph entry require a separate consent or a different legal basis entirely?</li>
+    <li><strong>Cross-border data transfers.</strong> If a candidate applies from an EU country and their (hashed) data enters the fraud graph, and that graph serves US and non-EU employers, what transfer mechanism applies? SCCs? Adequacy decision?</li>
+    <li><strong>ePrivacy / cookie consent for SDK.</strong> Sentriq's Layer 1 SDK performs browser fingerprinting inside the employer's web form. Does this constitute tracking subject to ePrivacy Directive consent requirements? Does responsibility fall on Sentriq or the employer?</li>
+    <li><strong>EU AI Act compliance pathway.</strong> Sentriq's scoring of candidates in a hiring context is high-risk under Annex III. What is the full compliance pathway: conformity assessment, registration, human oversight documentation, bias audit, transparency notice to candidates?</li>
+    <li><strong>EEOC / disparate impact exposure.</strong> What testing and documentation is required to demonstrate that Sentriq's behavioral signals do not produce disparate impact on protected classes? What ongoing audit obligation exists?</li>
+    <li><strong>Data storage geography and infrastructure.</strong> Where should candidate data be stored (cloud region, jurisdiction) to minimize transfer risk and comply with data localization preferences? Founders are open to any recommendation.</li>
+    <li><strong>Retention periods.</strong> What are the appropriate retention periods for: Layer 1 signals (non-flagged candidates), Layer 2 challenge responses, fraud graph entries, consent records, CISO confirmation records?</li>
+    <li><strong>Data subject access requests.</strong> If a candidate submits a GDPR Article 15 request or a CCPA "right to know" request, what data must Sentriq disclose? Can Sentriq withhold behavioral signal detail to protect detection methodology?</li>
+    <li><strong>Age verification.</strong> Job applicants could include individuals under 18 in some jurisdictions. Does Sentriq need an age-gating mechanism? What applies to the phone call feature specifically?</li>
+  </ul>
+</div>
+
+
+<!-- ─── SECTION 12 ─────────────────────────────────────────────────────────── -->
+<div class="section" id="s12">
+  <div class="section-title">12. Founder Decisions Requiring Validation</div>
+  <div class="section-subtitle">These are positions founders have already taken. Counsel should validate, challenge, or redesign where needed.</div>
+
+  <ul class="check-list decided">
+    <li><strong>Consent at Layer 2 only.</strong> The current plan is to obtain candidate consent only at the point of async challenge redirect. No consent or disclosure from Sentriq at Layer 1. Employer is responsible for Layer 1 disclosure. Founders request counsel validate whether this is legally sufficient or whether earlier Sentriq-side consent or disclosure is required.</li>
+    <li><strong>Only CISO-confirmed fraud cases enter the graph.</strong> No unconfirmed flags, no borderline cases, no cleared candidates. Counsel should validate whether this threshold is sufficient and what documentation the CISO confirmation must contain to be defensible.</li>
+    <li><strong>Fraudulent candidates forfeit deletion rights.</strong> Founders' intent is that candidates confirmed as fraudulent cannot force deletion of their graph entry. Counsel must advise on the legal mechanism that supports this (if any) and what documentation is required. Alternative approaches (legitimate interests, legal claims basis) should be assessed.</li>
+    <li><strong>Extended retention of confirmed fraud data.</strong> Founders wish to retain confirmed fraud entries in the graph for as long as legally permissible, to protect employers from repeat fraud attempts. Counsel to determine maximum retention period and required justification.</li>
+    <li><strong>Employer sees raw signals only on high-probability fraud events.</strong> In normal flow, employers receive only the trust signal output. Raw behavioral data is disclosed to the employer only when a case is escalated as a high-probability fraud event. Counsel to validate this is consistent with the DPA structure and that it is clearly documented in the employer contract.</li>
+    <li><strong>Human-in-the-loop as core architecture.</strong> No automated rejections. All flags route to human review. Counsel should validate that this architecture satisfies GDPR Article 22 requirements and EU AI Act human oversight obligations, and whether any further documentation or process is required.</li>
+    <li><strong>EU compliance from day one.</strong> Founders intend to accept EU employers and EU candidates from the first commercial deployment, not as a later phase. Counsel should scope the minimum viable compliance package required before the first EU customer is onboarded.</li>
+  </ul>
+
+  <hr/>
+  <div class="callout callout-note">
+    <div class="callout-label">Note on Product Status</div>
+    <p>Sentriq has no live product in production as of April 2026. There is a working demo only. This briefing describes the intended architecture. All compliance work should be completed before production deployment. The founders have explicitly committed to following counsel's guidance on data architecture, storage geography, consent flows, and contractual structure.</p>
+  </div>
+</div>
+
+<div style="margin-top:48px; padding-top:20px; border-top:1px solid var(--border); font-size:11px; color:var(--text-dim); text-align:center;">
+  Sentriq: Privacy &amp; Regulatory Briefing: April 2026: Confidential: For privacy counsel only. Not a legal document. No legal advice is given or implied.
+</div>
+
+</body>
+</html>
