@@ -21,6 +21,8 @@
             --blue-border: #bfdbfe;
             --green-bg: #f0fdf4;
             --green-border: #bbf7d0;
+            --purple-bg: #faf5ff;
+            --purple-border: #d8b4fe;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,7 +71,6 @@
             padding: 0 20px 60px;
         }
 
-        /* SECTION */
         .section {
             padding: 32px 0 24px;
             border-bottom: 1px solid var(--rule);
@@ -111,7 +112,6 @@
 
         strong { color: var(--ink); font-weight: 600; }
 
-        /* CALLOUTS */
         .callout {
             border-radius: 10px;
             padding: 16px 18px;
@@ -138,6 +138,12 @@
             color: #14532d;
         }
 
+        .callout.purple {
+            background: var(--purple-bg);
+            border-left: 3px solid var(--purple-border);
+            color: #4c1d95;
+        }
+
         .callout-label {
             font-size: 10px;
             font-weight: 700;
@@ -147,7 +153,6 @@
             opacity: 0.65;
         }
 
-        /* Q&A BLOCKS */
         .qa {
             margin: 20px 0;
             padding: 18px;
@@ -184,8 +189,8 @@
         .qa-status.decided { background: #dcfce7; color: #166534; }
         .qa-status.pending { background: #fef9c3; color: #713f12; }
         .qa-status.open { background: #fee2e2; color: #991b1b; }
+        .qa-status.confirmed { background: #dbeafe; color: #1e40af; }
 
-        /* ROADMAP */
         .roadmap { margin: 16px 0; }
 
         .rm-item {
@@ -223,7 +228,6 @@
             line-height: 1.6;
         }
 
-        /* TABLE */
         .simple-table {
             width: 100%;
             font-size: 13px;
@@ -251,7 +255,6 @@
 
         .simple-table td strong { color: var(--ink); }
 
-        /* FOOTER */
         .footer {
             background: var(--ink);
             color: rgba(255,255,255,0.4);
@@ -268,34 +271,52 @@
     <div class="header-label">Internal &middot; Legal Review</div>
     <h1>Sentriq<br>Privacy &amp; Regulatory Brief</h1>
     <div class="header-meta">
-        Prepared for legal review &middot; April 2026<br>
-        This document covers every privacy and regulatory question that needs to be answered before the first enterprise deployment.
+        Prepared for legal review &middot; Updated April 2026<br>
+        Initial privacy counsel consultation complete (Shira, April 2026). Positions confirmed, updated, and new issues documented. Formal drafting begins post-seed close.
     </div>
 </div>
 
 <div class="content">
 
-<!-- SECTION 1: WHAT THE PRODUCT DOES -->
+<!-- COUNSEL SUMMARY -->
+<div class="section">
+    <div class="section-num">Counsel Summary</div>
+    <h2>Initial privacy review findings</h2>
+
+    <div class="callout green">
+        <div class="callout-label">Counsel's overall assessment, April 2026</div>
+        "I have not heard anything that makes me want to jump out. Everything up to the fraud graph is clean. The graph is the one piece we need to work out strategically. I do not see something that screams no, you cannot do this from a privacy or AI governance perspective."
+    </div>
+
+    <p>The initial consultation confirmed three things: the processor framing holds for the core product, the biometric classification is defensible, and the cross-company graph is the area requiring a deliberate strategy. The EU cookie/SDK consent issue is the most operationally painful near-term item. Both are being worked through with a second counsel (Sapir) before formal deliverables are issued.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">Key correction from this review</div>
+        The previous version of this document stated Sentriq is a data controller for challenge data. Counsel confirmed the correct position: Sentriq is a data <strong>processor</strong> for the vast majority of the product. Controller status applies only to confirmed proxy fraud profiles that enter the cross-company graph. All references have been updated accordingly.
+    </div>
+</div>
+
+<!-- SECTION 1 -->
 <div class="section">
     <div class="section-num">Section 1</div>
     <h2>What Sentriq does (in plain language)</h2>
 
-    <p>Sentriq sits between a job applicant and the employer's hiring system. When someone submits a job application, Sentriq passively observes behavioral signals during that process - how they type, whether they copy-paste, how long they spend on each field. This is Layer 1.</p>
+    <p>Sentriq sits between a job applicant and the employer's hiring system. When someone submits a job application, Sentriq passively observes behavioral signals during that process: how they type, whether they copy-paste, how long they spend on each field. This is Layer 1.</p>
 
-    <p>If anomalies are detected, the candidate is asked to complete a short 2-3 minute task. Sentriq scores behavioral patterns during the response - not just the content. This is Layer 2.</p>
+    <p>If anomalies are detected, the candidate is redirected to a short async challenge hosted by Sentriq. The challenge is generated by AI and scored behaviorally, but a Sentriq analyst reviews and confirms the signal before anything is issued. This is Layer 2.</p>
 
-    <p>If the score is flagged, a trained human analyst reviews the case before it reaches the employer's recruiter. The employer always makes the final hiring decision. This is Layer 3.</p>
+    <p>If the score is flagged, the analyst review is completed before the result reaches the employer's recruiter. The employer always makes the final hiring decision. This is Layer 3.</p>
 
     <div class="callout blue">
-        <div class="callout-label">The core legal design principle</div>
-        Sentriq is a <strong>neutral third party</strong>. It does not sit inside the employer's ATS. Candidates interact directly with Sentriq's own interface under Sentriq's own privacy notice. The employer does not collect the behavioral data - Sentriq does. This distinction is legally critical and intentional.
+        <div class="callout-label">Core legal design principle</div>
+        Sentriq is a <strong>neutral third party processor</strong>. It processes behavioral data on behalf of each employer. Candidates flagged beyond the passive layer interact directly with Sentriq's own interface under Sentriq's own privacy notice. The employer does not collect behavioral data. This distinction is legally critical and intentional.
     </div>
 
     <h3>What Sentriq does NOT do</h3>
-    <p>It does not verify identity. It does not make hiring decisions. It does not create a permanent record of candidates. It does not share data across employers. Each candidate's data is isolated and deleted on a defined schedule.</p>
+    <p>It does not verify identity. It does not make hiring decisions. It does not auto-reject candidates. Cleared candidate data is deleted immediately once passed to the ATS. Flagged candidate data is isolated per employer and deleted on a defined schedule. Only confirmed proxy fraud profiles, verified by CISO evidence and a second Sentriq internal review, may enter the cross-company graph.</p>
 </div>
 
-<!-- SECTION 2: DATA COLLECTED -->
+<!-- SECTION 2 -->
 <div class="section">
     <div class="section-num">Section 2</div>
     <h2>What data is collected</h2>
@@ -308,7 +329,7 @@
         </tr>
         <tr>
             <td><strong>Keystroke timing</strong></td>
-            <td>How fast someone types, rhythm between keystrokes</td>
+            <td>Speed and rhythm between keystrokes</td>
             <td>Pseudonymous behavioral metadata</td>
         </tr>
         <tr>
@@ -331,174 +352,260 @@
             <td>Standard web session data</td>
             <td>Personal data (GDPR Art. 4)</td>
         </tr>
+        <tr>
+            <td><strong>Voice (if used in async layer)</strong></td>
+            <td>Audio response to challenge prompts. Analyzed for behavioral patterns only. No voiceprint template created.</td>
+            <td>Voice data (not biometric). See note below.</td>
+        </tr>
     </table>
 
     <div class="callout yellow">
-        <div class="callout-label">Key classification question - needs legal opinion</div>
-        Under <strong>GDPR Article 9</strong> and <strong>Illinois BIPA</strong>, biometric data is a special category requiring explicit consent. The position we are taking is that Sentriq's keystroke data is <strong>not</strong> biometric - it is never used to uniquely identify a person, only to detect anomalous patterns. A formal written legal opinion confirming this classification is one of the four pending documents.
+        <div class="callout-label">Biometric classification: confirmed defensible</div>
+        The position that Sentriq's keystroke data is <strong>not</strong> biometric was confirmed as defensible in the April 2026 consultation. The data is never used to uniquely identify a person. The product is architecturally blocked from identity verification use cases. A formal written legal opinion confirming this classification is pending. <strong>Internal guidance: do not use the word "biometric" in customer conversations or marketing copy. Do not draw attention to the question.</strong>
+    </div>
+
+    <div class="callout blue">
+        <div class="callout-label">Voice data vs. voiceprint data</div>
+        Voice data captured during a challenge is not biometric. Voiceprint data (a mathematical template extracted from audio and used to identify a specific person across interactions) is biometric and triggers GDPR Art. 9, BIPA, and CCPA biometric provisions. Sentriq's voice analysis must remain at the behavioral pattern level and never create an identity template. This is an engineering constraint, not just a legal position.
+    </div>
+
+    <div class="callout yellow">
+        <div class="callout-label">Terminology rule: do not use "fingerprint"</div>
+        "Device fingerprinting" is a legally and technically specific term referring to cross-site user tracking. It triggers specific regulatory obligations and is often prohibited by browser terms of service. Sentriq does not do device fingerprinting. Use "fraud profile," "behavioral signal," or "fraud identifier" in all customer conversations, contracts, and external documentation.
     </div>
 </div>
 
-<!-- SECTION 3: THE 9 REGULATORY QUESTIONS -->
+<!-- SECTION 3 -->
 <div class="section">
     <div class="section-num">Section 3</div>
     <h2>The nine regulatory questions</h2>
 
-    <p>These are the specific questions that govern whether Sentriq can legally operate in each jurisdiction. Current position and status for each:</p>
+    <p>Current position and status for each question. "Counsel confirmed" means the position was validated in the April 2026 initial consultation. "Pending" means the position is decided but formal documentation has not been issued. "Strategy in development" means the position itself is still being finalized.</p>
 
     <div class="qa">
-        <span class="qa-status decided">Architecture decided</span>
+        <span class="qa-status confirmed">Counsel confirmed</span>
         <div class="qa-q">1. Is keystroke data biometric under GDPR Art. 9 or BIPA?</div>
-        <div class="qa-a">Our position: no. Keystroke timing patterns are pseudonymous behavioral metadata. They detect behavioral anomalies and are never used to create a biometric identifier for a specific person. The product is architecturally blocked from being used for identity verification. <strong>Requires: written legal opinion from privacy counsel.</strong></div>
+        <div class="qa-a">Position: no. Keystroke timing patterns are pseudonymous behavioral metadata used to detect anomalous patterns, never to create a biometric identifier for a specific individual. The product is architecturally blocked from identity verification use cases. Counsel confirmed this position is defensible in the April 2026 consultation. <strong>Pending: written legal opinion from privacy counsel.</strong></div>
     </div>
 
     <div class="qa">
         <span class="qa-status decided">Architecture decided</span>
         <div class="qa-q">2. What is the lawful basis for processing under GDPR Article 6?</div>
-        <div class="qa-a"><strong>Legitimate Interest (Art. 6(1)(f))</strong> is the primary basis. The legitimate interest is fraud prevention and workforce security. A formal Legitimate Interest Assessment (LIA) is required to document the balancing test - weighing Sentriq's and the employer's interest against the candidate's rights. <strong>Requires: LIA drafted by counsel.</strong></div>
+        <div class="qa-a"><strong>Legitimate Interest (Art. 6(1)(f))</strong> is the primary basis. The legitimate interest is fraud prevention and workforce security. GDPR Recital 47 explicitly names fraud prevention as valid. Counsel confirmed consent is not the right basis in employment contexts (Recital 43). A Legitimate Interest Assessment (LIA) is required to document the balancing test formally. <strong>Pending: LIA drafted by counsel.</strong></div>
     </div>
 
     <div class="qa">
-        <span class="qa-status decided">Architecture decided</span>
+        <span class="qa-status confirmed">Counsel confirmed</span>
         <div class="qa-q">3. Is candidate consent valid in an employment context?</div>
-        <div class="qa-a">Under GDPR, consent in an employment context is generally not freely given due to the power imbalance between employer and candidate. Sentriq solves this by operating as a neutral third party: the candidate interacts with Sentriq's interface under Sentriq's own privacy notice <em>before</em> any data is collected, independent of the employer's ATS flow. This structure breaks the employer-candidate power dynamic. <strong>Requires: privacy notice reviewed by counsel.</strong></div>
+        <div class="qa-a">GDPR consent in employment contexts is generally not freely given due to the employer-candidate power imbalance. Sentriq's neutral third party structure solves this: the candidate interacts with Sentriq's interface under Sentriq's own privacy notice before any data is collected, independent of the employer. Counsel confirmed this structure is legally sound and that legitimate interest, not consent, is the correct primary basis. <strong>Pending: privacy notice reviewed by counsel.</strong></div>
     </div>
 
     <div class="qa">
-        <span class="qa-status decided">Architecture decided</span>
+        <span class="qa-status pending">Strategy in development</span>
         <div class="qa-q">4. Can Sentriq legally build a cross-company fraud signal?</div>
-        <div class="qa-a">ATS vendors are contractually prohibited from sharing data across employers. Sentriq is not an ATS vendor. It collects data directly from candidates under its own privacy notice. The cross-company graph is built on direct candidate consent to a neutral platform. This architecture is permanently unavailable to any ATS vendor. <strong>Requires: review of data sharing provisions in standard enterprise DPA.</strong></div>
+        <div class="qa-a">
+            This question has two distinct answers depending on which part of the product is involved.<br><br>
+            <strong>All threat layers below proxy fraud:</strong> Data stays in a closed universe per employer. Sentriq processes it as a processor on behalf of that employer only. No cross-company sharing occurs. No additional legal mechanism is required beyond the standard DPA.<br><br>
+            <strong>Confirmed proxy fraud profiles only:</strong> Sentriq steps into a controller position over that specific profile. A confirmed proxy fraud profile enters the graph only after: (1) CISO at the originating employer confirms fraud with documented evidence, and (2) Sentriq's own analyst conducts a second internal review and confirms the classification. Counsel's proposed approach: add a specific clause to the standard DPA where each employer agrees that Sentriq may retain and share confirmed proxy fraud identifiers across the network. This makes the employer an informed co-controller for that narrow case. Counsel is finalizing the exact strategy with Sapir.<br><br>
+            <strong>Pending: DPA fraud graph clause, confirmed strategy from counsel.</strong>
+        </div>
     </div>
 
     <div class="qa">
         <span class="qa-status pending">Mitigation in place</span>
-        <div class="qa-q">5. Illinois BIPA - biometric data law, one of the strictest in the world</div>
-        <div class="qa-a"><strong>Phase 1 (current):</strong> Illinois candidates are identified by IP and geo-fenced from the behavioral challenge. They go directly to Layer 3 human review. No behavioral data collected. <strong>Phase 2 (pre-first US customer):</strong> Full BIPA compliance package required - written policy, written release obtained at challenge entry, data destruction schedule documented (90-day maximum retention), registered agent filing in Illinois. <strong>Requires: BIPA compliance package from US counsel.</strong></div>
+        <div class="qa-q">5. Illinois BIPA: biometric data law, one of the strictest in the world</div>
+        <div class="qa-a"><strong>Phase 1 (current):</strong> Illinois candidates are identified by IP and geo-fenced from the behavioral challenge. They go directly to Layer 3 human review. No behavioral data is collected. <strong>Phase 2 (pre-first US customer):</strong> Full BIPA compliance package: written policy, written release at challenge entry, data destruction schedule documented (90-day maximum retention), registered agent filing in Illinois. <strong>Pending: BIPA compliance package from US counsel.</strong></div>
     </div>
 
     <div class="qa">
-        <span class="qa-status decided">Compliance built in</span>
-        <div class="qa-q">6. EU AI Act - Annex III (High-Risk AI systems)</div>
-        <div class="qa-a">Hiring AI is classified as high-risk under EU AI Act Annex III. Deadline for compliance: <strong>August 2, 2026.</strong> Requirements: human oversight mechanisms, technical documentation, candidate transparency, conformity assessment. Sentriq's Layer 3 human review directly satisfies the human oversight requirement. This is a sales advantage, not a burden - every EU enterprise with AI-assisted hiring needs exactly this. <strong>Requires: conformity assessment self-declaration drafted by counsel.</strong></div>
+        <span class="qa-status pending">Assessment in progress</span>
+        <div class="qa-q">6. EU AI Act: Annex III high-risk classification</div>
+        <div class="qa-a">
+            Hiring AI is listed as high-risk under EU AI Act Annex III. Compliance deadline: <strong>August 2, 2026.</strong><br><br>
+            <strong>Exception angle under assessment:</strong> Counsel is evaluating whether Sentriq qualifies for an exception by framing the AI as a challenge generation tool (the AI writes the questions), with the human analyst as the actual decision point. If this framing holds, the high-risk classification does not apply and the product is significantly easier for EU customers to procure.<br><br>
+            <strong>If high-risk classification applies:</strong> Required elements are human oversight mechanisms, technical documentation, candidate transparency, and a conformity assessment. Sentriq's Layer 3 human review directly satisfies the human oversight requirement. Compliance becomes a procurement advantage, not a burden, given the August 2026 deadline every EU enterprise faces.<br><br>
+            <strong>Pending: formal EU AI Act classification assessment from counsel.</strong>
+        </div>
     </div>
 
     <div class="qa">
-        <span class="qa-status decided">Architecture decided</span>
-        <div class="qa-q">7. Data controller allocation - who is responsible for what?</div>
-        <div class="qa-a">Sentriq is the data controller for challenge data and the cross-company graph. Each employer is the data controller for their own application data. A standard Data Processing Agreement (DPA) is required for every enterprise contract. Clean separation limits liability for both parties and is a prerequisite for enterprise procurement. <strong>Requires: standard DPA template drafted by counsel.</strong></div>
-    </div>
-
-    <div class="qa">
-        <span class="qa-status decided">Architecture decided</span>
-        <div class="qa-q">8. CCPA / CPRA (California)</div>
-        <div class="qa-a">Business-to-business exemption applies to the employer relationship. For candidates who are California residents, CCPA rights apply: right to know, right to delete, right to opt out of sale. Sentriq does not sell candidate data. The privacy notice covers these rights. The geo-fencing system built for BIPA can be extended to California-specific requirements.</div>
+        <span class="qa-status confirmed">Counsel confirmed</span>
+        <div class="qa-q">7. Data controller allocation: who is responsible for what?</div>
+        <div class="qa-a">
+            <strong>Sentriq is a data processor</strong> for the core product. It processes candidate behavioral data on behalf of each employer. Each employer is the data controller for their own candidates. This position was confirmed by counsel in the April 2026 consultation and replaces the previous version of this document, which incorrectly classified Sentriq as controller for challenge data.<br><br>
+            <strong>Sentriq becomes an independent data controller only</strong> for confirmed proxy fraud profiles that enter the cross-company graph. This is a narrow, high-threshold case with a two-step confirmation process before any profile is added.<br><br>
+            A standard DPA is required for every enterprise contract and must include a specific clause for the controller role Sentriq takes on confirmed fraud profiles.<br><br>
+            <strong>Pending: standard DPA template drafted by counsel.</strong>
+        </div>
     </div>
 
     <div class="qa">
         <span class="qa-status pending">Needs review</span>
-        <div class="qa-q">9. FCRA (US Fair Credit Reporting Act)</div>
-        <div class="qa-a">FCRA governs consumer reporting agencies and applies if a third party provides information used in employment decisions. The position is that Sentriq's behavioral signal is <strong>not</strong> a consumer report - it is a fraud detection signal, not a background check, and the employer makes all hiring decisions independently. However, if Sentriq's output is treated as a factor in employment decisions, FCRA obligations could attach. This needs explicit confirmation.</div>
+        <div class="qa-q">8. CCPA / CPRA (California)</div>
+        <div class="qa-a">
+            Business-to-business exemption applies to the employer relationship. For California resident candidates, CCPA rights apply: right to know, right to delete, right to opt out of sale. Sentriq does not sell candidate data in the ordinary sense.<br><br>
+            <strong>Open item on the fraud graph:</strong> Under CCPA, "sale" includes disclosing personal information in exchange for commercial benefit, not just direct payment. If Sentriq shares confirmed fraud signals across customers as part of a paid subscription, this may be classified as a "sale," creating an opt-out obligation. Counsel flagged this as an active issue. The redress mechanism in Section 5, Question B is the likely vehicle for any required opt-out. Counsel is assessing whether the fraud prevention context creates a carve-out.<br><br>
+            <strong>Pending: CCPA "sale" classification assessment for the graph.</strong>
+        </div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status confirmed">Counsel confirmed</span>
+        <div class="qa-q">9. FCRA (US Fair Credit Reporting Act): are we a consumer reporting agency?</div>
+        <div class="qa-a">Counsel confirmed Sentriq is not a data broker under CCPA. On FCRA: Sentriq's behavioral signal is a fraud detection signal, not a consumer report or background check. The employer makes all hiring decisions independently. This position was confirmed as reasonable in the April 2026 consultation. <strong>Pending: explicit written confirmation from US counsel before first US enterprise contract is signed.</strong></div>
     </div>
 </div>
 
-<!-- SECTION 4: FOUR DOCUMENTS NEEDED -->
+<!-- SECTION 3B: EU COOKIE/SDK -->
 <div class="section">
-    <div class="section-num">Section 4</div>
-    <h2>The four documents that need to be drafted</h2>
+    <div class="section-num">Section 3B</div>
+    <h2>EU cookie and SDK consent: the passive layer problem</h2>
 
-    <p>These are the specific legal deliverables blocking the first enterprise contract. Nothing can be signed until these exist.</p>
+    <p>This issue was identified by counsel in the April 2026 consultation. It is not a data classification issue. It is a cookie consent issue triggered by the technology itself.</p>
 
     <div class="callout yellow">
-        <div class="callout-label">Current status</div>
-        None of the four documents have been formally drafted or signed off. The architecture decisions above represent the positions we intend to take. Legal counsel needs to validate each position and produce the documents.
+        <div class="callout-label">The issue</div>
+        The passive tracking layer works by embedding Sentriq's SDK in the employer's application form page. Under EU ePrivacy rules (and GDPR), dropping a tracking SDK on a web page may require user consent before it activates. If a candidate in the EU does not consent, the passive layer cannot run for that candidate.
     </div>
+
+    <h3>Jurisdiction breakdown</h3>
+    <p><strong>United Kingdom:</strong> A fraud prevention carve-out exists. Tracking strictly necessary for fraud detection may not require prior consent. This is the most favorable regime for Sentriq.</p>
+    <p><strong>European Union:</strong> The fraud carve-out does not exist in the same form. Whether the SDK falls under "strictly necessary" (no consent required) or "analytics/performance" (consent required) depends on how each employer categorizes it in their cookie policy. Sentriq cannot make this decision for the employer, but must provide clear technical documentation to help them categorize it correctly.</p>
+    <p><strong>Practical consequence:</strong> EU employers that use full cookie consent models may find a portion of candidates opt out of the passive layer. Those candidates proceed directly to Layer 2 or the ATS without passive behavioral data. This reduces coverage but does not break the product.</p>
+
+    <div class="callout blue">
+        <div class="callout-label">Approach</div>
+        Sentriq provides each EU enterprise customer with technical documentation explaining what the SDK collects and why, enabling the customer to make an informed categorization decision for their cookie policy. Sentriq does not instruct the customer on how to categorize it. Both categorization outcomes are handled by the product architecture.<br><br>
+        <strong>Action required: Ben to prepare a technical spec of the SDK data collection. Counsel to review the language before it is shared with any customer.</strong>
+    </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+    <div class="section-num">Section 4</div>
+    <h2>Documents that need to be drafted</h2>
+
+    <p>These are the legal deliverables required before the first enterprise contract can be signed. None have been formally issued. Drafting begins after seed funding closes, targeting completion within 6 to 8 weeks of closing.</p>
 
     <div class="roadmap">
         <div class="rm-item">
             <div class="rm-dot soon"></div>
             <div>
-                <div class="rm-title">1. Legal Opinion - Biometric Classification</div>
-                <div class="rm-desc">Written opinion confirming that keystroke dynamics and behavioral timing data are not biometric identifiers under GDPR Article 9 or Illinois BIPA. This is the foundational document - everything else builds on this classification.</div>
+                <div class="rm-title">1. Legal Opinion: Biometric Classification</div>
+                <div class="rm-desc">Written opinion confirming that keystroke dynamics and behavioral timing data are not biometric identifiers under GDPR Article 9 or Illinois BIPA. The position was confirmed as defensible in the initial consultation. Formal sign-off pending.</div>
             </div>
         </div>
         <div class="rm-item">
             <div class="rm-dot soon"></div>
             <div>
                 <div class="rm-title">2. Legitimate Interest Assessment (LIA)</div>
-                <div class="rm-desc">EU-required document under GDPR that formally documents the three-part balancing test: (a) Sentriq's legitimate interest in fraud detection, (b) necessity of the processing, (c) balancing against candidate rights. Must be on file before processing begins in the EU.</div>
+                <div class="rm-desc">EU-required document under GDPR formally documenting the three-part balancing test: (a) Sentriq's legitimate interest in fraud detection, (b) necessity of the processing, (c) balancing against candidate rights. Must be on file before processing begins in the EU.</div>
             </div>
         </div>
         <div class="rm-item">
             <div class="rm-dot soon"></div>
             <div>
                 <div class="rm-title">3. Candidate Privacy Notice</div>
-                <div class="rm-desc">Plain-language notice shown to candidates before the behavioral challenge begins. Must cover: what is collected, why, how long it is kept, candidate rights (access, deletion, objection), data controller identity, contact for data requests. Must comply with GDPR Articles 13-14.</div>
+                <div class="rm-desc">Plain-language notice shown to candidates before the behavioral challenge begins. Must cover: what is collected, why, how long it is kept, candidate rights (access, deletion, objection), data controller identity, and contact for data requests. Must comply with GDPR Articles 13-14.</div>
             </div>
         </div>
         <div class="rm-item">
             <div class="rm-dot soon"></div>
             <div>
                 <div class="rm-title">4. Standard Data Processing Agreement (DPA) Template</div>
-                <div class="rm-desc">The contract between Sentriq and each enterprise customer. Must define: controller/processor roles, processing purposes and limits, data retention and deletion obligations, sub-processor disclosure, security requirements, breach notification timelines, GDPR Chapter V transfer mechanisms (Standard Contractual Clauses for non-EU transfers).</div>
+                <div class="rm-desc">The contract between Sentriq and each enterprise customer. Must define: Sentriq's processor role for the core product, controller/processor split, processing purposes and limits, data retention and deletion obligations, sub-processor disclosure, security requirements, breach notification timelines, GDPR Chapter V transfer mechanisms (Standard Contractual Clauses for non-EU transfers), and a specific clause governing Sentriq's independent controller role for confirmed proxy fraud profiles in the cross-company graph.</div>
+            </div>
+        </div>
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">5. EU AI Act Classification Assessment</div>
+                <div class="rm-desc">Formal written assessment of whether Sentriq falls under EU AI Act Annex III (high-risk) or qualifies for an exception based on the human-in-the-loop architecture. If high-risk: conformity assessment self-declaration. If exception: documented reasoning. Required before approaching any EU enterprise customer.</div>
+            </div>
+        </div>
+        <div class="rm-item">
+            <div class="rm-dot soon"></div>
+            <div>
+                <div class="rm-title">6. SDK Technical Documentation for EU Cookie Teams</div>
+                <div class="rm-desc">Technical spec of what the passive layer SDK collects and why, written for enterprise cookie policy and procurement teams. Enables EU customers to make an informed categorization decision under ePrivacy rules. Ben produces the technical spec. Counsel reviews the language before any external distribution.</div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- SECTION 5: OPEN QUESTIONS -->
+<!-- SECTION 5 -->
 <div class="section">
     <div class="section-num">Section 5</div>
-    <h2>Open questions that need your view</h2>
+    <h2>Open questions that need counsel's view</h2>
 
-    <p>These are the specific points where we have not locked in a position and genuinely need legal judgment before proceeding.</p>
+    <p>These are the points where Sentriq does not yet have a finalized position and needs legal judgment before proceeding. Items A and B were open before the initial consultation. Items C through F were raised by counsel in the April 2026 session.</p>
 
     <div class="qa">
-        <span class="qa-status open">Needs your view</span>
+        <span class="qa-status open">Needs counsel view</span>
         <div class="qa-q">A. Does the neutral third party structure actually break the GDPR employment consent problem?</div>
-        <div class="qa-a">We have designed Sentriq so that the candidate deals with Sentriq directly, not through the employer. Our argument is that this removes the employer-candidate power imbalance. Is that argument solid? Or would a regulator look through the structure and treat the interaction as employment-context consent regardless?</div>
+        <div class="qa-a">Sentriq is designed so that the candidate deals with Sentriq directly, not through the employer. The argument is that this removes the employer-candidate power imbalance that makes employment consent invalid under GDPR. Counsel's initial reaction was positive, but this has not been formally confirmed in writing. Would a regulator look through the structure and treat the interaction as employment-context consent regardless?</div>
     </div>
 
     <div class="qa">
-        <span class="qa-status open">Needs your view</span>
-        <div class="qa-q">B. How do we handle candidate rights requests (deletion, access) in the cross-company graph?</div>
-        <div class="qa-a">If a candidate requests deletion of their data, we can delete their individual record. But behavioral patterns contribute to a shared fraud detection model. Does deleting the individual record satisfy GDPR Article 17, or does the model itself need to be addressed? What is the correct architecture for model-level deletion requests?</div>
+        <span class="qa-status open">Needs counsel view</span>
+        <div class="qa-q">B. Candidate rights in the cross-company graph: deletion and redress</div>
+        <div class="qa-a">
+            Two sub-questions:<br><br>
+            <strong>Deletion:</strong> If a candidate requests deletion of their data under GDPR Article 17 or CCPA, Sentriq can delete their individual record. But behavioral patterns contribute to a shared fraud detection model. Does deleting the individual record satisfy the deletion requirement, or does the model itself need to be addressed?<br><br>
+            <strong>Redress for false positives:</strong> Counsel recommended establishing a formal redress channel: a way for candidates who believe they have been incorrectly flagged to contact Sentriq and trigger a review. This serves two purposes: it is the correct thing to do if false positives occur, and it provides documented process that protects Sentriq legally if a challenge arises. The proposed mechanism is an email channel plus an internal review process that either clears the candidate or reaffirms the flag with documented reasoning. This channel also serves as the opt-out vehicle if the CCPA "sale" question in Item C requires one.
+        </div>
     </div>
 
     <div class="qa">
-        <span class="qa-status open">Needs your view</span>
-        <div class="qa-q">C. What is the right approach for Israel specifically?</div>
-        <div class="qa-a">Israeli privacy law (Protection of Privacy Law, 1981 and the new PDPL amendments) is distinct from GDPR. NVIDIA Israel is one of our target early conversations. What does processing behavioral data from Israeli candidates require under Israeli law? Is there an adequate protection finding or do we need separate mechanisms?</div>
+        <span class="qa-status open">Needs counsel view</span>
+        <div class="qa-q">C. CCPA "sale" classification for the cross-company fraud graph</div>
+        <div class="qa-a">Under CCPA, "sale" includes disclosing personal information in exchange for commercial benefit, not just direct monetary payment. If Sentriq shares confirmed fraud signals across customers as part of a paid subscription, this may be classified as a "sale" of personal information, requiring California residents to have an opt-out right. Counsel is assessing whether the fraud prevention context creates a carve-out, or whether the DPA structure (employer agrees to graph sharing) changes the classification. If an opt-out is technically required, the redress channel in Item B above is the likely vehicle for it.</div>
     </div>
 
     <div class="qa">
-        <span class="qa-status open">Needs your view</span>
-        <div class="qa-q">D. FCRA - are we a consumer reporting agency?</div>
-        <div class="qa-a">If yes, the obligations are significant (adverse action notices, accuracy requirements, candidate dispute rights). The business argument that we are a fraud detection tool, not a background check, seems strong - but we need explicit confirmation before we touch US enterprise customers.</div>
+        <span class="qa-status open">Needs counsel view</span>
+        <div class="qa-q">D. EU AI Act: does Sentriq qualify for an exception to the high-risk classification?</div>
+        <div class="qa-a">Counsel is exploring whether Sentriq can be positioned as falling outside Annex III by framing the AI as a challenge generation tool (the AI writes the questions) rather than a scoring or decision-making system (the human analyst makes the call). If this framing holds, Sentriq avoids the full high-risk compliance burden and is easier for EU customers to procure. If it does not hold, the full compliance package is required. Either outcome is workable. The exception angle is worth pursuing before accepting the high-risk classification as given.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status open">Needs counsel view</span>
+        <div class="qa-q">E. EU passive layer: strictly necessary or analytics?</div>
+        <div class="qa-a">When an employer embeds Sentriq's SDK in their application form page, is that SDK "strictly necessary" for fraud prevention (no consent required under ePrivacy) or does it fall into a consent-required category? Sentriq cannot answer this categorization question for each customer. Counsel needs to produce guidance language that Sentriq can share with EU enterprise cookie policy teams to support them in making the correct decision. The answer may differ by jurisdiction within the EU.</div>
+    </div>
+
+    <div class="qa">
+        <span class="qa-status open">Needs counsel view</span>
+        <div class="qa-q">F. Israeli privacy law: what does processing Israeli candidates require?</div>
+        <div class="qa-a">Israeli privacy law (Protection of Privacy Law 1981 and the PDPL amendments) is distinct from GDPR. Target early conversations include Israeli enterprises. What does processing behavioral data from Israeli candidates require under Israeli law? Is there an adequacy finding or do separate mechanisms need to be put in place?</div>
     </div>
 </div>
 
-<!-- SECTION 6: TIMELINE -->
+<!-- SECTION 6 -->
 <div class="section">
     <div class="section-num">Section 6</div>
     <h2>Why the timing matters</h2>
 
-    <p>Two external deadlines are driving the legal timeline:</p>
-
     <div class="callout blue">
-        <div class="callout-label">EU AI Act - August 2, 2026</div>
-        <strong>Every EU enterprise with AI-assisted hiring must comply by this date.</strong> Companies that have not implemented human oversight for high-risk hiring AI face fines up to 3% of global annual turnover. This is a hard purchase trigger for Sentriq - but only if we have our own compliance architecture documented before we approach those customers.
+        <div class="callout-label">EU AI Act: August 2, 2026</div>
+        <strong>Every EU enterprise with AI-assisted hiring must comply by this date.</strong> Companies that have not implemented human oversight for high-risk hiring AI face fines up to 3% of global annual turnover. This is a hard purchase trigger for Sentriq, but only if Sentriq's own compliance architecture is documented before approaching those customers.
     </div>
 
     <div class="callout yellow">
-        <div class="callout-label">First enterprise customer - target Q3 2026</div>
-        SOC 2 Type I completion is our deployment gate. Legal compliance architecture needs to be ready at the same time - it is the other half of the enterprise readiness requirement. No procurement team at a Fortune 500 will sign a contract without reviewing the DPA and privacy notice.
+        <div class="callout-label">First enterprise customer: target Q3 2026</div>
+        SOC 2 Type I completion is the deployment gate. Legal compliance architecture needs to be ready at the same time. No procurement team at a Fortune 500 will sign a contract without reviewing the DPA and privacy notice.
+    </div>
+
+    <div class="callout green">
+        <div class="callout-label">Timeline to formal deliverables</div>
+        6 to 9 months from seed close to first enterprise contract. Legal deliverables (documents 1 through 6 above) target completion in the first 6 to 8 weeks after seed funding closes. Counsel has been briefed, initial positions are confirmed, and there are no blockers to beginning formal drafting.
     </div>
 </div>
 
-</div><!-- end content -->
+</div>
 
 <div class="footer">
-    Sentriq &middot; Internal &middot; Legal &amp; Privacy Brief &middot; April 2026<br>
+    Sentriq &middot; Internal &middot; Legal &amp; Privacy Brief &middot; Updated April 2026<br>
     Questions: samuel@sentriq.co
 </div>
 
