@@ -249,6 +249,45 @@
     .why-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
     .why-body  { font-size: 12px; color: var(--muted); line-height: 1.75; }
 
+    @media (max-width: 640px) {
+      body { padding: 24px 16px; }
+      .ph { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+      /* Core mechanic: stack vertically */
+      .mechanic { flex-direction: column; align-items: center; gap: 8px; margin-bottom: 32px; }
+      .mechanic-state { flex-direction: row; gap: 16px; align-items: center; width: 100%; }
+      .mechanic-icon { width: 64px; height: 64px; flex-shrink: 0; }
+      .mechanic-desc { text-align: left; max-width: none; }
+      .mechanic-arrow { flex-direction: row; padding: 4px 0; }
+      .mechanic-arrow-line { display: none; }
+      .mechanic-arrow-text { font-size: 8px; color: #3A3A60; }
+
+      /* Note block */
+      .note { padding: 16px 18px; font-size: 12px; margin-bottom: 36px; }
+
+      /* States: single column */
+      .states-row { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+      .state-preview { height: 120px; }
+
+      /* Badge row: wrap tightly */
+      .badge-row { padding: 24px 16px; gap: 18px; }
+
+      /* Demo cards: stack */
+      .demo-wrap { flex-direction: column; gap: 16px; margin-bottom: 36px; }
+      .demo-card { min-width: 0; }
+      .demo-stage { height: 200px; }
+
+      /* Candidate cards: full width */
+      .mockup-row { flex-direction: column; gap: 14px; margin-bottom: 36px; }
+      .candidate-card { width: 100%; }
+
+      /* Why grid: single column */
+      .why-grid { grid-template-columns: 1fr; gap: 14px; }
+      .why-card { padding: 22px 20px; }
+
+      .divider { margin: 36px 0; }
+    }
+
   </style>
 </head>
 <body>
