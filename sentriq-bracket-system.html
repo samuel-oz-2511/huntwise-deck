@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq: The Bracket System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #09090F;
+      --card:   #0D0E1A;
+      --border: #161728;
+      --muted:  #4A4A6A;
+      --amber:  #E8A020;
+      --amber-d: #B87010;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      padding: 72px 56px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .ph {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      padding-bottom: 40px; border-bottom: 1px solid var(--border); margin-bottom: 52px;
+    }
+    .ph .label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .ph h1     { font-size: 30px; font-weight: 500; }
+    .ph .sub   { font-size: 12px; color: var(--muted); }
+
+    .sec-label {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px;
+    }
+
+    .divider { height: 1px; background: var(--border); margin: 60px 0; }
+
+    /* ── 01: Core Mechanic ─────────────────────────────── */
+    .mechanic {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin-bottom: 60px;
+    }
+    .mechanic-state {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      flex: 1;
+    }
+    .mechanic-icon {
+      width: 100px; height: 100px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mechanic-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); text-align: center;
+    }
+    .mechanic-desc {
+      font-size: 12px; color: #4A4A6A; text-align: center; line-height: 1.7; max-width: 160px;
+    }
+    .mechanic-arrow {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 0 20px; flex-shrink: 0;
+    }
+    .mechanic-arrow-line {
+      width: 60px; height: 1px; background: linear-gradient(90deg, #1A1A30, #3A3A60, #1A1A30);
+    }
+    .mechanic-arrow-text {
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #2A2A40;
+      white-space: nowrap;
+    }
+
+    /* ── 02: Three States ──────────────────────────────── */
+    .states-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+      margin-bottom: 60px;
+    }
+    .state-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden;
+    }
+    .state-card.cleared { border-color: rgba(232,160,32,0.2); }
+    .state-preview {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .state-meta { padding: 20px 24px; border-top: 1px solid var(--border); }
+    .state-name { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .state-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+    .state-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      display: inline-block; margin-right: 7px; vertical-align: middle;
+    }
+    .dot-pending  { background: #3A3A60; }
+    .dot-scanning { background: #E8A020; animation: dot-blink 1.2s ease-in-out infinite; }
+    .dot-cleared  { background: #44CC88; }
+
+    @keyframes dot-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* Scanning pulse on signal arcs */
+    @keyframes signal-pulse-1 {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.85; }
+    }
+    @keyframes signal-pulse-2 {
+      0%, 100% { opacity: 0.06; }
+      50% { opacity: 0.55; }
+    }
+    .pulse-1 { animation: signal-pulse-1 1.4s ease-in-out infinite; }
+    .pulse-2 { animation: signal-pulse-2 1.4s ease-in-out infinite 0.45s; }
+
+    /* Cleared state: V glow pulse */
+    @keyframes v-glow {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(232,160,32,0.0)); }
+      50% { filter: drop-shadow(0 0 10px rgba(232,160,32,0.6)); }
+    }
+    .v-glow { animation: v-glow 2.5s ease-in-out infinite; }
+
+    /* ── 03: Badge System ──────────────────────────────── */
+    .badge-row {
+      display: flex; gap: 28px; align-items: flex-end; flex-wrap: wrap;
+      padding: 48px 52px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      margin-bottom: 60px;
+    }
+    .badge-unit { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .badge-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* ── 04: Animated Demo ─────────────────────────────── */
+    .demo-wrap {
+      display: flex; gap: 24px; align-items: stretch; flex-wrap: wrap;
+    }
+    .demo-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; flex: 1; min-width: 280px;
+    }
+    .demo-stage {
+      height: 240px; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .demo-anim-wrap {
+      position: relative; width: 96px; height: 96px;
+    }
+    .demo-bracket-svg,
+    .demo-v-svg {
+      position: absolute; top: 0; left: 0;
+    }
+
+    /* Gate shows for 2.2s, fades out over 0.4s, V shows for 2.2s, fades out over 0.4s */
+    .demo-bracket-svg { animation: show-bracket 5.2s ease-in-out infinite; }
+    .demo-v-svg       { animation: show-v 5.2s ease-in-out infinite; }
+
+    @keyframes show-bracket {
+      0%    { opacity: 1; transform: scale(1); }
+      38%   { opacity: 1; transform: scale(1); }
+      46%   { opacity: 0; transform: scale(0.9); }
+      100%  { opacity: 0; transform: scale(0.9); }
+    }
+    @keyframes show-v {
+      0%    { opacity: 0; transform: scale(0.9); }
+      46%   { opacity: 0; transform: scale(0.9); }
+      54%   { opacity: 1; transform: scale(1); }
+      88%   { opacity: 1; transform: scale(1); }
+      96%   { opacity: 0; transform: scale(0.9); }
+      100%  { opacity: 0; transform: scale(0.9); }
+    }
+
+    .demo-state-label {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .demo-state-gate  { animation: label-gate 5.2s ease-in-out infinite; color: var(--muted); }
+    .demo-state-clear { animation: label-clear 5.2s ease-in-out infinite; color: #E8A020; }
+
+    @keyframes label-gate {
+      0%, 38%  { opacity: 1; }
+      46%, 100% { opacity: 0; }
+    }
+    @keyframes label-clear {
+      0%, 52%   { opacity: 0; }
+      58%, 88%  { opacity: 1; }
+      96%, 100% { opacity: 0; }
+    }
+
+    .demo-meta { padding: 24px 28px; border-top: 1px solid var(--border); }
+    .demo-meta-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .demo-meta-body  { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+    /* ── 05: Candidate Card Mockup ─────────────────────── */
+    .mockup-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 60px; }
+    .candidate-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px 22px; width: 220px; position: relative;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .candidate-card.verified { border-color: rgba(232,160,32,0.25); }
+    .candidate-card.flagged  { border-color: rgba(255,160,60,0.2); }
+
+    .cand-top { display: flex; align-items: center; gap: 12px; }
+    .cand-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #161728; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 600; color: #4A4A6A; flex-shrink: 0;
+    }
+    .cand-name  { font-size: 13px; font-weight: 600; }
+    .cand-role  { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+    .cand-badge {
+      position: absolute; top: 14px; right: 14px;
+    }
+
+    .cand-signals {
+      display: flex; flex-direction: column; gap: 6px; margin-top: 2px;
+    }
+    .cand-signal-row {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 10.5px; color: #4A4A6A;
+    }
+    .cand-signal-bar {
+      width: 70px; height: 3px; background: #161728; border-radius: 2px; overflow: hidden;
+    }
+    .cand-signal-fill { height: 100%; border-radius: 2px; background: #E8A020; }
+
+    .cand-status {
+      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;
+      width: fit-content;
+    }
+    .cs-verified { background: rgba(232,160,32,0.08); color: #C08018; border: 1px solid rgba(232,160,32,0.15); }
+    .cs-pending  { background: rgba(255,255,255,0.03); color: #4A4A6A; border: 1px solid rgba(255,255,255,0.07); }
+    .cs-review   { background: rgba(255,160,60,0.06); color: #AA7030; border: 1px solid rgba(255,160,60,0.12); }
+
+    /* ── 06: Why This Works ────────────────────────────── */
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+    }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 28px;
+    }
+    .why-icon { margin-bottom: 16px; }
+    .why-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .why-body  { font-size: 12px; color: var(--muted); line-height: 1.75; }
+
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:340px;width:100%;padding:0 24px;">
+    <div style="margin-bottom:32px;">
+      <svg width="50" height="50" viewBox="0 0 56 56" fill="none" style="margin-bottom:14px;display:block;margin-left:auto;margin-right:auto;">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div style="font-size:21px;font-weight:600;color:#fff;letter-spacing:0.04em;font-family:'Space Grotesk',sans-serif;">Sentriq</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.28);margin-top:6px;letter-spacing:3px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;">Brand Studio</div>
+    </div>
+    <input id="gi" type="password" placeholder="Access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')cp()" style="width:100%;padding:13px 16px;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;text-align:center;letter-spacing:0.1em;margin-bottom:10px;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(232,160,32,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+    <button onclick="cp()" style="width:100%;padding:13px;font-size:13px;font-weight:600;background:#E8A020;border:none;border-radius:10px;color:#0D0E1A;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:0.04em;transition:background 0.2s;" onmouseover="this.style.background='#C88810'" onmouseout="this.style.background='#E8A020'">Enter</button>
+    <div id="ge" style="font-size:11px;color:rgba(220,80,60,0.8);margin-top:10px;opacity:0;transition:opacity 0.3s;font-family:'Space Grotesk',sans-serif;">Incorrect code.</div>
+  </div>
+</div>
+<script>function cp(){if(document.getElementById('gi').value===atob('c2VudHJpcTIwMjY=')){document.getElementById('gate').style.display='none';}else{var e=document.getElementById('ge');e.style.opacity='1';setTimeout(function(){e.style.opacity='0'},2000);}}</script>
+
+<!-- Header -->
+<div class="ph">
+  <div>
+    <div class="label">Brand System: The Bracket</div>
+    <h1>Gate. Signal. Cleared.</h1>
+  </div>
+  <div class="sub">One form. Three states.</div>
+</div>
+
+
+<!-- ── 01: Core Mechanic ───────────────────────────────────────── -->
+<div class="sec-label">01 — The Core Mechanic</div>
+
+<div class="mechanic">
+
+  <!-- Gate state -->
+  <div class="mechanic-state">
+    <div class="mechanic-icon">
+      <svg width="72" height="72" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.35"/>
+      </svg>
+    </div>
+    <div class="mechanic-label">The Gate</div>
+    <div class="mechanic-desc">Candidate is at the gate. Signal beacon active.</div>
+  </div>
+
+  <div class="mechanic-arrow">
+    <div class="mechanic-arrow-text">Cleared</div>
+    <div style="display:flex;align-items:center;gap:4px;">
+      <div style="width:48px;height:1px;background:linear-gradient(90deg,#252540,#E8A020);"></div>
+      <svg width="8" height="12" viewBox="0 0 8 12" fill="none"><path d="M 1,1 L 7,6 L 1,11" stroke="#C07010" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+
+  <!-- V state -->
+  <div class="mechanic-state">
+    <div class="mechanic-icon">
+      <svg width="72" height="72" viewBox="0 0 56 56" fill="none">
+        <path d="M 11,14 L 28,46 L 45,14"
+          stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="mechanic-label">Cleared</div>
+    <div class="mechanic-desc">Trust signal issued. The bracket becomes the confirmation.</div>
+  </div>
+
+</div>
+
+<div style="background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.1);border-radius:10px;padding:20px 28px;font-size:13px;color:#7070A0;line-height:1.8;margin-bottom:60px;">
+  The V is <strong style="color:#C98C10;font-weight:500;">latent in the bracket</strong>. The two arms of the bracket are the two arms of the V. When a candidate clears, the mark doesn't switch to a new symbol — the same form resolves. This is the same mechanic Cloudflare uses: their brand mark becomes the confirmation state. The trust signal and the brand are the same object.
+</div>
+
+
+<!-- ── 02: Three States ────────────────────────────────────────── -->
+<div class="sec-label">02 — Three States, One Mark</div>
+
+<div class="states-row">
+
+  <!-- PENDING -->
+  <div class="state-card">
+    <div class="state-preview">
+      <svg width="72" height="72" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.35"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.35"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.35"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.35"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020" opacity="0.35"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.12"/>
+        <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.08"/>
+      </svg>
+    </div>
+    <div class="state-meta">
+      <div class="state-name"><span class="state-dot dot-pending"></span>Pending</div>
+      <div class="state-desc">Application received. Mark at low opacity. Signal arcs inactive. Waiting for processing.</div>
+    </div>
+  </div>
+
+  <!-- SCANNING -->
+  <div class="state-card">
+    <div class="state-preview">
+      <svg width="72" height="72" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path class="pulse-1" d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path class="pulse-2" d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="state-meta">
+      <div class="state-name"><span class="state-dot dot-scanning"></span>Scanning</div>
+      <div class="state-desc">Signal arcs pulse. Behavioral analysis running. Application and identity layers under evaluation.</div>
+    </div>
+  </div>
+
+  <!-- CLEARED -->
+  <div class="state-card cleared">
+    <div class="state-preview">
+      <svg class="v-glow" width="72" height="72" viewBox="0 0 56 56" fill="none">
+        <path d="M 11,14 L 28,46 L 45,14"
+          stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="state-meta">
+      <div class="state-name"><span class="state-dot dot-cleared"></span>Cleared</div>
+      <div class="state-desc">Gate becomes V. Trust signal issued. The mark resolves — same form, final state. No new symbol required.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ── 03: The Verified Badge ──────────────────────────────────── -->
+<div class="sec-label">03 — The Sentriq Verified Badge</div>
+
+<div class="badge-row">
+
+  <!-- Dark rounded square -->
+  <div class="badge-unit">
+    <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+      <rect width="56" height="56" rx="14" fill="#0D0E1A"/>
+      <rect width="56" height="56" rx="14" fill="none" stroke="#E8A020" stroke-width="1" opacity="0.25"/>
+      <path d="M 11,14 L 28,46 L 45,14" stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="badge-label">Dark</span>
+  </div>
+
+  <!-- Amber filled square -->
+  <div class="badge-unit">
+    <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+      <rect width="56" height="56" rx="14" fill="#E8A020"/>
+      <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="badge-label">Amber</span>
+  </div>
+
+  <!-- Circle: amber bg -->
+  <div class="badge-unit">
+    <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="28" fill="#E8A020"/>
+      <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="badge-label">Circle</span>
+  </div>
+
+  <!-- Circle: dark bg -->
+  <div class="badge-unit">
+    <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="28" fill="#0D0E1A"/>
+      <circle cx="28" cy="28" r="27" fill="none" stroke="#E8A020" stroke-width="1" opacity="0.3"/>
+      <path d="M 11,14 L 28,46 L 45,14" stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="badge-label">Circle Dark</span>
+  </div>
+
+  <!-- Scale: 3 sizes of amber badge -->
+  <div style="margin-left:auto;display:flex;gap:16px;align-items:flex-end;">
+    <div class="badge-unit">
+      <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+        <rect width="56" height="56" rx="14" fill="#E8A020"/>
+        <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="badge-label">40px</span>
+    </div>
+    <div class="badge-unit">
+      <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
+        <rect width="56" height="56" rx="14" fill="#E8A020"/>
+        <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="badge-label">24px</span>
+    </div>
+    <div class="badge-unit">
+      <svg width="16" height="16" viewBox="0 0 56 56" fill="none">
+        <rect width="56" height="56" rx="14" fill="#E8A020"/>
+        <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="badge-label">16px</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ── 04: Live Transition Demo ────────────────────────────────── -->
+<div class="sec-label">04 — Live Transition</div>
+
+<div class="demo-wrap" style="margin-bottom:60px;">
+
+  <!-- Main animation -->
+  <div class="demo-card">
+    <div class="demo-stage">
+      <div class="demo-anim-wrap">
+        <!-- Bracket -->
+        <svg class="demo-bracket-svg" width="96" height="96" viewBox="0 0 56 56" fill="none">
+          <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+          <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+          <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+          <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+          <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+          <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+        </svg>
+        <!-- V -->
+        <svg class="demo-v-svg" width="96" height="96" viewBox="0 0 56 56" fill="none">
+          <path d="M 11,14 L 28,46 L 45,14"
+            stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="demo-state-label demo-state-gate">Gate Active</div>
+      <div class="demo-state-label demo-state-clear">Sentriq Cleared</div>
+    </div>
+    <div class="demo-meta">
+      <div class="demo-meta-title">Gate to Cleared</div>
+      <div class="demo-meta-body">The transition runs every 5 seconds. In product, it fires once — when the check resolves. The same mark the candidate saw when they submitted their application becomes the mark the recruiter sees when they open the profile.</div>
+    </div>
+  </div>
+
+  <!-- The bracket as frame element -->
+  <div class="demo-card">
+    <div class="demo-stage" style="flex-direction:column;gap:20px;">
+      <!-- Bracket framing text content -->
+      <div style="position:relative;padding:14px 22px;display:flex;align-items:center;justify-content:center;">
+        <!-- Left bracket frame element -->
+        <svg width="18" height="52" viewBox="0 0 18 56" fill="none" style="flex-shrink:0;">
+          <rect x="3" y="4" width="10" height="4" rx="1.5" fill="#E8A020" opacity="0.7"/>
+          <rect x="3" y="7" width="4" height="45" rx="1.5" fill="#E8A020" opacity="0.7"/>
+          <rect x="3" y="49" width="10" height="4" rx="1.5" fill="#E8A020" opacity="0.7"/>
+        </svg>
+        <div style="padding:0 16px;text-align:center;">
+          <div style="font-size:11px;color:#6060A0;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Verified by Sentriq</div>
+          <div style="font-size:15px;font-weight:600;">Jamie Rivera</div>
+          <div style="font-size:11px;color:#4A4A6A;margin-top:3px;">Senior Engineer</div>
+          <div style="margin-top:10px;">
+            <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+              <rect width="56" height="56" rx="14" fill="#E8A020"/>
+              <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Right bracket frame element (mirrored) -->
+        <svg width="18" height="52" viewBox="0 0 18 56" fill="none" style="flex-shrink:0;">
+          <rect x="5" y="4" width="10" height="4" rx="1.5" fill="#E8A020" opacity="0.7"/>
+          <rect x="11" y="7" width="4" height="45" rx="1.5" fill="#E8A020" opacity="0.7"/>
+          <rect x="5" y="49" width="10" height="4" rx="1.5" fill="#E8A020" opacity="0.7"/>
+        </svg>
+      </div>
+    </div>
+    <div class="demo-meta">
+      <div class="demo-meta-title">Bracket as Frame</div>
+      <div class="demo-meta-body">The bracket arms become a UI frame element. A verified candidate is literally bracketed. The brand geometry doubles as product chrome — no illustration required.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ── 05: Candidate Card Mockups ──────────────────────────────── -->
+<div class="sec-label">05 — In Context: Recruiter Dashboard</div>
+
+<div class="mockup-row">
+
+  <!-- Verified card -->
+  <div class="candidate-card verified">
+    <div class="cand-badge">
+      <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+        <rect width="56" height="56" rx="14" fill="#E8A020"/>
+        <path d="M 11,14 L 28,46 L 45,14" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="cand-top">
+      <div class="cand-avatar">JR</div>
+      <div>
+        <div class="cand-name">Jamie Rivera</div>
+        <div class="cand-role">Senior Engineer</div>
+      </div>
+    </div>
+    <div class="cand-signals">
+      <div class="cand-signal-row">
+        <span>Identity</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:90%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Behavioral</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:85%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Application</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:92%;"></div></div>
+      </div>
+    </div>
+    <div class="cand-status cs-verified">Sentriq Cleared</div>
+  </div>
+
+  <!-- Scanning card -->
+  <div class="candidate-card">
+    <div class="cand-badge">
+      <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.9"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.9"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.9"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.9"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path class="pulse-1" d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cand-top">
+      <div class="cand-avatar">MK</div>
+      <div>
+        <div class="cand-name">Morgan Kim</div>
+        <div class="cand-role">Product Manager</div>
+      </div>
+    </div>
+    <div class="cand-signals">
+      <div class="cand-signal-row">
+        <span>Identity</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:60%;opacity:0.5;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Behavioral</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Application</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:0%;"></div></div>
+      </div>
+    </div>
+    <div class="cand-status cs-pending">Scanning</div>
+  </div>
+
+  <!-- Pending card -->
+  <div class="candidate-card">
+    <div class="cand-badge">
+      <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.25"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.25"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020" opacity="0.25"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020" opacity="0.25"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020" opacity="0.25"/>
+      </svg>
+    </div>
+    <div class="cand-top">
+      <div class="cand-avatar">AS</div>
+      <div>
+        <div class="cand-name">Alex Santos</div>
+        <div class="cand-role">DevOps Lead</div>
+      </div>
+    </div>
+    <div class="cand-signals">
+      <div class="cand-signal-row">
+        <span>Identity</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Behavioral</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Application</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:0%;"></div></div>
+      </div>
+    </div>
+    <div class="cand-status cs-pending">Queued</div>
+  </div>
+
+  <!-- Review card -->
+  <div class="candidate-card flagged">
+    <div class="cand-badge">
+      <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#FFA030"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#FFA030"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#FFA030"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#FFA030"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#FFA030"/>
+        <line x1="28" y1="26" x2="28" y2="38" stroke="#0D0E1A" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="28" cy="43" r="1.5" fill="#0D0E1A"/>
+      </svg>
+    </div>
+    <div class="cand-top">
+      <div class="cand-avatar" style="color:#AA7030;">DC</div>
+      <div>
+        <div class="cand-name">Dana Chen</div>
+        <div class="cand-role">Security Analyst</div>
+      </div>
+    </div>
+    <div class="cand-signals">
+      <div class="cand-signal-row">
+        <span>Identity</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:35%;background:#FFA030;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Behavioral</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:88%;"></div></div>
+      </div>
+      <div class="cand-signal-row">
+        <span>Application</span>
+        <div class="cand-signal-bar"><div class="cand-signal-fill" style="width:72%;"></div></div>
+      </div>
+    </div>
+    <div class="cand-status cs-review">Review Needed</div>
+  </div>
+
+</div>
+
+
+<!-- ── 06: Why This Works ──────────────────────────────────────── -->
+<div class="sec-label">06 — Why This Works</div>
+
+<div class="why-grid">
+
+  <div class="why-card">
+    <div class="why-icon">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#3A3A60"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#3A3A60"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#3A3A60"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#3A3A60"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+      </svg>
+    </div>
+    <div class="why-title">Same mark. Two meanings.</div>
+    <div class="why-body">Cloudflare built brand recognition by making their logo appear at the exact moment of verification. Sentriq can do the same — the bracket is the gate, the V is the clearance. One mark. No secondary verification icon to design, explain, or maintain.</div>
+  </div>
+
+  <div class="why-card">
+    <div class="why-icon">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+      </svg>
+    </div>
+    <div class="why-title">Rectangle geometry.</div>
+    <div class="why-body">The bracket is four rectangles. No curves, no arcs, no SVG complexity. The arms map directly to UI components: dividers, frames, progress indicators, selection states. The brand geometry IS the design system. No gap between icon and interface.</div>
+  </div>
+
+  <div class="why-card">
+    <div class="why-icon">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <path d="M 11,14 L 28,46 L 45,14" stroke="#E8A020" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="why-title">The V is unmistakable.</div>
+    <div class="why-body">At 16px on a candidate card, recruiters see a small amber square with a white checkmark. They don't need to know it's a V. They don't need to know it's Sentriq. They just know: cleared. Brand education happens automatically through repeated exposure to that confirmation moment.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

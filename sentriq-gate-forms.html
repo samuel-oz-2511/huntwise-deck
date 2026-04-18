@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq: Gate Form Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #09090F;
+      --card:   #0D0E1A;
+      --border: #161728;
+      --muted:  #4A4A6A;
+      --dim:    #252540;
+      --amber:  #E8A020;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      padding: 72px 56px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .ph {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .ph .label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .ph h1     { font-size: 30px; font-weight: 500; }
+    .ph .sub   { font-size: 12px; color: var(--muted); }
+
+    .note {
+      background: rgba(232,160,32,0.04);
+      border: 1px solid rgba(232,160,32,0.1);
+      border-radius: 10px;
+      padding: 18px 26px;
+      font-size: 12.5px;
+      color: #7070A0;
+      line-height: 1.75;
+      margin-bottom: 52px;
+    }
+    .note strong { color: #C98C10; font-weight: 500; }
+
+    .sec-label {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 24px;
+    }
+
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 52px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .preview-stack { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+
+    .pd {
+      min-height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 44px 48px;
+      gap: 24px;
+    }
+    .pl {
+      background: #EBEBEB;
+      min-height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 26px 48px;
+      gap: 16px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .lu    { display: flex; align-items: center; gap: 18px; }
+    .lu-sm { display: flex; align-items: center; gap: 12px; }
+
+    .wm-dk { font-size: 28px; font-weight: 500; letter-spacing: 0.04em; color: #fff; }
+    .wm-lt { font-size: 21px; font-weight: 500; letter-spacing: 0.04em; color: #0D0E1A; }
+
+    .meta { padding: 26px 30px; }
+    .meta-num  { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .meta-name { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+    .meta-body { font-size: 12.5px; color: #5A5A80; line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .tag  {
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 4px; font-weight: 500;
+      background: rgba(232,160,32,0.06); color: #C08018;
+      border: 1px solid rgba(232,160,32,0.12);
+    }
+    .tag-n {
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 4px; font-weight: 500;
+      background: rgba(255,255,255,0.03); color: #4A4A6A;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .divider { height: 1px; background: var(--border); margin: 52px 0; }
+
+    /* Comparison strip */
+    .compare-strip {
+      display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch;
+    }
+    .cs-card {
+      flex: 1; min-width: 160px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .cs-prev {
+      height: 110px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cs-meta {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .cs-name { font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+    .cs-tag  { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+    .cs-arc  { border-color: #252540; }
+    .cs-arc .cs-meta { background: rgba(255,255,255,0.015); }
+    .cs-label-arc { color: #3A3A5A; }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:340px;width:100%;padding:0 24px;">
+    <div style="margin-bottom:32px;">
+      <svg width="50" height="50" viewBox="0 0 56 56" fill="none" style="margin-bottom:14px;display:block;margin-left:auto;margin-right:auto;">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div style="font-size:21px;font-weight:600;color:#fff;letter-spacing:0.04em;font-family:'Space Grotesk',sans-serif;">Sentriq</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.28);margin-top:6px;letter-spacing:3px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;">Brand Studio</div>
+    </div>
+    <input id="gi" type="password" placeholder="Access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')cp()" style="width:100%;padding:13px 16px;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;text-align:center;letter-spacing:0.1em;margin-bottom:10px;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(232,160,32,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+    <button onclick="cp()" style="width:100%;padding:13px;font-size:13px;font-weight:600;background:#E8A020;border:none;border-radius:10px;color:#0D0E1A;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:0.04em;transition:background 0.2s;" onmouseover="this.style.background='#C88810'" onmouseout="this.style.background='#E8A020'">Enter</button>
+    <div id="ge" style="font-size:11px;color:rgba(220,80,60,0.8);margin-top:10px;opacity:0;transition:opacity 0.3s;font-family:'Space Grotesk',sans-serif;">Incorrect code.</div>
+  </div>
+</div>
+<script>function cp(){if(document.getElementById('gi').value===atob('c2VudHJpcTIwMjY=')){document.getElementById('gate').style.display='none';}else{var e=document.getElementById('ge');e.style.opacity='1';setTimeout(function(){e.style.opacity='0'},2000);}}</script>
+
+<!-- Header -->
+<div class="ph">
+  <div>
+    <div class="label">Gate Form Study</div>
+    <h1>Sentriq</h1>
+  </div>
+  <div class="sub">April 2026 — 4 Forms</div>
+</div>
+
+<div class="note">
+  <strong>Focus: the silhouette.</strong> All four gates use amber only. Structure, beacon, and signal are the same hue — weight and opacity do the separation. Choose the form first. Color direction is a separate decision and follows from the previous file.
+</div>
+
+<!-- 4 Gate Forms -->
+<div class="sec-label">01 — Four Gate Forms</div>
+<div class="g2">
+
+  <!-- GATE A: THE LINTEL -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="pd">
+        <div class="lu">
+          <svg width="64" height="64" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lintel (horizontal bar at top) -->
+            <rect x="7" y="16.5" width="42" height="5" rx="2" fill="#E8A020"/>
+            <!-- Left pillar -->
+            <rect x="10" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+            <!-- Right pillar -->
+            <rect x="40.5" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+            <!-- Beacon -->
+            <circle cx="28" cy="8" r="2.5" fill="#E8A020"/>
+            <!-- Signal arc inner (r=3.5, center 28,8) -->
+            <path d="M 24.97,9.75 A 3.5,3.5 0 1 1 31.03,9.75" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <!-- Signal arc outer (r=5.5, center 28,8) -->
+            <path d="M 23.24,10.75 A 5.5,5.5 0 1 1 32.76,10.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+          </svg>
+          <div class="wm-dk">Sentriq</div>
+        </div>
+      </div>
+      <div class="pl">
+        <div class="lu-sm">
+          <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+            <rect x="7" y="16.5" width="42" height="5" rx="2" fill="#B87010"/>
+            <rect x="10" y="21" width="5.5" height="30" rx="2" fill="#B87010"/>
+            <rect x="40.5" y="21" width="5.5" height="30" rx="2" fill="#B87010"/>
+            <circle cx="28" cy="8" r="2.5" fill="#B87010"/>
+            <path d="M 24.97,9.75 A 3.5,3.5 0 1 1 31.03,9.75" stroke="#B87010" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+            <path d="M 23.24,10.75 A 5.5,5.5 0 1 1 32.76,10.75" stroke="#B87010" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.35"/>
+          </svg>
+          <div class="wm-lt">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Form A</div>
+      <div class="meta-name">The Lintel</div>
+      <div class="meta-body">The arch removed. Two pillars, one horizontal bar. Every element is a pure rectangle — nothing that degrades at small size. The flat lintel reads as weight and permanence where an arch reads as movement. References the Greek portico and the Japanese torii simultaneously. The gate defined by what flanks the opening, not what curves above it.</div>
+      <div class="tags">
+        <span class="tag">All fills</span>
+        <span class="tag-n">No curves</span>
+        <span class="tag-n">Scales to 12px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GATE B: THE DRAWN GATE -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="pd">
+        <div class="lu">
+          <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+            <!-- Single continuous gate path: pillar up, arch across, pillar down -->
+            <path d="M 11.5,50 L 11.5,22 A 16.5,16.5 0 0 1 44.5,22 L 44.5,50"
+              stroke="#E8A020" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Left base tick -->
+            <path d="M 8,50 L 15,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+            <!-- Right base tick -->
+            <path d="M 41,50 L 48,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+            <!-- Beacon (only fill element) -->
+            <circle cx="28" cy="5.5" r="3" fill="#E8A020"/>
+            <!-- Signal arc (r=4.5, center 28,5.5) -->
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75"
+              stroke="#E8A020" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <div class="wm-dk">Sentriq</div>
+        </div>
+      </div>
+      <div class="pl">
+        <div class="lu-sm">
+          <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,50 L 11.5,22 A 16.5,16.5 0 0 1 44.5,22 L 44.5,50"
+              stroke="#B87010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M 8,50 L 15,50" stroke="#B87010" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 41,50 L 48,50" stroke="#B87010" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="28" cy="5.5" r="3" fill="#B87010"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75"
+              stroke="#B87010" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.55"/>
+          </svg>
+          <div class="wm-lt">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Form B</div>
+      <div class="meta-name">The Drawn Gate</div>
+      <div class="meta-body">One continuous stroke: left pillar, arch, right pillar. No fills, no mass — the entire structure is a single unbroken line. The beacon is the only solid element and becomes the visual anchor. Reads like a blueprint or technical drawing. As the brand matures, line-art marks carry more credibility than filled shapes. This form scales from a favicon to a billboard without losing character.</div>
+      <div class="tags">
+        <span class="tag">Single path</span>
+        <span class="tag-n">All strokes</span>
+        <span class="tag-n">Beacon-first</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GATE C: THE BRACKET -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="pd">
+        <div class="lu">
+          <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+            <!-- Left bracket: top arm + vertical arm -->
+            <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            <!-- Right bracket: mirrored -->
+            <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            <!-- Beacon -->
+            <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+            <!-- Signal arc inner (r=4, center 28,6.5) -->
+            <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5"
+              stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <!-- Signal arc outer (r=6.5, center 28,6.5) -->
+            <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75"
+              stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.35"/>
+          </svg>
+          <div class="wm-dk">Sentriq</div>
+        </div>
+      </div>
+      <div class="pl">
+        <div class="lu-sm">
+          <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+            <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#B87010"/>
+            <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#B87010"/>
+            <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#B87010"/>
+            <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#B87010"/>
+            <circle cx="28" cy="6.5" r="2.5" fill="#B87010"/>
+            <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5"
+              stroke="#B87010" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+            <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75"
+              stroke="#B87010" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.32"/>
+          </svg>
+          <div class="wm-lt">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Form C</div>
+      <div class="meta-name">The Bracket</div>
+      <div class="meta-body">No arch. Two facing brackets define the gate purely through negative space — the opening is not drawn, only implied by what surrounds it. The form reads as embrace and containment simultaneously. Four rectangles. No curve anywhere. The most abstract and the most versatile: it carries no architectural period, no cultural reference, no historical weight. It just says: here is a threshold, something watches it.</div>
+      <div class="tags">
+        <span class="tag">Four rects</span>
+        <span class="tag-n">No arch</span>
+        <span class="tag-n">Negative space gate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GATE D: THE PEAKED -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="pd">
+        <div class="lu">
+          <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+            <!-- Pointed arch -->
+            <path d="M 12,22 C 12,13 20,8 28,8 C 36,8 44,13 44,22"
+              stroke="#E8A020" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Left pillar -->
+            <rect x="9" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+            <!-- Right pillar -->
+            <rect x="41" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+            <!-- Beacon (above arch peak) -->
+            <circle cx="28" cy="4" r="2.5" fill="#E8A020"/>
+            <!-- Signal arc (r=3.5, center 28,4) -->
+            <path d="M 24.97,5.75 A 3.5,3.5 0 1 1 31.03,5.75"
+              stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+          </svg>
+          <div class="wm-dk">Sentriq</div>
+        </div>
+      </div>
+      <div class="pl">
+        <div class="lu-sm">
+          <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+            <path d="M 12,22 C 12,13 20,8 28,8 C 36,8 44,13 44,22"
+              stroke="#B87010" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <rect x="9" y="22" width="6" height="28" rx="1.5" fill="#B87010"/>
+            <rect x="41" y="22" width="6" height="28" rx="1.5" fill="#B87010"/>
+            <circle cx="28" cy="4" r="2.5" fill="#B87010"/>
+            <path d="M 24.97,5.75 A 3.5,3.5 0 1 1 31.03,5.75"
+              stroke="#B87010" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+          <div class="wm-lt">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Form D</div>
+      <div class="meta-name">The Peaked</div>
+      <div class="meta-body">A pointed arch instead of a Roman semicircle. The peak is directional — it drives upward, like a fortress gate or a citadel entrance. The arch is a stroke, the pillars are fills: the structure and the opening are visually distinct. The beacon floats above the apex rather than sitting in it. More tension in the form, appropriate for defense sector and CISO audiences where the security posture needs to feel active, not passive.</div>
+      <div class="tags">
+        <span class="tag">Pointed arch</span>
+        <span class="tag-n">Mixed fills + strokes</span>
+        <span class="tag-n">Defense energy</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- Comparison Strip -->
+<div class="sec-label">02 — All Five Side by Side (Including Arc from Previous Study)</div>
+
+<div class="compare-strip">
+
+  <!-- Arc (previous) -->
+  <div class="card cs-card cs-arc">
+    <div class="cs-prev">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#2A2A50" stroke-width="2.4" fill="none"/>
+        <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#2A2A50"/>
+        <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#2A2A50"/>
+        <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#2A2A50"/>
+        <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#2A2A50"/>
+        <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#2A2A50"/>
+        <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#2A2A50"/>
+        <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#2A2A50" stroke-width="1" opacity="0.35"/>
+        <circle cx="28" cy="5.5" r="2.8" fill="#3A3A60"/>
+        <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#3A3A60" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#3A3A60" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-name cs-label-arc">Arc (Previous)</div>
+      <div class="cs-tag cs-label-arc">Roman arch</div>
+    </div>
+  </div>
+
+  <!-- Lintel -->
+  <div class="card cs-card">
+    <div class="cs-prev">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <rect x="7" y="16.5" width="42" height="5" rx="2" fill="#E8A020"/>
+        <rect x="10" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+        <rect x="40.5" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="8" r="2.5" fill="#E8A020"/>
+        <path d="M 24.97,9.75 A 3.5,3.5 0 1 1 31.03,9.75" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 23.24,10.75 A 5.5,5.5 0 1 1 32.76,10.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+      </svg>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-name">A: Lintel</div>
+      <div class="cs-tag">Horizontal bar</div>
+    </div>
+  </div>
+
+  <!-- Drawn -->
+  <div class="card cs-card">
+    <div class="cs-prev">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <path d="M 11.5,50 L 11.5,22 A 16.5,16.5 0 0 1 44.5,22 L 44.5,50"
+          stroke="#E8A020" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M 8,50 L 15,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 41,50 L 48,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="28" cy="5.5" r="3" fill="#E8A020"/>
+        <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75"
+          stroke="#E8A020" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-name">B: Drawn</div>
+      <div class="cs-tag">Single stroke</div>
+    </div>
+  </div>
+
+  <!-- Bracket -->
+  <div class="card cs-card">
+    <div class="cs-prev">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5"
+          stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75"
+          stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.35"/>
+      </svg>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-name">C: Bracket</div>
+      <div class="cs-tag">Negative space</div>
+    </div>
+  </div>
+
+  <!-- Peaked -->
+  <div class="card cs-card">
+    <div class="cs-prev">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <path d="M 12,22 C 12,13 20,8 28,8 C 36,8 44,13 44,22"
+          stroke="#E8A020" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <rect x="9" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+        <rect x="41" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+        <circle cx="28" cy="4" r="2.5" fill="#E8A020"/>
+        <path d="M 24.97,5.75 A 3.5,3.5 0 1 1 31.03,5.75"
+          stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="cs-meta">
+      <div class="cs-name">D: Peaked</div>
+      <div class="cs-tag">Pointed arch</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- Scale test: chosen icon at small sizes -->
+<div class="sec-label">03 — Small Size Test (All Forms at 20px)</div>
+
+<div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:40px 48px; display:flex; align-items:center; gap:44px; flex-wrap:wrap;">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#2A2A50" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#2A2A50"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#2A2A50"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#2A2A50"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#2A2A50"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#2A2A50"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#2A2A50"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#3A3A60"/>
+    </svg>
+    <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#3A3A5A;">Arc</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <rect x="7" y="16.5" width="42" height="5" rx="2" fill="#E8A020"/>
+      <rect x="10" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+      <rect x="40.5" y="21" width="5.5" height="30" rx="2" fill="#E8A020"/>
+      <circle cx="28" cy="8" r="2.5" fill="#E8A020"/>
+    </svg>
+    <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">A</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,50 L 11.5,22 A 16.5,16.5 0 0 1 44.5,22 L 44.5,50"
+        stroke="#E8A020" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M 8,50 L 15,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 41,50 L 48,50" stroke="#E8A020" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="28" cy="5.5" r="3" fill="#E8A020"/>
+    </svg>
+    <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">B</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+      <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+      <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+      <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+      <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+    </svg>
+    <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">C</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <path d="M 12,22 C 12,13 20,8 28,8 C 36,8 44,13 44,22"
+        stroke="#E8A020" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+      <rect x="9" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+      <rect x="41" y="22" width="6" height="28" rx="1.5" fill="#E8A020"/>
+      <circle cx="28" cy="4" r="2.5" fill="#E8A020"/>
+    </svg>
+    <span style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);">D</span>
+  </div>
+
+  <div style="margin-left:auto;">
+    <div style="font-size:11px;color:#3A3A60;line-height:1.8;">
+      A (Lintel) and C (Bracket) survive best at 20px.<br>
+      B (Drawn) loses stroke weight at small size.<br>
+      D (Peaked) loses arch curve resolution.<br>
+      Arc (previous) reads but cap/base detail disappears.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq: The Gate Refined</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #09090F;
+      --card:   #0D0E1A;
+      --border: #161728;
+      --muted:  #4A4A6A;
+      --dim:    #252540;
+    }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      padding: 72px 56px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .ph {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .ph .label  { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .ph h1      { font-size: 30px; font-weight: 500; }
+    .ph .date   { font-size: 12px; color: var(--muted); }
+
+    /* Rationale strip */
+    .rationale {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 28px;
+      font-size: 13px;
+      color: #7070A0;
+      line-height: 1.75;
+      margin-bottom: 56px;
+    }
+    .rationale strong { color: #B0B0D0; font-weight: 500; }
+
+    /* Section label */
+    .sec-label {
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 24px;
+    }
+
+    /* Grid */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* Preview stack: dark + light */
+    .preview-stack { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+
+    .preview-dark {
+      min-height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 44px;
+      gap: 20px;
+    }
+    .preview-light {
+      background: #EBEBEB;
+      min-height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px 44px;
+      gap: 16px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Logo unit */
+    .lu { display: flex; align-items: center; gap: 18px; }
+    .lu-sm { display: flex; align-items: center; gap: 12px; }
+
+    /* Wordmarks */
+    .wm-dark  { font-size: 28px; font-weight: 500; letter-spacing: 0.04em; color: #fff; }
+    .wm-light { font-size: 22px; font-weight: 500; letter-spacing: 0.04em; color: #0D0E1A; }
+
+    /* Meta */
+    .meta { padding: 28px 32px; }
+    .meta-num  { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .meta-name { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+    .meta-body { font-size: 12.5px; color: #5A5A80; line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tag  { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; font-weight: 500; }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--border); margin: 56px 0; }
+
+    /* Scale study */
+    .scale-row {
+      display: flex; align-items: flex-end; gap: 40px;
+      padding: 48px 52px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      flex-wrap: wrap;
+    }
+    .scale-unit { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .scale-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* Light scale row */
+    .scale-row-light {
+      background: #EBEBEB;
+      border-color: #D0D0D0;
+    }
+    .scale-label-dark { color: #999; }
+
+    /* Recommended badge */
+    .badge-rec {
+      background: rgba(232,160,32,0.08); color: #C98C10;
+      border: 1px solid rgba(232,160,32,0.18);
+    }
+    .badge-cyber {
+      background: rgba(77,142,255,0.07); color: #5B82CC;
+      border: 1px solid rgba(77,142,255,0.15);
+    }
+    .badge-auth {
+      background: rgba(179,138,58,0.07); color: #9A7830;
+      border: 1px solid rgba(179,138,58,0.15);
+    }
+    .badge-mono {
+      background: rgba(255,255,255,0.04); color: #555;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .badge-ctx {
+      background: rgba(255,255,255,0.03); color: #4A4A6A;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Comparison bar at bottom */
+    .compare-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .compare-card {
+      flex: 1; min-width: 240px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .compare-preview {
+      height: 120px; display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    .compare-meta { padding: 18px 24px; border-top: 1px solid var(--border); }
+    .compare-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .compare-desc { font-size: 11.5px; color: var(--muted); line-height: 1.65; }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:340px;width:100%;padding:0 24px;">
+    <div style="margin-bottom:32px;">
+      <svg width="50" height="50" viewBox="0 0 56 56" fill="none" style="margin-bottom:14px;display:block;margin-left:auto;margin-right:auto;">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+        <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div style="font-size:21px;font-weight:600;color:#fff;letter-spacing:0.04em;font-family:'Space Grotesk',sans-serif;">Sentriq</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.28);margin-top:6px;letter-spacing:3px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;">Brand Studio</div>
+    </div>
+    <input id="gi" type="password" placeholder="Access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')cp()" style="width:100%;padding:13px 16px;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;text-align:center;letter-spacing:0.1em;margin-bottom:10px;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(232,160,32,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+    <button onclick="cp()" style="width:100%;padding:13px;font-size:13px;font-weight:600;background:#E8A020;border:none;border-radius:10px;color:#0D0E1A;cursor:pointer;font-family:'Space Grotesk',sans-serif;letter-spacing:0.04em;transition:background 0.2s;" onmouseover="this.style.background='#C88810'" onmouseout="this.style.background='#E8A020'">Enter</button>
+    <div id="ge" style="font-size:11px;color:rgba(220,80,60,0.8);margin-top:10px;opacity:0;transition:opacity 0.3s;font-family:'Space Grotesk',sans-serif;">Incorrect code.</div>
+  </div>
+</div>
+<script>function cp(){if(document.getElementById('gi').value===atob('c2VudHJpcTIwMjY=')){document.getElementById('gate').style.display='none';}else{var e=document.getElementById('ge');e.style.opacity='1';setTimeout(function(){e.style.opacity='0'},2000);}}</script>
+
+<!-- Header -->
+<div class="ph">
+  <div>
+    <div class="label">Logo Refinement: The Gate</div>
+    <h1>Sentriq</h1>
+  </div>
+  <div class="date">April 2026</div>
+</div>
+
+<!-- Rationale -->
+<div class="rationale">
+  <strong>Why red is out.</strong> Red carries too many meanings in enterprise security: breach notification, alert state, danger flag. None of those align with how Sentriq positions itself. Sentriq is infrastructure, not an alarm. The buyers are CISOs at defense contractors, financial services firms, and healthcare systems. Their color language is institutional navy, precision slate, and carbon. The gate form is intact and stronger. The signal beacon above it now speaks in a palette these buyers already trust.
+</div>
+
+<!-- Color Variants -->
+<div class="sec-label">01 — Color Directions (Gate Icon + Wordmark)</div>
+<div class="g2">
+
+  <!-- V1: Slate + Amber (Primary) -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="preview-dark">
+        <div class="lu">
+          <!-- GATE SVG: Slate + Amber -->
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Arch (behind pillars) -->
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+            <!-- Left pillar body -->
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+            <!-- Left cap -->
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+            <!-- Left base -->
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+            <!-- Right pillar body -->
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+            <!-- Right cap -->
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+            <!-- Right base -->
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+            <!-- Threshold -->
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+            <!-- Beacon -->
+            <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+            <!-- Signal arc inner -->
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <!-- Signal arc outer -->
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-dark">Sentriq</div>
+        </div>
+      </div>
+      <div class="preview-light">
+        <div class="lu-sm">
+          <svg width="38" height="38" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#C07010"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#C07010" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#C07010" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-light">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Direction 01</div>
+      <div class="meta-name">Slate + Amber</div>
+      <div class="meta-body">The Cloudflare analogy runs through everything in Sentriq's positioning. Amber already signals intelligence and warmth in the existing brand system. Slate navy reads as institutional trust across every target buyer segment: defense prime contractors, financial services CISOs, healthcare Chief Privacy Officers. The gate structure says institution. The amber beacon says active signal. Both buyers hear their own language.</div>
+      <div class="tags">
+        <span class="tag badge-rec">Recommended</span>
+        <span class="tag badge-rec">Gate #1F3D73</span>
+        <span class="tag badge-rec">Signal #E8A020</span>
+        <span class="tag badge-ctx">CISO + Head of Talent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V2: Midnight + Cobalt -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="preview-dark">
+        <div class="lu">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#0D1B38" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#0D1B38"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#0D1B38"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#0D1B38"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#0D1B38"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#0D1B38"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#0D1B38"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#0D1B38" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#4B82F7"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#4B82F7" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#4B82F7" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-dark">Sentriq</div>
+        </div>
+      </div>
+      <div class="preview-light">
+        <div class="lu-sm">
+          <svg width="38" height="38" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#0D1B38" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#0D1B38"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#0D1B38"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#0D1B38"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#0D1B38"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#0D1B38"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#0D1B38"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#0D1B38" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#2563EB"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#2563EB" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#2563EB" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-light">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Direction 02</div>
+      <div class="meta-name">Midnight + Cobalt</div>
+      <div class="meta-body">Full cybersecurity palette. Dark field, electric signal. This is the RSA Conference color language, the Black Hat booth, the CISO budget deck. Booz Allen, JPMorgan, Cognizant security buyers will recognize this as their world. No warmth, no HR energy. All precision and threat awareness. The cobalt signal also matches the data room primary (#2563EB), creating visual continuity across investor and enterprise materials.</div>
+      <div class="tags">
+        <span class="tag badge-cyber">Gate #0D1B38</span>
+        <span class="tag badge-cyber">Signal #4B82F7</span>
+        <span class="tag badge-ctx">CISO Primary</span>
+        <span class="tag badge-ctx">Defense + Financial</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V3: Carbon + Gold -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="preview-dark">
+        <div class="lu">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#252E40" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#252E40"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#252E40"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#252E40"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#252E40"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#252E40"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#252E40"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#252E40" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#B8943A"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#B8943A" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#B8943A" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-dark">Sentriq</div>
+        </div>
+      </div>
+      <div class="preview-light">
+        <div class="lu-sm">
+          <svg width="38" height="38" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#252E40" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#252E40"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#252E40"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#252E40"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#252E40"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#252E40"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#252E40"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#252E40" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#8A6820"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#8A6820" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#8A6820" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-light">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Direction 03</div>
+      <div class="meta-name">Carbon + Gold</div>
+      <div class="meta-body">Enterprise authority without electric energy. The carbon structure reads as weight, permanence, earned presence. The gold signal is not amber, not yellow: it reads as trust through restraint. This is the boardroom palette. When Sentriq is in a room with Northrop Grumman, Goldman Sachs, or UnitedHealth legal teams, this mark says credibility. Gold separates Sentriq from the startup-blue cybersecurity cluster without going warm enough to feel like HR software.</div>
+      <div class="tags">
+        <span class="tag badge-auth">Gate #252E40</span>
+        <span class="tag badge-auth">Signal #B8943A</span>
+        <span class="tag badge-ctx">Defense Boardroom</span>
+        <span class="tag badge-ctx">Financial Services</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- V4: Monochrome Midnight -->
+  <div class="card">
+    <div class="preview-stack">
+      <div class="preview-dark">
+        <div class="lu">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1C2E4A" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1C2E4A"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1C2E4A"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1C2E4A"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1C2E4A"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1C2E4A"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1C2E4A"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1C2E4A" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#5B82A8"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#5B82A8" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#5B82A8" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-dark">Sentriq</div>
+        </div>
+      </div>
+      <div class="preview-light">
+        <div class="lu-sm">
+          <svg width="38" height="38" viewBox="0 0 56 56" fill="none">
+            <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1C2E4A" stroke-width="2.4" fill="none"/>
+            <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1C2E4A"/>
+            <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1C2E4A"/>
+            <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1C2E4A"/>
+            <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1C2E4A"/>
+            <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1C2E4A"/>
+            <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1C2E4A"/>
+            <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1C2E4A" stroke-width="1" opacity="0.35"/>
+            <circle cx="28" cy="5.5" r="2.8" fill="#3A5F8A"/>
+            <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#3A5F8A" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+            <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#3A5F8A" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          <div class="wm-light">Sentriq</div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-num">Direction 04</div>
+      <div class="meta-name">Monochrome Midnight</div>
+      <div class="meta-body">No accent color. Single family. The gate IS the brand. For government-adjacent contexts, FedRAMP documentation, and any buyer where a vendor accent reads as personality rather than infrastructure, this mark says nothing except: we belong here. Works in any medium, any size, any background without adaptation. The beacon remains visible through the value shift, not a hue shift. Maximum institutional restraint.</div>
+      <div class="tags">
+        <span class="tag badge-mono">Gate #1C2E4A</span>
+        <span class="tag badge-mono">Signal #5B82A8</span>
+        <span class="tag badge-ctx">Government / FedRAMP</span>
+        <span class="tag badge-ctx">Legal / Compliance</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- Scale study -->
+<div class="sec-label">02 — Scale Study (Direction 01: Slate + Amber)</div>
+
+<div class="scale-row" style="margin-bottom:20px;">
+  <!-- 80px -->
+  <div class="scale-unit">
+    <svg width="80" height="80" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="scale-label">80px</span>
+  </div>
+  <!-- 56px -->
+  <div class="scale-unit">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="scale-label">56px</span>
+  </div>
+  <!-- 32px -->
+  <div class="scale-unit">
+    <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="scale-label">32px</span>
+  </div>
+  <!-- 20px -->
+  <div class="scale-unit">
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="scale-label">20px</span>
+  </div>
+  <!-- 16px -->
+  <div class="scale-unit">
+    <svg width="16" height="16" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+    </svg>
+    <span class="scale-label">16px</span>
+  </div>
+
+  <!-- Full logo lockup -->
+  <div style="margin-left:auto; display:flex; align-items:center; gap:16px;">
+    <svg width="52" height="52" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div>
+      <div style="font-size:26px; font-weight:500; letter-spacing:0.04em; color:#fff;">Sentriq</div>
+      <div style="font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#3A3A60; margin-top:3px;">Hiring Integrity Infrastructure</div>
+    </div>
+  </div>
+</div>
+
+<!-- Light background scale -->
+<div class="scale-row scale-row-light">
+  <div class="scale-unit">
+    <svg width="80" height="80" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#C07010"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#C07010" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#C07010" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="scale-label scale-label-dark">80px</span>
+  </div>
+  <div class="scale-unit">
+    <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#C07010"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#C07010" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#C07010" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="scale-label scale-label-dark">32px</span>
+  </div>
+  <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+    <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
+      <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+      <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+      <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+      <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+      <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+      <circle cx="28" cy="5.5" r="2.8" fill="#C07010"/>
+      <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#C07010" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+      <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#C07010" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div>
+      <div style="font-size:20px; font-weight:500; letter-spacing:0.04em; color:#0D0E1A;">Sentriq</div>
+      <div style="font-size:8.5px; letter-spacing:2.5px; text-transform:uppercase; color:#999; margin-top:3px;">Hiring Integrity Infrastructure</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- What changed -->
+<div class="sec-label">03 — What Changed in the Icon</div>
+<div style="display:flex; gap:20px; flex-wrap:wrap; align-items:stretch;">
+
+  <div style="flex:1; min-width:280px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px;">
+    <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Before</div>
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+      <!-- Original gate (crimson) -->
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <rect x="8"  y="18" width="8" height="30" rx="2" fill="#C8273A"/>
+        <rect x="40" y="18" width="8" height="30" rx="2" fill="#C8273A"/>
+        <path d="M8,26 Q28,4 48,26" stroke="#C8273A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <circle cx="28" cy="8" r="4" fill="#C8273A"/>
+      </svg>
+      <div style="font-size:24px; font-weight:500; color:#C8273A; letter-spacing:0.04em;">Sentriq</div>
+    </div>
+    <ul style="font-size:12px; color:#4A4A6A; line-height:2; padding-left:14px;">
+      <li>Single color: crimson throughout</li>
+      <li>Bezier arch (cubic curve, uncontrolled geometry)</li>
+      <li>Simple filled rectangles, no capital or base</li>
+      <li>Beacon is a filled circle only, no signal</li>
+      <li>No threshold between the pillars</li>
+    </ul>
+  </div>
+
+  <div style="flex:1; min-width:280px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px;">
+    <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">After</div>
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+      <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+        <path d="M 11.5,22 A 16.5,16.5 0 0 1 44.5,22" stroke="#1F3D73" stroke-width="2.4" fill="none"/>
+        <rect x="8" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+        <rect x="6.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+        <rect x="6.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+        <rect x="41" y="21.5" width="7" height="28.5" rx="1.5" fill="#1F3D73"/>
+        <rect x="39.5" y="18.5" width="10" height="3.5" rx="1" fill="#1F3D73"/>
+        <rect x="39.5" y="50" width="10" height="2.5" rx="1" fill="#1F3D73"/>
+        <line x1="16.5" y1="51.25" x2="39.5" y2="51.25" stroke="#1F3D73" stroke-width="1" opacity="0.35"/>
+        <circle cx="28" cy="5.5" r="2.8" fill="#E8A020"/>
+        <path d="M 24.1,7.75 A 4.5,4.5 0 1 1 31.9,7.75" stroke="#E8A020" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <path d="M 21.94,9.0 A 7,7 0 1 1 34.06,9.0" stroke="#E8A020" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <div style="font-size:24px; font-weight:500; color:#fff; letter-spacing:0.04em;">Sentriq</div>
+    </div>
+    <ul style="font-size:12px; color:#4A4A6A; line-height:2; padding-left:14px;">
+      <li>Two-color system: structure + signal separated</li>
+      <li>True semicircular arch (precise geometric arc)</li>
+      <li>Pillar caps and bases: architectural weight</li>
+      <li>Beacon radiates: two concentric signal arcs</li>
+      <li>Threshold line at base: the crossing point is visible</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
