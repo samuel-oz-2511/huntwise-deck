@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq - Growth Timeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --purple: #7C3AED;
+            --cyan: #06B6D4;
+            --gray-900: #0F172A;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-400: #94A3B8;
+            --gray-200: #E2E8F0;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--gray-900); color: var(--white); min-height: 100vh; }
+
+        /* GATE */
+        #gate { position: fixed; inset: 0; z-index: 9999; background: var(--gray-900); display: flex; align-items: center; justify-content: center; }
+
+        /* TOPBAR */
+        .topbar { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar-logo { font-size: 15px; font-weight: 700; color: var(--primary); }
+        .topbar-meta { font-size: 12px; color: rgba(255,255,255,0.4); }
+        .topbar-badge { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 3px 12px; border-radius: 20px; }
+
+        .page { max-width: 1200px; margin: 0 auto; padding: 48px 40px 100px; }
+
+        /* HEADER */
+        .page-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 10px; }
+        .page-title { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+        .page-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 48px; line-height: 1.6; max-width: 640px; }
+
+        /* SCENARIO LEGEND */
+        .legend { display: flex; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.6); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+        /* TIMELINE CONTAINER */
+        .timeline-outer { overflow-x: auto; padding-bottom: 16px; }
+        .timeline-scroll { min-width: 900px; }
+
+        /* YEAR RAIL */
+        .year-rail { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0; position: relative; margin-bottom: 0; }
+        .year-rail::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 6.25%;
+            right: 6.25%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                var(--green) 0%,
+                var(--green) 15%,
+                var(--primary) 30%,
+                var(--primary) 50%,
+                rgba(37,99,235,0.5) 65%,
+                rgba(124,58,237,0.5) 80%,
+                rgba(124,58,237,0.3) 100%
+            );
+        }
+        .year-col { display: flex; flex-direction: column; align-items: center; }
+        .year-node { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -0.02em; position: relative; z-index: 2; flex-shrink: 0; margin-bottom: 20px; border: 2px solid transparent; }
+        .year-node.done { background: var(--green); color: #fff; box-shadow: 0 0 20px rgba(16,185,129,0.4); }
+        .year-node.active { background: var(--primary); color: #fff; box-shadow: 0 0 20px rgba(37,99,235,0.5); animation: pulse 2s infinite; }
+        .year-node.series-a { background: var(--primary); color: #fff; box-shadow: 0 0 24px rgba(37,99,235,0.6); }
+        .year-node.series-b { background: var(--purple); color: #fff; box-shadow: 0 0 24px rgba(124,58,237,0.5); }
+        .year-node.exit { background: linear-gradient(135deg, var(--purple), var(--primary)); color: #fff; box-shadow: 0 0 28px rgba(124,58,237,0.5); }
+        .year-node.future { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); border: 2px solid rgba(255,255,255,0.1); }
+        @keyframes pulse { 0%,100%{box-shadow:0 0 20px rgba(37,99,235,0.5)} 50%{box-shadow:0 0 32px rgba(37,99,235,0.8)} }
+
+        /* MILESTONE CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 0; }
+        .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px 14px; min-height: 200px; position: relative; }
+        .card.highlight-a { border-color: rgba(37,99,235,0.35); background: rgba(37,99,235,0.05); }
+        .card.highlight-b { border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.05); }
+        .card.highlight-exit { border-color: rgba(124,58,237,0.5); background: linear-gradient(135deg, rgba(124,58,237,0.07), rgba(37,99,235,0.07)); }
+
+        .card-stage { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+        .card-arr { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+        .card-arr-label { font-size: 10px; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+        .card-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 10px; }
+
+        .milestone { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 6px; }
+        .milestone-dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+        .milestone-text { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.45; }
+        .milestone-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+        /* REVENUE SCENARIOS */
+        .scenarios { margin-top: 48px; }
+        .scenarios-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .scenarios-sub { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
+
+        .scenario-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .scenario-table th { text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); border-bottom: 1px solid rgba(255,255,255,0.08); white-space: nowrap; }
+        .scenario-table td { padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.75); vertical-align: middle; }
+        .scenario-table tr:last-child td { border-bottom: none; }
+        .scenario-table tr.series-a-row td { background: rgba(37,99,235,0.06); }
+        .scenario-table tr.series-b-row td { background: rgba(124,58,237,0.05); }
+        .scenario-table tr.exit-row td { background: linear-gradient(90deg, rgba(124,58,237,0.07), rgba(37,99,235,0.07)); font-weight: 700; }
+        .con { color: var(--orange); font-weight: 600; }
+        .base { color: var(--green); font-weight: 600; }
+        .opt { color: var(--cyan); font-weight: 600; }
+
+        /* FOUNDER BOX */
+        .founder-section { margin-top: 40px; }
+        .founder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+        .founder-card { padding: 24px; border-radius: 14px; text-align: center; }
+        .founder-card.con-card { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); }
+        .founder-card.base-card { background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.25); }
+        .founder-card.opt-card { background: rgba(6,182,212,0.07); border: 1px solid rgba(6,182,212,0.2); }
+        .founder-scenario { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+        .founder-exit { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+        .founder-multiple { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+        .founder-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 12px; }
+        .founder-founders { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+        .founder-label { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+        /* DRIVERS */
+        .drivers { margin-top: 40px; }
+        .drivers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+        .driver { padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; }
+        .driver-icon { font-size: 20px; margin-bottom: 10px; }
+        .driver-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .driver-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+        .driver-impact { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+        /* BADGE */
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+        .badge-green { background: rgba(16,185,129,0.15); color: #6EE7B7; }
+        .badge-blue { background: rgba(37,99,235,0.15); color: #93C5FD; }
+        .badge-purple { background: rgba(124,58,237,0.15); color: #C4B5FD; }
+        .badge-orange { background: rgba(245,158,11,0.15); color: #FCD34D; }
+
+        @media (max-width: 900px) {
+            .page { padding: 24px 16px 80px; }
+            .topbar { padding: 0 16px; }
+            .founder-grid { grid-template-columns: 1fr; }
+            .drivers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- GATE -->
+<div id="gate">
+    <div style="text-align:center; max-width:360px; width:100%; padding:0 24px;">
+        <div style="margin-bottom:28px;">
+            <svg width="44" height="44" viewBox="0 0 512 512" style="filter:drop-shadow(0 0 14px rgba(37,99,235,0.4)); margin-bottom:14px;">
+                <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
+                <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+            </svg>
+            <div style="font-size:20px; font-weight:800; color:#fff; letter-spacing:-0.02em;">Sentriq</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.4); margin-top:4px;">Growth Timeline — Internal</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Access code"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            onkeydown="if(event.key==='Enter')checkPass()"
+            style="width:100%; padding:14px 18px; font-size:15px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; outline:none; font-family:inherit; text-align:center; letter-spacing:0.1em; margin-bottom:12px;"
+            onfocus="this.style.borderColor='rgba(37,99,235,0.6)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        <button onclick="checkPass()" style="width:100%; padding:14px; font-size:14px; font-weight:700; background:#2563EB; border:none; border-radius:10px; color:#fff; cursor:pointer; font-family:inherit;">
+            Access Timeline
+        </button>
+        <div id="gateError" style="font-size:12px; color:#FCA5A5; margin-top:10px; opacity:0; transition:opacity 0.3s;">Incorrect code.</div>
+    </div>
+</div>
+<script>
+function checkPass() {
+    if (document.getElementById('gateInput').value === atob('c2VudHJpcTIwMjY=')) {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+    } else {
+        const e = document.getElementById('gateError'); e.style.opacity = '1';
+        document.getElementById('gateInput').style.borderColor = 'rgba(239,68,68,0.6)';
+        setTimeout(() => { e.style.opacity = '0'; document.getElementById('gateInput').style.borderColor = 'rgba(255,255,255,0.15)'; }, 2500);
+        document.getElementById('gateInput').value = ''; document.getElementById('gateInput').focus();
+    }
+}
+</script>
+
+<div id="app" style="display:none;">
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <span class="topbar-logo">Sentriq — Growth Timeline</span>
+    <span class="topbar-meta">Seed 2026 — Exit 2032/33</span>
+    <span class="topbar-badge">Internal Only</span>
+</div>
+
+<div class="page">
+
+    <div class="page-label">Long-Range Plan</div>
+    <div class="page-title">Seed to Category Leader</div>
+    <div class="page-sub">Three scenarios across seven years. Every stage funded by the previous one. Exit via IPO or strategic acquisition at $960M (conservative) to $4.6B (optimistic).</div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Completed / Active</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div>Series A</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple);"></div>Series B</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div>Conservative ARR</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Base ARR</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--cyan);"></div>Optimistic ARR</div>
+    </div>
+
+    <!-- YEAR RAIL -->
+    <div class="timeline-outer">
+        <div class="timeline-scroll">
+            <div class="year-rail">
+                <div class="year-col"><div class="year-node done">2026</div></div>
+                <div class="year-col"><div class="year-node series-a">2027</div></div>
+                <div class="year-col"><div class="year-node future">2028</div></div>
+                <div class="year-col"><div class="year-node series-b">2029</div></div>
+                <div class="year-col"><div class="year-node future">2030</div></div>
+                <div class="year-col"><div class="year-node future">2031</div></div>
+                <div class="year-col"><div class="year-node exit">2032</div></div>
+                <div class="year-col"><div class="year-node exit">2033</div></div>
+            </div>
+
+            <!-- CARDS -->
+            <div class="card-grid">
+
+                <!-- 2026 -->
+                <div class="card">
+                    <div class="badge badge-green">Seed $5M</div>
+                    <div class="card-stage" style="color:var(--green);">Year 0</div>
+                    <div class="card-arr" style="color:rgba(255,255,255,0.4);">$0</div>
+                    <div class="card-arr-label">pre-revenue</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>Seed closes</strong> Q2 2026</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>ML + Backend engineers</strong> hired</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>SOC 2 Type I</strong> engagement starts</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>Design partner POCs</strong> live</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text"><strong>First revenue</strong> Q3-Q4 2026</div></div>
+                </div>
+
+                <!-- 2027 -->
+                <div class="card highlight-a">
+                    <div class="badge badge-blue">Series A $15-20M</div>
+                    <div class="card-stage" style="color:var(--primary);">Series A</div>
+                    <div class="card-arr" style="color:var(--green);">$1M+</div>
+                    <div class="card-arr-label">ARR at raise</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>22-28 customers</strong> at $42K ACV</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>SOC 2 Type II</strong> complete</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>VP Sales</strong> + enterprise AE hired</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>2+ enterprise logos</strong> signed</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>90%+ gross retention</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text"><strong>EU legal entity</strong> registered</div></div>
+                </div>
+
+                <!-- 2028 -->
+                <div class="card">
+                    <div class="card-stage" style="color:rgba(255,255,255,0.5);">Post-Series A</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$3.5M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$5M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$8M</span>
+                    </div>
+                    <div class="card-arr-label">ARR range</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>Enterprise AE team</strong> at 3 reps</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--primary);"></div><div class="milestone-text"><strong>EU first customer</strong> signed</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>First defense contractor</strong> logo</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-text"><strong>ATS integration beta</strong> (Greenhouse / Lever)</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text"><strong>Staffing agency pilot</strong> at $1.50/candidate</div></div>
+                </div>
+
+                <!-- 2029 -->
+                <div class="card highlight-b">
+                    <div class="badge badge-purple">Series B $40-60M</div>
+                    <div class="card-stage" style="color:var(--purple);">Series B</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$10M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$18M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$28M</span>
+                    </div>
+                    <div class="card-arr-label">ARR at raise</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-text"><strong>100+ customers</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>FedRAMP authorized</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>First DoD contract</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-text"><strong>Staffing agency deal</strong> live ($750K-$1.5M ARR per deal)</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--cyan);"></div><div class="milestone-text"><strong>ATS integration GA</strong></div></div>
+                </div>
+
+                <!-- 2030 -->
+                <div class="card">
+                    <div class="card-stage" style="color:rgba(255,255,255,0.5);">Scale</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$28M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$50M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$80M</span>
+                    </div>
+                    <div class="card-arr-label">ARR range</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>ATS native integration</strong> GA — distribution compounds</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--cyan);"></div><div class="milestone-text"><strong>EU revenue</strong> 30%+ of total</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-text"><strong>250-400 customers</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text"><strong>Avg ACV reaches $90K+</strong></div></div>
+                </div>
+
+                <!-- 2031 -->
+                <div class="card">
+                    <div class="card-stage" style="color:rgba(255,255,255,0.5);">Category Leader</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$50M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$90M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$140M</span>
+                    </div>
+                    <div class="card-arr-label">ARR range</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>500+ customers</strong></div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text"><strong>FedRAMP Full</strong> — DoD enterprise contracts</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--cyan);"></div><div class="milestone-text"><strong>NDR 125%+</strong> — expansion on autopilot</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--purple);"></div><div class="milestone-text"><strong>IPO prep</strong> begins or M&A conversations open</div></div>
+                </div>
+
+                <!-- 2032 -->
+                <div class="card highlight-exit">
+                    <div class="badge badge-purple">Exit Window</div>
+                    <div class="card-stage" style="color:var(--purple);">2032</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$85M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$150M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$240M</span>
+                    </div>
+                    <div class="card-arr-label">ARR range</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text">Con: <strong>$680M</strong> valuation</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text">Base: <strong>$1.5B</strong> valuation</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--cyan);"></div><div class="milestone-text">Opt: <strong>$2.9B</strong> valuation</div></div>
+                    <div class="milestone" style="margin-top:6px;"><div class="milestone-dot" style="background:rgba(255,255,255,0.3);"></div><div class="milestone-text">Acquirers: Workday, SAP, First Advantage, CrowdStrike</div></div>
+                </div>
+
+                <!-- 2033 -->
+                <div class="card highlight-exit">
+                    <div class="badge badge-purple">Full Exit</div>
+                    <div class="card-stage" style="color:var(--purple);">2033</div>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">
+                        <span style="font-size:13px; font-weight:700; color:var(--orange);">$120M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--green);">$220M</span>
+                        <span style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.25);">/</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--cyan);">$380M</span>
+                    </div>
+                    <div class="card-arr-label">ARR range</div>
+                    <div class="card-divider"></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--orange);"></div><div class="milestone-text">Con: <strong>$960M</strong> exit (8x ARR)</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--green);"></div><div class="milestone-text">Base: <strong>$2.2B</strong> exit (10x ARR)</div></div>
+                    <div class="milestone"><div class="milestone-dot" style="background:var(--cyan);"></div><div class="milestone-text">Opt: <strong>$4.6B</strong> exit (12x ARR)</div></div>
+                    <div class="milestone" style="margin-top:6px;"><div class="milestone-dot" style="background:rgba(255,255,255,0.3);"></div><div class="milestone-text">Comparable: Checkr $5B, First Advantage $1.65B acq., Persona $2B</div></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- REVENUE TABLE -->
+    <div class="scenarios">
+        <div class="scenarios-title">Full ARR Progression by Year</div>
+        <div class="scenarios-sub">Conservative / Base / Optimistic across all three scenarios</div>
+
+        <table class="scenario-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Stage</th>
+                    <th>Conservative</th>
+                    <th>Base</th>
+                    <th>Optimistic</th>
+                    <th>Key Driver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>2026</strong></td>
+                    <td>Seed</td>
+                    <td class="con">$216K</td>
+                    <td class="base">$216K</td>
+                    <td class="opt">$216K</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">First revenue, design partners</td>
+                </tr>
+                <tr class="series-a-row">
+                    <td><strong>2027</strong></td>
+                    <td>Series A</td>
+                    <td class="con">$1M</td>
+                    <td class="base">$1.1M</td>
+                    <td class="opt">$1.2M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">22-28 customers, enterprise logos</td>
+                </tr>
+                <tr>
+                    <td><strong>2028</strong></td>
+                    <td>Post-Series A</td>
+                    <td class="con">$3.5M</td>
+                    <td class="base">$5M</td>
+                    <td class="opt">$8M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">EU launch, defense contractor, ATS beta</td>
+                </tr>
+                <tr class="series-b-row">
+                    <td><strong>2029</strong></td>
+                    <td>Series B</td>
+                    <td class="con">$10M</td>
+                    <td class="base">$18M</td>
+                    <td class="opt">$28M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">FedRAMP, staffing agency deal, ATS GA</td>
+                </tr>
+                <tr>
+                    <td><strong>2030</strong></td>
+                    <td>Scale</td>
+                    <td class="con">$28M</td>
+                    <td class="base">$50M</td>
+                    <td class="opt">$80M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">ATS native distribution, EU 30%+ revenue</td>
+                </tr>
+                <tr>
+                    <td><strong>2031</strong></td>
+                    <td>Category Leader</td>
+                    <td class="con">$50M</td>
+                    <td class="base">$90M</td>
+                    <td class="opt">$140M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">500+ customers, DoD contracts, NDR 125%+</td>
+                </tr>
+                <tr>
+                    <td><strong>2032</strong></td>
+                    <td>Exit Window Opens</td>
+                    <td class="con">$85M</td>
+                    <td class="base">$150M</td>
+                    <td class="opt">$240M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">IPO prep or M&A conversations</td>
+                </tr>
+                <tr class="exit-row">
+                    <td><strong>2033</strong></td>
+                    <td>Exit</td>
+                    <td class="con">$120M</td>
+                    <td class="base">$220M</td>
+                    <td class="opt">$380M</td>
+                    <td style="font-size:12px; color:rgba(255,255,255,0.45);">$960M / $2.2B / $4.6B valuation</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOUNDER ECONOMICS -->
+    <div class="founder-section">
+        <div class="scenarios-title">Founder Economics at Exit</div>
+        <div class="scenarios-sub">Assuming 15-18% combined ownership after Seed, Series A, Series B dilution</div>
+
+        <div class="founder-grid">
+            <div class="founder-card con-card">
+                <div class="founder-scenario" style="color:var(--orange);">Conservative</div>
+                <div class="founder-exit" style="color:var(--orange);">$960M</div>
+                <div class="founder-multiple" style="color:rgba(245,158,11,0.7);">exit valuation</div>
+                <div class="founder-divider"></div>
+                <div class="founder-founders" style="color:var(--orange);">$144-173M</div>
+                <div class="founder-label">combined founder share</div>
+            </div>
+            <div class="founder-card base-card">
+                <div class="founder-scenario" style="color:var(--green);">Base</div>
+                <div class="founder-exit" style="color:var(--green);">$2.2B</div>
+                <div class="founder-multiple" style="color:rgba(16,185,129,0.7);">exit valuation</div>
+                <div class="founder-divider"></div>
+                <div class="founder-founders" style="color:var(--green);">$330-396M</div>
+                <div class="founder-label">combined founder share</div>
+            </div>
+            <div class="founder-card opt-card">
+                <div class="founder-scenario" style="color:var(--cyan);">Optimistic</div>
+                <div class="founder-exit" style="color:var(--cyan);">$4.6B</div>
+                <div class="founder-multiple" style="color:rgba(6,182,212,0.7);">exit valuation</div>
+                <div class="founder-divider"></div>
+                <div class="founder-founders" style="color:var(--cyan);">$690-828M</div>
+                <div class="founder-label">combined founder share</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KEY DRIVERS -->
+    <div class="drivers">
+        <div class="scenarios-title">What Moves You Between Scenarios</div>
+        <div class="scenarios-sub">Three variables account for most of the range between conservative and optimistic</div>
+
+        <div class="drivers-grid">
+            <div class="driver">
+                <div class="driver-icon">⚡</div>
+                <div class="driver-title">ATS Native Integration</div>
+                <div class="driver-desc">Workday alone has 11,500 customers. If Sentriq becomes a native integration, distribution compounds without proportional CAC. Without it: 30-40 new logos per year. With it: thousands of activations per quarter.</div>
+                <div class="driver-impact" style="color:var(--cyan);">Conservative to Optimistic shift</div>
+            </div>
+            <div class="driver">
+                <div class="driver-icon">🔒</div>
+                <div class="driver-title">One High-Profile Breach</div>
+                <div class="driver-desc">A publicly named enterprise breach traced to a fraudulent offshore hire creates a forcing function no sales motion can replicate. The DPRK advisory drove inbound across every hiring security company in 2024. One named victim shifts the market.</div>
+                <div class="driver-impact" style="color:var(--green);">Conservative to Base shift</div>
+            </div>
+            <div class="driver">
+                <div class="driver-icon">📋</div>
+                <div class="driver-title">Regulatory Mandate</div>
+                <div class="driver-desc">CMMC 2.0 already requires workforce integrity verification for DoD supply chain. If that extends to cleared roles broadly, or if the EU AI Act creates a hiring verification obligation, government and EU become mandatory buyers.</div>
+                <div class="driver-impact" style="color:var(--orange);">Accelerates every stage by 6-12 months</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
