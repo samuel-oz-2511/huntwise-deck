@@ -181,11 +181,73 @@
         .badge-purple { background: rgba(124,58,237,0.15); color: #C4B5FD; }
         .badge-orange { background: rgba(245,158,11,0.15); color: #FCD34D; }
 
+        /* MOBILE SCROLL HINT */
+        .scroll-hint { display: none; font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 12px; padding: 6px 12px; background: rgba(255,255,255,0.03); border-radius: 20px; width: fit-content; }
+
+        /* TABLE SCROLL WRAPPER */
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
+
         @media (max-width: 900px) {
-            .page { padding: 24px 16px 80px; }
+            /* PAGE */
+            .page { padding: 20px 16px 80px; }
             .topbar { padding: 0 16px; }
-            .founder-grid { grid-template-columns: 1fr; }
-            .drivers-grid { grid-template-columns: 1fr; }
+            .topbar-meta { display: none; }
+            .page-title { font-size: 22px; }
+            .page-sub { font-size: 13px; margin-bottom: 28px; }
+
+            /* LEGEND */
+            .legend { gap: 12px; margin-bottom: 24px; }
+            .legend-item { font-size: 11px; }
+
+            /* TIMELINE — horizontal scroll is fine, just add hint */
+            .scroll-hint { display: block; }
+            .timeline-outer { border-radius: 12px; }
+
+            /* SCENARIO TABLE */
+            .scenario-table th, .scenario-table td { padding: 10px 10px; font-size: 12px; }
+            .scenario-table th { font-size: 10px; }
+
+            /* FOUNDER GRID */
+            .founder-grid { grid-template-columns: 1fr; gap: 12px; }
+            .founder-exit { font-size: 24px; }
+            .founder-founders { font-size: 20px; }
+
+            /* CAP TABLE */
+            .captable { margin-top: 32px; }
+            .dilution-table th, .dilution-table td { padding: 8px 8px; font-size: 11px; }
+            .dilution-table th { font-size: 9px; }
+
+            /* EXIT FOUNDER CARDS */
+            .exit-founder-grid { grid-template-columns: 1fr; gap: 12px; }
+            .ef-pct { font-size: 24px; }
+
+            /* DRIVERS */
+            .drivers-grid { grid-template-columns: 1fr; gap: 12px; }
+
+            /* SECTIONS */
+            .scenarios { margin-top: 32px; }
+            .scenarios-title { font-size: 15px; }
+            .founder-section { margin-top: 28px; }
+
+            /* ASSUMPTIONS BOX */
+            .assumptions-box p { font-size: 11px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-title { font-size: 19px; }
+            .topbar-logo { font-size: 13px; }
+            .topbar-badge { font-size: 10px; padding: 2px 8px; }
+
+            /* HIDE KEY DRIVER label on very small screens */
+            .scenario-table th:last-child,
+            .scenario-table td:last-child { display: none; }
+
+            /* DILUTION TABLE — hide pre-money on tiny screens */
+            .dilution-table th:nth-child(3),
+            .dilution-table td:nth-child(3) { display: none; }
+
+            .founder-exit { font-size: 22px; }
+            .ef-pct { font-size: 22px; }
         }
     </style>
 </head>
@@ -251,6 +313,8 @@ function checkPass() {
         <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Base ARR</div>
         <div class="legend-item"><div class="legend-dot" style="background:var(--cyan);"></div>Optimistic ARR</div>
     </div>
+
+    <div class="scroll-hint">Swipe left to see all years &rarr;</div>
 
     <!-- YEAR RAIL -->
     <div class="timeline-outer">
@@ -420,6 +484,7 @@ function checkPass() {
         <div class="scenarios-title">Full ARR Progression by Year</div>
         <div class="scenarios-sub">Conservative / Base / Optimistic across all three scenarios</div>
 
+        <div class="table-scroll">
         <table class="scenario-table">
             <thead>
                 <tr>
@@ -498,6 +563,7 @@ function checkPass() {
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- FOUNDER ECONOMICS SUMMARY (kept as quick-glance above the full model) -->
@@ -539,6 +605,7 @@ function checkPass() {
         <div class="scenarios-sub">Built on standard Israeli / US cyber best practices: 1x non-participating liquidation preferences, ESOP created pre-seed and refreshed each round, 50/50 founder split assumed.</div>
 
         <!-- DILUTION WATERFALL -->
+        <div class="table-scroll">
         <table class="dilution-table">
             <thead>
                 <tr>
@@ -626,6 +693,7 @@ function checkPass() {
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <div class="assumptions-box">
             <p>
