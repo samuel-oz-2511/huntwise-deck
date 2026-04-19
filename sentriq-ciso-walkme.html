@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
 =============================================================
-SENTRIQ SECURITY BRIEFING — UZI DVIR + DANIEL CHACHIK (WALKME)
+SENTRIQ SECURITY BRIEFING: UZI DVIR + DANIEL CHACHIK (WALKME)
 Password: sentriqwalkme2026
 =============================================================
 
-ANALYTICS — LIVE via ntfy.sh
+ANALYTICS: LIVE via ntfy.sh
 Topic: sentriq-ciso-walkme-x7k2
 Subscribe: https://ntfy.sh/sentriq-ciso-walkme-x7k2
 iOS/Android: install ntfy app, add topic sentriq-ciso-walkme-x7k2
@@ -182,7 +182,7 @@ Every time this deck is unlocked, you get a push notification.
         /* Solution layers */
         .layers-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 16px;
             margin-bottom: 14px;
         }
@@ -513,7 +513,7 @@ Every time this deck is unlocked, you get a push notification.
     <div style="width: 100%; max-width: 360px; padding: 0 24px; text-align: center;">
         <div style="margin-bottom: 32px;">
             <div style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">Sentriq</div>
-            <div style="font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 500;">Security Briefing &mdash; Confidential</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 500;">Security Briefing: Confidential</div>
         </div>
         <input id="gateInput" type="password" placeholder="Enter access code"
             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
@@ -582,7 +582,7 @@ Every time this deck is unlocked, you get a push notification.
 
     <!-- HERO -->
     <div class="hero">
-        <div class="hero-label">For Daniel Chachik, CISO at WalkMe</div>
+        <div class="hero-label">For Daniel Chechik, CISO at WalkMe</div>
         <h1>The hiring pipeline is <span>the entry point your security stack does not cover.</span></h1>
         <p>WalkMe runs inside thousands of enterprise applications. A fraudulent hire who passes a background check reaches your environment on day one. Sentriq closes the gap before anyone enters the pipeline.</p>
     </div>
@@ -610,6 +610,12 @@ Every time this deck is unlocked, you get a push notification.
             <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #b91c1c; margin-bottom: 6px;">Already happening</div>
             <div style="font-size: 14px; font-weight: 600; color: #7f1d1d; margin-bottom: 4px;">KnowBe4, 2024: hired a North Korean IT worker who immediately attempted to load malware.</div>
             <div style="font-size: 13px; color: #991b1b; line-height: 1.6;">The hire passed a resume screen, video interview, and background check. The FBI and CISA have issued joint advisories warning that this is an active, systematic campaign targeting US technology companies. Remote engineering and DevOps roles are the primary vector. WalkMe's hiring profile is in scope.</div>
+        </div>
+
+        <div style="margin-top: 14px; background: #0f172a; border: 1px solid rgba(239,68,68,0.3); border-left: 4px solid #ef4444; border-radius: 12px; padding: 18px 22px;">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #f87171; margin-bottom: 8px;">The attack tooling is open source and in production</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7;">Camoufox is a Firefox fork patched at the C++ level to defeat every browser fingerprint, residential proxy check, and identity detection layer. It authenticates into LinkedIn via session cookies that survive fingerprint validation, fills ATS forms with OS-level keyboard simulation that bypasses React input detection, and runs as an autonomous AI agent with no human in the loop. It is MIT licensed, has ~1M PyPI downloads per month, and is classified by DataDome as active threat infrastructure. It is integrated as a first-class backend in NousResearch's Hermes Agent and OpenClaw. A YC W24 company ships it in production today.<br><br>
+            The KnowBe4 incident required a skilled human operative. This tooling enables the same attack at industrial scale with no additional skill. <strong style="color: #fff;">IP blocking, browser fingerprinting, and form-level detection are already defeated. The behavioral challenge layer is what remains.</strong></div>
         </div>
     </div>
 
@@ -690,24 +696,35 @@ Every time this deck is unlocked, you get a push notification.
         <div class="layers-grid">
             <div class="layer-card">
                 <div class="layer-num">Layer 1</div>
-                <h3>Behavioral signal capture</h3>
+                <h3>Behavioral Baseline</h3>
                 <div class="layer-desc">Every application submission carries a fingerprint: how the form was filled, tools used, timing patterns, device signals. Sentriq reads these at submission, before anyone reviews the candidate.</div>
                 <ul class="layer-bullets">
                     <li>Tool and automation fingerprinting</li>
                     <li>Behavioral anomaly detection</li>
                     <li>Device and environment signals</li>
-                    <li>Cross-application pattern matching</li>
+                    <li>Timing and cadence patterns</li>
                 </ul>
             </div>
             <div class="layer-card">
                 <div class="layer-num">Layer 2</div>
-                <h3>Async identity challenge</h3>
-                <div class="layer-desc">Flagged candidates are routed to an async challenge. It does not test skills. It verifies that a real, present individual is behind the application before anyone spends time on them.</div>
+                <h3>Trust Layer</h3>
+                <div class="layer-desc">Sentriq does not evaluate each application in isolation. Every submission contributes to a cross-company signal graph that builds across all applications, across all companies on the network.</div>
                 <ul class="layer-bullets">
-                    <li>Invisible to legitimate candidates</li>
+                    <li>Cross-application pattern matching</li>
+                    <li>Network-wide anomaly scoring</li>
+                    <li>Shared fraud intelligence across companies</li>
+                    <li>Signal sharpens with every application processed</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 3</div>
+                <h3>Async Personalized Challenge</h3>
+                <div class="layer-desc">Flagged candidates receive a personalized async challenge. It does not test skills. It verifies that a real, present individual is behind the application before any recruiter time is spent.</div>
+                <ul class="layer-bullets">
+                    <li>Tailored to the specific application and role</li>
+                    <li>Invisible friction for legitimate candidates</li>
                     <li>No recruiter involvement required</li>
-                    <li>Filters synthetic identities and proxies</li>
-                    <li>Result appears in Lever alongside the candidate</li>
+                    <li>Result surfaces in Lever alongside the candidate</li>
                 </ul>
             </div>
         </div>
@@ -719,9 +736,9 @@ Every time this deck is unlocked, you get a push notification.
         </div>
 
         <div style="background: #0f172a; border-radius: 12px; padding: 22px 28px; border-left: 4px solid #2563eb;">
-            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 8px;">The trust layer</div>
-            <div style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.4;">Sentriq does not check each application in isolation.</div>
-            <div style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.75;">Every submission processed contributes to a shared signal layer. Behavioral patterns, tool fingerprints, and anomaly clusters build up across all applications seen. Like Cloudflare, which draws on network-wide traffic intelligence rather than inspecting each request alone, Sentriq's signal sharpens with every application it processes. Your candidate is not checked against themselves. They are checked against everything.</div>
+            <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 8px;">The Cloudflare analogy</div>
+            <div style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; line-height: 1.4;">Like Cloudflare, Sentriq sits upstream of your entire stack.</div>
+            <div style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.75;">Cloudflare does not inspect each request in isolation. It draws on network-wide traffic intelligence built across millions of endpoints. Sentriq works the same way: behavioral patterns, tool fingerprints, and anomaly clusters accumulate across every application processed, across every company on the network. Your candidate is not checked against themselves. They are checked against everything. No changes to Lever, no recruiter workflow changes, no PII stored.</div>
         </div>
     </div>
 
