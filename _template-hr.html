@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ HR DECK TEMPLATE
+Ground truth for all HR buyer decks (TA leaders, CHROs, hiring managers).
+=============================================================
+
+RULES EMBEDDED IN THIS FILE (check before every delivery):
+
+HARD STOPS:
+1. Zero em dashes (— or &mdash;) anywhere. Replace with colon for labels, comma for
+   parentheticals, period for sentence breaks.
+2. Zero sentriq.io. Domain is always sentriq.co.
+3. No AI jargon: delve, leverage (filler), unlock, transformative, game-changing,
+   cutting-edge, robust solution.
+
+BRAND:
+- Always "Sentriq" (not Sentriq Inc, not SENTRIQ)
+- Always "Huntwise" (not HuntWise)
+- Domain: sentriq.co. Emails: samuel@sentriq.co, ben@sentriq.co
+- Product: "Candidate Hiring Captcha". Never "CAF", never "Candidate Application Firewall"
+- Never "trust score". Always "trust signal/signals"
+- Never "ATS-agnostic". Always "platform-agnostic"
+- Team: Samuel Kemper and Ben Czarninski (full names always)
+
+PRODUCT STATUS:
+- No live product. Demo only. Design partner pipeline active.
+- Never claim real sessions, live testing, paying customers, deployments.
+
+APPLICATION, NOT CANDIDATE:
+- Unit is the APPLICATION, not the candidate (person)
+- Never: flagged candidate, high-risk candidate, candidate alert
+- Always: flagged application, high-risk application, application-level signal
+- "Candidate" acceptable only when referring to the person in the hiring pipeline
+  context (recruiter reviewing them), never as the object Sentriq checks
+
+THREE LAYERS (exact names):
+- Layer 1: Behavioral Baseline
+- Layer 2: Trust Layer
+- Layer 3: Async Personalized Challenge (NEVER "Async Identity Challenge")
+
+HR DECK RULES:
+- Lifecycle diagram in every HR deck
+- Calculator input = open roles. Dollar rate = $60/hr from lifecycle benchmarks
+- Trust layer block (Cloudflare analogy) always in solution section
+- LinkedIn team estimates: 40%/30% filter chain
+- Never specify async challenge duration
+- Narrative order: problem -> lifecycle -> solution -> social proof -> company data -> ROI -> ask -> CTA
+
+LIFECYCLE DIAGRAM:
+- Stage name, tool, cost ONLY per cell
+- Never add "Most verify here" or any comparative claim
+- Sentriq always at Application stage (lc-sentriq class)
+- Background check always flagged as late/identity-only (lc-danger class)
+
+PASSWORD GATE + NTFY:
+- Password placeholder: [DECK-PASSWORD]
+- ntfy topic placeholder: [NTFY-TOPIC]
+- Base64-encode password in checkPass() before shipping
+
+MOBILE:
+- Viewport meta always present
+- All grids collapse to 1 column at max-width: 640px
+
+CUSTOMIZE MARKERS:
+- [CUSTOMIZE: ...] comments mark every placeholder to adapt per deck
+
+SECTION ORDER (9 sections):
+1. Hero
+2. Problem
+3. Lifecycle diagram
+4. Solution (with Cloudflare trust layer block)
+5. Social proof / traction
+6. Company data / pipeline estimate
+7. ROI calculator
+8. The ask
+9. CTA
+=============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [CUSTOMIZE: title per company] -->
+    <title>Sentriq - HR Briefing</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; color: #0f172a; min-height: 100vh; }
+        .page { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
+        .logo { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; color: #2563eb; text-transform: uppercase; margin-bottom: 72px; }
+        .hero { margin-bottom: 64px; }
+        .hero-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #2563eb; margin-bottom: 16px; }
+        .hero h1 { font-size: 38px; font-weight: 800; line-height: 1.18; color: #0f172a; margin-bottom: 20px; max-width: 720px; }
+        .hero h1 span { color: #2563eb; }
+        .hero p { font-size: 16px; color: #475569; line-height: 1.75; max-width: 600px; }
+        .section { margin-bottom: 60px; }
+        .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #94a3b8; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+
+        /* Pain cards */
+        .pain-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+        .pain-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 20px; }
+        .pain-card .pain-num { font-size: 28px; font-weight: 800; color: #ef4444; margin-bottom: 6px; }
+        .pain-card .pain-label { font-size: 13px; color: #64748b; line-height: 1.55; }
+        .pain-card .pain-source { font-size: 10px; color: #94a3b8; margin-top: 8px; }
+
+        /* Lifecycle diagram */
+        .lifecycle-grid { display: grid; grid-template-columns: repeat(8, 1fr); border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+        .lc-stage { padding: 14px 8px; border-right: 1px solid #e2e8f0; text-align: center; background: #fff; }
+        .lc-stage:last-child { border-right: none; }
+        .lc-badge { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent; }
+        .lc-name { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
+        .lc-tool { font-size: 10px; color: #94a3b8; line-height: 1.4; }
+        .lc-cost { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; }
+        .lc-stage.lc-sentriq { background: rgba(5,150,105,0.06); border-bottom: 3px solid #059669; }
+        .lc-stage.lc-sentriq .lc-badge { color: #059669; }
+        .lc-stage.lc-sentriq .lc-name { color: #065f46; }
+        .lc-stage.lc-sentriq .lc-cost { color: #059669; font-weight: 800; font-size: 12px; }
+        .lc-stage.lc-danger { background: rgba(234,88,12,0.06); border-bottom: 3px solid #ea580c; }
+        .lc-stage.lc-danger .lc-cost { color: #ea580c; font-weight: 800; }
+        .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+        .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
+        .lc-callout.lc-green { background: #f0fdf4; border-color: #bbf7d0; }
+        .lc-callout.lc-orange { background: #fff7ed; border-color: #fed7aa; }
+        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
+        .lc-callout.lc-green h4 { color: #166534; }
+        .lc-callout.lc-orange h4 { color: #9a3412; }
+        .lc-callout p { font-size: 12px; color: #64748b; line-height: 1.55; }
+        .lc-callout.lc-green p { color: #15803d; }
+        .lc-callout.lc-orange p { color: #c2410c; }
+
+        /* Solution layers */
+        .layers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+        .layer-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 22px; }
+        .layer-num { display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #2563eb; background: #eff6ff; border-radius: 6px; padding: 3px 10px; margin-bottom: 12px; }
+        .layer-card h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+        .layer-desc { font-size: 13px; color: #475569; line-height: 1.65; margin-bottom: 14px; }
+        .layer-bullets { list-style: none; padding: 0; }
+        .layer-bullets li { font-size: 12px; color: #64748b; padding: 4px 0 4px 16px; position: relative; line-height: 1.5; }
+        .layer-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: #2563eb; border-radius: 50%; }
+        .layer-output { background: #0f172a; border-radius: 12px; padding: 22px 28px; margin-bottom: 14px; }
+        .layer-output .output-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+        .layer-output .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
+        .layer-output .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+        /* Captcha quote block */
+        .captcha-block { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 12px; padding: 28px 32px; margin-bottom: 60px; }
+        .captcha-block .quote { font-size: 20px; font-weight: 700; color: #1e40af; margin-bottom: 10px; line-height: 1.4; }
+        .captcha-block .quote-source { font-size: 13px; color: #3b82f6; }
+
+        /* ROI multiplier */
+        .multiplier { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px 32px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 0; }
+        .mult-item { text-align: center; }
+        .mult-num { font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+        .mult-label { font-size: 11px; color: #64748b; line-height: 1.5; }
+        .mult-op { font-size: 24px; font-weight: 300; color: #cbd5e1; text-align: center; padding: 0 6px; }
+        .mult-result .mult-num { color: #ef4444; }
+
+        /* Calculator */
+        .calc-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; }
+        .calc-block .calc-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 16px; }
+        .calc-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .calc-label { font-size: 13px; color: #475569; white-space: nowrap; }
+        .calc-input { width: 80px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; font-weight: 700; color: #0f172a; background: #fff; text-align: center; }
+        .calc-input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .calc-eq { font-size: 20px; color: #cbd5e1; }
+        .calc-result { font-size: 22px; font-weight: 800; color: #ef4444; }
+        .calc-result-label { font-size: 12px; color: #64748b; }
+
+        /* Ask grid */
+        .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+        .ask-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 22px; }
+        .ask-card .ask-icon { font-size: 20px; margin-bottom: 10px; }
+        .ask-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+        .ask-card p { font-size: 13px; color: #64748b; line-height: 1.6; }
+        .ask-card.highlight { background: #f0fdf4; border-color: #bbf7d0; }
+        .ask-card.highlight h3 { color: #166534; }
+        .ask-card.highlight p { color: #15803d; }
+
+        /* CTA */
+        .cta { background: #0f172a; border-radius: 16px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+        .cta-left h2 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .cta-left p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+        .cta-right { text-align: right; flex-shrink: 0; }
+        .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .cta-right .contact-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+        /* Footnotes */
+        .footnotes { margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+        .footnotes p { font-size: 11px; color: #94a3b8; line-height: 1.7; margin-bottom: 4px; }
+        .footnotes .disclaimer { font-size: 11px; color: #cbd5e1; margin-top: 10px; font-style: italic; }
+        .footer { margin-top: 24px; text-align: center; font-size: 12px; color: #94a3b8; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .page { padding: 36px 20px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 15px; }
+            .logo { margin-bottom: 40px; }
+            .hero { margin-bottom: 40px; }
+            .section { margin-bottom: 40px; }
+            .pain-grid { grid-template-columns: 1fr; }
+            .layers-grid { grid-template-columns: 1fr; }
+            .ask-grid { grid-template-columns: 1fr; }
+            .lifecycle-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+            .lifecycle-grid { min-width: 560px; }
+            .lc-callouts { grid-template-columns: 1fr; }
+            .multiplier { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+            .mult-op { display: none; }
+            .mult-item { border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+            .mult-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .calc-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .calc-input { width: 100%; font-size: 18px; }
+            .cta { flex-direction: column; padding: 28px 24px; text-align: center; }
+            .cta-right { text-align: center; }
+            .captcha-block .quote { font-size: 16px; }
+        }
+        @media print { body { background: #fff; } .page { padding: 40px 32px; } }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#0F172A;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+    <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
+        <div style="margin-bottom:32px;">
+            <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Sentriq</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">HR Briefing: Confidential</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
+        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#2563EB;color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;" onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">View Briefing</button>
+        <div id="gateError" style="font-size:12px;color:#FCA5A5;margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
+        <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.6;">This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.</div>
+    </div>
+</div>
+
+<script>
+    // ntfy topic: [NTFY-TOPIC]
+    function trackAccess() {
+        const ts = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour12: false });
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        try {
+            fetch('https://ntfy.sh/[NTFY-TOPIC]', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: 'HR deck unlocked.\nTime: ' + ts + '\nViewer timezone: ' + tz
+            });
+        } catch(e) {}
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.page').style.display = 'none';
+    });
+    function checkPass() {
+        const val = document.getElementById('gateInput').value;
+        // Password: [DECK-PASSWORD] (base64-encoded below)
+        if (val === atob('[BASE64-ENCODED-PASSWORD]')) {
+            document.getElementById('gate').style.display = 'none';
+            document.querySelector('.page').style.display = '';
+            trackAccess();
+        } else {
+            const err = document.getElementById('gateError');
+            err.style.opacity = '1';
+            setTimeout(function() { err.style.opacity = '0'; }, 2500);
+            document.getElementById('gateInput').value = '';
+        }
+    }
+</script>
+
+<div class="page">
+
+    <div class="logo">Sentriq</div>
+
+    <!-- 1. HERO -->
+    <div class="hero">
+        <!-- [CUSTOMIZE: company name and context in hero label and h1] -->
+        <div class="hero-label">For [COMPANY] Talent Acquisition</div>
+        <h1>[COMPANY] runs hiring at scale. <span>Your application pipeline just became the complex part.</span></h1>
+        <p>You run hiring for a company growing fast. Remote candidates across multiple markets, volume that keeps climbing. That is exactly the profile AI-generated applications target first. The signal-to-noise problem in your pipeline is not a sourcing problem. It is an infrastructure problem.</p>
+    </div>
+
+    <!-- 2. PROBLEM -->
+    <div class="section">
+        <div class="section-label">What is happening in your pipeline</div>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-num">76%</div>
+                <div class="pain-label">of recruiters report a significant increase in low-quality, AI-generated applications over the past 12 months.</div>
+                <div class="pain-source">LinkedIn Talent Solutions, 2024</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">8.44 hrs</div>
+                <div class="pain-label">Average recruiter time spent per open role on applications that should never have entered the pipeline.</div>
+                <div class="pain-source">Industry benchmark across tech companies</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">$30+</div>
+                <div class="pain-label">Cost of a single phone screen spent on an application that will not advance. Multiply by your pipeline volume.</div>
+            </div>
+        </div>
+        <div style="margin-top:14px;background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:12px;padding:18px 22px;">
+            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#b91c1c;margin-bottom:6px;">The extreme version: national security</div>
+            <div style="font-size:13px;color:#991b1b;line-height:1.6;">KnowBe4 hired a North Korean IT worker in 2024 who immediately attempted to load malware. The hire passed a resume screen, four video interviews, and a full background check. 41% of companies have already onboarded a fraudulent employee. FBI and CISA have issued joint advisories. Remote engineering and DevOps roles are the primary vector. Your hiring profile may be in scope.</div>
+            <div style="font-size:10px;color:#b91c1c;margin-top:6px;">GetReal Security, Dec 2025 (668 IT/cybersecurity leaders) · KnowBe4 CEO, July 2024</div>
+        </div>
+    </div>
+
+    <!-- 3. LIFECYCLE DIAGRAM -->
+    <div class="section">
+        <div class="section-label">The hiring lifecycle and where Sentriq sits</div>
+        <div class="lifecycle-grid-wrap">
+            <div class="lifecycle-grid">
+                <div class="lc-stage lc-sentriq">
+                    <div class="lc-badge">Sentriq</div>
+                    <div class="lc-name">Application</div>
+                    <!-- [CUSTOMIZE: trust layer label] -->
+                    <div class="lc-tool">Sentriq Trust Layer</div>
+                    <div class="lc-cost">Signal captured here</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Resume Screen</div>
+                    <!-- [CUSTOMIZE: ATS tool per company] -->
+                    <div class="lc-tool">[ATS] / Manual</div>
+                    <div class="lc-cost">$15 / candidate</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Phone Screen</div>
+                    <div class="lc-tool">Recruiter</div>
+                    <div class="lc-cost">$30 / screen</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Assessment</div>
+                    <div class="lc-tool">HackerRank / Codility</div>
+                    <div class="lc-cost">$40 / test</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Interviews</div>
+                    <div class="lc-tool">Hiring panel</div>
+                    <div class="lc-cost">$200 / loop</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Offer</div>
+                    <div class="lc-tool">HRIS</div>
+                    <div class="lc-cost">$500+ total</div>
+                </div>
+                <div class="lc-stage lc-danger">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Background Check</div>
+                    <div class="lc-tool">Checkr / Sterling</div>
+                    <div class="lc-cost">Identity only</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge">&nbsp;</div>
+                    <div class="lc-name">Onboarding</div>
+                    <div class="lc-tool">IT provisioning</div>
+                    <div class="lc-cost">Access granted</div>
+                </div>
+            </div>
+        </div>
+        <div class="lc-callouts">
+            <div class="lc-callout lc-green">
+                <h4>Sentriq intercepts at Application</h4>
+                <p>Before the first resume review. Before any recruiter time is spent. The noise is filtered before it enters your ATS queue.</p>
+            </div>
+            <div class="lc-callout lc-orange">
+                <h4>Background check comes too late</h4>
+                <p>It verifies a Social Security number after the offer. It does not verify who filled out the form. The gap is at the front.</p>
+            </div>
+            <div class="lc-callout">
+                <!-- [CUSTOMIZE: ATS name in callout] -->
+                <h4>Upstream of [ATS]</h4>
+                <p>Platform-agnostic. No changes to your ATS setup. Trust signals surface before applications enter your existing workflow.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SOLUTION -->
+    <div class="section">
+        <div class="section-label">How Sentriq works</div>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1</div>
+                <h3>Behavioral Baseline</h3>
+                <div class="layer-desc">Every submission carries a behavioral fingerprint. Sentriq reads it at the moment of application: how the form was filled, what tools were used, timing and environment signals.</div>
+                <ul class="layer-bullets">
+                    <li>AI-generated content detection</li>
+                    <li>Tool and automation fingerprinting</li>
+                    <li>Behavioral anomaly scoring</li>
+                    <li>Cross-application pattern matching</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2</div>
+                <h3>Trust Layer</h3>
+                <div class="layer-desc">Sentriq does not evaluate each application in isolation. Every submission contributes to a cross-company signal graph built across all applications on the Sentriq network. Signal sharpens with every application processed.</div>
+                <ul class="layer-bullets">
+                    <li>Network-wide anomaly scoring</li>
+                    <li>Cross-company fraud intelligence</li>
+                    <li>No identifiable data shared between employers</li>
+                    <li>Signal grows stronger with every customer added</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px 22px;margin-bottom:14px;">
+            <div class="layer-num">Layer 3</div>
+            <h3 style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:8px;">Async Personalized Challenge</h3>
+            <div class="layer-desc">Flagged applications trigger an async personalized challenge before any recruiter time is spent. It does not test skills. It helps understand whether the flag is a real gap or concern. Never specify duration to candidates: Sentriq calibrates it to the application and role.</div>
+            <ul class="layer-bullets">
+                <li>No scheduler, no recruiter involvement</li>
+                <li>Invisible friction for legitimate applications</li>
+                <li>Filters bulk-applied and synthetic profiles</li>
+                <!-- [CUSTOMIZE: ATS name in bullet] -->
+                <li>Result visible in [ATS] alongside the candidate</li>
+            </ul>
+        </div>
+
+        <div class="layer-output">
+            <div class="output-label">What your team sees</div>
+            <!-- [CUSTOMIZE: ATS name in output] -->
+            <div class="output-text">Each application in [ATS] arrives with a trust signal attached. Your team reviews real applicants, not AI-generated noise.</div>
+            <div class="output-sub">Green: proceed as normal. Flagged: confidence indicator before the phone screen investment. High-risk: deprioritized automatically.</div>
+        </div>
+
+        <!-- Trust layer block: Cloudflare analogy. Use verbatim. Adapt ATS name only. -->
+        <div style="margin-top:14px;background:#0f172a;border-radius:12px;padding:22px 28px;border-left:4px solid #2563eb;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:8px;">The trust layer</div>
+            <!-- [CUSTOMIZE: ATS name in Cloudflare analogy copy] -->
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;">Like Cloudflare, Sentriq sits upstream of your hiring stack. It does not inspect each application in isolation. Instead, it draws on network-level intelligence built from behavioral patterns, tool signals, and anomaly clusters observed across applications on the Sentriq network. That means every application is evaluated not just on its own signals, but in the context of broader patterns of suspicious behavior. No changes to [ATS NAME], no recruiter workflow changes, and no PII stored.</div>
+        </div>
+    </div>
+
+    <!-- 5. SOCIAL PROOF / TRACTION -->
+    <div class="captcha-block">
+        <div class="quote">"It is a candidate hiring captcha."</div>
+        <div class="quote-source">Adi Dagan, CEO of Beamery, on first hearing the product described. Unprompted.</div>
+    </div>
+
+    <div class="section">
+        <div class="section-label">Where we stand</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 22px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:10px;">What exists today</div>
+                <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;">
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#059669;font-size:13px;flex-shrink:0;">&#10003;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Attack research complete: 17 documented techniques, 30+ live ATS experiments.</span>
+                    </li>
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#059669;font-size:13px;flex-shrink:0;">&#10003;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Live demo available. The product experience is real and interactive today.</span>
+                    </li>
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#f59e0b;font-size:13px;flex-shrink:0;">&#9679;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Engineering underway. ATS integrations in progress. Nothing in production yet.</span>
+                    </li>
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#f59e0b;font-size:13px;flex-shrink:0;">&#9679;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Active design partner conversations. Each lead at a different stage of the process.</span>
+                    </li>
+                </ul>
+            </div>
+            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 22px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:10px;">What design partners get</div>
+                <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;">
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#2563eb;font-size:13px;flex-shrink:0;">&#9670;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Preferred commercial terms from launch. Early partners shape pricing and product direction.</span>
+                    </li>
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#2563eb;font-size:13px;flex-shrink:0;">&#9670;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">No integration overhead, no candidate data required at this stage. SOC 2 audit begins Q3 2026.</span>
+                    </li>
+                    <li style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:#2563eb;font-size:13px;flex-shrink:0;">&#9670;</span>
+                        <span style="font-size:13px;color:#475569;line-height:1.5;">Direct product input. Your hiring workflow shapes what gets built first.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. COMPANY DATA / PIPELINE ESTIMATE -->
+    <div class="section">
+        <!-- [CUSTOMIZE: company name, pipeline context, and open role estimate] -->
+        <div class="section-label">[COMPANY] pipeline estimate</div>
+
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:14px;font-size:13px;color:#475569;line-height:1.7;">
+            <!-- [CUSTOMIZE: company description and pipeline context paragraph] -->
+            [COMPANY] is a [DESCRIPTION]. The numbers below are based on an estimated current open role count. Use the calculator below to enter your actual figure.
+        </div>
+
+        <div class="multiplier">
+            <div class="mult-item">
+                <!-- [CUSTOMIZE: default open role count] -->
+                <div class="mult-num" id="roiRoles">50</div>
+                <div class="mult-label">open roles<br>per quarter</div>
+            </div>
+            <div class="mult-op">x</div>
+            <div class="mult-item">
+                <div class="mult-num">8.44</div>
+                <div class="mult-label">hrs screened<br>per role avg.</div>
+            </div>
+            <div class="mult-op">=</div>
+            <div class="mult-item">
+                <div class="mult-num" id="roiHrs">422</div>
+                <div class="mult-label">hours<br>recovered</div>
+            </div>
+            <div class="mult-op">=</div>
+            <div class="mult-item mult-result">
+                <div class="mult-num" id="roiDollars">$25,300</div>
+                <div class="mult-label">recruiter capacity<br>freed per quarter</div>
+            </div>
+        </div>
+        <!-- [CUSTOMIZE: adjust roles number in italic note] -->
+        <div style="font-size:11px;color:#94a3b8;font-style:italic;margin-bottom:28px;text-align:center;">Illustrative estimate based on 50 open roles. Adjust below for your actual pipeline.</div>
+    </div>
+
+    <!-- 7. ROI CALCULATOR -->
+    <div class="section">
+        <div class="section-label">Return on investment</div>
+
+        <div class="calc-block">
+            <div class="calc-title">Adjust for your actual open roles</div>
+            <div class="calc-row">
+                <div class="calc-label">Open roles right now:</div>
+                <input id="openRoles" class="calc-input" type="number" min="1" value="50" oninput="calcUpdate()">
+                <div class="calc-eq">x 8.44 hrs =</div>
+                <div>
+                    <div class="calc-result" id="calcResult">422 hrs</div>
+                    <div class="calc-result-label">saved per quarter</div>
+                </div>
+            </div>
+            <div style="margin-top:12px;font-size:13px;color:#2563eb;font-weight:600;" id="calcDollars">$25,300 in recruiter capacity freed</div>
+            <div style="margin-top:4px;font-size:12px;color:#64748b;" id="calcWeeks">That is approximately 10.5 full recruiter-weeks your team gets back.</div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px 28px;margin-bottom:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:4px;">Cost vs. return</div>
+            <div style="font-size:12px;color:#64748b;margin-bottom:16px;">Design partners receive preferred commercial terms from launch.</div>
+
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;">
+                <div style="font-size:22px;">&#127381;</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#166534;">Design partner terms: preferred access from launch</div>
+                    <div style="font-size:12px;color:#15803d;line-height:1.6;">Sentriq is building this with a small number of design partners. Those who come in early shape the product and receive terms that reflect the risk they are taking with us.</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;">
+                <div style="background:#fafafa;border:1px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
+                    <div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;">Standard billing</div>
+                    <div style="font-size:26px;font-weight:800;color:#0f172a;margin-bottom:4px;">$8,400</div>
+                    <div style="font-size:11px;color:#94a3b8;margin-bottom:10px;">per quarter, enterprise tier</div>
+                    <div style="font-size:11px;color:#64748b;line-height:1.7;">$2,000/mo platform fee<br>+ $10 per async challenge<br>Scales with your pipeline volume</div>
+                </div>
+                <div style="font-size:32px;color:#e2e8f0;text-align:center;">vs</div>
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px;">
+                    <div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:8px;">Recruiter value recovered</div>
+                    <div style="font-size:26px;font-weight:800;color:#166534;margin-bottom:4px;" id="roiReturn">$25,300</div>
+                    <div style="font-size:11px;color:#15803d;margin-bottom:10px;">per quarter at 50 open roles</div>
+                    <div style="font-size:11px;color:#15803d;line-height:1.7;">At 50 open roles: 3x return<br>At 100 open roles: 6x return<br>Scales with your pipeline</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. THE ASK -->
+    <div class="section">
+        <div class="section-label">What we are asking for</div>
+        <div class="ask-grid">
+            <div class="ask-card highlight">
+                <div class="ask-icon">&#128640;</div>
+                <h3>Design partner from launch</h3>
+                <!-- [CUSTOMIZE: ATS name in ask card] -->
+                <p>Run Sentriq against your live hiring pipeline in [ATS] from day one. No integration overhead. No changes to your team's workflow. Design partners shape the product and receive preferred commercial terms.</p>
+            </div>
+            <div class="ask-card highlight">
+                <div class="ask-icon">&#10003;</div>
+                <h3>No commitment, no data shared yet</h3>
+                <p>Sentriq is not in production. No deployment, no candidate data, no integration required at this stage. We are building toward SOC 2 compliance before any enterprise goes live.</p>
+            </div>
+            <div class="ask-card">
+                <div class="ask-icon">&#128172;</div>
+                <h3>30 minutes to show you the demo</h3>
+                <p>We can walk through exactly how the signal layer works against a real hiring flow. No slides. Just the product and your questions.</p>
+            </div>
+            <div class="ask-card">
+                <div class="ask-icon">&#128203;</div>
+                <!-- [CUSTOMIZE: adjust validation framing per company context] -->
+                <h3>A validated signal from your TA team</h3>
+                <p>We are raising a seed round with Tier 1 VCs in pipeline. A design partner confirmation from a company at your scale is the signal that moves things forward.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>30 minutes is all it takes.</h2>
+            <p>We will show you the product against a live hiring flow. No integration work, no commitment, no data required on your side.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">samuel@sentriq.co</div>
+            <div class="contact-sub">Samuel Kemper, Co-founder</div>
+            <div style="margin-top:14px;"></div>
+            <div class="contact">ben@sentriq.co</div>
+            <div class="contact-sub">Ben Czarninski, Co-founder</div>
+            <div style="margin-top:14px;">
+                <div style="font-size:13px;color:rgba(255,255,255,0.3);">sentriq.co</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footnotes">
+        <p>[1] LinkedIn Talent Solutions Global Recruiting Trends, 2024. 76% figure reflects reported increase in low-quality applications.</p>
+        <p>[2] 8.44 hrs per role: industry benchmark for recruiter time across resume review, outreach, and phone screen per open role. Actual figure varies.</p>
+        <p>[3] $60/hr recruiter capacity rate derived from $30 phone-screen cost at 0.5 hrs per screen. Conservative and internally consistent with lifecycle cost figures.</p>
+        <p>[4] One active quarter of recruitment (~90 days).</p>
+        <p>[5] KnowBe4 incident: publicly disclosed by CEO Stu Sjouwerman, July 2024. GetReal Security survey: 668 IT/cybersecurity leaders, December 2025.</p>
+        <div class="disclaimer">All pipeline estimates are illustrative. Adjust the calculator above for your actual open role count. Sentriq is in design partner phase. No live production data claims are implied.</div>
+    </div>
+
+    <div class="footer">Sentriq &nbsp;|&nbsp; sentriq.co &nbsp;|&nbsp; Confidential</div>
+
+</div>
+
+<script>
+    function calcUpdate() {
+        var v = parseInt(document.getElementById('openRoles').value) || 1;
+        var hrs = Math.round(v * 8.44);
+        var dollars = Math.round(hrs * 60 / 100) * 100;
+        var weeks = (hrs / 40).toFixed(1);
+        document.getElementById('calcResult').textContent = hrs + ' hrs';
+        document.getElementById('calcDollars').textContent = '$' + dollars.toLocaleString() + ' in recruiter capacity freed';
+        document.getElementById('calcWeeks').textContent = 'That is approximately ' + weeks + ' full recruiter-weeks your team gets back.';
+        document.getElementById('roiRoles').textContent = v;
+        document.getElementById('roiHrs').textContent = hrs;
+        document.getElementById('roiDollars').textContent = '$' + dollars.toLocaleString();
+        document.getElementById('roiReturn').textContent = '$' + dollars.toLocaleString();
+    }
+</script>
+
+</body>
+</html>
