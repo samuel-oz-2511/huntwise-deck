@@ -84,13 +84,16 @@ SECTION ORDER (7 sections):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- [CUSTOMIZE: title per company] -->
     <title>Sentriq - Security Briefing</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: #09090F;
+            color: #ffffff;
             min-height: 100vh;
         }
 
@@ -102,9 +105,9 @@ SECTION ORDER (7 sections):
 
         .logo {
             font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: #2563eb;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: #E8A020;
             text-transform: uppercase;
             margin-bottom: 72px;
         }
@@ -112,28 +115,28 @@ SECTION ORDER (7 sections):
         .hero { margin-bottom: 64px; }
 
         .hero-label {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #2563eb;
+            letter-spacing: 4px;
+            color: #E8A020;
             margin-bottom: 16px;
         }
 
         .hero h1 {
             font-size: 38px;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.18;
-            color: #0f172a;
+            color: #ffffff;
             margin-bottom: 20px;
             max-width: 720px;
         }
 
-        .hero h1 span { color: #ef4444; }
+        .hero h1 span { color: #E8A020; }
 
         .hero p {
             font-size: 16px;
-            color: #475569;
+            color: rgba(255,255,255,0.72);
             line-height: 1.75;
             max-width: 620px;
         }
@@ -141,14 +144,14 @@ SECTION ORDER (7 sections):
         .section { margin-bottom: 60px; }
 
         .section-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #94a3b8;
+            letter-spacing: 4px;
+            color: #8080A8;
             margin-bottom: 24px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #161728;
         }
 
         /* Audience tags */
@@ -167,9 +170,9 @@ SECTION ORDER (7 sections):
             font-size: 12px;
             font-weight: 700;
         }
-        .aud-tag.ciso { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
-        .aud-tag.cio { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
-        .aud-tag.ta { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+        .aud-tag.ciso { background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.25); color: #E8A020; }
+        .aud-tag.cio { background: rgba(232,160,32,0.05); border: 1px solid rgba(232,160,32,0.18); color: rgba(232,160,32,0.8); }
+        .aud-tag.ta { background: rgba(68,204,136,0.06); border: 1px solid rgba(68,204,136,0.18); color: #44CC88; }
 
         /* Threat / pain cards */
         .pain-grid {
@@ -179,26 +182,26 @@ SECTION ORDER (7 sections):
             margin-bottom: 8px;
         }
         .pain-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
+            background: #0D0E1A;
+            border: 1px solid #161728;
             border-radius: 12px;
             padding: 24px 20px;
         }
         .pain-card .pain-num {
             font-size: 26px;
-            font-weight: 800;
-            color: #ef4444;
+            font-weight: 700;
+            color: #E8A020;
             margin-bottom: 6px;
             line-height: 1.1;
         }
         .pain-card .pain-label {
             font-size: 13px;
-            color: #64748b;
+            color: rgba(255,255,255,0.72);
             line-height: 1.55;
         }
         .pain-card .pain-source {
             font-size: 10px;
-            color: #94a3b8;
+            color: #8080A8;
             margin-top: 8px;
         }
 
@@ -206,41 +209,41 @@ SECTION ORDER (7 sections):
         .lifecycle-grid {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            border: 1px solid #e2e8f0;
+            border: 1px solid #161728;
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 14px;
         }
         .lc-stage {
             padding: 14px 8px;
-            border-right: 1px solid #e2e8f0;
+            border-right: 1px solid #161728;
             text-align: center;
-            background: #fff;
+            background: #0D0E1A;
         }
         .lc-stage:last-child { border-right: none; }
         .lc-badge { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent; }
-        .lc-name { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
-        .lc-tool { font-size: 10px; color: #94a3b8; line-height: 1.4; }
-        .lc-cost { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; }
-        .lc-stage.lc-sentriq { background: rgba(5,150,105,0.06); border-bottom: 3px solid #059669; }
-        .lc-stage.lc-sentriq .lc-badge { color: #059669; }
-        .lc-stage.lc-sentriq .lc-name { color: #065f46; }
-        .lc-stage.lc-sentriq .lc-cost { color: #059669; font-weight: 800; font-size: 12px; }
-        .lc-stage.lc-danger { background: rgba(234,88,12,0.06); border-bottom: 3px solid #ea580c; }
-        .lc-stage.lc-danger .lc-cost { color: #ea580c; font-weight: 800; }
+        .lc-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 4px; line-height: 1.3; }
+        .lc-tool { font-size: 10px; color: #8080A8; line-height: 1.4; }
+        .lc-cost { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); margin-top: 8px; }
+        .lc-stage.lc-sentriq { background: rgba(68,204,136,0.07); border-bottom: 3px solid #44CC88; }
+        .lc-stage.lc-sentriq .lc-badge { color: #44CC88; }
+        .lc-stage.lc-sentriq .lc-name { color: #ffffff; }
+        .lc-stage.lc-sentriq .lc-cost { color: #44CC88; font-weight: 800; font-size: 12px; }
+        .lc-stage.lc-danger { background: rgba(232,160,32,0.07); border-bottom: 3px solid #E8A020; }
+        .lc-stage.lc-danger .lc-cost { color: #E8A020; font-weight: 800; }
         .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-        .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
-        .lc-callout.lc-green { background: #f0fdf4; border-color: #bbf7d0; }
-        .lc-callout.lc-orange { background: #fff7ed; border-color: #fed7aa; }
-        .lc-callout.lc-blue { background: #eff6ff; border-color: #bfdbfe; }
-        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
-        .lc-callout.lc-green h4 { color: #166534; }
-        .lc-callout.lc-orange h4 { color: #9a3412; }
-        .lc-callout.lc-blue h4 { color: #1d4ed8; }
-        .lc-callout p { font-size: 12px; color: #64748b; line-height: 1.55; }
-        .lc-callout.lc-green p { color: #15803d; }
-        .lc-callout.lc-orange p { color: #c2410c; }
-        .lc-callout.lc-blue p { color: #1e40af; }
+        .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #161728; background: #0D0E1A; }
+        .lc-callout.lc-green { background: rgba(68,204,136,0.06); border-color: rgba(68,204,136,0.18); }
+        .lc-callout.lc-orange { background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.18); }
+        .lc-callout.lc-blue { background: rgba(232,160,32,0.05); border-color: rgba(232,160,32,0.15); }
+        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
+        .lc-callout.lc-green h4 { color: rgba(68,204,136,0.9); }
+        .lc-callout.lc-orange h4 { color: rgba(232,160,32,0.9); }
+        .lc-callout.lc-blue h4 { color: rgba(232,160,32,0.85); }
+        .lc-callout p { font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.55; }
+        .lc-callout.lc-green p { color: rgba(68,204,136,0.85); }
+        .lc-callout.lc-orange p { color: rgba(232,160,32,0.8); }
+        .lc-callout.lc-blue p { color: rgba(232,160,32,0.75); }
 
         /* Solution layers */
         .layers-grid {
@@ -250,19 +253,19 @@ SECTION ORDER (7 sections):
             margin-bottom: 14px;
         }
         .layer-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
+            background: #0D0E1A;
+            border: 1px solid #161728;
             border-radius: 12px;
             padding: 24px 22px;
         }
         .layer-num {
             display: inline-block;
             font-size: 10px;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #2563eb;
-            background: #eff6ff;
+            color: #E8A020;
+            background: rgba(232,160,32,0.08);
             border-radius: 6px;
             padding: 3px 10px;
             margin-bottom: 12px;
@@ -270,19 +273,19 @@ SECTION ORDER (7 sections):
         .layer-card h3 {
             font-size: 15px;
             font-weight: 700;
-            color: #0f172a;
+            color: #ffffff;
             margin-bottom: 8px;
         }
         .layer-desc {
             font-size: 13px;
-            color: #475569;
+            color: rgba(255,255,255,0.72);
             line-height: 1.65;
             margin-bottom: 14px;
         }
         .layer-bullets { list-style: none; padding: 0; }
         .layer-bullets li {
             font-size: 12px;
-            color: #64748b;
+            color: rgba(255,255,255,0.72);
             padding: 4px 0 4px 16px;
             position: relative;
             line-height: 1.5;
@@ -294,18 +297,19 @@ SECTION ORDER (7 sections):
             top: 10px;
             width: 5px;
             height: 5px;
-            background: #2563eb;
+            background: #E8A020;
             border-radius: 50%;
         }
         .layer-output {
-            background: #0f172a;
+            background: #0D0E1A;
+            border: 1px solid #161728;
             border-radius: 12px;
             padding: 22px 28px;
             margin-bottom: 14px;
         }
         .layer-output .output-label {
             font-size: 10px;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: rgba(255,255,255,0.35);
@@ -332,21 +336,22 @@ SECTION ORDER (7 sections):
             margin-bottom: 12px;
         }
         .ask-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
+            background: #0D0E1A;
+            border: 1px solid #161728;
             border-radius: 12px;
             padding: 24px 22px;
         }
         .ask-card .ask-icon { font-size: 20px; margin-bottom: 10px; }
-        .ask-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
-        .ask-card p { font-size: 13px; color: #64748b; line-height: 1.6; }
-        .ask-card.highlight { background: #f0fdf4; border-color: #bbf7d0; }
-        .ask-card.highlight h3 { color: #166534; }
-        .ask-card.highlight p { color: #15803d; }
+        .ask-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+        .ask-card p { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+        .ask-card.highlight { background: rgba(68,204,136,0.06); border-color: rgba(68,204,136,0.18); }
+        .ask-card.highlight h3 { color: rgba(68,204,136,0.9); }
+        .ask-card.highlight p { color: rgba(68,204,136,0.8); }
 
         /* CTA */
         .cta {
-            background: #0f172a;
+            background: #0D0E1A;
+            border: 1px solid #161728;
             border-radius: 16px;
             padding: 40px 44px;
             display: flex;
@@ -354,7 +359,7 @@ SECTION ORDER (7 sections):
             justify-content: space-between;
             gap: 32px;
         }
-        .cta-left h2 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .cta-left h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
         .cta-left p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
         .cta-right { text-align: right; flex-shrink: 0; }
         .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
@@ -364,12 +369,12 @@ SECTION ORDER (7 sections):
         .footnotes {
             margin-top: 32px;
             padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid #161728;
         }
-        .footnotes p { font-size: 11px; color: #94a3b8; line-height: 1.7; margin-bottom: 4px; }
-        .footnotes .disclaimer { font-size: 11px; color: #cbd5e1; margin-top: 10px; font-style: italic; }
+        .footnotes p { font-size: 11px; color: #8080A8; line-height: 1.7; margin-bottom: 4px; }
+        .footnotes .disclaimer { font-size: 11px; color: rgba(128,128,168,0.6); margin-top: 10px; font-style: italic; }
 
-        .footer { margin-top: 24px; text-align: center; font-size: 12px; color: #94a3b8; }
+        .footer { margin-top: 24px; text-align: center; font-size: 12px; color: #8080A8; }
 
         /* Mobile */
         @media (max-width: 640px) {
@@ -391,7 +396,7 @@ SECTION ORDER (7 sections):
         }
 
         @media print {
-            body { background: #fff; }
+            body { background: #09090F; }
             .page { padding: 40px 32px; }
         }
     </style>
@@ -399,15 +404,15 @@ SECTION ORDER (7 sections):
 <body>
 
 <!-- PASSWORD GATE -->
-<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#0F172A;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
     <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
         <div style="margin-bottom:32px;">
-            <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Sentriq</div>
+            <div style="font-size:22px;font-weight:500;color:#fff;letter-spacing:0.04em;">Sentriq</div>
             <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">Security Briefing: Confidential</div>
         </div>
         <input id="gateInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
-        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#2563EB;color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">View Briefing</button>
-        <div id="gateError" style="font-size:12px;color:#FCA5A5;margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
+        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#E8A020;color:#09090F;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">View Briefing</button>
+        <div id="gateError" style="font-size:12px;color:rgba(232,160,32,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
         <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.6;">This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.</div>
     </div>
 </div>
@@ -486,16 +491,16 @@ SECTION ORDER (7 sections):
         </div>
 
         <!-- KnowBe4 block: always include verbatim -->
-        <div style="margin-top:14px;background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:12px;padding:18px 22px;">
-            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#b91c1c;margin-bottom:6px;">Already happening: KnowBe4, 2024</div>
-            <div style="font-size:14px;font-weight:600;color:#7f1d1d;margin-bottom:4px;">A security awareness company hired a North Korean IT worker who immediately attempted to load malware.</div>
-            <div style="font-size:13px;color:#991b1b;line-height:1.6;">The hire passed a resume screen, four video interviews, and a full background check using a real stolen US identity. The FBI and CISA have issued joint advisories warning that this is an active, systematic campaign targeting US technology companies. Remote engineering and DevOps roles are the primary vector.</div>
-            <div style="font-size:10px;color:#b91c1c;margin-top:8px;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory, 2024.</div>
+        <div style="margin-top:14px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.18);border-left:4px solid #E8A020;border-radius:12px;padding:18px 22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.9);margin-bottom:6px;">Already happening: KnowBe4, 2024</div>
+            <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:4px;">A security awareness company hired a North Korean IT worker who immediately attempted to load malware.</div>
+            <div style="font-size:13px;color:rgba(232,160,32,0.8);line-height:1.6;">The hire passed a resume screen, four video interviews, and a full background check using a real stolen US identity. The FBI and CISA have issued joint advisories warning that this is an active, systematic campaign targeting US technology companies. Remote engineering and DevOps roles are the primary vector.</div>
+            <div style="font-size:10px;color:rgba(232,160,32,0.65);margin-top:8px;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory, 2024.</div>
         </div>
 
-        <div style="margin-top:14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;">
-            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:8px;">The attack infrastructure is already deployed</div>
-            <div style="font-size:13px;color:#475569;line-height:1.7;">Camoufox is a Firefox fork patched at the C++ level to spoof every browser fingerprint. Paired with residential proxy rotation and GeoIP-matched locale, it authenticates into LinkedIn via session cookies that survive fingerprint validation and fills ATS forms using OS-level keyboard simulation that defeats React input detection. MIT licensed. ~1M PyPI downloads per month. IP blocking, browser fingerprinting, and form-level input detection are already defeated. The behavioral challenge layer is what remains.</div>
+        <div style="margin-top:14px;background:#0D0E1A;border:1px solid #161728;border-radius:12px;padding:18px 22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#8080A8;margin-bottom:8px;">The attack infrastructure is already deployed</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.7;">Camoufox is a Firefox fork patched at the C++ level to spoof every browser fingerprint. Paired with residential proxy rotation and GeoIP-matched locale, it authenticates into LinkedIn via session cookies that survive fingerprint validation and fills ATS forms using OS-level keyboard simulation that defeats React input detection. MIT licensed. ~1M PyPI downloads per month. IP blocking, browser fingerprinting, and form-level input detection are already defeated. The behavioral challenge layer is what remains.</div>
         </div>
     </div>
 
@@ -620,8 +625,8 @@ SECTION ORDER (7 sections):
         </div>
 
         <!-- Cloudflare analogy: use verbatim, adapt ATS name only -->
-        <div style="background:#0f172a;border-radius:12px;padding:22px 28px;border-left:4px solid #2563eb;">
-            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:8px;">The Cloudflare analogy</div>
+        <div style="background:#0D0E1A;border-radius:12px;padding:22px 28px;border-left:4px solid #E8A020;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:8px;">The Cloudflare analogy</div>
             <!-- [CUSTOMIZE: ATS name in final sentence only] -->
             <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;">Like Cloudflare, Sentriq sits upstream of your hiring stack. It does not inspect each application in isolation. Instead, it draws on network-level intelligence built from behavioral patterns, tool signals, and anomaly clusters observed across applications on the Sentriq network. That means every application is evaluated not just on its own signals, but in the context of broader patterns of suspicious behavior. No changes to [ATS NAME], no recruiter workflow changes, and no PII stored.</div>
         </div>
@@ -632,62 +637,62 @@ SECTION ORDER (7 sections):
         <div class="section-label">The security case</div>
 
         <!-- CISO ROI: always show this block first -->
-        <div style="background:#0f172a;border-radius:12px;padding:26px 30px;margin-bottom:14px;">
+        <div style="background:#0D0E1A;border:1px solid #161728;border-radius:12px;padding:26px 30px;margin-bottom:14px;">
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:20px;">
                 <div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em;">Avg. malicious insider incident</div>
-                    <div style="font-size:28px;font-weight:800;color:#ef4444;">$11.45M</div>
+                    <div style="font-size:28px;font-weight:700;color:#E8A020;">$11.45M</div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.3);">IBM / Ponemon, 2023</div>
                 </div>
                 <div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em;">Sentriq enterprise (annual)</div>
-                    <div style="font-size:28px;font-weight:800;color:#fff;">$24K</div>
+                    <div style="font-size:28px;font-weight:700;color:#fff;">$24K</div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.3);">$2,000/mo standard rate</div>
                 </div>
                 <div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em;">Risk coverage ratio</div>
-                    <div style="font-size:28px;font-weight:800;color:#22c55e;">476x</div>
+                    <div style="font-size:28px;font-weight:700;color:#44CC88;">476x</div>
                     <div style="font-size:11px;color:rgba(255,255,255,0.3);">Incident cost vs. annual Sentriq fee</div>
                 </div>
             </div>
-            <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;">
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;">
                 What you get: high-risk application alerts before any access is granted. Network-wide threat intelligence from every Sentriq customer. EU AI Act compliance audit trail. No PII stored. No changes to your stack.
             </div>
         </div>
 
         <!-- EU AI Act block -->
-        <div style="background:#fff;border:1px solid #e2e8f0;border-left:4px solid #2563eb;border-radius:12px;padding:18px 22px;margin-bottom:14px;">
-            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#1d4ed8;margin-bottom:6px;">EU AI Act: August 2, 2026</div>
-            <div style="font-size:14px;font-weight:600;color:#1e3a8a;margin-bottom:6px;">Hiring AI is classified as high-risk under Annex III. Non-compliance: up to 35M euros or 7% of global revenue.</div>
-            <div style="font-size:13px;color:#1e40af;line-height:1.6;">Any company with EU operations must demonstrate human oversight, bias testing, and a full audit trail for every hiring screening decision. US companies with EU employees or applicants are in scope. Sentriq is EU AI Act compliant by design: zero automated rejections, full audit trail, human-in-the-loop architecture.</div>
+        <div style="background:#0D0E1A;border:1px solid #161728;border-left:4px solid #E8A020;border-radius:12px;padding:18px 22px;margin-bottom:14px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;margin-bottom:6px;">EU AI Act: August 2, 2026</div>
+            <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:6px;">Hiring AI is classified as high-risk under Annex III. Non-compliance: up to 35M euros or 7% of global revenue.</div>
+            <div style="font-size:13px;color:rgba(232,160,32,0.75);line-height:1.6;">Any company with EU operations must demonstrate human oversight, bias testing, and a full audit trail for every hiring screening decision. US companies with EU employees or applicants are in scope. Sentriq is EU AI Act compliant by design: zero automated rejections, full audit trail, human-in-the-loop architecture.</div>
         </div>
 
         <!-- HR ROI additive: always below CISO case, never first -->
-        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:26px 28px;">
-            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:16px;">HR ROI: additive value in months where no fraud is detected</div>
+        <div style="background:#0D0E1A;border:1px solid #161728;border-radius:12px;padding:26px 28px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:#8080A8;margin-bottom:16px;">HR ROI: additive value in months where no fraud is detected</div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
                 <div>
-                    <div style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:10px;line-height:1.4;">The security defense is always running. The hiring efficiency benefit is always visible.</div>
-                    <div style="font-size:13px;color:#475569;line-height:1.7;">AI-generated applications have increased average recruiter workload by 30 to 40 percent. Sentriq filters them at the entry point. Every quarter, regardless of whether a fraudulent actor is caught, your hiring team gets hours back and your pipeline improves.</div>
+                    <div style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:10px;line-height:1.4;">The security defense is always running. The hiring efficiency benefit is always visible.</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.7;">AI-generated applications have increased average recruiter workload by 30 to 40 percent. Sentriq filters them at the entry point. Every quarter, regardless of whether a fraudulent actor is caught, your hiring team gets hours back and your pipeline improves.</div>
                 </div>
                 <div>
                     <!-- [CUSTOMIZE: adjust open role count per company] -->
-                    <div style="background:#f8fafc;border-radius:10px;padding:16px 18px;margin-bottom:12px;">
-                        <div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">At 50 open roles per quarter</div>
+                    <div style="background:rgba(255,255,255,0.03);border:1px solid #161728;border-radius:10px;padding:16px 18px;margin-bottom:12px;">
+                        <div style="font-size:10px;font-weight:700;color:#8080A8;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">At 50 open roles per quarter</div>
                         <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                            <span style="font-size:13px;color:#475569;">Recruiter hours recovered</span>
-                            <span style="font-size:13px;font-weight:700;color:#0f172a;">422 hrs</span>
+                            <span style="font-size:13px;color:rgba(255,255,255,0.72);">Recruiter hours recovered</span>
+                            <span style="font-size:13px;font-weight:700;color:#ffffff;">422 hrs</span>
                         </div>
                         <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                            <span style="font-size:13px;color:#475569;">Capacity value at $60/hr</span>
-                            <span style="font-size:13px;font-weight:700;color:#059669;">$25,300</span>
+                            <span style="font-size:13px;color:rgba(255,255,255,0.72);">Capacity value at $60/hr</span>
+                            <span style="font-size:13px;font-weight:700;color:#44CC88;">$25,300</span>
                         </div>
                         <div style="display:flex;justify-content:space-between;">
-                            <span style="font-size:13px;color:#475569;">Fraud incidents required to break even</span>
-                            <span style="font-size:13px;font-weight:700;color:#0f172a;">0</span>
+                            <span style="font-size:13px;color:rgba(255,255,255,0.72);">Fraud incidents required to break even</span>
+                            <span style="font-size:13px;font-weight:700;color:#ffffff;">0</span>
                         </div>
                     </div>
-                    <div style="font-size:12px;color:#64748b;line-height:1.7;">The two cases are the same product, operating on the same signal, at the same moment in the pipeline. The fraud defense and the HR efficiency benefit are inseparable.</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.72);line-height:1.7;">The two cases are the same product, operating on the same signal, at the same moment in the pipeline. The fraud defense and the HR efficiency benefit are inseparable.</div>
                 </div>
             </div>
         </div>
@@ -711,12 +716,12 @@ SECTION ORDER (7 sections):
             </div>
         </div>
 
-        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-top:4px;">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#94a3b8;margin-bottom:10px;">What a design partner commitment means</div>
+        <div style="background:#0D0E1A;border:1px solid #161728;border-radius:12px;padding:20px 24px;margin-top:4px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:#8080A8;margin-bottom:10px;">What a design partner commitment means</div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-                <div style="font-size:12px;color:#64748b;line-height:1.6;"><strong style="color:#0f172a;">No data required yet.</strong> Sentriq is not in production. No candidate data, no integration, no deployment.</div>
-                <div style="font-size:12px;color:#64748b;line-height:1.6;"><strong style="color:#0f172a;">SOC 2 before go-live.</strong> Audit begins Q3 2026. No enterprise data goes near Sentriq before Type I is complete.</div>
-                <div style="font-size:12px;color:#64748b;line-height:1.6;"><strong style="color:#0f172a;">Preferred commercial terms.</strong> Early partners set the terms. Late buyers pay list price.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.72);line-height:1.6;"><strong style="color:#ffffff;">No data required yet.</strong> Sentriq is not in production. No candidate data, no integration, no deployment.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.72);line-height:1.6;"><strong style="color:#ffffff;">SOC 2 before go-live.</strong> Audit begins Q3 2026. No enterprise data goes near Sentriq before Type I is complete.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.72);line-height:1.6;"><strong style="color:#ffffff;">Preferred commercial terms.</strong> Early partners set the terms. Late buyers pay list price.</div>
             </div>
         </div>
     </div>
