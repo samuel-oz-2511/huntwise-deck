@@ -19,13 +19,13 @@ Every time this deck is unlocked, you get a push notification.
     <title>Sentriq - For WalkMe</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; color: #0f172a; min-height: 100vh; }
+        body { font-family: 'Space Grotesk', system-ui, sans-serif; background: #f8fafc; color: #09090F; min-height: 100vh; }
         .page { max-width: 860px; margin: 0 auto; padding: 60px 40px; }
-        .logo { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; color: #2563eb; text-transform: uppercase; margin-bottom: 72px; }
+        .logo { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; color: #E8A020; text-transform: uppercase; margin-bottom: 72px; }
         .hero { margin-bottom: 64px; }
-        .hero-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #2563eb; margin-bottom: 16px; }
-        .hero h1 { font-size: 38px; font-weight: 800; line-height: 1.18; color: #0f172a; margin-bottom: 20px; max-width: 720px; }
-        .hero h1 span { color: #2563eb; }
+        .hero-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #E8A020; margin-bottom: 16px; }
+        .hero h1 { font-size: 38px; font-weight: 800; line-height: 1.18; color: #09090F; margin-bottom: 20px; max-width: 720px; }
+        .hero h1 span { color: #E8A020; }
         .hero p { font-size: 16px; color: #475569; line-height: 1.75; max-width: 600px; }
         .section { margin-bottom: 60px; }
         .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #94a3b8; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
@@ -40,7 +40,7 @@ Every time this deck is unlocked, you get a push notification.
         .lc-stage { padding: 14px 8px; border-right: 1px solid #e2e8f0; text-align: center; background: #fff; }
         .lc-stage:last-child { border-right: none; }
         .lc-badge { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent; }
-        .lc-name { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 4px; line-height: 1.3; }
+        .lc-name { font-size: 12px; font-weight: 700; color: #09090F; margin-bottom: 4px; line-height: 1.3; }
         .lc-tool { font-size: 10px; color: #94a3b8; line-height: 1.4; }
         .lc-cost { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; }
         .lc-stage.lc-sentriq { background: rgba(5,150,105,0.06); border-bottom: 3px solid #059669; }
@@ -53,7 +53,7 @@ Every time this deck is unlocked, you get a push notification.
         .lc-callout { padding: 14px 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #fff; }
         .lc-callout.lc-green { background: #f0fdf4; border-color: #bbf7d0; }
         .lc-callout.lc-orange { background: #fff7ed; border-color: #fed7aa; }
-        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
+        .lc-callout h4 { font-size: 12px; font-weight: 700; color: #09090F; margin-bottom: 5px; }
         .lc-callout.lc-green h4 { color: #166534; }
         .lc-callout.lc-orange h4 { color: #9a3412; }
         .lc-callout p { font-size: 12px; color: #64748b; line-height: 1.55; }
@@ -62,24 +62,24 @@ Every time this deck is unlocked, you get a push notification.
 
         .layers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
         .layer-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 22px; }
-        .layer-num { display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #2563eb; background: #eff6ff; border-radius: 6px; padding: 3px 10px; margin-bottom: 12px; }
-        .layer-card h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+        .layer-num { display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #E8A020; background: #eff6ff; border-radius: 6px; padding: 3px 10px; margin-bottom: 12px; }
+        .layer-card h3 { font-size: 15px; font-weight: 700; color: #09090F; margin-bottom: 8px; }
         .layer-desc { font-size: 13px; color: #475569; line-height: 1.65; margin-bottom: 14px; }
         .layer-bullets { list-style: none; padding: 0; }
         .layer-bullets li { font-size: 12px; color: #64748b; padding: 4px 0 4px 16px; position: relative; line-height: 1.5; }
-        .layer-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: #2563eb; border-radius: 50%; }
-        .layer-output { background: #0f172a; border-radius: 12px; padding: 22px 28px; }
+        .layer-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 5px; height: 5px; background: #E8A020; border-radius: 50%; }
+        .layer-output { background: #09090F; border-radius: 12px; padding: 22px 28px; }
         .layer-output .output-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
         .layer-output .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
         .layer-output .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
 
-        .captcha-block { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 12px; padding: 28px 32px; margin-bottom: 60px; }
+        .captcha-block { background: #eff6ff; border: 1px solid #bfdbfe; border-left: 4px solid #E8A020; border-radius: 12px; padding: 28px 32px; margin-bottom: 60px; }
         .captcha-block .quote { font-size: 20px; font-weight: 700; color: #1e40af; margin-bottom: 10px; line-height: 1.4; }
         .captcha-block .quote-source { font-size: 13px; color: #3b82f6; }
 
         .multiplier { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 28px 32px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 0; }
         .mult-item { text-align: center; }
-        .mult-num { font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+        .mult-num { font-size: 28px; font-weight: 800; color: #09090F; margin-bottom: 6px; }
         .mult-label { font-size: 11px; color: #64748b; line-height: 1.5; }
         .mult-op { font-size: 24px; font-weight: 300; color: #cbd5e1; text-align: center; padding: 0 6px; }
         .mult-result .mult-num { color: #ef4444; }
@@ -88,8 +88,8 @@ Every time this deck is unlocked, you get a push notification.
         .calc-block .calc-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 16px; }
         .calc-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
         .calc-label { font-size: 13px; color: #475569; white-space: nowrap; }
-        .calc-input { width: 80px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; font-weight: 700; color: #0f172a; background: #fff; text-align: center; }
-        .calc-input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .calc-input { width: 80px; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; font-weight: 700; color: #09090F; background: #fff; text-align: center; }
+        .calc-input:focus { outline: none; border-color: #E8A020; box-shadow: 0 0 0 3px rgba(232,160,32,0.1); }
         .calc-eq { font-size: 20px; color: #cbd5e1; }
         .calc-result { font-size: 22px; font-weight: 800; color: #ef4444; }
         .calc-result-label { font-size: 12px; color: #64748b; }
@@ -97,13 +97,13 @@ Every time this deck is unlocked, you get a push notification.
         .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
         .ask-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px 22px; }
         .ask-card .ask-icon { font-size: 20px; margin-bottom: 10px; }
-        .ask-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+        .ask-card h3 { font-size: 14px; font-weight: 700; color: #09090F; margin-bottom: 6px; }
         .ask-card p { font-size: 13px; color: #64748b; line-height: 1.6; }
         .ask-card.highlight { background: #f0fdf4; border-color: #bbf7d0; }
         .ask-card.highlight h3 { color: #166534; }
         .ask-card.highlight p { color: #15803d; }
 
-        .cta { background: #0f172a; border-radius: 16px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+        .cta { background: #09090F; border-radius: 16px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
         .cta-left h2 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
         .cta-left p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
         .cta-right { text-align: right; flex-shrink: 0; }
@@ -144,14 +144,14 @@ Every time this deck is unlocked, you get a push notification.
 <body>
 
 <!-- PASSWORD GATE -->
-<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#0F172A;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
     <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
         <div style="margin-bottom:32px;">
             <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Sentriq</div>
             <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">HR Briefing, Confidential</div>
         </div>
         <input id="gateInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
-        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#2563EB;color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;" onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">View Briefing</button>
+        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#E8A020;color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">View Briefing</button>
         <div id="gateError" style="font-size:12px;color:#FCA5A5;margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
         <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.6;">This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.</div>
     </div>
@@ -327,7 +327,7 @@ Every time this deck is unlocked, you get a push notification.
         </div>
 
         <!-- Trust layer block -->
-        <div style="margin-top:14px;background:#0f172a;border-radius:12px;padding:22px 28px;border-left:4px solid #2563eb;">
+        <div style="margin-top:14px;background:#09090F;border-radius:12px;padding:22px 28px;border-left:4px solid #E8A020;">
             <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.35);margin-bottom:8px;">The trust layer</div>
             <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.4;">Sentriq does not check each application in isolation.</div>
             <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;">Every submission processed contributes to a shared signal layer. Behavioral patterns, tool fingerprints, and anomaly clusters build up across all applications seen. Like Cloudflare, which draws on network-wide traffic intelligence rather than inspecting each request alone, Sentriq's signal sharpens with every application it processes. Your candidate is not checked against themselves. They are checked against everything.</div>
@@ -387,7 +387,7 @@ Every time this deck is unlocked, you get a push notification.
                     <div class="calc-result-label">saved per quarter</div>
                 </div>
             </div>
-            <div style="margin-top:12px;font-size:13px;color:#2563eb;font-weight:600;" id="calcDollars">$25,300 in recruiter capacity freed</div>
+            <div style="margin-top:12px;font-size:13px;color:#E8A020;font-weight:600;" id="calcDollars">$25,300 in recruiter capacity freed</div>
             <div style="margin-top:4px;font-size:12px;color:#64748b;" id="calcWeeks">That is approximately 10.5 full recruiter-weeks your team gets back.</div>
         </div>
 
@@ -406,7 +406,7 @@ Every time this deck is unlocked, you get a push notification.
             <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;">
                 <div style="background:#fafafa;border:1px solid #e2e8f0;border-radius:10px;padding:16px 18px;">
                     <div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:8px;">Standard billing</div>
-                    <div style="font-size:26px;font-weight:800;color:#0f172a;margin-bottom:4px;">$8,400</div>
+                    <div style="font-size:26px;font-weight:800;color:#09090F;margin-bottom:4px;">$8,400</div>
                     <div style="font-size:11px;color:#94a3b8;margin-bottom:10px;">per quarter, enterprise tier</div>
                     <div style="font-size:11px;color:#64748b;line-height:1.7;">$2,000/mo platform fee<br>+ $10 per async challenge<br>Scales with your pipeline volume</div>
                 </div>

@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentriq - Investor Data Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563EB;
-            --primary-dark: #1D4ED8;
+            --primary: #E8A020;
+            --primary-dark: #B87010;
             --green: #10B981;
             --red: #EF4444;
             --orange: #F59E0B;
             --cyan: #06B6D4;
-            --gray-900: #0F172A;
-            --gray-800: #1E293B;
-            --gray-700: #334155;
-            --gray-600: #475569;
-            --gray-400: #94A3B8;
+            --gray-900: #09090F;
+            --gray-800: #0D0E1A;
+            --gray-700: #161728;
+            --gray-600: #4A4A6A;
+            --gray-400: #8080A8;
             --gray-200: #E2E8F0;
             --gray-100: #F1F5F9;
             --white: #FFFFFF;
@@ -27,7 +27,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
             background: var(--gray-900);
             color: var(--white);
             min-height: 100vh;
@@ -36,7 +36,7 @@
         /* TOP BAR */
         .topbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-            background: rgba(15,23,42,0.95);
+            background: rgba(9,9,15,0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255,255,255,0.08);
             padding: 0 32px;
@@ -75,7 +75,7 @@
             transition: all 0.2s; border-left: 2px solid transparent;
         }
         .sidebar-link:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
-        .sidebar-link.active { color: var(--white); background: rgba(37,99,235,0.1); border-left-color: var(--primary); }
+        .sidebar-link.active { color: var(--white); background: rgba(232,160,32,0.1); border-left-color: var(--primary); }
         .sidebar-num {
             width: 20px; height: 20px; border-radius: 50%;
             background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
@@ -100,7 +100,7 @@
         .callout {
             padding: 20px 24px; border-radius: 12px; margin: 24px 0;
             border-left: 3px solid var(--primary);
-            background: rgba(37,99,235,0.07);
+            background: rgba(232,160,32,0.07);
         }
         .callout.green { border-left-color: var(--green); background: rgba(16,185,129,0.07); }
         .callout.red { border-left-color: var(--red); background: rgba(239,68,68,0.07); }
@@ -142,7 +142,7 @@
         .evidence-table tr:hover td { background: rgba(255,255,255,0.02); }
         .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
         .badge-green { background: rgba(16,185,129,0.15); color: #6EE7B7; }
-        .badge-blue { background: rgba(37,99,235,0.15); color: #93C5FD; }
+        .badge-blue { background: rgba(232,160,32,0.15); color: #93C5FD; }
         .badge-red { background: rgba(239,68,68,0.15); color: #FCA5A5; }
         .badge-orange { background: rgba(245,158,11,0.15); color: #FCD34D; }
 
@@ -222,13 +222,13 @@
         .ue-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 3px; }
         .ue-bench { font-size: 10px; color: rgba(255,255,255,0.25); font-style: italic; }
         .milestone-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin: 20px 0; position: relative; }
-        .milestone-grid::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green) 30%, var(--primary) 60%, rgba(37,99,235,0.3) 100%); }
+        .milestone-grid::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green) 30%, var(--primary) 60%, rgba(232,160,32,0.3) 100%); }
         .ms-item { position: relative; padding-top: 44px; padding-right: 12px; }
         .ms-dot { position: absolute; top: 12px; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--gray-900); }
         .ms-dot.done { background: var(--green); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
-        .ms-dot.active { background: var(--primary); box-shadow: 0 0 10px rgba(37,99,235,0.5); animation: mspulse 2s infinite; }
+        .ms-dot.active { background: var(--primary); box-shadow: 0 0 10px rgba(232,160,32,0.5); animation: mspulse 2s infinite; }
         .ms-dot.future { background: rgba(255,255,255,0.15); }
-        @keyframes mspulse { 0%,100%{box-shadow:0 0 10px rgba(37,99,235,0.5)} 50%{box-shadow:0 0 18px rgba(37,99,235,0.8)} }
+        @keyframes mspulse { 0%,100%{box-shadow:0 0 10px rgba(232,160,32,0.5)} 50%{box-shadow:0 0 18px rgba(232,160,32,0.8)} }
         .ms-date { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
         .ms-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
         .ms-desc { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
@@ -247,16 +247,21 @@
 <!-- PASSWORD GATE -->
 <div id="gate" style="
     position: fixed; inset: 0; z-index: 9999;
-    background: #0F172A;
+    background: #09090F;
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 0;
 ">
     <div style="text-align: center; max-width: 380px; width: 100%; padding: 0 24px;">
         <div style="margin-bottom: 28px;">
-            <svg width="48" height="48" viewBox="0 0 512 512" style="filter: drop-shadow(0 0 16px rgba(37,99,235,0.4)); margin-bottom: 16px;">
-                <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
-                <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
-            </svg>
+            <svg width="52" height="52" viewBox="0 0 56 56" fill="none" style="filter: drop-shadow(0 0 16px rgba(232,160,32,0.4)); margin-bottom: 16px;">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/>
+                <path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                <path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/>
+              </svg>
             <div style="font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">Sentriq</div>
             <div style="font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 4px; font-weight: 500;">Investor Data Room: Confidential</div>
         </div>
@@ -270,15 +275,15 @@
                 text-align: center; letter-spacing: 0.1em; margin-bottom: 12px;
                 transition: border-color 0.2s;
             "
-            onfocus="this.style.borderColor='rgba(37,99,235,0.6)'"
+            onfocus="this.style.borderColor='rgba(232,160,32,0.6)'"
             onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
         >
         <button onclick="checkPass()" style="
             width: 100%; padding: 14px; font-size: 14px; font-weight: 700;
-            background: #2563EB; border: none; border-radius: 10px; color: #fff;
+            background: #E8A020; border: none; border-radius: 10px; color: #fff;
             cursor: pointer; font-family: inherit; letter-spacing: 0.02em;
             transition: background 0.2s;
-        " onmouseover="this.style.background='#1D4ED8'" onmouseout="this.style.background='#2563EB'">
+        " onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">
             Access Data Room
         </button>
         <div id="gateError" style="
@@ -687,7 +692,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="background: rgba(37,99,235,0.06);">
+                <tr style="background: rgba(232,160,32,0.06);">
                     <td><strong style="color: var(--white);">Sentriq</strong></td>
                     <td><span class="badge badge-green">The Layer</span></td>
                     <td>Seed</td>
@@ -1031,7 +1036,7 @@
                 <tr><td><strong>Q3 2026</strong></td><td style="text-align:right;">6</td><td style="text-align:right;color:var(--green);font-weight:600;">$18K</td><td style="text-align:right;">$216K</td><td style="text-align:right;color:var(--primary);font-weight:600;">N/A</td><td>First revenue. SOC 2 Type I complete. 3 design partners convert + 3 new logo.</td></tr>
                 <tr><td><strong>Q4 2026</strong></td><td style="text-align:right;">10</td><td style="text-align:right;color:var(--green);font-weight:600;">$40K</td><td style="text-align:right;">$480K</td><td style="text-align:right;color:var(--primary);font-weight:600;">+122%</td><td>Enterprise pipeline opens. First US enterprise logo. VP Sales hire triggered.</td></tr>
                 <tr><td><strong>Q1 2027</strong></td><td style="text-align:right;">16</td><td style="text-align:right;color:var(--green);font-weight:600;">$68K</td><td style="text-align:right;">$816K</td><td style="text-align:right;color:var(--primary);font-weight:600;">+70%</td><td>VP Sales joins. SOC 2 Type II target. 2+ enterprise logos.</td></tr>
-                <tr style="background:rgba(37,99,235,0.08);font-weight:600;"><td><strong>Q2&ndash;Q3 2027</strong> <span class="badge badge-green" style="margin-left:6px;">Series A trigger</span></td><td style="text-align:right;">22&ndash;28</td><td style="text-align:right;color:var(--green);font-weight:600;">$83&ndash;$98K</td><td style="text-align:right;color:var(--green);font-weight:600;">$1M&ndash;$1.17M</td><td style="text-align:right;color:var(--green);font-weight:600;">+40&ndash;50%</td><td>$1M+ ARR. 2+ enterprise logos. 90%+ gross retention. Series A raise opens.</td></tr>
+                <tr style="background:rgba(232,160,32,0.08);font-weight:600;"><td><strong>Q2&ndash;Q3 2027</strong> <span class="badge badge-green" style="margin-left:6px;">Series A trigger</span></td><td style="text-align:right;">22&ndash;28</td><td style="text-align:right;color:var(--green);font-weight:600;">$83&ndash;$98K</td><td style="text-align:right;color:var(--green);font-weight:600;">$1M&ndash;$1.17M</td><td style="text-align:right;color:var(--green);font-weight:600;">+40&ndash;50%</td><td>$1M+ ARR. 2+ enterprise logos. 90%+ gross retention. Series A raise opens.</td></tr>
             </tbody>
         </table>
         <div class="callout" style="margin-top:14px;">
@@ -1052,7 +1057,7 @@
                 <tr><td><strong>DevOps / Security Engineer</strong> - SOC 2 Type II, infra hardening</td><td>Q4 2026</td><td><span class="badge badge-orange">SOC 2 Type I complete</span></td><td style="text-align:right;">$195K loaded</td><td style="text-align:right;">+$16K</td></tr>
                 <tr><td><strong>VP Sales</strong> - CISO &amp; enterprise buyers</td><td>Q4 2026&ndash;Q1 2027</td><td><span class="badge badge-green">$25K MRR trigger</span></td><td style="text-align:right;">$180K + commission</td><td style="text-align:right;">+$22K</td></tr>
                 <tr><td><strong>Customer Success Manager</strong> - Onboarding, retention, expansion</td><td>Q1 2027</td><td><span class="badge badge-green">$600K+ ARR</span></td><td style="text-align:right;">$156K loaded</td><td style="text-align:right;">+$13K</td></tr>
-                <tr style="background:rgba(37,99,235,0.1);font-weight:700;border-top:1px solid rgba(37,99,235,0.3);"><td colspan="3"><strong>Team at Series A (H1 2027)</strong></td><td style="text-align:right;color:var(--primary);">8 people</td><td style="text-align:right;color:var(--primary);">~$165K/mo</td></tr>
+                <tr style="background:rgba(232,160,32,0.1);font-weight:700;border-top:1px solid rgba(232,160,32,0.3);"><td colspan="3"><strong>Team at Series A (H1 2027)</strong></td><td style="text-align:right;color:var(--primary);">8 people</td><td style="text-align:right;color:var(--primary);">~$165K/mo</td></tr>
             </tbody>
         </table>
         <p class="body-text" style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:8px;margin-bottom:0;">Israeli-based staff costed at 1.3x gross salary (national insurance, pension 6.5%, severance 8.33%, Keren Hishtalmut 7.5%). VP Sales is US-based and costed at gross.</p>
@@ -1067,8 +1072,8 @@
                 <tr><td><strong>Q3 2026</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">(Full-Stack Engineer + first revenue)</span></td><td style="text-align:right;">$120K</td><td style="text-align:right;color:var(--green);">$12K avg</td><td style="text-align:right;color:var(--red);">$108K</td><td style="text-align:right;color:var(--red);">$324K</td><td style="text-align:right;">$624K</td><td style="text-align:right;color:var(--green);">$4.38M</td></tr>
                 <tr><td><strong>Q4 2026</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">(DevOps + VP Sales)</span></td><td style="text-align:right;">$155K</td><td style="text-align:right;color:var(--green);">$29K avg</td><td style="text-align:right;color:var(--red);">$126K</td><td style="text-align:right;color:var(--red);">$378K</td><td style="text-align:right;">$1.00M</td><td style="text-align:right;color:var(--green);">$4.00M</td></tr>
                 <tr><td><strong>Q1 2027</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">(CSM + full team ramping)</span></td><td style="text-align:right;">$165K</td><td style="text-align:right;color:var(--green);">$54K avg</td><td style="text-align:right;color:var(--orange);">$111K</td><td style="text-align:right;color:var(--orange);">$333K</td><td style="text-align:right;">$1.33M</td><td style="text-align:right;color:var(--green);">$3.67M</td></tr>
-                <tr style="background:rgba(37,99,235,0.08);font-weight:600;"><td><strong>Q2&ndash;Q3 2027</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">(Series A raise)</span></td><td style="text-align:right;">$165K</td><td style="text-align:right;color:var(--green);">$91K avg</td><td style="text-align:right;color:var(--orange);">$74K</td><td style="text-align:right;color:var(--orange);">$444K</td><td style="text-align:right;">$1.77M</td><td style="text-align:right;color:var(--green);font-weight:700;">$3.23M</td></tr>
-                <tr style="background:rgba(37,99,235,0.1);font-weight:700;border-top:1px solid rgba(37,99,235,0.3);"><td colspan="3"><strong>18-Month Summary</strong></td><td style="text-align:right;color:var(--primary);">Declining</td><td style="text-align:right;color:var(--primary);">$1.77M net</td><td style="text-align:right;color:var(--primary);">$1.77M total</td><td style="text-align:right;color:var(--green);font-weight:700;">$3.23M remaining</td></tr>
+                <tr style="background:rgba(232,160,32,0.08);font-weight:600;"><td><strong>Q2&ndash;Q3 2027</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">(Series A raise)</span></td><td style="text-align:right;">$165K</td><td style="text-align:right;color:var(--green);">$91K avg</td><td style="text-align:right;color:var(--orange);">$74K</td><td style="text-align:right;color:var(--orange);">$444K</td><td style="text-align:right;">$1.77M</td><td style="text-align:right;color:var(--green);font-weight:700;">$3.23M</td></tr>
+                <tr style="background:rgba(232,160,32,0.1);font-weight:700;border-top:1px solid rgba(232,160,32,0.3);"><td colspan="3"><strong>18-Month Summary</strong></td><td style="text-align:right;color:var(--primary);">Declining</td><td style="text-align:right;color:var(--primary);">$1.77M net</td><td style="text-align:right;color:var(--primary);">$1.77M total</td><td style="text-align:right;color:var(--green);font-weight:700;">$3.23M remaining</td></tr>
             </tbody>
         </table>
         <div class="callout green" style="margin-top:14px;">
@@ -1337,7 +1342,7 @@
             const bar = document.createElement('div');
             bar.className = 'bar-stack';
             const pct = (mrr[i] / maxMrr) * 100;
-            bar.style.cssText = `height:${Math.max(pct,2)}%;background:${(i===4||i===5)?'var(--green)':(i===0?'rgba(37,99,235,0.2)':'var(--primary)')};min-height:${mrr[i]>0?'4px':'2px'};`;
+            bar.style.cssText = `height:${Math.max(pct,2)}%;background:${(i===4||i===5)?'var(--green)':(i===0?'rgba(232,160,32,0.2)':'var(--primary)')};min-height:${mrr[i]>0?'4px':'2px'};`;
             const lbl = document.createElement('div');
             lbl.className = 'bar-label';
             lbl.textContent = q;
