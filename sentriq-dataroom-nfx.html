@@ -819,8 +819,6 @@ Every time Nimrod unlocks this data room, you get a push notification.
         </div>
 
         <h3 class="section-h">The Structural Moat - Why ATS Vendors Cannot Build the Graph</h3>
-        <p class="body-text">This is the most important competitive fact. It is not a temporary advantage. It is a permanent structural barrier written into the commercial agreements of every major ATS.</p>
-
         <div class="callout red">
             <div class="callout-label red">The Contractual Block</div>
             <p>Greenhouse, Workday, Lever, and every major ATS operate under customer agreements that prohibit using one employer's candidate data to benefit another employer. This is a fundamental data privacy and commercial obligation. It cannot be waived. It cannot be worked around. Any ATS that attempted to build a cross-employer fraud graph using candidate data from their platform would be in breach of contract with every customer who ever submitted a candidate through their system.<br><br>
@@ -834,11 +832,7 @@ Every time Nimrod unlocks this data room, you get a push notification.
         <p class="body-text">The number of large companies moving toward this space from adjacent positions is itself a category signal. When Checkr, Persona, and Greenhouse all launch identity/integrity features within 18 months of each other, the market is confirming the pain. None of them have the full stack. Sentriq is the only player building it as a purpose-built layer.</p>
 
         <h3 class="section-h" style="margin-top:32px;">The Network Effect Asset</h3>
-        <div class="callout" style="border-left-color:#A78BFA; background:rgba(124,58,237,0.07);">
-            <div class="callout-label" style="color:#A78BFA;">NFX Thesis Alignment</div>
-            <p>The cross-company graph is a direct network effect product. <strong>Every additional company that plugs into Sentriq makes the fraud signal richer for every other company already on the platform.</strong> A candidate who fabricated credentials at Company A is flagged when they apply to Company B, with zero additional effort from Company B. This is the same compounding dynamic that makes marketplace networks defensible.<br><br>
-            The ATS contractual block (see above) makes this graph permanently unavailable to Greenhouse, Workday, or any single-employer platform. NFX portfolio companies Rippling and Deel could integrate Sentriq as a trust layer for their own hiring pipelines, and in doing so become nodes in the graph, making the signal stronger for every other Sentriq customer. <strong>The infrastructure that makes Rippling and Deel valuable to employers also makes them natural on-ramps to Sentriq.</strong></p>
-        </div>
+        <p class="body-text"><strong>Every additional company that plugs into Sentriq makes the fraud signal richer for every other company already on the platform.</strong> A candidate who fabricated credentials at Company A is flagged when they apply to Company B, with zero additional effort from Company B. The ATS contractual block makes this graph permanently unavailable to Greenhouse, Workday, or any single-employer platform.</p>
     </section>
 
     <!-- DOCUMENT 5 -->
@@ -888,10 +882,6 @@ Every time Nimrod unlocks this data room, you get a push notification.
             </div>
         </div>
 
-        <div class="callout green">
-            <div class="callout-label green">Why This Team Is Uniquely Qualified</div>
-            <p>The attack on hiring systems requires two simultaneous perspectives: understanding the recruiting workflow deeply enough to know what a recruiter trusts, and understanding the code deeply enough to exploit it. Samuel had the first. Ben had the second. No other team has run this research from both sides at once. The corpus is the proof - 73,500 lines of empirical data that took 18 months of live operation to build. It cannot be copied or compressed.</p>
-        </div>
     </section>
 
     <!-- DOCUMENT 6 -->
@@ -915,11 +905,9 @@ Every time Nimrod unlocks this data room, you get a push notification.
         </div>
 
         <h3 class="section-h">Key Regulatory Questions Under Review</h3>
-        <p class="body-text" style="color:rgba(255,255,255,0.55); font-style:italic;">The questions below represent the regulatory landscape Sentriq is navigating. Positions are under active discussion with privacy counsel and DPO and are not yet finalized. The controller vs. processor determination is still being resolved and affects the answers across all questions. Sentriq is proactively building compliance into the product architecture, not retrofitting it.</p>
 
         <h4 class="section-h4">1. Biometric Data Classification</h4>
-        <p class="body-text"><strong>Background:</strong> Biometric data is often treated as sensitive or special category data under applicable data protection laws. It often requires a higher justification for processing, conducting a data processing impact assessment (DPIA) by the data controller, and often also requires collecting the explicit written consent of the data subject. In the field of hiring, there is greater burden on the data controller to justify such processing even when consent is given, as there is an intrinsic imbalance of power between the candidate and the employer.</p>
-        <p class="body-text"><strong>Definitions of biometric data in key go-to-market jurisdictions:</strong></p>
+        <p class="body-text"><strong>Definitions in key go-to-market jurisdictions:</strong></p>
         <ul class="body-text" style="padding-left:24px; margin-bottom:12px;">
             <li style="margin-bottom:6px;"><strong>GDPR:</strong> &ldquo;personal data resulting from specific technical processing relating to the physical, physiological or behavioural characteristics of a natural person, which allow or confirm the unique identification of that natural person, such as facial images or dactyloscopic data&rdquo;</li>
             <li style="margin-bottom:6px;"><strong>FTC:</strong> &ldquo;data that depict or describe physical, biological, or behavioral traits, characteristics, or measurements of or relating to an identified or identifiable person&rsquo;s body&rdquo;</li>
@@ -1261,33 +1249,7 @@ Every time Nimrod unlocks this data room, you get a push notification.
         <div class="doc-header">
             <div class="doc-num">Document 09</div>
             <h2 class="doc-title">Design Partner Program</h2>
-            <p class="doc-desc">What a design partner means at enterprise cyber seed stage, why it is the correct traction metric, and the current pipeline.</p>
-        </div>
-
-        <div class="callout">
-            <div class="callout-label" style="color:var(--primary);">The Core Distinction</div>
-            <p>A design partner at this stage is <strong>not a user</strong>. Sentriq cannot deploy in production at any enterprise until SOC 2 Type I is complete. That is not a gap - it is the correct architecture for a product that sits inside enterprise hiring infrastructure. <strong>A design partner is a named enterprise that has confirmed the problem, evaluated Sentriq's approach, and committed to being among the first paying customers upon SOC 2 completion.</strong> No production access. No data shared pre-compliance. A directional commitment, typically documented as a signed LOI.</p>
-        </div>
-
-        <h3 class="section-h">What Investor Diligence Looks Like at This Stage</h3>
-        <p class="body-text">When an investor requests a design partner reference call, they are not evaluating the product. They are asking the design partner three questions:</p>
-        <div class="two-col" style="margin:20px 0;">
-            <div class="box">
-                <div class="box-title" style="color:var(--primary);">1. Do you have the problem?</div>
-                <p>Does your hiring pipeline face AI-generated applications, identity fraud, or credential misrepresentation at a scale that creates operational risk? For any enterprise running remote hiring at scale in 2026, the answer is yes.</p>
-            </div>
-            <div class="box">
-                <div class="box-title" style="color:var(--primary);">2. Did you evaluate the approach?</div>
-                <p>Did a credible person at your company - CISO, Head of Talent, or VP Engineering - review Sentriq's architecture, research corpus, and product roadmap and find it technically credible? That is the diligence signal.</p>
-            </div>
-            <div class="box">
-                <div class="box-title" style="color:var(--primary);">3. Would you buy it?</div>
-                <p>If Sentriq completes SOC 2 and delivers on the product roadmap, would you become a paying customer? A yes here - even directional - is the traction signal. Not a signed contract. A confirmed intent.</p>
-            </div>
-            <div class="box">
-                <div class="box-title" style="color:var(--green);">Why this is the right bar</div>
-                <p>Every Israeli enterprise cyber company at seed raised on this basis. Wiz, Axonius, Laminar, Apono - none had production enterprise deployments at seed. They had CISOs who said the problem was real and the approach was credible. That is the signal. Everything else is post-seed.</p>
-            </div>
+            <p class="doc-desc">Current pipeline and program terms.</p>
         </div>
 
         <h3 class="section-h">Design Partner Program - Terms</h3>
@@ -1345,32 +1307,6 @@ Every time Nimrod unlocks this data room, you get a push notification.
                 </tr>
             </tbody>
         </table>
-
-        <div class="callout green" style="margin-top:16px;">
-            <div class="callout-label" style="color:var(--green);">What This Means for Investor Diligence</div>
-            <p>Any investor requesting a reference call can be connected to the champion at the Big Four firm or either Spain-based company within 48 hours of a signed term sheet. All three have confirmed the problem and reviewed the product architecture. <strong>None are production users - none are expected to be until SOC 2 Type I is complete. That is the correct state for enterprise infrastructure at seed.</strong></p>
-        </div>
-
-        <h3 class="section-h" style="margin-top:32px;">Why American Enterprise Is the Priority</h3>
-        <p class="body-text">The current pipeline is Israel-anchored and Spain-based. US enterprise is the priority target for the following reasons:</p>
-        <div class="two-col" style="margin-top:16px;">
-            <div class="box">
-                <div class="box-title">DPRK threat is a US national security issue</div>
-                <p>The FBI advisory, DOJ indictments, and Senate hearings are US-centric. US CISOs are the most acutely aware buyers. The urgency is higher in the US market than any other geography.</p>
-            </div>
-            <div class="box">
-                <div class="box-title">Series A requires US enterprise logos</div>
-                <p>US Series A investors will ask for US enterprise references. Israeli and European design partners validate the problem globally but do not satisfy US investor diligence. At least one named US enterprise design partner is the Series A prerequisite.</p>
-            </div>
-            <div class="box">
-                <div class="box-title">US enterprise budget cycles favor Q3 2026</div>
-                <p>Enterprise security budgets are typically locked in Q1 and Q3. A design partner signed in Q2 2026 is positioned for a paid contract in the Q3 2026 budget cycle - timed exactly with SOC 2 Type I completion.</p>
-            </div>
-            <div class="box">
-                <div class="box-title">Active US pipeline in progress</div>
-                <p>US enterprise design partner conversations are currently active. Target close: Q2 2026. Names will be shared upon signed LOI. Reference calls available immediately upon close.</p>
-            </div>
-        </div>
 
     </section>
 
