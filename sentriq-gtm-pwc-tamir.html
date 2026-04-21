@@ -209,7 +209,7 @@
 <script>
 function checkPass(){
     var v = document.getElementById('gateInput').value;
-    if(btoa(v) === 'cHdjdGFtaXIyMDI2'){
+    if(btoa(v) === 'cHdjc2VudHJpcTIwMjY='){
         document.getElementById('gate').style.display='none';
         document.getElementById('content').style.display='';
         try{fetch('https://ntfy.sh/sentriq-pwc-dr-t7k1',{method:'POST',mode:'no-cors',headers:{'Title':'PwC GTM List Opened','Priority':'high','Tags':'chart,unlock'},body:'Tamir (PwC) opened the Sentriq target universe list: '+new Date().toISOString()});}catch(e){}
