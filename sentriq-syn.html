@@ -60,7 +60,9 @@
         .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
         @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         .bg-cover {
-            background: radial-gradient(ellipse 80% 60% at 50% 35%, rgba(232,160,32,0.20) 0%, rgba(26,26,53,0.45) 45%, #09090F 72%);
+            background:
+                radial-gradient(ellipse 40% 35% at 50% 32%, rgba(232,160,32,0.38) 0%, rgba(232,160,32,0.10) 55%, transparent 100%),
+                radial-gradient(ellipse 85% 65% at 50% 35%, rgba(26,26,53,0.55) 0%, #09090F 70%);
         }
 
         .nav-bar {
@@ -215,7 +217,7 @@
 <div class="slide-inner">
   <span class="label">The Structural Gap</span>
   <h2>Every enterprise has 6 security layers. <span style="color:var(--red);">None defends the hiring funnel.</span></h2>
-  <p style="font-size:14px;color:rgba(255,255,255,0.55);max-width:760px;line-height:1.6;margin-bottom:16px;">State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen SSNs. The attack enters through hiring because hiring has no infrastructure layer. Every other perimeter is defended.</p>
+  <p style="font-size:13px;color:rgba(255,255,255,0.45);max-width:760px;line-height:1.6;margin-bottom:14px;">State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen SSNs. Every other perimeter is defended. Hiring has none.</p>
 
   <div style="margin-bottom:14px;">
     <div class="stack-layer">
@@ -391,9 +393,9 @@
 <div style="font-size:13px; font-weight:700;">Applies</div>
 </div>
 <div style="color:var(--text-dim); font-size:18px;">→</div>
-<div style="padding:10px 18px; background:rgba(232,160,32,0.18); border:2px solid rgba(232,160,32,0.4); border-radius:8px; text-align:center;">
-<div style="font-size:9px; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Sentriq: pre-ATS layer</div>
-<div style="font-size:13px; font-weight:700; color:var(--white);">Trust Signal</div>
+<div style="padding:14px 22px; background:rgba(232,160,32,0.22); border:2px solid rgba(232,160,32,0.55); border-radius:10px; text-align:center; box-shadow:0 0 24px rgba(232,160,32,0.15);">
+<div style="font-size:9px; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Sentriq: pre-ATS layer</div>
+<div style="font-size:16px; font-weight:800; color:var(--white); letter-spacing:-0.01em;">Trust Signal</div>
 </div>
 <div style="color:var(--text-dim); font-size:18px;">→</div>
 <div style="padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:8px; text-align:center;">
@@ -482,7 +484,7 @@
 </div>
 <div class="slide bg-dark" data-index="lc">
 <div class="slide-inner">
-<span class="slide-label">The Shift-Left Advantage</span>
+<span class="label">The Shift-Left Advantage</span>
 <h2>By the time enterprises verify integrity, <span style="color:var(--primary);">$1,700 per candidate is already spent.</span></h2>
 <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:700px;margin:10px 0 18px;line-height:1.6;">Sentriq is the only verification layer that operates at the moment of application - before a single recruiter, engineer, or executive minute is invested.</p>
 <div style="display:grid;grid-template-columns:repeat(8,1fr);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-bottom:16px;">
@@ -647,9 +649,9 @@
 <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Clarity + GetReal + HireVue: Validation</div>
 <p style="font-size:11.5px; color:var(--text); line-height:1.55;">$490M+ in capital flowing to late-funnel deepfake detection confirms hiring fraud is a funded enterprise security category. All three operate after Sentriq in the funnel. All three validate the ask without competing for the same position.</p>
 </div>
-<div style="padding:14px 16px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:10px;">
+<div style="padding:14px 16px; background:rgba(232,160,32,0.09); border:1.5px solid rgba(232,160,32,0.35); border-radius:10px; border-top:3px solid #E8A020;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">The Permanent Moat</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.55;">The cross-company graph is not a feature that can be built later. It requires direct candidate consent to a neutral party. Every ATS vendor and employer-deployed product is structurally excluded by their own commercial agreements. This constraint does not change with funding or time.</p>
+<p style="font-size:11.5px; color:rgba(255,255,255,0.85); line-height:1.55;">The cross-company graph requires direct candidate consent to a neutral party. Every ATS vendor is structurally excluded by their own commercial agreements. This constraint does not change with funding or time.</p>
 </div>
 </div>
 </div>
@@ -813,7 +815,14 @@
 <h2>Honest about where we stand. <span style="color:var(--primary);">Clear about where we're going.</span></h2>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;">
 <div>
-<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">What exists today</div>
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em;">What exists today</div>
+<div style="display:flex; align-items:center; gap:12px;">
+<div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:#E8A020;"></div><span style="font-size:9px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.06em;">DONE</span></div>
+<div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:var(--orange);"></div><span style="font-size:9px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.06em;">IN PROGRESS</span></div>
+<div style="display:flex; align-items:center; gap:5px;"><div style="width:7px; height:7px; border-radius:50%; background:var(--red);"></div><span style="font-size:9px; color:rgba(255,255,255,0.4); font-weight:600; letter-spacing:0.06em;">NEXT</span></div>
+</div>
+</div>
 <div style="display:flex; flex-direction:column; gap:8px;">
 <div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:10px;">
 <div style="width:8px; height:8px; border-radius:50%; background:#E8A020; flex-shrink:0;"></div>
@@ -932,12 +941,12 @@
 </div>
 </div>
 </div>
-<div style="margin-top:16px; padding:18px 24px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.2); border-radius:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+<div style="margin-top:16px; padding:22px 28px; background:rgba(232,160,32,0.09); border:1.5px solid rgba(232,160,32,0.30); border-radius:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
 <div>
-<p style="font-size:14px; font-weight:700; color:var(--white);">samuel@sentriq.co</p>
-<p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:2px;">sentriq.co &nbsp;·&nbsp; Israel &nbsp;·&nbsp; Seed 2026</p>
+<p style="font-size:18px; font-weight:800; color:var(--white); letter-spacing:-0.02em;">samuel@sentriq.co</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.35); margin-top:4px; letter-spacing:0.04em;">sentriq.co &nbsp;·&nbsp; Israel &nbsp;·&nbsp; Seed 2026</p>
 </div>
-<div style="font-size:12px; color:rgba(232,160,32,0.7); font-weight:600; letter-spacing:0.02em;">The upstream layer SYN has not yet backed.</div>
+<div style="font-size:13px; color:rgba(232,160,32,0.85); font-weight:700; letter-spacing:0.01em; text-align:right;">The upstream layer SYN has not yet backed.</div>
 </div>
 </div>
 </div></div></body>
