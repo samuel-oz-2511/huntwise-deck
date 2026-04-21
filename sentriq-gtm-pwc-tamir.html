@@ -185,6 +185,45 @@
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="text-align:center;max-width:360px;width:100%;padding:0 24px;">
+        <div style="margin-bottom:28px;">
+            <svg width="36" height="36" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 14px;"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+            <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.03em;">Sentriq</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;">Target Universe: Confidential</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Access code"
+            autocomplete="off" onkeydown="if(event.key==='Enter')checkPass()"
+            style="width:100%;padding:14px 18px;font-size:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.13);border-radius:10px;color:#fff;outline:none;font-family:inherit;text-align:center;letter-spacing:0.1em;margin-bottom:12px;transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='rgba(232,160,32,0.55)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.13)'"
+        >
+        <button onclick="checkPass()" style="width:100%;padding:14px;font-size:14px;font-weight:800;background:#E8A020;border:none;border-radius:10px;color:#09090F;cursor:pointer;font-family:inherit;">
+            Open Target List
+        </button>
+        <p id="gateErr" style="margin-top:10px;font-size:12px;color:rgba(224,85,85,0.85);display:none;">Incorrect code.</p>
+    </div>
+</div>
+
+<script>
+function checkPass(){
+    var v = document.getElementById('gateInput').value;
+    if(btoa(v) === 'cHdjdGFtaXIyMDI2'){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('content').style.display='';
+        try{fetch('https://ntfy.sh/sentriq-pwc-dr-t7k1',{method:'POST',mode:'no-cors',headers:{'Title':'PwC GTM List Opened','Priority':'high','Tags':'chart,unlock'},body:'Tamir (PwC) opened the Sentriq target universe list: '+new Date().toISOString()});}catch(e){}
+    } else {
+        document.getElementById('gateErr').style.display='block';
+        document.getElementById('gateInput').value='';
+        document.getElementById('gateInput').focus();
+        setTimeout(function(){ document.getElementById('gateErr').style.display='none'; }, 2800);
+    }
+}
+</script>
+
+<div id="content" style="display:none;">
+
 <div class="header">
   <div class="header-top">
     <div class="logo">SENTR<span>[</span>IQ<span>]</span></div>
@@ -705,6 +744,8 @@
   <span>Sentriq, sentriq.co. Confidential, prepared for Tamir Hay, PwC</span>
   <span>April 2026</span>
 </div>
+
+</div><!-- /content -->
 
 </body>
 </html>
