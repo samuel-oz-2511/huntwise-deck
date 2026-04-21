@@ -194,6 +194,12 @@
     border-bottom: 1px solid rgba(232,100,64,0.25);
   }
   .company-incident a:hover { color: #E84040; border-bottom-color: #E84040; }
+
+  .fomo-cell { text-align: right; font-size: 12px; font-weight: 700; min-width: 100px; white-space: nowrap; }
+  .fomo-high { color: #E84040; }
+  .fomo-mid  { color: #E8A020; }
+  .fomo-low  { color: rgba(255,255,255,0.65); }
+  .fomo-none { color: rgba(255,255,255,0.22); font-weight: 400; }
 </style>
 </head>
 <body>
@@ -203,7 +209,7 @@
     <div style="text-align:center;max-width:360px;width:100%;padding:0 24px;">
         <div style="margin-bottom:28px;">
             <svg width="36" height="36" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 14px;"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-            <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.03em;">Sentriq</div>
+            <div style="font-size:20px;font-weight:500;color:#E8A020;letter-spacing:0.04em;">Sentriq</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;">Target Universe: Confidential</div>
         </div>
         <input id="gateInput" type="password" placeholder="Access code"
@@ -247,8 +253,8 @@ function checkPass(){
 
 <div class="scoring-box">
   <div class="scoring-item">
-    <div class="scoring-label">5 Dimensions</div>
-    <div class="scoring-val">Scale + Volume + Pipeline + Exposure + OFH + Damage (confirmed employee fraud history)</div>
+    <div class="scoring-label">6 Dimensions</div>
+    <div class="scoring-val">Scale + Volume + Pipeline + Exposure + OFH + Damage</div>
   </div>
   <div class="scoring-item">
     <div class="scoring-label">Max Score</div>
@@ -261,6 +267,10 @@ function checkPass(){
   <div class="scoring-item">
     <div class="scoring-label">Key Driver</div>
     <div class="scoring-val">Employee fraud, IP theft and espionage + EU AI Act (August 2026) + deepfake fraud</div>
+  </div>
+  <div class="scoring-item">
+    <div class="scoring-label">Sentriq ROI</div>
+    <div class="scoring-val">Documented fraud loss / $42K ACV = years of Sentriq they could have had. Column added to every row.</div>
   </div>
 </div>
 
@@ -282,6 +292,7 @@ function checkPass(){
       <th>Annual TAM</th>
       <th>OFH Risk</th>
       <th class="r">Score /30</th>
+      <th class="r">Sentriq yrs lost</th>
     </tr>
   </thead>
   <tbody>
@@ -292,6 +303,7 @@ function checkPass(){
       <td>~17,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">28</td>
+      <td class="fomo-cell fomo-mid">2.4K yrs</td>
     </tr>
     <tr>
       <td class="rank">1</td>
@@ -300,6 +312,7 @@ function checkPass(){
       <td>~10,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">26</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -308,6 +321,7 @@ function checkPass(){
       <td>~8,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">28</td>
+      <td class="fomo-cell fomo-high">170K yrs</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -316,6 +330,7 @@ function checkPass(){
       <td>~7,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">27</td>
+      <td class="fomo-cell fomo-high">88K yrs</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -324,6 +339,7 @@ function checkPass(){
       <td>~39,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -332,6 +348,7 @@ function checkPass(){
       <td>~22,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -340,6 +357,7 @@ function checkPass(){
       <td>~5,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-low">595 yrs</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -348,6 +366,7 @@ function checkPass(){
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-mid">5.3K yrs</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -356,6 +375,7 @@ function checkPass(){
       <td>~4,750</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -364,6 +384,7 @@ function checkPass(){
       <td>~6,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-high">238K yrs</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -372,6 +393,7 @@ function checkPass(){
       <td>~6,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-low">452 yrs</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -380,6 +402,7 @@ function checkPass(){
       <td>~5,500</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -388,6 +411,7 @@ function checkPass(){
       <td>~5,650</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -396,6 +420,7 @@ function checkPass(){
       <td>~2,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -404,6 +429,7 @@ function checkPass(){
       <td>~2,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-low">95 yrs</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -412,6 +438,7 @@ function checkPass(){
       <td>~45K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -420,6 +447,7 @@ function checkPass(){
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -428,6 +456,7 @@ function checkPass(){
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-high">107K yrs</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -436,6 +465,7 @@ function checkPass(){
       <td>~4,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -444,6 +474,7 @@ function checkPass(){
       <td>~3,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-low">7 yrs</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -452,6 +483,7 @@ function checkPass(){
       <td>~2,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -460,6 +492,7 @@ function checkPass(){
       <td>~60K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -468,6 +501,7 @@ function checkPass(){
       <td>~6,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-mid">9.7K yrs</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -476,6 +510,7 @@ function checkPass(){
       <td>~8,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-high">13K yrs</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -484,6 +519,7 @@ function checkPass(){
       <td>~9,500</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-high">23K yrs</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -492,6 +528,7 @@ function checkPass(){
       <td>~10,250</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -500,6 +537,7 @@ function checkPass(){
       <td>~7,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -508,6 +546,7 @@ function checkPass(){
       <td>~75K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -516,6 +555,7 @@ function checkPass(){
       <td>~6,300</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-high">12K yrs</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -524,6 +564,7 @@ function checkPass(){
       <td>~4,000</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-high">40K yrs</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -532,6 +573,7 @@ function checkPass(){
       <td>~5,000</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -540,6 +582,7 @@ function checkPass(){
       <td>~3,200</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -548,6 +591,7 @@ function checkPass(){
       <td>~3,150</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-18">19</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -556,6 +600,7 @@ function checkPass(){
       <td>~22K placements</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
       <td class="score-cell score-18">18</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
   </tbody>
 </table>
@@ -579,6 +624,7 @@ function checkPass(){
       <th>OFH Risk</th>
       <th>EU AI Act</th>
       <th class="r">Score /30</th>
+      <th class="r">Sentriq yrs lost</th>
     </tr>
   </thead>
   <tbody>
@@ -590,6 +636,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-25">28</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">2</td>
@@ -599,6 +646,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">27</td>
+      <td class="fomo-cell fomo-mid">8.3K yrs</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -608,6 +656,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">28</td>
+      <td class="fomo-cell fomo-high">93K yrs</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -617,6 +666,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -626,6 +676,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -635,6 +686,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-low">2 yrs</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -644,6 +696,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">24</td>
+      <td class="fomo-cell fomo-low">11 yrs</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -653,6 +706,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-25">27</td>
+      <td class="fomo-cell fomo-high">126K yrs</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -662,6 +716,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-mid">9.5K yrs</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -671,6 +726,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -680,6 +736,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -689,6 +746,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td class="score-cell score-25">26</td>
+      <td class="fomo-cell fomo-high">55K yrs</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -698,6 +756,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-25">26</td>
+      <td class="fomo-cell fomo-high">15K yrs</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -707,6 +766,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-22">25</td>
+      <td class="fomo-cell fomo-mid">2.4K yrs</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -716,6 +776,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
       <td class="score-cell score-25">26</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -725,6 +786,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -734,6 +796,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">23</td>
+      <td class="fomo-cell fomo-mid">7.4K yrs</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -743,6 +806,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -752,6 +816,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -761,6 +826,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -770,6 +836,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td class="score-cell score-22">22</td>
+      <td class="fomo-cell fomo-low">202 yrs</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -779,6 +846,7 @@ function checkPass(){
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -788,6 +856,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -797,6 +866,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -806,6 +876,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
       <td class="score-cell score-18">20</td>
+      <td class="fomo-cell fomo-none">n/a</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -824,6 +895,7 @@ function checkPass(){
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
       <td class="score-cell score-18">21</td>
+      <td class="fomo-cell fomo-low">214 yrs</td>
     </tr>
   </tbody>
 </table>
