@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ FINANCIAL REVIEW - PwC / TAMIR VERSION
+Password: pwctamir2026
+ntfy topic: sentriq-pwc-dr-t7k1
+=============================================================
+Purpose: Financial model review for Tamir at PwC Startup Practice.
+Not a pitch deck. A working document for advisory feedback.
+=============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq: Financial Model Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090F;
+            --card: #0D0E1A;
+            --border: rgba(255,255,255,0.08);
+            --amber: #E8A020;
+            --primary: #E8A020;
+            --red: #E05555;
+            --text: rgba(255,255,255,0.82);
+            --text-dim: rgba(255,255,255,0.48);
+            --white: #ffffff;
+            --gray-900: #09090F;
+            --gray-800: #0D0E1A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(9,9,15,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 0 32px;
+            height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-logo { font-size: 15px; font-weight: 800; color: var(--primary); letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; }
+        .topbar-title { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500; letter-spacing: 0.02em; }
+        .topbar-badge {
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09); padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* LAYOUT */
+        .layout { display: flex; min-height: 100vh; padding-top: 56px; }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 256px; min-width: 256px;
+            background: rgba(255,255,255,0.015);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            position: fixed; top: 56px; bottom: 0; left: 0;
+            overflow-y: auto; padding: 24px 0;
+        }
+        .sidebar-section { margin-bottom: 8px; }
+        .sidebar-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.22); padding: 8px 24px 6px;
+        }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 24px; font-size: 13px; font-weight: 500;
+            color: rgba(255,255,255,0.52); cursor: pointer; border: none; background: none;
+            width: 100%; text-align: left; text-decoration: none;
+            transition: all 0.2s; border-left: 2px solid transparent;
+        }
+        .sidebar-link:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.03); }
+        .sidebar-link.active { color: var(--white); background: rgba(232,160,32,0.09); border-left-color: var(--primary); }
+        .sidebar-num {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.38); flex-shrink: 0;
+        }
+        .sidebar-link.active .sidebar-num { background: var(--primary); color: #09090F; }
+
+        /* MAIN */
+        .main { margin-left: 256px; flex: 1; padding: 52px 68px 80px; max-width: 940px; }
+
+        /* SECTION */
+        .doc-section { margin-bottom: 80px; scroll-margin-top: 80px; }
+        .doc-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .doc-num { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 8px; }
+        .doc-title { font-size: clamp(22px,2.8vw,32px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 8px; }
+        .doc-subtitle { font-size: 14px; color: rgba(255,255,255,0.50); line-height: 1.65; max-width: 680px; }
+
+        /* TYPOGRAPHY */
+        .body-text { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.75; margin-bottom: 18px; }
+        .body-text strong { color: var(--white); }
+        h3.sh { font-size: 16px; font-weight: 700; color: var(--white); margin: 28px 0 12px; letter-spacing: -0.01em; }
+        h4.sh4 { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75); margin: 18px 0 8px; }
+
+        /* CALLOUTS */
+        .callout {
+            padding: 18px 22px; border-radius: 12px; margin: 20px 0;
+            border-left: 3px solid var(--primary);
+            background: rgba(232,160,32,0.07);
+        }
+        .callout.neutral { border-left-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); }
+        .callout.red { border-left-color: var(--red); background: rgba(224,85,85,0.07); }
+        .callout p { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.7; }
+        .callout strong { color: var(--white); }
+        .callout-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; color: var(--primary); }
+        .callout-label.red { color: var(--red); }
+        .callout-label.neutral { color: rgba(255,255,255,0.4); }
+
+        /* FEEDBACK BOX */
+        .feedback-box {
+            margin-top: 24px; padding: 20px 24px;
+            background: rgba(232,160,32,0.04);
+            border: 1px solid rgba(232,160,32,0.22);
+            border-radius: 12px;
+            border-top: 2px solid rgba(232,160,32,0.6);
+        }
+        .feedback-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary); margin-bottom: 10px; }
+        .feedback-q { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.65; margin-bottom: 7px; padding-left: 14px; position: relative; }
+        .feedback-q::before { content: 'Q:'; position: absolute; left: 0; font-weight: 700; color: var(--primary); font-size: 11px; top: 1px; }
+
+        /* TABLES */
+        .t { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+        .t th { text-align: left; padding: 9px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.32); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .t td { padding: 11px 14px; color: rgba(255,255,255,0.72); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.5; }
+        .t tr:hover td { background: rgba(255,255,255,0.018); }
+        .t td strong { color: var(--white); }
+        .t-amber { background: rgba(232,160,32,0.08); font-weight: 600; }
+
+        /* BADGES */
+        .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .b-amber { background: rgba(232,160,32,0.14); color: #E8A020; border: 1px solid rgba(232,160,32,0.3); }
+        .b-dim { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.09); }
+        .b-red { background: rgba(224,85,85,0.14); color: #E05555; border: 1px solid rgba(224,85,85,0.3); }
+
+        /* KPI GRID */
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0 28px; }
+        .kpi { padding: 18px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; }
+        .kpi-val { font-size: clamp(22px,2.5vw,30px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 5px; }
+        .kpi-label { font-size: 11px; color: rgba(255,255,255,0.42); line-height: 1.4; }
+        .kpi-sub { font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 3px; }
+
+        /* UE GRID */
+        .ue-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0 24px; }
+        .ue-box { padding: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; }
+        .ue-val { font-size: clamp(20px,2.2vw,26px); font-weight: 800; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+        .ue-label { font-size: 11px; color: rgba(255,255,255,0.42); margin-bottom: 3px; }
+        .ue-bench { font-size: 10px; color: rgba(255,255,255,0.22); line-height: 1.4; }
+
+        /* FUND BAR */
+        .fund-bar { height: 28px; border-radius: 6px; overflow: hidden; display: flex; margin: 14px 0 10px; }
+        .fund-seg { height: 100%; }
+        .fund-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 16px; }
+        .fund-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.62); }
+        .fund-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+        /* MILESTONE */
+        .ms-grid { display: flex; gap: 0; margin: 20px 0; position: relative; }
+        .ms-grid::before { content: ''; position: absolute; top: 18px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--primary) 25%, rgba(232,160,32,0.3) 80%); }
+        .ms-item { flex: 1; position: relative; padding-top: 42px; padding-right: 12px; }
+        .ms-dot { position: absolute; top: 10px; left: 0; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--bg); }
+        .ms-dot.done { background: var(--primary); box-shadow: 0 0 8px rgba(232,160,32,0.6); }
+        .ms-dot.active { background: var(--primary); box-shadow: 0 0 12px rgba(232,160,32,0.5); animation: mspulse 2s infinite; }
+        .ms-dot.future { background: rgba(255,255,255,0.14); }
+        @keyframes mspulse { 0%,100%{box-shadow:0 0 8px rgba(232,160,32,0.4)} 50%{box-shadow:0 0 16px rgba(232,160,32,0.75)} }
+        .ms-date { font-size: 10px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+        .ms-title { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+        .ms-desc { font-size: 11px; color: rgba(255,255,255,0.42); line-height: 1.5; }
+
+        /* STAT ROW */
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+        .stat-box { padding: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; text-align: center; }
+        .stat-val { font-size: clamp(26px,3vw,36px); font-weight: 800; color: var(--primary); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+        .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.48); line-height: 1.4; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 32px 20px 60px; }
+            .kpi-grid { grid-template-columns: 1fr 1fr; }
+            .ue-grid { grid-template-columns: 1fr 1fr; }
+            .ms-grid { flex-direction: column; }
+            .ms-grid::before { display: none; }
+            .ms-item { padding-top: 0; padding-left: 28px; padding-bottom: 14px; }
+            .ms-dot { top: 0; }
+            .topbar-title { display: none; }
+        }
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .ue-grid { grid-template-columns: 1fr; }
+            .fund-legend { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="text-align:center;max-width:360px;width:100%;padding:0 24px;">
+        <div style="margin-bottom:28px;">
+            <svg width="36" height="36" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 14px;"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/><path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/><path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/></svg>
+            <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.03em;">Sentriq</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;">Financial Review: Confidential</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Access code"
+            autocomplete="off" onkeydown="if(event.key==='Enter')checkPass()"
+            style="width:100%;padding:14px 18px;font-size:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.13);border-radius:10px;color:#fff;outline:none;font-family:inherit;text-align:center;letter-spacing:0.1em;margin-bottom:12px;transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='rgba(232,160,32,0.55)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.13)'"
+        >
+        <button onclick="checkPass()" style="width:100%;padding:14px;font-size:14px;font-weight:800;background:#E8A020;border:none;border-radius:10px;color:#09090F;cursor:pointer;font-family:inherit;">
+            Open Financial Review
+        </button>
+        <p id="gateErr" style="margin-top:10px;font-size:12px;color:rgba(224,85,85,0.85);display:none;">Incorrect code.</p>
+    </div>
+</div>
+
+<script>
+function checkPass(){
+    var v = document.getElementById('gateInput').value;
+    if(btoa(v) === 'cHdjdGFtaXIyMDI2'){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('topbar').style.display='';
+        document.getElementById('appLayout').style.display='';
+        try{fetch('https://ntfy.sh/sentriq-pwc-dr-t7k1',{method:'POST',mode:'no-cors',headers:{'Title':'PwC Financial Review Opened','Priority':'high','Tags':'briefcase,unlock'},body:'Tamir (PwC) opened the Sentriq financial review: '+new Date().toISOString()});}catch(e){}
+    } else {
+        document.getElementById('gateErr').style.display='block';
+        document.getElementById('gateInput').value='';
+        document.getElementById('gateInput').focus();
+        setTimeout(function(){ document.getElementById('gateErr').style.display='none'; }, 2800);
+    }
+}
+</script>
+
+<!-- TOP BAR -->
+<div class="topbar" id="topbar" style="display:none;">
+    <span class="topbar-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="6.5" r="2.5" fill="#E8A020"/><path d="M 24.54,8.5 A 4,4 0 1 1 31.46,8.5" stroke="#E8A020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/><path d="M 22.37,9.75 A 6.5,6.5 0 1 1 33.63,9.75" stroke="#E8A020" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.38"/></svg>
+        Sentriq
+    </span>
+    <span class="topbar-title">Financial Model Review: For Tamir / PwC Startup Practice</span>
+    <span class="topbar-badge">Confidential</span>
+</div>
+
+<div class="layout" id="appLayout" style="display:none;">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-label">Index</div>
+        <a class="sidebar-link active" href="#overview">
+            <span class="sidebar-num" style="font-size:12px;">&#x2303;</span> Overview
+        </a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">Financial Review</div>
+        <a class="sidebar-link" href="#s1"><span class="sidebar-num">1</span> Business Context</a>
+        <a class="sidebar-link" href="#s2"><span class="sidebar-num">2</span> Use of Capital</a>
+        <a class="sidebar-link" href="#s3"><span class="sidebar-num">3</span> Revenue Architecture</a>
+        <a class="sidebar-link" href="#s4"><span class="sidebar-num">4</span> Revenue Projections</a>
+        <a class="sidebar-link" href="#s5"><span class="sidebar-num">5</span> Headcount Plan</a>
+        <a class="sidebar-link" href="#s6"><span class="sidebar-num">6</span> Burn and Runway</a>
+        <a class="sidebar-link" href="#s7"><span class="sidebar-num">7</span> Unit Economics</a>
+        <a class="sidebar-link" href="#s8"><span class="sidebar-num">8</span> Downside Scenario</a>
+        <a class="sidebar-link" href="#s9"><span class="sidebar-num">9</span> Series A Framework</a>
+        <a class="sidebar-link" href="#s10"><span class="sidebar-num">Q</span> Questions for Tamir</a>
+    </div>
+</nav>
+
+<main class="main">
+
+<!-- OVERVIEW -->
+<section class="doc-section" id="overview">
+    <div style="margin-bottom:36px;">
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:var(--primary);margin-bottom:12px;">Sentriq: $5M Seed Round, April 2026</div>
+        <h1 style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-0.04em;margin-bottom:12px;">Financial Model Review</h1>
+        <p style="font-size:15px;color:rgba(255,255,255,0.52);max-width:620px;line-height:1.7;">A working document for Tamir and the PwC Startup Practice. Not a pitch. Every assumption is labeled. Every table is annotated. The goal is a candid read on whether the model holds up.</p>
+    </div>
+
+    <div style="padding:22px 26px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-radius:14px;border-top:2px solid rgba(232,160,32,0.6);margin-bottom:28px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--primary);margin-bottom:14px;">What We Are Asking</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+                <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">On the model structure</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;">Are the assumptions reasonable for a B2B enterprise security company raising seed in Israel in 2026? Is the path from $0 to $1M ARR in 18 months credible given the category and buyer type?</div>
+            </div>
+            <div>
+                <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">On the FS vertical</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;">We have HSBC and Wells Fargo conversations in the pipeline. What does the procurement and vendor evaluation process look like from the inside at institutions at that scale? What should we be modeling for sales cycle length and deal structure?</div>
+            </div>
+            <div>
+                <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">On benchmarks</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;">Do PwC's Israeli startup comparables validate the Series A milestone targets we have set? Are there companies in the portfolio or deal flow where the ramp looks similar?</div>
+            </div>
+            <div>
+                <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px;">On the SOC 2 dependency</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;">The model is gated on SOC 2 Type I in Q3 2026. Is that timeline reasonable from PwC's experience? Are there structural risks in how we have built the dependency between compliance and first revenue?</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-row">
+        <div class="stat-box"><div class="stat-val">$5M</div><div class="stat-lbl">Seed Round<br>Target close Q3 2026</div></div>
+        <div class="stat-box"><div class="stat-val">24+</div><div class="stat-lbl">Months runway<br>On gross burn basis</div></div>
+        <div class="stat-box"><div class="stat-val">$3.23M</div><div class="stat-lbl">Remaining at Series A<br>Base case, Q2-Q3 2027</div></div>
+    </div>
+</section>
+
+<!-- SECTION 1: BUSINESS CONTEXT -->
+<section class="doc-section" id="s1">
+    <div class="doc-header">
+        <div class="doc-num">Section 01</div>
+        <h2 class="doc-title">Business Context</h2>
+        <p class="doc-subtitle">The minimum context needed to evaluate the financial model. Not a pitch. Just the facts required to understand the numbers.</p>
+    </div>
+
+    <table class="t">
+        <tbody>
+            <tr><td style="width:200px;"><strong>What it is</strong></td><td>A pre-submission trust layer for job applications. Detects fraudulent applications (DPRK-type operatives, proxy candidates, AI-assisted fraud) before they enter an ATS. Outputs a trust signal per application. Human-in-the-loop. No automated rejections.</td></tr>
+            <tr><td><strong>Product stage</strong></td><td>Demo complete. Engineering underway. No live product in production. No paying customers. Design partner conversations active.</td></tr>
+            <tr><td><strong>Category</strong></td><td>New. Called "Candidate Hiring Captcha" internally. Closest analogy: Cloudflare as a pre-ATS layer. Platform-agnostic, upstream of everything.</td></tr>
+            <tr><td><strong>Buyers</strong></td><td>Dual buyer: CISO (security framing) and HR / TA leader (quality framing). Enterprise contracts require both. This is the primary sales complexity.</td></tr>
+            <tr><td><strong>Revenue model</strong></td><td>SaaS subscription. Platform fee + challenge volume. ACV $42K ($3,500 MRR per customer). Annual contracts. Annual churn target 10%. NDR target 115%.</td></tr>
+            <tr><td><strong>Revenue gate</strong></td><td>SOC 2 Type I. Enterprise procurement will not open without it. Modeled at Q3 2026 post-seed. This is the primary risk in the model.</td></tr>
+            <tr><td><strong>Founders</strong></td><td>Samuel Kemper (CEO, GTM, IDF intelligence background) and Ben Czarninski (CTO, engineering). Israel-based. Both IDF intelligence unit veterans.</td></tr>
+            <tr><td><strong>Regulatory driver</strong></td><td>EU AI Act Article 6 Annex III point 4: AI tools in hiring are high-risk systems. Compliance deadline August 2, 2026. Every enterprise using AI-assisted screening is in scope. This accelerates the buyer timeline.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout neutral">
+        <div class="callout-label neutral">On the enterprise seed model</div>
+        <p>The standard Israeli cybersecurity capital sequence: research, demo, design partners, seed close, SOC 2, first enterprise customer, Series A. Sentriq is at step 3. The model is seed-to-enterprise-readiness, not seed-to-product-market-fit. The distinction matters when evaluating the traction timeline.</p>
+    </div>
+</section>
+
+<!-- SECTION 2: USE OF CAPITAL -->
+<section class="doc-section" id="s2">
+    <div class="doc-header">
+        <div class="doc-num">Section 02</div>
+        <h2 class="doc-title">Use of Capital: $5M Mapped</h2>
+        <p class="doc-subtitle">How the $5M is allocated, what each line buys, and why the 25% strategic buffer is load-bearing.</p>
+    </div>
+
+    <div class="fund-bar">
+        <div class="fund-seg" style="width:40%;background:#E8A020;opacity:0.9;"></div>
+        <div class="fund-seg" style="width:20%;background:#E8A020;opacity:0.55;"></div>
+        <div class="fund-seg" style="width:10%;background:#E8A020;opacity:0.35;"></div>
+        <div class="fund-seg" style="width:5%;background:rgba(255,255,255,0.25);"></div>
+        <div class="fund-seg" style="width:25%;background:rgba(255,255,255,0.1);"></div>
+    </div>
+    <div class="fund-legend">
+        <div class="fund-item"><div class="fund-dot" style="background:#E8A020;opacity:0.9;"></div><strong style="color:var(--white);">Product and Engineering: $2.0M (40%)</strong></div>
+        <div class="fund-item"><div class="fund-dot" style="background:#E8A020;opacity:0.55;"></div><strong style="color:var(--white);">GTM and Customer Dev: $1.0M (20%)</strong></div>
+        <div class="fund-item"><div class="fund-dot" style="background:#E8A020;opacity:0.35;"></div><strong style="color:var(--white);">Security and Compliance (SOC 2): $500K (10%)</strong></div>
+        <div class="fund-item"><div class="fund-dot" style="background:rgba(255,255,255,0.25);"></div><strong style="color:var(--white);">G and A: $250K (5%)</strong></div>
+        <div class="fund-item"><div class="fund-dot" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);"></div><strong style="color:var(--white);">Strategic Buffer: $1.25M (25%)</strong></div>
+    </div>
+
+    <table class="t" style="margin-top:10px;">
+        <thead><tr><th>Line</th><th>Amount</th><th>What It Buys</th><th>Why It Cannot Be Cut</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Product and Engineering</strong></td><td>$2.0M (40%)</td><td>ML engineer, backend engineer, full-stack engineer, DevOps engineer. Payroll through Q3 2027 at Israeli-market loaded rates.</td><td>No product, no SOC 2 readiness, no design partner conversion. The engineering team is the product.</td></tr>
+            <tr><td><strong>GTM and Customer Dev</strong></td><td>$1.0M (20%)</td><td>VP Sales hire (Q4 2026 at $25K MRR trigger), founder GTM until then, conference, outbound, design partner management, Customer Success Manager (Q1 2027 at $600K ARR trigger).</td><td>Enterprise CISO sales requires a dedicated AE with category credibility. Founder-led covers the first 10 customers. VP Sales converts the next 15.</td></tr>
+            <tr><td><strong>Security and Compliance</strong></td><td>$500K (10%)</td><td>SOC 2 Type I and II readiness (PwC engagement), penetration testing, GDPR legal framework, DPA templates, EU AI Act conformity documentation.</td><td>No SOC 2, no enterprise contract. The compliance line is the sales unlock. This is a hard gate, not a nice-to-have.</td></tr>
+            <tr><td><strong>G and A</strong></td><td>$250K (5%)</td><td>Legal, accounting, insurance, SaaS tooling, D and O coverage. Incorporation on termsheet.</td><td>Standard operating cost. Not optimized further.</td></tr>
+            <tr class="t-amber"><td><strong>Strategic Buffer</strong></td><td>$1.25M (25%)</td><td>Explicit buffer for enterprise sales cycle overruns, SOC 2 delays, and slower-than-modeled design partner conversion.</td><td>Enterprise B2B timelines are notoriously longer than modeled. The buffer exists so Series A happens from strength, not emergency. It is not slack. It is load-bearing insurance.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">Does the 10% allocation to security and compliance look right for a company that needs SOC 2 Type I in roughly 9 months? Are there cost items we are missing in the readiness phase?</p>
+        <p class="feedback-q">Is the 25% strategic buffer standard or conservative relative to comparable Israeli B2B security companies you have seen at seed? Where do most companies land when the buffer runs out?</p>
+    </div>
+</section>
+
+<!-- SECTION 3: REVENUE ARCHITECTURE -->
+<section class="doc-section" id="s3">
+    <div class="doc-header">
+        <div class="doc-num">Section 03</div>
+        <h2 class="doc-title">Revenue Architecture</h2>
+        <p class="doc-subtitle">Pricing structure, ACV assumptions, and the model inputs that drive the revenue ramp.</p>
+    </div>
+
+    <h3 class="sh">Pricing Structure</h3>
+    <table class="t">
+        <thead><tr><th>Component</th><th>Rate</th><th>Basis</th><th>Notes</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Platform Fee</strong></td><td>$2,000 / mo</td><td>Per employer, flat</td><td>Covers passive behavioral layer (Layer 1), ATS integration, trust signal output, employer dashboard.</td></tr>
+            <tr><td><strong>Challenge Volume</strong></td><td>$10 / challenge avg</td><td>Per triggered challenge (Layer 2)</td><td>Variable. Triggered only when Layer 1 flags an anomaly. Estimated 150 challenges/mo per customer at steady state.</td></tr>
+            <tr><td><strong>Human Review</strong></td><td>Included in platform</td><td>Bundled for design partners</td><td>Sentriq analyst review of Layer 2 outputs. Included at design partner price. Priced separately for enterprise at scale.</td></tr>
+            <tr class="t-amber"><td><strong>Blended ACV</strong></td><td>$42,000</td><td>$3,500 MRR per customer</td><td>Platform $2K + challenge volume ~$1.5K avg. Annual contract. Design partners get 20% first-year discount ($33,600 ACV year 1).</td></tr>
+        </tbody>
+    </table>
+
+    <h3 class="sh">Model Assumptions</h3>
+    <table class="t">
+        <thead><tr><th>Assumption</th><th>Value</th><th>Basis</th></tr></thead>
+        <tbody>
+            <tr><td>Annual gross churn</td><td>10%</td><td>Conservative for enterprise security with SOC 2 compliance dependency. No empirical data yet. Benchmark for comparable B2B security: 8-15%.</td></tr>
+            <tr><td>Net Dollar Retention target</td><td>115%</td><td>Driven by challenge volume growth as employers hire more. Each new open role adds volume. 115% NDR requires modest account expansion.</td></tr>
+            <tr><td>Average sales cycle</td><td>3 months</td><td>Founder-led, direct. CISO outbound to first contract. Enterprise procurement without SOC 2 is structurally blocked regardless of sales speed. Post-SOC 2, 3 months is the modeled floor.</td></tr>
+            <tr><td>Design partner conversion rate</td><td>3 of 5 active</td><td>Based on current pipeline (WalkMe, Optimove, two US outreach). Conservative. Not all 5 convert.</td></tr>
+            <tr><td>Revenue start date</td><td>Q3 2026</td><td>Conditional on SOC 2 Type I completing on schedule. Single largest model risk.</td></tr>
+            <tr><td>VP Sales CAC</td><td>Not added to CAC</td><td>VP Sales comp is in headcount line. CAC ($10K) represents direct selling cost at founder-led stage. VP Sales hire changes the unit economics post-$25K MRR.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">At HSBC or Wells Fargo scale, is a $42K ACV realistic for a new security vendor in an early category? Does FS enterprise require a different deal structure (e.g. annual commit upfront vs monthly, minimum commitment minimums)?</p>
+        <p class="feedback-q">Is a 3-month sales cycle realistic for a CISO buy at a 500-2000 person enterprise, or should we be modeling 6-9 months for the first non-design-partner logos?</p>
+        <p class="feedback-q">Does the dual-buyer structure (CISO + HR) materially extend the average sales cycle in your experience? How do Israeli B2B security companies typically handle it?</p>
+    </div>
+</section>
+
+<!-- SECTION 4: REVENUE PROJECTIONS -->
+<section class="doc-section" id="s4">
+    <div class="doc-header">
+        <div class="doc-num">Section 04</div>
+        <h2 class="doc-title">Revenue Projections: $0 to $1M ARR</h2>
+        <p class="doc-subtitle">Base case. First revenue in Q3 2026, conditional on SOC 2 Type I on schedule.</p>
+    </div>
+
+    <table class="t">
+        <thead><tr><th>Quarter</th><th style="text-align:right;">Customers</th><th style="text-align:right;">MRR</th><th style="text-align:right;">ARR Run Rate</th><th style="text-align:right;">QoQ Growth</th><th>Key Gate</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><strong>Q2 2026</strong> <span class="badge b-dim" style="margin-left:6px;">Now</span></td>
+                <td style="text-align:right;color:rgba(255,255,255,0.35);">0</td>
+                <td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td>
+                <td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td>
+                <td style="text-align:right;color:rgba(255,255,255,0.35);">N/A</td>
+                <td>Seed closes. Design partner POCs begin. SOC 2 engagement starts.</td>
+            </tr>
+            <tr>
+                <td><strong>Q3 2026</strong></td>
+                <td style="text-align:right;">6</td>
+                <td style="text-align:right;color:var(--primary);font-weight:700;">$18K</td>
+                <td style="text-align:right;">$216K</td>
+                <td style="text-align:right;">First revenue</td>
+                <td>SOC 2 Type I complete. 3 design partners convert. 3 new outbound logos.</td>
+            </tr>
+            <tr>
+                <td><strong>Q4 2026</strong></td>
+                <td style="text-align:right;">10</td>
+                <td style="text-align:right;color:var(--primary);font-weight:700;">$40K</td>
+                <td style="text-align:right;">$480K</td>
+                <td style="text-align:right;color:var(--primary);">+122%</td>
+                <td>Enterprise pipeline opens post-SOC 2. First US enterprise logo. VP Sales triggered.</td>
+            </tr>
+            <tr>
+                <td><strong>Q1 2027</strong></td>
+                <td style="text-align:right;">16</td>
+                <td style="text-align:right;color:var(--primary);font-weight:700;">$68K</td>
+                <td style="text-align:right;">$816K</td>
+                <td style="text-align:right;color:var(--primary);">+70%</td>
+                <td>VP Sales 90 days in. SOC 2 Type II target. 2+ enterprise logos.</td>
+            </tr>
+            <tr class="t-amber">
+                <td><strong>Q2-Q3 2027</strong> <span class="badge b-amber" style="margin-left:6px;">Series A</span></td>
+                <td style="text-align:right;">22-28</td>
+                <td style="text-align:right;color:var(--primary);font-weight:800;">$83-98K</td>
+                <td style="text-align:right;color:var(--primary);font-weight:800;">$1M-$1.17M</td>
+                <td style="text-align:right;color:var(--primary);">+40-50%</td>
+                <td>$1M ARR. 90%+ gross retention. 2+ enterprise logos. Series A raise opens.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <div class="callout-label">Revenue model assumption: explicit</div>
+        <p>ACV $42K ($3,500 MRR per customer). Blended: platform fee $2K + challenge volume ~$1.5K avg. Annual churn 10%. NDR target 115% via headcount-driven expansion. Design partners convert at 20% first-year discount ($33.6K ACV year 1 only). All assumptions here are open for challenge.</p>
+    </div>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">Does the jump from $216K ARR (Q3 2026) to $480K (Q4 2026) look credible, or does the CISO enterprise pipeline typically build more gradually? Is 4 new logos in one quarter achievable with a founder-led sales motion?</p>
+        <p class="feedback-q">$1M ARR in approximately 18 months from first revenue: where does this rank among Israeli B2B security companies you have seen at seed? Is it conservative, aggressive, or typical?</p>
+    </div>
+</section>
+
+<!-- SECTION 5: HEADCOUNT PLAN -->
+<section class="doc-section" id="s5">
+    <div class="doc-header">
+        <div class="doc-num">Section 05</div>
+        <h2 class="doc-title">Headcount Plan</h2>
+        <p class="doc-subtitle">8 people by H1 2027. Every hire is gated on a specific revenue or product milestone. No speculative headcount.</p>
+    </div>
+
+    <table class="t">
+        <thead><tr><th>Role</th><th>Hire Date</th><th>Trigger</th><th style="text-align:right;">Loaded Annual Comp</th><th style="text-align:right;">Monthly Burn Add</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Samuel Kemper</strong> - Co-Founder, CEO, GTM</td><td>Now</td><td><span class="badge b-dim">Active</span></td><td style="text-align:right;color:rgba(255,255,255,0.35);">Below market</td><td style="text-align:right;color:rgba(255,255,255,0.35);">N/A</td></tr>
+            <tr><td><strong>Ben Czarninski</strong> - Co-Founder, CTO, Engineering</td><td>Now</td><td><span class="badge b-dim">Active</span></td><td style="text-align:right;color:rgba(255,255,255,0.35);">Below market</td><td style="text-align:right;color:rgba(255,255,255,0.35);">N/A</td></tr>
+            <tr><td><strong>ML Engineer</strong> - Detection models, behavioral scoring</td><td>Q2 2026</td><td><span class="badge b-amber">Seed close</span></td><td style="text-align:right;">$234K loaded</td><td style="text-align:right;">+$20K</td></tr>
+            <tr><td><strong>Backend Engineer</strong> - ATS integrations, API layer</td><td>Q2 2026</td><td><span class="badge b-amber">Seed close</span></td><td style="text-align:right;">$208K loaded</td><td style="text-align:right;">+$17K</td></tr>
+            <tr><td><strong>Full-Stack Engineer</strong> - Employer dashboard, candidate UX</td><td>Q3 2026</td><td><span class="badge b-dim">First revenue</span></td><td style="text-align:right;">$195K loaded</td><td style="text-align:right;">+$16K</td></tr>
+            <tr><td><strong>DevOps / Security Engineer</strong> - SOC 2 Type II, infra hardening</td><td>Q4 2026</td><td><span class="badge b-dim">SOC 2 Type I complete</span></td><td style="text-align:right;">$195K loaded</td><td style="text-align:right;">+$16K</td></tr>
+            <tr><td><strong>VP Sales</strong> - CISO and enterprise buyers</td><td>Q4 2026 / Q1 2027</td><td><span class="badge b-amber">$25K MRR trigger</span></td><td style="text-align:right;">$180K + commission</td><td style="text-align:right;">+$22K</td></tr>
+            <tr><td><strong>Customer Success Manager</strong> - Onboarding, retention, expansion</td><td>Q1 2027</td><td><span class="badge b-amber">$600K ARR trigger</span></td><td style="text-align:right;">$156K loaded</td><td style="text-align:right;">+$13K</td></tr>
+            <tr class="t-amber"><td colspan="3"><strong>Team at Series A trigger (H1 2027)</strong></td><td style="text-align:right;color:var(--primary);">8 people</td><td style="text-align:right;color:var(--primary);">$165K / mo</td></tr>
+        </tbody>
+    </table>
+    <p style="font-size:11px;color:rgba(255,255,255,0.28);margin-top:8px;">Israeli-based staff costed at 1.3x gross salary (national insurance, pension 6.5%, severance 8.33%, Keren Hishtalmut 7.5%). VP Sales is US-based, costed at gross. Below-market founder salary through $25K MRR.</p>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">Does $165K per month all-in for 8 people look right for a team of this profile in Israel in 2026? Are our loaded rates realistic or optimistic?</p>
+        <p class="feedback-q">VP Sales at $25K MRR trigger: is that the right inflection point for an enterprise security company, or should it be earlier / later based on comparables?</p>
+    </div>
+</section>
+
+<!-- SECTION 6: BURN AND RUNWAY -->
+<section class="doc-section" id="s6">
+    <div class="doc-header">
+        <div class="doc-num">Section 06</div>
+        <h2 class="doc-title">Burn and Runway</h2>
+        <p class="doc-subtitle">Base case. $100K per month today, rising to $165K at Series A. Net burn declines as revenue scales. $3.23M remaining at Series A trigger.</p>
+    </div>
+
+    <table class="t">
+        <thead><tr><th>Period</th><th style="text-align:right;">Gross Burn / mo</th><th style="text-align:right;">Revenue / mo</th><th style="text-align:right;">Net Burn / mo</th><th style="text-align:right;">Period Total</th><th style="text-align:right;">Cash Remaining</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><strong>Q2 2026</strong> <span style="font-size:11px;color:rgba(255,255,255,0.35);">Seed closes</span></td>
+                <td style="text-align:right;">$100K</td>
+                <td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td>
+                <td style="text-align:right;color:var(--red);">$100K</td>
+                <td style="text-align:right;color:var(--red);">$300K</td>
+                <td style="text-align:right;color:var(--primary);">$4.70M</td>
+            </tr>
+            <tr>
+                <td><strong>Q3 2026</strong> <span style="font-size:11px;color:rgba(255,255,255,0.35);">Full-stack engineer + first revenue</span></td>
+                <td style="text-align:right;">$120K</td>
+                <td style="text-align:right;color:var(--primary);">$12K avg</td>
+                <td style="text-align:right;color:var(--red);">$108K</td>
+                <td style="text-align:right;color:var(--red);">$324K</td>
+                <td style="text-align:right;color:var(--primary);">$4.38M</td>
+            </tr>
+            <tr>
+                <td><strong>Q4 2026</strong> <span style="font-size:11px;color:rgba(255,255,255,0.35);">DevOps + VP Sales hire</span></td>
+                <td style="text-align:right;">$155K</td>
+                <td style="text-align:right;color:var(--primary);">$29K avg</td>
+                <td style="text-align:right;color:var(--red);">$126K</td>
+                <td style="text-align:right;color:var(--red);">$378K</td>
+                <td style="text-align:right;color:var(--primary);">$4.00M</td>
+            </tr>
+            <tr>
+                <td><strong>Q1 2027</strong> <span style="font-size:11px;color:rgba(255,255,255,0.35);">CSM + full team ramping</span></td>
+                <td style="text-align:right;">$165K</td>
+                <td style="text-align:right;color:var(--primary);">$54K avg</td>
+                <td style="text-align:right;color:#E8A020;">$111K</td>
+                <td style="text-align:right;color:#E8A020;">$333K</td>
+                <td style="text-align:right;color:var(--primary);">$3.67M</td>
+            </tr>
+            <tr class="t-amber">
+                <td><strong>Q2-Q3 2027</strong> <span style="font-size:11px;color:rgba(255,255,255,0.5);">Series A raise</span></td>
+                <td style="text-align:right;">$165K</td>
+                <td style="text-align:right;color:var(--primary);">$91K avg</td>
+                <td style="text-align:right;color:#E8A020;">$74K</td>
+                <td style="text-align:right;color:#E8A020;">$444K</td>
+                <td style="text-align:right;color:var(--primary);font-weight:800;">$3.23M</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout" style="margin-top:14px;">
+        <p><strong>$3.23M remaining at Series A trigger</strong> means the raise happens from strength. A 6-month delay on Series A does not create a bridge emergency. Net burn at that point is $74K per month. Sentriq has 43 months of net runway at the Series A burn rate if the raise slips. The $5M seed is sized for a realistic enterprise environment, not an optimistic one.</p>
+    </div>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">$3.23M remaining at Series A trigger: is this a strong position relative to Israeli B2B seed companies you have seen raise Series A? What is the floor VC investors expect at the raise?</p>
+        <p class="feedback-q">Are there cost categories we are systematically underestimating? Legal / IP / employment law in particular for an Israel-incorporated company with US enterprise customers?</p>
+    </div>
+</section>
+
+<!-- SECTION 7: UNIT ECONOMICS -->
+<section class="doc-section" id="s7">
+    <div class="doc-header">
+        <div class="doc-num">Section 07</div>
+        <h2 class="doc-title">Unit Economics</h2>
+        <p class="doc-subtitle">Modeled, not empirical. No paying customers yet. These are the inputs; the question is whether they are defensible.</p>
+    </div>
+
+    <div class="ue-grid">
+        <div class="ue-box"><div class="ue-val" style="color:var(--primary);">$42K</div><div class="ue-label">Average ACV</div><div class="ue-bench">$3,500 MRR per customer</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:var(--primary);">78%</div><div class="ue-label">Gross Margin</div><div class="ue-bench">SaaS + human review blended</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:rgba(255,255,255,0.85);">$10K</div><div class="ue-label">Estimated CAC</div><div class="ue-bench">Founder-led, 3-month cycle</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:var(--primary);">$164K</div><div class="ue-label">LTV</div><div class="ue-bench">5-year avg, 90% gross retention</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:var(--primary);">16x</div><div class="ue-label">LTV / CAC</div><div class="ue-bench">Benchmark: above 3x is strong</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:var(--primary);">3.7 mo</div><div class="ue-label">CAC Payback</div><div class="ue-bench">Benchmark: under 18 months strong</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:rgba(255,255,255,0.85);">115%</div><div class="ue-label">Target NDR</div><div class="ue-bench">Expansion via challenge volume</div></div>
+        <div class="ue-box"><div class="ue-val" style="color:rgba(255,255,255,0.85);">90%+</div><div class="ue-label">Gross Retention Target</div><div class="ue-bench">Series A investor requirement</div></div>
+    </div>
+
+    <div class="callout red">
+        <div class="callout-label red">Model limitation</div>
+        <p>All unit economics are modeled, not measured. CAC of $10K is an estimate for founder-led enterprise sales at seed stage. Gross margin of 78% assumes the human review layer scales at a lower cost ratio than the platform fee. Both assumptions need to be pressure-tested with actual customer data once the product is live. These numbers are the inputs the model is built on, not validated output.</p>
+    </div>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">78% blended gross margin for a SaaS + human review service: is this defensible, or does the human review layer typically compress margins more than modeled as it scales?</p>
+        <p class="feedback-q">$10K CAC for enterprise CISO-led sales: are we substantially underestimating? The model does not include VP Sales compensation in CAC. Should it?</p>
+        <p class="feedback-q">115% NDR: does this require an explicit expansion motion or will hiring volume growth drive it passively? Is this the right target for an infrastructure product in this category?</p>
+    </div>
+</section>
+
+<!-- SECTION 8: DOWNSIDE SCENARIO -->
+<section class="doc-section" id="s8">
+    <div class="doc-header">
+        <div class="doc-num">Section 08</div>
+        <h2 class="doc-title">Downside Scenario: 30% Slower Conversion</h2>
+        <p class="doc-subtitle">SOC 2 delayed one quarter. Sales cycle extends from 3 to 5 months. Customer conversion 30% lower than base.</p>
+    </div>
+
+    <table class="t">
+        <thead><tr><th>Quarter</th><th style="text-align:right;">Customers</th><th style="text-align:right;">MRR</th><th style="text-align:right;">ARR Run Rate</th><th>vs. Base Case</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Q2-Q3 2026</strong></td><td style="text-align:right;color:rgba(255,255,255,0.35);">0</td><td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td><td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td><td style="color:rgba(255,255,255,0.4);">SOC 2 delayed. No revenue yet (base: $18K MRR in Q3).</td></tr>
+            <tr><td><strong>Q4 2026</strong></td><td style="text-align:right;">4</td><td style="text-align:right;color:#E8A020;font-weight:600;">$14K</td><td style="text-align:right;">$168K</td><td style="color:#E8A020;">-65% vs base ($40K MRR). First revenue quarter.</td></tr>
+            <tr><td><strong>Q1 2027</strong></td><td style="text-align:right;">8</td><td style="text-align:right;color:#E8A020;font-weight:600;">$28K</td><td style="text-align:right;">$336K</td><td style="color:#E8A020;">-59% vs base ($68K MRR).</td></tr>
+            <tr><td><strong>Q2 2027</strong></td><td style="text-align:right;">12</td><td style="text-align:right;color:#E8A020;font-weight:600;">$42K</td><td style="text-align:right;">$504K</td><td style="color:rgba(255,255,255,0.5);">-49% vs base.</td></tr>
+            <tr><td><strong>Q3 2027</strong></td><td style="text-align:right;">16</td><td style="text-align:right;color:#E8A020;font-weight:600;">$56K</td><td style="text-align:right;">$672K</td><td style="color:rgba(255,255,255,0.5);">-43% vs base.</td></tr>
+            <tr class="t-amber"><td><strong>Q4 2027-Q1 2028</strong> <span class="badge b-dim" style="margin-left:6px;">Series A</span></td><td style="text-align:right;">22-24</td><td style="text-align:right;color:var(--primary);font-weight:800;">$77-84K</td><td style="text-align:right;color:var(--primary);">$924K-$1M+</td><td style="color:rgba(255,255,255,0.5);">About 2 quarters later than base case.</td></tr>
+        </tbody>
+    </table>
+
+    <h3 class="sh">Downside Cash</h3>
+    <table class="t">
+        <thead><tr><th>Period</th><th style="text-align:right;">Gross Burn / mo</th><th style="text-align:right;">Revenue / mo</th><th style="text-align:right;">Net Burn / mo</th><th style="text-align:right;">Cash Remaining</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Q2 2026</strong></td><td style="text-align:right;">$100K</td><td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td><td style="text-align:right;color:var(--red);">$100K</td><td style="text-align:right;color:var(--primary);">$4.70M</td></tr>
+            <tr><td><strong>Q3 2026</strong> <span style="font-size:11px;color:#E8A020;">SOC 2 delayed</span></td><td style="text-align:right;">$105K</td><td style="text-align:right;color:rgba(255,255,255,0.35);">$0</td><td style="text-align:right;color:var(--red);">$105K</td><td style="text-align:right;color:var(--primary);">$4.39M</td></tr>
+            <tr><td><strong>Q4 2026</strong></td><td style="text-align:right;">$135K</td><td style="text-align:right;color:var(--primary);">$5K avg</td><td style="text-align:right;color:var(--red);">$130K</td><td style="text-align:right;color:var(--primary);">$4.00M</td></tr>
+            <tr><td><strong>Q1 2027</strong></td><td style="text-align:right;">$157K</td><td style="text-align:right;color:var(--primary);">$21K avg</td><td style="text-align:right;color:var(--red);">$136K</td><td style="text-align:right;color:var(--primary);">$3.59M</td></tr>
+            <tr><td><strong>Q2 2027</strong></td><td style="text-align:right;">$157K</td><td style="text-align:right;color:var(--primary);">$35K avg</td><td style="text-align:right;color:#E8A020;">$122K</td><td style="text-align:right;color:var(--primary);">$3.22M</td></tr>
+            <tr class="t-amber"><td><strong>Q4 2027-Q1 2028</strong> <span style="font-size:11px;color:rgba(255,255,255,0.4);">Series A</span></td><td style="text-align:right;">$165K</td><td style="text-align:right;color:var(--primary);">$66K avg</td><td style="text-align:right;color:#E8A020;">$99K</td><td style="text-align:right;color:var(--primary);font-weight:800;">$2.28M</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <p><strong>$2.28M remaining in the downside scenario at Series A trigger.</strong> Two quarters slower than base case. No bridge required. No raise from a weak position. The $5M seed absorbs a 30% conversion miss and a 6-month SOC 2 delay simultaneously and still reaches Series A with meaningful cash.</p>
+    </div>
+</section>
+
+<!-- SECTION 9: SERIES A FRAMEWORK -->
+<section class="doc-section" id="s9">
+    <div class="doc-header">
+        <div class="doc-num">Section 09</div>
+        <h2 class="doc-title">Series A Framework</h2>
+        <p class="doc-subtitle">What metrics trigger the raise, how they compare to Israeli and global benchmarks, and what happens if they are hit late.</p>
+    </div>
+
+    <div class="ms-grid">
+        <div class="ms-item"><div class="ms-dot done"></div><div class="ms-date">Now</div><div class="ms-title">Research Complete</div><div class="ms-desc">Demo live. Design partner conversations active. Investor pipeline active.</div></div>
+        <div class="ms-item"><div class="ms-dot active"></div><div class="ms-date">Q2-Q3 2026</div><div class="ms-title">Seed + Enterprise Ready</div><div class="ms-desc">$5M closes. Engineers hired. SOC 2 Type I in progress.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q4 2026</div><div class="ms-title">First Enterprise Logo</div><div class="ms-desc">$40K MRR. 10 customers. VP Sales triggered.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q1 2027</div><div class="ms-title">$816K ARR</div><div class="ms-desc">16 customers. 2+ enterprise logos. SOC 2 Type II target.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q2-Q3 2027</div><div class="ms-title">Series A</div><div class="ms-desc">$1M+ ARR. 90%+ retention. $3.23M remaining.</div></div>
+    </div>
+
+    <h3 class="sh">Series A Metrics vs. Benchmarks</h3>
+    <table class="t">
+        <thead><tr><th>Metric</th><th>Sentriq Target</th><th>Israeli Cyber Benchmark</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr><td>ARR</td><td style="color:var(--primary);font-weight:700;">$1M+</td><td>$800K-$2M for Israeli cyber at Series A</td><td><span class="badge b-dim">Forecasted Q2-Q3 2027</span></td></tr>
+            <tr><td>Paying customers</td><td style="color:var(--primary);font-weight:700;">22-28</td><td>15+ for enterprise SaaS</td><td><span class="badge b-dim">Forecasted Q2-Q3 2027</span></td></tr>
+            <tr><td>Enterprise logos</td><td style="color:var(--primary);font-weight:700;">2+</td><td>1+ for Series A lead</td><td><span class="badge b-dim">Forecasted Q4 2026</span></td></tr>
+            <tr><td>Gross retention</td><td style="color:var(--primary);font-weight:700;">90%+</td><td>85%+ strong for security</td><td><span class="badge b-dim">Design TBD</span></td></tr>
+            <tr><td>NDR</td><td style="color:var(--primary);font-weight:700;">115%</td><td>100%+ good, 120%+ exceptional</td><td><span class="badge b-dim">Design TBD</span></td></tr>
+            <tr><td>SOC 2 Type II</td><td style="color:var(--primary);font-weight:700;">Complete</td><td>Required for enterprise procurement</td><td><span class="badge b-dim">Target Q1 2027</span></td></tr>
+            <tr><td>Team size</td><td style="color:var(--primary);font-weight:700;">8-10</td><td>Sufficient for Series A ops</td><td><span class="badge b-dim">Target H1 2027</span></td></tr>
+            <tr><td>Gross margin</td><td style="color:var(--primary);font-weight:700;">75-82%</td><td>70%+ for SaaS Series A</td><td><span class="badge b-dim">Built into pricing</span></td></tr>
+            <tr><td>Cash remaining</td><td style="color:var(--primary);font-weight:700;">$3.23M+ (base) / $2.28M (downside)</td><td>Raise from strength, not pressure</td><td><span class="badge b-dim">See Section 06</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="feedback-box">
+        <div class="feedback-label">Questions for Tamir</div>
+        <p class="feedback-q">Are the Israeli cyber Series A benchmarks we have used accurate for 2026-2027? Have the goalposts moved post-2022 rate environment or post-SVB?</p>
+        <p class="feedback-q">For an Israeli security company with a US enterprise buyer thesis: should the Series A be raised in the US or Israel? Does the location of the investor materially affect the raise timeline or valuation expectations?</p>
+        <p class="feedback-q">Are there Series A investors in PwC's network or startup practice who specifically focus on Israeli enterprise security at the $1M ARR stage?</p>
+    </div>
+</section>
+
+<!-- SECTION 10: QUESTIONS FOR TAMIR -->
+<section class="doc-section" id="s10">
+    <div class="doc-header">
+        <div class="doc-num">Section 10</div>
+        <h2 class="doc-title">Consolidated: Questions for Tamir</h2>
+        <p class="doc-subtitle">All feedback asks in one place. We are asking for a candid read, not validation.</p>
+    </div>
+
+    <h3 class="sh">On the financial model</h3>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">Revenue ramp</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">$0 to $1M ARR in 18 months from first revenue: is this a reasonable target for an Israeli B2B security infrastructure company, or are we building to an optimistic benchmark? Where do comparable companies actually land?</p>
+        </div>
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">SOC 2 gate</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">The entire model is gated on SOC 2 Type I in Q3 2026. Is a 9-month readiness timeline realistic from seed close in June? What are the most common causes of slippage, and should we be padding this further in the model?</p>
+        </div>
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">Headcount and loaded costs</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">$165K per month for 8 people in Israel plus a US VP Sales: are our loaded cost assumptions accurate for H1 2027 Israel market rates? Have salaries moved materially since 2024?</p>
+        </div>
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">Series A benchmarks</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">Are the Israeli cyber Series A metrics we are targeting consistent with what you are seeing in the market today? Has the bar shifted post-2022?</p>
+        </div>
+    </div>
+
+    <h3 class="sh">On financial services clients</h3>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.35);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">HSBC and Wells Fargo procurement</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">We have warm paths to HSBC and Wells Fargo. Maya's direct knowledge is the reason she is in this meeting. How long does a new security vendor typically take to move from first meeting to a paid pilot at a Tier 1 bank? Is SOC 2 Type I sufficient, or do they require Type II? What is the procurement checklist from the inside?</p>
+        </div>
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.35);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">Deal size at FS scale</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">Our ACV assumption is $42K. At a bank with 80,000+ employees and active global hiring, is that the right order of magnitude or are enterprise FS deals typically structured differently (per-region, per-entity, volume-tiered)? Should we be modeling a different deal architecture for FS vs. tech company buyers?</p>
+        </div>
+        <div style="padding:14px 18px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;border-left:3px solid rgba(232,160,32,0.35);">
+            <div style="font-size:11px;font-weight:700;color:rgba(232,160,32,0.6);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px;">EU AI Act as a procurement accelerant</div>
+            <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.65;">We are modeling the EU AI Act August 2026 deadline as a compliance driver that accelerates procurement decisions for European and global financial institutions. Is this realistic from PwC's current advisory work with FS clients, or is it too early for procurement teams to be acting on it?</p>
+        </div>
+    </div>
+
+    <div style="margin-top:28px;padding:22px 26px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:var(--primary);margin-bottom:10px;">Contact</div>
+        <div style="font-size:17px;font-weight:800;color:var(--white);letter-spacing:-0.01em;">samuel@sentriq.co</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.38);margin-top:3px;">Co-Founder, CEO &nbsp;·&nbsp; sentriq.co</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.52);margin-top:10px;line-height:1.65;">Best format for feedback: a call. Second best: annotated notes via email. Third best: a voice message. Any of these works. The goal is a candid read on the model from someone who sees these numbers across a portfolio.</p>
+    </div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+    // Active sidebar link on scroll
+    var links = document.querySelectorAll('.sidebar-link[href^="#"]');
+    var sections = [];
+    links.forEach(function(l){ var id = l.getAttribute('href').slice(1); var s = document.getElementById(id); if(s) sections.push({id:id,el:s,link:l}); });
+    function onScroll(){
+        var y = window.scrollY + 80;
+        var active = sections[0];
+        sections.forEach(function(s){ if(s.el.offsetTop <= y) active = s; });
+        links.forEach(function(l){ l.classList.remove('active'); });
+        if(active) active.link.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+})();
+</script>
+</body>
+</html>
