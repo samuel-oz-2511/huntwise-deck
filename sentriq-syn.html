@@ -91,7 +91,7 @@
         }
 
         .confidential { position: fixed; top: 16px; right: 22px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100; }
-        .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); }
+        .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); opacity: 0; transition: opacity 0.3s ease; }
 
         .label {
             font-size: 11px; font-weight: 600; text-transform: uppercase;
@@ -179,15 +179,15 @@
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; margin-bottom:14px;">
 <div style="padding:22px 18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.18); border-radius:12px; text-align:center;">
 <div class="stat-num" style="color:var(--red); font-size:clamp(48px,6vw,76px); letter-spacing:-0.04em;">1,500+</div>
-<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">applications per day from a single bot operator. YC-funded. Growing 20%/year.</p>
+<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">applications/day from a single bot operator.<br/>YC-funded. Growing 20% per year.</p>
 </div>
 <div style="padding:22px 18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.18); border-radius:12px; text-align:center;">
 <div class="stat-num" style="color:var(--red); font-size:clamp(48px,6vw,76px); letter-spacing:-0.04em;">41%</div>
-<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">of companies already hired a fake candidate. Not nearly hired. Hired. Onboarded. Given access.</p>
+<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">of companies hired a fake candidate.<br/>Hired. Onboarded. Given access.</p>
 </div>
 <div style="padding:22px 18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.18); border-radius:12px; text-align:center;">
 <div class="stat-num" style="color:var(--red); font-size:clamp(48px,6vw,76px); letter-spacing:-0.04em;">$240K</div>
-<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">maximum cost of one fraudulent hire. Before the security incident that follows access.</p>
+<p style="font-size:12px; color:var(--text); margin-top:10px; line-height:1.6;">maximum cost of one fraudulent hire.<br/>Before the security incident that follows.</p>
 </div>
 </div>
 <div style="margin-bottom:14px; padding:16px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; border-left:3px solid rgba(239,68,68,0.5);">
@@ -411,7 +411,7 @@
 <p style="font-size:10px; color:var(--text-dim); margin-top:8px;">Sentriq runs before the application enters the ATS. The trust signal travels with it through the entire pipeline. No blocking. No friction. The candidate never knows it's there.</p>
 </div>
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
-<div style="padding:18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:12px; opacity:0.85;">
+<div style="padding:18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:12px; opacity:0.95;">
 <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.30); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 1 - Passive</div>
 <p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Behavioral metadata captured as the candidate fills the form. Invisible. No friction. Detects fraud signals, bot activity, overfitting, skills anomalies, and synthetic applications before submission.</p>
 <div style="display:flex; flex-wrap:wrap; gap:4px;">
@@ -650,7 +650,7 @@
 <p style="font-size:11.5px; color:var(--text); line-height:1.55;">$490M+ in capital flowing to late-funnel deepfake detection confirms hiring fraud is a funded enterprise security category. All three operate after Sentriq in the funnel. All three validate the ask without competing for the same position.</p>
 </div>
 <div style="padding:14px 16px; background:rgba(232,160,32,0.09); border:1.5px solid rgba(232,160,32,0.35); border-radius:10px; border-top:3px solid #E8A020;">
-<div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">The Permanent Moat</div>
+<div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Structural Architecture</div>
 <p style="font-size:11.5px; color:rgba(255,255,255,0.85); line-height:1.55;">The cross-company graph requires direct candidate consent to a neutral party. Every ATS vendor is structurally excluded by their own commercial agreements. This constraint does not change with funding or time.</p>
 </div>
 </div>
@@ -851,20 +851,20 @@
 <div style="display:flex; flex-direction:column; gap:7px;">
 <div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q3 2026</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">Product live in production. SOC 2 audit engaged. Design partner pilots running. Each lead at a different stage of the process.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.5;">Product live in production. SOC 2 audit engaged. Design partner pilots running.</p>
 </div>
 <div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q4 2026</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">SOC 2 Type I complete. First paying contracts signed. Enterprise procurement open.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.5;">SOC 2 Type I complete. First paying contracts signed. Enterprise procurement open.</p>
 </div>
 <div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q1 2027</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">10-12 paying customers. ~$400K ARR. Approaching the 15-company graph threshold: cross-company fingerprint matching begins returning signal no single company can see alone.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.5;">10-12 paying customers. ~$400K ARR. Graph threshold at 15 companies: cross-company detection begins.</p>
 </div>
 <div style="padding:14px 16px; background:rgba(232,160,32,0.10); border:1px solid rgba(232,160,32,0.35); border-radius:10px; border-top:2px solid #E8A020; margin-top:4px;">
 <div style="font-size:9px; font-weight:700; color:rgba(232,160,32,0.6); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:3px;">The destination</div>
 <div style="font-size:11px; font-weight:700; color:#E8A020; margin-bottom:4px;">Q4 2027: Series A milestone</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">$1M ARR. 22-28 customers. 2 enterprise logos. 90%+ gross retention. Network graph operational: the product compounds. Each new customer makes detection stronger for every existing one.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.5;">$1M ARR. 22-28 customers. 2 enterprise logos. 90%+ gross retention. Network graph operational: each new customer makes detection stronger for every existing one.</p>
 </div>
 </div>
 </div>
@@ -873,8 +873,10 @@
 </div>
 <div class="slide bg-dark" data-index="12">
 <div class="slide-inner">
-<span class="label">The Ask</span>
-<h2>$5M seed. <span style="color:var(--primary);">The right partner matters.</span></h2>
+<div style="text-align:center; margin-bottom:20px;">
+<span class="label" style="justify-content:center;">The Ask</span>
+<h2 style="font-size:clamp(24px,3.5vw,46px);">$5M seed. <span style="color:var(--primary);">The right partner matters.</span></h2>
+</div>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
 <div>
 <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Use of funds - $5M</div>
@@ -885,7 +887,7 @@
 <div style="font-size:12px; font-weight:600; color:var(--white);">AI Detection + Product</div>
 <div style="font-size:12px; font-weight:700; color:var(--primary);">40% &nbsp;<span style="font-weight:400; color:var(--text-dim); font-size:11px;">$2M</span></div>
 </div>
-<div style="height:6px; background:rgba(255,255,255,0.08); border-radius:3px;"><div style="height:100%; width:40%; background:#E8A020; border-radius:3px;"></div></div>
+<div style="height:8px; background:rgba(255,255,255,0.08); border-radius:4px;"><div style="height:100%; width:40%; background:#E8A020; border-radius:4px; box-shadow:0 0 8px rgba(232,160,32,0.4);"></div></div>
 <div style="font-size:10px; color:var(--text-dim); margin-top:3px;">Behavioral engine, platform integrations, product in production</div>
 </div>
 <div>
@@ -893,7 +895,7 @@
 <div style="font-size:12px; font-weight:600; color:var(--white);">Engineering Team</div>
 <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.7);">30% &nbsp;<span style="font-weight:400; color:var(--text-dim); font-size:11px;">$1.5M</span></div>
 </div>
-<div style="height:6px; background:rgba(255,255,255,0.08); border-radius:3px;"><div style="height:100%; width:30%; background:rgba(232,160,32,0.5); border-radius:3px;"></div></div>
+<div style="height:8px; background:rgba(255,255,255,0.08); border-radius:4px;"><div style="height:100%; width:30%; background:rgba(232,160,32,0.65); border-radius:4px;"></div></div>
 <div style="font-size:10px; color:var(--text-dim); margin-top:3px;">3 hires: ML engineer, backend, full-stack</div>
 </div>
 <div>
@@ -901,7 +903,7 @@
 <div style="font-size:12px; font-weight:600; color:var(--white);">GTM + Customer Dev</div>
 <div style="font-size:12px; font-weight:700; color:rgba(232,160,32,0.8);">20% &nbsp;<span style="font-weight:400; color:var(--text-dim); font-size:11px;">$1M</span></div>
 </div>
-<div style="height:6px; background:rgba(255,255,255,0.08); border-radius:3px;"><div style="height:100%; width:20%; background:rgba(232,160,32,0.4); border-radius:3px;"></div></div>
+<div style="height:8px; background:rgba(255,255,255,0.08); border-radius:4px;"><div style="height:100%; width:20%; background:rgba(232,160,32,0.5); border-radius:4px;"></div></div>
 <div style="font-size:10px; color:var(--text-dim); margin-top:3px;">Founder-led sales, design partners, US market entry</div>
 </div>
 <div>
@@ -909,7 +911,7 @@
 <div style="font-size:12px; font-weight:600; color:var(--white);">Security + Compliance</div>
 <div style="font-size:12px; font-weight:700; color:rgba(232,160,32,0.6);">10% &nbsp;<span style="font-weight:400; color:var(--text-dim); font-size:11px;">$500K</span></div>
 </div>
-<div style="height:6px; background:rgba(255,255,255,0.08); border-radius:3px;"><div style="height:100%; width:10%; background:rgba(232,160,32,0.3); border-radius:3px;"></div></div>
+<div style="height:8px; background:rgba(255,255,255,0.08); border-radius:4px;"><div style="height:100%; width:10%; background:rgba(232,160,32,0.4); border-radius:4px;"></div></div>
 <div style="font-size:10px; color:var(--text-dim); margin-top:3px;">SOC 2 Type I, privacy counsel, regulatory positioning</div>
 </div>
 </div>
@@ -974,6 +976,8 @@
         slides[cur].classList.add('active');
         document.getElementById('slideCounter').textContent = (cur + 1) + ' / ' + total;
         document.getElementById('progressBar').style.width = ((cur + 1) / total * 100) + '%';
+        const badge = document.querySelector('.meeting-badge');
+        if (badge) badge.style.opacity = cur === 0 ? '0' : '1';
     }
 
     function navigate(dir) { showSlide(cur + dir); }
