@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ FRIENDS AND FAMILY DECK
+Password: sentriqff2026
+ntfy topic: sentriq-ff-sk26
+=============================================================
+Generic version. No meeting-specific context.
+Safe to send to any personal network contact.
+=============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq: A Personal Note from Samuel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090F;
+            --card: #0D0E1A;
+            --border: rgba(255,255,255,0.08);
+            --amber: #E8A020;
+            --amber-dark: #B87010;
+            --red: #E05555;
+            --text: rgba(255,255,255,0.82);
+            --muted: rgba(255,255,255,0.52);
+            --dim: rgba(255,255,255,0.28);
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(9,9,15,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 0 32px; height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-logo {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 15px; font-weight: 800; color: var(--amber);
+            letter-spacing: -0.03em;
+        }
+        .topbar-badge {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* MAIN LAYOUT */
+        .page { padding-top: 56px; max-width: 760px; margin: 0 auto; padding-left: 32px; padding-right: 32px; padding-bottom: 100px; }
+
+        /* SECTION SPACING */
+        .section { padding: 72px 0 0; }
+        .section:first-child { padding-top: 80px; }
+
+        /* LABELS */
+        .label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--amber); margin-bottom: 14px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .label::before {
+            content: ''; display: block; width: 20px; height: 2px;
+            background: var(--amber); flex-shrink: 0;
+        }
+
+        /* HEADINGS */
+        h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 20px; }
+        h2 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 16px; }
+        h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+
+        /* BODY TEXT */
+        .body { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 18px; }
+        .body strong { color: var(--white); }
+        .body-sm { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+
+        /* DIVIDER */
+        .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.07); margin: 0; }
+
+        /* HERO SECTION */
+        .hero-name {
+            font-size: clamp(36px, 6vw, 64px); font-weight: 900;
+            letter-spacing: -0.05em; line-height: 1;
+            background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.55));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: clamp(15px, 2.5vw, 19px); color: var(--muted);
+            font-weight: 500; line-height: 1.6; max-width: 580px; margin-top: 20px;
+        }
+        .hero-meta {
+            margin-top: 32px; display: flex; align-items: center; gap: 20px;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item { font-size: 13px; color: var(--dim); }
+        .hero-meta-item strong { color: var(--white); font-weight: 600; }
+        .hero-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+
+        /* STAT GRID */
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+        .stat-card {
+            padding: 22px 20px; background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; text-align: center;
+        }
+        .stat-val { font-size: clamp(26px, 3.5vw, 38px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
+        .stat-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+        .stat-src { font-size: 10px; color: var(--dim); margin-top: 5px; font-style: italic; }
+
+        /* CARD */
+        .card {
+            padding: 24px 28px; background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; margin-bottom: 14px;
+        }
+        .card-amber { border-left: 3px solid var(--amber); background: rgba(232,160,32,0.06); }
+        .card-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+        .card-body { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+        /* LAYER STACK */
+        .stack { display: flex; flex-direction: column; gap: 8px; margin: 24px 0; }
+        .stack-row {
+            display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px;
+            background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+        }
+        .stack-num {
+            width: 28px; height: 28px; border-radius: 50%; background: rgba(232,160,32,0.15);
+            border: 1.5px solid rgba(232,160,32,0.35); display: flex; align-items: center;
+            justify-content: center; font-size: 12px; font-weight: 700; color: var(--amber);
+            flex-shrink: 0; margin-top: 1px;
+        }
+        .stack-body { flex: 1; }
+        .stack-label { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .stack-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+        /* PERSON */
+        .person { display: flex; gap: 18px; padding: 22px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 14px; }
+        .avatar {
+            width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(232,160,32,0.12); border: 1.5px solid rgba(232,160,32,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 700; color: var(--amber);
+        }
+        .person-body { flex: 1; }
+        .person-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+        .person-role { font-size: 12px; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
+        .person-bio { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+        /* TRACTION ROW */
+        .traction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+        .traction-item {
+            padding: 20px; background: var(--card); border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .traction-icon { font-size: 20px; margin-bottom: 10px; }
+        .traction-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+        .traction-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+        /* ASK SECTION */
+        .ask-box {
+            padding: 32px; background: rgba(232,160,32,0.07);
+            border: 1px solid rgba(232,160,32,0.22);
+            border-radius: 16px;
+            border-top: 3px solid var(--amber);
+            margin: 28px 0;
+        }
+        .ask-line { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .ask-line:last-child { border-bottom: none; padding-bottom: 0; }
+        .ask-key { font-size: 13px; color: var(--muted); }
+        .ask-val { font-size: 14px; font-weight: 700; color: var(--white); text-align: right; }
+        .ask-val.amber { color: var(--amber); }
+
+        /* CTA */
+        .cta-box {
+            padding: 40px 32px; text-align: center;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 20px; margin-top: 60px;
+        }
+        .cta-email {
+            font-size: clamp(20px, 3vw, 28px); font-weight: 800;
+            color: var(--amber); letter-spacing: -0.02em;
+            text-decoration: none; display: inline-block; margin-top: 14px;
+        }
+        .cta-email:hover { color: var(--amber-dark); }
+
+        /* BADGE */
+        .badge {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; font-weight: 600;
+        }
+        .badge-amber { background: rgba(232,160,32,0.14); color: var(--amber); border: 1px solid rgba(232,160,32,0.28); }
+        .badge-dim { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 80px; padding: 28px 0;
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .footer-text { font-size: 11px; color: var(--dim); }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .page { padding-left: 20px; padding-right: 20px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .traction-grid { grid-template-columns: 1fr; }
+            .ask-line { flex-direction: column; gap: 4px; }
+            .person { flex-direction: column; }
+            .topbar { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="text-align:center;max-width:360px;width:100%;padding:0 24px;">
+        <div style="margin-bottom:28px;">
+            <svg width="40" height="40" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 14px;filter:drop-shadow(0 0 10px rgba(232,160,32,0.45));">
+                <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            </svg>
+            <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.03em;">Sentriq</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;">Personal note from Samuel</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Access code"
+            autocomplete="off" onkeydown="if(event.key==='Enter')checkPass()"
+            style="width:100%;padding:14px 18px;font-size:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.13);border-radius:10px;color:#fff;outline:none;font-family:inherit;text-align:center;letter-spacing:0.1em;margin-bottom:12px;transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='rgba(232,160,32,0.55)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.13)'"
+        >
+        <button onclick="checkPass()" style="width:100%;padding:14px;font-size:14px;font-weight:800;background:#E8A020;border:none;border-radius:10px;color:#09090F;cursor:pointer;font-family:inherit;transition:background 0.2s;"
+            onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">
+            Open
+        </button>
+        <p id="gateErr" style="margin-top:10px;font-size:12px;color:rgba(224,85,85,0.85);display:none;">Incorrect code.</p>
+    </div>
+</div>
+
+<script>
+function checkPass(){
+    var v = document.getElementById('gateInput').value;
+    // Password: sentriqff2026
+    if(btoa(v) === 'c2VudHJpcWZmMjAyNg=='){
+        document.getElementById('gate').style.display='none';
+        document.getElementById('topbar').style.display='';
+        document.getElementById('main').style.display='';
+        try{
+            var ts = new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem',hour12:false});
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            fetch('https://ntfy.sh/sentriq-ff-sk26',{
+                method:'POST', mode:'no-cors',
+                headers:{'Title':'F&F Deck Opened','Priority':'default','Tags':'envelope'},
+                body:'Someone opened the F&F deck.\nTime (IL): '+ts+'\nViewer timezone: '+tz
+            });
+        }catch(e){}
+    } else {
+        document.getElementById('gateErr').style.display='block';
+        document.getElementById('gateInput').value='';
+        document.getElementById('gateInput').focus();
+        setTimeout(function(){ document.getElementById('gateErr').style.display='none'; },2800);
+    }
+}
+</script>
+
+<!-- TOP BAR -->
+<div class="topbar" id="topbar" style="display:none;">
+    <span class="topbar-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none">
+            <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        </svg>
+        Sentriq
+    </span>
+    <span class="topbar-badge">Personal / Confidential</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main" style="display:none;">
+<div class="page">
+
+    <!-- HERO -->
+    <div class="section">
+        <div class="label">A personal note from Samuel Kemper</div>
+        <h1 class="hero-name">I am building<br>something real.</h1>
+        <p class="hero-sub">
+            This is not a cold pitch. You know me. I wanted you to see exactly what I am working on and give you the chance to be part of it early, before the institutional round closes.
+        </p>
+        <div class="hero-meta">
+            <div class="hero-meta-item"><strong>Company:</strong> Sentriq</div>
+            <div class="hero-dot"></div>
+            <div class="hero-meta-item"><strong>Stage:</strong> Pre-revenue seed</div>
+            <div class="hero-dot"></div>
+            <div class="hero-meta-item"><strong>Round:</strong> $5M seed</div>
+            <div class="hero-dot"></div>
+            <div class="hero-meta-item"><strong>April 2026</strong></div>
+        </div>
+    </div>
+
+    <div class="divider" style="margin-top:56px;"></div>
+
+    <!-- THE PROBLEM -->
+    <div class="section">
+        <div class="label">The Problem</div>
+        <h2>Hiring fraud is real and getting much worse.</h2>
+        <p class="body">
+            You have seen the headlines: North Korean operatives applying to US tech and defense companies, getting hired, and stealing intellectual property. This is not a fringe event. The FBI and Department of Justice have issued formal advisories. Multiple indictments have named US companies that were successfully infiltrated.
+        </p>
+        <p class="body">
+            Beyond nation-state threats, AI has made it possible for anyone to generate a convincing CV, pass an automated screening round, and apply to 1,500 jobs per day on autopilot. One Deel operations role in 2024 received 6,500 applications in two weeks. Recruiters estimated 90% were noise or fraud.
+        </p>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-val">41%</div>
+                <div class="stat-lbl">of enterprises report hiring a fraudulent or misrepresented candidate</div>
+                <div class="stat-src">Checkr / SHRM, 2024</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">1 in 4</div>
+                <div class="stat-lbl">candidate profiles projected to contain AI-generated content by 2028</div>
+                <div class="stat-src">Gartner, 2024</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">2x</div>
+                <div class="stat-lbl">increase in AI-assisted cheating in hiring within a 6-month period</div>
+                <div class="stat-src">Canditech / Codility, 2024</div>
+            </div>
+        </div>
+
+        <p class="body">
+            The hiring funnel is the last major attack surface without a dedicated security layer. Email has spam filters. Web traffic has firewalls. Identity has verification. The job application has nothing. <strong>That is the gap Sentriq fills.</strong>
+        </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- THE PRODUCT -->
+    <div class="section">
+        <div class="label">The Product</div>
+        <h2>A trust layer for job applications.</h2>
+        <p class="body">
+            Think of it as a CAPTCHA for hiring. When you submit a web form and see "I'm not a robot," that is Cloudflare's bot detection running silently before you ever reach the site. Sentriq is the same concept applied to job applications: a pre-submission layer that analyzes behavioral signals and surfaces a trust signal to the recruiter, before the application enters the ATS.
+        </p>
+        <p class="body">
+            Recruiters do not see a score or a decision. They see one signal per application: review this one. No automated rejections. No biometrics. A human makes the call.
+        </p>
+
+        <div class="stack">
+            <div class="stack-row">
+                <div class="stack-num">1</div>
+                <div class="stack-body">
+                    <div class="stack-label">Behavioral Baseline</div>
+                    <div class="stack-desc">Runs silently on every application. Flags statistical anomalies: typing cadence, paste patterns, form completion timing, cross-platform consistency. No friction for real candidates.</div>
+                </div>
+            </div>
+            <div class="stack-row">
+                <div class="stack-num">2</div>
+                <div class="stack-body">
+                    <div class="stack-label">Trust Layer</div>
+                    <div class="stack-desc">Triggered for flagged applications only (5-10%). A short behavioral challenge calibrated to the specific role and claimed background. Automation tools cannot pass it. Real candidates barely notice it.</div>
+                </div>
+            </div>
+            <div class="stack-row">
+                <div class="stack-num">3</div>
+                <div class="stack-body">
+                    <div class="stack-label">Async Personalized Challenge</div>
+                    <div class="stack-desc">Human analyst review for escalated applications. One trust signal surfaced in the recruiter's review queue. EU AI Act-compliant human oversight built in.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- WHY NOW -->
+    <div class="section">
+        <div class="label">Why Now</div>
+        <h2>Three forces converging in 2026.</h2>
+
+        <div class="card card-amber" style="margin-bottom:14px;">
+            <div class="card-title">EU AI Act: August 2, 2026 deadline</div>
+            <div class="card-body">The EU has classified AI tools used in hiring as high-risk systems. Every enterprise with an AI-assisted hiring process is legally required to implement human oversight by August 2026. Sentriq's Layer 3 human review is the compliance answer. This creates a hard purchase event with a fixed deadline.</div>
+        </div>
+        <div class="card">
+            <div class="card-title">DPRK headlines are accelerating CISO awareness</div>
+            <div class="card-body">KnowBe4 (a cybersecurity company) hired a North Korean operative in 2024. He passed four interviews and a background check. The FBI issued a formal advisory. The DOJ indicted 14 DPRK nationals for generating $88M through fraudulent employment at US companies including a defense contractor and a major bank. This is now a board-level concern at every enterprise security team.</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Mass-apply tools have hit scale</div>
+            <div class="card-body">LazyApply sends 1,500 applications per day per user. Simplify.jobs has 1M+ registered users. Y Combinator funded a mass-apply tool in their S26 batch. The infrastructure for application flooding is mature, widely used, and growing. Hiring teams are overwhelmed and have no defense layer.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- THE TEAM -->
+    <div class="section">
+        <div class="label">The Team</div>
+        <h2>We built the attack tool first.</h2>
+        <p class="body">
+            Ben and I spent 18 months building Huntwise, a CV optimization tool used by real candidates in live ATS systems. We ran 30 experiments across Greenhouse, Comeet, and Workday. We documented 17 ATS exploitation rules. That 73,500-line research corpus is the foundation of Sentriq's detection engine. We understand how hiring fraud works because we built the tooling that does it.
+        </p>
+
+        <div class="person">
+            <div class="avatar">SK</div>
+            <div class="person-body">
+                <div class="person-name">Samuel Kemper</div>
+                <div class="person-role">Co-Founder, CEO</div>
+                <div class="person-bio">Innovation Officer, IDF Unit 81 (elite intelligence technology unit). 2x founder: raised $1.1M for CYou Retail (Nielsen Innovate Fund), founded TechRuiter IL (talent acquisition, team of 7). Head of Operations at Upword. Deal Partner at Boardy Ventures. Spent 18 months operating inside Greenhouse, Comeet, and Workday as a professional recruiter before co-building Huntwise.</div>
+            </div>
+        </div>
+
+        <div class="person">
+            <div class="avatar">BC</div>
+            <div class="person-body">
+                <div class="person-name">Ben Czarninski</div>
+                <div class="person-role">Co-Founder, CTO</div>
+                <div class="person-bio">4 years in IDF Military Intelligence (Gama Graduate program, the IDF's elite software engineering track). Penetration tester at KPMG. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA. TAU MBA and BSc Computer Science. Built the entire 73,500-line Huntwise codebase and ran the live ATS attack research that forms Sentriq's detection foundation.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- WHERE WE ARE -->
+    <div class="section">
+        <div class="label">Where We Are</div>
+        <h2>Early stages. All the right signals.</h2>
+
+        <div class="traction-grid">
+            <div class="traction-item">
+                <div class="traction-title">Demo complete</div>
+                <div class="traction-body">Full working demo of all three layers. Product shows clearly and concisely in a 20-minute meeting.</div>
+            </div>
+            <div class="traction-item">
+                <div class="traction-title">Design partners in pipeline</div>
+                <div class="traction-body">Active conversations with 5 companies across enterprise software, marketing tech, fintech, and financial services. Each at a different stage.</div>
+            </div>
+            <div class="traction-item">
+                <div class="traction-title">Investors advancing</div>
+                <div class="traction-body">UpWest (IC stage), NFX Fast Israel (data room submitted), SYN Ventures, Hetz Ventures all in process. $5M target.</div>
+            </div>
+            <div class="traction-item">
+                <div class="traction-title">73,500-line research corpus</div>
+                <div class="traction-body">Empirical. Not theoretical. Built from running live experiments inside real ATS systems over 18 months. No competitor has this.</div>
+            </div>
+        </div>
+
+        <div class="card card-amber" style="margin-top:8px;">
+            <div class="card-title">What we are building toward</div>
+            <div class="card-body">SOC 2 Type I completion in Q3 2026 opens the first enterprise contracts. First revenue in Q3 2026. Series A at $1M ARR in Q2-Q3 2027. The $5M seed funds 24+ months of runway including the full compliance and engineering buildout needed to land enterprise customers.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- THE ASK -->
+    <div class="section">
+        <div class="label">The Opportunity</div>
+        <h2>Joining the round.</h2>
+        <p class="body">
+            This is the friends and family tranche of the $5M seed. I am opening a small allocation before the institutional close so that the people who know me personally can participate on the same terms as professional investors.
+        </p>
+
+        <div class="ask-box">
+            <div class="ask-line">
+                <span class="ask-key">Round</span>
+                <span class="ask-val amber">$5M Seed</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Instrument</span>
+                <span class="ask-val">SAFE note (Y Combinator standard)</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Valuation cap</span>
+                <span class="ask-val">To be shared directly</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Minimum check</span>
+                <span class="ask-val">$10,000</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Pro-rata rights</span>
+                <span class="ask-val">Included for checks of $25K+</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Documents</span>
+                <span class="ask-val">Standard YC SAFE. Share in full on request.</span>
+            </div>
+            <div class="ask-line">
+                <span class="ask-key">Use of funds</span>
+                <span class="ask-val">Engineering (40%), GTM (20%), SOC 2 and compliance (10%), G and A (5%), strategic buffer (25%)</span>
+            </div>
+        </div>
+
+        <p class="body-sm">
+            This is a high-risk, early-stage investment. There is no live product and no revenue yet. I am sharing this because you know me and I believe in what we are building. Invest only what you are comfortable losing. I will update every investor personally as the company progresses.
+        </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+        <svg width="44" height="44" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 18px;filter:drop-shadow(0 0 10px rgba(232,160,32,0.4));">
+            <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        </svg>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Interested, or have questions? Reach out directly.</div>
+        <a href="mailto:samuel@sentriq.co" class="cta-email">samuel@sentriq.co</a>
+        <div style="margin-top:16px;font-size:12px;color:var(--dim);">I will respond personally. No pitch calls unless you want one.</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-text">Sentriq | sentriq.co | April 2026</div>
+        <div class="footer-text">Personal and confidential. Do not forward.</div>
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
