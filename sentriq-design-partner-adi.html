@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentriq - For Adi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563EB;
+            --primary: #E8A020;
             --primary-dark: #1D4ED8;
             --primary-light: #EFF6FF;
             --primary-50: #DBEAFE;
-            --text-dark: #0F172A;
-            --text-medium: #334155;
+            --text-dark: #09090F;
+            --text-medium: #0D0E1A;
             --text-light: #64748B;
             --white: #FFFFFF;
-            --gray-50: #F8FAFC;
-            --gray-100: #F1F5F9;
-            --gray-200: #E2E8F0;
-            --gray-800: #1E293B;
-            --gray-900: #0F172A;
+            --gray-50: #09090F;
+            --gray-100: #09090F;
+            --gray-200: #161728;
+            --gray-800: #0D0E1A;
+            --gray-900: #09090F;
             --green: #10B981;
             --orange: #F59E0B;
             --red: #EF4444;
@@ -30,7 +30,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html, body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
             background: var(--gray-900);
             color: var(--white);
             overflow: hidden;
@@ -127,12 +127,12 @@
 
         .progress-bar {
             position: fixed; top: 0; left: 0; height: 4px;
-            background: linear-gradient(90deg, #2563EB, #7C3AED);
+            background: linear-gradient(135deg, #09090F 0%, #0D0E1A 60%, #09090F 100%);
             box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
             transition: width 0.4s ease; z-index: 100;
         }
 
-        .bg-dark { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+        .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 60%, #09090F 100%); }
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -140,7 +140,7 @@
             100% { background-position: 0% 50%; }
         }
         .bg-cyber-animated {
-            background: linear-gradient(135deg, #0F172A, #1E3A8A, #2563EB, #1E3A8A, #0F172A);
+            background: linear-gradient(135deg, #09090F 0%, #0D0E1A 60%, #09090F 100%);
             background-size: 300% 300%;
             animation: gradientShift 12s ease infinite;
         }
@@ -184,10 +184,10 @@
         .stat-value { font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: var(--primary); letter-spacing: -0.03em; line-height: 1; }
 
         .pill { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
-        .pill-cyan { background: rgba(37, 99, 235, 0.2); color: #93C5FD; border-color: rgba(37, 99, 235, 0.2); }
-        .pill-green { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.2); }
-        .pill-orange { background: rgba(245, 158, 11, 0.2); color: #FCD34D; border-color: rgba(245, 158, 11, 0.2); }
-        .pill-purple { background: rgba(124, 58, 237, 0.2); color: #C4B5FD; border-color: rgba(124, 58, 237, 0.2); }
+        .pill-cyan { background: rgba(37, 99, 235, 0.2); color: #6A6A9A; border-color: rgba(37, 99, 235, 0.2); }
+        .pill-green { background: rgba(16, 185, 129, 0.2); color: #E8A020; border-color: rgba(16, 185, 129, 0.2); }
+        .pill-orange { background: rgba(245, 158, 11, 0.2); color: #E8A020; border-color: rgba(245, 158, 11, 0.2); }
+        .pill-purple { background: rgba(124, 58, 237, 0.2); color: #2A2A40; border-color: rgba(124, 58, 237, 0.2); }
 
         .threat-stat {
             text-align: center; padding: 20px;
@@ -243,7 +243,7 @@
             100% { background-position: 200% center; }
         }
         .shimmer-text {
-            background: linear-gradient(90deg, #FFFFFF 0%, #93C5FD 25%, #FFFFFF 50%, #93C5FD 75%, #FFFFFF 100%);
+            background: linear-gradient(90deg, #FFFFFF 0%, #6A6A9A 25%, #FFFFFF 50%, #6A6A9A 75%, #FFFFFF 100%);
             background-size: 200% auto;
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -280,13 +280,13 @@
         <div class="slide-inner" style="text-align: center;">
             <div style="margin-bottom: 28px;">
                 <svg width="72" height="72" viewBox="0 0 512 512" style="filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));">
-                    <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
-                    <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+                    <rect x="96" y="96" width="320" height="320" rx="40" fill="#E8A020"/>
+                    <polygon points="256,170 326,350 186,350" fill="#09090F"/>
                 </svg>
             </div>
             <h1 class="shimmer-text" style="font-size: clamp(40px, 5vw, 64px); max-width: 900px; margin: 0 auto 14px;">Sentriq</h1>
             <p class="subtitle" style="margin: 0 auto 10px; max-width: 700px; font-size: 20px; color: rgba(255,255,255,0.85);">Hiring Integrity Infrastructure</p>
-            <p class="subtitle" style="margin: 0 auto 36px; max-width: 600px; font-size: 15px; color: rgba(255,255,255,0.45);">An early look &mdash; for Adi Dagan</p>
+            <p class="subtitle" style="margin: 0 auto 36px; max-width: 600px; font-size: 15px; color: rgba(255,255,255,0.45);">An early look: for Adi Dagan</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
                 <span class="pill pill-cyan">Candidate Application Firewall</span>
                 <span class="pill pill-green">Pre-Seed &middot; Advancing with NFX</span>
@@ -316,7 +316,7 @@
                 </div>
             </div>
             <div class="quote-block">
-                KnowBe4 &mdash; the company that teaches the world not to get phished &mdash; hired a North Korean spy. Four interviews. Background check. He passed.
+                KnowBe4: the company that teaches the world not to get phished: hired a North Korean spy. Four interviews. Background check. He passed.
             </div>
             <p style="font-size: 15px; color: rgba(255,255,255,0.5);">Background checks verify identity. Nobody verifies integrity before the person reaches a recruiter. That layer has never existed.</p>
         </div>
@@ -326,8 +326,8 @@
     <div class="slide bg-dark" data-index="2">
         <div class="slide-inner">
             <span class="slide-label">What We Built</span>
-            <h2>The <span style="color: #93C5FD;">Candidate Application Firewall</span></h2>
-            <p class="subtitle" style="margin-bottom: 28px;">Three layers that sit between the application and the recruiter. We built the attack first &mdash; 30 live experiments across real ATS systems. We found 17 scoring rules the platforms did not know they were enforcing. Sentriq is the defense we built from the inside.</p>
+            <h2>The <span style="color: #6A6A9A;">Candidate Application Firewall</span></h2>
+            <p class="subtitle" style="margin-bottom: 28px;">Three layers that sit between the application and the recruiter. We built the attack first: 30 live experiments across real ATS systems. We found 17 scoring rules the platforms did not know they were enforcing. Sentriq is the defense we built from the inside.</p>
             <div class="card-grid grid-3">
                 <div class="card">
                     <span class="card-icon">🔍</span>
@@ -342,7 +342,7 @@
                 <div class="card">
                     <span class="card-icon">🕸️</span>
                     <h3>Cross-Company Fraud Graph</h3>
-                    <p>Device fingerprints and behavioral signatures shared across employers with candidate consent. A fraudster flagged at one company is flagged at all. Structurally unavailable to any ATS &mdash; contractually.</p>
+                    <p>Device fingerprints and behavioral signatures shared across employers with candidate consent. A fraudster flagged at one company is flagged at all. Structurally unavailable to any ATS: contractually.</p>
                 </div>
             </div>
             <p style="margin-top: 20px; font-size: 14px; color: rgba(255,255,255,0.4);">Zero automated rejections. Every flag routes to a human. Defensible in a world with AI bias litigation.</p>
@@ -354,7 +354,7 @@
         <div class="slide-inner">
             <span class="slide-label">Where We Are</span>
             <h2>Early stage. <span style="color: var(--green);">Real momentum.</span></h2>
-            <p class="subtitle" style="margin-bottom: 28px;">Two weeks into Sentriq as a company. Demo live, active enterprise conversations, round being constructed. The category is moving fast around us &mdash; which is the signal, not the threat.</p>
+            <p class="subtitle" style="margin-bottom: 28px;">Two weeks into Sentriq as a company. Demo live, active enterprise conversations, round being constructed. The category is moving fast around us: which is the signal, not the threat.</p>
 
             <div class="momentum-item">
                 <div class="momentum-dot blue"></div>
@@ -374,7 +374,7 @@
                 <div class="momentum-dot orange"></div>
                 <div>
                     <p style="font-weight: 600; margin-bottom: 4px;">August 2026 regulatory deadline</p>
-                    <p style="font-size: 14px; color: rgba(255,255,255,0.55);">EU AI Act requires human oversight in all AI-assisted hiring across 27 countries. This is a compliance purchase event &mdash; not just a product story.</p>
+                    <p style="font-size: 14px; color: rgba(255,255,255,0.55);">EU AI Act requires human oversight in all AI-assisted hiring across 27 countries. This is a compliance purchase event: not just a product story.</p>
                 </div>
             </div>
             <div class="momentum-item">
@@ -391,24 +391,24 @@
     <div class="slide bg-dark" data-index="4">
         <div class="slide-inner">
             <span class="slide-label">The one thing I need</span>
-            <h2>NFX said yes &mdash; conditionally. <span style="color: var(--orange);">Here is the condition.</span></h2>
+            <h2>NFX said yes: conditionally. <span style="color: var(--orange);">Here is the condition.</span></h2>
 
             <div class="quote-block" style="margin-bottom: 28px;">
                 "We need to see US enterprise design partners. Come back with American companies. Israeli and Spanish names won't move this forward with our partners."
-                <div style="margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.4); font-style: normal;">NFX, first meeting &mdash; April 2026</div>
+                <div style="margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.4); font-style: normal;">NFX, first meeting: April 2026</div>
             </div>
 
-            <p class="subtitle" style="margin-bottom: 28px;">The round is live. NFX is engaged. The only thing standing between where we are and a term sheet conversation is US enterprise validation. Not revenue. Not more slides. One name &mdash; a Head of Talent or CISO at a US company willing to pilot.</p>
+            <p class="subtitle" style="margin-bottom: 28px;">The round is live. NFX is engaged. The only thing standing between where we are and a term sheet conversation is US enterprise validation. Not revenue. Not more slides. One name: a Head of Talent or CISO at a US company willing to pilot.</p>
 
             <div class="card-grid grid-2" style="margin-bottom: 24px;">
                 <div class="card" style="border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05);">
                     <span class="card-icon">🎯</span>
-                    <h3 style="color: #FCD34D;">What I am looking for</h3>
-                    <p>Head of Talent Acquisition, CHRO, or CISO at a US-based company with 500+ employees. Someone who is already living the problem &mdash; bot applications, AI resumes, hiring noise. No commitment beyond a structured pilot.</p>
+                    <h3 style="color: #E8A020;">What I am looking for</h3>
+                    <p>Head of Talent Acquisition, CHRO, or CISO at a US-based company with 500+ employees. Someone who is already living the problem: bot applications, AI resumes, hiring noise. No commitment beyond a structured pilot.</p>
                 </div>
                 <div class="card" style="border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05);">
                     <span class="card-icon">⏱️</span>
-                    <h3 style="color: #FCD34D;">Why this week matters</h3>
+                    <h3 style="color: #E8A020;">Why this week matters</h3>
                     <p>I came back to NFX in one week when they gave me three. The round is being constructed now. Every week without a US name is a week the window stays open for a competitor to get there first.</p>
                 </div>
             </div>
@@ -417,7 +417,7 @@
                 <div class="card">
                     <span class="card-icon">🔗</span>
                     <h3>Your network</h3>
-                    <p>Two exits. Partnerships at Optimove. IBM, Salesforce, enterprise contacts across Spain, Israel, and the US. If anyone in your world has complained about hiring signal collapsing &mdash; that conversation is worth more than anything else on this slide.</p>
+                    <p>Two exits. Partnerships at Optimove. IBM, Salesforce, enterprise contacts across Spain, Israel, and the US. If anyone in your world has complained about hiring signal collapsing: that conversation is worth more than anything else on this slide.</p>
                 </div>
                 <div class="card">
                     <span class="card-icon">🧠</span>
@@ -429,7 +429,7 @@
             <div class="cta-box" style="padding: 32px;">
                 <p style="font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;">The ask</p>
                 <h3 style="font-size: 20px; margin-bottom: 12px;">One intro to a US enterprise contact with the pain. That is it.</h3>
-                <p style="font-size: 14px; color: rgba(255,255,255,0.5); max-width: 580px; margin: 0 auto;">If you know someone &mdash; or know someone who knows someone &mdash; a warm intro takes five minutes and closes the only gap between us and NFX moving forward.</p>
+                <p style="font-size: 14px; color: rgba(255,255,255,0.5); max-width: 580px; margin: 0 auto;">If you know someone: or know someone who knows someone: a warm intro takes five minutes and closes the only gap between us and NFX moving forward.</p>
             </div>
         </div>
     </div>
@@ -441,10 +441,10 @@
 <div class="nav-bar">
     <div class="logo-small">
         <svg width="16" height="16" viewBox="0 0 512 512" style="vertical-align: middle; margin-right: 6px;">
-            <rect x="96" y="96" width="320" height="320" rx="40" fill="#2563EB"/>
-            <polygon points="256,170 326,350 186,350" fill="#0F172A"/>
+            <rect x="96" y="96" width="320" height="320" rx="40" fill="#E8A020"/>
+            <polygon points="256,170 326,350 186,350" fill="#09090F"/>
         </svg>
-        Sentriq &mdash; For Adi
+        Sentriq: For Adi
     </div>
     <div class="nav-controls">
         <button class="nav-btn" onclick="navigate(-1)">&#8592;</button>
