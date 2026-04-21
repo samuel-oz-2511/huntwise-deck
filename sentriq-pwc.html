@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq: PwC Partnership Briefing</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg: #09090F;
+        --card: #0D0E1A;
+        --border: rgba(255,255,255,0.08);
+        --amber: #E8A020;
+        --text: rgba(255,255,255,0.82);
+        --text-dim: rgba(255,255,255,0.48);
+        --red: #E05555;
+        --primary: #E8A020;
+        --white: #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange: #E8A020;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--white);
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.02;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    .deck { width: 100%; height: 100%; position: relative; }
+
+    .slide {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        justify-content: flex-start; align-items: center;
+        padding: clamp(24px, 3.5vh, 48px) clamp(28px, 5vw, 80px) 78px;
+        overflow-y: auto; overflow-x: hidden;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+    .slide > .slide-inner { margin: auto 0; }
+    .slide.active { opacity: 1; pointer-events: all; }
+    .slide .slide-inner { transition: opacity 0.4s ease, transform 0.4s ease; opacity: 0; transform: translateY(10px); }
+    .slide.active .slide-inner { opacity: 1; transform: translateY(0); }
+    .slide-inner { max-width: 1080px; width: 100%; position: relative; z-index: 1; }
+
+    .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
+    .bg-cover {
+        background:
+            radial-gradient(ellipse 40% 35% at 50% 32%, rgba(232,160,32,0.35) 0%, rgba(232,160,32,0.09) 55%, transparent 100%),
+            radial-gradient(ellipse 85% 65% at 50% 35%, rgba(26,26,53,0.55) 0%, #09090F 70%);
+    }
+
+    .nav-bar {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 40px;
+        background: rgba(9,9,15,0.92); backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.07); z-index: 100;
+    }
+    .nav-logo { font-weight: 700; font-size: 13px; color: var(--primary); letter-spacing: -0.02em; display: flex; align-items: center; gap: 7px; }
+    .nav-controls { display: flex; align-items: center; gap: 14px; }
+    .nav-btn {
+        background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
+        color: var(--white); width: 38px; height: 38px; border-radius: 8px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 17px; transition: all 0.25s;
+    }
+    .nav-btn:hover { background: var(--primary); border-color: var(--primary); }
+    .slide-counter { font-size: 12px; color: var(--text-dim); font-weight: 500; min-width: 52px; text-align: center; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
+
+    .progress-bar {
+        position: fixed; top: 0; left: 0; height: 2px;
+        background: #E8A020;
+        box-shadow: 0 0 8px rgba(232,160,32,0.45);
+        transition: width 0.35s ease; z-index: 100;
+    }
+
+    .confidential { position: fixed; top: 16px; right: 22px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100; }
+    .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); opacity: 0; transition: opacity 0.3s ease; }
+
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--primary); margin-bottom: 12px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+
+    h2 { font-size: clamp(22px, 3.2vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
+    h3 { font-size: clamp(14px, 1.6vw, 18px); font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+
+    .stack-layer { display:flex; align-items:center; padding:12px 16px; border-radius:8px; border:1px solid rgba(232,160,32,0.18); background:rgba(232,160,32,0.04); margin-bottom:5px; }
+    .stack-layer-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.4); width:180px; flex-shrink:0; }
+    .stack-layer-vendors { font-size:12px; color:rgba(255,255,255,0.3); }
+    .stack-layer-badge { margin-left:auto; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:3px 8px; border-radius:4px; background:rgba(232,160,32,0.1); color:var(--amber); border:1px solid rgba(232,160,32,0.25); }
+    .stack-layer-threat { display:flex; align-items:center; padding:15px 16px; border-radius:8px; border:2px solid rgba(239,68,68,0.6); background:rgba(239,68,68,0.10); margin-bottom:6px; }
+    .stack-layer-zero { display:flex; align-items:center; padding:20px 20px; border-radius:10px; border:2px solid rgba(232,160,32,0.75); background:rgba(232,160,32,0.16); box-shadow:0 0 28px rgba(232,160,32,0.12), inset 0 1px 0 rgba(232,160,32,0.2); }
+
+    .sources { margin-top: 14px; font-size: 10px; color: rgba(255,255,255,0.28); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+        .slide { padding: 22px 16px 70px; }
+        h2 { font-size: 18px; }
+        .nav-bar { padding: 10px 16px; }
+        div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
+        <div style="margin-bottom:32px;">
+            <svg height="32" viewBox="0 0 64 64" width="32" style="margin:0 auto 12px;display:block;"><rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="#E8A020" stroke-width="4"/><line x1="32" y1="8" x2="32" y2="56" stroke="#E8A020" stroke-width="4"/></svg>
+            <div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.03em;">Sentriq</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;">Partnership Briefing</div>
+        </div>
+        <input id="passInput" type="password" placeholder="Access code" onkeydown="if(event.key==='Enter')checkPass()"
+            style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:#fff;font-size:16px;font-family:inherit;text-align:center;outline:none;margin-bottom:12px;letter-spacing:0.06em;"/>
+        <button onclick="checkPass()"
+            style="width:100%;padding:14px;border-radius:10px;background:#E8A020;border:none;color:#09090F;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;letter-spacing:-0.01em;">
+            Enter
+        </button>
+        <p id="passErr" style="margin-top:12px;font-size:12px;color:rgba(224,85,85,0.85);display:none;">Incorrect access code.</p>
+    </div>
+</div>
+
+<div class="deck" id="deck" style="display:none;">
+
+<div class="progress-bar" id="progress"></div>
+<div class="confidential">Confidential</div>
+<div class="meeting-badge" id="badge">PwC Partnership Briefing &nbsp;·&nbsp; April 2026</div>
+
+<!-- SLIDE 0: COVER -->
+<div class="slide bg-cover active" data-index="0">
+<div class="slide-inner" style="text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh;">
+<div style="margin-bottom:28px;">
+    <svg height="40" viewBox="0 0 64 64" width="40"><rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="#E8A020" stroke-width="4"/><line x1="32" y1="8" x2="32" y2="56" stroke="#E8A020" stroke-width="4"/></svg>
+</div>
+<h1 style="font-size:clamp(44px,6vw,76px); font-weight:800; letter-spacing:-0.04em; margin-bottom:14px;">Sentriq</h1>
+<p style="font-size:clamp(16px,2.2vw,24px); color:rgba(255,255,255,0.90); font-weight:600; margin-bottom:10px; letter-spacing:-0.01em;">The integrity layer between every candidate and every hiring decision.</p>
+<p style="font-size:clamp(13px,1.5vw,16px); color:rgba(255,255,255,0.40); margin-bottom:52px; max-width:520px; line-height:1.7;">Behavioral anomaly detection. Cross-company knowledge graph. The trust infrastructure hiring never had.</p>
+<div style="width:48px; height:1px; background:rgba(232,160,32,0.45); margin:0 auto 30px;"></div>
+<p style="font-size:13px; color:rgba(255,255,255,0.50); letter-spacing:0.06em;">Samuel Kemper, Co-Founder &amp; CEO &nbsp;&nbsp;·&nbsp;&nbsp; PwC Partnership Briefing &nbsp;&nbsp;·&nbsp;&nbsp; April 2026</p>
+</div>
+</div>
+
+<!-- SLIDE 1: THE STRUCTURAL GAP -->
+<div class="slide bg-dark" data-index="1">
+<div class="slide-inner">
+<span class="label">The Structural Gap</span>
+<h2>Every enterprise you audit has 6 security layers. <span style="color:var(--red);">None defends the hiring funnel.</span></h2>
+<p style="font-size:14px; color:rgba(255,255,255,0.45); max-width:760px; line-height:1.6; margin-bottom:16px;">State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen SSNs. Every perimeter is hardened. The hiring channel has nothing.</p>
+
+<div style="margin-bottom:14px;">
+    <div class="stack-layer"><span class="stack-layer-label">SIEM / SOC</span><span class="stack-layer-vendors">Splunk, IBM QRadar, Microsoft Sentinel, Sumo Logic</span><span class="stack-layer-badge">Protected</span></div>
+    <div class="stack-layer"><span class="stack-layer-label">Identity / SSO</span><span class="stack-layer-vendors">Okta, Azure AD, Ping Identity, CyberArk</span><span class="stack-layer-badge">Protected</span></div>
+    <div class="stack-layer"><span class="stack-layer-label">Data Security</span><span class="stack-layer-vendors">Varonis, Symantec DLP, BigID, Securiti</span><span class="stack-layer-badge">Protected</span></div>
+    <div class="stack-layer"><span class="stack-layer-label">Network</span><span class="stack-layer-vendors">Palo Alto, Zscaler, Cloudflare, Fortinet</span><span class="stack-layer-badge">Protected</span></div>
+    <div class="stack-layer"><span class="stack-layer-label">Endpoint</span><span class="stack-layer-vendors">CrowdStrike, SentinelOne, Microsoft Defender, Carbon Black</span><span class="stack-layer-badge">Protected</span></div>
+    <div class="stack-layer-threat" style="margin-bottom:6px;">
+        <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;width:180px;flex-shrink:0;">Hiring Funnel</span>
+        <span style="font-size:12px;color:rgba(239,68,68,0.85);font-weight:600;">Every candidate. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span>
+        <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:4px 10px;border-radius:4px;background:rgba(239,68,68,0.25);color:#ff6b6b;border:1px solid rgba(239,68,68,0.5);white-space:nowrap;">UNDEFENDED</span>
+    </div>
+    <div class="stack-layer-zero">
+        <span style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;width:180px;flex-shrink:0;">Layer 0: Sentriq</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.95);font-weight:600;">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything. The primitive that does not exist yet.</span>
+        <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:5px 12px;border-radius:4px;background:rgba(232,160,32,0.3);color:#E8A020;border:1px solid rgba(232,160,32,0.6);white-space:nowrap;">BUILDING IT</span>
+    </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+    <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+        <div style="font-size:clamp(28px,4vw,48px); font-weight:800; color:var(--primary); letter-spacing:-0.03em; line-height:1;">41%</div>
+        <div style="font-size:12px; color:var(--text); margin-top:5px; line-height:1.5;">of companies have already onboarded a fraudulent employee</div>
+    </div>
+    <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+        <div style="font-size:clamp(28px,4vw,48px); font-weight:800; color:var(--primary); letter-spacing:-0.03em; line-height:1;">320+</div>
+        <div style="font-size:12px; color:var(--text); margin-top:5px; line-height:1.5;">DPRK operative cases investigated in 2024, up 220% YoY. One passed a full background check at KnowBe4.</div>
+    </div>
+    <div style="padding:14px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+        <div style="font-size:clamp(28px,4vw,48px); font-weight:800; color:var(--primary); letter-spacing:-0.03em; line-height:1;">$240K</div>
+        <div style="font-size:12px; color:var(--text); margin-top:5px; line-height:1.5;">average cost of the security incident following a fraudulent hire at senior level</div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 2: WHAT SENTRIQ IS -->
+<div class="slide bg-dark" data-index="2">
+<div class="slide-inner">
+<span class="label">The Product</span>
+<h2>A trust signal at the point of application. <span style="color:var(--primary);">Before the ATS. Before any cost is spent.</span></h2>
+
+<div style="margin-bottom:18px; padding:14px 20px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.2); border-radius:12px; text-align:center;">
+<div style="display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
+    <div style="padding:10px 14px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">
+        <div style="font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Applicant</div>
+        <div style="font-size:13px; font-weight:700;">Submits</div>
+    </div>
+    <div style="color:var(--text-dim); font-size:18px;">→</div>
+    <div style="padding:14px 22px; background:rgba(232,160,32,0.22); border:2px solid rgba(232,160,32,0.55); border-radius:10px; text-align:center; box-shadow:0 0 24px rgba(232,160,32,0.15);">
+        <div style="font-size:9px; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Pre-ATS layer</div>
+        <div style="font-size:16px; font-weight:800; color:var(--white);">Trust Signal</div>
+    </div>
+    <div style="color:var(--text-dim); font-size:18px;">→</div>
+    <div style="padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:8px; text-align:center;">
+        <div style="font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">ATS</div>
+        <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.6);">Fit Score</div>
+    </div>
+    <div style="color:var(--text-dim); font-size:18px;">→</div>
+    <div style="padding:10px 14px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">
+        <div style="font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Recruiter</div>
+        <div style="font-size:13px; font-weight:700;">Decides</div>
+    </div>
+</div>
+<p style="font-size:11px; color:var(--text-dim); margin-top:8px;">Sentriq runs before the application enters the ATS. The trust signal travels with it through the pipeline. No blocking. No friction.</p>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px;">
+    <div style="padding:18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.30); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 1: Passive</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Behavioral metadata collected as the applicant fills the form. Invisible. No friction. Keystroke dynamics, mouse movement, fill patterns, timing anomalies.</p>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); font-style:italic;">Catches: mass-apply bots, CV overfitting, skills anomaly, timeline fraud</div>
+    </div>
+    <div style="padding:18px; background:rgba(232,160,32,0.10); border:2px solid rgba(232,160,32,0.40); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 2: Active Challenge</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Triggered only when Layer 1 flags an anomaly. A short task framed as part of the application: behavioral fingerprint scored against content quality. A proxy cannot replicate both.</p>
+        <div style="font-size:11px; color:rgba(232,160,32,0.6); font-style:italic;">Catches: proxy impersonation, AI-assisted response, profile distortion</div>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 3: Human Review</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Sentriq analyst reviews the full signal stack. The employer makes the final call. Sentriq never rejects unilaterally. Full audit trail for regulatory defense.</p>
+        <div style="padding:10px 12px; background:rgba(232,160,32,0.08); border-radius:8px; border:1px solid rgba(232,160,32,0.2);">
+            <p style="font-size:12px; color:#E8A020; font-weight:700;">Zero automated rejections. Human-in-the-loop is architecture, not a disclaimer.</p>
+        </div>
+    </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+    <div style="padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; display:flex; align-items:center; gap:10px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; flex-shrink:0;"></div>
+        <span style="font-size:13px; color:rgba(255,255,255,0.65);">Platform-agnostic. No ATS modification required.</span>
+    </div>
+    <div style="padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; display:flex; align-items:center; gap:10px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; flex-shrink:0;"></div>
+        <span style="font-size:13px; color:rgba(255,255,255,0.65);">Output is a trust signal per application, not a pass/fail decision.</span>
+    </div>
+    <div style="padding:12px 16px; background:rgba(255,255,255,0.03); border-radius:8px; display:flex; align-items:center; gap:10px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; flex-shrink:0;"></div>
+        <span style="font-size:13px; color:rgba(255,255,255,0.65);">Stage: demo complete. Design partner pipeline active.</span>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 3: TWO COMPLIANCE CLOCKS -->
+<div class="slide bg-dark" data-index="3">
+<div class="slide-inner">
+<span class="label">Why Now</span>
+<h2>Two compliance clocks are running. <span style="color:var(--primary);">Both point to 2026.</span></h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:4px;">
+
+<div style="padding:22px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.20); border-radius:14px; border-top:3px solid rgba(232,160,32,0.7);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="flex-shrink:0;">
+            <div style="font-size:11px; font-weight:700; color:rgba(232,160,32,0.6); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:2px;">Deadline</div>
+            <div style="font-size:26px; font-weight:800; color:#E8A020; letter-spacing:-0.02em; line-height:1;">Aug 2, 2026</div>
+        </div>
+        <div style="border-left:1px solid rgba(232,160,32,0.2); padding-left:12px;">
+            <div style="font-size:15px; font-weight:700; color:var(--white);">EU AI Act</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.45);">High-risk AI systems provisions</div>
+        </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:9px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:#E8A020; margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;"><strong style="color:var(--white);">Article 6, Annex III point 4:</strong> AI tools used in hiring, promotion, or task allocation are classified as high-risk systems.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:#E8A020; margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">Requirements: conformity assessment, technical documentation, third-party audit trail, human oversight controls.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:#E8A020; margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">In scope: every enterprise using AI-assisted screening in Greenhouse, Comeet, Lever, or any ATS with algorithmic ranking. Most of your clients are in scope. <strong style="color:rgba(255,255,255,0.85);">Most don't know it yet.</strong></p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:#E8A020; margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">Sentriq's human-in-the-loop architecture is EU AI Act compliant by design. The audit trail is built into the product.</p>
+        </div>
+    </div>
+</div>
+
+<div style="padding:22px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.10); border-radius:14px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="flex-shrink:0;">
+            <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:2px;">Gate</div>
+            <div style="font-size:26px; font-weight:800; color:rgba(255,255,255,0.85); letter-spacing:-0.02em; line-height:1;">SOC 2</div>
+        </div>
+        <div style="border-left:1px solid rgba(255,255,255,0.1); padding-left:12px;">
+            <div style="font-size:15px; font-weight:700; color:var(--white);">Enterprise Procurement</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.45);">Financial services + global enterprise</div>
+        </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:9px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">HSBC-tier institutions require SOC 2 Type I before any POC conversation opens. This is a procurement gate, not a nice-to-have.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">A Big 4 auditor is an institutional procurement signal. PwC on the cover page means the diligence conversation is shorter.</p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div style="width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); margin-top:5px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.55;">Design partner conversations are active now. Without SOC 2, they cannot convert to paying contracts.</p>
+        </div>
+    </div>
+    <div style="margin-top:14px; padding:12px 14px; background:rgba(255,255,255,0.04); border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+        <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Target Timeline</div>
+        <div style="display:flex; align-items:center; gap:0;">
+            <div style="text-align:center; flex:1; padding:6px 4px; border-right:1px solid rgba(255,255,255,0.08);">
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); margin-bottom:3px;">Q2 2026</div>
+                <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.7);">Readiness</div>
+            </div>
+            <div style="color:var(--text-dim); padding:0 6px; font-size:12px;">→</div>
+            <div style="text-align:center; flex:1; padding:6px 4px; border-right:1px solid rgba(255,255,255,0.08);">
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); margin-bottom:3px;">Q3 2026</div>
+                <div style="font-size:12px; font-weight:700; color:#E8A020;">SOC 2 Type I</div>
+            </div>
+            <div style="color:var(--text-dim); padding:0 6px; font-size:12px;">→</div>
+            <div style="text-align:center; flex:1; padding:6px 4px;">
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); margin-bottom:3px;">Q1 2027</div>
+                <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.7);">SOC 2 Type II</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- SLIDE 4: THE AUDIT SCOPE -->
+<div class="slide bg-dark" data-index="4">
+<div class="slide-inner">
+<span class="label">The Engagement Scope</span>
+<h2>What PwC would be scoping. <span style="color:var(--primary);">And why it is new territory.</span></h2>
+<p style="font-size:14px; color:rgba(255,255,255,0.45); max-width:760px; line-height:1.6; margin-bottom:18px;">No existing SOC 2 framework covers behavioral application trust at a neutral pre-ATS layer. PwC would be writing the control environment for a new category.</p>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+    <div style="padding:18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Scope Area 1: Behavioral Data Collection</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Keystroke dynamics, mouse movement, form-fill timing. Processing methodology, retention schedule, access controls, deletion workflows. Data subject rights framework (GDPR + EU AI Act overlay).</p>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Scope Area 2: Cross-Company Knowledge Graph</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Pseudonymized cross-employer signal aggregation. Neutral-party data architecture (no employer data sharing). Consent framework, data minimization controls, bias mitigation documentation.</p>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Scope Area 3: Challenge Layer</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Async task delivery pipeline. Scoring methodology and calibration. Human reviewer access controls. Non-discrimination controls and audit trail per application decision.</p>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Scope Area 4: Trust Signal Output</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Signal generation logic, ATS transmission, storage, and usage controls. End-to-end traceability from raw behavioral data to employer-facing signal. Immutable log for regulatory defense.</p>
+    </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <div style="padding:14px 18px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.18); border-radius:10px;">
+        <div style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Trust Services Criteria Coverage</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:12px; font-weight:600; padding:3px 10px; border-radius:5px; background:rgba(232,160,32,0.15); color:#E8A020; border:1px solid rgba(232,160,32,0.3);">Security</span>
+            <span style="font-size:12px; font-weight:600; padding:3px 10px; border-radius:5px; background:rgba(232,160,32,0.15); color:#E8A020; border:1px solid rgba(232,160,32,0.3);">Availability</span>
+            <span style="font-size:12px; font-weight:600; padding:3px 10px; border-radius:5px; background:rgba(232,160,32,0.15); color:#E8A020; border:1px solid rgba(232,160,32,0.3);">Confidentiality</span>
+            <span style="font-size:12px; font-weight:600; padding:3px 10px; border-radius:5px; background:rgba(232,160,32,0.15); color:#E8A020; border:1px solid rgba(232,160,32,0.3);">Privacy</span>
+        </div>
+    </div>
+    <div style="padding:14px 18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+        <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">EU AI Act Overlay</div>
+        <p style="font-size:13px; color:var(--text); line-height:1.5;">Conformity assessment documentation + technical file + human oversight record, produced alongside the SOC 2 readiness work. Single engagement, dual output.</p>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 5: STAGE AND TRACTION -->
+<div class="slide bg-dark" data-index="5">
+<div class="slide-inner">
+<span class="label">Where We Are</span>
+<h2>Honest about the stage. <span style="color:var(--primary);">Clear about the trajectory.</span></h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:4px;">
+
+<div>
+    <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">What exists today</div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; border-left:3px solid #E8A020;">
+            <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; margin-top:4px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Technical research complete.</strong> 30+ documented attack techniques on production ATS systems. Detection architecture built from running the actual attacks.</p>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; border-left:3px solid #E8A020;">
+            <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; margin-top:4px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Demo live.</strong> Full product experience demonstrable. Engineering underway on production infrastructure.</p>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; margin-top:4px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Design partner pipeline active.</strong> WalkMe (SAP), Optimove. CISO and CIO conversations in process. Standard Chartered path in motion.</p>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; border-left:3px solid rgba(232,160,32,0.5);">
+            <div style="width:6px; height:6px; border-radius:50%; background:#E8A020; margin-top:4px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Investor pipeline.</strong> UpWest IC pending. NFX, SYN Ventures, Hetz Ventures in active conversations. $5M seed, Q2 2026 target close.</p>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px;">
+            <div style="width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.25); margin-top:4px; flex-shrink:0;"></div>
+            <p style="font-size:13px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">No live product.</strong> No paying customers yet. This is seed stage. SOC 2 engagement starts post-close.</p>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="font-size:10px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">The milestones seed capital buys</div>
+    <div style="display:flex; flex-direction:column; gap:7px;">
+        <div style="padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px; display:flex; align-items:center; gap:16px;">
+            <div style="flex-shrink:0; text-align:center; min-width:52px;">
+                <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px;">Q3 2026</div>
+                <div style="font-size:20px; font-weight:800; color:rgba(255,255,255,0.85); letter-spacing:-0.02em; line-height:1;">3-5</div>
+                <div style="font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px;">pilots</div>
+            </div>
+            <p style="font-size:12px; color:var(--text); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px;">Product live in production. SOC 2 readiness assessment underway. Design partner pilots running. PwC engagement begins.</p>
+        </div>
+        <div style="padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px; display:flex; align-items:center; gap:16px;">
+            <div style="flex-shrink:0; text-align:center; min-width:52px;">
+                <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px;">Q4 2026</div>
+                <div style="font-size:20px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1;">SOC 2</div>
+                <div style="font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px;">Type I</div>
+            </div>
+            <p style="font-size:12px; color:var(--text); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px;">SOC 2 Type I report issued. First paying contracts signed. Enterprise procurement gate open. EU AI Act conformity documentation filed.</p>
+        </div>
+        <div style="padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px; display:flex; align-items:center; gap:16px;">
+            <div style="flex-shrink:0; text-align:center; min-width:52px;">
+                <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px;">Q1 2027</div>
+                <div style="font-size:20px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1;">$400K</div>
+                <div style="font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px;">ARR</div>
+            </div>
+            <p style="font-size:12px; color:var(--text); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px;">10-12 paying customers. Graph threshold reached: cross-company detection begins. SOC 2 Type II scope opens.</p>
+        </div>
+        <div style="padding:14px 16px; background:rgba(232,160,32,0.10); border:1px solid rgba(232,160,32,0.35); border-radius:10px; border-top:2px solid #E8A020; display:flex; align-items:center; gap:16px;">
+            <div style="flex-shrink:0; text-align:center; min-width:52px;">
+                <div style="font-size:9px; font-weight:700; color:rgba(232,160,32,0.6); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px;">Q4 2027</div>
+                <div style="font-size:20px; font-weight:800; color:#E8A020; letter-spacing:-0.02em; line-height:1;">$1M</div>
+                <div style="font-size:9px; color:rgba(232,160,32,0.5); margin-top:1px;">ARR</div>
+            </div>
+            <p style="font-size:12px; color:rgba(255,255,255,0.85); line-height:1.5; border-left:1px solid rgba(232,160,32,0.2); padding-left:16px;">Series A milestone. 22-28 customers. 2 enterprise logos. Network graph operational.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- SLIDE 6: THE CATEGORY OPPORTUNITY -->
+<div class="slide bg-dark" data-index="6">
+<div class="slide-inner">
+<span class="label">The Category Opportunity</span>
+<h2>The first Big 4 firm to audit a new compliance category <span style="color:var(--primary);">becomes the default for the category.</span></h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:4px; margin-bottom:18px;">
+    <div style="padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px;">
+        <div style="font-size:28px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1; margin-bottom:8px;">1</div>
+        <h3 style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Compliance will be mandatory</h3>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">The EU AI Act August 2026 deadline converts hiring security from a discretionary purchase to a compliance requirement. Every enterprise using AI in hiring will need a third-party audit trail. That market is every enterprise client PwC serves.</p>
+    </div>
+    <div style="padding:20px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:14px;">
+        <div style="font-size:28px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1; margin-bottom:8px;">2</div>
+        <h3 style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Financial services is the lead vertical</h3>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Banks, insurance, capital markets are the highest-target segment for hiring fraud. Remote financial roles, access to systems, regulatory sensitivity. Maya is in this conversation because HSBC and Wells Fargo are already in Sentriq's pipeline. Those are the first enterprise logos we are building toward. PwC's audit relationships inside those institutions are the shortest path to a yes.</p>
+    </div>
+    <div style="padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px;">
+        <div style="font-size:28px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1; margin-bottom:8px;">3</div>
+        <h3 style="font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Compounding expertise</h3>
+        <p style="font-size:13px; color:var(--text); line-height:1.6;">Auditing Sentriq now means building the methodology for behavioral application trust. The next 20 companies in this category will come to the firm that wrote the playbook. That is a different position than auditing the 12th company in a mature category.</p>
+    </div>
+</div>
+
+<div style="padding:22px 32px; background:rgba(232,160,32,0.06); border-left:3px solid #E8A020; border-radius:0 12px 12px 0;">
+    <p style="font-size:20px; color:rgba(255,255,255,0.94); font-weight:700; letter-spacing:-0.02em; line-height:1.4;">The companies that will be required to buy this by August 2026 are already your audit clients. The question is whether PwC is the auditor of record when it becomes standard.</p>
+    <p style="font-size:12px; color:rgba(255,255,255,0.35); margin-top:8px; letter-spacing:0.02em;">Comparable: PwC's position in cloud security audit before NIST compliance became mandatory across financial services.</p>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 7: THE ASK -->
+<div class="slide bg-dark" data-index="7">
+<div class="slide-inner">
+<span class="label">The Ask</span>
+<h2>Three things. <span style="color:var(--primary);">One next step.</span></h2>
+
+<div style="display:grid; grid-template-columns:1fr; gap:12px; margin-top:4px; margin-bottom:18px;">
+    <div style="padding:20px 22px; background:rgba(232,160,32,0.08); border:1.5px solid rgba(232,160,32,0.35); border-radius:12px; display:flex; align-items:flex-start; gap:18px;">
+        <div style="flex-shrink:0; width:36px; height:36px; border-radius:50%; background:#E8A020; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:#09090F;">1</div>
+        <div>
+            <div style="font-size:14px; font-weight:800; color:var(--white); margin-bottom:5px;">SOC 2 Engagement</div>
+            <p style="font-size:13px; color:var(--text); line-height:1.6;">Readiness assessment as first step. Lior's team scopes the four areas above. Timeline: Q2 2026, post-seed close (targeting June 2026). We can start the readiness conversation now. Scope work before billing begins.</p>
+            <div style="margin-top:8px; font-size:12px; color:rgba(232,160,32,0.8); font-weight:600;">Owner: Lior. Next: scope call within 2 weeks.</div>
+        </div>
+    </div>
+    <div style="padding:20px 22px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.10); border-radius:12px; display:flex; align-items:flex-start; gap:18px;">
+        <div style="flex-shrink:0; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:rgba(255,255,255,0.6);">2</div>
+        <div>
+            <div style="font-size:14px; font-weight:800; color:var(--white); margin-bottom:5px;">Investor Network</div>
+            <p style="font-size:13px; color:var(--text); line-height:1.6;">Active round: $5M seed. Pipeline includes UpWest, NFX, SYN Ventures, Hetz. Yael's startup practice network and PwC's international relationships: are there funds or partners who should be aware of this category? The intersection of cybersecurity, compliance, and hiring is a new thesis. A warm intro from a PwC partner carries weight that a cold deck does not.</p>
+            <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.4); font-weight:600;">Owner: Yael. No urgency, but sooner is better.</div>
+        </div>
+    </div>
+    <div style="padding:20px 22px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.10); border-radius:12px; display:flex; align-items:flex-start; gap:18px;">
+        <div style="flex-shrink:0; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:rgba(255,255,255,0.6);">3</div>
+        <div>
+            <div style="font-size:14px; font-weight:800; color:var(--white); margin-bottom:5px;">HSBC and Wells Fargo Prep</div>
+            <p style="font-size:13px; color:var(--text); line-height:1.6;">Maya is in this meeting specifically to help prepare for upcoming conversations with HSBC and Wells Fargo. The question: from inside those audit relationships, how do those institutions evaluate and onboard security vendors? What is on the procurement checklist before a POC conversation opens? That intelligence shapes the entire enterprise GTM motion. We are not asking for intros yet. We are asking to understand the gate.</p>
+            <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.4); font-weight:600;">Owner: Maya. HSBC and Wells Fargo specifically.</div>
+        </div>
+    </div>
+</div>
+
+<div style="padding:18px 22px; background:#0D0E1A; border:1px solid rgba(232,160,32,0.25); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+    <div>
+        <div style="font-size:10px; font-weight:700; color:rgba(232,160,32,0.6); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Next Step</div>
+        <div style="font-size:15px; font-weight:700; color:var(--white);">SOC 2 scope call: Samuel, Ben, Lior. Within 2 weeks.</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.45); margin-top:3px;">30-minute technical kickoff. No prep required from Lior's side. Yael to confirm timing.</div>
+    </div>
+    <div style="text-align:right; flex-shrink:0;">
+        <div style="font-size:18px; font-weight:800; color:var(--white); letter-spacing:-0.01em;">samuel@sentriq.co</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-top:3px;">Co-Founder, CEO &nbsp;·&nbsp; sentriq.co</div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<nav class="nav-bar">
+    <div class="nav-logo">
+        <svg height="16" viewBox="0 0 64 64" width="16"><rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="#E8A020" stroke-width="5"/><line x1="32" y1="8" x2="32" y2="56" stroke="#E8A020" stroke-width="5"/></svg>
+        Sentriq / PwC
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="navigate(-1)">&#8592;</button>
+        <span class="slide-counter" id="counter">1 / 8</span>
+        <button class="nav-btn" onclick="navigate(1)">&#8594;</button>
+    </div>
+</nav>
+
+<script>
+(function(){
+    var PASS = 'cHdjc2VudHJpcTIwMjY=';
+    function checkPass(){
+        var v = document.getElementById('passInput').value;
+        if(btoa(v) === PASS){
+            document.getElementById('gate').style.display='none';
+            document.getElementById('deck').style.display='block';
+            try{ fetch('https://ntfy.sh/sentriq-pwc-m8p4',{method:'POST',body:'PwC deck opened: '+new Date().toISOString(),headers:{'Title':'Sentriq PwC Deck','Priority':'default'}}); }catch(e){}
+        } else {
+            document.getElementById('passErr').style.display='block';
+            document.getElementById('passInput').value='';
+        }
+    }
+    window.checkPass = checkPass;
+
+    var slides = document.querySelectorAll('.slide');
+    var cur = 0;
+    var badge = document.getElementById('badge');
+    var counter = document.getElementById('counter');
+    var progress = document.getElementById('progress');
+
+    function showSlide(n){
+        slides[cur].classList.remove('active');
+        cur = (n + slides.length) % slides.length;
+        slides[cur].classList.add('active');
+        counter.textContent = (cur+1) + ' / ' + slides.length;
+        progress.style.width = ((cur+1)/slides.length*100) + '%';
+        if(badge) badge.style.opacity = cur === 0 ? '0' : '1';
+    }
+
+    function navigate(dir){ showSlide(cur + dir); }
+    window.navigate = navigate;
+
+    document.addEventListener('keydown', function(e){
+        if(document.getElementById('gate').style.display === 'none'){
+            if(e.key==='ArrowRight'||e.key==='ArrowDown') navigate(1);
+            if(e.key==='ArrowLeft'||e.key==='ArrowUp') navigate(-1);
+        }
+    });
+
+    var ts = 0;
+    document.addEventListener('touchstart',function(e){ ts=e.changedTouches[0].clientX; });
+    document.addEventListener('touchend',function(e){
+        var diff = ts - e.changedTouches[0].clientX;
+        if(Math.abs(diff)>40){ navigate(diff>0?1:-1); }
+    });
+
+    showSlide(0);
+})();
+</script>
+</body>
+</html>
