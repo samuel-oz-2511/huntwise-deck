@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq GTM Brief</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #1a1a2e;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .doc {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 60px;
+    }
+
+    /* Header */
+    .doc-header {
+      border-bottom: 2px solid #1a1a2e;
+      padding-bottom: 20px;
+      margin-bottom: 36px;
+    }
+
+    .doc-meta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .doc-sub {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #3333aa;
+      border-left: 3px solid #3333aa;
+      padding-left: 10px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: #1a1a2e; }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12px;
+    }
+
+    th {
+      text-align: left;
+      padding: 8px 10px;
+      background: #f4f4f8;
+      color: #555;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #ddd;
+    }
+
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #eee;
+      color: #444;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .co { font-weight: 700; color: #1a1a2e; }
+    .pass { color: #16a34a; font-weight: 600; }
+    .fail { color: #dc2626; font-weight: 600; }
+    .partial { color: #d97706; font-weight: 600; }
+
+    /* Tier list */
+    .tier {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      background: #f9f9fc;
+      border-left: 3px solid #3333aa;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .tier h3 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+
+    .tier .tier-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #3333aa;
+      margin-bottom: 6px;
+    }
+
+    .tier p { font-size: 12px; color: #555; margin-bottom: 6px; }
+    .tier .companies { font-size: 11px; color: #888; font-style: italic; }
+
+    /* Steps */
+    .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-body h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 3px;
+    }
+
+    .step-body p { font-size: 12px; color: #555; margin: 0; }
+
+    /* Numbers row */
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .num {
+      text-align: center;
+      padding: 12px 8px;
+      background: #f4f4f8;
+      border-radius: 6px;
+    }
+
+    .num .val {
+      font-size: 22px;
+      font-weight: 800;
+      color: #3333aa;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .num .lbl {
+      font-size: 10px;
+      color: #888;
+      line-height: 1.3;
+    }
+
+    /* Callout */
+    .callout {
+      background: #f0f0ff;
+      border: 1px solid #c0c0ee;
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .callout p { font-size: 12px; color: #333; margin: 0; }
+
+    /* Footer */
+    .doc-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 16px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    @media print {
+      body { font-size: 12px; }
+      .doc { padding: 40px 48px; }
+      .tier { break-inside: avoid; }
+      .step { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="doc-header">
+    <div class="doc-meta">Sentriq — Internal Document — April 2026</div>
+    <h1>GTM Research: Where We Sell and Why</h1>
+    <div class="doc-sub">Research conclusions for co-founder alignment. Not for external distribution.</div>
+  </div>
+
+  <!-- 1. Why -->
+  <div class="section">
+    <h2>1. Why this research existed</h2>
+    <p>The default instinct when building a hiring product is to target the companies with the most employees. Biggest headcount, biggest problem. That logic is wrong for Sentriq.</p>
+    <p>We scored the top 100 US companies not by size but by one question: <strong>if a fraudulent application gets through, what actually happens?</strong> The answer determines whether we belong in a security budget or an HR budget. Security budgets are real. HR budgets are not. That one filter changed the entire list.</p>
+  </div>
+
+  <!-- 2. How -->
+  <div class="section">
+    <h2>2. How we scored every company</h2>
+    <p>Each company scored on five dimensions: Scale, Volume, Pipeline (third-party/offshore suppliers), Exposure (sensitive data or government contracts), and OFH (out-of-country hiring with remote access to US systems).</p>
+    <p>The key correction: we never count total headcount as the addressable pool. <strong>Walmart has 2.1M employees but only ~8K touch payment or pharmacy data at a level where a bad hire creates real liability.</strong> Our TAM at Walmart is 8K, not 2.1M. Same logic applies to every company.</p>
+    <p>Three tests every top-tier target must pass:</p>
+    <ul style="padding-left:20px; margin-top:8px; color:#444; font-size:12px;">
+      <li style="margin-bottom:6px;"><strong>Test 1:</strong> Does a fraudulent hire create regulatory action, national security risk, or financial fraud? Not just an awkward offboarding.</li>
+      <li style="margin-bottom:6px;"><strong>Test 2:</strong> Does the company hire through offshore pipelines at scale, with those workers accessing US-sensitive systems remotely?</li>
+      <li><strong>Test 3:</strong> Is there a CISO with real budget who owns this threat? Not HR.</li>
+    </ul>
+  </div>
+
+  <!-- 3. Why not big tech -->
+  <div class="section">
+    <h2>3. Why big tech is not our bread and butter</h2>
+    <p>Nvidia, Salesforce, Apple, Meta. All large. All hiring at scale. None pass all three tests.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Bad hire consequence</th>
+          <th>Offshore pipeline risk</th>
+          <th>Budget owner</th>
+          <th>Fit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="co">Nvidia</td>
+          <td>Chip design leak. Painful, not catastrophic legally.</td>
+          <td class="partial">Moderate</td>
+          <td class="partial">CISO adjacent</td>
+          <td class="partial">Tier 3</td>
+        </tr>
+        <tr>
+          <td class="co">Salesforce</td>
+          <td>CRM data exposure. No federal crime, no clearance.</td>
+          <td class="partial">Moderate</td>
+          <td class="fail">Lands in HR</td>
+          <td class="fail">Not now</td>
+        </tr>
+        <tr>
+          <td class="co">Apple</td>
+          <td>IP leak. Already compartmentalized internally.</td>
+          <td class="fail">Manufacturing, not knowledge workers</td>
+          <td class="fail">HR-driven</td>
+          <td class="fail">Not now</td>
+        </tr>
+        <tr>
+          <td class="co">JPMorgan Chase</td>
+          <td>Fraudulent engineer in Bengaluru = live SWIFT access. Federal crime. Systemic risk.</td>
+          <td class="pass">50,000+ in India</td>
+          <td class="pass">CISO owns it</td>
+          <td class="pass">Tier 1</td>
+        </tr>
+        <tr>
+          <td class="co">Booz Allen Hamilton</td>
+          <td>Fraudulent cleared hire = classified program breach or ITAR violation.</td>
+          <td class="partial">Moderate</td>
+          <td class="pass">CISO + legal</td>
+          <td class="pass">Tier 1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The pattern: big tech has headcount but the consequence of a bad hire is either manageable or lands with a buyer who has no budget. Our sweet spot is where the consequence is <strong>irreversible</strong> and the buyer is <strong>security</strong>, not HR.</p>
+  </div>
+
+  <!-- 4. The tiers -->
+  <div class="section">
+    <h2>4. The four tiers that passed the test</h2>
+
+    <div class="tier">
+      <div class="tier-label">Tier 1 — Defense Contractors</div>
+      <h3>Security clearance fraud is a federal crime</h3>
+      <p>One fraudulent cleared hire is not a $50K loss. It is a classified program compromise or an ITAR violation. The pitch is existential. Budget is immediate. Fastest buyer in the market.</p>
+      <p class="companies">Booz Allen Hamilton, Leidos, CACI International, Northrop Grumman, Lockheed Martin, General Dynamics, Boeing, RTX/Raytheon, L3Harris, SAIC, ManTech, BAE Systems US. ~9,000 high-risk hires/year.</p>
+    </div>
+
+    <div class="tier">
+      <div class="tier-label">Tier 2 — Financial Services</div>
+      <h3>Offshore employees with live access to core banking systems</h3>
+      <p>JPMorgan: 50K+ in India. American Express: 81K in India (largest offshore headcount of any financial firm). Goldman Sachs: Bengaluru is their second-largest office globally. DOJ indicted 14 North Koreans in December 2024 running an $88M operation targeting this sector with deepfakes and stolen identities.</p>
+      <p class="companies">JPMorgan Chase, American Express, Goldman Sachs, Morgan Stanley, Wells Fargo, Citigroup, Visa, Mastercard, Bank of America, Fidelity. ~40,000-60,000 high-risk hires/year.</p>
+    </div>
+
+    <div class="tier">
+      <div class="tier-label">Tier 3 — Healthcare / PHI</div>
+      <h3>HIPAA liability follows the data, not the geography of the hire</h3>
+      <p>UnitedHealth has 33,000+ in India with live access to PHI for 190M Americans. Post-Change Healthcare breach (Feb 2024, 190M records exposed), boards are sensitized and CISO budgets are unlocked. Fastest design partner conversation in this tier.</p>
+      <p class="companies">UnitedHealth/Optum, CVS/Aetna, Elevance Health, Humana, Kaiser Permanente, HCA Healthcare, Centene. ~46,000-67,000 high-risk hires/year.</p>
+    </div>
+
+    <div class="tier">
+      <div class="tier-label">Tier 4 — IT Services / BPO (The Multiplier)</div>
+      <h3>These companies are the supply chain</h3>
+      <p>A DPRK IT worker does not apply to JPMorgan directly. They apply to Cognizant, get placed at JPMorgan, and access the same systems. One deal with Cognizant covers hundreds of their enterprise clients simultaneously. Cognizant: 76% offshore (256,900 in India). TCS: 420,000+ offshore. This is where the network effect compounds.</p>
+      <p class="companies">Cognizant, Infosys, TCS, Accenture, Capgemini, Wipro, Genpact, Concentrix, Teleperformance. ~66,000-139,000 high-risk hires/year.</p>
+    </div>
+  </div>
+
+  <!-- 5. Numbers -->
+  <div class="section">
+    <h2>5. The numbers</h2>
+    <div class="numbers">
+      <div class="num">
+        <div class="val">1.2M</div>
+        <div class="lbl">High-risk hires/year across top 100 targets</div>
+      </div>
+      <div class="num">
+        <div class="val">377K</div>
+        <div class="lbl">Near-term SOM Sentriq can realistically capture</div>
+      </div>
+      <div class="num">
+        <div class="val">$19M</div>
+        <div class="lbl">Addressable revenue at $5/verification, 10:1 ratio</div>
+      </div>
+      <div class="num">
+        <div class="val">51</div>
+        <div class="lbl">Named target companies scored and ranked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Path to $1B -->
+  <div class="section">
+    <h2>6. The path to a billion-dollar company</h2>
+    <p>Each tier is a distinct phase, not a simultaneous bet. The sequencing matters.</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Defense gets us credibility</h4>
+        <p>Booz Allen, Leidos, CACI. Fastest buyers, highest-consequence framing. One signed defense contract is worth more in investor conversations than ten pilot calls in tech.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Financial services gets us revenue</h4>
+        <p>JPMorgan, AmEx, Goldman. Highest ACV potential. DPRK threat is explicitly documented against this sector. One enterprise logo closes the Series A.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>IT services / BPO gets us scale</h4>
+        <p>One deal with Cognizant or TCS covers hundreds of their downstream clients. This is the distribution flywheel that no pure-play hiring product can replicate.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Staffing agencies get us the network effect</h4>
+        <p>Per-placement licensing. "Verified by Randstad" becomes a differentiator they sell upstream to clients. Cross-company signal graph starts compounding.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Federal contracts get us the moat</h4>
+        <p>Post-FedRAMP, DoD direct contracts, ATS native integrations (Workday, SAP SuccessFactors). No competitor replicates this in under 5 years. $200M+ ARR ceiling.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>The one-line conclusion:</strong> We are not an HR product that security buys. We are a security product that HR discovers. That distinction determines our pricing, our buyer, our pitch, and our path to a billion. Big tech routes us to HR. Our targets route us to the CISO. That is the entire GTM in one sentence.</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Sentriq — sentriq.co</span>
+    <span>Internal — April 2026 — samuel@sentriq.co</span>
+  </div>
+
+</div>
+
+<!-- PAGE BREAK -->
+<div class="doc" style="page-break-before: always;">
+
+  <div class="doc-header">
+    <div class="doc-meta">Sentriq — Internal Document — April 2026 — Page 2</div>
+    <h1>Full Company Scoring Tables</h1>
+    <div class="doc-sub">All variables per company. Tier-by-tier breakdown. Basis for priority ranking.</div>
+  </div>
+
+  <!-- Scoring Legend -->
+  <div class="section">
+    <h2>Scoring Variables</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>What it measures</th>
+          <th>Why it matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">Scale</td><td>Total employee headcount</td><td>Baseline market size. Never used alone.</td></tr>
+        <tr><td class="co">TOM</td><td>Total annual hires</td><td>The actual attack surface: every hire is a potential fraudulent application.</td></tr>
+        <tr><td class="co">TAM</td><td>Annual hires in roles where fraud creates real risk</td><td>Removes retail, low-sensitivity roles. The number Sentriq actually protects.</td></tr>
+        <tr><td class="co">SOM</td><td>Hires Sentriq realistically captures first</td><td>Third-party, remote, and offshore pipelines. Our beachhead within each account.</td></tr>
+        <tr><td class="co">OFH Risk</td><td>Out-of-country hiring volume + remote access to US systems</td><td>Highest-risk vector. Offshore workers hired outside US vetting, placed on US-sensitive infrastructure.</td></tr>
+        <tr><td class="co">Buyer Urgency</td><td>How acute the pain is today</td><td>Determines sales cycle length. Post-breach or active regulatory pressure = immediate.</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px; color:#888; margin-top:8px;">OFH Risk scale: CRITICAL (offshore workers access US-sensitive systems directly) / HIGH (large offshore headcount, partial system access) / MEDIUM (offshore exists, access limited) / LOW (minimal offshore hiring).</p>
+  </div>
+
+  <!-- Tier 1: Defense -->
+  <div class="section">
+    <h2>Tier 1 — Defense Contractors (Cleared Workforce)</h2>
+    <p style="font-size:12px; color:#555; margin-bottom:10px;">Highest-consequence tier. Security clearance fraud is a federal crime. Buyer: CISO + legal. Framing: existential, not operational.</p>
+    <div style="overflow-x:auto;">
+    <table style="font-size:11px;">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Employees</th>
+          <th>Annual TOM</th>
+          <th>Sensitive TAM</th>
+          <th>SOM</th>
+          <th>Clearance %</th>
+          <th>OFH Risk</th>
+          <th>Key angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">Booz Allen Hamilton</td><td>34,200</td><td>~5,000</td><td>~3,200</td><td>~750</td><td><strong>64% disclosed</strong></td><td class="partial">MEDIUM</td><td>Intelligence community IT. NSA/CIA/DIA. Record hiring mode. Fastest CISO path.</td></tr>
+        <tr><td class="co">Leidos</td><td>48,000</td><td>~6,000</td><td>~3,150</td><td>~900</td><td>52% disclosed</td><td class="partial">MEDIUM</td><td>#1 federal IT contractor. Dual PHI + classified (VA + DoD).</td></tr>
+        <tr><td class="co">CACI International</td><td>24,500</td><td>~3,700</td><td>~2,550</td><td>~600</td><td>~65-75% est.</td><td class="partial">MEDIUM</td><td>TS/SCI concentration. Signals intelligence. DoD mission software.</td></tr>
+        <tr><td class="co">Northrop Grumman</td><td>101,000</td><td>~9,000</td><td>~6,300</td><td>~1,250</td><td>~70%+ est.</td><td class="pass" style="color:#16a34a;">LOW</td><td>B-21 Raider, nuclear deterrence. Zero H-1B petitions FY21-FY23.</td></tr>
+        <tr><td class="co">RTX / Raytheon</td><td>186,000</td><td>~16,000</td><td>~9,500</td><td>~2,000</td><td>~55-65% est.</td><td class="partial">LOW-MED</td><td>Missile systems, SIGINT, electronic warfare.</td></tr>
+        <tr><td class="co">General Dynamics / GDIT</td><td>117,000</td><td>~10,000</td><td>~5,500</td><td>~1,500</td><td>~50-60% est.</td><td class="partial">MEDIUM</td><td>GDIT handles classified DoD + intel networks. 50+ countries.</td></tr>
+        <tr><td class="co">Lockheed Martin</td><td>121,000</td><td>~9,200</td><td>~5,650</td><td>~1,050</td><td>~65-70% est.</td><td class="partial">LOW-MED</td><td>F-35, hypersonics, classified satellites. Subcontractor pipeline is the gap.</td></tr>
+        <tr><td class="co">Boeing</td><td>163,900</td><td>~11,500</td><td>~4,750</td><td>~1,250</td><td>~35-40% (defense div.)</td><td class="fail">HIGH</td><td>6,000+ engineers in India (Bengaluru, 43-acre campus, opened Jan 2024).</td></tr>
+        <tr><td class="co">L3Harris</td><td>47,000</td><td>~4,750</td><td>~2,650</td><td>~650</td><td>~50-60% est.</td><td class="partial">LOW-MED</td><td>Electronic warfare, ISR, tactical radios.</td></tr>
+        <tr><td class="co">SAIC</td><td>15,000</td><td>~2,000</td><td>~1,300</td><td>~400</td><td>~60-70% est.</td><td class="partial">MEDIUM</td><td>Classified satellite comms, Navy enterprise systems.</td></tr>
+        <tr><td class="co">ManTech</td><td>~9,000</td><td>~1,500</td><td>~1,300</td><td>~325</td><td>~85-90% est.</td><td class="partial">MEDIUM</td><td>Pure-play cleared IT. 100% government clients. Went private 2022.</td></tr>
+        <tr><td class="co">BAE Systems US</td><td>~22,500</td><td>~3,000</td><td>~1,900</td><td>~550</td><td>~55-70% est.</td><td class="partial">MEDIUM</td><td>Ship repair, classified electronics, cyber intelligence.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:11px; color:#888; margin-top:6px;">Tier 1 aggregate SOM: ~9,175 high-risk cleared-role hires per year across 12 companies.</p>
+  </div>
+
+  <!-- Tier 2: Financial -->
+  <div class="section">
+    <h2>Tier 2 — Financial Services</h2>
+    <p style="font-size:12px; color:#555; margin-bottom:10px;">DPRK schemes explicitly target this sector. Offshore workers have live access to SWIFT, trading systems, and customer accounts. Buyer: CISO. Framing: insider threat, not HR problem.</p>
+    <div style="overflow-x:auto;">
+    <table style="font-size:11px;">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Employees</th>
+          <th>Sensitive TAM</th>
+          <th>SOM</th>
+          <th>Offshore Headcount</th>
+          <th>OFH Risk</th>
+          <th>Key data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">JPMorgan Chase</td><td>314,000</td><td>~8,500</td><td>~2,250</td><td><strong>50,000+ India</strong></td><td class="fail">CRITICAL</td><td>Embassy Tech Village campus, 1.12M sq ft (opened 2023). DPRK targeting publicly disclosed.</td></tr>
+        <tr><td class="co">American Express</td><td>75,000</td><td>~4,250</td><td>~1,150</td><td><strong>81,000 India</strong></td><td class="fail">CRITICAL</td><td>Largest single offshore headcount of any financial firm in this analysis.</td></tr>
+        <tr><td class="co">Goldman Sachs</td><td>45,000</td><td>~4,250</td><td>~950</td><td><strong>8,223 Bengaluru</strong></td><td class="fail">CRITICAL</td><td>#2 office globally. $250M facility. Trading systems, M&amp;A data.</td></tr>
+        <tr><td class="co">Morgan Stanley</td><td>82,000</td><td>~4,750</td><td>~1,100</td><td>~7,000-8,500 India</td><td class="fail">CRITICAL</td><td>India team doubled in 2 years. India is #2 location globally after New York.</td></tr>
+        <tr><td class="co">Wells Fargo</td><td>225,000</td><td>~7,500</td><td>~1,750</td><td>20,000+ offshore</td><td class="fail">CRITICAL</td><td>12,000 India + 5,000+ Philippines. Core banking access confirmed.</td></tr>
+        <tr><td class="co">Bank of America</td><td>213,000</td><td>~6,750</td><td>~1,600</td><td>BA Continuum India subsidiary</td><td class="fail">CRITICAL</td><td>Consumer/investment banking, wealth management ops.</td></tr>
+        <tr><td class="co">Citigroup</td><td>239,000</td><td>~6,750</td><td>~1,600</td><td>India, Philippines, Eastern Europe</td><td class="fail">CRITICAL</td><td>Restructuring 14 countries. Trading systems, customer data.</td></tr>
+        <tr><td class="co">Visa</td><td>28,000</td><td>~2,500</td><td>~550</td><td>India tech center</td><td class="fail">CRITICAL</td><td>Payment network infrastructure. Any compromise is systemic.</td></tr>
+        <tr><td class="co">Mastercard</td><td>30,000</td><td>~2,500</td><td>~550</td><td>India tech center</td><td class="fail">CRITICAL</td><td>Same risk profile as Visa.</td></tr>
+        <tr><td class="co">Fidelity Investments</td><td>75,000</td><td>~4,000</td><td>~950</td><td>India (Bengaluru, Chennai)</td><td class="partial">HIGH</td><td>Retirement accounts, brokerage, customer financial data.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Tier 3: Healthcare -->
+  <div class="section">
+    <h2>Tier 3 — Healthcare / PHI</h2>
+    <p style="font-size:12px; color:#555; margin-bottom:10px;">HIPAA liability follows the data, not the geography. Post-Change Healthcare breach (190M Americans, Feb 2024), boards are sensitized. Buyer: CISO + Chief Privacy Officer.</p>
+    <div style="overflow-x:auto;">
+    <table style="font-size:11px;">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Employees</th>
+          <th>PHI-Access TAM</th>
+          <th>SOM</th>
+          <th>Offshore Headcount</th>
+          <th>OFH Risk</th>
+          <th>Key angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">UnitedHealth / Optum</td><td>400,000</td><td>~17,500</td><td>~4,000</td><td><strong>33,000+ India (5 locations)</strong></td><td class="fail">CRITICAL</td><td>Post-breach board sensitivity. Fastest design partner path in this tier.</td></tr>
+        <tr><td class="co">CVS Health / Aetna</td><td>227,000</td><td>~6,500</td><td>~1,500</td><td>India, Philippines</td><td class="partial">HIGH</td><td>Aetna: 23M member PHI. Caremark: 2B+ prescription claims/year.</td></tr>
+        <tr><td class="co">Elevance Health</td><td>100,000</td><td>~5,000</td><td>~1,150</td><td>India, Philippines</td><td class="partial">HIGH</td><td>40M+ insurance members. Medicaid/Medicare.</td></tr>
+        <tr><td class="co">Humana</td><td>70,000</td><td>~3,750</td><td>~900</td><td>India ops</td><td class="partial">HIGH</td><td>Medicare/Medicaid federal health contracts.</td></tr>
+        <tr><td class="co">Kaiser Permanente</td><td>230,000</td><td>~8,500</td><td>~2,250</td><td>India, Philippines</td><td class="partial">HIGH</td><td>12M member integrated payer-provider PHI.</td></tr>
+        <tr><td class="co">HCA Healthcare</td><td>260,000</td><td>~4,000</td><td>~1,100</td><td>India, Philippines (IT, billing)</td><td class="partial">HIGH</td><td>Centralized EHR for 190 hospitals across 20 states.</td></tr>
+        <tr><td class="co">Centene Corporation</td><td>75,000</td><td>~3,750</td><td>~900</td><td>India, Philippines</td><td class="partial">HIGH</td><td>Medicaid managed care. Heavy government payer concentration.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Tier 4: IT Services -->
+  <div class="section">
+    <h2>Tier 4 — IT Services / BPO</h2>
+    <p style="font-size:12px; color:#555; margin-bottom:10px;">These companies ARE the hiring supply chain for Tier 1-3 targets. One deal covers hundreds of downstream clients. The multiplier play. H-1B onshore risk: Cognizant filed 6,321 H-1B approvals in 2024 alone.</p>
+    <div style="overflow-x:auto;">
+    <table style="font-size:11px;">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>US Employees</th>
+          <th>Sensitive TAM</th>
+          <th>SOM</th>
+          <th>Offshore %</th>
+          <th>Offshore Headcount</th>
+          <th>OFH Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">Cognizant</td><td>~75,000</td><td>~5,750</td><td>~4,250</td><td><strong>76%</strong></td><td>256,900 (Chennai 50K+, Hyderabad 50K+)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Infosys</td><td>~40,000</td><td>~3,000</td><td>~2,000</td><td><strong>85%</strong></td><td>~269,654 (Pune, Bengaluru, Hyderabad)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">TCS</td><td>~55,000</td><td>~4,250</td><td>~3,000</td><td><strong>70-80%</strong></td><td>~420,000-480,000 (55 countries)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Accenture</td><td>~100,000</td><td>~10,000</td><td>~3,500</td><td><strong>75%+</strong></td><td>~580,500 (India, Philippines, LATAM)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Capgemini</td><td>~30,000</td><td>~2,750</td><td>~1,650</td><td>58%</td><td>196,900 (India primary)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Wipro</td><td>~25,000</td><td>~2,250</td><td>~1,350</td><td>75%+</td><td>~175,000 (India, 60+ countries)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Genpact</td><td>~17,500</td><td>~2,750</td><td>~1,500</td><td>48%</td><td>~67,000 (Delhi, Gurugram, Hyderabad)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Concentrix</td><td>~80,000</td><td>~39,000</td><td>~27,500</td><td>62%+</td><td>250,000+ (Philippines largest private employer, 100K+)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">Teleperformance</td><td>~50,000</td><td>~22,500</td><td>~15,000</td><td>78%+</td><td>~350,000 (95 countries)</td><td class="fail">CRITICAL</td></tr>
+        <tr><td class="co">TTEC</td><td>~25,000</td><td>~10,250</td><td>~6,500</td><td>70%+</td><td>~35,000+ (Philippines, Colombia, Costa Rica)</td><td class="partial">HIGH</td></tr>
+        <tr><td class="co">TaskUs</td><td>~15,000</td><td>~7,500</td><td>~5,500</td><td>83%+</td><td>~50,000 (Philippines, India, Colombia)</td><td class="partial">HIGH</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Sentriq — sentriq.co</span>
+    <span>Internal — April 2026 — Page 2</span>
+  </div>
+
+</div>
+
+<!-- PAGE 3: PRIORITY RANKING -->
+<div class="doc" style="page-break-before: always;">
+
+  <div class="doc-header">
+    <div class="doc-meta">Sentriq — Internal Document — April 2026 — Page 3</div>
+    <h1>Priority Ranking: Top 20 Targets</h1>
+    <div class="doc-sub">Scored on combined TAM, OFH risk, buyer urgency, and sales cycle speed. This is our sequenced hit list.</div>
+  </div>
+
+  <div class="section">
+    <h2>Consolidated Priority Ranking</h2>
+    <div style="overflow-x:auto;">
+    <table style="font-size:11.5px;">
+      <thead>
+        <tr>
+          <th style="width:32px;">#</th>
+          <th>Company</th>
+          <th>Tier</th>
+          <th>Annual TAM</th>
+          <th>OFH Risk</th>
+          <th>Buyer Urgency</th>
+          <th>Priority</th>
+          <th>Why this rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">1</td>
+          <td class="co">UnitedHealth / Optum</td>
+          <td>Healthcare</td>
+          <td>~17,500</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass">Immediate</td>
+          <td class="pass">Immediate</td>
+          <td style="font-size:11px;">Post-Change Healthcare breach (190M Americans, Feb 2024). Board sensitized. 33K India employees with live PHI access. Fastest design partner path.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">2</td>
+          <td class="co">JPMorgan Chase</td>
+          <td>Financial</td>
+          <td>~8,500</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass">Immediate</td>
+          <td class="pass">Immediate</td>
+          <td style="font-size:11px;">DPRK explicitly targeting JPMorgan. 50K+ India employees with SWIFT access. 2017 insider fraud (4yr federal) + 2016 FCPA hiring scandal ($264M). Three documented hiring failure modes.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">3</td>
+          <td class="co">Booz Allen Hamilton</td>
+          <td>Defense</td>
+          <td>~3,200</td>
+          <td class="partial">MEDIUM</td>
+          <td class="pass">Immediate</td>
+          <td class="pass">Immediate</td>
+          <td style="font-size:11px;">64% cleared workforce. Intelligence community IT (NSA/CIA/DIA). Record hiring mode. Fastest CISO-to-close cycle in the defense tier. High OFH risk from subcontractor pipeline.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">4</td>
+          <td class="co">Leidos</td>
+          <td>Defense</td>
+          <td>~3,150</td>
+          <td class="partial">MEDIUM</td>
+          <td class="pass">Immediate</td>
+          <td class="pass">Immediate</td>
+          <td style="font-size:11px;">#1 federal IT contractor by prime obligations. Dual exposure: VA PHI (healthcare) + DoD classified. Two breach vectors in one account.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">5</td>
+          <td class="co">American Express</td>
+          <td>Financial</td>
+          <td>~4,250</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass">Immediate</td>
+          <td class="pass">Immediate</td>
+          <td style="font-size:11px;">81,000 employees in India. Largest single offshore headcount of any financial firm. Almost no one associates AmEx with offshore hiring risk. That gap is the pitch.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#dc2626;">6</td>
+          <td class="co">Goldman Sachs</td>
+          <td>Financial</td>
+          <td>~4,250</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">Immediate</td>
+          <td style="font-size:11px;">Bengaluru is #2 office globally ($250M, 8,223 employees). Trading systems and M&amp;A data at an Indian facility. CISO will know this is a problem before you finish the pitch.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">7</td>
+          <td class="co">CACI International</td>
+          <td>Defense</td>
+          <td>~2,550</td>
+          <td class="partial">MEDIUM</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">TS/SCI concentration. Signals intelligence. DoD mission software. 65-75% estimated clearance rate.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">8</td>
+          <td class="co">Morgan Stanley</td>
+          <td>Financial</td>
+          <td>~4,750</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">India engineering team doubled in 2 years to 7,000+. India is #2 office globally after New York.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">9</td>
+          <td class="co">Wells Fargo</td>
+          <td>Financial</td>
+          <td>~7,500</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">20,000+ offshore with direct core banking system access. 12K India, 5K+ Philippines.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">10</td>
+          <td class="co">Cognizant</td>
+          <td>IT Services</td>
+          <td>~5,750</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">76% offshore (256,900 in India). They ARE the pipeline for banking, healthcare, and government IT clients. One deal protects hundreds of their clients simultaneously.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">11</td>
+          <td class="co">TCS US</td>
+          <td>IT Services</td>
+          <td>~4,250</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">420,000-480,000 offshore across 55 countries. Top H-1B sponsor. Same multiplier logic as Cognizant.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">12</td>
+          <td class="co">Infosys US</td>
+          <td>IT Services</td>
+          <td>~3,000</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">85% offshore. Top 3 H-1B sponsor. Known DPRK target vector via third-party IT placement.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">13</td>
+          <td class="co">Accenture</td>
+          <td>IT Services</td>
+          <td>~10,000</td>
+          <td class="fail">CRITICAL</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">75%+ offshore (580,500 workers). Accenture Federal Services handles cleared and VA/CMS health IT. Offshore pipeline feeding into classified and HIPAA environments.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:#d97706;">14</td>
+          <td class="co">Boeing</td>
+          <td>Defense</td>
+          <td>~4,750</td>
+          <td class="fail">HIGH</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td class="pass" style="color:#d97706;">High</td>
+          <td style="font-size:11px;">6,000+ engineers in India (43-acre Bengaluru campus, largest Boeing facility outside US, opened Jan 2024). 737 Max software previously outsourced offshore. Post-2024 rehiring scrutiny.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">15</td>
+          <td class="co">Concentrix</td>
+          <td>BPO</td>
+          <td>~39,000</td>
+          <td class="fail">CRITICAL</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">Largest private employer in the Philippines (100K+). Handles customer PII, financial accounts, health insurance records. Cost-focused buyer is the friction.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">16</td>
+          <td class="co">Elevance Health</td>
+          <td>Healthcare</td>
+          <td>~5,000</td>
+          <td class="partial">HIGH</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">40M+ insurance members. Medicaid/Medicare government payer. Offshore ops in India and Philippines.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">17</td>
+          <td class="co">Capgemini US</td>
+          <td>IT Services</td>
+          <td>~2,750</td>
+          <td class="fail">CRITICAL</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">58% offshore. Government IT, financial services, utilities. Smaller US footprint = longer procurement cycle than Cognizant/TCS.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">18</td>
+          <td class="co">Randstad</td>
+          <td>Staffing</td>
+          <td>~90K placements</td>
+          <td class="partial">HIGH</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">Owns GCC in Hyderabad + Chennai + Budapest. Verifies candidates using staff hired through an offshore pipeline. The verification chain is circular. $25B global revenue = budget exists.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">19</td>
+          <td class="co">Humana</td>
+          <td>Healthcare</td>
+          <td>~3,750</td>
+          <td class="partial">HIGH</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">Medicare/Medicaid federal contracts. India offshore ops. Government payer concentration adds federal compliance pressure.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;">20</td>
+          <td class="co">Teleperformance</td>
+          <td>BPO</td>
+          <td>~22,500</td>
+          <td class="fail">CRITICAL</td>
+          <td class="partial">Medium</td>
+          <td class="partial">Medium</td>
+          <td style="font-size:11px;">350,000 offshore across 95 countries. Healthcare payer data and banking PII. 78%+ offshore rate.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Market sizing summary -->
+  <div class="section">
+    <h2>Market Sizing by Tier</h2>
+    <table style="font-size:12px;">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Companies</th>
+          <th>Annual TAM (sensitive hires)</th>
+          <th>Sentriq SOM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="co">Defense / Cleared</td><td>12</td><td>~43,000-60,000</td><td>~8,850-13,600</td></tr>
+        <tr><td class="co">IT Services / BPO</td><td>11</td><td>~66,000-139,000</td><td>~41,300-77,300</td></tr>
+        <tr><td class="co">Financial Services</td><td>10</td><td>~40,000-60,000</td><td>~7,900-15,200</td></tr>
+        <tr><td class="co">Healthcare / PHI</td><td>7</td><td>~46,000-67,000</td><td>~9,000-19,000</td></tr>
+        <tr><td class="co">Staffing (multiplier)</td><td>5</td><td>~270,000-680,000</td><td>~68,000-170,000</td></tr>
+        <tr><td class="co">Federal / Infrastructure</td><td>6</td><td>~53,700-79,200</td><td>~27,000-42,000</td></tr>
+        <tr style="background:#f4f4f8;"><td class="co">Total</td><td>51</td><td>~600K-1.2M</td><td>~182K-377K</td></tr>
+      </tbody>
+    </table>
+    <div class="callout" style="margin-top:16px;">
+      <p>At $5/verification, 10:1 applicant-to-hire ratio: <strong>$9.1M (low) to $18.85M (high) near-term addressable from these 51 companies alone.</strong> Category leadership across all tiers = $200M+ ARR. Federal contracts post-FedRAMP = the ceiling no competitor can reach without 5+ years of compliance runway.</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Sentriq — sentriq.co</span>
+    <span>Internal — April 2026 — Page 3</span>
+  </div>
+
+</div>
+</body>
+</html>
