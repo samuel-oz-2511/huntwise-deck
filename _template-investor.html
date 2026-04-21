@@ -67,6 +67,25 @@ MOBILE:
 - Viewport meta always present
 - All grids collapse to 1 column at max-width: 640px
 
+VISUAL DESIGN SYSTEM (April 2026):
+- Amber (#E8A020) is reserved for ONE dominant element per slide. Everything else recedes.
+  Never use amber as a fill color for supporting elements.
+- Body text minimum: 13px. Never go below 13px for slide content. Labels/badges can be 9-11px.
+- Headline weight: 800 everywhere. Never 700 for h1/h2.
+- Cover slide: double radial-gradient on .bg-cover. Meeting badge hidden (opacity:0) on slide 0,
+  visible (opacity:1) on all other slides. Set via JS in showSlide().
+- .label: amber color, 11px, 0.15em letter-spacing. Has a short amber line before it.
+- Stack visual: protected rows use .stack-layer, undefended row uses .stack-layer-threat,
+  LAYER 0: SENTRIQ always uses .stack-layer-zero (bigger, glowing, dominant).
+- Competitive table: Edge cells max 2-3 sentences, 12px. Direct/Distribution threats: rgba(255,255,255,0.88).
+  Complements: rgba(255,255,255,0.65). Indirect: rgba(255,255,255,0.55). Never paragraph walls.
+- Attack spectrum: gradient bar (.spectrum-bar) sits above the 6-column grid. Column text 13px min.
+- Moat cards: use .moat-card with .moat-watermark for background number. position:relative, overflow:hidden.
+- Network effects / key insight: use .hero-quote for the full-width bottom anchor statement.
+- Milestones: use .milestone-card with .milestone-num showing hero number. Never bury ARR in body text.
+- --red is #E05555 (threat red). Never alias --red to amber. Amber = Sentriq. Red = threat.
+- lc-sentriq uses amber (#E8A020), not green. Lifecycle diagram is amber-branded throughout.
+
 CUSTOMIZE MARKERS:
 - [CUSTOMIZE: ...] comments mark every placeholder to adapt per deck
 
@@ -94,7 +113,7 @@ SLIDE ORDER (13 slides):
 <title>Sentriq - Investor Briefing</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
     :root {
         --bg:      #09090F;
@@ -112,9 +131,9 @@ SLIDE ORDER (13 slides):
         --gray-900: #09090F;
         --gray-800: #0D0E1A;
         --orange: #E8A020;
-        --red: #E8A020;
-        --purple: #E8A020;
-        --text-dim: #8080A8;
+        --red: #E05555;
+        --purple: #3A2058;
+        --text-dim: rgba(255,255,255,0.52);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -156,9 +175,9 @@ SLIDE ORDER (13 slides):
     .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
     @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     .bg-cover {
-        background: linear-gradient(135deg, #09090F, #1a1430, #2a1a08, #1a1430, #09090F);
-        background-size: 300% 300%;
-        animation: gradientShift 14s ease infinite;
+        background:
+            radial-gradient(ellipse 40% 35% at 50% 32%, rgba(232,160,32,0.38) 0%, rgba(232,160,32,0.10) 55%, transparent 100%),
+            radial-gradient(ellipse 85% 65% at 50% 35%, rgba(26,26,53,0.55) 0%, #09090F 70%);
     }
 
     .nav-bar {
@@ -180,26 +199,27 @@ SLIDE ORDER (13 slides):
     .slide-counter { font-size: 12px; color: var(--muted); font-weight: 500; min-width: 52px; text-align: center; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
 
     .progress-bar {
-        position: fixed; top: 0; left: 0; height: 3px;
-        background: linear-gradient(90deg, #E8A020, #B87010);
-        box-shadow: 0 0 10px rgba(232,160,32,0.5);
+        position: fixed; top: 0; left: 0; height: 2px;
+        background: #E8A020;
+        box-shadow: 0 0 8px rgba(232,160,32,0.45);
         transition: width 0.35s ease; z-index: 100;
     }
 
     .confidential { position: fixed; top: 16px; right: 22px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100; }
+    .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); opacity: 0; transition: opacity 0.3s ease; }
 
     .label {
-        font-size: 10px; font-weight: 700; text-transform: uppercase;
-        letter-spacing: 4px; color: var(--muted); margin-bottom: 12px;
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 12px;
         display: flex; align-items: center; gap: 9px;
     }
-    .label::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--amber); opacity: 0.5; }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
     .center .label { justify-content: center; }
     .center .label::before { display: none; }
 
-    h1 { font-size: clamp(30px, 4.5vw, 54px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 18px; }
-    h2 { font-size: clamp(20px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 16px; }
-    h3 { font-size: clamp(13px, 1.5vw, 17px); font-weight: 600; line-height: 1.3; margin-bottom: 8px; }
+    h1 { font-size: clamp(36px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 18px; }
+    h2 { font-size: clamp(22px, 3.2vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
+    h3 { font-size: clamp(14px, 1.6vw, 18px); font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
 
     .card {
         background: var(--card); border: 1px solid var(--border);
@@ -212,7 +232,7 @@ SLIDE ORDER (13 slides):
     .pill-green { background: rgba(68,204,136,0.08); color: #44CC88; border-color: rgba(68,204,136,0.2); }
     .pill-red { background: rgba(232,160,32,0.08); color: var(--amber); border-color: rgba(232,160,32,0.2); }
 
-    .stat-num { font-size: clamp(28px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .stat-num { font-size: clamp(36px, 5vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
 
     @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
     .shimmer { background: linear-gradient(90deg,#fff 0%,#E8A020 25%,#fff 50%,#E8A020 75%,#fff 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
@@ -236,10 +256,16 @@ SLIDE ORDER (13 slides):
     .src-content a { color: rgba(255,255,255,0.4); text-decoration: underline; }
 
     /* Security stack visual */
-    .stack-layer { display:flex; align-items:center; padding:9px 14px; border-radius:8px; border:1px solid rgba(232,160,32,0.18); background:rgba(232,160,32,0.04); margin-bottom:5px; }
-    .stack-layer-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.4); width:160px; flex-shrink:0; }
-    .stack-layer-vendors { font-size:11px; color:rgba(255,255,255,0.3); }
+    .stack-layer { display:flex; align-items:center; padding:12px 16px; border-radius:8px; border:1px solid rgba(232,160,32,0.18); background:rgba(232,160,32,0.04); margin-bottom:5px; }
+    .stack-layer-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.4); width:180px; flex-shrink:0; }
+    .stack-layer-vendors { font-size:12px; color:rgba(255,255,255,0.3); }
     .stack-layer-badge { margin-left:auto; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:3px 8px; border-radius:4px; background:rgba(232,160,32,0.1); color:var(--amber); border:1px solid rgba(232,160,32,0.25); }
+    /* LAYER 0: SENTRIQ row: always use this for the payoff row */
+    .stack-layer-zero { display:flex; align-items:center; padding:20px 20px; border-radius:10px; border:2px solid rgba(232,160,32,0.75); background:rgba(232,160,32,0.16); margin-bottom:5px; box-shadow:0 0 28px rgba(232,160,32,0.12), inset 0 1px 0 rgba(232,160,32,0.2); }
+    .stack-layer-zero .stack-layer-label { font-size:13px; font-weight:800; color:#E8A020; }
+    .stack-layer-zero .stack-layer-vendors { font-size:13px; color:rgba(255,255,255,0.95); font-weight:600; }
+    /* Undefended row */
+    .stack-layer-threat { display:flex; align-items:center; padding:15px 16px; border-radius:8px; border:2px solid rgba(239,68,68,0.6); background:rgba(239,68,68,0.1); margin-bottom:6px; }
 
     /* Lifecycle diagram */
     .lc-grid { display:grid; grid-template-columns:repeat(8,1fr); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:14px; }
@@ -249,12 +275,36 @@ SLIDE ORDER (13 slides):
     .lc-name { font-size:12px; font-weight:700; color:rgba(255,255,255,0.8); margin-bottom:4px; line-height:1.3; }
     .lc-tool { font-size:10px; color:rgba(255,255,255,0.3); line-height:1.4; }
     .lc-cost { font-size:11px; font-weight:600; color:rgba(255,255,255,0.4); margin-top:8px; }
-    .lc-stage.lc-sentriq { background:rgba(68,204,136,0.08); border-bottom:3px solid #44CC88; }
-    .lc-stage.lc-sentriq .lc-badge { color:#44CC88; }
-    .lc-stage.lc-sentriq .lc-name { color:#fff; }
-    .lc-stage.lc-sentriq .lc-cost { color:#44CC88; font-weight:800; }
-    .lc-stage.lc-danger { background:rgba(232,160,32,0.08); border-bottom:3px solid #E8A020; }
-    .lc-stage.lc-danger .lc-cost { color:var(--amber); font-weight:800; }
+    .lc-stage.lc-sentriq { background:rgba(232,160,32,0.12); border-bottom:3px solid #E8A020; }
+    .lc-stage.lc-sentriq .lc-badge { color:#E8A020; }
+    .lc-stage.lc-sentriq .lc-name { color:#fff; font-weight:800; }
+    .lc-stage.lc-sentriq .lc-cost { color:#E8A020; font-weight:800; }
+    .lc-stage.lc-danger { background:rgba(239,68,68,0.08); border-bottom:3px solid rgba(239,68,68,0.7); }
+    .lc-stage.lc-danger .lc-cost { color:#E05555; font-weight:800; }
+
+    /* Attack spectrum gradient bar: place above 6-column grid */
+    .spectrum-bar { height:4px; background:linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(232,160,32,0.5) 40%, rgba(249,115,22,0.7) 70%, rgba(224,85,85,1) 100%); border-radius:4px 4px 0 0; }
+
+    /* Moat card with watermark number */
+    .moat-card { position:relative; overflow:hidden; padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; }
+    .moat-watermark { position:absolute; bottom:-10px; right:8px; font-size:72px; font-weight:800; color:rgba(255,255,255,0.07); letter-spacing:-0.04em; line-height:1; pointer-events:none; user-select:none; }
+
+    /* Network effects / moat hero quote: full-width bottom anchor */
+    .hero-quote { margin-top:18px; padding:22px 32px; background:rgba(232,160,32,0.06); border-left:3px solid #E8A020; border-radius:0 12px 12px 0; }
+    .hero-quote p { font-size:20px; color:rgba(255,255,255,0.94); font-weight:700; letter-spacing:-0.02em; line-height:1.4; }
+    .hero-quote small { display:block; font-size:12px; color:rgba(255,255,255,0.38); margin-top:8px; letter-spacing:0.02em; }
+
+    /* Competitive table: Edge column cells max 2-3 sentences, 12px */
+    .comp-edge { font-size:12px; color:rgba(255,255,255,0.88); line-height:1.55; padding:5px 10px; }
+    .comp-edge-dim { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.55; padding:5px 10px; }
+
+    /* Milestone hero number card */
+    .milestone-card { padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px; display:flex; align-items:center; gap:16px; }
+    .milestone-num { flex-shrink:0; text-align:center; min-width:52px; }
+    .milestone-num .date { font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
+    .milestone-num .value { font-size:20px; font-weight:800; color:var(--amber); letter-spacing:-0.02em; line-height:1; }
+    .milestone-num .unit { font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px; }
+    .milestone-body { font-size:12px; color:rgba(255,255,255,0.80); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px; }
 
     @media (max-width: 900px) {
         .slide { padding: 22px 16px 70px; }

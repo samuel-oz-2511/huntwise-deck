@@ -65,6 +65,15 @@ MOBILE:
 - Viewport meta always present
 - All grids collapse to 1 column at max-width: 640px
 
+VISUAL DESIGN SYSTEM (April 2026):
+- Amber (#E8A020) is reserved for ONE dominant element per section. Everything else recedes.
+- Body text minimum: 13px. Never go below 13px for content.
+- Headline weight: 800. h1 uses font-weight:800, letter-spacing:-0.03em.
+- .hero-label and .section-label: 11px, 0.15em letter-spacing, amber color.
+- LAYER 0: SENTRIQ row: use .stack-layer-zero (larger, amber glow, visually dominant).
+- Undefended row: use .stack-layer-threat with red border.
+- Font weights 800 and 900 are loaded. Use 800 for all headlines and hero numbers.
+
 CUSTOMIZE MARKERS:
 - [CUSTOMIZE: ...] comments mark every placeholder to adapt per deck
 
@@ -86,7 +95,7 @@ SECTION ORDER (7 sections):
     <title>Sentriq - Security Briefing</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -115,18 +124,19 @@ SECTION ORDER (7 sections):
         .hero { margin-bottom: 64px; }
 
         .hero-label {
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 0.15em;
             color: #E8A020;
             margin-bottom: 16px;
         }
 
         .hero h1 {
-            font-size: 38px;
-            font-weight: 700;
-            line-height: 1.18;
+            font-size: clamp(32px, 4.5vw, 54px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
             color: #ffffff;
             margin-bottom: 20px;
             max-width: 720px;
@@ -144,11 +154,11 @@ SECTION ORDER (7 sections):
         .section { margin-bottom: 60px; }
 
         .section-label {
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #8080A8;
+            letter-spacing: 0.15em;
+            color: #E8A020;
             margin-bottom: 24px;
             padding-bottom: 12px;
             border-bottom: 1px solid #161728;
