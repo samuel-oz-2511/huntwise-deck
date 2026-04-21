@@ -15,7 +15,7 @@
             --gray-800: #0D0E1A;
             --green: #E8A020;
             --orange: #E8A020;
-            --red: #B04040;
+            --red: #E05555;
             --purple: #E8A020;
             --text: rgba(255,255,255,0.80);
             --text-dim: rgba(255,255,255,0.52);
@@ -117,7 +117,7 @@
         .stat-num { font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 
         @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
-        .shimmer { background: linear-gradient(90deg,#fff 0%,#4A4A6A 25%,#fff 50%,#4A4A6A 75%,#fff 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
+        .shimmer { background: linear-gradient(90deg,rgba(255,255,255,0.35) 0%,#E8A020 28%,#fff 50%,#E8A020 72%,rgba(255,255,255,0.35) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear infinite; }
 
         .signal-tag {
             display: inline-flex; align-items: center; gap: 5px;
@@ -460,7 +460,7 @@
 <p style="font-size:12px; color:var(--text); line-height:1.65;">At 15 customers, the graph starts returning signal no single employer can see alone. At 100, coordinated campaigns are detected before they reach any one company. The product gets more accurate with every customer added: without any customer sharing identifiable data.</p>
 <p style="font-size:12px; color:var(--text); line-height:1.65;">This is not a feature that incumbents can build. Greenhouse controls ~30% of the market and their customer contracts legally prohibit cross-employer data sharing. That is a permanent structural constraint. Sentriq requires neutral ground and direct candidate consent. No ATS can offer either.</p>
 <div style="padding:10px 14px; background:rgba(232,160,32,0.1); border-radius:8px; border:1px solid rgba(232,160,32,0.2);">
-<p style="font-size:12px; color:#4A4A6A; font-weight:600; text-align:center;">The more companies join the network, the harder it becomes to defraud any of them. That is the platform.</p>
+<p style="font-size:12px; color:rgba(255,255,255,0.4); font-weight:600; text-align:center;">The more companies join the network, the harder it becomes to defraud any of them. That is the platform.</p>
 </div>
 <div style="padding:10px 14px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.07);">
 <p style="font-size:11px; color:var(--text-dim); line-height:1.6; text-align:center;">Every enterprise that hires is a potential node. EU AI Act (August 2026) makes integrity infrastructure a compliance requirement, not a discretionary purchase. The category is being created now.</p>
@@ -586,8 +586,8 @@
 <p style="font-size:11.5px; color:var(--text); line-height:1.6;">Tools like Tsenta sending 1,500+ applications per day. Same behavioral fingerprint across dozens of companies. Detectable before a human sees them.</p>
 </div>
 <div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.06);">
-<div style="font-size:9px; font-weight:700; color:#4A4A6A; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Gaming</div>
-<div style="font-size:14px; font-weight:700; color:#4A4A6A; margin-bottom:8px;">CV-to-JD Overfitting</div>
+<div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Gaming</div>
+<div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.4); margin-bottom:8px;">CV-to-JD Overfitting</div>
 <p style="font-size:11.5px; color:var(--text); line-height:1.6;">Resumes hyper-engineered to beat ATS scoring via keyword injection and hidden text. A <a href="https://www.futuredatastats.com/ai-powered-resume-builders-market" style="color:inherit;" target="_blank">$400M market</a>: gaming the queue, not earning it.</p>
 </div>
 <div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(245,158,11,0.05);">
@@ -748,11 +748,11 @@
 </tr>
 <!-- INDIRECT -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(107,114,128,0.03);">
-<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">hireEZ</div><div style="font-size:9px; color:#4A4A6A;">$100M+ raised · Workflow platform</div></td>
-<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(107,114,128,0.15); color:#4A4A6A; border:1px solid rgba(107,114,128,0.3);">Indirect</span></td>
-<td style="padding:7px 6px; text-align:center; color:#4A4A6A; font-size:13px;">✗</td>
-<td style="padding:7px 6px; text-align:center; color:#4A4A6A; font-size:13px;">✗</td>
-<td style="padding:7px 10px; font-size:10.5px; color:#4A4A6A;">Sourcing and workflow tool. Different buyer (recruiter headcount budget vs. CISO security budget), different problem. Client data siloed per employer by contract. Non-zero-sum: their scale confirms enterprise buyers invest heavily in hiring infrastructure.</td>
+<td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">hireEZ</div><div style="font-size:9px; color:rgba(255,255,255,0.4);">$100M+ raised · Workflow platform</div></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(107,114,128,0.15); color:rgba(255,255,255,0.4); border:1px solid rgba(107,114,128,0.3);">Indirect</span></td>
+<td style="padding:7px 6px; text-align:center; color:rgba(255,255,255,0.4); font-size:13px;">✗</td>
+<td style="padding:7px 6px; text-align:center; color:rgba(255,255,255,0.4); font-size:13px;">✗</td>
+<td style="padding:7px 10px; font-size:10.5px; color:rgba(255,255,255,0.4);">Sourcing and workflow tool. Different buyer (recruiter headcount budget vs. CISO security budget), different problem. Client data siloed per employer by contract. Non-zero-sum: their scale confirms enterprise buyers invest heavily in hiring infrastructure.</td>
 </tr>
 <!-- SENTRIQ -->
 <tr style="background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3);">
