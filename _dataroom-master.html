@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ MASTER DATA ROOM
+Internal source of truth for all data room variants.
+
+WHEN CREATING A NEW DATA ROOM:
+1. Read THIS file only for all facts, numbers, and copy.
+2. Never reconstruct data from memory or other decks.
+3. Pull sections tagged for the relevant audience.
+4. Update THIS file whenever any number or fact changes.
+
+AUDIENCE TAGS (visible on every section header):
+  [ALL]    : include in every variant
+  [VC]     : investor data rooms only
+  [HR]     : HR/design partner decks
+  [CISO]   : CISO-facing decks
+  [ADV]    : advisory/financial review (PwC, etc.)
+
+Password: sentriqmaster2026
+ntfy: sentriq-master-dr
+=============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq: Master Data Room</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:     #09090F;
+      --card:   #0D0E1A;
+      --border: #161728;
+      --amber:  #E8A020;
+      --amber-d:#B87010;
+      --red:    #E05555;
+      --muted:  rgba(255,255,255,0.52);
+      --dim:    rgba(255,255,255,0.4);
+    }
+    body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+    /* LAYOUT */
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px; flex-shrink: 0; position: sticky; top: 0; height: 100vh;
+      overflow-y: auto; background: var(--card); border-right: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .main { flex: 1; padding: 56px 64px; max-width: 920px; }
+
+    /* SIDEBAR */
+    .sb-logo { display: flex; align-items: center; gap: 10px; padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+    .sb-wordmark { font-size: 15px; font-weight: 500; letter-spacing: 0.04em; }
+    .sb-sub { font-size: 9px; color: var(--dim); text-transform: uppercase; letter-spacing: 3px; margin-top: 2px; }
+    .sb-group { padding: 8px 20px 4px; font-size: 9px; text-transform: uppercase; letter-spacing: 3px; color: var(--dim); }
+    .sb-link {
+      display: flex; align-items: center; gap: 8px; padding: 8px 20px;
+      font-size: 12px; color: rgba(255,255,255,0.65); text-decoration: none; cursor: pointer;
+      transition: color 0.15s, background 0.15s; border-left: 2px solid transparent;
+    }
+    .sb-link:hover, .sb-link.active { color: #fff; background: rgba(255,255,255,0.04); border-left-color: var(--amber); }
+    .sb-tag {
+      font-size: 8px; font-weight: 700; letter-spacing: 1px; padding: 1px 5px;
+      border-radius: 3px; text-transform: uppercase; flex-shrink: 0;
+    }
+    .tag-all  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+    .tag-vc   { background: rgba(232,160,32,0.15); color: #E8A020; }
+    .tag-hr   { background: rgba(80,200,120,0.15); color: #50C878; }
+    .tag-ciso { background: rgba(100,160,255,0.15); color: #64A0FF; }
+    .tag-adv  { background: rgba(200,100,255,0.15); color: #C864FF; }
+
+    /* MAIN */
+    .doc-section { margin-bottom: 72px; scroll-margin-top: 32px; }
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 32px;
+    }
+    .section-num { font-size: 10px; color: var(--amber); font-weight: 700; letter-spacing: 3px; }
+    .section-title { font-size: 22px; font-weight: 700; }
+    .section-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px;
+      border-radius: 4px; text-transform: uppercase; margin-left: auto;
+    }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 16px; }
+    .card-title { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+    .card-body { font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.75; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+    /* FACTS */
+    .fact-row { display: flex; align-items: flex-start; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-key { font-size: 10px; font-weight: 700; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; width: 180px; flex-shrink: 0; padding-top: 2px; }
+    .fact-val { font-size: 13px; color: #fff; line-height: 1.65; }
+    .fact-val code { font-family: monospace; font-size: 11px; background: rgba(255,255,255,0.07); padding: 1px 6px; border-radius: 4px; color: #fff; }
+
+    /* TABLES */
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    th { padding: 10px 12px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); }
+    td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.82); vertical-align: top; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .tbl-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+
+    /* STAT BOXES */
+    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .stat-box { flex: 1; min-width: 140px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+    .stat-val { font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.03em; }
+    .stat-label { font-size: 10px; color: var(--dim); margin-top: 4px; line-height: 1.4; }
+
+    /* PILLS */
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; border: 1px solid; }
+    .pill-amber { background: rgba(232,160,32,0.12); color: #E8A020; border-color: rgba(232,160,32,0.22); }
+    .pill-red   { background: rgba(224,85,85,0.12); color: #E05555; border-color: rgba(224,85,85,0.22); }
+    .pill-dim   { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.1); }
+
+    /* ALERT/NOTE BOX */
+    .note { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.18); border-radius: 10px; padding: 16px 20px; font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.7; margin-bottom: 14px; }
+    .note strong { color: var(--amber); }
+    .warn { background: rgba(224,85,85,0.06); border: 1px solid rgba(224,85,85,0.18); border-radius: 10px; padding: 16px 20px; font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.7; margin-bottom: 14px; }
+    .warn strong { color: var(--red); }
+
+    /* LAYER CARDS */
+    .layer { display: grid; grid-template-columns: 48px 1fr; gap: 0; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .layer-num { background: rgba(232,160,32,0.08); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: var(--amber); border-right: 1px solid var(--border); }
+    .layer-body { padding: 18px 20px; }
+    .layer-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .layer-sub  { font-size: 11px; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
+    .layer-desc { font-size: 12.5px; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+    /* VERBATIM */
+    .verbatim { background: rgba(255,255,255,0.03); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.82); line-height: 1.75; margin-bottom: 14px; }
+
+    /* DOCUMENT HEADER */
+    .doc-header { padding-bottom: 40px; border-bottom: 1px solid var(--border); margin-bottom: 52px; }
+    .doc-header .label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+    .doc-header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .doc-header .sub { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 600px; }
+    .doc-meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .doc-meta-item { font-size: 11px; color: var(--dim); }
+    .doc-meta-item strong { color: #fff; display: block; font-size: 12px; margin-bottom: 2px; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { padding: 32px 20px; }
+      .two-col, .three-col { grid-template-columns: 1fr; }
+      .stat-box { min-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#09090F;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:340px;width:100%;padding:0 24px;">
+    <div style="margin-bottom:32px;">
+      <svg width="44" height="44" viewBox="0 0 56 56" fill="none" style="display:block;margin:0 auto 14px;">
+        <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+      </svg>
+      <div style="font-size:18px;font-weight:600;color:#fff;letter-spacing:0.04em;">Sentriq</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.28);margin-top:5px;letter-spacing:3px;text-transform:uppercase;">Master Data Room</div>
+    </div>
+    <input id="gi" type="password" placeholder="Access code" autocomplete="off" onkeydown="if(event.key==='Enter')cp()" style="width:100%;padding:13px 16px;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;text-align:center;letter-spacing:0.1em;margin-bottom:10px;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(232,160,32,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+    <button onclick="cp()" style="width:100%;padding:13px;font-size:13px;font-weight:600;background:#E8A020;border:none;border-radius:10px;color:#09090F;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">Enter</button>
+    <div id="ge" style="font-size:11px;color:rgba(224,85,85,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;font-family:'Space Grotesk',sans-serif;">Incorrect code.</div>
+  </div>
+</div>
+<script>
+function cp(){
+  if(document.getElementById('gi').value===atob('c2VudHJpcW1hc3RlcjIwMjY=')){
+    document.getElementById('gate').style.display='none';
+    fetch('https://ntfy.sh/sentriq-master-dr',{method:'POST',body:'Master data room accessed. '+new Date().toISOString(),headers:{'Title':'Sentriq Master DR'}}).catch(()=>{});
+  } else {
+    var e=document.getElementById('ge');e.style.opacity='1';setTimeout(()=>e.style.opacity='0',2200);
+  }
+}
+</script>
+
+<div class="layout">
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────── -->
+<nav class="sidebar">
+  <div class="sb-logo">
+    <svg width="22" height="22" viewBox="0 0 56 56" fill="none">
+      <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+      <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+      <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+      <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+    </svg>
+    <div>
+      <div class="sb-wordmark">Sentriq</div>
+      <div class="sb-sub">Master Data Room</div>
+    </div>
+  </div>
+
+  <div class="sb-group">Company</div>
+  <a class="sb-link" onclick="scrollTo('s01')">01 Overview <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s02')">02 Team <span class="sb-tag tag-all">ALL</span></a>
+
+  <div class="sb-group">Product</div>
+  <a class="sb-link" onclick="scrollTo('s03')">03 Problem <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s04')">04 Product <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s05')">05 Moat <span class="sb-tag tag-all">ALL</span></a>
+
+  <div class="sb-group">Market</div>
+  <a class="sb-link" onclick="scrollTo('s06')">06 Market &amp; Signals <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s07')">07 Competition <span class="sb-tag tag-all">ALL</span></a>
+
+  <div class="sb-group">Traction</div>
+  <a class="sb-link" onclick="scrollTo('s08')">08 Traction <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s09')">09 Design Partner Program <span class="sb-tag tag-hr">HR</span></a>
+
+  <div class="sb-group">Financials</div>
+  <a class="sb-link" onclick="scrollTo('s10')">10 Raise &amp; Use of Capital <span class="sb-tag tag-vc">VC</span></a>
+  <a class="sb-link" onclick="scrollTo('s11')">11 Revenue Projections <span class="sb-tag tag-vc">VC</span></a>
+  <a class="sb-link" onclick="scrollTo('s12')">12 Burn &amp; Runway <span class="sb-tag tag-vc">VC</span></a>
+  <a class="sb-link" onclick="scrollTo('s13')">13 Headcount Plan <span class="sb-tag tag-vc">VC</span></a>
+  <a class="sb-link" onclick="scrollTo('s14')">14 Unit Economics <span class="sb-tag tag-adv">ADV</span></a>
+  <a class="sb-link" onclick="scrollTo('s15')">15 Series A Framework <span class="sb-tag tag-vc">VC</span></a>
+  <a class="sb-link" onclick="scrollTo('s16')">16 Downside Scenario <span class="sb-tag tag-adv">ADV</span></a>
+
+  <div class="sb-group">Legal</div>
+  <a class="sb-link" onclick="scrollTo('s17')">17 Legal &amp; Compliance <span class="sb-tag tag-all">ALL</span></a>
+  <a class="sb-link" onclick="scrollTo('s18')">18 Pricing Architecture <span class="sb-tag tag-all">ALL</span></a>
+</nav>
+
+<!-- ── MAIN ────────────────────────────────────────────────── -->
+<main class="main">
+
+  <div class="doc-header">
+    <div class="label">Internal: Source of Truth</div>
+    <h1>Master Data Room</h1>
+    <div class="sub">Every number, claim, and approved copy used across all Sentriq decks and data rooms lives here. When creating any variant , investor, design partner, or advisory: pull from this file only. Update this file first whenever any fact changes.</div>
+    <div class="doc-meta">
+      <div class="doc-meta-item"><strong>Last updated</strong>April 2026</div>
+      <div class="doc-meta-item"><strong>Stage</strong>Pre-revenue. Demo complete.</div>
+      <div class="doc-meta-item"><strong>Raise</strong>$5M Seed</div>
+      <div class="doc-meta-item"><strong>ntfy topic</strong>sentriq-master-dr</div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      <strong>Reading this file:</strong> Each section header shows its audience tag. [ALL] = every variant. [VC] = investor data rooms. [HR] = design partner/HR decks. [CISO] = security-facing decks. [ADV] = advisory/financial review. Sections marked [ALL] always appear. Others are pulled selectively.
+    </div>
+  </div>
+
+<!-- ======================================================
+     01 / OVERVIEW                                    [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s01">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">Overview</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="card">
+    <div class="fact-row"><div class="fact-key">Company</div><div class="fact-val">Sentriq, <code>sentriq.co</code></div></div>
+    <div class="fact-row"><div class="fact-key">Product category</div><div class="fact-val">Hiring Integrity Infrastructure</div></div>
+    <div class="fact-row"><div class="fact-key">One-liner</div><div class="fact-val" style="font-style:italic;">"The integrity layer between every application and every hiring decision."</div></div>
+    <div class="fact-row"><div class="fact-key">Product name</div><div class="fact-val">Candidate Hiring Captcha. Never "CAF", never "Candidate Application Firewall", never "firewall". The product surfaces trust signals. Humans decide.</div></div>
+    <div class="fact-row"><div class="fact-key">The analogy</div><div class="fact-val">Cloudflare for hiring. Pre-submission layer, upstream of everything. Platform-agnostic. The application never reaches the ATS without passing through Sentriq first.</div></div>
+    <div class="fact-row"><div class="fact-key">Buyers</div><div class="fact-val">CISO (economic buyer, security budget) + Head of Talent (champion, quality framing). Enterprise contracts require both. This is the dual-buyer challenge.</div></div>
+    <div class="fact-row"><div class="fact-key">Status</div><div class="fact-val"><strong>No live product in production. Demo complete. Engineering underway. No paying customers.</strong> Design partner pipeline active. Enterprise deployment structurally blocked until SOC 2 Type I complete.</div></div>
+    <div class="fact-row"><div class="fact-key">Incorporation</div><div class="fact-val">Israel-based. Founders Agreement being finalized (expected within 7 days of April 2026 document dates). Legal structure, equity, IP assignment, pre-incorporation governance all covered.</div></div>
+    <div class="fact-row"><div class="fact-key">Domain</div><div class="fact-val"><code>sentriq.co</code> : never .io, never .com. Emails: samuel@sentriq.co, ben@sentriq.co</div></div>
+  </div>
+
+  <div class="note">
+    <strong>Origin:</strong> Samuel Kemper and Ben Czarninski built Huntwise, a tool to help candidates beat ATS systems. 73,500 lines of code. 30+ live ATS attack experiments across Greenhouse, Comeet, and Workday. Then they flipped it. They built the offense, so they built the defense. Sentriq is that defense. Every detection signature in Sentriq is derived from 18 months of operating inside real hiring pipelines.
+  </div>
+</div>
+
+<!-- ======================================================
+     02 / TEAM                                        [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s02">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title">Team</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Samuel Kemper: CEO, Co-Founder</div>
+      <div class="card-body">
+        <div class="fact-row" style="padding-top:0;"><div class="fact-key">Role</div><div class="fact-val">CEO, GTM</div></div>
+        <div class="fact-row"><div class="fact-key">Background</div><div class="fact-val">2x founder. IDF Intelligence veteran.</div></div>
+        <div class="fact-row"><div class="fact-key">Military</div><div class="fact-val">Innovation Officer, IDF Unit 81. Interfaced with cyber units on classified defense and security missions. 12+ months active reservist during the 2023 war.</div></div>
+        <div class="fact-row"><div class="fact-key">Previous</div><div class="fact-val">Raised $1.1M for CYou Retail (backed by Nielsen Innovate Fund).</div></div>
+        <div class="fact-row"><div class="fact-key">Domain</div><div class="fact-val">18 months operating inside Greenhouse, Comeet, and Workday as professional recruiter at TechRuiter IL. Empirical, not theoretical.</div></div>
+        <div class="fact-row"><div class="fact-key">Education</div><div class="fact-val">TAU MBA. BSc Computer Science.</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ben Czarninski: CTO, Co-Founder</div>
+      <div class="card-body">
+        <div class="fact-row" style="padding-top:0;"><div class="fact-key">Role</div><div class="fact-val">CTO, Engineering</div></div>
+        <div class="fact-row"><div class="fact-key">Background</div><div class="fact-val">IDF Military Intelligence veteran. Security researcher and full-stack developer.</div></div>
+        <div class="fact-row"><div class="fact-key">Military</div><div class="fact-val">Gama Graduate program (elite IDF software engineering track). 4+ years in Military Intelligence.</div></div>
+        <div class="fact-row"><div class="fact-key">Huntwise</div><div class="fact-val">Built the entire 73,500-line codebase. ATS systems exploitation at code and protocol level. Ran 30 live attack experiments across three platforms.</div></div>
+        <div class="fact-row"><div class="fact-key">Security</div><div class="fact-val">Penetration tester at KPMG. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Why this team uniquely:</strong> Samuel operated inside real ATS systems as a recruiter for 18 months and observed the attack surface from the inside. Ben built the attack tool. Neither can be separated from the other. The corpus: 18 months of live behavioral data. Cannot be replicated by starting from scratch with capital. Timeline cannot be compressed.
+  </div>
+</div>
+
+<!-- ======================================================
+     03 / PROBLEM                                     [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s03">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title">Problem</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-val">41%</div><div class="stat-label">of enterprises report hiring a fraudulent or misrepresented candidate (Checkr/SHRM, 2024)</div></div>
+    <div class="stat-box"><div class="stat-val">6,500</div><div class="stat-label">applications in under two weeks for a single Deel ops role. 90%+ estimated bot-generated (Samuel Kemper, direct observation TechRuiter IL 2024)</div></div>
+    <div class="stat-box"><div class="stat-val">1,500</div><div class="stat-label">applications per day, per user, sent by mass-apply tools. 500K+ users on leading tools. LinkedIn, Indeed, Greenhouse all targeted.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">DPRK Workforce Infiltration: Verified Sources</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">KnowBe4 (Jul 2024)</div><div class="fact-val">Hired a North Korean operative who immediately attempted to install malware. Passed 4 interviews and a background check. Source: KnowBe4 public disclosure + FBI joint advisory.</div></div>
+    <div class="fact-row"><div class="fact-key">DOJ Indictments (Oct 2024)</div><div class="fact-val">14 DPRK nationals indicted for generating $88M through fraudulent IT employment at US companies including a defense contractor and a major bank. Source: US DOJ press release.</div></div>
+    <div class="fact-row"><div class="fact-key">FBI/CISA Advisory (May 2024)</div><div class="fact-val">Named specific infiltration techniques: deepfake video interviews, stolen identity packages, VPN obfuscation. Source: FBI/CISA Joint Cybersecurity Advisory AA24-132A.</div></div>
+    <div class="fact-row"><div class="fact-key">Senate Hearing (Mar 2025)</div><div class="fact-val">DOD testified "several hundred" cleared contractors may have been compromised. Source: US Senate Homeland Security Committee hearing record.</div></div>
+  </div>
+
+  <div class="warn">
+    <strong>Framing rule:</strong> DPRK is a concrete, verifiable example , not the value proposition. The full threat spectrum (mass-apply bots, proxy candidates, AI-generated applications, CV fabrication, deepfake interviews) is the headline. DPRK is the proof that hiring fraud is now a CISO-level concern, not just a recruiter annoyance.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Why Existing Tools Cannot Solve This</div>
+    <div class="card-body">
+      The attack is upstream. By the time a background check runs, $1,700+ in recruitment cost has been spent. By the time a video interview AI flags something, the application already passed recruiter review, HR screening, and 3 rounds of interviews. Sentriq operates at the submission event. Before the application enters the ATS,. The cost of a false negative is zero: the fraudster never enters the pipeline.
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     04 / PRODUCT                                     [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s04">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title">Product: Candidate Hiring Captcha</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="note">
+    <strong>Critical language rules:</strong> "Trust signal" or "trust signals" : not "trust score". "Platform-agnostic": not "ATS-agnostic". The product surfaces signals. Humans decide. Zero auto-rejections. Every flag is a human decision.
+  </div>
+
+  <div class="layer">
+    <div class="layer-num">1</div>
+    <div class="layer-body">
+      <div class="layer-name">Behavioral Auto-Flag</div>
+      <div class="layer-sub">Passive: runs on every application</div>
+      <div class="layer-desc">Behavioral pattern analysis. Detects Application Signal Manipulation: keyword injection, hidden text, ATS-optimized formatting. Flags claimed skills with no supporting timeline, title-ability mismatches. No anomaly: passes through with no delay. Anomaly detected: Layer 2 triggered. Candidate sees nothing.</div>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">2</div>
+    <div class="layer-body">
+      <div class="layer-name">Behavioral Challenge</div>
+      <div class="layer-sub">Active: triggers on anomaly from Layer 1. ~$10/challenge average.</div>
+      <div class="layer-desc">Short task framed as part of the application. Calibrated to the specific profile the candidate presented. Scores behavioral signals and content quality. Detects: Behavioral Spoofing (AI-assisted response generation, copy-paste patterns mimicking organic typing, response timing anomalies). Consistent with profile: cleared. Significant divergence: Layer 3 triggered. Volume: ~200 challenges/month per customer at steady state.</div>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">3</div>
+    <div class="layer-body">
+      <div class="layer-name">Human Review</div>
+      <div class="layer-sub">Human-in-loop: triggers for 5-10% of challenges. $25-50/case reviewed.</div>
+      <div class="layer-desc">Fraud analyst review of Layer 2 outputs. Signal interpretation and employer escalation support. Detects Identity Fabrication: synthetic CV generation, deepfake profile photos, stolen credential packages, VPN-masked location spoofing. EU AI Act Article 6, Annex III, point 4 mandates human oversight for AI in hiring : this transforms regulatory burden into sales trigger. Required by design, not optional.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Output</div>
+    <div class="card-body">Trust signal per application delivered as an evidence card. Shows what was detected and why. No black box. Human decides. Evidence card appears in the recruiter's existing workflow, where they already work. Integration is platform-agnostic: upstream of the ATS, after application submission form, before application enters pipeline.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">For HR / TA Leaders</div>
+      <div class="card-body">Frame as: Candidate Hiring Captcha. Invisible to legitimate candidates. Surfaces anomalies as one clear signal. Lifecycle diagram position: between application submission and ATS intake. Cloudflare analogy: the application never reaches your ATS without passing through Sentriq first.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">For CISOs</div>
+      <div class="card-body">Frame as: shift-left hiring security. Hiring funnel is an attack surface. DPRK operatives, credential thieves, proxy candidates all enter through the application layer. Sentriq is the pre-ATS detection layer , same architectural position as WAF before the web server. CISO budget, security risk frame, not HR software.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     05 / MOAT                                        [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s05">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title">Structural Moat</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1. ATS Contractual Blockade</div>
+    <div class="card-body">Greenhouse, Workday, Lever, Ashby all operate under customer agreements that prohibit using one employer's candidate data for another employer's benefit. This is a structural data privacy and commercial obligation. It cannot be waived. Any ATS attempting to build a cross-employer fraud graph would be in breach of contract with every customer simultaneously. This is not a feature gap. It is a legal wall that cannot be removed with capital.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">2. Behavioral Corpus: Huntwise Flywheel</div>
+    <div class="card-body">Sentriq's detection signatures are derived from 18 months of live operation inside real ATS systems via Huntwise (100 beta users, live applications, real companies). Identity vendors (Persona, Checkr) have no behavioral baseline. DPRK operatives pass identity checks using real stolen SSNs. Starting a competitor today requires building the attack tool first (which no enterprise security company can credibly do), then operating it for 18 months. Timeline cannot be compressed with capital alone.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">3. Automation Defeat: The Last Layer Standing</div>
+    <div class="card-body">Camoufox (7,400+ GitHub stars, ~1M PyPI downloads/month) defeats IP blocking, browser fingerprinting, and form-level detection. It is integrated into NousResearch's Hermes Agent and OpenClaw (most-starred GitHub project as of April 2026). What Camoufox cannot defeat: a behavioral challenge calibrated to a specific claimed profile (content cannot be faked without knowing the calibration target) and a cross-company graph (campaign-level patterns survive proxy rotation). The moat is the last detection layer standing after automation defeats everything else.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">4. CISO Budget Capture</div>
+    <div class="card-body">DPRK incidents and FBI/DOJ/Senate attention made hiring fraud a security risk budget item in 2024. The budget lives with the CISO, not HR. Same budget line as Crowdstrike, SentinelOne, Persona. This is not a positioning choice. It is a documented market shift that existing recruiting platforms cannot follow (wrong buyer, wrong budget, different procurement cycle).</div>
+  </div>
+
+  <div class="note">
+    <strong>When investors name Persona:</strong> It is a diligence test. Answer: Persona answers "is this person real?" Sentriq answers "is this application real?" Identity verification is orthogonal to application authenticity. DPRK operatives use real stolen SSNs. They pass Persona. They fail Sentriq's behavioral challenge. "You have Persona, you know the person is real. Sentriq tells you if the application is real." Complement, not competitor.
+  </div>
+</div>
+
+<!-- ======================================================
+     06 / MARKET AND SIGNALS                          [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s06">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title">Market and Signals</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Signal</th><th>Data Point</th><th>Source</th></tr>
+      <tr><td>Employment Screening Market</td><td>CAGR 10.4%</td><td>Mobility Foresights</td></tr>
+      <tr><td>Identity Security Startup Funding</td><td>$14.9B growing to $43.4B by 2034. CAGR 16.7%</td><td>Crunchbase</td></tr>
+      <tr><td>Hiring fraud prevalence</td><td>41% of enterprises report hiring a fraudulent or misrepresented candidate</td><td>Checkr / SHRM industry survey, 2024</td></tr>
+      <tr><td>Mass-apply scale</td><td>1,500 applications per day per user on autopilot. 500K+ users.</td><td>Leading mass-apply tool public documentation</td></tr>
+      <tr><td>ATS pipeline pollution</td><td>6,500 applications in under 2 weeks for a single Deel ops role. 90%+ estimated bot-generated.</td><td>Samuel Kemper direct observation, TechRuiter IL, 2024</td></tr>
+      <tr><td>Market validation (attack)</td><td>Y Combinator backed a mass-apply tool in S26 batch</td><td>YC public portfolio</td></tr>
+      <tr><td>Market validation (defense)</td><td>Clarity raised $16M seed (Bessemer, February 2024). Interview-layer fraud detection.</td><td>Crunchbase / Bessemer public announcement</td></tr>
+      <tr><td>EU AI Act deadline</td><td>August 2, 2026: high-risk AI in hiring (Article 6, Annex III, point 4) compliance required</td><td>Official Journal of the EU, Regulation 2024/1689</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Clarity framing:</strong> Their $16M raise (Bessemer, Feb 2024) = market validation, not competition. Clarity is interview-layer (late funnel). Sentriq is application-layer (pre-ATS). Different funnel stage, different cost structure. Full-stack hiring security architecture would use both. Never position Clarity as a threat.
+  </div>
+</div>
+
+<!-- ======================================================
+     07 / COMPETITION                                 [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s07">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-title">Competition</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="note">
+    <strong>Never say "no competitors."</strong> The right frame: "The category exists in pieces. Nobody has assembled the layer." Two most dangerous near-term threats: Persona (ATS distribution) and ATS bundling (Greenhouse, Ashby, Phenom).
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Company</th><th>Category</th><th>ACV Range</th><th>Funnel Stage</th><th>Threat Level</th><th>Sentriq Positioning</th></tr>
+      <tr>
+        <td><strong>Persona</strong></td><td>Identity verification</td><td>$6K-$262K (median ~$30K)</td>
+        <td>Application layer, API</td><td style="color:#E05555;font-weight:700;">Most dangerous</td>
+        <td>Persona = "is this person real?" Sentriq = "is this application real?" DPRK uses real stolen SSNs. Passes Persona, fails Sentriq. Contractually blocked from cross-employer graph. Complement, not competitor. Distribution risk via ATS partnerships.</td>
+      </tr>
+      <tr>
+        <td><strong>Clarity (getclarity.ai)</strong></td><td>Video interview fraud detection</td><td>N/A ($16M seed, Bessemer Feb 2024)</td>
+        <td>Video interview stage (late funnel)</td><td style="color:rgba(255,255,255,0.5);">Complement</td>
+        <td>Operates post-application, post-ATS, post-recruiter review. By Clarity stage, $1700+ in recruitment cost already spent. Full-stack architecture uses both. Their raise = market validation by Bessemer.</td>
+      </tr>
+      <tr>
+        <td><strong>Checkr / Checkr IDV</strong></td><td>Background screening + identity</td><td>~$12K-$60K enterprise</td>
+        <td>Post-offer, post-interview</td><td style="color:rgba(255,255,255,0.5);">Complement</td>
+        <td>Pre-hire screening (after 6+ interviews, $1,700+ sunk cost). Verifies static credentials, not behavioral authenticity. Different stage, different buyer. No behavioral layer.</td>
+      </tr>
+      <tr>
+        <td><strong>Crosschq</strong></td><td>Reference + fraud detection</td><td>~$18K-$48K</td>
+        <td>Post-offer stage</td><td style="color:rgba(255,255,255,0.5);">Complement</td>
+        <td>Post-offer. No behavioral layer. Different stage.</td>
+      </tr>
+      <tr>
+        <td><strong>Greenhouse (ATS)</strong></td><td>Applicant tracking system</td><td>$10K-$111K (median ~$27K)</td>
+        <td>All stages (ATS)</td><td style="color:#E8A020;font-weight:700;">Bundling threat</td>
+        <td>Contractually blocked from cross-employer fraud graph. Buyer is recruiter not CISO. Budget is headcount-driven not security-driven. Cannot build what Sentriq is building due to data silo contracts.</td>
+      </tr>
+      <tr>
+        <td><strong>Ashby</strong></td><td>Modern ATS</td><td>N/A</td>
+        <td>ATS layer</td><td style="color:#E8A020;font-weight:700;">Bundling threat</td>
+        <td>Same structural limitation as Greenhouse. Distribution risk. Cannot build cross-company graph.</td>
+      </tr>
+      <tr>
+        <td><strong>Phenom</strong></td><td>Talent experience platform</td><td>N/A</td>
+        <td>ATS/CRM layer</td><td style="color:#E8A020;font-weight:700;">Bundling threat</td>
+        <td>Distribution risk. Same structural data silo issue as all ATS vendors.</td>
+      </tr>
+      <tr>
+        <td><strong>hireEZ</strong></td><td>Recruiting workflow / AI screening</td><td>N/A ($100M+ raised)</td>
+        <td>Sourcing + scheduling</td><td style="color:rgba(255,255,255,0.5);">Different buyer</td>
+        <td>Recruiter/TA buyer, headcount budget. Not security. Sourcing not fraud detection. Wrong budget silo.</td>
+      </tr>
+      <tr>
+        <td><strong>HireVue</strong></td><td>Video interviewing + AI assessment</td><td>N/A</td>
+        <td>Interview stage</td><td style="color:rgba(255,255,255,0.5);">Complement</td>
+        <td>Interview layer. Different stage. Different buyer (talent team not CISO).</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">SYN Ventures Framing [CISO audience]</div>
+    <div class="card-body">Shift-left. The hiring funnel is an undefended attack surface. Every other attack surface has a security layer: email (SEG), web (WAF), identity (MFA). The hiring submission event does not. Sentriq is Layer 0: pre-ATS, before the application enters any downstream system. Insider threat vector. Attack surface reduction. Not HR software.</div>
+  </div>
+</div>
+
+<!-- ======================================================
+     08 / TRACTION                                    [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s08">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div class="section-title">Traction</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="note">
+    <strong>Traction language:</strong> "Each lead at a different stage of the process." Not "nothing signed yet." No fabricated claims. No live product, no paying customers, no enterprise deployments. What is true: demo exists, design partner pipeline active, engineering underway.
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Company</th><th>Contact</th><th>Status (April 2026)</th><th>Notes</th></tr>
+      <tr><td><strong>WalkMe (SAP)</strong></td><td>Uzi Dvir (CIO) via Nadav Kemper intro. CISO: Daniel Chachik.</td><td>CISO meeting pending</td><td>Primary channel: WhatsApp group "אינטרו: עוזי ו Sentriq". Lever ATS. CIO entry, routing to CISO. This is a negotiation, not a product eval.</td></tr>
+      <tr><td><strong>Optimove</strong></td><td>Itai Mor (HR Director) → Nissim</td><td>Nissim meeting week of Apr 21</td><td>550 people. Greenhouse ATS. Not right scale but committed to Nissim meeting. European enterprise intel: CISO budget, LinkedIn stickiness.</td></tr>
+      <tr><td><strong>Ubiquity</strong></td><td>Paul Byrne</td><td>First outreach sent Apr 17, no reply</td><td>US-based. Active outreach.</td></tr>
+      <tr><td><strong>Standard Chartered</strong></td><td>Deepali Jain</td><td>Dark: no contact in 14 days (as of Apr 17)</td><td>Re-engagement needed.</td></tr>
+      <tr><td><strong>Salesforce</strong></td><td>Einat Frish</td><td>2 follow-ups, no reply</td><td>Warm intro via Shachar Brenner. HR deck live.</td></tr>
+    </table>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:16px;">
+    <table>
+      <tr><th>Investor</th><th>Contact</th><th>Status (April 2026)</th><th>Notes</th></tr>
+      <tr><td><strong>UpWest</strong></td><td>Lia Cromwell, Aya</td><td>IC pending, most advanced</td><td>Round raised to $5M. Lia's two concerns: dual-buyer stalemate, market education. Samuel's read: Lia not fully into it but waiting for IC. Do not activate FutureFirst until UpWest IC resolves.</td></tr>
+      <tr><td><strong>SYN Ventures</strong></td><td>Marcio Lampert</td><td>Meeting confirmed, interested</td><td>$900M fund. All-CISO partners. CISO-native framing only. No HR language. Expressed interest in co-investing alongside Team8/Glilot/Apex. Clarity flagged as competitor.</td></tr>
+      <tr><td><strong>Hetz Ventures</strong></td><td>Guy Fighel</td><td>In process</td><td>SPARQL/CISO network framing. Correlation engine. Deck live.</td></tr>
+      <tr><td><strong>NFX</strong></td><td>Nimrod</td><td>Needs US design partners first</td><td>Liked product, called too early. US design partners + data room = prerequisite for follow-up. NFX FAST Israel track member.</td></tr>
+      <tr><td><strong>FutureFirst</strong></td><td>Tomer Golan</td><td>On hold until UpWest IC resolves</td><td>FALLBACK ONLY. Do not activate. Cap table misalignment risk. Warm contact from March 2026 Zoom.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ======================================================
+     09 / DESIGN PARTNER PROGRAM                      [HR]
+     ====================================================== -->
+<div class="doc-section" id="s09">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div class="section-title">Design Partner Program</div>
+    <span class="section-badge tag-hr">HR</span>
+  </div>
+
+  <div class="note">
+    <strong>Definition:</strong> A design partner is NOT a beta user. Sentriq cannot deploy in production until SOC 2 Type I is complete (Q3 2026). A design partner is a named enterprise that has confirmed the problem, evaluated Sentriq's approach, and committed to being among the first paying customers upon SOC 2 completion. Documented as a signed LOI.
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">What the Design Partner Gets</div>
+      <div class="card-body">
+        Priority onboarding when SOC 2 Type I completes (Q3 2026).<br><br>
+        First-year contract at 20% discount: <strong>$33,600 ACV year 1</strong> (vs. $42,000 standard).<br><br>
+        Direct input into product roadmap during POC phase.<br><br>
+        Named co-development partner status (confidential unless they opt in to public reference).
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">What Sentriq Asks in Return</div>
+      <div class="card-body">
+        One reference call with Sentriq investors if requested.<br><br>
+        Honest feedback on product fit during POC phase.<br><br>
+        Commitment to evaluate for paid contract upon SOC 2 completion.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lifecycle Diagram Position</div>
+    <div class="card-body">Sentriq sits between Application Submitted and ATS Intake: before the application reaches your team. Layer 1 runs passively on every application. Layer 2 triggers on anomaly. Layer 3 (human review) is EU AI Act-compliant oversight. The recruiter sees one trust signal, surfaced in the ATS review queue. Zero changes to the existing workflow.</div>
+  </div>
+</div>
+
+<!-- ======================================================
+     10 / RAISE AND USE OF CAPITAL                    [VC]
+     ====================================================== -->
+<div class="doc-section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title">Raise and Use of Capital</div>
+    <span class="section-badge tag-vc">VC</span>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-val">$5M</div><div class="stat-label">Seed round. Target close Q2-Q3 2026 (June/July 2026).</div></div>
+    <div class="stat-box"><div class="stat-val">24+</div><div class="stat-label">Months runway on gross burn basis.</div></div>
+    <div class="stat-box"><div class="stat-val">$3.09M</div><div class="stat-label">Cash remaining at Series A trigger (base case, Q2-Q3 2027).</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Category</th><th>Amount</th><th>%</th><th>What It Buys</th><th>Why Non-Negotiable</th></tr>
+      <tr>
+        <td><strong>Product and Engineering</strong></td><td>$2.0M</td><td>40%</td>
+        <td>ML Engineer, Backend Engineer, Full-Stack Engineer, DevOps. Payroll through Q3 2027 at Israeli-market loaded rates.</td>
+        <td>No product, no SOC 2 readiness, no design partner conversion. The engineering team is the product.</td>
+      </tr>
+      <tr>
+        <td><strong>GTM and Customer Development</strong></td><td>$1.0M</td><td>20%</td>
+        <td>VP Sales hire (Q4 2026 at $25K MRR trigger), founder GTM until then, conferences, outbound, design partner management, CSM hire (Q1 2027 at $600K ARR trigger).</td>
+        <td>Enterprise CISO sales requires dedicated AE with category credibility. Founder-led covers first 10 customers. VP Sales converts next 15.</td>
+      </tr>
+      <tr>
+        <td><strong>Security and Compliance (SOC 2)</strong></td><td>$0.5M</td><td>10%</td>
+        <td>SOC 2 Type I and II readiness, PwC engagement, penetration testing, GDPR legal framework, DPA templates, EU AI Act conformity documentation.</td>
+        <td>No SOC 2, no enterprise contract. Compliance is sales prerequisite. Hard gate, not nice-to-have.</td>
+      </tr>
+      <tr>
+        <td><strong>G&amp;A</strong></td><td>$0.25M</td><td>5%</td>
+        <td>Legal, accounting, insurance, SaaS tooling, D&amp;O coverage. Incorporation on termsheet.</td>
+        <td>Standard operating cost.</td>
+      </tr>
+      <tr>
+        <td><strong>Strategic Buffer</strong></td><td>$1.25M</td><td>25%</td>
+        <td>Explicit reserve for enterprise sales cycle overruns, SOC 2 delays, slower design partner conversion.</td>
+        <td>Enterprise B2B timelines are consistently longer than modeled. Buffer ensures Series A raise from strength, not emergency. Load-bearing insurance, not slush fund.</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Capital sequence context:</strong> This is the standard Israeli cyber seed dynamic. Raise capital, get enterprise-ready (SOC 2), land first customer, raise Series A. Wiz raised on team and thesis with no product. Axonius raised on research and design partners. The compliance spend is the sales prerequisite. Enterprise procurement cannot proceed without it.
+  </div>
+</div>
+
+<!-- ======================================================
+     11 / REVENUE PROJECTIONS                         [VC]
+     ====================================================== -->
+<div class="doc-section" id="s11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title">Revenue Projections</div>
+    <span class="section-badge tag-vc">VC</span>
+  </div>
+
+  <div class="warn">
+    <strong>Model limitation:</strong> All projections are modeled, not measured. No paying customers yet. Revenue start (Q3 2026) is conditional on SOC 2 Type I completing on schedule. This is the single largest model risk.
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Quarter</th><th>Customers</th><th>MRR</th><th>ARR Run Rate</th><th>Key Gates</th></tr>
+      <tr><td><strong>Q2 2026</strong></td><td>0</td><td>$0</td><td>$0</td><td>Seed closes. Design partner POCs begin. SOC 2 engagement starts. ML + Backend engineers hired.</td></tr>
+      <tr><td><strong>Q3 2026</strong></td><td>6</td><td>$18K</td><td>$216K</td><td>SOC 2 Type I complete. 3 design partners convert. 3 new outbound logos. Full-stack + DevOps + Fraud Analyst joins.</td></tr>
+      <tr><td><strong>Q4 2026</strong></td><td>10</td><td>$40K</td><td>$480K</td><td>Enterprise pipeline opens post-SOC 2. First US enterprise logo. VP Sales hire triggered at $25K MRR.</td></tr>
+      <tr><td><strong>Q1 2027</strong></td><td>16</td><td>$68K</td><td>$816K</td><td>VP Sales 90 days in. SOC 2 Type II target. 2+ enterprise logos. CSM hire triggered at $600K ARR.</td></tr>
+      <tr style="background:rgba(232,160,32,0.05);"><td><strong>Q2-Q3 2027 (Series A)</strong></td><td>22-28</td><td>$83-98K</td><td>$1.0M-$1.17M</td><td>$1M+ ARR. 90%+ gross retention. 2+ enterprise logos. Series A raise opens.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Revenue Architecture Assumptions</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">ACV</div><div class="fact-val">$42,000 blended ($3,500 MRR). Platform: $2K/mo. Challenge volume: ~$1.5K/mo average.</div></div>
+    <div class="fact-row"><div class="fact-key">Design partner ACV</div><div class="fact-val">$33,600 year 1 (20% first-year discount)</div></div>
+    <div class="fact-row"><div class="fact-key">Sales cycle</div><div class="fact-val">3 months (founder-led, direct)</div></div>
+    <div class="fact-row"><div class="fact-key">Annual churn</div><div class="fact-val">10% (conservative for enterprise security)</div></div>
+    <div class="fact-row"><div class="fact-key">NDR target</div><div class="fact-val">115% (driven by challenge volume growth as employers hire more)</div></div>
+    <div class="fact-row"><div class="fact-key">Design partner conversion</div><div class="fact-val">3 of 5 active (conservative)</div></div>
+    <div class="fact-row"><div class="fact-key">Revenue start gate</div><div class="fact-val">SOC 2 Type I complete: enterprise procurement structurally blocked without it</div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     12 / BURN AND RUNWAY                             [VC]
+     ====================================================== -->
+<div class="doc-section" id="s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div class="section-title">Burn and Runway</div>
+    <span class="section-badge tag-vc">VC</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Period</th><th>Gross Burn/mo</th><th>Revenue/mo (avg)</th><th>Net Burn/mo</th><th>Cash Remaining</th></tr>
+      <tr><td><strong>Q2 2026</strong> (seed closes)</td><td>$100K</td><td>$0</td><td>$100K</td><td>$4.70M</td></tr>
+      <tr><td><strong>Q3 2026</strong> (full team + first revenue)</td><td>$125K</td><td>$12K avg</td><td>$113K</td><td>$4.36M</td></tr>
+      <tr><td><strong>Q4 2026</strong> (VP Sales hire)</td><td>$145K</td><td>$29K avg</td><td>$116K</td><td>$4.01M</td></tr>
+      <tr><td><strong>Q1 2027</strong> (ML Engineer #2 + CSM)</td><td>$180K</td><td>$54K avg</td><td>$126K</td><td>$3.63M</td></tr>
+      <tr style="background:rgba(232,160,32,0.05);"><td><strong>Q2-Q3 2027</strong> (Series A)</td><td>$180K</td><td>$91K avg</td><td>$89K</td><td><strong>$3.09M</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Raise from strength:</strong> $3.09M remaining at Series A trigger. At $89K/month net burn, that is 34 months of additional runway. A 6-month delay on Series A does not create a bridge emergency. This is the point: the buffer line in the capital allocation is load-bearing insurance, not slush fund.
+  </div>
+</div>
+
+<!-- ======================================================
+     13 / HEADCOUNT PLAN                              [VC]
+     ====================================================== -->
+<div class="doc-section" id="s13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div class="section-title">Headcount Plan</div>
+    <span class="section-badge tag-vc">VC</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Role</th><th>Hire Date</th><th>Trigger</th><th>Annual Loaded Cost</th><th>Monthly Burn Add</th></tr>
+      <tr><td>Samuel Kemper (CEO, GTM)</td><td>Active</td><td>N/A</td><td>Below market until $25K MRR</td><td>N/A</td></tr>
+      <tr><td>Ben Czarninski (CTO, Engineering)</td><td>Active</td><td>N/A</td><td>Below market until $25K MRR</td><td>N/A</td></tr>
+      <tr><td><strong>ML Engineer</strong></td><td>Q2 2026</td><td>Seed close</td><td>$234K</td><td>+$20K</td></tr>
+      <tr><td><strong>Backend Engineer</strong></td><td>Q2 2026</td><td>Seed close</td><td>$208K</td><td>+$17K</td></tr>
+      <tr><td><strong>Full-Stack Engineer</strong></td><td>Q3 2026</td><td>First revenue / SOC 2</td><td>$195K</td><td>+$16K</td></tr>
+      <tr><td><strong>DevOps (contractor)</strong></td><td>Q3 2026</td><td>First revenue</td><td>$60K</td><td>+$5K</td></tr>
+      <tr><td><strong>Fraud Analyst</strong></td><td>Q3 2026</td><td>First paid pilot</td><td>$96K</td><td>+$8K</td></tr>
+      <tr><td><strong>VP Sales</strong></td><td>Q4 2026 / Q1 2027</td><td>$25K MRR</td><td>$180K + commission</td><td>+$22K</td></tr>
+      <tr><td><strong>ML Engineer #2</strong></td><td>Q1 2027</td><td>10+ customers</td><td>$208K</td><td>+$17K</td></tr>
+      <tr><td><strong>Customer Success Manager</strong></td><td>Q1 2027</td><td>$600K ARR</td><td>$156K</td><td>+$13K</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cost Basis Notes</div>
+    <div class="card-body">Israeli-based staff costed at 1.3x gross (national insurance, pension 6.5%, severance 8.33%, Keren Hishtalmut 7.5%). VP Sales US-based, costed at gross. Founders take below-market salary until $25K MRR. Total at Series A trigger: 10 people + 1 contractor. Monthly burn at Series A: ~$180K/month all-in.</div>
+  </div>
+</div>
+
+<!-- ======================================================
+     14 / UNIT ECONOMICS                              [ADV]
+     ====================================================== -->
+<div class="doc-section" id="s14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div class="section-title">Unit Economics</div>
+    <span class="section-badge tag-adv">ADV</span>
+  </div>
+
+  <div class="warn">
+    <strong>These are modeled, not empirical.</strong> No paying customers yet. Both CAC and gross margin assumptions need pressure-testing with actual customer data once live. Do not present these as measured figures to VC investors without this caveat.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-val">$42K</div><div class="stat-label">Average ACV ($3,500 MRR per customer)</div></div>
+    <div class="stat-box"><div class="stat-val">78%</div><div class="stat-label">Target gross margin. Range 75-82%.</div></div>
+    <div class="stat-box"><div class="stat-val">$10K</div><div class="stat-label">Estimated CAC (founder-led, 3-month cycle)</div></div>
+    <div class="stat-box"><div class="stat-val">$164K</div><div class="stat-label">LTV (5yr avg, 90% gross retention)</div></div>
+    <div class="stat-box"><div class="stat-val">16x</div><div class="stat-label">LTV/CAC ratio (benchmark: above 3x strong)</div></div>
+    <div class="stat-box"><div class="stat-val">3.7 mo</div><div class="stat-label">CAC payback period (benchmark: under 18 months strong)</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pricing Breakdown</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">Platform fee</div><div class="fact-val">$2,000/month per employer. Covers Layer 1, ATS integration, trust signal output, employer dashboard.</div></div>
+    <div class="fact-row"><div class="fact-key">Challenge volume</div><div class="fact-val">$10/challenge average (Layer 2). ~150-200 challenges/month per customer at steady state.</div></div>
+    <div class="fact-row"><div class="fact-key">Human review</div><div class="fact-val">Included for design partners. $25-50/case at enterprise scale. Triggered for 5-10% of Layer 2 challenges.</div></div>
+    <div class="fact-row"><div class="fact-key">Blended ACV</div><div class="fact-val">$42,000 ($2K platform + ~$1.5K challenge volume = $3.5K MRR average)</div></div>
+    <div class="fact-row"><div class="fact-key">Design partner ACV</div><div class="fact-val">$33,600 year 1 (20% first-year discount). $42,000 from year 2.</div></div>
+    <div class="fact-row"><div class="fact-key">NDR driver</div><div class="fact-val">Challenge volume grows as employers hire more. Each new open role adds challenge volume. NDR target: 115%.</div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     15 / SERIES A FRAMEWORK                          [VC]
+     ====================================================== -->
+<div class="doc-section" id="s15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div class="section-title">Series A Framework</div>
+    <span class="section-badge tag-vc">VC</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Metric</th><th>Sentriq Target (Q2-Q3 2027)</th><th>Israeli Cyber Benchmark</th></tr>
+      <tr><td>ARR</td><td><strong>$1M+</strong></td><td>$800K-$2M</td></tr>
+      <tr><td>Paying customers</td><td><strong>22-28</strong></td><td>15+ enterprise SaaS</td></tr>
+      <tr><td>Enterprise logos</td><td><strong>2+</strong></td><td>1+ for Series A lead</td></tr>
+      <tr><td>Gross retention</td><td><strong>90%+</strong></td><td>85%+ strong for security</td></tr>
+      <tr><td>NDR</td><td><strong>115%</strong></td><td>100%+ good, 120%+ exceptional</td></tr>
+      <tr><td>Gross margin</td><td><strong>75-82%</strong></td><td>70%+ SaaS Series A benchmark</td></tr>
+      <tr><td>SOC 2</td><td><strong>Type II complete</strong></td><td>Required for enterprise procurement</td></tr>
+      <tr><td>Team</td><td><strong>8-10 people</strong></td><td>Standard for Series A</td></tr>
+      <tr><td>Cash remaining</td><td><strong>$3.09M+ (base) / $2.28M (downside)</strong></td><td>Raise from strength, not pressure</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Israeli Cyber Comparable Raises</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">Wiz</div><div class="fact-val">Raised on team and thesis, no product. $32B Google acquisition, 2024.</div></div>
+    <div class="fact-row"><div class="fact-key">Axonius</div><div class="fact-val">Research and design partners. $600M+ valuation at Series A.</div></div>
+    <div class="fact-row"><div class="fact-key">Context</div><div class="fact-val">The Israeli cyber ecosystem normalizes raising at pre-revenue or early-revenue on team quality and defensible research. The $5M seed is consistent with that pattern.</div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     16 / DOWNSIDE SCENARIO                           [ADV]
+     ====================================================== -->
+<div class="doc-section" id="s16">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <div class="section-title">Downside Scenario</div>
+    <span class="section-badge tag-adv">ADV</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Assumptions</div>
+    <div class="card-body">SOC 2 delayed one quarter. Sales cycle extends from 3 to 5 months. Customer conversion 30% lower than base. No other changes to cost structure.</div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Quarter</th><th>Customers</th><th>MRR</th><th>ARR Run Rate</th><th>vs. Base Case</th><th>Cash Remaining</th></tr>
+      <tr><td>Q2-Q3 2026</td><td>0</td><td>$0</td><td>$0</td><td>SOC 2 delayed. No revenue. (Base: $18K MRR)</td><td>$4.39M</td></tr>
+      <tr><td>Q4 2026</td><td>4</td><td>$14K</td><td>$168K</td><td>-65% vs. base ($40K MRR)</td><td>$4.00M</td></tr>
+      <tr><td>Q1 2027</td><td>8</td><td>$28K</td><td>$336K</td><td>-59% vs. base ($68K MRR)</td><td>$3.59M</td></tr>
+      <tr><td>Q2 2027</td><td>12</td><td>$42K</td><td>$504K</td><td>-49% vs. base</td><td>$3.22M</td></tr>
+      <tr><td>Q3 2027</td><td>16</td><td>$56K</td><td>$672K</td><td>-43% vs. base</td><td>N/A</td></tr>
+      <tr style="background:rgba(232,160,32,0.05);"><td><strong>Q4 2027-Q1 2028 (Series A, ~2Q later)</strong></td><td>22-24</td><td>$77-84K</td><td>$924K-$1M+</td><td>~2 quarters delayed</td><td><strong>$2.28M</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>Key takeaway:</strong> No bridge required. No emergency fundraising from a weak position. Reaches $1M+ ARR approximately two quarters later than base case. $2.28M remaining at Series A close. The 25% strategic buffer in the capital allocation absorbs this scenario entirely.
+  </div>
+</div>
+
+<!-- ======================================================
+     17 / LEGAL AND COMPLIANCE                        [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s17">
+  <div class="section-header">
+    <div class="section-num">17</div>
+    <div class="section-title">Legal and Compliance</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="warn">
+    <strong>Never paraphrase or adapt legal text. Use verbatim approved wording only.</strong> Controller/processor classification is still pending. Do not state a position. These positions represent preliminary framework under structured legal review, not finalized legal conclusions.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Biometric Data Classification: Approved Verbatim Language</div>
+    <div class="verbatim">"Sentriq collects behavioral metadata for fraud pattern detection and resulting risk scoring. No collection of biometric identifiers and no identity verification."</div>
+    <div class="verbatim">"Sentriq's processed data, including behavioral signals, are used for fraud pattern comparison and resulting risk scoring, not to identify who someone is. The system never asks 'is this person who they claim to be?' It asks 'does this response pattern match a human expert working independently?' This distinction routes Sentriq around the highest-burden regulatory regime. It is documented in a written legal opinion."</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">EU AI Act: Article 6, Annex III, Point 4</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">Classification</div><div class="fact-val">AI systems in recruitment and hiring: high-risk.</div></div>
+    <div class="fact-row"><div class="fact-key">Compliance deadline</div><div class="fact-val"><strong>August 2, 2026.</strong> This is a hard external deadline that creates mandatory purchase events.</div></div>
+    <div class="fact-row"><div class="fact-key">Requirements</div><div class="fact-val">Human oversight mechanisms, technical documentation, candidate transparency, conformity assessments.</div></div>
+    <div class="fact-row"><div class="fact-key">Sentriq's position</div><div class="fact-val">Layer 3 (human review) transforms regulatory burden into sales trigger. Every EU-facing enterprise with AI-assisted hiring needs this architecture. Fixed deadline, mandatory compliance. Best category entry point a startup can have.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">BIPA Definition (Illinois): Reference Only</div>
+    <div class="verbatim">"any information, regardless of how it is captured, converted, stored, or shared, based on an individual's biometric identifier (retina or iris scan, fingerprint, voiceprint, scan of hand or face geometry) used to identify an individual"</div>
+    <div style="font-size:12px;color:var(--dim);margin-top:8px;">Sentriq collects behavioral metadata, not biometric identifiers as defined above. This is the regulatory distinction documented in the legal opinion.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Controller / Processor Status</div>
+    <div class="fact-row" style="padding-top:0;"><div class="fact-key">Status</div><div class="fact-val"><strong>Still pending. Do not state a position in any external document.</strong></div></div>
+    <div class="fact-row"><div class="fact-key">As controller</div><div class="fact-val">Sentriq's position is that processed personal data does not fall under biometric definitions under prominent data protection laws, as it is not used for uniquely identifying the individual.</div></div>
+    <div class="fact-row"><div class="fact-key">As processor</div><div class="fact-val">Would not be responsible for determining biometric classification. Will be prepared to assist customers with technological explanations for use in privacy policies and DPIAs. Product team will facilitate additional pop-ups for consent as needed.</div></div>
+    <div class="fact-row"><div class="fact-key">Legal framework</div><div class="fact-val">Dedicated privacy counsel + DPO engaged. Formal sign-off expected within 7 days of April 2026 document date. Framework covers: GDPR, BIPA, CCPA/CPRA, FCRA, EU AI Act, controller/processor, data classification, lawful basis, candidate transparency, DPA template.</div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     18 / PRICING ARCHITECTURE                        [ALL]
+     ====================================================== -->
+<div class="doc-section" id="s18">
+  <div class="section-header">
+    <div class="section-num">18</div>
+    <div class="section-title">Pricing Architecture</div>
+    <span class="section-badge tag-all">ALL</span>
+  </div>
+
+  <div class="three-col">
+    <div class="card" style="border-top:2px solid var(--amber);">
+      <div class="card-title">Layer 1 + Platform</div>
+      <div style="font-size:28px;font-weight:800;color:#fff;margin:10px 0 4px;letter-spacing:-0.02em;">$2,000<span style="font-size:14px;font-weight:400;color:var(--muted);">/mo</span></div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Per employer. Flat fee. Covers Layer 1 passive analysis on every application, ATS integration, trust signal output, employer dashboard. Always included.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Layer 2 Challenges</div>
+      <div style="font-size:28px;font-weight:800;color:#fff;margin:10px 0 4px;letter-spacing:-0.02em;">$10<span style="font-size:14px;font-weight:400;color:var(--muted);">/challenge</span></div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Per behavioral challenge triggered by Layer 1 anomaly. Average 150-200 challenges/month per customer at steady state (~$1,500/mo average). Volume grows as hiring volume grows (NDR driver).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Layer 3 Human Review</div>
+      <div style="font-size:28px;font-weight:800;color:#fff;margin:10px 0 4px;letter-spacing:-0.02em;">$25-50<span style="font-size:14px;font-weight:400;color:var(--muted);">/case</span></div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;">Triggered for 5-10% of challenges. Included for design partners in year 1. Enterprise pricing at scale: $25-50/case. EU AI Act mandated for high-risk AI in hiring. This is compliance, not an optional add-on.</div>
+    </div>
+  </div>
+
+  <div class="stat-row" style="margin-top:8px;">
+    <div class="stat-box"><div class="stat-val">$42K</div><div class="stat-label">Blended ACV (standard)</div></div>
+    <div class="stat-box"><div class="stat-val">$33.6K</div><div class="stat-label">Design partner ACV, year 1 (20% discount)</div></div>
+    <div class="stat-box"><div class="stat-val">115%</div><div class="stat-label">Target NDR: expansion via volume</div></div>
+    <div class="stat-box"><div class="stat-val">10%</div><div class="stat-label">Target annual gross churn</div></div>
+  </div>
+</div>
+
+<div style="height:80px;border-top:1px solid var(--border);margin-top:40px;display:flex;align-items:center;justify-content:space-between;">
+  <div style="font-size:11px;color:var(--dim);">Sentriq Master Data Room | Internal Source of Truth | April 2026</div>
+  <div style="font-size:11px;color:var(--dim);">sentriq.co | samuel@sentriq.co</div>
+</div>
+
+</main>
+</div>
+
+<script>
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.sb-link').forEach(l=>l.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>
