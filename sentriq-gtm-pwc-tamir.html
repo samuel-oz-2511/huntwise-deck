@@ -239,24 +239,24 @@ function checkPass(){
 
 <div class="header">
   <div class="header-top">
-    <div class="logo">SENTR<span>[</span>IQ<span>]</span></div>
+    <div class="logo" style="display:flex;align-items:center;gap:8px;font-weight:500;letter-spacing:0.04em;color:#E8A020;font-size:15px;"><svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>Sentriq</div>
   </div>
   <div class="doc-title">Target Universe: Shared with PwC</div>
-  <div class="doc-sub">US and international companies ranked by hiring fraud risk exposure. Scored on 5 dimensions, highest to lowest. Prepared for Tamir Hay, April 2026.</div>
+  <div class="doc-sub">US and international companies ranked by hiring fraud risk exposure. Scored on 6 dimensions (Scale + Volume + Pipeline + Exposure + OFH + Damage), highest to lowest. Prepared for Tamir Hay, April 2026.</div>
 </div>
 
 <div class="scoring-box">
   <div class="scoring-item">
     <div class="scoring-label">5 Dimensions</div>
-    <div class="scoring-val">Scale + Volume + Pipeline + Exposure + OFH (out-of-country hiring)</div>
+    <div class="scoring-val">Scale + Volume + Pipeline + Exposure + OFH + Damage (confirmed employee fraud history)</div>
   </div>
   <div class="scoring-item">
     <div class="scoring-label">Max Score</div>
-    <div class="scoring-val">25 / 25</div>
+    <div class="scoring-val">30 / 30</div>
   </div>
   <div class="scoring-item">
     <div class="scoring-label">Shown</div>
-    <div class="scoring-val">Score 17 and above only. Low and medium targets removed.</div>
+    <div class="scoring-val">Score 20 and above (active targeting). 17-19 shown as watch list. Damage variable penalizes recurring incidents hardest.</div>
   </div>
   <div class="scoring-item">
     <div class="scoring-label">Key Driver</div>
@@ -281,7 +281,7 @@ function checkPass(){
       <th>Sector</th>
       <th>Annual TAM</th>
       <th>OFH Risk</th>
-      <th class="r">Score</th>
+      <th class="r">Score /30</th>
     </tr>
   </thead>
   <tbody>
@@ -291,7 +291,7 @@ function checkPass(){
       <td>Healthcare</td>
       <td>~17,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">24</td>
+      <td class="score-cell score-25">28</td>
     </tr>
     <tr>
       <td class="rank">1</td>
@@ -299,7 +299,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~10,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">24</td>
+      <td class="score-cell score-25">26</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -307,7 +307,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~8,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">23</td>
+      <td class="score-cell score-25">28</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -315,7 +315,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~7,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">22</td>
+      <td class="score-cell score-25">27</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -323,7 +323,7 @@ function checkPass(){
       <td>BPO</td>
       <td>~39,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">22</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">4</td>
@@ -331,7 +331,7 @@ function checkPass(){
       <td>BPO</td>
       <td>~22,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">22</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -339,7 +339,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~5,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -347,7 +347,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -355,7 +355,7 @@ function checkPass(){
       <td>Defense / Aerospace</td>
       <td>~4,750</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -363,7 +363,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~6,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">7</td>
@@ -371,7 +371,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~6,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -379,7 +379,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~5,500</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -387,7 +387,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~5,650</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -395,7 +395,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~2,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -403,7 +403,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~2,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">12</td>
@@ -411,7 +411,7 @@ function checkPass(){
       <td>Staffing Agency</td>
       <td>~45K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -419,7 +419,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -427,7 +427,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~4,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -435,7 +435,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td>~4,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -443,7 +443,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~3,000</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -451,7 +451,7 @@ function checkPass(){
       <td>IT Services</td>
       <td>~2,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -459,7 +459,7 @@ function checkPass(){
       <td>Staffing Agency</td>
       <td>~60K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -467,7 +467,7 @@ function checkPass(){
       <td>Healthcare</td>
       <td>~6,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -475,7 +475,7 @@ function checkPass(){
       <td>Healthcare</td>
       <td>~8,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -483,7 +483,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~9,500</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -491,7 +491,7 @@ function checkPass(){
       <td>BPO</td>
       <td>~10,250</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -499,7 +499,7 @@ function checkPass(){
       <td>BPO</td>
       <td>~7,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">17</td>
@@ -507,7 +507,7 @@ function checkPass(){
       <td>Staffing Agency</td>
       <td>~75K placements</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">19</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -515,7 +515,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~6,300</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -523,7 +523,7 @@ function checkPass(){
       <td>Healthcare</td>
       <td>~4,000</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">31</td>
@@ -531,7 +531,7 @@ function checkPass(){
       <td>Healthcare</td>
       <td>~5,000</td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -539,7 +539,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~3,200</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-18">17</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -547,7 +547,7 @@ function checkPass(){
       <td>Defense / Cleared</td>
       <td>~3,150</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-18">17</td>
+      <td class="score-cell score-18">19</td>
     </tr>
     <tr>
       <td class="rank">34</td>
@@ -555,7 +555,7 @@ function checkPass(){
       <td>Staffing Agency</td>
       <td>~22K placements</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
-      <td class="score-cell score-18">17</td>
+      <td class="score-cell score-18">18</td>
     </tr>
   </tbody>
 </table>
@@ -578,7 +578,7 @@ function checkPass(){
       <th>Sector</th>
       <th>OFH Risk</th>
       <th>EU AI Act</th>
-      <th class="r">Score</th>
+      <th class="r">Score /30</th>
     </tr>
   </thead>
   <tbody>
@@ -589,7 +589,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-25">25</td>
+      <td class="score-cell score-25">28</td>
     </tr>
     <tr>
       <td class="rank">2</td>
@@ -598,7 +598,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">24</td>
+      <td class="score-cell score-25">27</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -607,7 +607,7 @@ function checkPass(){
       <td>Defense / Aerospace</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-25">23</td>
+      <td class="score-cell score-25">28</td>
     </tr>
     <tr>
       <td class="rank">3</td>
@@ -616,7 +616,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-25">23</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -625,7 +625,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">22</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -634,7 +634,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-22">22</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -643,7 +643,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">22</td>
+      <td class="score-cell score-22">24</td>
     </tr>
     <tr>
       <td class="rank">5</td>
@@ -652,7 +652,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">22</td>
+      <td class="score-cell score-25">27</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -661,7 +661,7 @@ function checkPass(){
       <td>Defense</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -670,7 +670,7 @@ function checkPass(){
       <td>Defense / Digital Identity</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -679,7 +679,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -688,7 +688,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-high">HIGH</span></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-25">26</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -697,7 +697,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-25">26</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -706,7 +706,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-22">25</td>
     </tr>
     <tr>
       <td class="rank">9</td>
@@ -715,7 +715,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-22">21</td>
+      <td class="score-cell score-25">26</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -724,7 +724,7 @@ function checkPass(){
       <td>IT Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -733,7 +733,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-22">23</td>
     </tr>
     <tr>
       <td class="rank">16</td>
@@ -742,7 +742,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-22">20</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -751,7 +751,7 @@ function checkPass(){
       <td>Defense Technology</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -760,7 +760,7 @@ function checkPass(){
       <td>Defense</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -769,7 +769,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-22">22</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -778,7 +778,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
       <td></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -787,7 +787,7 @@ function checkPass(){
       <td>BPO / Telecom</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -796,7 +796,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-18">19</td>
+      <td class="score-cell score-18">21</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -805,7 +805,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-18">20</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -814,7 +814,7 @@ function checkPass(){
       <td>Telecom</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-18">19</td>
     </tr>
     <tr>
       <td class="rank">19</td>
@@ -823,7 +823,7 @@ function checkPass(){
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
       <td></td>
-      <td class="score-cell score-18">18</td>
+      <td class="score-cell score-18">21</td>
     </tr>
   </tbody>
 </table>
