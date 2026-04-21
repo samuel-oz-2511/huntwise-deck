@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentriq: Target Universe for PwC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090F;
+    --surface: #12121C;
+    --border: rgba(255,255,255,0.07);
+    --text: rgba(255,255,255,0.9);
+    --muted: rgba(255,255,255,0.4);
+    --dim: rgba(255,255,255,0.2);
+    --primary: #E8A020;
+    --red: #E84040;
+    --green: #34C770;
+    --amber: #E8A020;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 40px 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header {
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+  .logo span { color: var(--primary); }
+  .doc-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .doc-sub {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .scoring-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .scoring-item { }
+  .scoring-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .scoring-val { font-size: 13px; color: var(--text); }
+
+  .section-header {
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: rgba(232,160,32,0.1);
+    border: 1px solid rgba(232,160,32,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .section-pitch {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+  }
+  thead th {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  thead th.r { text-align: right; }
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody td {
+    padding: 8px 10px;
+    vertical-align: top;
+  }
+  .rank {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    width: 28px;
+  }
+  .company-name { font-weight: 600; font-size: 13px; }
+  .company-detail { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+  .tag-critical { background: rgba(232,64,64,0.15); color: #E84040; border: 1px solid rgba(232,64,64,0.25); }
+  .tag-high { background: rgba(232,160,32,0.12); color: #E8A020; border: 1px solid rgba(232,160,32,0.2); }
+  .tag-medium { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.55); border: 1px solid var(--border); }
+  .priority-imm { color: #E84040; font-weight: 700; font-size: 11px; }
+  .priority-high { color: #E8A020; font-weight: 600; font-size: 11px; }
+  .priority-med { color: var(--muted); font-size: 11px; }
+  .score-cell { font-size: 13px; font-weight: 700; text-align: right; }
+  .score-25 { color: #E84040; }
+  .score-22 { color: #E8A020; }
+  .score-18 { color: var(--muted); }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--dim);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 700px) {
+    body { padding: 20px 16px; }
+    .scoring-box { flex-direction: column; gap: 12px; }
+  }
+  @media print {
+    body { background: white; color: #111; padding: 20px; }
+    .header { border-bottom-color: #ccc; }
+    table { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">SENTR<span>[</span>IQ<span>]</span></div>
+  </div>
+  <div class="doc-title">Target Universe: Shared with PwC</div>
+  <div class="doc-sub">US and international companies ranked by hiring fraud risk exposure. Sorted highest to lowest match score. Prepared for Tamir Hay, April 2026.</div>
+</div>
+
+<div class="scoring-box">
+  <div class="scoring-item">
+    <div class="scoring-label">Scoring Dimensions</div>
+    <div class="scoring-val">Scale + Volume + Pipeline + Exposure + OFH (out-of-country hiring)</div>
+  </div>
+  <div class="scoring-item">
+    <div class="scoring-label">Max Score</div>
+    <div class="scoring-val">25 / 25</div>
+  </div>
+  <div class="scoring-item">
+    <div class="scoring-label">OFH Risk</div>
+    <div class="scoring-val">Offshore workers with live access to sensitive US or EU systems</div>
+  </div>
+  <div class="scoring-item">
+    <div class="scoring-label">Key Driver</div>
+    <div class="scoring-val">DPRK IT worker infiltration + EU AI Act (August 2026) + deepfake fraud</div>
+  </div>
+</div>
+
+
+<!-- INTERNATIONAL TOP 20 -->
+
+<div class="section-header">
+  <div class="section-num">International</div>
+  <div class="section-title">Global Priority Ranking: Top 20 (Non-US)</div>
+</div>
+<div class="section-pitch">Every company here has documented offshore hiring pipelines accessing sensitive financial, defense, or infrastructure systems. EU AI Act deadline August 2026 is a hard compliance event for all EU-based entities.</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28px;">#</th>
+      <th>Company</th>
+      <th>Country</th>
+      <th>Sector</th>
+      <th>OFH Risk</th>
+      <th>EU AI Act</th>
+      <th class="r">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="rank">1</td>
+      <td><div class="company-name">HSBC</div><div class="company-detail">211K employees. 24K+ in India (Bengaluru, Chennai, Hyderabad, Kolkata). SWIFT + AML + customer financial records. FCA + OCC + HK SFC.</div></td>
+      <td>UK / Global</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-25">25</td>
+    </tr>
+    <tr>
+      <td class="rank">2</td>
+      <td><div class="company-name">BNP Paribas</div><div class="company-detail">178K employees. +5,000 offshore planned 2025. DPRK targeting French-speaking markets confirmed.</div></td>
+      <td>France</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-25">24</td>
+    </tr>
+    <tr>
+      <td class="rank">3</td>
+      <td><div class="company-name">Airbus</div><div class="company-detail">165-196K employees. India, Morocco, Romania offshore. Aviation safety + EU AI Act across FR/DE/ES/UK.</div></td>
+      <td>France / Germany</td>
+      <td>Defense / Aerospace</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-25">23</td>
+    </tr>
+    <tr>
+      <td class="rank">3</td>
+      <td><div class="company-name">Standard Chartered</div><div class="company-detail">81K employees. ~35% offshore (India, Sri Lanka, Malaysia). AML violations history. Already in Sentriq pipeline.</div></td>
+      <td>UK / APAC</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-25">23</td>
+    </tr>
+    <tr>
+      <td class="rank">5</td>
+      <td><div class="company-name">Barclays</div><div class="company-detail">98K employees. India: Pune, Chennai. ~25% offshore.</div></td>
+      <td>UK</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-22">22</td>
+    </tr>
+    <tr>
+      <td class="rank">5</td>
+      <td><div class="company-name">RBC</div><div class="company-detail">~100K employees. ~20% offshore. OSFI B-10 technology risk guideline. AI expansion through offshore tech hubs.</div></td>
+      <td>Canada</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td></td>
+      <td class="score-cell score-22">22</td>
+    </tr>
+    <tr>
+      <td class="rank">5</td>
+      <td><div class="company-name">Santander</div><div class="company-detail">199K employees. India, Poland, Mexico offshore. Multi-market EU AI Act exposure.</div></td>
+      <td>Spain / UK</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-22">22</td>
+    </tr>
+    <tr>
+      <td class="rank">5</td>
+      <td><div class="company-name">Société Générale</div><div class="company-detail">126K employees. SG GSC in Bangalore + Chennai. Kerviel incident ($4.9B, 2008) = permanent insider risk sensitivity.</div></td>
+      <td>France</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-22">22</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">BAE Systems</div><div class="company-detail">111K employees, 40+ countries. India, Philippines, Australia offshore. Cleared facilities UK/US/Australia/Saudi. DPRK + UK AI Safety Institute.</div></td>
+      <td>UK</td>
+      <td>Defense</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">Thales Group</div><div class="company-detail">83K+ employees. India: 2,200 (Delhi + Bengaluru). Builds biometric identity systems and NATO comms. Offshore hire in identity division is catastrophic.</div></td>
+      <td>France</td>
+      <td>Defense / Digital Identity</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">Deutsche Bank</div><div class="company-detail">~90K employees. India shared services. BaFin + EU AI Act. Germany is the most aggressive EU AI Act enforcer.</div></td>
+      <td>Germany</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">UBS</div><div class="company-detail">105K employees. India, Poland. FINMA + EU exposure.</div></td>
+      <td>Switzerland</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">Commonwealth Bank (CBA)</div><div class="company-detail">~50K employees. Publicly shamed 2025 for cutting 304 AU IT jobs and reposting in India. APRA + board-level urgency.</div></td>
+      <td>Australia</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">NAB</div><div class="company-detail">~38K employees. Explicitly stated plans to add India + Vietnam roles while cutting domestic staff. Government banking mandate.</div></td>
+      <td>Australia</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">TD Bank</div><div class="company-detail">~100K employees. DOCUMENTED: outsourced fraud investigation to India with full customer identity access (CBC News, 2017). Post-AML crisis 2024-2025 = heightened compliance pressure.</div></td>
+      <td>Canada</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td></td>
+      <td class="score-cell score-22">21</td>
+    </tr>
+    <tr>
+      <td class="rank">16</td>
+      <td><div class="company-name">Capgemini</div><div class="company-detail">340K employees total. 199,400 offshore (58%). India ~158,000. Manages IT for major European banks, defense contractors, governments.</div></td>
+      <td>France</td>
+      <td>IT Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-22">20</td>
+    </tr>
+    <tr>
+      <td class="rank">16</td>
+      <td><div class="company-name">Credit Agricole</div><div class="company-detail">157K+ employees. India, Morocco offshore. ACPR + EU AI Act.</div></td>
+      <td>France</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-22">20</td>
+    </tr>
+    <tr>
+      <td class="rank">16</td>
+      <td><div class="company-name">DBS Bank</div><div class="company-detail">41K employees. ~30% offshore India. MAS TRM compliance driver analogous to EU AI Act. Ranked Global Bank of the Year 2025.</div></td>
+      <td>Singapore</td>
+      <td>Financial Services</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td></td>
+      <td class="score-cell score-22">20</td>
+    </tr>
+    <tr>
+      <td class="rank">19</td>
+      <td><div class="company-name">Elbit Systems</div><div class="company-detail">19,712 employees. US, UK, India, Brazil subsidiaries. Record $22.5B backlog. War-footing hiring surge (1,800 new hires under wartime production pressure).</div></td>
+      <td>Israel</td>
+      <td>Defense Technology</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td></td>
+      <td class="score-cell score-18">19</td>
+    </tr>
+    <tr>
+      <td class="rank">19</td>
+      <td><div class="company-name">Rheinmetall</div><div class="company-detail">83K employees. Eastern Europe hiring surge (Ukraine, Romania, Hungary). NATO supply chain. Germany's most aggressive EU AI Act enforcer.</div></td>
+      <td>Germany</td>
+      <td>Defense</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="score-cell score-18">19</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- US TOP 20 -->
+
+<div class="section-header" style="margin-top:36px;">
+  <div class="section-num">United States</div>
+  <div class="section-title">Priority Ranking: Top 20</div>
+</div>
+<div class="section-pitch">Ranked by combined annual sensitive hiring volume (TAM), offshore risk level, buyer urgency, and sales cycle speed. DPRK IT worker infiltration is the primary threat vector. 100+ US companies confirmed infiltrated.</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:28px;">#</th>
+      <th>Company</th>
+      <th>Sector</th>
+      <th>Annual TAM</th>
+      <th>OFH Risk</th>
+      <th>Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="rank">1</td>
+      <td><div class="company-name">UnitedHealth / Optum</div><div class="company-detail">33K+ in India (Bengaluru, Hyderabad, Chennai). HIPAA-regulated PHI accessed remotely. Post-Change Healthcare breach (190M Americans, Feb 2024). Board acutely sensitized.</div></td>
+      <td>Healthcare / PHI</td>
+      <td>~17,500</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">2</td>
+      <td><div class="company-name">JPMorgan Chase</div><div class="company-detail">50K+ in India. 1.12M sq ft campus, Bengaluru (opened 2023). Explicit DPRK targeting publicly disclosed. 62K technologists.</div></td>
+      <td>Financial Services</td>
+      <td>~8,500</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">3</td>
+      <td><div class="company-name">Booz Allen Hamilton</div><div class="company-detail">34,200 employees. 64% hold clearances (disclosed). Intelligence community IT: NSA, CIA, DIA. Record hiring mode. Fastest path to CISO buyer in defense.</div></td>
+      <td>Defense / Cleared</td>
+      <td>~3,200</td>
+      <td><span class="tag tag-medium">MEDIUM</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">4</td>
+      <td><div class="company-name">Leidos</div><div class="company-detail">48K employees. #1 federal IT contractor by prime obligations. Dual PHI + classified exposure (VA + DoD). 52% disclosed clearance density.</div></td>
+      <td>Defense / Cleared</td>
+      <td>~3,150</td>
+      <td><span class="tag tag-medium">MEDIUM</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">5</td>
+      <td><div class="company-name">American Express</div><div class="company-detail">81,000 employees in India (Gurugram, Bengaluru), the largest single offshore headcount of any US financial firm. Almost no one associates AmEx with offshore hiring risk.</div></td>
+      <td>Financial Services</td>
+      <td>~4,250</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">6</td>
+      <td><div class="company-name">Goldman Sachs</div><div class="company-detail">Bengaluru is their #2 office globally (8,223 staff, $250M facility). Trading systems, M&amp;A data, client financial infrastructure.</div></td>
+      <td>Financial Services</td>
+      <td>~4,250</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-imm">Immediate</td>
+    </tr>
+    <tr>
+      <td class="rank">7</td>
+      <td><div class="company-name">CACI International</div><div class="company-detail">24,500 employees. TS/SCI concentration. Signals intelligence and DoD mission software. ~65-75% clearance density est.</div></td>
+      <td>Defense / Cleared</td>
+      <td>~2,550</td>
+      <td><span class="tag tag-medium">MEDIUM</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">8</td>
+      <td><div class="company-name">Morgan Stanley</div><div class="company-detail">India engineering team doubled in 2 years to 7,000. Mumbai + Bengaluru. India is #2 location globally after New York.</div></td>
+      <td>Financial Services</td>
+      <td>~4,750</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">9</td>
+      <td><div class="company-name">Wells Fargo</div><div class="company-detail">20K+ offshore: 12K India (Bengaluru, Chennai, Hyderabad) + 5K Philippines (Manila). Offshore staff access core banking systems directly.</div></td>
+      <td>Financial Services</td>
+      <td>~7,500</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">10</td>
+      <td><div class="company-name">Cognizant</div><div class="company-detail">256,900 in India (76% of workforce). Chennai 50K+, Hyderabad 50K+. Placed inside US banks, hospitals, defense agencies. The DPRK entry point is not the bank, it is Cognizant.</div></td>
+      <td>IT Services</td>
+      <td>~5,750</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">11</td>
+      <td><div class="company-name">TCS US</div><div class="company-detail">420,000-480,000 offshore (70-80% of workforce). Access to US financial services, government IT, telecom. 55 countries.</div></td>
+      <td>IT Services</td>
+      <td>~4,250</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">12</td>
+      <td><div class="company-name">Infosys US</div><div class="company-detail">~269,654 in India (85% of workforce). Banking, insurance, healthcare system access.</div></td>
+      <td>IT Services</td>
+      <td>~3,000</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">13</td>
+      <td><div class="company-name">Accenture</div><div class="company-detail">~580,500 offshore (75%+). Accenture Federal Services: cleared + VA/CMS health IT. India, Philippines, Eastern Europe, LATAM.</div></td>
+      <td>IT Services</td>
+      <td>~10,000</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">14</td>
+      <td><div class="company-name">Boeing</div><div class="company-detail">43-acre campus in Bengaluru (6,000+ engineers, opened Jan 2024, largest Boeing facility outside the US). 737 Max software previously outsourced to Indian contractors.</div></td>
+      <td>Defense / Aerospace</td>
+      <td>~4,750</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="priority-high">High</td>
+    </tr>
+    <tr>
+      <td class="rank">15</td>
+      <td><div class="company-name">Concentrix</div><div class="company-detail">Largest private employer in the Philippines (100,000+). Customer PII, financial accounts, health insurance records processed offshore.</div></td>
+      <td>BPO</td>
+      <td>~39,000</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+    <tr>
+      <td class="rank">16</td>
+      <td><div class="company-name">Elevance Health (Anthem)</div><div class="company-detail">100K employees. India + Philippines. 40M+ insurance members. Medicaid/Medicare federal contracts.</div></td>
+      <td>Healthcare / PHI</td>
+      <td>~5,000</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+    <tr>
+      <td class="rank">17</td>
+      <td><div class="company-name">Capgemini US</div><div class="company-detail">196,900 offshore (58%). Government IT, financial services, utilities. India is primary offshore hub.</div></td>
+      <td>IT Services</td>
+      <td>~2,750</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+    <tr>
+      <td class="rank">18</td>
+      <td><div class="company-name">Randstad</div><div class="company-detail">Own GCC in Hyderabad + Chennai + Budapest. Verifies candidates using staff hired through an offshore pipeline. 400K-800K US placements per year.</div></td>
+      <td>Staffing Agency</td>
+      <td>~90K placements</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+    <tr>
+      <td class="rank">19</td>
+      <td><div class="company-name">Humana</div><div class="company-detail">70K employees. India operations. Medicare/Medicaid federal health contracts. PHI access for millions of US beneficiaries.</div></td>
+      <td>Healthcare / PHI</td>
+      <td>~3,750</td>
+      <td><span class="tag tag-high">HIGH</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+    <tr>
+      <td class="rank">20</td>
+      <td><div class="company-name">Teleperformance</div><div class="company-detail">~350K offshore (78%+). 95 countries. Healthcare payer data, banking PII processed across Philippines, India, LATAM, Sub-Saharan Africa.</div></td>
+      <td>BPO</td>
+      <td>~22,500</td>
+      <td><span class="tag tag-critical">CRITICAL</span></td>
+      <td class="priority-med">Medium</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ADDITIONAL US COMPANIES -->
+
+<div class="section-header" style="margin-top:36px;">
+  <div class="section-num">US Extended</div>
+  <div class="section-title">Additional US Targets by Sector</div>
+</div>
+
+<div style="margin-bottom:10px;margin-top:6px;font-size:12px;font-weight:600;color:var(--primary);">Defense / Cleared Workforce</div>
+<table>
+  <thead>
+    <tr><th>Company</th><th>Employees</th><th>Clearance Density</th><th>OFH Risk</th><th>Key Angle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Northrop Grumman</strong></td><td>101,000</td><td>~70%+ est.</td><td><span class="tag tag-medium">LOW</span></td><td>B-21 Raider, nuclear deterrence. Zero H-1B petitions FY21-23, the most restrictive policy in sector.</td></tr>
+    <tr><td><strong>RTX / Raytheon</strong></td><td>186,000</td><td>~55-65% est.</td><td><span class="tag tag-medium">LOW-MED</span></td><td>Missile systems, SIGINT, electronic warfare.</td></tr>
+    <tr><td><strong>General Dynamics / GDIT</strong></td><td>117,000</td><td>~50-60% est.</td><td><span class="tag tag-medium">MEDIUM</span></td><td>GDIT handles classified DoD + intelligence networks. 50+ countries.</td></tr>
+    <tr><td><strong>Lockheed Martin</strong></td><td>121,000</td><td>~65-70% est.</td><td><span class="tag tag-medium">LOW-MED</span></td><td>F-35, hypersonics, classified satellites. Subcontractor pipeline is the gap.</td></tr>
+    <tr><td><strong>L3Harris</strong></td><td>47,000</td><td>~50-60% est.</td><td><span class="tag tag-medium">LOW-MED</span></td><td>Electronic warfare, ISR, tactical radios.</td></tr>
+    <tr><td><strong>SAIC</strong></td><td>15,000</td><td>~60-70% est.</td><td><span class="tag tag-medium">MEDIUM</span></td><td>Classified satellite comms, Navy enterprise systems.</td></tr>
+    <tr><td><strong>ManTech</strong></td><td>~9,000</td><td>~85-90% est.</td><td><span class="tag tag-medium">MEDIUM</span></td><td>Pure-play cleared IT. 100% government clients.</td></tr>
+    <tr><td><strong>BAE Systems US</strong></td><td>~22,500</td><td>~55-70% est.</td><td><span class="tag tag-medium">MEDIUM</span></td><td>Ship repair, classified electronics, cyber intelligence.</td></tr>
+  </tbody>
+</table>
+
+<div style="margin:16px 0 10px;font-size:12px;font-weight:600;color:var(--primary);">Financial Services</div>
+<table>
+  <thead>
+    <tr><th>Company</th><th>Offshore Headcount</th><th>OFH Risk</th><th>Key Angle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Bank of America</strong></td><td>BA Continuum India (Mumbai + Delhi)</td><td><span class="tag tag-critical">CRITICAL</span></td><td>Consumer/investment banking, wealth management ops.</td></tr>
+    <tr><td><strong>Citigroup</strong></td><td>Large: India, Philippines, Eastern Europe</td><td><span class="tag tag-critical">CRITICAL</span></td><td>Trading systems, customer data, banking ops. Restructuring 14 countries.</td></tr>
+    <tr><td><strong>Visa</strong></td><td>India tech center (Bengaluru, Pune)</td><td><span class="tag tag-critical">CRITICAL</span></td><td>Payment network infrastructure. Any compromise is systemic.</td></tr>
+    <tr><td><strong>Mastercard</strong></td><td>India tech center</td><td><span class="tag tag-critical">CRITICAL</span></td><td>Same as Visa. Payment rail access.</td></tr>
+    <tr><td><strong>Fidelity Investments</strong></td><td>India (Bengaluru, Chennai)</td><td><span class="tag tag-high">HIGH</span></td><td>Retirement accounts, brokerage, customer financial data.</td></tr>
+  </tbody>
+</table>
+
+<div style="margin:16px 0 10px;font-size:12px;font-weight:600;color:var(--primary);">IT Services / BPO</div>
+<table>
+  <thead>
+    <tr><th>Company</th><th>Offshore Headcount</th><th>OFH Risk</th><th>Key Angle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Genpact</strong></td><td>~67,000 (48%): Delhi, Gurugram, Hyderabad, Bengaluru</td><td><span class="tag tag-critical">CRITICAL</span></td><td>ERP/SAP, financial ledgers at client companies.</td></tr>
+    <tr><td><strong>Wipro US</strong></td><td>~175,000 (75%+): India, 60+ countries</td><td><span class="tag tag-critical">CRITICAL</span></td><td>IT infrastructure, financial client systems.</td></tr>
+    <tr><td><strong>TTEC</strong></td><td>~35,000+ (70%+): Philippines, Colombia, Costa Rica</td><td><span class="tag tag-high">HIGH</span></td><td>Financial services, healthcare, government CX.</td></tr>
+    <tr><td><strong>TaskUs</strong></td><td>~50,000 (83%+): Philippines, India, Colombia</td><td><span class="tag tag-high">HIGH</span></td><td>Fintech, healthcare, content moderation.</td></tr>
+  </tbody>
+</table>
+
+<div style="margin:16px 0 10px;font-size:12px;font-weight:600;color:var(--primary);">Healthcare</div>
+<table>
+  <thead>
+    <tr><th>Company</th><th>Offshore</th><th>OFH Risk</th><th>Key Angle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>CVS Health / Aetna</strong></td><td>India + Philippines</td><td><span class="tag tag-high">HIGH</span></td><td>Aetna: 23M member PHI. Caremark: 2B+ prescription claims/year.</td></tr>
+    <tr><td><strong>Kaiser Permanente</strong></td><td>India + Philippines</td><td><span class="tag tag-high">HIGH</span></td><td>12M member integrated payer-provider PHI.</td></tr>
+    <tr><td><strong>HCA Healthcare</strong></td><td>India + Philippines (IT, billing, revenue cycle)</td><td><span class="tag tag-high">HIGH</span></td><td>Centralized EHR for 190 hospitals across 20 states.</td></tr>
+    <tr><td><strong>Centene Corporation</strong></td><td>India + Philippines</td><td><span class="tag tag-high">HIGH</span></td><td>Medicaid managed care; heavy government payer concentration.</td></tr>
+  </tbody>
+</table>
+
+<div style="margin:16px 0 10px;font-size:12px;font-weight:600;color:var(--primary);">Staffing Agencies (Multiplier Play)</div>
+<table>
+  <thead>
+    <tr><th>Company</th><th>Annual US Placements</th><th>Own Offshore Ops</th><th>Key Angle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Adecco US</strong></td><td>500K-1M</td><td>Global; no India GCC disclosed</td><td>"Adecco Verified" as differentiator sold upstream to clients.</td></tr>
+    <tr><td><strong>ManpowerGroup</strong></td><td>300K-600K</td><td>Own offshore: Bangalore + Kolkata</td><td>400,000+ global clients. Verifies candidates using offshore-hired staff.</td></tr>
+    <tr><td><strong>Robert Half</strong></td><td>100K-200K</td><td>International offices</td><td>Finance/accounting/IT focus = higher sensitive-role TAM.</td></tr>
+    <tr><td><strong>Kelly Services</strong></td><td>100K-200K</td><td>Science/engineering focus</td><td>Defense and engineering staffing = cleared-role exposure.</td></tr>
+  </tbody>
+</table>
+
+
+<!-- KEY STATS -->
+
+<div class="section-header" style="margin-top:36px;">
+  <div class="section-num">Context</div>
+  <div class="section-title">Market Statistics for Reference</div>
+</div>
+<table>
+  <thead><tr><th>Statistic</th><th>Source / Context</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1,300%</strong> increase in deepfake fraud attempts in hiring, 2023-2024</td><td>Industry reports</td></tr>
+    <tr><td><strong>311%</strong> increase in synthetic identity document fraud, Q1 2024 to Q1 2025</td><td>Identity verification providers</td></tr>
+    <tr><td><strong>$501M</strong> in job fraud losses in 2024 (up from $90M in 2020)</td><td>FTC data</td></tr>
+    <tr><td><strong>31%</strong> of hiring managers personally interviewed a candidate using a fake identity</td><td>Checkr survey, 3,000 managers</td></tr>
+    <tr><td><strong>100+</strong> US companies confirmed infiltrated by DPRK IT workers using stolen American identities</td><td>DOJ indictments, public disclosures</td></tr>
+    <tr><td><strong>1,800+</strong> suspected DPRK applicants blocked by Amazon since April 2024, growing 27% QoQ</td><td>Amazon public disclosure</td></tr>
+    <tr><td><strong>$800M</strong> generated by DPRK IT worker fraud schemes in 2024</td><td>UN Panel of Experts</td></tr>
+    <tr><td><strong>Gartner:</strong> 1 in 4 candidate profiles will be fake by 2028</td><td>Gartner 2024</td></tr>
+    <tr><td><strong>EU AI Act</strong>: August 2, 2026 deadline: human oversight of AI-assisted hiring mandatory across all EU entities</td><td>Annex III, Article 26. Penalty: up to 7% of global annual turnover.</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <span>Sentriq, sentriq.co. Confidential, prepared for Tamir Hay, PwC</span>
+  <span>April 2026</span>
+</div>
+
+</body>
+</html>
