@@ -413,7 +413,7 @@
 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
 <div style="padding:18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:12px; opacity:0.95;">
 <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.30); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 1 - Passive</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Behavioral metadata captured as the candidate fills the form. Invisible. No friction. Detects fraud signals, bot activity, overfitting, skills anomalies, and synthetic applications before submission.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Behavioral metadata captured as the candidate fills the form. Invisible. No friction. Detects fraud signals, bot activity, overfitting, and synthetic applications before submission.</p>
 <div style="display:flex; flex-wrap:wrap; gap:4px;">
 <span class="signal-tag" style="background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.45); border-color:rgba(255,255,255,0.12);">Mass-apply bots</span>
 <span class="signal-tag" style="background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.45); border-color:rgba(255,255,255,0.12);">CV overfitting</span>
@@ -423,7 +423,7 @@
 </div>
 <div style="padding:20px; background:rgba(232,160,32,0.10); border:2px solid rgba(232,160,32,0.40); border-radius:12px; box-shadow:0 0 20px rgba(232,160,32,0.08);">
 <div style="font-size:12px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 2 - Active Challenge</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Only triggered when Layer 1 surfaces anomalies. Candidates who clear the passive layer are never challenged. For flagged applications: a short task, framed as part of the application. Scoring combines behavioral signals and content quality, calibrated to the claimed profile. A proxy cannot replicate both the fingerprint and the demonstrated knowledge of the person they impersonate.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Only triggered when Layer 1 flags an anomaly. A short task framed as part of the application: behavioral fingerprint scored against content quality. A proxy cannot replicate both.</p>
 <div style="display:flex; flex-wrap:wrap; gap:4px;">
 <span class="signal-tag" style="background:rgba(245,158,11,0.1); color:#E8A020; border-color:rgba(245,158,11,0.2);">Proxy impersonation</span>
 <span class="signal-tag" style="background:rgba(245,158,11,0.1); color:#E8A020; border-color:rgba(245,158,11,0.2);">AI-assisted response</span>
@@ -432,7 +432,7 @@
 </div>
 <div style="padding:18px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:12px;">
 <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 3 - Human Review</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Sentriq analyst reviews the full signal stack. Employer makes the final call. Sentriq never rejects a candidate unilaterally. Full audit trail for regulatory defense.</p>
+<p style="font-size:13px; color:var(--text); line-height:1.6; margin-bottom:10px;">Sentriq analyst reviews the full signal stack. Employer makes the final call. Sentriq never rejects unilaterally. Full audit trail for regulatory defense.</p>
 <div style="padding:10px 12px; background:rgba(232,160,32,0.08); border-radius:8px; border:1px solid rgba(232,160,32,0.2);">
 <p style="font-size:11px; color:#E8A020; font-weight:700; text-align:center;">Zero automated rejections. Human-in-the-loop is architecture, not a disclaimer. EU AI Act compliant by design.</p>
 </div>
@@ -446,35 +446,35 @@
 <h2>The problem isn't one thing. <span style="color:var(--primary);">It's a spectrum.</span></h2>
 <div style="height:4px; background:linear-gradient(90deg, rgba(255,255,255,0.15) 0%, rgba(232,160,32,0.5) 40%, rgba(249,115,22,0.7) 70%, rgba(224,85,85,1) 100%); border-radius:4px 4px 0 0; margin-top:18px;"></div>
 <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:0; border:1px solid rgba(255,255,255,0.1); border-top:none; border-radius:0 0 14px 14px; overflow:hidden; margin-bottom:16px;">
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02);">
+<div style="padding:20px 16px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02);">
 <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Passive</div>
-<div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.55); margin-bottom:8px;">Behavioral Baseline</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Typing dynamics, mouse movement, fill patterns. Establishes whether a human is completing this form - before any scoring begins.</p>
+<div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.55); margin-bottom:10px;">Behavioral Baseline</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Typing dynamics, mouse movement, fill patterns. Establishes whether a human is completing this form before any scoring begins.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.04);">
+<div style="padding:20px 16px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.04);">
 <div style="font-size:9px; font-weight:700; color:rgba(232,160,32,0.7); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Automated</div>
-<div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:8px;">Mass-Apply Bots</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Tools like Tsenta sending 1,500+ applications per day. Same behavioral fingerprint across dozens of companies. Detectable before a human sees them.</p>
+<div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:10px;">Mass-Apply Bots</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Tools like Tsenta sending 1,500+ applications per day. Same fingerprint across dozens of companies. Detectable before a human sees them.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.07);">
+<div style="padding:20px 16px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.07);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Gaming</div>
-<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">CV-to-JD Overfitting</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Resumes hyper-engineered to beat ATS scoring via keyword injection and hidden text. A <a href="https://www.futuredatastats.com/ai-powered-resume-builders-market" style="color:inherit;" target="_blank">$400M market</a>: gaming the queue, not earning it.</p>
+<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:10px;">CV-to-JD Overfitting</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Resumes hyper-engineered to beat ATS scoring via keyword injection. A <a href="https://www.futuredatastats.com/ai-powered-resume-builders-market" style="color:inherit;" target="_blank">$400M market</a>: gaming the queue, not earning it.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(245,158,11,0.08);">
+<div style="padding:20px 16px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(245,158,11,0.08);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Inflation</div>
-<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Skills Anomaly</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Claimed skills with no supporting timeline or behavioral confidence. Title says senior engineer. Behavior says otherwise.</p>
+<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:10px;">Skills Anomaly</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Claimed skills with no supporting timeline or behavioral confidence. Title says senior engineer. Behavior says otherwise.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(249,115,22,0.10);">
+<div style="padding:20px 16px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(249,115,22,0.10);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Fabrication</div>
-<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Profile Distortion</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Timeline manipulation, AI-generated CVs, false credentials. Real documents - fabricated history. The behavioral mismatch is the flag.</p>
+<div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:10px;">Profile Distortion</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Timeline manipulation, AI-generated CVs, false credentials. Real documents, fabricated history. The behavioral mismatch is the flag.</p>
 </div>
-<div style="padding:18px 14px; background:rgba(239,68,68,0.13); border-left:2px solid rgba(239,68,68,0.5);">
+<div style="padding:20px 16px; background:rgba(239,68,68,0.13); border-left:2px solid rgba(239,68,68,0.5);">
 <div style="font-size:9px; font-weight:700; color:#E05555; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">State-backed</div>
-<div style="font-size:14px; font-weight:700; color:#E05555; margin-bottom:8px;">Proxy Fraud</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Stolen SSNs, live AI coaching, real credentials - wrong person. Passed four video interviews and a full background check at KnowBe4.</p>
+<div style="font-size:14px; font-weight:700; color:#E05555; margin-bottom:10px;">Proxy Fraud</div>
+<p style="font-size:13px; color:var(--text); line-height:1.6;">Stolen SSNs, live AI coaching, real credentials, wrong person. Passed four video interviews and a full background check at KnowBe4.</p>
 </div>
 </div>
 <div style="padding:14px 22px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.2); border-radius:12px;">
@@ -577,14 +577,14 @@
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(224,85,85,0.15); color:#E05555; border:1px solid rgba(224,85,85,0.35);">Direct</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Closest in problem space. CV forensics and a static Fraudbase of 5M profiles. No behavioral challenge, no live cross-company network. Sentriq's adversarial corpus comes from running the actual attacks. Detection signatures Tofu has never modeled.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Static CV forensics and a fixed Fraudbase. No behavioral challenge, no live network. Our corpus comes from running the attacks they have never modeled.</td>
 </tr>
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(239,68,68,0.05);">
 <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Crosschq ApplicantX</div><div style="font-size:9px; color:var(--text-dim);">Series B · Launched Nov 2025</div></td>
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(224,85,85,0.15); color:#E05555; border:1px solid rgba(224,85,85,0.35);">Direct</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Full-funnel detection with Series B distribution. No behavioral challenge; cannot catch proxy fraud or AI-assisted impersonation. No cross-company graph. Series B overhead without a structural moat.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">No behavioral challenge. Cannot catch proxy fraud or AI impersonation. Series B distribution without a structural moat.</td>
 </tr>
 <!-- DISTRIBUTION RISKS -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(245,158,11,0.05);">
@@ -592,14 +592,14 @@
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(232,160,32,0.14); color:#D4921C; border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:10px;">Blocked</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Identity only. Confirms the face, not the intent. DPRK operatives use real stolen SSNs and pass Persona. The risk is distribution: already embedded in the top three ATS platforms. If they add a behavioral layer, they arrive with Greenhouse installed. Most important company to watch.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Confirms the face, not the intent. DPRK operatives pass using real stolen SSNs. Most dangerous if they add a behavioral layer to their existing ATS distribution.</td>
 </tr>
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(245,158,11,0.05);">
 <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Greenhouse + Ashby + iCIMS</div><div style="font-size:9px; color:var(--text-dim);">ATS incumbents · Native fraud detection, 2025</div></td>
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(232,160,32,0.14); color:#D4921C; border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:10px;">Permanently blocked</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">ATS customer contracts prohibit cross-employer data sharing. Each ATS can only see its own customers. The cross-company graph requires neutral ground, an architecture permanently unavailable to any ATS vendor regardless of funding or roadmap.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">ATS contracts prohibit cross-employer data sharing by design. The graph requires neutral ground. Permanently unavailable to any ATS vendor, regardless of funding or roadmap.</td>
 </tr>
 <!-- MONITOR -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
@@ -607,7 +607,7 @@
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.18);">Monitor</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Pre-hire biometric identity check before background screening. Same wrong detection layer as Persona: confirms real person, not behavioral intent. Threat escalates only if they partner with an ATS incumbent to bundle distribution.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.88);">Biometric identity before background screening. Confirms the person is real, not the intent. Threat escalates only if they partner with an ATS incumbent.</td>
 </tr>
 <!-- COMPLEMENTS -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(255,255,255,0.02);">
@@ -615,7 +615,7 @@
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.18);">Complement</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:10px;">Permanently blocked</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.65);">All three operate at the video interview stage, after $1,700+ in process cost is already spent. Combined $490M+ in raised capital confirms hiring fraud is a fundable enterprise security problem. In a full enterprise security stack, all three sit downstream of Sentriq. Their raises validate the ask.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.65);">All operate after $1,700+ in process cost is spent. Their combined $490M+ confirms hiring fraud is a funded enterprise security category. All three sit downstream of Sentriq in every stack.</td>
 </tr>
 <!-- INDIRECT -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.03); background:rgba(107,114,128,0.03);">
@@ -623,7 +623,7 @@
 <td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(107,114,128,0.12); color:rgba(255,255,255,0.45); border:1px solid rgba(107,114,128,0.25);">Indirect</span></td>
 <td style="padding:7px 6px; text-align:center; color:rgba(255,255,255,0.3); font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:rgba(255,255,255,0.3); font-size:13px;">✗</td>
-<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.55);">Sourcing and workflow tool. Different buyer (recruiter headcount budget vs. CISO security budget), different problem. Client data siloed per employer by contract. Non-zero-sum: their scale confirms enterprise buyers invest heavily in hiring infrastructure.</td>
+<td style="padding:7px 10px; font-size:12px; color:rgba(255,255,255,0.55);">Sourcing and workflow tool. Different buyer, different budget. Data siloed per employer by contract. Their scale confirms enterprise buyers invest heavily in hiring infrastructure.</td>
 </tr>
 <!-- SENTRIQ -->
 <tr style="background:rgba(232,160,32,0.14); border-top:2px solid rgba(232,160,32,0.6);">
@@ -742,13 +742,11 @@
 <p style="font-size:12px; color:var(--text); line-height:1.55;">EU AI Act (August 2026) makes this infrastructure a compliance purchase, not discretionary.</p>
 </div>
 </div>
-<div style="padding:12px 16px; background:rgba(232,160,32,0.1); border-radius:8px; border:1px solid rgba(232,160,32,0.22);">
-<p style="font-size:13px; color:rgba(255,255,255,0.85); font-weight:700; text-align:center; letter-spacing:-0.01em;">The more companies join, the harder it becomes to defraud any of them.</p>
 </div>
 </div>
-</div>
-<div style="margin-top:14px; padding:14px 20px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:12px; text-align:center;">
-<p style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.6;">A tool solves a problem for one company. <strong style="color:var(--primary);">The knowledge graph is the product.</strong> At 100 customers, the correlation engine becomes an asset no ATS or point solution can replicate: not because of technology, but because it requires neutral ground.</p>
+<div style="margin-top:18px; padding:22px 32px; background:rgba(232,160,32,0.06); border-left:3px solid #E8A020; border-radius:0 12px 12px 0;">
+<p style="font-size:20px; color:rgba(255,255,255,0.94); font-weight:700; letter-spacing:-0.02em; line-height:1.4;">The more companies join, the harder it becomes to defraud any of them.</p>
+<p style="font-size:12px; color:rgba(255,255,255,0.42); margin-top:8px; letter-spacing:0.02em;">Not technology. Neutral ground. The structural barrier no ATS can replicate.</p>
 </div>
 </div>
 </div>
