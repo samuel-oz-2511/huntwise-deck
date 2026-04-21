@@ -17,8 +17,8 @@
             --orange: #E8A020;
             --red: #B04040;
             --purple: #3A2058;
-            --text: rgba(255,255,255,0.75);
-            --text-dim: rgba(255,255,255,0.45);
+            --text: rgba(255,255,255,0.80);
+            --text-dim: rgba(255,255,255,0.52);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -58,11 +58,8 @@
         .slide-inner { max-width: 1080px; width: 100%; position: relative; z-index: 1; }
 
         .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
-        @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         .bg-cover {
-            background: linear-gradient(135deg, #09090F, #1A1A35, #E8A020, #1A1A35, #09090F);
-            background-size: 300% 300%;
-            animation: gradientShift 14s ease infinite;
+            background: radial-gradient(ellipse 80% 60% at 50% 35%, rgba(232,160,32,0.11) 0%, rgba(26,26,53,0.4) 45%, #09090F 72%);
         }
 
         .nav-bar {
@@ -84,8 +81,8 @@
         .slide-counter { font-size: 12px; color: var(--text-dim); font-weight: 500; min-width: 52px; text-align: center; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
 
         .progress-bar {
-            position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(90deg, #E8A020, #3A2058);
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: #E8A020;
             box-shadow: 0 0 10px rgba(232,160,32,0.5);
             transition: width 0.35s ease; z-index: 100;
         }
@@ -107,15 +104,15 @@
         h3 { font-size: clamp(13px, 1.5vw, 17px); font-weight: 600; line-height: 1.3; margin-bottom: 8px; }
 
         .card {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+            background: #0D0E1A; border: 1px solid rgba(255,255,255,0.12);
             border-radius: 14px; padding: clamp(16px, 2vw, 24px);
         }
         .card p { font-size: 13px; color: var(--text); line-height: 1.65; }
 
         .pill { display: inline-block; padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid; }
-        .pill-blue { background: rgba(232,160,32,0.15); color: #4A4A6A; border-color: rgba(232,160,32,0.25); }
-        .pill-green { background: rgba(16,185,129,0.15); color: #E8A020; border-color: rgba(16,185,129,0.25); }
-        .pill-red { background: rgba(239,68,68,0.15); color: #E8A020; border-color: rgba(239,68,68,0.25); }
+        .pill-blue { background: rgba(232,160,32,0.12); color: rgba(255,255,255,0.85); border-color: rgba(232,160,32,0.35); }
+        .pill-green { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.18); }
+        .pill-red { background: rgba(232,160,32,0.08); color: rgba(255,255,255,0.75); border-color: rgba(232,160,32,0.22); }
 
         .stat-num { font-size: clamp(28px, 3.5vw, 42px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
 
@@ -126,7 +123,7 @@
             display: inline-flex; align-items: center; gap: 5px;
             padding: 4px 10px; border-radius: 6px;
             font-size: 11px; font-weight: 600;
-            background: rgba(232,160,32,0.1); color: #4A4A6A;
+            background: rgba(232,160,32,0.1); color: rgba(255,255,255,0.7);
             border: 1px solid rgba(232,160,32,0.2);
         }
 
@@ -150,7 +147,7 @@
   .stack-layer{display:flex;align-items:center;padding:9px 14px;border-radius:8px;border:1px solid rgba(232,160,32,0.18);background:rgba(232,160,32,0.05);margin-bottom:5px;}
   .stack-layer-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.4);width:160px;flex-shrink:0;}
   .stack-layer-vendors{font-size:11px;color:rgba(255,255,255,0.3);}
-  .stack-layer-badge{margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.12);color:#4A4A6A;border:1px solid rgba(232,160,32,0.25);}
+  .stack-layer-badge{margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.12);color:rgba(255,255,255,0.65);border:1px solid rgba(232,160,32,0.25);}
   @media(max-width:600px){.stack-layer-label{width:100px;}}
 </style>
 </head>
@@ -323,9 +320,9 @@
       <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(239,68,68,0.2);color:#E8A020;border:1px solid rgba(239,68,68,0.4);">UNDEFENDED</span>
     </div>
     <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(232,160,32,0.5);background:rgba(232,160,32,0.1);">
-      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#4A4A6A;width:160px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;width:160px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
       <span style="font-size:11px;color:rgba(232,160,32,0.9);font-weight:600;">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything. The primitive that does not exist yet.</span>
-      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.2);color:#4A4A6A;border:1px solid rgba(232,160,32,0.4);">BUILDING IT</span>
+      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.2);color:#E8A020;border:1px solid rgba(232,160,32,0.4);">BUILDING IT</span>
     </div>
   </div>
 
@@ -406,7 +403,7 @@
 </div>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
 <div style="padding:16px 18px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:12px;">
-<div style="font-size:11px; font-weight:700; color:#4A4A6A; margin-bottom:8px;">🎯 VP HR: the entry point</div>
+<div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:8px;">🎯 VP HR: the entry point</div>
 <p style="font-size:11px; color:var(--text); line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. At $6K/year this pays for itself in one avoided mis-hire. They feel it. They want it. They start the POC.</p>
 </div>
 <div style="padding:16px 18px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.18); border-radius:12px;">
@@ -706,14 +703,14 @@
 <!-- DIRECT COMPETITORS -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(239,68,68,0.05);">
 <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Tofu</div><div style="font-size:9px; color:var(--text-dim);">$1.2M seed · hiretofu.com</div></td>
-<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(239,68,68,0.18); color:#E8A020; border:1px solid rgba(239,68,68,0.35);">Direct</span></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(224,85,85,0.15); color:#E05555; border:1px solid rgba(224,85,85,0.35);">Direct</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Closest in problem space. CV forensics and a static Fraudbase of 5M profiles. No behavioral challenge, no live cross-company network. Sentriq's adversarial corpus comes from running the actual attacks. Detection signatures Tofu has never modeled.</td>
 </tr>
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:rgba(239,68,68,0.05);">
 <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Crosschq ApplicantX</div><div style="font-size:9px; color:var(--text-dim);">Series B · Launched Nov 2025</div></td>
-<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(239,68,68,0.18); color:#E8A020; border:1px solid rgba(239,68,68,0.35);">Direct</span></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(224,85,85,0.15); color:#E05555; border:1px solid rgba(224,85,85,0.35);">Direct</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Full-funnel detection with Series B distribution. No behavioral challenge; cannot catch proxy fraud or AI-assisted impersonation. No cross-company graph. Series B overhead without a structural moat.</td>
@@ -736,7 +733,7 @@
 <!-- MONITOR -->
 <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
 <td style="padding:7px 10px;"><div style="font-weight:700; color:var(--white);">Checkr IDV</div><div style="font-size:9px; color:var(--text-dim);">~$679M raised · Launched Mar 2026</div></td>
-<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(251,191,36,0.12); color:#E8A020; border:1px solid rgba(251,191,36,0.28);">Monitor</span></td>
+<td style="padding:7px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.18);">Monitor</span></td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 6px; text-align:center; color:#E8A020; font-size:13px;">✗</td>
 <td style="padding:7px 10px; font-size:10.5px; color:var(--text);">Pre-hire biometric identity check before background screening. Same wrong detection layer as Persona: confirms real person, not behavioral intent. Threat escalates only if they partner with an ATS incumbent to bundle distribution.</td>
@@ -760,10 +757,10 @@
 <!-- SENTRIQ -->
 <tr style="background:rgba(232,160,32,0.1); border:1px solid rgba(232,160,32,0.3);">
 <td style="padding:8px 10px;"><div style="font-weight:800; color:var(--white);">Sentriq</div><div style="font-size:9px; color:var(--primary);">Hiring Integrity Infrastructure</div></td>
-<td style="padding:8px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(232,160,32,0.2); color:#4A4A6A; border:1px solid rgba(232,160,32,0.4);">The Layer</span></td>
+<td style="padding:8px 10px;"><span style="font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; background:rgba(232,160,32,0.2); color:#E8A020; border:1px solid rgba(232,160,32,0.4);">The Layer</span></td>
 <td style="padding:8px 6px; text-align:center; color:#E8A020; font-weight:700; font-size:13px;">✓</td>
 <td style="padding:8px 6px; text-align:center; color:#E8A020; font-weight:700; font-size:13px;">✓</td>
-<td style="padding:8px 10px; font-size:10.5px; color:#4A4A6A; font-weight:600;">Only player at the application layer with both behavioral detection and a cross-company fraud graph. The graph requires neutral ground and direct candidate consent, architecturally unavailable to every ATS, background check company, and employer-deployed product. Permanent structural moat, not a feature gap.</td>
+<td style="padding:8px 10px; font-size:10.5px; color:rgba(255,255,255,0.8); font-weight:600;">Only player at the application layer with both behavioral detection and a cross-company fraud graph. The graph requires neutral ground and direct candidate consent, architecturally unavailable to every ATS, background check company, and employer-deployed product. Permanent structural moat, not a feature gap.</td>
 </tr>
 </tbody>
 </table>
@@ -861,15 +858,15 @@
 <div>
 <div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">The milestones seed capital buys</div>
 <div style="display:flex; flex-direction:column; gap:7px;">
-<div style="padding:11px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q3 2026</div>
 <p style="font-size:11.5px; color:var(--text); line-height:1.5;">Product live in production. SOC 2 audit engaged. Design partner pilots running. Each lead at a different stage of the process.</p>
 </div>
-<div style="padding:11px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q4 2026</div>
 <p style="font-size:11.5px; color:var(--text); line-height:1.5;">SOC 2 Type I complete. First paying contracts signed. Enterprise procurement open.</p>
 </div>
-<div style="padding:11px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--primary); margin-bottom:4px;">Q1 2027</div>
 <p style="font-size:11.5px; color:var(--text); line-height:1.5;">10-12 paying customers. ~$400K ARR. Approaching the 15-company graph threshold: cross-company fingerprint matching begins returning signal no single company can see alone.</p>
 </div>
