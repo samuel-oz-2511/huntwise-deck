@@ -102,7 +102,7 @@
             border-left: 3px solid var(--primary);
             background: rgba(232,160,32,0.07);
         }
-        .callout.green { border-left-color: var(--green); background: rgba(16,185,129,0.07); }
+        .callout.green { border-left-color: var(--green); background: rgba(232,160,32,0.06); }
         .callout.red { border-left-color: var(--red); background: rgba(239,68,68,0.07); }
         .callout.orange { border-left-color: var(--orange); background: rgba(245,158,11,0.07); }
         .callout p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
@@ -141,7 +141,7 @@
         .evidence-table td { padding: 12px 14px; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; line-height: 1.5; }
         .evidence-table tr:hover td { background: rgba(255,255,255,0.02); }
         .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-        .badge-green { background: rgba(16,185,129,0.15); color: #E8A020; }
+        .badge-green { background: rgba(232,160,32,0.06); color: #E8A020; }
         .badge-blue { background: rgba(232,160,32,0.15); color: #4A4A6A; }
         .badge-red { background: rgba(239,68,68,0.15); color: #C06060; }
         .badge-orange { background: rgba(245,158,11,0.15); color: #E8A020; }
@@ -225,7 +225,7 @@
         .milestone-grid::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green) 30%, var(--primary) 60%, rgba(232,160,32,0.3) 100%); }
         .ms-item { position: relative; padding-top: 44px; padding-right: 12px; }
         .ms-dot { position: absolute; top: 12px; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--gray-900); }
-        .ms-dot.done { background: var(--green); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
+        .ms-dot.done { background: var(--green); box-shadow: 0 0 10px #E8A020; }
         .ms-dot.active { background: var(--primary); box-shadow: 0 0 10px rgba(232,160,32,0.5); animation: mspulse 2s infinite; }
         .ms-dot.future { background: rgba(255,255,255,0.15); }
         @keyframes mspulse { 0%,100%{box-shadow:0 0 10px rgba(232,160,32,0.5)} 50%{box-shadow:0 0 18px rgba(232,160,32,0.8)} }
@@ -747,18 +747,18 @@
                     <td><span class="badge badge-red">Permanently blocked</span></td>
                     <td>ATS customer contracts prohibit cross-employer data sharing. Each ATS can only see its own customers. Neutral ground required for the graph: permanently unavailable to any ATS vendor. This is written into every enterprise ATS agreement.</td>
                 </tr>
-                <tr style="background: rgba(139,92,246,0.04);">
+                <tr style="background: rgba(255,255,255,0.04);">
                     <td><strong style="color: #C4B5FD;">Clarity</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Complement</span></td>
                     <td><a href="https://getclarity.ai" target="_blank" style="color:inherit;">$16M seed, Bessemer (Feb 2024)</a></td>
-                    <td><span class="badge" style="background:rgba(139,92,246,0.15); color:#C4B5FD; border:1px solid rgba(139,92,246,0.3);">Late funnel</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.04); color:#C4B5FD; border:1px solid rgba(255,255,255,0.1);">Late funnel</span></td>
                     <td><span class="badge badge-red">No</span></td>
                     <td><span class="badge badge-red">Structurally blocked</span></td>
                     <td style="color: #C4B5FD;">Video interview stage. Deepfake detection and identity verification after $1,700+ in process cost is spent. Employer-deployed model permanently blocks neutral-ground graph access. Complement to Sentriq, not a substitute. Their raise validates the category.</td>
                 </tr>
-                <tr style="background: rgba(139,92,246,0.03);">
+                <tr style="background: rgba(255,255,255,0.04);">
                     <td><strong style="color: #C4B5FD;">hireEZ</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Indirect</span></td>
                     <td>$100M+ raised</td>
-                    <td><span class="badge" style="background:rgba(139,92,246,0.15); color:#C4B5FD; border:1px solid rgba(139,92,246,0.3);">Workflow tool</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.04); color:#C4B5FD; border:1px solid rgba(255,255,255,0.1);">Workflow tool</span></td>
                     <td><span class="badge badge-red">No</span></td>
                     <td><span class="badge badge-red">No</span></td>
                     <td style="color: #C4B5FD;">Sourcing and recruiting workflow platform. Different buyer (recruiter headcount budget vs. CISO security budget). Client data contracts silo information per employer, structurally preventing cross-company graph. Different problem, different budget line. Non-zero-sum market.</td>
@@ -782,7 +782,7 @@
         <h3 class="section-h">Market Validation Signals</h3>
         <p class="body-text">The number of large companies moving toward this space from adjacent positions is itself a category signal. When Checkr, Persona, and Greenhouse all launch identity/integrity features within 18 months of each other, the market is confirming the pain. None of them have the full stack. Sentriq is the only player building it as a purpose-built layer.</p>
 
-        <div class="callout" style="border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.06);">
+        <div class="callout" style="border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04);">
             <div class="callout-label" style="color: #A78BFA;">The Validation Signals Investors Name</div>
             <p>Two companies come up consistently in investor conversations: Clarity and hireEZ. Both are confirmation signals, not objections.</p>
             <p style="margin-top:10px;"><strong style="color: var(--white);">Clarity ($16M seed, Bessemer, February 2024):</strong> Bessemer backing a hiring fraud detection startup confirms that investors with rigorous due diligence standards believe this is a fundable enterprise security problem. Clarity operates at the video interview stage, after the application, after the ATS, after the recruiter review. By then $1,700+ in process cost has already been spent. Sentriq catches the fraud before any of that. They are complements in a full-stack hiring security architecture. Their raise is proof of market, not proof of competition.</p>

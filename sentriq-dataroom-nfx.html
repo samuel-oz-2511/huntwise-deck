@@ -115,7 +115,7 @@ Every time Nimrod unlocks this data room, you get a push notification.
             border-left: 3px solid var(--primary);
             background: rgba(232,160,32,0.07);
         }
-        .callout.green { border-left-color: var(--green); background: rgba(16,185,129,0.07); }
+        .callout.green { border-left-color: var(--green); background: rgba(232,160,32,0.06); }
         .callout.red { border-left-color: var(--red); background: rgba(239,68,68,0.07); }
         .callout.orange { border-left-color: var(--orange); background: rgba(245,158,11,0.07); }
         .callout p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
@@ -165,7 +165,7 @@ Every time Nimrod unlocks this data room, you get a push notification.
         .box p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
         .person-card { display: flex; gap: 20px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; margin-bottom: 16px; }
-        .person-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #3A2058); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; flex-shrink: 0; }
+        .person-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #E8A020); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; flex-shrink: 0; }
         .person-body { flex: 1; }
         .person-name { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
         .person-role { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 10px; }
@@ -238,7 +238,7 @@ Every time Nimrod unlocks this data room, you get a push notification.
         .milestone-grid::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green) 30%, var(--primary) 60%, rgba(232,160,32,0.3) 100%); }
         .ms-item { position: relative; padding-top: 44px; padding-right: 12px; }
         .ms-dot { position: absolute; top: 12px; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--gray-900); }
-        .ms-dot.done { background: var(--green); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
+        .ms-dot.done { background: var(--green); box-shadow: 0 0 10px #E8A020; }
         .ms-dot.active { background: var(--primary); box-shadow: 0 0 10px rgba(232,160,32,0.5); animation: mspulse 2s infinite; }
         .ms-dot.future { background: rgba(255,255,255,0.15); }
         @keyframes mspulse { 0%,100%{box-shadow:0 0 10px rgba(232,160,32,0.5)} 50%{box-shadow:0 0 18px rgba(232,160,32,0.8)} }
@@ -781,13 +781,13 @@ Every time Nimrod unlocks this data room, you get a push notification.
                     <td><span class="badge badge-red">No</span></td>
                     <td>Full-funnel detection, Series B distribution. No behavioral challenge; cannot catch proxy fraud. No cross-company graph. Distribution without moat.</td>
                 </tr>
-                <tr style="background: rgba(139,92,246,0.03);">
-                    <td><strong style="color: #5A4A7A;">Persona</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Complement</span></td>
-                    <td><span class="badge" style="background:rgba(139,92,246,0.15); color:#5A4A7A; border:1px solid rgba(139,92,246,0.3);">Complement</span></td>
+                <tr style="background: rgba(255,255,255,0.04);">
+                    <td><strong style="color: rgba(255,255,255,0.45);">Persona</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Complement</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.45); border:1px solid rgba(255,255,255,0.1);">Complement</span></td>
                     <td><a href="https://www.prnewswire.com/news-releases/persona-raises-200m-at-2b-valuation-to-build-the-verified-identity-layer-for-an-agentic-ai-world-302442649.html" target="_blank" style="color:inherit;">$2B valuation (Series D, Apr 2025)</a></td>
                     <td><span class="badge badge-red">No</span></td>
                     <td><span class="badge badge-red">Blocked</span></td>
-                    <td style="color: #5A4A7A;">Persona answers "is this person real." Sentriq answers "is this application real." A verified identity does not tell you whether the person wrote this resume, wants this specific job, or will show up. Identity verification and application authenticity are orthogonal problems. Contractually blocked from cross-company graph. Persona's adoption is a setup: buyers who have Persona already have the person verified -- Sentriq tells them if the application is real. Unanswered question, different product.</td>
+                    <td style="color: rgba(255,255,255,0.45);">Persona answers "is this person real." Sentriq answers "is this application real." A verified identity does not tell you whether the person wrote this resume, wants this specific job, or will show up. Identity verification and application authenticity are orthogonal problems. Contractually blocked from cross-company graph. Persona's adoption is a setup: buyers who have Persona already have the person verified -- Sentriq tells them if the application is real. Unanswered question, different product.</td>
                 </tr>
                 <tr>
                     <td><strong>Checkr IDV</strong></td>
@@ -805,21 +805,21 @@ Every time Nimrod unlocks this data room, you get a push notification.
                     <td><span class="badge badge-red">Permanently blocked</span></td>
                     <td>ATS customer contracts prohibit cross-employer data sharing. Each ATS can only see its own customers. Neutral ground required for the graph: permanently unavailable to any ATS vendor. This is written into every enterprise ATS agreement.</td>
                 </tr>
-                <tr style="background: rgba(139,92,246,0.04);">
-                    <td><strong style="color: #5A4A7A;">Clarity + GetReal + HireVue</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Complement</span></td>
-                    <td><span class="badge" style="background:rgba(139,92,246,0.15); color:#5A4A7A; border:1px solid rgba(139,92,246,0.3);">Complement</span></td>
+                <tr style="background: rgba(255,255,255,0.04);">
+                    <td><strong style="color: rgba(255,255,255,0.45);">Clarity + GetReal + HireVue</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Complement</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.45); border:1px solid rgba(255,255,255,0.1);">Complement</span></td>
                     <td style="color: rgba(255,255,255,0.6);">$490M+ combined (Clarity $16M Bessemer; GetReal $24.5M Cisco/Cap One/In-Q-Tel; HireVue $450M+ Carlyle)</td>
                     <td><span class="badge badge-red">No</span></td>
                     <td><span class="badge badge-red">Structurally blocked</span></td>
-                    <td style="color: #5A4A7A;">All three operate at the video interview stage -- after $1,700+ in process cost has already been spent. Sentriq sits upstream of all of them, at the application layer, before any human time is allocated. Employer-deployed models permanently block the neutral-ground graph regardless of funding or technical capability. $490M+ raised across these three players validates the category. They all operate downstream of Sentriq -- complements, not substitutes. In a full enterprise security stack, both layers exist.</td>
+                    <td style="color: rgba(255,255,255,0.45);">All three operate at the video interview stage -- after $1,700+ in process cost has already been spent. Sentriq sits upstream of all of them, at the application layer, before any human time is allocated. Employer-deployed models permanently block the neutral-ground graph regardless of funding or technical capability. $490M+ raised across these three players validates the category. They all operate downstream of Sentriq -- complements, not substitutes. In a full enterprise security stack, both layers exist.</td>
                 </tr>
-                <tr style="background: rgba(139,92,246,0.03);">
-                    <td><strong style="color: #5A4A7A;">hireEZ</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Indirect</span></td>
+                <tr style="background: rgba(255,255,255,0.04);">
+                    <td><strong style="color: rgba(255,255,255,0.45);">hireEZ</strong><br><span style="font-size:11px; color: rgba(255,255,255,0.35);">Indirect</span></td>
                     <td>$100M+ raised</td>
-                    <td><span class="badge" style="background:rgba(139,92,246,0.15); color:#5A4A7A; border:1px solid rgba(139,92,246,0.3);">Workflow tool</span></td>
+                    <td><span class="badge" style="background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.45); border:1px solid rgba(255,255,255,0.1);">Workflow tool</span></td>
                     <td><span class="badge badge-red">No</span></td>
                     <td><span class="badge badge-red">No</span></td>
-                    <td style="color: #5A4A7A;">Sourcing and recruiting workflow platform. Different buyer (recruiter headcount budget vs. CISO security budget). Client data contracts silo information per employer, structurally preventing cross-company graph. Different problem, different budget line. Non-zero-sum market.</td>
+                    <td style="color: rgba(255,255,255,0.45);">Sourcing and recruiting workflow platform. Different buyer (recruiter headcount budget vs. CISO security budget). Client data contracts silo information per employer, structurally preventing cross-company graph. Different problem, different budget line. Non-zero-sum market.</td>
                 </tr>
             </tbody>
         </table>
@@ -1194,14 +1194,14 @@ Every time Nimrod unlocks this data room, you get a push notification.
         <h3 class="section-h" style="margin-top:36px;">Use of Capital - $5M Mapped</h3>
         <div class="fund-bar">
             <div class="fund-seg" style="width:40%;background:var(--primary);" title="Product &amp; Engineering $1.6M"></div>
-            <div class="fund-seg" style="width:20%;background:#3A2058;" title="GTM &amp; Customer Dev $800K"></div>
+            <div class="fund-seg" style="width:20%;background:#E8A020;" title="GTM &amp; Customer Dev $800K"></div>
             <div class="fund-seg" style="width:10%;background:var(--orange);" title="Security &amp; Compliance $400K"></div>
             <div class="fund-seg" style="width:5%;background:var(--cyan);" title="G&amp;A $200K"></div>
             <div class="fund-seg" style="width:25%;background:rgba(255,255,255,0.12);" title="Strategic Buffer $1M"></div>
         </div>
         <div class="fund-legend">
             <div class="fund-item"><div class="fund-dot" style="background:var(--primary);"></div><strong style="color:var(--white);">Product &amp; Engineering - $1.6M (40%)</strong></div>
-            <div class="fund-item"><div class="fund-dot" style="background:#3A2058;"></div><strong style="color:var(--white);">GTM &amp; Customer Dev - $800K (20%)</strong></div>
+            <div class="fund-item"><div class="fund-dot" style="background:#E8A020;"></div><strong style="color:var(--white);">GTM &amp; Customer Dev - $800K (20%)</strong></div>
             <div class="fund-item"><div class="fund-dot" style="background:var(--orange);"></div><strong style="color:var(--white);">Security &amp; Compliance - $400K (10%)</strong></div>
             <div class="fund-item"><div class="fund-dot" style="background:var(--cyan);"></div><strong style="color:var(--white);">G&amp;A - $200K (5%)</strong></div>
             <div class="fund-item"><div class="fund-dot" style="background:rgba(255,255,255,0.3);"></div><strong style="color:var(--white);">Strategic Buffer - $1M (25%)</strong></div>
