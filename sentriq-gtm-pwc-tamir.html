@@ -181,6 +181,19 @@
     .header { border-bottom-color: #ccc; }
     table { font-size: 11px; }
   }
+  .company-incident {
+    font-size: 11px;
+    color: rgba(232,100,64,0.75);
+    margin-top: 3px;
+    padding-left: 8px;
+    border-left: 2px solid rgba(232,100,64,0.3);
+  }
+  .company-incident a {
+    color: rgba(232,100,64,0.75);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,100,64,0.25);
+  }
+  .company-incident a:hover { color: #E84040; border-bottom-color: #E84040; }
 </style>
 </head>
 <body>
@@ -274,7 +287,7 @@ function checkPass(){
   <tbody>
     <tr>
       <td class="rank">1</td>
-      <td><div class="company-name">UnitedHealth / Optum</div><div class="company-detail">400K employees. 33K+ in India (Bengaluru, Hyderabad, Chennai) with live HIPAA-regulated PHI access. Post-Change Healthcare breach (190M Americans, Feb 2024). Board acutely sensitized.</div></td>
+      <td><div class="company-name">UnitedHealth / Optum</div><div class="company-detail">400K employees. 33K+ in India (Bengaluru, Hyderabad, Chennai) with live HIPAA-regulated PHI access. Post-Change Healthcare breach (190M Americans, Feb 2024). Board acutely sensitized.</div><div class="company-incident">Incident: Change Healthcare breach (Feb 2024) exposed 190M+ records via stolen employee credentials on Citrix. Largest US healthcare breach on record. <a href="https://www.bleepingcomputer.com/news/security/unitedhealth-now-says-190-million-impacted-by-2024-data-breach/" target="_blank">BleepingComputer</a></div></td>
       <td>Healthcare</td>
       <td>~17,500</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -338,7 +351,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">7</td>
-      <td><div class="company-name">Boeing</div><div class="company-detail">163K employees. 43-acre campus in Bengaluru (6,000+ engineers, opened Jan 2024, largest Boeing facility outside the US). 737 Max software previously outsourced to Indian contractors. Defense division accesses ITAR-controlled data.</div></td>
+      <td><div class="company-name">Boeing</div><div class="company-detail">163K employees. 43-acre campus in Bengaluru (6,000+ engineers, opened Jan 2024, largest Boeing facility outside the US). 737 Max software previously outsourced to Indian contractors. Defense division accesses ITAR-controlled data.</div><div class="company-incident">Incident: Engineer Dongfan Chung convicted 2010 for 30-year China espionage, stealing 300K+ pages of ITAR-controlled Boeing data. Separately, manager Kenneth Branch was hired after displaying stolen Lockheed Martin proprietary data in his job interview (DOJ, 2003). <a href="https://archives.fbi.gov/archives/losangeles/press-releases/2010/la020810.htm" target="_blank">FBI</a> / <a href="https://www.justice.gov/archive/criminal/cybercrime/press-releases/2003/branchCharge.htm" target="_blank">DOJ</a></div></td>
       <td>Defense / Aerospace</td>
       <td>~4,750</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -386,7 +399,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">12</td>
-      <td><div class="company-name">Wipro</div><div class="company-detail">~175K offshore (75%+): India, 60+ countries. IT infrastructure and financial client systems accessed offshore.</div></td>
+      <td><div class="company-name">Wipro</div><div class="company-detail">~175K offshore (75%+): India, 60+ countries. IT infrastructure and financial client systems accessed offshore.</div><div class="company-incident">Incident: DPRK operative listed Wipro as a fabricated previous employer on AI-generated resumes when applying to US tech firms (Nisos, March 2026). Active DPRK impersonation of Wipro credentials in circulation. <a href="https://nisos.com/research/exposing-fraudulent-dprk-candidate/" target="_blank">Nisos</a></div></td>
       <td>IT Services</td>
       <td>~2,250</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -418,7 +431,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">17</td>
-      <td><div class="company-name">Morgan Stanley</div><div class="company-detail">India engineering team doubled in 2 years to 7,000. Mumbai + Bengaluru. India is their #2 location globally after New York.</div></td>
+      <td><div class="company-name">Morgan Stanley</div><div class="company-detail">India engineering team doubled in 2 years to 7,000. Mumbai + Bengaluru. India is their #2 location globally after New York.</div><div class="company-incident">Incident: Wealth adviser Galen Marsh stole 350,000+ client account records while legitimately employed. Home server was subsequently hacked and data published externally (Jan 2015). <a href="https://www.bankinfosecurity.com/insider-a-8546" target="_blank">BankInfoSecurity</a></div></td>
       <td>Financial Services</td>
       <td>~4,750</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -450,7 +463,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">17</td>
-      <td><div class="company-name">CVS Health / Aetna</div><div class="company-detail">227K employees. Offshore IT and claims processing: India, Philippines. Aetna: 23M member PHI. Caremark: 2B+ prescription claims per year.</div></td>
+      <td><div class="company-name">CVS Health / Aetna</div><div class="company-detail">227K employees. Offshore IT and claims processing: India, Philippines. Aetna: 23M member PHI. Caremark: 2B+ prescription claims per year.</div><div class="company-incident">Incident: DPRK operative listed CVS as a fabricated previous employer across multiple AI-generated fake resumes used to apply to US companies (Nisos, March 2026). CVS is an active DPRK resume credential anchor. <a href="https://nisos.com/research/exposing-fraudulent-dprk-candidate/" target="_blank">Nisos</a></div></td>
       <td>Healthcare</td>
       <td>~6,500</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -474,7 +487,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">17</td>
-      <td><div class="company-name">TTEC</div><div class="company-detail">~35K+ offshore (70%+): Philippines, Colombia, Costa Rica. Financial services, healthcare, government CX handled offshore.</div></td>
+      <td><div class="company-name">TTEC</div><div class="company-detail">~35K+ offshore (70%+): Philippines, Colombia, Costa Rica. Financial services, healthcare, government CX handled offshore.</div><div class="company-incident">Incident: Ragnar Locker ransomware hit TTEC (Sep 2021), encrypting 1,800 devices and disrupting Bank of America, Kaiser Permanente, and Verizon service lines. NY DFS found TTEC had failed to implement MFA and had inadequate access controls. <a href="https://krebsonsecurity.com/2021/09/customer-care-giant-ttec-hit-by-ransomware/" target="_blank">KrebsOnSecurity</a></div></td>
       <td>BPO</td>
       <td>~10,250</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -522,7 +535,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">34</td>
-      <td><div class="company-name">Booz Allen Hamilton</div><div class="company-detail">34,200 employees. 64% hold clearances (disclosed). Intelligence community IT: NSA, CIA, DIA. Record hiring mode. Subcontractor pipeline is the perimeter gap.</div></td>
+      <td><div class="company-name">Booz Allen Hamilton</div><div class="company-detail">34,200 employees. 64% hold clearances (disclosed). Intelligence community IT: NSA, CIA, DIA. Record hiring mode. Subcontractor pipeline is the perimeter gap.</div><div class="company-incident">Incident: Edward Snowden was hired in 2013 despite resume discrepancies that Booz Allen flagged but did not block. Snowden exfiltrated NSA surveillance programs. Harold Martin III, another BAH/NSA contractor, hoarded 50TB of classified NSA data over 20 years before arrest in 2016. <a href="https://www.huffpost.com/entry/booz-allen-hamilton-edward-snowden_n_3475518" target="_blank">HuffPost</a> / <a href="https://en.wikipedia.org/wiki/Harold_T._Martin" target="_blank">Wikipedia</a></div></td>
       <td>Defense / Cleared</td>
       <td>~3,200</td>
       <td><span class="tag tag-medium">MEDIUM</span></td>
@@ -571,7 +584,7 @@ function checkPass(){
   <tbody>
     <tr>
       <td class="rank">1</td>
-      <td><div class="company-name">HSBC</div><div class="company-detail">211K employees. 24K+ in India (Bengaluru, Chennai, Hyderabad, Kolkata). SWIFT, AML, customer financial records. FCA + OCC + HK SFC.</div></td>
+      <td><div class="company-name">HSBC</div><div class="company-detail">211K employees. 24K+ in India (Bengaluru, Chennai, Hyderabad, Kolkata). SWIFT, AML, customer financial records. FCA + OCC + HK SFC.</div><div class="company-incident">Incident: IT employee Herve Falciani stole data on 24,000+ Geneva private bank clients (2007-2008), triggering the "Swiss Leaks" scandal. Separately, a US branch employee deliberately accessed customer accounts for misuse (2013). <a href="https://en.wikipedia.org/wiki/Herv%C3%A9_Falciani" target="_blank">Wikipedia</a> / <a href="https://www.esecurityplanet.com/network-security/hsbc-acknowledges-insider-breach.html" target="_blank">eSecurityPlanet</a></div></td>
       <td>UK / Global</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -598,7 +611,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">3</td>
-      <td><div class="company-name">Standard Chartered</div><div class="company-detail">81K employees. ~35% offshore (India, Sri Lanka, Malaysia). AML violations history. Already in Sentriq design partner pipeline.</div></td>
+      <td><div class="company-name">Standard Chartered</div><div class="company-detail">81K employees. ~35% offshore (India, Sri Lanka, Malaysia). AML violations history. Already in Sentriq design partner pipeline.</div><div class="company-incident">Incident: Branch manager Sandeep Singh Dua (Gurugram) arrested for acting as insider conduit in a crypto fraud and money laundering network, using employment access to facilitate shell company transactions. <a href="https://coingeek.com/standard-chartered-manager-arrested-for-crypto-fraud/" target="_blank">CoinGeek</a></div></td>
       <td>UK / APAC</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -607,7 +620,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">5</td>
-      <td><div class="company-name">Barclays</div><div class="company-detail">98K employees. India: Pune, Chennai. ~25% offshore.</div></td>
+      <td><div class="company-name">Barclays</div><div class="company-detail">98K employees. India: Pune, Chennai. ~25% offshore.</div><div class="company-incident">Incident: Insider at defunct Barclays Financial Planning stole up to 27,000 customer dossiers (passport data, financial records, health info) and sold them to rogue traders who defrauded victims (2014). FCA and ICO investigation. <a href="https://www.theregister.com/2014/02/10/barclays_investigates_gold_mine_client_data_breach" target="_blank">The Register</a></div></td>
       <td>UK</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -616,7 +629,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">5</td>
-      <td><div class="company-name">RBC</div><div class="company-detail">~100K employees. ~20% offshore. OSFI B-10 technology risk guideline. AI expansion through offshore tech hubs.</div></td>
+      <td><div class="company-name">RBC</div><div class="company-detail">~100K employees. ~20% offshore. OSFI B-10 technology risk guideline. AI expansion through offshore tech hubs.</div><div class="company-incident">Incident: Employee Ibrahim El-Hakim (hired 2022) charged in 2025 with fraud, identity theft, and unauthorized computer use after being recruited by organized crime on Telegram. Accessed PM Carney's banking profile; participated in $68,500 credit fraud scheme. <a href="https://www.cbc.ca/news/politics/rbc-bank-employee-carney-trudeau-1.7642279" target="_blank">CBC News</a></div></td>
       <td>Canada</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -634,7 +647,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">5</td>
-      <td><div class="company-name">Société Générale</div><div class="company-detail">126K employees. SG GSC in Bangalore + Chennai. Kerviel incident ($4.9B, 2008) means permanent insider risk sensitivity at board level.</div></td>
+      <td><div class="company-name">Société Générale</div><div class="company-detail">126K employees. SG GSC in Bangalore + Chennai. Kerviel incident ($4.9B, 2008) means permanent insider risk sensitivity at board level.</div><div class="company-incident">Incident: Jerome Kerviel (legitimate hire) caused EUR 4.9B loss via unauthorized trading (2008). In 2023, a business intern was arrested for leaking client data to SIM-swap scammers, enabling fraud against 50+ customers totaling over EUR 1M. <a href="https://en.wikipedia.org/wiki/J%C3%A9r%C3%B4me_Kerviel" target="_blank">Wikipedia</a> / <a href="https://www.bitdefender.com/en-us/blog/hotforsecurity/50-customers-of-french-bank-hit-after-insider-helped-sim-swap-scammers" target="_blank">Bitdefender</a></div></td>
       <td>France</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -643,7 +656,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">9</td>
-      <td><div class="company-name">BAE Systems</div><div class="company-detail">111K employees, 40+ countries. India, Philippines, Australia offshore. Cleared facilities in UK/US/Australia/Saudi. DPRK threat + UK AI Safety Institute scrutiny.</div></td>
+      <td><div class="company-name">BAE Systems</div><div class="company-detail">111K employees, 40+ countries. India, Philippines, Australia offshore. Cleared facilities in UK/US/Australia/Saudi. DPRK threat + UK AI Safety Institute scrutiny.</div><div class="company-incident">Incident: Software engineer Simon Finch convicted under the UK Official Secrets Act (Nov 2020) for leaking classified missile system details to foreign powers. Sentenced to 8 years. <a href="https://www.theregister.com/2020/11/13/simon_finch_missile_secrets_leaker_jailed/" target="_blank">The Register</a></div></td>
       <td>UK</td>
       <td>Defense</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -670,7 +683,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">9</td>
-      <td><div class="company-name">UBS</div><div class="company-detail">105K employees. India, Poland. FINMA + EU exposure.</div></td>
+      <td><div class="company-name">UBS</div><div class="company-detail">105K employees. India, Poland. FINMA + EU exposure.</div><div class="company-incident">Incident: Kweku Adoboli, a legitimate hire who joined as a trainee in 2003, caused a USD 2.3B loss via rogue trading in 2011. He exploited back-office knowledge gained during legitimate employment to bypass risk controls. <a href="https://en.wikipedia.org/wiki/2011_UBS_rogue_trader_scandal" target="_blank">Wikipedia</a></div></td>
       <td>Switzerland</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -679,7 +692,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">9</td>
-      <td><div class="company-name">Commonwealth Bank (CBA)</div><div class="company-detail">~50K employees. Publicly shamed 2025 for cutting 304 AU IT jobs and reposting in India. APRA + board-level urgency. Reputational risk purchase.</div></td>
+      <td><div class="company-name">Commonwealth Bank (CBA)</div><div class="company-detail">~50K employees. Publicly shamed 2025 for cutting 304 AU IT jobs and reposting in India. APRA + board-level urgency. Reputational risk purchase.</div><div class="company-incident">Incident: The "Penthouse Syndicate" -- relationship manager Andrew Hu used insider banking knowledge and AI-forged income documents to steal ~AUD 1B in fraudulent home loans. Hu charged with 89 fraud offences (2025). NAB re-credentialed him after CBA dismissed him for cause. <a href="https://ia.acs.org.au/article/2026/ai-heist--cba-calls-police-over--1b-loan-fraud.html" target="_blank">ACS</a></div></td>
       <td>Australia</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -688,7 +701,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">9</td>
-      <td><div class="company-name">NAB</div><div class="company-detail">~38K employees. Explicitly stated plans to add India + Vietnam roles while cutting domestic staff. Government banking mandate.</div></td>
+      <td><div class="company-name">NAB</div><div class="company-detail">~38K employees. Explicitly stated plans to add India + Vietnam roles while cutting domestic staff. Government banking mandate.</div><div class="company-incident">Incident: NAB re-credentialed Andrew Hu as a mortgage broker after he was dismissed by CBA for fraud. Penthouse Syndicate losses at NAB: ~AUD 150M. A current NAB employee charged as "gatekeeper" enabling ~AUD 10M in additional fraudulent business loans. <a href="https://www.brokernews.com.au/news/breaking-news/former-mortgage-broker-turned-nab-manager-charged-over-alleged-150m-fraud-ring-288398.aspx" target="_blank">BrokerNews</a></div></td>
       <td>Australia</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -697,7 +710,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">9</td>
-      <td><div class="company-name">TD Bank</div><div class="company-detail">~100K employees. DOCUMENTED: outsourced fraud investigation to India with full customer identity access (CBC News, 2017). Post-AML crisis 2024-2025 = heightened compliance pressure.</div></td>
+      <td><div class="company-name">TD Bank</div><div class="company-detail">~100K employees. DOCUMENTED: outsourced fraud investigation to India with full customer identity access (CBC News, 2017). Post-AML crisis 2024-2025 = heightened compliance pressure.</div><div class="company-incident">Incident: Multiple employees convicted 2023-2024 of accepting bribes to open 100+ fraudulent bank accounts and launder hundreds of millions for criminal networks. TD Bank pleaded guilty and paid USD 1.8B -- the largest BSA penalty in US history. <a href="https://www.justice.gov/opa/pr/td-bank-insider-pleads-guilty-facilitating-money-laundering" target="_blank">DOJ</a></div></td>
       <td>Canada</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -724,7 +737,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">16</td>
-      <td><div class="company-name">DBS Bank</div><div class="company-detail">41K employees. ~30% offshore India. MAS Technology Risk Management guidelines: the compliance hook analogous to EU AI Act. Ranked Global Bank of the Year 2025.</div></td>
+      <td><div class="company-name">DBS Bank</div><div class="company-detail">41K employees. ~30% offshore India. MAS Technology Risk Management guidelines: the compliance hook analogous to EU AI Act. Ranked Global Bank of the Year 2025.</div><div class="company-incident">Incident: DBS employee arrested in 2024 by Singapore's Commercial Affairs Department for using insider access to open fraudulent bank accounts with stolen client credentials to launder scam proceeds. <a href="https://www.police.gov.sg/media-room/news/20240925_joint_operation_between_the_police_and_dbs_bank_led_to_three_persons_arrested" target="_blank">Singapore Police</a></div></td>
       <td>Singapore</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -733,7 +746,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">19</td>
-      <td><div class="company-name">Elbit Systems</div><div class="company-detail">19,712 employees. US, UK, India, Brazil subsidiaries. Record $22.5B backlog. War-footing hiring surge (1,800 new hires under wartime production pressure). Samuel and Ben have direct network access.</div></td>
+      <td><div class="company-name">Elbit Systems</div><div class="company-detail">19,712 employees. US, UK, India, Brazil subsidiaries. Record $22.5B backlog. War-footing hiring surge (1,800 new hires under wartime production pressure). Samuel and Ben have direct network access.</div><div class="company-incident">Incident: In 2025, NATO suspended Elbit from procurement amid a bribery probe. A consultant linked to Elbit (Eliau Eluasvili) is believed to be travelling under a false identity and is the subject of a Belgian European arrest warrant for bribing NATO procurement staff. <a href="https://www.ftm.eu/articles/israel-defence-elbit-systems-suspended-nato-corruption-investigation" target="_blank">Follow the Money</a></div></td>
       <td>Israel</td>
       <td>Defense Technology</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -751,7 +764,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">19</td>
-      <td><div class="company-name">ING</div><div class="company-detail">60K+ employees. India, Romania, Philippines offshore. Netherlands regulator (AFM) is one of the most aggressive EU AI Act enforcers.</div></td>
+      <td><div class="company-name">ING</div><div class="company-detail">60K+ employees. India, Romania, Philippines offshore. Netherlands regulator (AFM) is one of the most aggressive EU AI Act enforcers.</div><div class="company-incident">Incident: In 2018, an ING Turkey employee bypassed the bank's authorization system to make unauthorized queries against the Turkish banking sector's credit database, then transmitted the stolen corporate data to third parties. Investigated by Turkish data protection authority (KVKK). <a href="https://www.mondaq.com/turkey/data-protection/787246/turkish-data-protection-authority-announced-data-leakage-of-a-dutch-bank-revealing-the-importance-of-effective-information-security" target="_blank">Mondaq</a></div></td>
       <td>Netherlands</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -760,7 +773,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">19</td>
-      <td><div class="company-name">ANZ</div><div class="company-detail">~40K employees. Bangalore: 4,800 staff. APRA oversight. Part of the Australian offshore banking reshoring debate.</div></td>
+      <td><div class="company-name">ANZ</div><div class="company-detail">~40K employees. Bangalore: 4,800 staff. APRA oversight. Part of the Australian offshore banking reshoring debate.</div><div class="company-incident">Incident: ANZ is under investigation (2026) over suspected Penthouse Syndicate-linked loan fraud, the same insider-facilitated scheme that cost CBA/NAB over AUD 1B. NSW Police contacted. Investigation ongoing. <a href="https://ia.acs.org.au/article/2026/ai-heist--cba-calls-police-over--1b-loan-fraud.html" target="_blank">ACS</a></div></td>
       <td>Australia</td>
       <td>Financial Services</td>
       <td><span class="tag tag-critical">CRITICAL</span></td>
@@ -778,7 +791,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">19</td>
-      <td><div class="company-name">Scotiabank</div><div class="company-detail">~90K employees. ~20% offshore. OSFI oversight. Active in LATAM and Caribbean markets with significant offshore operations.</div></td>
+      <td><div class="company-name">Scotiabank</div><div class="company-detail">~90K employees. ~20% offshore. OSFI oversight. Active in LATAM and Caribbean markets with significant offshore operations.</div><div class="company-incident">Incident: Around 2020, an employee accessed client accounts without authorization, exposing SINs, DOBs, and contact data. Employee terminated; authorities notified. <a href="https://globalnews.ca/news/7201479/scotiabank-suspicious-employee-activity/" target="_blank">Global News</a></div></td>
       <td>Canada</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
@@ -787,7 +800,7 @@ function checkPass(){
     </tr>
     <tr>
       <td class="rank">19</td>
-      <td><div class="company-name">Westpac</div><div class="company-detail">~35K employees. India, Philippines. APRA oversight. Part of the Australian banking offshore scrutiny environment.</div></td>
+      <td><div class="company-name">Westpac</div><div class="company-detail">~35K employees. India, Philippines. APRA oversight. Part of the Australian banking offshore scrutiny environment.</div><div class="company-incident">Incident: Linked to Penthouse Syndicate investigation (2026) via loan fraud probe. A former Westpac banker was separately permanently banned by ASIC for mortgage fraud. <a href="https://www.theadviser.com.au/lender/38054-former-westpac-banker-permanently-banned-for-mortgage-fraud" target="_blank">The Adviser</a></div></td>
       <td>Australia</td>
       <td>Financial Services</td>
       <td><span class="tag tag-high">HIGH</span></td>
