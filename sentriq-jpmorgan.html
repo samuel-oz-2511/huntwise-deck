@@ -524,6 +524,8 @@
         @media (max-width: 640px) {
             .page { padding: 40px 22px; }
             .stat-grid { grid-template-columns: 1fr; }
+            div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+            div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
             .threat-grid { grid-template-columns: 1fr; }
             .ask-grid { grid-template-columns: 1fr; }
             .roi-compare { grid-template-columns: 1fr; }
@@ -806,6 +808,80 @@ function checkPass() {
         <div class="roi-multiplier">
             <span>107x</span>
             coverage ratio before a single incident
+        </div>
+    </div>
+
+    <!-- HR ROI -->
+    <div class="section">
+        <div class="section-label">The Recruiter Cost</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            The problem is not limited to fraud. AI tools have made it free to apply to 500 companies simultaneously. Most of those applications are from real people who invested 30 seconds and a prompt. Your recruiters cannot tell the difference without spending time on each one.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px;">
+            <div class="stat-card">
+                <div class="stat-num" style="color:#E8A020;">493K</div>
+                <div class="stat-label">Applications for entry-level positions at JPMorgan in 2024. One hiring cycle.</div>
+                <div class="stat-source">Mary Callahan Erdoes, JPMorgan Investor Day, May 2024</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">8.44 hrs</div>
+                <div class="stat-label">Recruiter time per role across initial screen, outreach, and phone screen. Industry benchmark.</div>
+                <div class="stat-source">Sentriq lifecycle benchmark. $60/hr loaded recruiter capacity rate.</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">$2.27M</div>
+                <div class="stat-label">Recruiter capacity cost for the summer program alone at 4,483 roles x 8.44 hrs x $60/hr.</div>
+                <div class="stat-source">Based on 0.91% acceptance rate applied to 493K applications.</div>
+            </div>
+        </div>
+
+        <div style="background:#0D0E1A; border:1px solid #161728; border-radius:12px; padding:28px 28px;">
+            <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:16px;">Where the time goes</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Initial resume review</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:100%; height:100%; background:rgba(204,51,51,0.6); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">All 493K enter queue</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Shortlist and outreach</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:35%; height:100%; background:rgba(204,51,51,0.45); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">Filtered pool</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Phone screen</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:12%; height:100%; background:rgba(204,51,51,0.3); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">Smaller pool</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px; margin-top:4px;">
+                    <div style="width:160px; font-size:12px; color:#E8A020; font-weight:700; flex-shrink:0;">With Sentriq</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:100%; height:100%; background:rgba(232,160,32,0.35); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:#E8A020; width:80px; text-align:right;">Trust signal before queue</div>
+                </div>
+            </div>
+            <div style="margin-top:20px; padding-top:16px; border-top:1px solid #161728; font-size:13px; color:rgba(255,255,255,0.5); line-height:1.7;">
+                Sentriq surfaces a trust signal on every application before it enters recruiter view. Recruiters do not screen fewer candidates. They screen the same pool with a signal that tells them where to spend their time. The noise does not disappear from your inbox. It arrives labeled.
+            </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+            <div style="background:#0D0E1A; border:1px solid #161728; border-radius:12px; padding:22px;">
+                <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Without Sentriq</div>
+                <div style="font-size:15px; color:rgba(255,255,255,0.75); line-height:1.7;">Every application looks the same. Recruiters spend equal time on a 30-second AI submission and a considered application from a strong candidate. At 493K applications, that is not a process problem. It is a structural one.</div>
+            </div>
+            <div style="background:rgba(232,160,32,0.03); border:1px solid rgba(232,160,32,0.2); border-radius:12px; padding:22px;">
+                <div style="font-size:12px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">With Sentriq</div>
+                <div style="font-size:15px; color:rgba(255,255,255,0.75); line-height:1.7;">Every application arrives with a trust signal. Recruiters route attention toward high-signal applications first. The $2.27M in recruiter capacity gets reallocated from noise to pipeline. The best candidates surface faster.</div>
+            </div>
         </div>
     </div>
 
