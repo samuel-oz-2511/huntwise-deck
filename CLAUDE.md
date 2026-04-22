@@ -22,6 +22,11 @@ Before delivering any written output (HTML, Word doc, PDF, email copy, slide tex
 - Replace with: colon (:) for labels and headers, comma for inline parentheticals, period for sentence breaks.
 - This rule has been violated repeatedly. It is a hard stop.
 
+### Double Dashes
+- **Never use double dashes** ( -- ) as a substitute for em dashes. This is the same bad practice with a different character.
+- Double dashes are not a valid replacement for em dashes. They must also be replaced with colon, comma, or period.
+- Hard stop check: `grep -c ' -- ' <file>` must return zero.
+
 ### Sentence Rhythm
 - Short sentences. No filler. No trailing summaries after a task is done.
 - Copy should sound like a security operator wrote it, not a pitch deck generator.
