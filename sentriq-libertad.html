@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentriq: Libertad Submission</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:    #09090F;
+      --card:  #0D0E1A;
+      --border:#161728;
+      --amber: #E8A020;
+      --muted: rgba(255,255,255,0.52);
+      --dim:   rgba(255,255,255,0.35);
+    }
+    body { background: var(--bg); color: #fff; font-family: 'Space Grotesk', system-ui, sans-serif; padding: 0; }
+    .page { max-width: 780px; margin: 0 auto; padding: 64px 40px 80px; }
+
+    /* HEADER */
+    .logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+    .bracket-logo { width: 36px; height: 36px; }
+    .wordmark { font-size: 20px; font-weight: 700; letter-spacing: 0.05em; color: #fff; }
+    .wordmark span { color: var(--amber); }
+
+    .hero-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--amber); margin-bottom: 14px; }
+    .hero-title { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+    .hero-title em { color: var(--amber); font-style: normal; }
+    .hero-sub { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 640px; margin-bottom: 48px; }
+
+    /* DIVIDER */
+    .div { height: 1px; background: var(--border); margin: 40px 0; }
+
+    /* SECTION */
+    .sec-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--amber); margin-bottom: 10px; }
+    .sec-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 16px; }
+    .body { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.75; margin-bottom: 16px; }
+    .body strong { color: #fff; }
+
+    /* CALLOUT */
+    .callout { background: rgba(232,160,32,0.06); border-left: 3px solid var(--amber); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .callout strong { color: var(--amber); }
+
+    /* LAYER STACK */
+    .layer { display: flex; gap: 0; background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+    .layer-num { width: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; color: var(--amber); background: rgba(232,160,32,0.07); border-right: 1px solid var(--border); flex-shrink: 0; }
+    .layer-body { padding: 14px 18px; }
+    .layer-name { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+    .layer-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    .person { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+    .person-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .person-role { font-size: 11px; color: var(--amber); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .person-bio { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+    .tag-amber { background: rgba(232,160,32,0.1); color: var(--amber); border-color: rgba(232,160,32,0.2); }
+
+    /* DIFF TABLE */
+    .diff-row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .diff-row:last-child { border-bottom: none; }
+    .diff-key { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.55); }
+    .diff-val { font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.6; }
+    .diff-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 4px 18px; margin-top: 16px; }
+
+    /* VALUE PROP FOR LIBERTAD */
+    .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .value-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+    .value-icon { font-size: 20px; margin-bottom: 8px; }
+    .value-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .value-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* TRACTION */
+    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+    .stat { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-align: center; }
+    .stat-val { font-size: 22px; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+    .stat-label { font-size: 10px; color: var(--dim); margin-top: 3px; line-height: 1.4; }
+
+    /* CTA */
+    .cta { margin-top: 48px; background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.18); border-radius: 14px; padding: 28px 32px; }
+    .cta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--amber); margin-bottom: 10px; }
+    .cta-name { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .cta-role { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .cta-contact { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.8; }
+    .cta-contact a { color: var(--amber); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .page { padding: 40px 20px 60px; }
+      .hero-title { font-size: 26px; }
+      .team-grid, .value-grid { grid-template-columns: 1fr; }
+      .diff-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="logo-row">
+    <svg class="bracket-logo" viewBox="0 0 36 36" fill="none">
+      <path d="M10 4H6C4.9 4 4 4.9 4 6v10" stroke="#E8A020" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M4 20v10c0 1.1.9 2 2 2h4" stroke="#E8A020" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+      <path d="M26 4h4c1.1 0 2 .9 2 2v10" stroke="#E8A020" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+      <path d="M32 20v10c0 1.1-.9 2-2 2h-4" stroke="#E8A020" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18" cy="18" r="3.5" fill="#E8A020"/>
+    </svg>
+    <div class="wordmark">SENTRIQ<span>.</span></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-label">Submission to Libertad</div>
+  <h1 class="hero-title">The hiring funnel is<br>an <em>open attack surface.</em><br>We close it.</h1>
+  <p class="hero-sub">Sentriq is a pre-submission trust layer for job applications. It detects adversarial applications -- AI-generated submissions, proxy worker networks, and state-actor infiltration attempts -- before they enter any hiring system. One signal per application. No automated rejections. Full EU AI Act compliance.</p>
+
+  <div class="div"></div>
+
+  <!-- SECTION 1: TECHNOLOGY -->
+  <div class="sec-label">01 / Technology and Scientific Background</div>
+  <h2 class="sec-title">Built from the inside. Impossible to replicate from outside.</h2>
+
+  <p class="body">Sentriq's detection engine is grounded in 18 months of empirical behavioral research conducted by operating inside real enterprise ATS systems -- Greenhouse, Comeet, and Workday -- as a live actor. 30+ documented attack experiments. 73,500 lines of empirical code. The corpus is not synthetic. It was built by running the offense at scale, then reverse-engineering the defense.</p>
+
+  <p class="body">The system operates across three detection layers:</p>
+
+  <div class="layer">
+    <div class="layer-num">1</div>
+    <div class="layer-body">
+      <div class="layer-name">Submission Metadata Analysis</div>
+      <div class="layer-desc">Timing patterns, device fingerprinting, behavioral velocity, automation signatures. Detects coordinated mass-application campaigns and bot-assisted submissions.</div>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">2</div>
+    <div class="layer-body">
+      <div class="layer-name">Content Authenticity Signals</div>
+      <div class="layer-desc">LLM-generated text detection, cross-application similarity scoring, credential consistency analysis. Catches AI-fabricated profiles and recycled identity packages.</div>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">3</div>
+    <div class="layer-body">
+      <div class="layer-name">Identity-Application Coherence</div>
+      <div class="layer-desc">Cross-references application content against verifiable signals to detect proxy submissions, stolen credential usage, and adversarial identity-skill mismatches.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The national security dimension:</strong> DPRK operatives have successfully infiltrated US defense contractors, technology companies, and financial institutions by passing standard identity verification. They use real stolen SSNs, professional photos, and polished AI-generated CVs. Identity checks confirm the person is real. Sentriq answers a different question: is this application real? That gap is the attack vector. We close it.
+  </div>
+
+  <div class="div"></div>
+
+  <!-- SECTION 2: TEAM -->
+  <div class="sec-label">02 / Team, Experience, and Motivations</div>
+  <h2 class="sec-title">Intelligence community DNA. Built by the people who ran the offense.</h2>
+
+  <p class="body">This product could only have been built by people who operated inside the system they are now defending. Samuel spent 18 months inside enterprise hiring pipelines as a professional recruiter, watching the attack surface develop from the inside. Ben designed and executed the technical attack research. The threat is not theoretical to either of us.</p>
+
+  <div class="team-grid">
+    <div class="person">
+      <div class="person-name">Samuel Kemper</div>
+      <div class="person-role">CEO, Co-Founder</div>
+      <div class="person-bio">Innovation Officer, IDF Unit 81. 2x founder (CYou Retail, $1.1M raised backed by Nielsen Innovate Fund; TechRuiter IL). 18 months operating inside Greenhouse, Comeet, and Workday as a professional recruiter -- the attack research emerged from direct observation of the hiring signal collapse.</div>
+      <div class="tag-row">
+        <span class="tag tag-amber">IDF Unit 81</span>
+        <span class="tag">2x Founder</span>
+        <span class="tag">ATS Operator</span>
+      </div>
+    </div>
+    <div class="person">
+      <div class="person-name">Ben Czarninski</div>
+      <div class="person-role">CTO, Co-Founder</div>
+      <div class="person-bio">IDF Military Intelligence, Gama program (elite software engineering track). Penetration tester, KPMG. CISO at PG. Senior AppSec Engineer, AppsFlyer. Built the full 73,500-line detection codebase and designed all attack experiments across three ATS platforms.</div>
+      <div class="tag-row">
+        <span class="tag tag-amber">IDF Military Intelligence</span>
+        <span class="tag">AppSec</span>
+        <span class="tag">CISO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:20px;">
+    <strong>Why we are building this:</strong> We have Unit 81 and Military Intelligence backgrounds. The adversarial insertion of state actors through civilian hiring pipelines is a documented, active threat vector -- one that existing security infrastructure is structurally blind to. We built the attack tool. We know every technique. That is why we are the only team positioned to build the defense.
+  </div>
+
+  <div class="div"></div>
+
+  <!-- SECTION 3: COMPETITIVE DIFFERENTIATION -->
+  <div class="sec-label">03 / Competitive Differentiation and Added Value</div>
+  <h2 class="sec-title">The only product purpose-built for the pre-submission layer.</h2>
+
+  <p class="body">Every existing security tool in the hiring funnel operates downstream of the problem:</p>
+
+  <div class="diff-wrap">
+    <div class="diff-row">
+      <div class="diff-key">Identity Verification (Persona, Checkr)</div>
+      <div class="diff-val">Confirms the person is real. Does not evaluate whether the application is authentic. DPRK operatives pass identity checks using real stolen SSNs.</div>
+    </div>
+    <div class="diff-row">
+      <div class="diff-key">Background Checks</div>
+      <div class="diff-val">Operate post-hire. The adversarial actor is already inside the organization before the check runs.</div>
+    </div>
+    <div class="diff-row">
+      <div class="diff-key">ATS Fraud Filters</div>
+      <div class="diff-val">Designed for spam volume, not adversarial sophistication. No behavioral baseline. No cross-application intelligence.</div>
+    </div>
+    <div class="diff-row">
+      <div class="diff-key">Sentriq</div>
+      <div class="diff-val"><strong style="color:var(--amber);">Pre-submission layer. Platform-agnostic. Upstream of every ATS, every background check, every identity check. The only product that surfaces a trust signal before the application enters any system.</strong></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- SECTION 4: VALUE TO LIBERTAD -->
+  <div class="sec-label">04 / Added Value for Libertad</div>
+  <h2 class="sec-title">What Libertad gains from this partnership.</h2>
+
+  <div class="value-grid">
+    <div class="value-box">
+      <div class="value-title">Behavioral Threat Intelligence Corpus</div>
+      <div class="value-desc">Non-exclusive, non-commercial access to a growing corpus of adversarial hiring attack signatures -- behavioral patterns, submission anomalies, and identity-credential mismatch data collected from live enterprise deployments at scale.</div>
+    </div>
+    <div class="value-box">
+      <div class="value-title">Workforce Integrity at Scale</div>
+      <div class="value-desc">As Sentriq deploys across enterprises, it maps the full spectrum of adversarial hiring activity -- AI-generated applications, proxy worker networks, and state-actor insertion attempts -- in real time across thousands of hiring pipelines.</div>
+    </div>
+    <div class="value-box">
+      <div class="value-title">Intelligence Community DNA</div>
+      <div class="value-desc">Unit 81 + Military Intelligence Gama founding team. The technology was built by people who understand both the attack and the defense from the inside. Not academic. Not theoretical.</div>
+    </div>
+    <div class="value-box">
+      <div class="value-title">Strong Civilian Market Trajectory</div>
+      <div class="value-desc">Active design partner pipeline: HSBC, Wells Fargo, WalkMe (SAP). Raising $5M seed, Series A target Q2-Q3 2027. Libertad's involvement signals category credibility to Israeli and global cyber investors.</div>
+    </div>
+  </div>
+
+  <!-- TRACTION -->
+  <div class="stat-row" style="margin-top:24px;">
+    <div class="stat">
+      <div class="stat-val">73.5K</div>
+      <div class="stat-label">Lines of empirical detection code</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">30+</div>
+      <div class="stat-label">Live ATS exploitation experiments</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">7</div>
+      <div class="stat-label">Active design partner conversations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$5M</div>
+      <div class="stat-label">Seed round in progress</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- CONTACT -->
+  <div class="cta">
+    <div class="cta-label">Contact</div>
+    <div class="cta-name">Samuel Kemper</div>
+    <div class="cta-role">CEO and Co-Founder, Sentriq</div>
+    <div class="cta-contact">
+      Email: <a href="mailto:samuel@sentriq.co">samuel@sentriq.co</a><br>
+      Web: <a href="https://sentriq.co" target="_blank">sentriq.co</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
