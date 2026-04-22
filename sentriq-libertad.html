@@ -152,16 +152,32 @@
     (function() {
       if (sessionStorage.getItem('libertad-auth') === '1') {
         document.getElementById('gate').style.display = 'none';
+        if (!sessionStorage.getItem('libertad-pinged')) {
+          sessionStorage.setItem('libertad-pinged', '1');
+          pingOpen();
+        }
       }
     })();
     document.getElementById('gate-input').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') checkGate();
     });
+    function pingOpen() {
+      var t = new Date().toISOString();
+      fetch('https://ntfy.sh/sentriq-libertad-x3n7', {
+        method: 'POST',
+        body: 'Libertad deck opened ' + t,
+        headers: { 'Title': 'Libertad Deck Open', 'Tags': 'eyes' }
+      }).catch(function(){});
+    }
     function checkGate() {
       var v = document.getElementById('gate-input').value;
       if (v === 'Libertadsentriq2026!') {
         sessionStorage.setItem('libertad-auth', '1');
         document.getElementById('gate').style.display = 'none';
+        if (!sessionStorage.getItem('libertad-pinged')) {
+          sessionStorage.setItem('libertad-pinged', '1');
+          pingOpen();
+        }
       } else {
         var inp = document.getElementById('gate-input');
         inp.classList.remove('shake');
