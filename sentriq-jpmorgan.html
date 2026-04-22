@@ -489,10 +489,46 @@
             margin-bottom: 28px;
             line-height: 1.7;
         }
-        .cta-contact {
+        .cta-founders {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .cta-founder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .cta-founder-name {
             font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+        .cta-founder-title {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .cta-founder-email {
+            font-size: 13px;
             font-weight: 600;
             color: #E8A020;
+            margin-top: 2px;
+        }
+        .cta-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+            align-self: stretch;
+        }
+        @media (max-width: 500px) {
+            .cta-divider { display: none; }
+            .cta-founders { gap: 20px; }
         }
 
         /* DIVIDER */
@@ -946,9 +982,21 @@ function checkPass() {
     <div class="section">
         <div class="cta-block">
             <h2>The hiring pipeline is the last unguarded entry point. Let's close it.</h2>
-            <p>We are offering J.P. Morgan the first seat at the table. The conversation starts with your CISO and your Head of Talent. Thirty minutes. We will show you the demo and the threat data that is directly relevant to your open roles today.</p>
-            <div class="cta-contact">samuel@sentriq.co</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.25); margin-top:8px;">sentriq.co</div>
+            <p>The right conversation is between us, your CISO, and your Head of Talent Acquisition. You are the bridge that makes that happen. Thirty minutes. We will show you the demo and the threat data that is directly relevant to your open roles today.</p>
+            <div class="cta-founders">
+                <div class="cta-founder">
+                    <div class="cta-founder-name">Samuel Kemper</div>
+                    <div class="cta-founder-title">CEO and Co-Founder</div>
+                    <div class="cta-founder-email">samuel@sentriq.co</div>
+                </div>
+                <div class="cta-divider"></div>
+                <div class="cta-founder">
+                    <div class="cta-founder-name">Ben Czarninski</div>
+                    <div class="cta-founder-title">CTO and Co-Founder</div>
+                    <div class="cta-founder-email">ben@sentriq.co</div>
+                </div>
+            </div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.2); margin-top:20px; letter-spacing:0.06em;">SENTRIQ.CO</div>
         </div>
     </div>
 
