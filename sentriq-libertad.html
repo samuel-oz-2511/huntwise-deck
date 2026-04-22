@@ -120,7 +120,7 @@
   <div class="sec-label">01 / Technology and Scientific Background</div>
   <h2 class="sec-title">Built from the inside. Impossible to replicate from outside.</h2>
 
-  <p class="body">Sentriq's detection engine is grounded in 18 months of empirical behavioral research conducted by operating inside real enterprise ATS systems -- Greenhouse, Comeet, and Workday -- as a live actor. 30+ documented attack experiments. 73,500 lines of empirical code. The corpus is not synthetic. It was built by running the offense at scale, then reverse-engineering the defense.</p>
+  <p class="body">Sentriq's detection engine is grounded in 18 months of empirical research conducted from inside the recruiting industry. Samuel operated as a professional recruiter inside Greenhouse, Comeet, and Workday -- a legitimate role that provided direct access to the full hiring attack surface. The behavioral corpus was built by systematically measuring how application content, keyword placement, formatting, and submission timing influenced progression through real hiring pipelines across dozens of roles, companies, and hiring contexts. ATS filter behavior is not secret -- it is documented, testable, and exploitable by anyone who researches it correctly. The research was methodical, not covert. 30+ documented experiments. 73,500 lines of empirical detection code. The corpus is not synthetic. It was built by running the offense from inside the system, then reverse-engineering the defense.</p>
 
   <p class="body">The system operates across three detection layers:</p>
 
@@ -134,8 +134,8 @@
   <div class="layer">
     <div class="layer-num">2</div>
     <div class="layer-body">
-      <div class="layer-name">Content Authenticity Signals</div>
-      <div class="layer-desc">LLM-generated text detection, cross-application similarity scoring, credential consistency analysis. Catches AI-fabricated profiles and recycled identity packages.</div>
+      <div class="layer-name">Contextual Authenticity Challenge</div>
+      <div class="layer-desc">Multi-modal verification layer that adapts per role, company, and job context. Depending on what the context demands, it deploys written knowledge challenges, LLM-conducted live phone calls to verify real-time subject knowledge, accent and speech pattern analysis, or behavioral response profiling. LLM-generated text detection and cross-application similarity scoring also operate within this layer as passive signals. A candidate who memorized an AI-fabricated profile cannot pass a live LLM interrogation on the role's actual technical context. There is no training set an adversary can prepare against a challenge that changes with every application.</div>
     </div>
   </div>
   <div class="layer">
@@ -154,7 +154,9 @@
 
   <p class="body"><strong>Technical approach and intended validation:</strong> The detection engine uses a hybrid architecture: behavioral corpus analysis (Layer 1), a contextual authenticity challenge layer (Layer 2), and coherence analysis (Layer 3). Layer 2 is specifically designed to resist AI replication -- it generates a dynamic, contextual question set derived from the specific job, company, and role. The question set changes with every application. A real, qualified human answers it correctly from genuine context. An AI fabricating a profile has no stable training set to memorize. The combination of corpus baseline and contextual challenge is what makes the system resistant to adversarial adaptation over time.</p>
 
-  <p class="body">Formal validation metrics -- precision, recall, false positive rate, and time-to-signal per application -- are among the primary data points Sentriq will gather under LOI with design partners WalkMe (SAP), Wells Fargo, and HSBC. Current benchmarks are grounded in 18 months of internal corpus research and attack simulation. We are not claiming production metrics in advance of deployment. We are building the architecture specifically to produce them within 60-90 days of first enterprise integration.</p>
+  <p class="body">Formal validation metrics -- precision, recall, false positive rate, and time-to-signal per application -- are among the primary data points Sentriq will gather under LOI with design partners WalkMe (SAP), Wells Fargo, and HSBC. Current benchmarks come from 18 months of internal corpus research and attack simulation. Production metrics do not exist yet because the product is not deployed yet. We are not claiming otherwise. Those numbers will exist within 60-90 days of first enterprise integration, and measuring them is a core deliverable of every design partner agreement.</p>
+
+  <p class="body"><strong>On intellectual property:</strong> Patent strategy will develop as the product architecture solidifies. Our intent is to pursue protection on the behavioral corpus methodology and the Layer 2 contextual challenge framework. At this stage, what we can offer Libertad is first-mover access to the corpus and algorithms as they are built -- before the architecture is locked and before commercial contracts define what can be shared.</p>
 
   <div class="div"></div>
 
@@ -168,7 +170,7 @@
     <div class="person">
       <div class="person-name">Samuel Kemper</div>
       <div class="person-role">CEO, Co-Founder</div>
-      <div class="person-bio">Reserve Innovation Officer, IDF Unit 81, internal innovation department under the unit commander. During the 2023-2024 Hamas and Lebanon war: embedded with combat units, interviewed combatants in the field, identified operational technology problems, built and directed tech teams from scratch, delivered full execution kits to field units under live operational conditions -- in sprints of weeks. 2x founder (CYou Retail, $1.1M raised backed by Nielsen Innovate Fund; TechRuiter IL). 18 months inside Greenhouse, Comeet, and Workday as a recruiter: the attack research came from observing the hiring signal collapse from the inside.</div>
+      <div class="person-bio">IDF Unit 81, Innovation Officer in the unit's internal innovation department under the unit commander (2023-2024 war service). Embedded with combat units during the Hamas and Lebanon war: interviewed combatants in the field, identified operational technology problems, assembled and directed tech teams, delivered full execution kits to field units under live operational conditions in sprints of weeks. 2x founder (CYou Retail, $1.1M raised backed by Nielsen Innovate Fund; TechRuiter IL). 18 months inside Greenhouse, Comeet, and Workday as a recruiter: the attack research came from observing the hiring signal collapse from the inside.</div>
       <div class="tag-row">
         <span class="tag tag-amber">IDF Unit 81</span>
         <span class="tag">2x Founder</span>
@@ -222,6 +224,8 @@
 
   <p class="body"><strong>On replication by intelligence-adjacent firms:</strong> The question worth addressing directly: could a better-resourced intelligence firm -- NSO, Toka, or a state-backed lab -- simply build this? The answer is specific to this use case. Detecting adversarial hiring applications requires deep immersion in the commercial hiring funnel: how HR teams configure ATS platforms, how the CISO and HR co-own purchasing decisions, how async challenge systems behave in practice, and what a legitimate application looks like across industries and seniority levels at scale. That knowledge is not an intelligence capability. It is a commercial GTM capability embedded in the product. NSO does not know what a Greenhouse webhook looks like. They do not know how a recruiter reviews an async video screen. Building Layer 2 specifically -- the contextual challenge layer -- requires the kind of HR domain expertise that only exists inside commercial enterprise hiring operations. The moat is not a technical secret. It is operational, built by running the offense from inside the system being defended.</p>
 
+  <p class="body"><strong>Israeli competitive landscape:</strong> There are no Israeli companies currently operating at the pre-submission application integrity layer. Israeli HR-tech focuses on talent matching and recruitment automation. Israeli cyber operates in network security, endpoint, and threat intelligence -- none of which addresses the hiring attack surface. The closest adjacent players are Israeli background verification services, which operate post-hire. The category does not exist in Israel yet. That is the opening.</p>
+
   <p class="body">Additionally: the value to a commercial enterprise is not limited to organizations facing state-level attacks. Any company running hiring pipelines without an application integrity layer is making systematic errors in talent selection -- even if a deliberate adversarial attempt happens once every five years. The ROI for a CISO or HR team is measured against the cost of a single wrong hire in a sensitive role, which regularly exceeds the annual Sentriq contract by an order of magnitude. The threat spectrum runs from opportunistic AI-generated applications all the way to state-sponsored insertion. Sentriq addresses all of it with the same layer.</p>
 
   <div class="div"></div>
@@ -233,7 +237,7 @@
   <div class="value-grid">
     <div class="value-box">
       <div class="value-title">Behavioral Threat Intelligence Corpus</div>
-      <div class="value-desc">Non-exclusive, non-commercial access to a growing corpus of adversarial hiring attack signatures -- behavioral patterns, submission anomalies, and identity-credential mismatch data collected from live enterprise deployments at scale.</div>
+      <div class="value-desc">Non-exclusive, non-commercial access to a growing corpus of adversarial hiring attack signatures -- behavioral patterns, submission anomalies, and identity-credential mismatch data. Built from 18 months of internal research and growing with each enterprise deployment as the system scales.</div>
     </div>
     <div class="value-box">
       <div class="value-title">Workforce Integrity at Scale</div>
@@ -248,14 +252,16 @@
       <div class="value-desc">Active design partner pipeline: HSBC, Wells Fargo, WalkMe (SAP). Raising $5M seed, Series A target Q2-Q3 2027. Libertad's involvement signals category credibility to Israeli and global cyber investors.</div>
     </div>
     <div class="value-box" style="grid-column: 1 / -1;">
-      <div class="value-title">Israeli Defense-Adjacent Exposure</div>
-      <div class="value-desc">Rafael, Elbit, IAI, and Israel's broader defense contractor ecosystem face the identical attack surface as US enterprises -- adversarial applications, proxy worker networks, and state-actor insertion attempts at scale. These organizations hire thousands of personnel annually for sensitive technical and operational roles. Their hiring pipelines are currently undefended at the pre-submission layer. Sentriq's Israeli entity will address this market directly, and these organizations sit within Libertad's natural sphere of influence.</div>
+      <div class="value-title">Intelligence Value Beyond the Commercial Contract</div>
+      <div class="value-desc">Sentriq's primary market is global commercial enterprises -- HSBC, Wells Fargo, WalkMe and companies like them. The Israeli defense sector (Rafael, Elbit, IAI) conducts its own deep personnel vetting and is not Sentriq's target customer. But as Sentriq deploys across global enterprises, it maps adversarial hiring activity at scale -- state-actor insertion attempts, proxy worker networks, coordinated identity packages. That data has national security relevance that extends well beyond any commercial contract. The corpus Libertad receives rights to is a record of how adversaries attempt workforce infiltration in the civilian economy. How that intelligence serves Israeli national security interests is Libertad's domain to define, not ours.</div>
     </div>
   </div>
 
   <div class="callout" style="margin-top:16px;"><strong>On national security contribution:</strong> If Sentriq's corpus, detection algorithms, or application authenticity signals can serve Israeli state security -- whether through Libertad's portfolio, through intelligence analysis of adversarial hiring patterns, or through direct contribution to national defense infrastructure -- we will contribute without hesitation. This is not a negotiating position. We built this product because of what we saw from inside the IDF. Giving something back to the country that shaped it is the point.</div>
 
-  <div class="callout" style="margin-top:12px;"><strong>The ask:</strong> Sentriq is raising a $5M seed round and inviting Libertad to participate as a strategic partner under your standard IP-rights structure. Specifically: Libertad would receive non-exclusive, non-commercial rights to Sentriq's behavioral detection corpus, detection algorithms, and application authenticity signals framework as developed during the investment period. No equity, no governance rights -- the structure you use with every portfolio company. In exchange, Sentriq gains category credibility with Israeli and global cyber capital that no financial investor can provide. Sentriq operates under a dual-entity structure: an Israeli R&amp;D entity and a Delaware commercial entity. The IP-rights agreement would be executed with the Israeli entity.</div>
+  <div class="callout" style="margin-top:12px;"><strong>The ask:</strong> Sentriq is raising a $5M seed round and inviting Libertad to participate as a strategic partner under your standard IP-rights model. The specific scope of IP rights will be defined in direct conversation -- we need to understand what Libertad needs operationally and ensure the structure does not conflict with the commercial agreements of enterprise clients. We are open to that conversation and expect it to be straightforward. Sentriq operates under a dual-entity structure: an Israeli R&amp;D entity and a Delaware commercial entity. Any IP agreement would be executed with the Israeli entity.</div>
+
+  <div class="callout" style="margin-top:12px;"><strong>On stage:</strong> Libertad backs early-stage ideas before commercial deployment -- that is the premise of the model. If we had validated production metrics, paying enterprise customers, and a fully deployed system, we would not be the right fit for Libertad's mandate and we would not need this kind of capital. What we bring is the right team, a real and growing threat, 18 months of deep research, and three enterprise design partners ready to pilot. The opportunity to shape how this technology serves Israeli national security interests exists now, before the architecture is locked.</div>
 
   <!-- TRACTION -->
   <div class="stat-row" style="margin-top:24px;">
