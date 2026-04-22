@@ -544,7 +544,7 @@
 function checkPass() {
     const v = document.getElementById('pw').value;
     const encoded = btoa(v);
-    if (encoded === 'SlBNQHNlbnRyaXEyMDI2') {
+    if (encoded === 'anBtc2VudHJpcTIwMjY=') {
         document.getElementById('gate').style.display = 'none';
         fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
             method: 'POST',
