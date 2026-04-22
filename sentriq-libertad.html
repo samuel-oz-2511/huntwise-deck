@@ -111,9 +111,68 @@
       .pipe-arrow { transform: rotate(90deg); align-self: center; }
       .sci-badges { flex-direction: column; }
     }
+  
+    /* GATE */
+    #gate { position: fixed; inset: 0; background: #09090F; display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 24px; }
+    .gate-box { background: #0D0E1A; border: 1px solid #161728; border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 380px; text-align: center; }
+    .gate-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; }
+    .gate-wordmark { font-size: 18px; font-weight: 700; letter-spacing: 0.05em; color: #fff; }
+    .gate-wordmark span { color: #E8A020; }
+    .gate-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+    .gate-input { width: 100%; background: #09090F; border: 1px solid #161728; border-radius: 8px; padding: 12px 16px; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 14px; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
+    .gate-input:focus { border-color: #E8A020; }
+    .gate-input.shake { animation: shake 0.35s ease; border-color: #E05555; }
+    .gate-btn { width: 100%; background: #E8A020; color: #09090F; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; border: none; border-radius: 8px; padding: 12px; cursor: pointer; transition: background 0.2s; }
+    .gate-btn:hover { background: #B87010; }
+    .gate-error { font-size: 12px; color: #E05555; margin-top: 8px; min-height: 16px; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
   </style>
 </head>
 <body>
+
+  <div id="gate">
+    <div class="gate-box">
+      <div class="gate-logo">
+        <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+          <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+          <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+          <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+          <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        </svg>
+        <div class="gate-wordmark">Sentriq<span>.</span></div>
+      </div>
+      <div class="gate-label">Confidential: Access Required</div>
+      <input id="gate-input" class="gate-input" type="password" placeholder="Enter access code" autocomplete="off"/>
+      <button class="gate-btn" onclick="checkGate()">Access</button>
+      <div class="gate-error" id="gate-error"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('libertad-auth') === '1') {
+        document.getElementById('gate').style.display = 'none';
+      }
+    })();
+    document.getElementById('gate-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkGate();
+    });
+    function checkGate() {
+      var v = document.getElementById('gate-input').value;
+      if (v === 'Libertadsentriq2026!') {
+        sessionStorage.setItem('libertad-auth', '1');
+        document.getElementById('gate').style.display = 'none';
+      } else {
+        var inp = document.getElementById('gate-input');
+        inp.classList.remove('shake');
+        void inp.offsetWidth;
+        inp.classList.add('shake');
+        document.getElementById('gate-error').textContent = 'Incorrect access code.';
+        inp.value = '';
+      }
+    }
+  </script>
+
 <div class="page">
 
   <!-- HEADER -->
