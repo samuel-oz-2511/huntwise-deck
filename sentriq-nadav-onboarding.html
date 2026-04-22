@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ INTERNAL ONBOARDING: NADAV KEMPER
+No password. Internal document.
+ntfy topic: sentriq-nadav-onb-sk26
+=============================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq: Nadav Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090F;
+            --card: #0D0E1A;
+            --border: rgba(255,255,255,0.08);
+            --amber: #E8A020;
+            --amber-dark: #B87010;
+            --red: #E05555;
+            --text: rgba(255,255,255,0.82);
+            --muted: rgba(255,255,255,0.52);
+            --dim: rgba(255,255,255,0.28);
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Space Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--white); min-height: 100vh; }
+
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(9,9,15,0.96); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 0 32px; height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .topbar-logo { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: var(--amber); letter-spacing: -0.03em; }
+        .topbar-title { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 500; }
+        .topbar-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 20px; }
+
+        .layout { display: flex; min-height: 100vh; padding-top: 56px; }
+
+        .sidebar {
+            width: 256px; min-width: 256px;
+            background: rgba(255,255,255,0.015);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            position: fixed; top: 56px; bottom: 0; left: 0;
+            overflow-y: auto; padding: 24px 0;
+        }
+        .sidebar-section { margin-bottom: 8px; }
+        .sidebar-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.22); padding: 8px 24px 6px; }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 24px; font-size: 13px; font-weight: 500;
+            color: rgba(255,255,255,0.52); cursor: pointer; border: none; background: none;
+            width: 100%; text-align: left; text-decoration: none;
+            transition: all 0.2s; border-left: 2px solid transparent;
+        }
+        .sidebar-link:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.03); }
+        .sidebar-link.active { color: var(--white); background: rgba(232,160,32,0.09); border-left-color: var(--amber); }
+        .sidebar-num { width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.38); flex-shrink: 0; }
+        .sidebar-link.active .sidebar-num { background: var(--amber); color: #09090F; }
+
+        .main { margin-left: 256px; flex: 1; padding: 52px 68px 100px; max-width: 940px; }
+
+        .doc-section { margin-bottom: 80px; scroll-margin-top: 80px; }
+        .doc-header { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .doc-num { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 8px; }
+        .doc-title { font-size: clamp(22px,2.8vw,32px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 8px; }
+        .doc-subtitle { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 680px; }
+
+        .body-text { font-size: 14px; color: var(--text); line-height: 1.8; margin-bottom: 18px; }
+        .body-text strong { color: var(--white); }
+        h3.sh { font-size: 16px; font-weight: 700; color: var(--white); margin: 28px 0 12px; letter-spacing: -0.01em; }
+
+        .callout { padding: 18px 22px; border-radius: 12px; margin: 20px 0; border-left: 3px solid var(--amber); background: rgba(232,160,32,0.07); }
+        .callout.red { border-left-color: var(--red); background: rgba(224,85,85,0.07); }
+        .callout.neutral { border-left-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); }
+        .callout.nadav { border-left-color: var(--amber); background: rgba(232,160,32,0.10); border: 1px solid rgba(232,160,32,0.25); border-left: 3px solid var(--amber); }
+        .callout p { font-size: 13px; color: var(--text); line-height: 1.7; }
+        .callout strong { color: var(--white); }
+        .callout-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; color: var(--amber); }
+        .callout-label.red { color: var(--red); }
+        .callout-label.nadav { color: var(--amber); }
+
+        .t { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+        .t th { text-align: left; padding: 9px 14px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.32); border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .t td { padding: 11px 14px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; line-height: 1.5; }
+        .t tr:hover td { background: rgba(255,255,255,0.018); }
+        .t td strong { color: var(--white); }
+        .t-amber { background: rgba(232,160,32,0.08); font-weight: 600; }
+
+        .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .b-amber { background: rgba(232,160,32,0.14); color: var(--amber); border: 1px solid rgba(232,160,32,0.3); }
+        .b-dim { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid rgba(255,255,255,0.09); }
+        .b-red { background: rgba(224,85,85,0.14); color: var(--red); border: 1px solid rgba(224,85,85,0.3); }
+        .b-orange { background: rgba(245,158,11,0.14); color: #D09018; border: 1px solid rgba(245,158,11,0.28); }
+
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+        .stat-box { padding: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+        .stat-val { font-size: clamp(26px,3vw,38px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+        .stat-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+        .stat-src { font-size: 10px; color: var(--dim); margin-top: 4px; font-style: italic; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .box { padding: 18px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+        .box-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+        .box p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+        .layer-card { display: flex; gap: 16px; padding: 18px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
+        .layer-num { width: 32px; height: 32px; border-radius: 50%; background: rgba(232,160,32,0.15); border: 1.5px solid rgba(232,160,32,0.35); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--amber); flex-shrink: 0; margin-top: 1px; }
+        .layer-body { flex: 1; }
+        .layer-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .layer-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+        .layer-nadav { font-size: 12px; color: rgba(232,160,32,0.8); margin-top: 8px; font-style: italic; }
+
+        .person-card { display: flex; gap: 18px; padding: 22px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 14px; }
+        .person-avatar { width: 52px; height: 52px; border-radius: 50%; background: rgba(232,160,32,0.12); border: 1.5px solid rgba(232,160,32,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: var(--amber); flex-shrink: 0; }
+        .person-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+        .person-role { font-size: 12px; color: var(--amber); font-weight: 600; margin-bottom: 8px; }
+        .person-bio { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+        .pipeline-row { padding: 16px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; }
+        .pipeline-company { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .pipeline-meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+        .pipeline-status { font-size: 13px; color: var(--text); line-height: 1.55; }
+
+        .role-block { padding: 22px 24px; background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-radius: 14px; margin-bottom: 14px; border-top: 2px solid var(--amber); }
+        .role-title { font-size: 14px; font-weight: 700; color: var(--amber); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; }
+        .role-list { list-style: none; }
+        .role-list li { font-size: 13px; color: var(--text); padding: 6px 0; padding-left: 16px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.04); line-height: 1.55; }
+        .role-list li:last-child { border-bottom: none; }
+        .role-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+        .kpi { padding: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+        .kpi-val { font-size: clamp(20px,2.2vw,28px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 5px; }
+        .kpi-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+        .ms-grid { display: flex; gap: 0; position: relative; margin: 20px 0; }
+        .ms-grid::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--amber) 25%, rgba(232,160,32,0.3) 80%); }
+        .ms-item { flex: 1; position: relative; padding-top: 40px; padding-right: 12px; }
+        .ms-dot { position: absolute; top: 8px; left: 0; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--bg); }
+        .ms-dot.done { background: var(--amber); box-shadow: 0 0 8px rgba(232,160,32,0.6); }
+        .ms-dot.active { background: var(--amber); animation: mspulse 2s infinite; }
+        .ms-dot.future { background: rgba(255,255,255,0.14); }
+        @keyframes mspulse { 0%,100%{box-shadow:0 0 8px rgba(232,160,32,0.4)} 50%{box-shadow:0 0 16px rgba(232,160,32,0.75)} }
+        .ms-date { font-size: 10px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+        .ms-title { font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+        .ms-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 32px 20px 60px; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+            .two-col { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr 1fr; }
+            .ms-grid { flex-direction: column; }
+            .ms-grid::before { display: none; }
+            .ms-item { padding-top: 0; padding-left: 28px; padding-bottom: 14px; }
+            .ms-dot { top: 0; }
+        }
+        @media (max-width: 480px) {
+            .stat-row { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+(function(){
+    try{
+        var ts = new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem',hour12:false});
+        fetch('https://ntfy.sh/sentriq-nadav-onb-sk26',{
+            method:'POST', mode:'no-cors',
+            headers:{'Title':'Nadav opened his onboarding doc','Priority':'default','Tags':'books'},
+            body:'Nadav opened the Sentriq onboarding document.\nTime (IL): '+ts
+        });
+    }catch(e){}
+})();
+</script>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <span class="topbar-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none">
+            <rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+            <rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/>
+            <rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        </svg>
+        Sentriq
+    </span>
+    <span class="topbar-title">Internal Onboarding: Nadav Kemper</span>
+    <span class="topbar-badge">Internal Only</span>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+    <div class="sidebar-section">
+        <div class="sidebar-label">Start Here</div>
+        <a class="sidebar-link active" href="#s0"><span class="sidebar-num">&#x2302;</span> A Note from Samuel</a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">The Company</div>
+        <a class="sidebar-link" href="#s1"><span class="sidebar-num">1</span> What We Are Building</a>
+        <a class="sidebar-link" href="#s2"><span class="sidebar-num">2</span> Why This Moment</a>
+        <a class="sidebar-link" href="#s3"><span class="sidebar-num">3</span> The Research Foundation</a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">The Product</div>
+        <a class="sidebar-link" href="#s4"><span class="sidebar-num">4</span> How It Works</a>
+        <a class="sidebar-link" href="#s5"><span class="sidebar-num">5</span> The Moat</a>
+        <a class="sidebar-link" href="#s6"><span class="sidebar-num">6</span> Competitive Landscape</a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">Current State</div>
+        <a class="sidebar-link" href="#s7"><span class="sidebar-num">7</span> Investor Pipeline</a>
+        <a class="sidebar-link" href="#s8"><span class="sidebar-num">8</span> Design Partner Pipeline</a>
+        <a class="sidebar-link" href="#s9"><span class="sidebar-num">9</span> Financial Model</a>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-label">The Team</div>
+        <a class="sidebar-link" href="#s10"><span class="sidebar-num">10</span> Samuel and Ben</a>
+        <a class="sidebar-link" href="#s11"><span class="sidebar-num">11</span> Your Chapter</a>
+    </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- SECTION 0: NOTE FROM SAMUEL -->
+<section class="doc-section" id="s0">
+    <div class="doc-header">
+        <div class="doc-num">Start Here</div>
+        <h2 class="doc-title">Nadav.</h2>
+        <p class="doc-subtitle">Everything you need to know to become part of this, written plainly and completely.</p>
+    </div>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">From Samuel</div>
+        <p>I wrote this document for you specifically. Not a pitch, not a sanitized version of what we tell investors. The full picture: what we are building, why we believe in it, where we actually are right now (including the vague leads and the open questions), and exactly what role I am asking you to play.<br><br>
+        You have built a CX company from scratch, sold it, and have more operational depth than most people I know. That is why I want you for this. Not as a helper. As the person who runs Israel while I build the US market. Read this carefully and let's talk.</p>
+    </div>
+
+    <div class="body-text">
+        <strong>The one-sentence version:</strong> Sentriq is a pre-submission trust layer for job applications that detects hiring fraud before it enters any system, surfacing one signal per application to the recruiter with no automated rejections and full EU AI Act compliance built in.
+    </div>
+    <div class="body-text">
+        <strong>The why:</strong> Hiring fraud is accelerating rapidly. North Korean government operatives are getting hired at US tech and defense companies. AI tools let anyone apply to 1,500 jobs per day on autopilot. One operations role at Deel received 6,500 applications in two weeks. The hiring funnel is the last major attack surface with no dedicated security layer.
+    </div>
+    <div class="body-text">
+        <strong>The timing:</strong> The EU AI Act classifies AI-assisted hiring systems as high-risk. August 2, 2026 is the compliance deadline. Every enterprise using any AI in their hiring pipeline needs human oversight built in. Sentriq's product architecture is the compliance answer.
+    </div>
+    <div class="body-text">
+        <strong>Where we are:</strong> Pre-revenue, demo live, $5M seed round in process, 5 design partner conversations active, 4 VC firms advancing. Ben is building. I am raising and doing GTM. We close the seed in Q2-Q3 2026 and you join once it's done.
+    </div>
+</section>
+
+<!-- SECTION 1: WHAT WE ARE BUILDING -->
+<section class="doc-section" id="s1">
+    <div class="doc-header">
+        <div class="doc-num">Section 01</div>
+        <h2 class="doc-title">What We Are Building</h2>
+        <p class="doc-subtitle">A Candidate Hiring Captcha. The Cloudflare for job applications.</p>
+    </div>
+
+    <div class="body-text">Think about how Cloudflare works. When you fill out a web form and hit submit, Cloudflare runs bot detection before you ever reach the site. If you are a human, nothing happens. If you are a bot, you get a challenge. The site owner gets one signal per suspicious request. No automated blocking. A human makes the final call.</div>
+    <div class="body-text"><strong>Sentriq is exactly this, applied to job applications.</strong> We sit upstream of the ATS (the system recruiters use to receive applications), before the application reaches any human's queue. Every application passes through our behavioral analysis. Anomalous ones get a trust challenge. The recruiter sees one clear signal in their review queue: look at this one. No automated rejections. No biometrics. Human in the loop for every decision.</div>
+    <div class="body-text">We call it a Candidate Hiring Captcha. The output is a trust signal per application, not a score. It surfaces in the recruiter's existing workflow. Zero changes to how hiring teams work.</div>
+
+    <h3 class="sh">What it is not</h3>
+    <table class="t">
+        <tbody>
+            <tr><td style="width:200px;"><strong>Not a background check</strong></td><td>Background checks screen identity after an offer. Sentriq screens application authenticity before the first human review. Different timing, different buyer, different budget line.</td></tr>
+            <tr><td><strong>Not an ATS</strong></td><td>We do not replace Greenhouse, Workday, Lever, or any ATS. We sit in front of them as a pre-submission layer. Platform-agnostic. Upstream of everything.</td></tr>
+            <tr><td><strong>Not identity verification</strong></td><td>We do not ask "is this person who they claim to be?" We ask "does this application look like it was written by the person who claims to have this background?" Different question, different legal framework, different product.</td></tr>
+            <tr><td><strong>Not an automated rejection system</strong></td><td>Sentriq never rejects anyone automatically. It surfaces a signal. A human decides. This is intentional: it is how we stay on the right side of employment law and the EU AI Act.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <div class="callout-label">The unit of analysis</div>
+        <p><strong>Sentriq analyzes the application, not the candidate.</strong> This matters legally and in product framing. The submission event (the act of applying) is what we evaluate, not the person. An application can be fraudulent even from a real person (e.g. a proxy who wrote the resume for them). Keep this in mind for any customer conversation.</p>
+    </div>
+</section>
+
+<!-- SECTION 2: WHY THIS MOMENT -->
+<section class="doc-section" id="s2">
+    <div class="doc-header">
+        <div class="doc-num">Section 02</div>
+        <h2 class="doc-title">Why This Moment</h2>
+        <p class="doc-subtitle">Three things converging at once. All happening right now.</p>
+    </div>
+
+    <div class="stat-row">
+        <div class="stat-box">
+            <div class="stat-val">41%</div>
+            <div class="stat-lbl">of enterprises report hiring a fraudulent or misrepresented candidate</div>
+            <div class="stat-src">Checkr / SHRM, 2024</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-val">1 in 4</div>
+            <div class="stat-lbl">candidate profiles projected to contain AI-generated content by 2028</div>
+            <div class="stat-src">Gartner, 2024</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-val">Aug 2, 2026</div>
+            <div class="stat-lbl">EU AI Act compliance deadline for AI-assisted hiring systems</div>
+            <div class="stat-src">EU AI Act Article 6, Annex III</div>
+        </div>
+    </div>
+
+    <h3 class="sh">1. DPRK is real and documented</h3>
+    <div class="body-text">This is not a theoretical threat. The US Department of Justice indicted 14 North Korean nationals in October 2024 for generating $88M through fraudulent employment at US companies including a defense contractor and a major bank. KnowBe4, a cybersecurity company, hired a North Korean operative in July 2024 who passed four interviews and a background check, then immediately tried to install malware. The FBI issued a formal advisory. The Senate held a hearing. "Several hundred" cleared defense contractors may have been compromised.</div>
+    <div class="body-text">This created a board-level conversation at every CISO in the country. Which is our buyer.</div>
+
+    <h3 class="sh">2. Mass-apply tools are live at scale</h3>
+    <div class="body-text">LazyApply sends 1,500 applications per day per user. Simplify.jobs has 1M+ registered users auto-applying across hundreds of job boards simultaneously. Y Combinator funded a mass-apply tool (Tsenta) in their S26 batch. The tools that flood hiring pipelines are already live, widely used, and commercially successful. The companies being flooded have no defense layer today.</div>
+
+    <h3 class="sh">3. EU AI Act creates a hard purchase event</h3>
+    <div class="body-text">EU AI Act Article 6 Annex III point 4 classifies AI systems used in recruitment and hiring as high-risk. By August 2, 2026, every enterprise using AI in hiring must implement human oversight mechanisms, technical documentation, and candidate transparency. This is a compliance mandate with a hard deadline. Enterprise procurement teams move on compliance deadlines. This is the best category entry point a startup can have: a regulatory event that makes your product required, not optional.</div>
+    <div class="body-text">Sentriq's Layer 3 human review is the EU AI Act compliance answer. We are not selling a nice-to-have. We are selling compliance infrastructure with a known deadline.</div>
+</section>
+
+<!-- SECTION 3: RESEARCH FOUNDATION -->
+<section class="doc-section" id="s3">
+    <div class="doc-header">
+        <div class="doc-num">Section 03</div>
+        <h2 class="doc-title">The Research Foundation</h2>
+        <p class="doc-subtitle">We built the attack tool first. This is what separates us from everyone else.</p>
+    </div>
+
+    <div class="callout red">
+        <div class="callout-label red">The founding insight</div>
+        <p>Samuel and Ben did not study hiring fraud from the outside. They built the attack tool, Huntwise, and ran it inside live ATS systems at scale. Every detection signature in Sentriq's engine was derived by first understanding exactly how the exploit works. This is the same dynamic as every great Israeli cybersecurity company: understand the attack completely, then make the defense inevitable.</p>
+    </div>
+
+    <div class="stat-row">
+        <div class="stat-box"><div class="stat-val">73,500</div><div class="stat-lbl">Lines of empirical attack data and detection code</div></div>
+        <div class="stat-box"><div class="stat-val">30</div><div class="stat-lbl">Live experiments across real ATS platforms</div></div>
+        <div class="stat-box"><div class="stat-val">17</div><div class="stat-lbl">Documented ATS exploitation rules, each a detection signature</div></div>
+    </div>
+
+    <div class="body-text">Huntwise is live with 100 beta users submitting real applications to real companies. This is not synthetic test data. It is empirical behavioral data collected from live hiring pipelines over 18 months. A competitor starting today starts with zero. Building this corpus requires running the attack tool at scale, which requires a live product, a user base, and 18 months of operation. That timeline cannot be compressed with capital.</div>
+
+    <div class="callout neutral">
+        <div class="callout-label neutral">Platforms tested in the research</div>
+        <p>Greenhouse (market leader, used by Airbnb, HubSpot, Squarespace, thousands of enterprises), Comeet (widely used in Israeli enterprise and mid-market), and Workday Recruiting (dominant in Fortune 500 HR infrastructure). The exploitation rules are documented across all three platforms. The detection approach is platform-agnostic.</p>
+    </div>
+</section>
+
+<!-- SECTION 4: HOW IT WORKS -->
+<section class="doc-section" id="s4">
+    <div class="doc-header">
+        <div class="doc-num">Section 04</div>
+        <h2 class="doc-title">How the Product Works</h2>
+        <p class="doc-subtitle">Three layers. Each one addresses a different attack vector. You need to know all three well to support enterprise customers.</p>
+    </div>
+
+    <div class="layer-card">
+        <div class="layer-num">1</div>
+        <div class="layer-body">
+            <div class="layer-title">Layer 1: Behavioral Baseline</div>
+            <div class="layer-desc">Runs passively on every application. No friction for candidates. Analyzes application metadata: typing cadence, form completion patterns, paste behavior, timing anomalies, cross-platform submission signals, device and network fingerprinting. Flags statistical outliers automatically. This is the silent layer. Most applications pass through with no signal generated.</div>
+            <div class="layer-nadav">CS context: when an employer asks "how does it affect the candidate experience?", the answer is Layer 1 is invisible to real candidates. They never know it is there.</div>
+        </div>
+    </div>
+
+    <div class="layer-card">
+        <div class="layer-num">2</div>
+        <div class="layer-body">
+            <div class="layer-title">Layer 2: Trust Layer (Behavioral Challenge)</div>
+            <div class="layer-desc">Triggered only for applications flagged by Layer 1. Approximately 5-10% of all applications. A short behavioral challenge calibrated to the specific role and claimed background. Not a quiz. Not an assessment. A challenge designed so that a real expert in the claimed field completes it naturally, while any automation tool, proxy writer, or AI-generated response fails. Triggered asynchronously: the candidate gets a link, not an interruption mid-application.</div>
+            <div class="layer-nadav">CS context: this is where enterprise customers will have questions. The challenge must feel appropriate to the seniority and type of role. This is a key product design area where your input will matter.</div>
+        </div>
+    </div>
+
+    <div class="layer-card">
+        <div class="layer-num">3</div>
+        <div class="layer-body">
+            <div class="layer-title">Layer 3: Async Personalized Challenge (Human Review)</div>
+            <div class="layer-desc">Escalated applications (typically 1-3% of all applications) go to a Sentriq Fraud Analyst for human review. The analyst interprets the Layer 1 and Layer 2 signals, reviews the full application context, and surfaces a single trust signal into the employer's ATS review queue. This is the EU AI Act-compliant oversight layer. It is also the product layer that makes enterprise CISOs comfortable: a trained human made the call, not an algorithm.</div>
+            <div class="layer-nadav">CS context: you will be deeply involved in this layer. The Fraud Analyst function, the quality of the trust signal output, and the employer dashboard experience are all areas where your operational and product background applies directly.</div>
+        </div>
+    </div>
+
+    <h3 class="sh">What the employer sees</h3>
+    <div class="body-text">In their existing ATS review queue, each application has one additional field: a Sentriq trust signal. Green means nothing flagged. A caution flag means review this application before advancing. No scores. No rejection recommendations. No biometric data. One human-readable signal. The recruiter's workflow is unchanged except they can now prioritize the queue by signal.</div>
+
+    <h3 class="sh">What the candidate sees</h3>
+    <div class="body-text">For Layer 1: nothing. For Layer 2: a brief follow-up challenge delivered asynchronously, framed as a final application step. Transparent, respectful, and appropriate to the role. For most candidates, the experience is identical to any application. Only flagged applications get a challenge, and only the most anomalous cases go to human review.</div>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">Why this is directly in your wheelhouse</div>
+        <p>You spent three years building Quack AI, trainable AI agents for customer experience. You know what it takes to design a human-in-the-loop AI workflow, handle escalation paths gracefully, and make the employer-facing interface feel like a natural part of their existing workflow. Layer 3 and the employer dashboard are the exact product problems you have already solved in a different domain. This is not a stretch for you. It is your home turf.</p>
+    </div>
+</section>
+
+<!-- SECTION 5: THE MOAT -->
+<section class="doc-section" id="s5">
+    <div class="doc-header">
+        <div class="doc-num">Section 05</div>
+        <h2 class="doc-title">The Moat</h2>
+        <p class="doc-subtitle">Four structural advantages that cannot be bought or copied quickly.</p>
+    </div>
+
+    <div class="two-col">
+        <div class="box">
+            <div class="box-title">1. The attack research corpus</div>
+            <p>73,500 lines of empirical data built from running live attacks inside real ATS platforms over 18 months. A competitor starting today needs 18 months minimum before their detection model is meaningful. With Huntwise continuing to run with 100+ beta users, our corpus grows every day.</p>
+        </div>
+        <div class="box">
+            <div class="box-title">2. The behavioral challenge design</div>
+            <p>The challenge is calibrated to the specific claimed role and background. Designing a challenge that a real expert passes naturally but a proxy or AI fails requires deep knowledge of how fraud tools work. This is the hardest part to replicate. It requires knowing exactly what the attacker does.</p>
+        </div>
+        <div class="box">
+            <div class="box-title">3. The cross-company graph</div>
+            <p>Every employer that joins Sentriq contributes to a signal graph. A candidate who fabricated credentials at Company A is flagged when they apply to Company B, at zero additional cost to Company B. This network effect strengthens with every new customer. <strong>No ATS can build this.</strong> Their customer contracts prohibit cross-employer data sharing. Permanently unavailable to them. Sentriq's neutral-party architecture is the only legal path to this graph.</p>
+        </div>
+        <div class="box">
+            <div class="box-title">4. Founder-market fit that cannot be replicated</div>
+            <p>Samuel ran ATS platforms professionally for 18 months as a recruiter and watched the signal collapse happen from the inside. Ben built the attack tooling that exploits ATS vulnerabilities. No one else in this space has built both sides. The detection signatures are reverse-engineered from live attack techniques by the person who built them.</p>
+        </div>
+    </div>
+
+    <div class="callout">
+        <div class="callout-label">Why the cross-company graph matters for enterprise CS</div>
+        <p>When you are in a customer conversation with a large enterprise and they ask "what do we get from other customers' data?", the answer is: every employer on Sentriq makes the signal richer for every other employer. A campaign targeting one company is visible across the network. This is a selling point and a retention driver. Once an enterprise is in the graph, leaving means giving up that signal. That is structural retention, not contractual lock-in.</p>
+    </div>
+</section>
+
+<!-- SECTION 6: COMPETITIVE LANDSCAPE -->
+<section class="doc-section" id="s6">
+    <div class="doc-header">
+        <div class="doc-num">Section 06</div>
+        <h2 class="doc-title">Competitive Landscape</h2>
+        <p class="doc-subtitle">The honest version. We never say "no competitors." We say "nobody has the full stack."</p>
+    </div>
+
+    <div class="body-text">The category is new. It exists in pieces across adjacent markets. Nobody has assembled the full pre-submission integrity layer with behavioral detection and a cross-company graph. Here is who is in the space and how to think about each one.</div>
+
+    <table class="t">
+        <thead><tr><th>Company</th><th>What they do</th><th>Relationship to Sentriq</th><th>What to say to customers</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><strong>Tofu</strong></td>
+                <td>Closest problem space. Static fraud database, no behavioral challenge, no cross-company graph. C$1.2M pre-seed (2024).</td>
+                <td><span class="badge b-red">Direct competitor</span></td>
+                <td>Static list vs. live behavioral detection. They flag known bad actors. We detect new fraud patterns in real time. Different detection method, different effectiveness against novel attacks.</td>
+            </tr>
+            <tr>
+                <td><strong>Crosschq ApplicantX</strong></td>
+                <td>Full-funnel detection. Series B, $30M+ raised. No behavioral challenge. No cross-company graph. Distribution without moat.</td>
+                <td><span class="badge b-red">Direct competitor</span></td>
+                <td>Distribution vs. detection depth. They are broad. We are deep at the application layer with behavioral signals they cannot replicate.</td>
+            </tr>
+            <tr>
+                <td><strong>Persona</strong></td>
+                <td>Identity verification. $2B valuation (Series D, Apr 2025). Answers "is this person real?" Not "is this application real?"</td>
+                <td><span class="badge b-dim">Complement</span></td>
+                <td>Persona verifies the person. Sentriq verifies the application. A DPRK operative can have a real stolen SSN and pass Persona. They fail Sentriq's behavioral challenge. Customers often have both. Set it up that way: "You already have Persona for identity. Sentriq tells you if the application is real."</td>
+            </tr>
+            <tr>
+                <td><strong>Clarity</strong></td>
+                <td>Video interview integrity. $16M Bessemer (Feb 2024). Operates at the video interview stage, after $1,700+ in process cost has been spent.</td>
+                <td><span class="badge b-dim">Complement</span></td>
+                <td>They are downstream of us. We sit at the application layer, before any human time is spent. A customer can have both layers: Sentriq filters the application, Clarity monitors the interview. Different funnel stages, different budgets.</td>
+            </tr>
+            <tr>
+                <td><strong>Greenhouse / Ashby / iCIMS</strong></td>
+                <td>ATS incumbents. Launching fraud detection features natively.</td>
+                <td><span class="badge b-orange">Distribution risk</span></td>
+                <td>ATS customer contracts prohibit cross-employer data sharing. Each ATS can only see its own customers. They can build fraud detection for their individual customers. They cannot build the cross-company graph. It is written into every enterprise ATS contract. We explain this confidently.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">For customer conversations</div>
+        <p>You will face these names in nearly every enterprise meeting. The framing that works: "The category exists in pieces. Persona verifies identity. Clarity monitors interviews. Greenhouse added basic spam filtering. Nobody has assembled the behavioral detection layer at the application stage with a cross-company signal graph. That is the gap, and that is what Sentriq fills." Never defensive. Always positioning.</p>
+    </div>
+</section>
+
+<!-- SECTION 7: INVESTOR PIPELINE -->
+<section class="doc-section" id="s7">
+    <div class="doc-header">
+        <div class="doc-num">Section 07</div>
+        <h2 class="doc-title">Investor Pipeline</h2>
+        <p class="doc-subtitle">Current state as of April 2026. Real names, real status.</p>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">UpWest <span class="badge b-amber" style="margin-left:8px;">Most advanced</span></div>
+        <div class="pipeline-meta">Lia Cromwell + Aya | IC stage</div>
+        <div class="pipeline-status">The furthest along. Lia took us to IC. Her two concerns from the last meeting: dual-buyer stalemate (CISO and HR both need to buy) and market education cost. Samuel's read: Lia is not fully into it but is running the IC process. FutureFirst Ventures is on hold until this resolves. Do not activate FutureFirst until UpWest IC closes either way.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">NFX Fast Israel <span class="badge b-dim" style="margin-left:8px;">Data room submitted</span></div>
+        <div class="pipeline-meta">Nimrod</div>
+        <div class="pipeline-status">Good first meeting. Liked the product. Called it "too early." His specific ask: US enterprise design partners before he can move forward. We submitted a full data room. He is watching. Once a US enterprise signs a design partner LOI, we re-engage immediately.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">SYN Ventures <span class="badge b-amber" style="margin-left:8px;">Interested</span></div>
+        <div class="pipeline-meta">Marcio Lampert | $900M fund, all-CISO partners</div>
+        <div class="pipeline-status">Meeting confirmed, expressed interest in co-investing alongside Team8, Glilot, or Apex. This is a CISO-native fund. Every partner has been a CISO. The product resonates deeply here. CISO-first framing only in SYN conversations: no HR language. Marcio flagged Clarity as a competitor. We explained the funnel stage difference. He accepted it.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">Hetz Ventures <span class="badge b-dim" style="margin-left:8px;">In process</span></div>
+        <div class="pipeline-meta">Guy Fighel</div>
+        <div class="pipeline-status">Active conversation. Guy comes from a SPARQL and security intelligence background. Correlation engine framing works well here. In process.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">FutureFirst Ventures <span class="badge b-dim" style="margin-left:8px;">On hold</span></div>
+        <div class="pipeline-meta">Tomer Golan | Warm contact from March</div>
+        <div class="pipeline-status">Warm and interested. Held until UpWest IC resolves. There is a cap table misalignment risk if we bring them in before the lead is set. Do not activate until Samuel says so.</div>
+    </div>
+
+    <div class="callout">
+        <div class="callout-label">What this means for the round</div>
+        <p>$5M target. UpWest is the potential lead. SYN and Hetz are strong co-investors. NFX is watching for US design partner traction. Timeline: Q2-Q3 2026 target close. Once closed, you join and we start building the Israel operations together.</p>
+    </div>
+</section>
+
+<!-- SECTION 8: DESIGN PARTNER PIPELINE -->
+<section class="doc-section" id="s8">
+    <div class="doc-header">
+        <div class="doc-num">Section 08</div>
+        <h2 class="doc-title">Design Partner Pipeline</h2>
+        <p class="doc-subtitle">Five active conversations. These are the companies that will become our first paying customers after SOC 2 closes in Q3 2026.</p>
+    </div>
+
+    <div class="body-text">Design partners are not customers yet. They are companies that have confirmed the problem is real and committed to piloting Sentriq once we have SOC 2 Type I (which is the hard gate for any enterprise contract). Each gets a 20% first-year discount and direct input into the product roadmap. In return they give us a reference call with investors and honest feedback during the POC.</div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">WalkMe (SAP portfolio) <span class="badge b-amber" style="margin-left:8px;">Most advanced</span></div>
+        <div class="pipeline-meta">Uzi Dvir (CIO) initiated. Now moving to Daniel Chachik (CISO). 4,000+ employees. Lever ATS.</div>
+        <div class="pipeline-status">CIO meeting complete. Uzi was brought in through a warm intro from Nadav Kamper (our father). The product meeting went well. Now transitioning to the CISO for security evaluation. Ben has been clear in his read: the WalkMe meeting is a negotiation, not a product demo. They have leverage and know it. Uzi is friendly but the CISO evaluation is the real gate. Primary communication channel is a WhatsApp group, not email.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">Optimove <span class="badge b-amber" style="margin-left:8px;">Active</span></div>
+        <div class="pipeline-meta">Itai Mor (TA leader) and Nissim (Security lead). 550 employees. Greenhouse ATS. European enterprise client base.</div>
+        <div class="pipeline-status">Itai confirmed the problem is real. Committed to connecting us to Nissim, their security lead. Meeting week of April 21. Optimove is not our ideal scale (we want 2,000+ employee companies) but they are a real design partner with the right profile. Key intel from Itai: their client base is European enterprises, CISO holds the budget, LinkedIn stickiness makes sourcing hard to verify.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">Ubiquity (Global BPO) <span class="badge b-dim" style="margin-left:8px;">Outreach stage</span></div>
+        <div class="pipeline-meta">Paul Byrne (Head of Talent). US-headquartered. Global distributed workforce. High remote-hire volume.</div>
+        <div class="pipeline-status">First outreach sent April 17. No reply yet. Paul is the right person. Ubiquity is a global business services company with exactly the remote hiring profile we target. Following up this week.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">Standard Chartered Bank <span class="badge b-red" style="margin-left:8px;">Dark</span></div>
+        <div class="pipeline-meta">Deepali Jain. UK-headquartered. 80,000+ employees. Active cross-border hiring.</div>
+        <div class="pipeline-status">Dark: no contact in 14 days as of April 17. We had initial outreach and a positive signal early on. Re-engagement needed. This is a high-value target: Tier 1 global bank, CISO-level concern around DPRK, EU AI Act compliance pressure. Need to find a warm path back in.</div>
+    </div>
+
+    <div class="pipeline-row">
+        <div class="pipeline-company">Salesforce <span class="badge b-dim" style="margin-left:8px;">Silent</span></div>
+        <div class="pipeline-meta">Einat Frish. 75,000+ employees. US-headquartered. Large-scale remote engineering hiring.</div>
+        <div class="pipeline-status">2 follow-ups sent. No reply. Einat was a warm intro through Shachar Brenner (April 14). We sent the HR deck and followed up twice. Silent. May need a different entry point into Salesforce.</div>
+    </div>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">Why this matters for your role</div>
+        <p>These five conversations become your first enterprise relationships once the seed closes. WalkMe and Optimove are both Israel-based, which means you are on the ground with them. Standard Chartered and Salesforce will be part of the US motion Samuel drives. Ubiquity is a bridge. You will own the Israel-side design partner management and eventually the CS function that converts all five into retained, expanding accounts.</p>
+    </div>
+</section>
+
+<!-- SECTION 9: FINANCIAL MODEL -->
+<section class="doc-section" id="s9">
+    <div class="doc-header">
+        <div class="doc-num">Section 09</div>
+        <h2 class="doc-title">Financial Model</h2>
+        <p class="doc-subtitle">Seed to Series A. Conservative projections. Every hire is gated on a milestone.</p>
+    </div>
+
+    <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-val" style="color:var(--amber);">$5M</div><div class="kpi-label">Seed round target. Close Q2-Q3 2026.</div></div>
+        <div class="kpi"><div class="kpi-val" style="color:var(--white);">24+</div><div class="kpi-label">Months runway on gross burn basis.</div></div>
+        <div class="kpi"><div class="kpi-val" style="color:var(--amber);">$1M+</div><div class="kpi-label">ARR target at Series A (Q2-Q3 2027).</div></div>
+        <div class="kpi"><div class="kpi-val" style="color:var(--white);">22-28</div><div class="kpi-label">Paying customers at Series A. ACV $42K avg.</div></div>
+        <div class="kpi"><div class="kpi-val" style="color:var(--amber);">78%</div><div class="kpi-label">Target gross margin. SaaS + human review blended.</div></div>
+        <div class="kpi"><div class="kpi-val" style="color:var(--white);">~$180K</div><div class="kpi-label">Monthly burn at Series A. 10 people + 1 contractor.</div></div>
+    </div>
+
+    <h3 class="sh">Revenue starts Q3 2026 when SOC 2 Type I closes</h3>
+    <div class="body-text">No enterprise CISO signs a contract with a vendor that cannot pass security review. SOC 2 is the hard gate. It is in the seed budget ($500K for the full compliance buildout). Once it closes, the design partner pipeline converts to paying customers.</div>
+
+    <table class="t">
+        <thead><tr><th>Quarter</th><th style="text-align:right;">Customers</th><th style="text-align:right;">MRR</th><th style="text-align:right;">ARR Run Rate</th><th>Key gate</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Q2 2026</strong></td><td style="text-align:right;color:var(--muted);">0</td><td style="text-align:right;color:var(--muted);">$0</td><td style="text-align:right;color:var(--muted);">$0</td><td>Seed closes. You join. Engineering hired.</td></tr>
+            <tr><td><strong>Q3 2026</strong></td><td style="text-align:right;">6</td><td style="text-align:right;color:var(--amber);font-weight:700;">$18K</td><td style="text-align:right;">$216K</td><td>SOC 2 Type I complete. 3 design partners convert.</td></tr>
+            <tr><td><strong>Q4 2026</strong></td><td style="text-align:right;">10</td><td style="text-align:right;color:var(--amber);font-weight:700;">$40K</td><td style="text-align:right;">$480K</td><td>First US enterprise logo. VP Sales hire triggered.</td></tr>
+            <tr><td><strong>Q1 2027</strong></td><td style="text-align:right;">16</td><td style="text-align:right;color:var(--amber);font-weight:700;">$68K</td><td style="text-align:right;">$816K</td><td>VP Sales 90 days in. SOC 2 Type II target.</td></tr>
+            <tr class="t-amber"><td><strong>Q2-Q3 2027</strong></td><td style="text-align:right;">22-28</td><td style="text-align:right;font-weight:800;">$83-98K</td><td style="text-align:right;font-weight:800;">$1M-$1.17M</td><td>Series A raise opens.</td></tr>
+        </tbody>
+    </table>
+
+    <h3 class="sh">Pricing: why $42K ACV holds</h3>
+    <div class="body-text">Platform fee: $2,000/month per employer. Challenge volume: $10 per challenge triggered, approximately 150/month at steady state. Human review (Layer 3): $25-50 per case, triggered for 5-10% of challenges, included for design partners in year 1. A 500-person tech company runs approximately 200-400 challenges per month. ACV lands at $36K-$60K. We model $42K conservatively.</div>
+
+    <h3 class="sh">Headcount: every hire gated on a milestone</h3>
+    <table class="t">
+        <thead><tr><th>Role</th><th>When</th><th>Trigger</th></tr></thead>
+        <tbody>
+            <tr><td>Samuel (CEO, GTM) + Ben (CTO)</td><td>Now</td><td>Founders. Below market until $25K MRR.</td></tr>
+            <tr><td>ML Engineer + Backend Engineer</td><td>Q2 2026</td><td>Seed close.</td></tr>
+            <tr><td>Full-Stack Engineer + DevOps contract + Fraud Analyst</td><td>Q3 2026</td><td>First revenue / first paid pilot.</td></tr>
+            <tr><td><strong>Nadav (Operations, CS, Product)</strong></td><td>Seed close</td><td>You join when the seed closes.</td></tr>
+            <tr><td>VP Sales (US)</td><td>Q4 2026</td><td>$25K MRR trigger.</td></tr>
+            <tr><td>ML Engineer #2 + Customer Success Manager</td><td>Q1 2027</td><td>10+ customers / $600K ARR.</td></tr>
+            <tr class="t-amber"><td>Full team</td><td>H1 2027</td><td>10 people + 1 contractor. ~$180K/month.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="ms-grid">
+        <div class="ms-item"><div class="ms-dot done"></div><div class="ms-date">Now</div><div class="ms-title">Research + Demo</div><div class="ms-desc">17 rules, 30 experiments, 73.5K lines. Demo live. Investors advancing.</div></div>
+        <div class="ms-item"><div class="ms-dot active"></div><div class="ms-date">Q2-Q3 2026</div><div class="ms-title">Seed Close</div><div class="ms-desc">$5M closes. Engineers hired. SOC 2 starts. You join.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q3 2026</div><div class="ms-title">First Revenue</div><div class="ms-desc">SOC 2 Type I complete. Design partners convert. $18K MRR.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q4 2026</div><div class="ms-title">US Enterprise</div><div class="ms-desc">First US enterprise logo. VP Sales hired. $40K MRR.</div></div>
+        <div class="ms-item"><div class="ms-dot future"></div><div class="ms-date">Q2-Q3 2027</div><div class="ms-title">Series A</div><div class="ms-desc">$1M+ ARR. 22-28 customers. 90%+ retention.</div></div>
+    </div>
+</section>
+
+<!-- SECTION 10: THE TEAM -->
+<section class="doc-section" id="s10">
+    <div class="doc-header">
+        <div class="doc-num">Section 10</div>
+        <h2 class="doc-title">Samuel and Ben</h2>
+        <p class="doc-subtitle">You know Samuel. Here is Ben.</p>
+    </div>
+
+    <div class="person-card">
+        <div class="person-avatar">SK</div>
+        <div>
+            <div class="person-name">Samuel Kemper</div>
+            <div class="person-role">Co-Founder, CEO: GTM, Product, Market</div>
+            <div class="person-bio">Innovation Officer in IDF Unit 81 (elite intelligence technology unit). 2x founder: raised $1.1M for CYou Retail (Nielsen Innovate Fund), founded and operated TechRuiter IL (talent acquisition, team of 7). Head of Operations at Upword. Director of Operations at ReaLo. Deal Partner at Boardy Ventures (AngelList). Spent 18 months operating inside Greenhouse, Comeet, and Workday as a professional recruiter: built the domain expertise that became the attack research.</div>
+        </div>
+    </div>
+
+    <div class="person-card">
+        <div class="person-avatar">BC</div>
+        <div>
+            <div class="person-name">Ben Czarninski</div>
+            <div class="person-role">Co-Founder, CTO: Detection Engine, Architecture, Security</div>
+            <div class="person-bio">4+ years in IDF Military Intelligence (Gama Graduate program, the IDF's elite software engineering track). Penetration tester at KPMG. CISO at PG. Senior AppSec Engineer at AppsFlyer. CPA. TAU MBA and BSc Computer Science. Built the entire 73,500-line Huntwise codebase. Ran 30 live ATS attack experiments alongside Samuel. The detection signatures that form Sentriq's core are reverse-engineered from live attack techniques Ben documented firsthand. Ben is the technical authority and is deeply rigorous. He does not compromise on security or architecture decisions. Bring him in early on any customer technical conversation.</div>
+        </div>
+    </div>
+
+    <div class="callout neutral">
+        <div class="callout-label neutral">How Samuel and Ben work together</div>
+        <p>Samuel owns everything external: investors, design partners, customers, narrative, GTM. Ben owns everything internal: product architecture, engineering, detection engine, security posture. They align on product direction but Ben has final say on technical decisions and Samuel has final say on commercial decisions. That division is clean and works. You slot in on the operational and customer-facing side with Samuel, and you will interface with Ben on product requirements and customer technical needs.</p>
+    </div>
+</section>
+
+<!-- SECTION 11: YOUR CHAPTER -->
+<section class="doc-section" id="s11">
+    <div class="doc-header">
+        <div class="doc-num">Section 11</div>
+        <h2 class="doc-title">Your Chapter</h2>
+        <p class="doc-subtitle">What Samuel is asking you to own, and why your background is exactly what this company needs at this stage.</p>
+    </div>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">The setup</div>
+        <p>Samuel will be in the US for years building sales relationships and managing the enterprise pipeline with CISOs and HR leaders at American companies. Ben and the R&D team are in Israel. <strong>You are Samuel's boots on the ground in Israel.</strong> Day-to-day operations, Israel-side design partner management, product feedback loop, and the full CS/success function that makes enterprise customers stay and grow.</p>
+    </div>
+
+    <h3 class="sh">Three ownership areas</h3>
+
+    <div class="role-block">
+        <div class="role-title">1. Operations and day-to-day management</div>
+        <ul class="role-list">
+            <li>Running the Israel office: team cadence, delivery rhythm, operational decisions that do not need Samuel</li>
+            <li>Cross-functional alignment between Ben's engineering team and the commercial roadmap</li>
+            <li>Israel-side design partner relationships: WalkMe and Optimove are both in Israel, you are closer to them physically and culturally</li>
+            <li>Company administration, HR process, and team culture as the team grows from 5 to 10+ people</li>
+            <li>Liaison between Samuel's US market activities and Ben's product build</li>
+        </ul>
+    </div>
+
+    <div class="role-block">
+        <div class="role-title">2. Product involvement</div>
+        <ul class="role-list">
+            <li>You have been a Lead PM at Jasper, Roundforest, and Splitit. You have built products that went to market at scale. Sentriq needs this badly.</li>
+            <li>Employer dashboard: how the recruiter sees and acts on the trust signal. This is UX and product design, your domain.</li>
+            <li>Layer 2 challenge design: what does the right challenge look like for a specific role? How does the candidate experience this? You built exactly this type of flow at Quack AI.</li>
+            <li>Layer 3 human review workflow: the Fraud Analyst interface, escalation paths, signal interpretation. Trainable AI agents for operational workflows, which is directly what Quack AI did.</li>
+            <li>ATS integration experience: each integration has its own quirks. You manage the product requirements that Ben implements.</li>
+        </ul>
+    </div>
+
+    <div class="role-block">
+        <div class="role-title">3. Customer support and success departments</div>
+        <ul class="role-list">
+            <li>Build the CS function from scratch: you have done this before. At Quack AI you built the entire customer-facing operation for an AI-in-the-loop product. This is the same problem.</li>
+            <li>Onboarding process: how does a new enterprise customer go live on Sentriq? What is the integration path, the configuration, the team training? You design and own this.</li>
+            <li>Enterprise escalation handling: when a CISO at a large company has a concern about a flagged application or asks a hard compliance question, you are the operational contact who brings the answer. Ben provides technical support. You provide the human face.</li>
+            <li>Retention and expansion: the CS function owns NDR. Our model targets 115% net dollar retention through challenge volume growth. That only happens with active account management. You build the motion that drives it.</li>
+            <li>Customer feedback to product: what are customers asking for that we do not have? You close the loop between enterprise requirements and Ben's roadmap.</li>
+        </ul>
+    </div>
+
+    <div class="callout nadav">
+        <div class="callout-label nadav">Why your background specifically</div>
+        <p>You co-founded and sold an AI company. You know what it takes to build a product from zero in a space where the category is being defined as you go. You built CX infrastructure for enterprise clients. You have been a PM at B2B2C companies that handled enterprise-scale operations. And you have done this while also being a founder, which means you make decisions with incomplete information and move fast.<br><br>
+        The CS function you build at Sentriq will not be a ticket queue. It will be a strategic layer that sits between the product and the customer's security team. That requires someone who understands both product and enterprise relationships. That is you.<br><br>
+        When Samuel is in San Francisco meeting with a CISO at a Fortune 500 company, you are in Tel Aviv making sure the product works, the team ships, the Israel design partners are progressing, and the customer who signed last month is not quietly churning.</p>
+    </div>
+
+    <h3 class="sh">What this looks like on day one after seed close</h3>
+    <table class="t">
+        <tbody>
+            <tr><td style="width:220px;"><strong>Week 1</strong></td><td>Full product walkthrough with Ben. Read every existing customer conversation. Read this entire document again with fresh eyes.</td></tr>
+            <tr><td><strong>Week 2</strong></td><td>Join the WalkMe CISO conversation (Daniel Chachik evaluation is in progress). Join the Optimove security lead meeting. These are your relationships from day one.</td></tr>
+            <tr><td><strong>Month 1</strong></td><td>Own the Israel design partner cadence. Weekly check-in with WalkMe and Optimove contacts. Feed back product requirements from every customer conversation.</td></tr>
+            <tr><td><strong>Q3 2026 (SOC 2 closes)</strong></td><td>Lead the onboarding of the first paying customers. Design the onboarding process in real time with the first 6 customers. Document everything that works.</td></tr>
+            <tr><td><strong>Q4 2026</strong></td><td>First version of the CS playbook is written. Escalation path is defined. Feedback loop to product is running. You are handling Israel operations independently while Samuel manages the US pipeline.</td></tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top:40px; padding:28px 32px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.2); border-radius:16px; text-align:center;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--amber);margin-bottom:12px;">Questions, thoughts, pushback</div>
+        <div style="font-size:26px;font-weight:800;color:var(--white);letter-spacing:-0.02em;">samuel@sentriq.co</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:8px;">Or just call. You know the number.</div>
+    </div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+    var links = document.querySelectorAll('.sidebar-link[href^="#"]');
+    var sections = [];
+    links.forEach(function(l){ var id = l.getAttribute('href').slice(1); var s = document.getElementById(id); if(s) sections.push({el:s,link:l}); });
+    function onScroll(){
+        var y = window.scrollY + 80;
+        var active = sections[0];
+        sections.forEach(function(s){ if(s.el.offsetTop <= y) active = s; });
+        links.forEach(function(l){ l.classList.remove('active'); });
+        if(active) active.link.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+})();
+</script>
+
+</body>
+</html>
