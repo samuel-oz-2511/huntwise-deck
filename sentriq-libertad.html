@@ -152,6 +152,10 @@
 
   <p class="body" style="margin-top:20px;"><strong>On evasion resistance:</strong> A sophisticated adversary who knows Sentriq exists cannot simply adapt around it. The detection is not rule-based -- it is behavioral. The corpus encodes 18 months of what legitimate hiring activity looks like across thousands of real submissions. An adversary attempting to mimic legitimate behavior must first have access to that baseline, which they do not. Evading Layer 1 increases anomaly signals in Layer 2. Evading Layer 2 increases exposure in Layer 3. The multi-layer architecture means partial evasion degrades the adversary's cover rather than restoring it. The corpus also grows with every enterprise deployment -- the baseline becomes harder to spoof over time, not easier.</p>
 
+  <p class="body"><strong>Technical approach and intended validation:</strong> The detection engine uses a hybrid architecture: behavioral corpus analysis (Layer 1), a contextual authenticity challenge layer (Layer 2), and coherence analysis (Layer 3). Layer 2 is specifically designed to resist AI replication -- it generates a dynamic, contextual question set derived from the specific job, company, and role. The question set changes with every application. A real, qualified human answers it correctly from genuine context. An AI fabricating a profile has no stable training set to memorize. The combination of corpus baseline and contextual challenge is what makes the system resistant to adversarial adaptation over time.</p>
+
+  <p class="body">Formal validation metrics -- precision, recall, false positive rate, and time-to-signal per application -- are among the primary data points Sentriq will gather under LOI with design partners WalkMe (SAP), Wells Fargo, and HSBC. Current benchmarks are grounded in 18 months of internal corpus research and attack simulation. We are not claiming production metrics in advance of deployment. We are building the architecture specifically to produce them within 60-90 days of first enterprise integration.</p>
+
   <div class="div"></div>
 
   <!-- SECTION 2: TEAM -->
@@ -164,7 +168,7 @@
     <div class="person">
       <div class="person-name">Samuel Kemper</div>
       <div class="person-role">CEO, Co-Founder</div>
-      <div class="person-bio">Innovation Officer, IDF Unit 81. 2x founder (CYou Retail, $1.1M raised backed by Nielsen Innovate Fund; TechRuiter IL). 18 months operating inside Greenhouse, Comeet, and Workday as a professional recruiter -- the attack research emerged from direct observation of the hiring signal collapse.</div>
+      <div class="person-bio">Reserve Innovation Officer, IDF Unit 81, internal innovation department under the unit commander. During the 2023-2024 Hamas and Lebanon war: embedded with combat units, interviewed combatants in the field, identified operational technology problems, built and directed tech teams from scratch, delivered full execution kits to field units under live operational conditions -- in sprints of weeks. 2x founder (CYou Retail, $1.1M raised backed by Nielsen Innovate Fund; TechRuiter IL). 18 months inside Greenhouse, Comeet, and Workday as a recruiter: the attack research came from observing the hiring signal collapse from the inside.</div>
       <div class="tag-row">
         <span class="tag tag-amber">IDF Unit 81</span>
         <span class="tag">2x Founder</span>
@@ -174,7 +178,7 @@
     <div class="person">
       <div class="person-name">Ben Czarninski</div>
       <div class="person-role">CTO, Co-Founder</div>
-      <div class="person-bio">IDF Military Intelligence, Gama program (elite software engineering track). Penetration tester, KPMG. CISO at PG. Senior AppSec Engineer, AppsFlyer. Built the full 73,500-line detection codebase and designed all attack experiments across three ATS platforms.</div>
+      <div class="person-bio">IDF Military Intelligence, Gama program. Penetration tester, KPMG. CISO at PG. Senior AppSec Engineer, AppsFlyer. Built the full 73,500-line detection codebase and designed all attack experiments across three ATS platforms.</div>
       <div class="tag-row">
         <span class="tag tag-amber">IDF Military Intelligence</span>
         <span class="tag">AppSec</span>
@@ -216,6 +220,10 @@
 
   <p class="body" style="margin-top:20px;"><strong>Added value to the market:</strong> Sentriq introduces a detection layer that has never existed in any hiring infrastructure. The product does not replace any existing tool -- it operates upstream of all of them, before the application enters any system. Every enterprise that deploys Sentriq gains a behavioral baseline across its hiring pipelines. Every deployment makes the corpus denser. The cumulative effect is a network that becomes more accurate as adoption grows -- a structural moat no competitor can acquire with capital alone, because the corpus requires operating the offense at scale to build.</p>
 
+  <p class="body"><strong>On replication by intelligence-adjacent firms:</strong> The question worth addressing directly: could a better-resourced intelligence firm -- NSO, Toka, or a state-backed lab -- simply build this? The answer is specific to this use case. Detecting adversarial hiring applications requires deep immersion in the commercial hiring funnel: how HR teams configure ATS platforms, how the CISO and HR co-own purchasing decisions, how async challenge systems behave in practice, and what a legitimate application looks like across industries and seniority levels at scale. That knowledge is not an intelligence capability. It is a commercial GTM capability embedded in the product. NSO does not know what a Greenhouse webhook looks like. They do not know how a recruiter reviews an async video screen. Building Layer 2 specifically -- the contextual challenge layer -- requires the kind of HR domain expertise that only exists inside commercial enterprise hiring operations. The moat is not a technical secret. It is operational, built by running the offense from inside the system being defended.</p>
+
+  <p class="body">Additionally: the value to a commercial enterprise is not limited to organizations facing state-level attacks. Any company running hiring pipelines without an application integrity layer is making systematic errors in talent selection -- even if a deliberate adversarial attempt happens once every five years. The ROI for a CISO or HR team is measured against the cost of a single wrong hire in a sensitive role, which regularly exceeds the annual Sentriq contract by an order of magnitude. The threat spectrum runs from opportunistic AI-generated applications all the way to state-sponsored insertion. Sentriq addresses all of it with the same layer.</p>
+
   <div class="div"></div>
 
   <!-- SECTION 4: VALUE TO LIBERTAD -->
@@ -239,9 +247,15 @@
       <div class="value-title">Strong Civilian Market Trajectory</div>
       <div class="value-desc">Active design partner pipeline: HSBC, Wells Fargo, WalkMe (SAP). Raising $5M seed, Series A target Q2-Q3 2027. Libertad's involvement signals category credibility to Israeli and global cyber investors.</div>
     </div>
+    <div class="value-box" style="grid-column: 1 / -1;">
+      <div class="value-title">Israeli Defense-Adjacent Exposure</div>
+      <div class="value-desc">Rafael, Elbit, IAI, and Israel's broader defense contractor ecosystem face the identical attack surface as US enterprises -- adversarial applications, proxy worker networks, and state-actor insertion attempts at scale. These organizations hire thousands of personnel annually for sensitive technical and operational roles. Their hiring pipelines are currently undefended at the pre-submission layer. Sentriq's Israeli entity will address this market directly, and these organizations sit within Libertad's natural sphere of influence.</div>
+    </div>
   </div>
 
-  <div class="callout" style="margin-top:24px;"><strong>The ask:</strong> Sentriq is raising a $5M seed round and inviting Libertad to participate as a strategic partner under your standard IP-rights structure. Specifically: Libertad would receive non-exclusive, non-commercial rights to Sentriq's behavioral detection corpus, detection algorithms, and application authenticity signals framework as developed during the investment period. No equity, no governance rights -- the structure you use with every portfolio company. In exchange, Sentriq gains category credibility with Israeli and global cyber capital that no financial investor can provide.</div>
+  <div class="callout" style="margin-top:16px;"><strong>On national security contribution:</strong> If Sentriq's corpus, detection algorithms, or application authenticity signals can serve Israeli state security -- whether through Libertad's portfolio, through intelligence analysis of adversarial hiring patterns, or through direct contribution to national defense infrastructure -- we will contribute without hesitation. This is not a negotiating position. We built this product because of what we saw from inside the IDF. Giving something back to the country that shaped it is the point.</div>
+
+  <div class="callout" style="margin-top:12px;"><strong>The ask:</strong> Sentriq is raising a $5M seed round and inviting Libertad to participate as a strategic partner under your standard IP-rights structure. Specifically: Libertad would receive non-exclusive, non-commercial rights to Sentriq's behavioral detection corpus, detection algorithms, and application authenticity signals framework as developed during the investment period. No equity, no governance rights -- the structure you use with every portfolio company. In exchange, Sentriq gains category credibility with Israeli and global cyber capital that no financial investor can provide. Sentriq operates under a dual-entity structure: an Israeli R&amp;D entity and a Delaware commercial entity. The IP-rights agreement would be executed with the Israeli entity.</div>
 
   <!-- TRACTION -->
   <div class="stat-row" style="margin-top:24px;">
@@ -254,8 +268,8 @@
       <div class="stat-label">Live ATS exploitation experiments</div>
     </div>
     <div class="stat">
-      <div class="stat-val">7</div>
-      <div class="stat-label">Active design partner conversations</div>
+      <div class="stat-val">3</div>
+      <div class="stat-label">Active enterprise design partners</div>
     </div>
     <div class="stat">
       <div class="stat-val">$5M</div>
