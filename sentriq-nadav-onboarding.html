@@ -166,6 +166,35 @@ ntfy topic: sentriq-nadav-onb-sk26
             .stat-row { grid-template-columns: 1fr; }
             .kpi-grid { grid-template-columns: 1fr; }
         }
+
+        .stack-wrap { margin: 16px 0 24px; }
+        .stack-row { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(232,160,32,0.15); background: rgba(232,160,32,0.04); margin-bottom: 5px; gap: 12px; }
+        .stack-row.undefended { border-color: rgba(224,85,85,0.45); background: rgba(224,85,85,0.07); }
+        .stack-row.sentriq { border-color: rgba(232,160,32,0.45); background: rgba(232,160,32,0.09); }
+        .stack-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.38); width: 150px; flex-shrink: 0; }
+        .stack-row.undefended .stack-name { color: var(--amber); }
+        .stack-row.sentriq .stack-name { color: var(--amber); }
+        .stack-vendors { font-size: 11px; color: rgba(255,255,255,0.28); flex: 1; }
+        .stack-row.undefended .stack-vendors { color: rgba(224,85,85,0.65); font-weight: 600; }
+        .stack-row.sentriq .stack-vendors { color: rgba(232,160,32,0.8); font-weight: 600; }
+        .stack-badge { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+        .badge-protected { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); }
+        .badge-undefended { background: rgba(224,85,85,0.18); color: var(--amber); border: 1px solid rgba(224,85,85,0.35); }
+        .badge-building { background: rgba(232,160,32,0.18); color: var(--amber); border: 1px solid rgba(232,160,32,0.35); }
+
+        .spectrum-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 0; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin: 16px 0; }
+        .spectrum-cell { padding: 16px 12px; border-right: 1px solid rgba(255,255,255,0.06); }
+        .spectrum-cell:last-child { border-right: none; }
+        .spectrum-tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber); margin-bottom: 7px; }
+        .spectrum-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 7px; line-height: 1.3; }
+        .spectrum-desc { font-size: 11px; color: var(--text); line-height: 1.55; }
+        @media (max-width: 900px) {
+            .spectrum-grid { grid-template-columns: repeat(3,1fr); }
+            .stack-name { width: 110px; }
+        }
+        @media (max-width: 480px) {
+            .spectrum-grid { grid-template-columns: repeat(2,1fr); }
+        }
     </style>
 </head>
 <body>
@@ -393,6 +422,26 @@ function checkPass(){
         <p class="doc-subtitle">Three layers. Each one addresses a different attack vector. You need to know all three well to support enterprise customers.</p>
     </div>
 
+    <h3 class="sh">Where Sentriq sits: the security stack</h3>
+    <div class="body-text">Every enterprise you will talk to has the same 5-layer security stack. None of it covers the hiring funnel. This is the structural gap every CISO immediately recognizes. It is also your opening line in any CS or design partner conversation.</div>
+
+    <div class="stack-wrap">
+        <div class="stack-row"><span class="stack-name">SIEM / SOC</span><span class="stack-vendors">Splunk · IBM QRadar · Microsoft Sentinel · Sumo Logic</span><span class="stack-badge badge-protected">Protected</span></div>
+        <div class="stack-row"><span class="stack-name">ENDPOINT (EDR)</span><span class="stack-vendors">CrowdStrike · SentinelOne · Microsoft Defender · Cortex XDR</span><span class="stack-badge badge-protected">Protected</span></div>
+        <div class="stack-row"><span class="stack-name">IDENTITY / AUTH</span><span class="stack-vendors">Okta · CyberArk · Azure AD · BeyondTrust · Ping Identity</span><span class="stack-badge badge-protected">Protected</span></div>
+        <div class="stack-row"><span class="stack-name">CLOUD SECURITY</span><span class="stack-vendors">Wiz · Orca Security · Prisma Cloud · Lacework · Aqua</span><span class="stack-badge badge-protected">Protected</span></div>
+        <div class="stack-row"><span class="stack-name">NETWORK / PERIMETER</span><span class="stack-vendors">Cloudflare · Palo Alto Networks · Zscaler · Akamai · Fortinet</span><span class="stack-badge badge-protected">Protected</span></div>
+        <div class="stack-row undefended"><span class="stack-name">HIRING FUNNEL</span><span class="stack-vendors">Every candidate. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span><span class="stack-badge badge-undefended">Undefended</span></div>
+        <div class="stack-row sentriq"><span class="stack-name">LAYER 0: SENTRIQ</span><span class="stack-vendors">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything. The primitive that does not exist yet.</span><span class="stack-badge badge-building">Building it</span></div>
+    </div>
+
+    <div class="callout neutral">
+        <div class="callout-label">CS context: why this visual works</div>
+        <p>State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen identities. The attack enters through hiring because hiring has no infrastructure layer. When a CISO sees this stack, they immediately understand why none of their existing tools help. This is not a product pitch. It is a gap they already know exists and have no answer for.</p>
+    </div>
+
+    <h3 class="sh">The three layers</h3>
+
     <div class="layer-card">
         <div class="layer-num">1</div>
         <div class="layer-body">
@@ -418,6 +467,47 @@ function checkPass(){
             <div class="layer-desc">Escalated applications (typically 1-3% of all applications) go to a Sentriq Fraud Analyst for human review. The analyst interprets the Layer 1 and Layer 2 signals, reviews the full application context, and surfaces a single trust signal into the employer's ATS review queue. This is the EU AI Act-compliant oversight layer. It is also the product layer that makes enterprise CISOs comfortable: a trained human made the call, not an algorithm.</div>
             <div class="layer-nadav">CS context: you will be deeply involved in this layer. The Fraud Analyst function, the quality of the trust signal output, and the employer dashboard experience are all areas where your operational and product background applies directly.</div>
         </div>
+    </div>
+
+    <h3 class="sh">What Sentriq detects: the signal spectrum</h3>
+    <div class="body-text">The problem is not one thing. It is a spectrum of six distinct attack types, from passive automation to state-sponsored fraud. Each layer of the product maps to a different zone of this spectrum. Knowing all six is essential for CS conversations: enterprise customers will ask about specific incidents and you need to know which zone they map to.</div>
+
+    <div class="spectrum-grid">
+        <div class="spectrum-cell" style="background:rgba(232,160,32,0.05);">
+            <div class="spectrum-tag">Passive</div>
+            <div class="spectrum-title">Behavioral Baseline</div>
+            <div class="spectrum-desc">Typing dynamics, mouse movement, form-fill patterns. Establishes whether a human is completing this form before any scoring begins.</div>
+        </div>
+        <div class="spectrum-cell" style="background:rgba(255,255,255,0.02);">
+            <div class="spectrum-tag">Automated</div>
+            <div class="spectrum-title">Mass-Apply Bots</div>
+            <div class="spectrum-desc">Tools sending 1,500+ applications per day. Same behavioral fingerprint across dozens of companies. Detectable before a human sees them.</div>
+        </div>
+        <div class="spectrum-cell" style="background:rgba(232,160,32,0.03);">
+            <div class="spectrum-tag">Gaming</div>
+            <div class="spectrum-title">CV-to-JD Overfitting</div>
+            <div class="spectrum-desc">Resumes hyper-engineered to beat ATS scoring via keyword injection and hidden text. Gaming the queue, not earning it. A $400M market.</div>
+        </div>
+        <div class="spectrum-cell" style="background:rgba(232,160,32,0.05);">
+            <div class="spectrum-tag">Inflation</div>
+            <div class="spectrum-title">Skills Anomaly</div>
+            <div class="spectrum-desc">Claimed skills with no supporting timeline or behavioral confidence. Title says senior engineer. Behavior says otherwise.</div>
+        </div>
+        <div class="spectrum-cell" style="background:rgba(232,160,32,0.06);">
+            <div class="spectrum-tag">Fabrication</div>
+            <div class="spectrum-title">Profile Distortion</div>
+            <div class="spectrum-desc">Timeline manipulation, AI-generated CVs, false credentials. Real documents, fabricated history. The behavioral mismatch is the flag.</div>
+        </div>
+        <div class="spectrum-cell" style="background:rgba(224,85,85,0.07);">
+            <div class="spectrum-tag">State-backed</div>
+            <div class="spectrum-title">Proxy Fraud</div>
+            <div class="spectrum-desc">Stolen SSNs, live AI coaching, real credentials, wrong person. Passed four video interviews and a full background check at KnowBe4.</div>
+        </div>
+    </div>
+
+    <div class="callout neutral">
+        <div class="callout-label">CS context: which zone triggers which layer</div>
+        <p><strong>Layer 1 (passive)</strong> catches zones 1 and 2 automatically with no friction. <strong>Layer 2 (challenge)</strong> is triggered for zones 3 and 4, where behavioral signals suggest inflation or gaming but are not conclusive. <strong>Layer 3 (human review)</strong> is for zones 5 and 6, where a trained Fraud Analyst interprets the full context and makes the call. Background checks and identity verification catch none of these six. They are downstream tools. Sentriq is upstream.</p>
     </div>
 
     <h3 class="sh">What the employer sees</h3>
