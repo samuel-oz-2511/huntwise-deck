@@ -165,8 +165,8 @@
       var t = new Date().toISOString();
       fetch('https://ntfy.sh/sentriq-libertad-x3n7', {
         method: 'POST',
-        body: 'Libertad deck opened ' + t,
-        headers: { 'Title': 'Libertad Deck Open', 'Tags': 'eyes' }
+        mode: 'no-cors',
+        body: 'Libertad deck opened ' + t
       }).catch(function(){});
     }
     function checkGate() {
