@@ -113,6 +113,46 @@ Before delivering any written output (HTML, Word doc, PDF, email copy, slide tex
 
 ---
 
+## ntfy.sh Open Tracking
+
+Every new password-gated deck must include open tracking. Follow this exact pattern:
+
+**1. Topic naming:** `sentriq-[shortname]-[4char random]` e.g. `sentriq-libertad-x3n7`
+
+**2. Register in analytics script:** Add entry to `TRACKED_ROOMS` in `~/.compass/scripts/dataroom-analytics.py` with topic, label, contact, fund, and url.
+
+**3. JS implementation — always use this pattern:**
+```js
+function pingOpen() {
+  var ua = navigator.userAgent;
+  var t = new Date().toISOString();
+  fetch('https://ipapi.co/json/')
+    .then(function(r){ return r.json(); })
+    .then(function(geo) {
+      var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+      var org = geo.org || '';
+      var msg = '[DECK NAME] deck opened\n' + loc + '\n' + org + '\n' + t;
+      fetch('https://ntfy.sh/[TOPIC]', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+    })
+    .catch(function() {
+      fetch('https://ntfy.sh/[TOPIC]', {
+        method: 'POST', mode: 'no-cors',
+        body: '[DECK NAME] deck opened (location unavailable)\n' + ua.substring(0,80) + '\n' + t
+      }).catch(function(){});
+    });
+}
+```
+
+**Rules:**
+- Always use `mode: 'no-cors'` on the ntfy fetch — custom headers trigger CORS preflight which blocks silently
+- Always enrich with IP/city/country/org via `ipapi.co/json/` before pinging ntfy
+- Always include a fallback ping if ipapi fails
+- Fire on password entry AND on session resume (auto-unlock from sessionStorage)
+- Use `sessionStorage` to fire once per browser session only — key: `[shortname]-pinged`
+- Test by opening in a new tab after deploy (sessionStorage is fresh per tab)
+
+---
+
 ## GitHub Pages
 
 - Repo: `samuel-oz-2511/huntwise-deck`
