@@ -597,11 +597,29 @@ function checkPass() {
     const encoded = btoa(v);
     if (encoded === 'anBtc2VudHJpcTIwMjY=') {
         document.getElementById('gate').style.display = 'none';
-        fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
-            method: 'POST',
-            body: 'JPMorgan deck opened: ' + new Date().toISOString(),
-            headers: { 'Title': 'Sentriq JPM Deck Access', 'Priority': 'high' }
-        }).catch(()=>{});
+        fetch('https://ipapi.co/json/')
+            .then(r => r.json())
+            .then(geo => {
+                const msg = [
+                    'JPMorgan deck opened',
+                    new Date().toISOString(),
+                    'IP: ' + (geo.ip || 'unknown'),
+                    'Location: ' + [geo.city, geo.region, geo.country_name].filter(Boolean).join(', '),
+                    'Org: ' + (geo.org || 'unknown')
+                ].join(' | ');
+                fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
+                    method: 'POST',
+                    body: msg,
+                    headers: { 'Title': 'Sentriq JPM Deck Access', 'Priority': 'high' }
+                }).catch(()=>{});
+            })
+            .catch(() => {
+                fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
+                    method: 'POST',
+                    body: 'JPMorgan deck opened: ' + new Date().toISOString() + ' | IP: unavailable',
+                    headers: { 'Title': 'Sentriq JPM Deck Access', 'Priority': 'high' }
+                }).catch(()=>{});
+            });
     } else {
         document.getElementById('err').textContent = 'Incorrect access code.';
     }
