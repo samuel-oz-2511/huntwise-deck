@@ -121,7 +121,7 @@
     .pill { display: inline-block; padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid; }
     .pill-blue { background: rgba(232,160,32,0.08); color: var(--amber); border-color: rgba(232,160,32,0.2); }
     .pill-green { background: rgba(68,204,136,0.08); color: #44CC88; border-color: rgba(68,204,136,0.2); }
-    .pill-red { background: rgba(232,160,32,0.08); color: var(--amber); border-color: rgba(232,160,32,0.2); }
+    .pill-red { background: rgba(224,85,85,0.10); color: #E05555; border-color: rgba(224,85,85,0.25); }
 
     .stat-num { font-size: clamp(36px, 5vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
 
@@ -308,8 +308,8 @@
             <p style="font-size:10px;color:var(--muted);margin-top:4px;">GetReal Security, 668 IT/cybersecurity leaders, Dec 2025</p>
         </div>
         <div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
-            <div class="stat-num" style="color:var(--amber);">$240K</div>
-            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Maximum cost of one fraudulent hire, before the security incident that follows when an operative gets inside.</p>
+            <div class="stat-num" style="color:var(--amber);">$4.88M</div>
+            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Average cost of a data breach (IBM, 2024). A fraudulent hire who gains internal access is a breach in progress. The process cost is noise compared to what follows.</p>
         </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
@@ -326,7 +326,7 @@
         <div style="flex-shrink:0;width:3px;min-height:36px;background:var(--amber);border-radius:2px;align-self:stretch;"></div>
         <div>
             <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">The attack infrastructure is already deployed</div>
-            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin:0;">Camoufox is a Firefox fork patched at the C++ level to spoof every browser fingerprint. Paired with residential proxy rotation and GeoIP-matched locale, it authenticates into LinkedIn via session cookies that survive fingerprint validation and fills ATS forms using OS-level keyboard simulation that defeats React input detection. MIT licensed. ~1M PyPI downloads per month. IP blocking, browser fingerprinting, and form-level input detection are already defeated. The behavioral challenge layer is what remains.</p>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin:0;">Camoufox: a Firefox fork patched at the C++ level to defeat browser fingerprinting, paired with residential proxy rotation and OS-level keyboard simulation that bypasses React input detection. MIT licensed. ~1M PyPI downloads/month. IP blocking and fingerprinting are already defeated. Behavioral detection is what remains.</p>
         </div>
     </div>
     <div class="sources">
@@ -485,7 +485,7 @@
 <!-- SLIDE 5: GTM PREVIEW -->
 <div class="slide bg-dark" data-index="4">
 <div class="slide-inner">
-    <span class="label">Go-to-Market</span>
+    <span class="label">The Deal Cycle</span>
     <h2>HR opens the door. <span style="color:var(--amber);">The data forces the escalation.</span> CISO signs the check.</h2>
     <div style="margin-top:16px;padding:16px 20px;background:rgba(68,204,136,0.04);border:1px solid rgba(68,204,136,0.18);border-radius:12px;margin-bottom:14px;">
         <div style="font-size:10px;font-weight:700;color:#44CC88;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">How the deal closes: no stalemate, no dual approval</div>
@@ -515,7 +515,7 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
             <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">VP HR: the entry point</div>
-            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. At $6K/year this pays for itself in one avoided mis-hire. They feel it. They want it. They start the POC.</p>
+            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. Pays for itself before the second mis-hire. They feel it. They want it. They start the POC.</p>
         </div>
         <div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
             <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">CISO: where the money is</div>
@@ -561,9 +561,7 @@
             </div>
         </div>
     </div>
-    <div style="margin-top:14px;padding:14px 20px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
-        <p style="font-size:12px;color:rgba(255,255,255,0.85);line-height:1.65;">A tool solves a problem for one company. <strong style="color:var(--amber);">The network is the product.</strong> At 100 customers, the cross-company graph is an asset no ATS, no background check vendor, and no point solution can replicate. Not because of technology. Because it requires neutral ground and candidate consent at scale.</p>
-    </div>
+
 </div>
 </div>
 
@@ -651,35 +649,35 @@
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Tofu</div><div style="font-size:9px;color:var(--muted);">$1.2M seed · hiretofu.com</div></td>
                     <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Direct</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">CV forensics and a static Fraudbase. No behavioral challenge, no live cross-company network. Detection signatures Tofu has never modeled.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Crosschq ApplicantX</div><div style="font-size:9px;color:var(--muted);">Series B · Launched Nov 2025</div></td>
                     <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Direct</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">Full-funnel detection with Series B distribution. No behavioral challenge. No cross-company graph. Series B overhead without a structural moat.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Persona</div><div style="font-size:9px;color:var(--muted);">$2B valuation · Inside Greenhouse, Workday, Ashby</div></td>
                     <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Blocked</td>
                     <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">Identity only. Confirms the face, not the intent. DPRK operatives use real stolen SSNs and pass Persona. If they add a behavioral layer, they arrive with Greenhouse installed. Most important company to watch.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Greenhouse + Ashby + iCIMS</div><div style="font-size:9px;color:var(--muted);">ATS incumbents · Native fraud detection, 2025</div></td>
                     <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Permanently blocked</td>
                     <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">ATS customer contracts prohibit cross-employer data sharing. The cross-company graph requires neutral ground: architecturally unavailable to any ATS vendor.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.03);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Clarity + GetReal + HireVue</div><div style="font-size:9px;color:var(--muted);">$16M + $24.5M + $450M · Late-funnel deepfakes</div></td>
                     <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.12);color:var(--amber);border:1px solid rgba(232,160,32,0.25);">Complement</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
+                    <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Permanently blocked</td>
                     <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">All three operate at the video interview stage, after $1,700+ in process cost is spent. Their $490M+ raised confirms hiring fraud is a fundable enterprise security problem. All three sit downstream of Sentriq.</td>
                 </tr>
@@ -782,7 +780,7 @@
                 </div>
                 <div style="display:flex;gap:10px;align-items:flex-start;">
                     <div style="width:5px;height:5px;border-radius:50%;background:var(--amber);margin-top:5px;flex-shrink:0;"></div>
-                    <p style="font-size:12px;color:var(--text-sub);line-height:1.6;"><strong style="color:var(--text);">Relocating to the US post-raise.</strong> GTM is US-first, founder-led, financial services first. The plan is already in motion.</p>
+                    <p style="font-size:12px;color:var(--text-sub);line-height:1.6;"><strong style="color:var(--text);">US-first execution from day one.</strong> Financial services, founder-led. Samuel is running active enterprise conversations with HSBC, Wells Fargo, and JPMorgan from the current location. The US is not a future market.</p>
                 </div>
             </div>
         </div>
@@ -911,7 +909,7 @@
     <span class="label">The Ask</span>
     <h2>$500K opens the round. <span style="color:var(--amber);">Two founders. Six months. Real proof.</span></h2>
     <div style="margin-bottom:14px;padding:13px 20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.2);border-radius:10px;">
-        <p style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.65;">We are raising a $5M seed. We are inviting 97212 as the opening check: $500K, founder-only execution, no hires until proof exists. Two Unit 81 engineers who built classified defense technology with fewer resources than this. Real monthly burn is ~$40K: founder salaries, TLV WeWork, tools, and a flexible outsource budget so Ben never blocks on capacity. Legal is in-house, cloud is covered by Google and AWS credits. $500K buys 12 months of full runway. After 6 months, ~$260K remains in reserve for the first full-time hire when the pilot data justifies it. The milestones below get done on execution, not headcount.</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.65;">We are raising a $5M seed. We are inviting 97212 as the opening check: $500K, founder-only execution, no hires until proof exists. Two IDF intelligence veterans who built classified defense technology with fewer resources than this. Real monthly burn is ~$40K: founder salaries, TLV WeWork, tools, and a flexible outsource budget so Ben never blocks on capacity. Legal is in-house, cloud is covered by Google and AWS credits. $500K buys 12 months of full runway. After 6 months, ~$260K remains in reserve for the first full-time hire when the pilot data justifies it. The milestones below get done on execution, not headcount.</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
         <div>
@@ -970,8 +968,9 @@
 <!-- SLIDE 13: CTA -->
 <div class="slide bg-cover" data-index="12">
 <div class="slide-inner center" style="text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100%;">
-    <div style="margin-bottom:24px;">
-        <svg width="44" height="44" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+    <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:24px;">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+        <span style="font-size:22px;font-weight:500;color:#ffffff;letter-spacing:-0.01em;">Sentriq<span style="color:#E8A020;">.</span></span>
     </div>
     <h2 style="font-size:clamp(22px,3.5vw,42px);margin-bottom:12px;">The primitive does not exist yet.<br/><span style="color:var(--amber);">We are building it.</span></h2>
     <p style="font-size:clamp(14px,1.8vw,18px);color:rgba(255,255,255,0.55);max-width:600px;line-height:1.7;margin-bottom:32px;">Every company that hires is a potential node. The category is forming now. The window to build the infrastructure layer closes as ATS incumbents and identity vendors race toward it from the edges.</p>
