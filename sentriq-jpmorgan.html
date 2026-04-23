@@ -27,12 +27,12 @@
             gap: 20px;
         }
         #gate .gate-logo {
-            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            display: flex; flex-direction: row; align-items: center; gap: 10px;
             margin-bottom: 16px;
         }
         #gate .gate-logo span {
-            font-size: 12px; font-weight: 700; letter-spacing: 0.25em;
-            text-transform: uppercase; color: #E8A020;
+            font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+            color: #fff;
         }
         #gate h2 {
             font-size: 15px; font-weight: 700; color: #fff;
@@ -582,8 +582,8 @@
 <!-- PASSWORD GATE -->
 <div id="gate">
     <div class="gate-logo">
-        <svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-        <span>Sentriq</span>
+        <svg width="32" height="32" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+        <span>Sentriq<span style="color:#E8A020;">.</span></span>
     </div>
     <h2>The Hiring Pipeline Security</h2>
     <input type="password" id="pw" placeholder="Access code" onkeydown="if(event.key==='Enter')checkPass()"/>
@@ -631,7 +631,7 @@ function checkPass() {
     <!-- LOGO -->
     <div class="logo">
         <svg width="28" height="28" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-        Sentriq
+        Sentriq<span style="color:#E8A020;">.</span>
     </div>
 
     <!-- HERO -->
