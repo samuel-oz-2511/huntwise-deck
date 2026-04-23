@@ -158,13 +158,19 @@
 </style>
 </head>
 <body>
-<div id="gate" style="position:fixed;inset:0;background:#09090F;display:flex;align-items:center;justify-content:center;z-index:9999;">
-  <div style="text-align:center;max-width:340px;padding:0 24px;">
-    <svg width="40" height="40" viewBox="0 0 56 56" fill="none" style="margin-bottom:20px;"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-    <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:18px;letter-spacing:0.05em;">CONFIDENTIAL</p>
-    <input id="pwInput" type="password" placeholder="Access code" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:10px;" onkeydown="if(event.key==='Enter')checkPw()"/>
-    <button onclick="checkPw()" style="width:100%;padding:12px;background:#E8A020;border:none;border-radius:10px;color:#09090F;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;">Enter</button>
-    <p id="pwErr" style="font-size:11px;color:#E05555;margin-top:10px;display:none;">Incorrect access code.</p>
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+  <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px;">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+        <span style="font-size:22px;font-weight:500;color:#ffffff;letter-spacing:-0.01em;">Sentriq<span style="color:#E8A020;">.</span></span>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">FutureFirst Ventures: Confidential</div>
+    </div>
+    <input id="pwInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPw()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;"/>
+    <button onclick="checkPw()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#E8A020;color:#09090F;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">View Deck</button>
+    <div id="pwErr" style="font-size:12px;color:rgba(232,160,32,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
+    <div style="margin-top:32px;font-size:11px;color:rgba(255,255,255,0.2);line-height:1.6;">This document contains confidential and proprietary information.<br>Unauthorized access is prohibited.</div>
   </div>
 </div>
 <div class="progress-bar" id="progressBar"></div>
@@ -189,7 +195,7 @@
 <div style="margin-bottom:26px;">
 <svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
 </div>
-<h1 style="font-size:clamp(36px,5vw,62px); margin-bottom:10px;">Sentriq</h1>
+<h1 style="font-size:clamp(36px,5vw,62px); margin-bottom:10px;">Sentriq<span style="color:#E8A020;">.</span></h1>
 <p style="font-size:clamp(15px,2vw,21px); color:rgba(255,255,255,0.85); font-weight:600; margin-bottom:8px;">The trust infrastructure embedded in every hiring decision.</p>
 <p style="font-size:clamp(13px,1.6vw,18px); color:rgba(255,255,255,0.45); margin-bottom:36px;">Vertical AI for hiring integrity. Israeli-founded. Built for enterprise financial services.</p>
 <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:40px;">
@@ -1080,7 +1086,10 @@
           pingOpen();
         }
       } else {
-        document.getElementById('pwErr').style.display = 'block';
+        var err = document.getElementById('pwErr');
+        err.style.opacity = '1';
+        document.getElementById('pwInput').value = '';
+        setTimeout(function(){ err.style.opacity = '0'; }, 2000);
       }
     }
 
