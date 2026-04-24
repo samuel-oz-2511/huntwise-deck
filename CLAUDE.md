@@ -364,12 +364,15 @@ grep -c "#A06010\|#604010\|rgba(5,150" <file>
 grep -c "width=device-width" <file>
 # Required: 1
 
-# 11. Old bracket logo (four rects) — must be zero
-grep -c 'rect x="9" y="10" width="11"' <file>
+# 11. Wrong plain-pillar variant — must be zero
+grep -c 'rect x="10" y="20" width="9"' <file>
 # Required: 0
 
-# 12. Correct dot logo present
-grep -c 'circle cx="28" cy="11"' <file>
+# 12. Correct bracket+dot logo present
+grep -c 'circle cx="28" cy="7"' <file>
+# Required: 1+
+
+grep -c 'rect x="9" y="16" width="11"' <file>
 # Required: 1+
 ```
 
