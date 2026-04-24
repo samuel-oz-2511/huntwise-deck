@@ -182,7 +182,7 @@
     .comp-edge { font-size:12px; color:rgba(255,255,255,0.88); line-height:1.55; padding:5px 10px; }
     .comp-edge-dim { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.55; padding:5px 10px; }
 
-    .milestone-card { padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px; display:flex; align-items:center; gap:16px; }
+    .milestone-card { padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; gap:16px; }
     .milestone-num { flex-shrink:0; text-align:center; min-width:52px; }
     .milestone-num .date { font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
     .milestone-num .value { font-size:20px; font-weight:800; color:var(--amber); letter-spacing:-0.02em; line-height:1; }
@@ -236,11 +236,11 @@
 
 
 <div class="slide bg-cover active" data-index="0">
-<div class="slide-inner center" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100%;">
-<div style="margin-bottom:26px;">
-<svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-</div>
-<h1 style="font-size:clamp(36px,5vw,62px); margin-bottom:0;">Sentriq<span style="color:#E8A020;">.</span></h1>
+<div class="slide-inner center" style="text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100%;">
+    <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:26px;">
+        <svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+        <h1 style="font-size:clamp(36px,5vw,62px);margin-bottom:0;letter-spacing:-0.03em;">Sentriq<span style="color:#E8A020;">.</span></h1>
+    </div>
 <p style="font-size:clamp(15px,2vw,21px); color:rgba(255,255,255,0.85); font-weight:600; margin-bottom:8px;">The trust infrastructure embedded in every hiring decision.</p>
 <p style="font-size:clamp(13px,1.6vw,18px); color:rgba(255,255,255,0.45); margin-bottom:36px;">Vertical AI for hiring integrity. Israeli-founded. Built for enterprise financial services.</p>
 <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:40px;">
@@ -265,32 +265,32 @@
 <div style="display:flex; flex-direction:column; gap:9px;">
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--red); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;">B2C tool helping candidates beat ATS systems. 100 beta users. $300K founders capital invested.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;">B2C tool helping candidates beat ATS systems. 100 beta users. $300K founders capital invested.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--red); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">30+ live experiments on real ATS production systems.</strong> Every attack documented: keyword injection, behavioral spoofing, profile distortion, proxy fraud. 17 techniques. 3 ATS platforms.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">30+ live experiments on real ATS production systems.</strong> Every attack documented: keyword injection, behavioral spoofing, profile distortion, proxy fraud. 17 techniques. 3 ATS platforms.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--red); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;">No stickiness after placement. No recurring revenue. The B2C ceiling was real.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;">No stickiness after placement. No recurring revenue. The B2C ceiling was real.</p>
 </div>
 </div>
 </div>
-<div style="padding:20px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.06); border-radius:14px;">
+<div style="padding:20px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:14px;">
 <div style="font-size:10px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:12px;">Sentriq: the defense layer</div>
 <div style="display:flex; flex-direction:column; gap:9px;">
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;">The B2C experiments generated a <strong style="color:var(--white);">proprietary adversarial corpus</strong>: labeled attack data across 17 techniques that no competitor can purchase or replicate. That corpus trains the detection engine.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;">The B2C experiments generated a <strong style="color:var(--text);">proprietary adversarial corpus</strong>: labeled attack data across 17 techniques that no competitor can purchase or replicate. That corpus trains the detection engine.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;">Pure B2B. <strong style="color:var(--white);">Annual enterprise contracts.</strong> CISO buyer. Network effects that make churn structurally costly. The recurring revenue model you asked for.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;">Pure B2B. <strong style="color:var(--text);">Annual enterprise contracts.</strong> CISO buyer. Network effects that make churn structurally costly. The recurring revenue model you asked for.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;">The B2C tool was the R&D. <strong style="color:var(--white);">The B2B defense layer was the insight the research produced.</strong> Same founders. Same corpus. The only side that compounds.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;">The B2C tool was the R&D. <strong style="color:var(--text);">The B2B defense layer was the insight the research produced.</strong> Same founders. Same corpus. The only side that compounds.</p>
 </div>
 </div>
 </div>
@@ -355,10 +355,10 @@
       <span class="stack-layer-vendors">Cloudflare · Palo Alto Networks · Zscaler · Akamai · Fortinet</span>
       <span class="stack-layer-badge">Protected</span>
     </div>
-    <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(239,68,68,0.5);background:rgba(239,68,68,0.08);margin-bottom:5px;">
-      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;width:160px;flex-shrink:0;">HIRING FUNNEL</span>
-      <span style="font-size:11px;color:rgba(239,68,68,0.7);font-weight:600;">Every candidate. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span>
-      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(239,68,68,0.2);color:#E8A020;border:1px solid rgba(239,68,68,0.4);">UNDEFENDED</span>
+    <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(232,160,32,0.5);background:rgba(232,160,32,0.08);margin-bottom:5px;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.9);width:160px;flex-shrink:0;">HIRING FUNNEL</span>
+      <span style="font-size:11px;color:rgba(232,160,32,0.7);font-weight:600;">Every application. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span>
+      <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.18);color:rgba(255,255,255,0.85);border:1px solid rgba(232,160,32,0.4);">UNDEFENDED</span>
     </div>
     <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(232,160,32,0.5);background:rgba(232,160,32,0.1);">
       <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#E8A020;width:160px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
@@ -408,7 +408,7 @@
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">8+ years in tech recruiting and HR leadership.</strong> Founded TechRuiter IL, managed teams of 8+ recruiters. Has lived both sides of the table - as recruiter drowning in applications and as the person building tools to game ATS.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">8+ years in tech recruiting and HR leadership.</strong> Founded TechRuiter IL, managed teams of 8+ recruiters. Has lived both sides of the table.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
@@ -432,11 +432,11 @@
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Penetration tester (KPMG) → CISO → Senior AppSec (AppsFlyer).</strong> Built the behavioral detection engine. Every layer of the technical stack is his architecture - 73.5K lines of production code.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Penetration tester (KPMG) → CISO → Senior AppSec (AppsFlyer).</strong> Built the behavioral detection engine. Every layer of the technical stack is his architecture. 73.5K lines of production code.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Also a CPA.</strong> TAU MBA + BSc CS. Rare combination: deep security engineering plus financial and compliance fluency - exactly what enterprise CISO sales cycles require.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Also a CPA.</strong> TAU MBA + BSc CS. Rare combination: deep security engineering plus financial and compliance fluency. Exactly what enterprise CISO sales cycles require.</p>
 </div>
 </div>
 </div>
@@ -467,32 +467,33 @@
 </div><div class="slide bg-dark" data-index="3">
 <div class="slide-inner">
 <span class="label">The Problem</span>
-<h2>Every recruiter is drowning. <span style="color:var(--red);">The queue is broken.</span></h2>
-<div style="margin-top:6px; margin-bottom:16px; padding:16px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:12px; border-left:4px solid var(--amber);">
-<p style="font-size:14px; color:rgba(255,255,255,0.9); line-height:1.65;">One operations role at Deel drew <strong style="color:var(--white);">6,500 applications in two weeks.</strong> One associate posting at a mid-size VC: 1,200 applications. The people worth hiring are buried in a queue designed to reward volume, not quality. Recruiters are not filtering signal. They are drowning in noise. <strong style="color:var(--white);">And the tools creating that noise are YC-funded and growing 20% per year.</strong></p>
+<h2>Every recruiter is drowning. <span style="color:var(--amber);">The queue is broken.</span></h2>
+<div style="margin-top:6px;margin-bottom:16px;padding:16px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;border-left:4px solid var(--amber);">
+<p style="font-size:14px;color:rgba(255,255,255,0.9);line-height:1.65;">One operations role at Deel drew <strong style="color:var(--white);">6,500 applications in two weeks.</strong> One associate posting at a mid-size VC: 1,200 applications. The people worth hiring are buried in a queue designed to reward volume, not quality. Recruiters are not filtering signal. They are drowning in noise. <strong style="color:var(--white);">And the tools creating that noise are YC-funded and growing 20% per year.</strong></p>
 </div>
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:14px;">
-<div style="padding:18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.15); border-radius:12px; text-align:center;">
-<div class="stat-num" style="color:var(--red);">1,500+</div>
-<p style="font-size:12px; color:var(--text); margin-top:6px;">Applications per day from a single bot user. Mass-apply tools are YC-funded, widely available, and growing 20% per year.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+<div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
+<div class="stat-num" style="color:var(--amber);">1,500+</div>
+<p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Applications per day from a single bot user. Mass-apply tools are YC-funded, widely available, and growing 20% per year.</p>
 </div>
-<div style="padding:18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.15); border-radius:12px; text-align:center;">
-<div class="stat-num" style="color:var(--red);">41%</div>
-<p style="font-size:12px; color:var(--text); margin-top:6px;">of companies already hired a fake candidate. Not nearly hired. Hired. Onboarded. Gave access.</p>
+<div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
+<div class="stat-num" style="color:var(--amber);">41%</div>
+<p style="font-size:12px;color:var(--text-sub);margin-top:6px;">of companies already hired a fraudulent employee. Not nearly hired. Hired. Onboarded. Gave access.</p>
+<p style="font-size:10px;color:var(--muted);margin-top:4px;">GetReal Security, 668 IT/cybersecurity leaders, Dec 2025</p>
 </div>
-<div style="padding:18px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.15); border-radius:12px; text-align:center;">
-<div class="stat-num" style="color:var(--red);">$4.88M</div>
-<p style="font-size:12px; color:var(--text); margin-top:6px;">Average cost of a data breach (IBM, 2024). A fraudulent hire who gains internal access is a breach in progress.</p>
+<div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
+<div class="stat-num" style="color:var(--amber);">$4.88M</div>
+<p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Average cost of a data breach (IBM, 2024). A fraudulent hire who gains internal access is a breach in progress. The process cost is noise compared to what follows.</p>
 </div>
 </div>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-<div style="padding:16px 18px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); border-radius:12px;">
-<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">The signal destruction economy</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">AI resume tools, auto-apply bots, and interview-cheat software make up a <strong style="color:var(--white);">~$2.5B market growing est. ~20%/year.</strong> <span style="font-size:10px; color:rgba(255,255,255,0.35);">(Segment sizes estimated; AI resume optimization sourced to Future Data Stats 2024.)</span> YC funded Tsenta - a tool that helps candidates send 1,500 applications per day. YC is funding the attack. We're building the defense.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+<div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.15);border-radius:12px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">The signal destruction economy</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;">AI resume tools, auto-apply bots, and interview-cheat software make up a <strong style="color:var(--text);">~$2.5B market growing ~20%/year.</strong> YC funded Tsenta: a tool that helps candidates send 1,500 applications per day. YC is funding the attack. We are building the defense.</p>
 </div>
-<div style="padding:16px 18px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:12px;">
-<div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">The extreme version: national security</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">320+ North Korean operative cases investigated - up 220% YoY. <sup style="font-size:9px; color:var(--text-dim);">[CrowdStrike/TechCrunch, Aug 2025]</sup> Stolen SSNs, fabricated GitHub histories, live AI coaching during video interviews. KnowBe4 hired one - they passed <strong style="color:var(--white);">four video interviews and a full background check.</strong></p>
+<div style="padding:16px 18px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.15);border-radius:12px;">
+<div style="font-size:10px;font-weight:700;color:rgba(232,160,32,0.85);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">The extreme version: national security</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;">320+ North Korean operative cases investigated, up 220% YoY. <sup style="font-size:9px;color:var(--muted);">[CrowdStrike/TechCrunch, Aug 2025]</sup> Stolen SSNs, fabricated GitHub histories, live AI coaching during video interviews. KnowBe4 hired one: they passed <strong style="color:var(--text);">four video interviews and a full background check.</strong></p>
 </div>
 </div>
 <div class="sources">
@@ -508,29 +509,29 @@
 <div class="slide-inner">
 <span class="label">Why Now</span>
 <h2>Three forces. <span style="color:var(--amber);">All peaking in 2026.</span></h2>
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:20px;">
-<div style="padding:20px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.18); border-radius:14px;">
-<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Force 1 - Now</div>
-<h3 style="font-size:14px; color:var(--white);">AI destroyed the hiring signal</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Mass-apply bots collapsed signal-to-noise in 18 months. YC is funding the attack. One company got 6,500 applicants in two weeks. Nobody was building the defense.</p>
-<div style="font-size:12px; font-weight:700; color:var(--red);">This couldn't have been built 3 years ago. Every recruiter feels it now.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:20px;">
+<div style="padding:20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Force 1: Now</div>
+<h3 style="font-size:14px;color:var(--text);">AI destroyed the hiring signal</h3>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">Mass-apply bots collapsed signal-to-noise in 18 months. YC is funding the attack. One company got 6,500 applicants in two weeks. Nobody was building the defense.</p>
+<div style="font-size:12px;font-weight:700;color:var(--amber);">This could not have been built 3 years ago. Every recruiter feels it now.</div>
 </div>
-<div style="padding:20px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.18); border-radius:14px;">
-<div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Force 2 - Now</div>
-<h3 style="font-size:14px; color:var(--white);">Fraud became enterprise security risk</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">State-sponsored operatives, deepfake interviews, AI-coached live responses. 41% of enterprises already hired a fake candidate. FBI issued PSAs. DOJ filed indictments. CISO owns this now.</p>
-<div style="font-size:12px; font-weight:700; color:var(--amber);">Budget moved from HR to security. The conversation changes.</div>
+<div style="padding:20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Force 2: Now</div>
+<h3 style="font-size:14px;color:var(--text);">Fraud became enterprise security risk</h3>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">State-sponsored operatives, deepfake interviews, AI-coached live responses. 41% of enterprises already hired a fraudulent employee. FBI issued PSAs. DOJ filed indictments. CISO owns this now.</p>
+<div style="font-size:12px;font-weight:700;color:var(--amber);">Budget moved from HR to security. The conversation changes.</div>
 </div>
-<div style="padding:20px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.18); border-radius:14px;">
-<div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Force 3 - August 2, 2026</div>
-<h3 style="font-size:14px; color:var(--white);">EU AI Act: a forced purchase event</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Hiring AI is classified as high-risk under Annex III. Any company with EU operations must prove human oversight, bias testing, and audit trails. Fines: up to €35M or 7% of global revenue. US companies with EU presence are exposed.</p>
-<div style="font-size:12px; font-weight:700; color:var(--amber);">This is not a future problem. It's a Q3 2026 budget line.</div>
+<div style="padding:20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Force 3: August 2, 2026</div>
+<h3 style="font-size:14px;color:var(--text);">EU AI Act: a forced purchase event</h3>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">Hiring AI is classified as high-risk under Annex III. Any company with EU operations must prove human oversight, bias testing, and audit trails. Fines: up to 35M euros or 7% of global revenue. US companies with EU presence are exposed.</p>
+<div style="font-size:12px;font-weight:700;color:var(--amber);">This is not a future problem. It is a Q3 2026 budget line.</div>
 </div>
 </div>
-<div style="margin-top:14px; padding:14px 22px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:12px; display:flex; align-items:center; gap:14px;">
-<div style="flex-shrink:0; width:3px; height:36px; background:var(--amber); border-radius:2px;"></div>
-<p style="font-size:14px; color:rgba(255,255,255,0.85);">The ATS gives a fit score. <strong style="color:var(--white);">Nobody surfaces a trust signal.</strong> The window is open now - and closing as compliance deadlines approach.</p>
+<div style="margin-top:14px;padding:14px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;display:flex;align-items:center;gap:14px;">
+<div style="flex-shrink:0;width:3px;height:36px;background:var(--amber);border-radius:2px;"></div>
+<p style="font-size:14px;color:rgba(255,255,255,0.85);">The ATS gives a fit score. <strong style="color:var(--white);">Nobody surfaces a trust signal.</strong> The window is open now and closing as compliance deadlines approach.</p>
 </div>
 <div class="sources">
 <a href="https://artificialintelligenceact.eu/article/6/" target="_blank">EU AI Act, Article 6 + Annex III</a> ·
@@ -544,55 +545,56 @@
 <div class="slide-inner">
 <span class="label">The Product</span>
 <h2>The Candidate Hiring Captcha. <span style="color:var(--amber);">Not a filter. A signal.</span></h2>
-<div style="margin-top:12px; padding:12px 20px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.2); border-radius:12px; text-align:center; margin-bottom:14px;">
-<div style="display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;">
-<div style="padding:10px 14px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">
-<div style="font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Candidate</div>
-<div style="font-size:13px; font-weight:700;">Applies</div>
+<div style="margin-top:12px;padding:12px 20px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-radius:12px;text-align:center;margin-bottom:14px;">
+<div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;">
+<div style="padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:8px;text-align:center;">
+<div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;">Application</div>
+<div style="font-size:13px;font-weight:700;">Submitted</div>
 </div>
-<div style="color:var(--text-dim); font-size:18px;">→</div>
-<div style="padding:10px 18px; background:rgba(232,160,32,0.18); border:2px solid rgba(232,160,32,0.4); border-radius:8px; text-align:center;">
-<div style="font-size:9px; color:var(--amber); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Sentriq: pre-ATS layer</div>
-<div style="font-size:13px; font-weight:700; color:var(--white);">Trust Signal</div>
+<div style="color:var(--muted);font-size:18px;">&#8594;</div>
+<div style="padding:10px 18px;background:rgba(232,160,32,0.15);border:2px solid rgba(232,160,32,0.4);border-radius:8px;text-align:center;">
+<div style="font-size:9px;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;">Sentriq: pre-ATS layer</div>
+<div style="font-size:13px;font-weight:700;color:var(--text);">Trust Signal</div>
 </div>
-<div style="color:var(--text-dim); font-size:18px;">→</div>
-<div style="padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:8px; text-align:center;">
-<div style="font-size:9px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">ATS</div>
-<div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.6);">Fit Score</div>
+<div style="color:var(--muted);font-size:18px;">&#8594;</div>
+<div style="padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;text-align:center;">
+<div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;">ATS</div>
+<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.6);">Fit Score</div>
 </div>
-<div style="color:var(--text-dim); font-size:18px;">→</div>
-<div style="padding:10px 14px; background:rgba(255,255,255,0.05); border-radius:8px; text-align:center;">
-<div style="font-size:10px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px;">Recruiter</div>
-<div style="font-size:13px; font-weight:700;">Decides</div>
-</div>
-</div>
-<p style="font-size:10px; color:var(--text-dim); margin-top:8px;">Sentriq runs before the application enters the ATS. The trust signal travels with it through the entire pipeline. No blocking. No friction. The candidate never knows it's there.</p>
-</div>
-<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
-<div style="padding:18px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.18); border-radius:12px;">
-<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 1 - Auto-Flag</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Behavioral metadata captured as the candidate fills the form. Invisible. No friction. Detects fraud signals, bot activity, overfitting, skills anomalies, and synthetic applications before submission.</p>
-<div style="display:flex; flex-wrap:wrap; gap:4px;">
-<span class="signal-tag" style="background:rgba(239,68,68,0.1); color:#E8A020; border-color:rgba(239,68,68,0.2);">Mass-apply bots</span>
-<span class="signal-tag" style="background:rgba(239,68,68,0.1); color:#E8A020; border-color:rgba(239,68,68,0.2);">CV overfitting</span>
-<span class="signal-tag" style="background:rgba(239,68,68,0.1); color:#E8A020; border-color:rgba(239,68,68,0.2);">Skills anomaly</span>
-<span class="signal-tag" style="background:rgba(239,68,68,0.1); color:#E8A020; border-color:rgba(239,68,68,0.2);">Timeline fraud</span>
+<div style="color:var(--muted);font-size:18px;">&#8594;</div>
+<div style="padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:8px;text-align:center;">
+<div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px;">Recruiter</div>
+<div style="font-size:13px;font-weight:700;">Decides</div>
 </div>
 </div>
-<div style="padding:18px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.18); border-radius:12px;">
-<div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 2 - Async Challenge</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Only triggered when Layer 1 surfaces anomalies. Candidates who clear the passive layer are never challenged. For flagged applications: a short task, framed as part of the application. Scoring combines behavioral signals and content quality, calibrated to the claimed profile. A proxy cannot replicate both the fingerprint and the demonstrated knowledge of the person they impersonate.</p>
-<div style="display:flex; flex-wrap:wrap; gap:4px;">
-<span class="signal-tag" style="background:rgba(245,158,11,0.1); color:#E8A020; border-color:rgba(245,158,11,0.2);">Proxy impersonation</span>
-<span class="signal-tag" style="background:rgba(245,158,11,0.1); color:#E8A020; border-color:rgba(245,158,11,0.2);">AI-assisted response</span>
-<span class="signal-tag" style="background:rgba(245,158,11,0.1); color:#E8A020; border-color:rgba(245,158,11,0.2);">Profile distortion</span>
+<p style="font-size:10px;color:var(--muted);margin-top:8px;">Sentriq runs before the application enters the ATS. The trust signal travels with it through the entire pipeline. No blocking. No friction.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+<div style="padding:18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Layer 1</div>
+<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">Behavioral Baseline</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">Behavioral metadata captured as the application is filled. Invisible. No friction. Detects fraud signals, bot activity, overfitting, skills anomalies, and synthetic submissions before they enter the ATS.</p>
+<div style="display:flex;flex-wrap:wrap;gap:4px;">
+<span class="signal-tag">Mass-apply bots</span>
+<span class="signal-tag">CV overfitting</span>
+<span class="signal-tag">Timeline fraud</span>
 </div>
 </div>
-<div style="padding:18px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:12px;">
-<div style="font-size:10px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Layer 3 - Human Review</div>
-<p style="font-size:12px; color:var(--text); line-height:1.65; margin-bottom:10px;">Sentriq analyst reviews the full signal stack. Employer makes the final call. Sentriq never rejects a candidate unilaterally. Full audit trail for regulatory defense.</p>
-<div style="padding:10px 12px; background:rgba(232,160,32,0.06); border-radius:8px; border:1px solid rgba(232,160,32,0.18);">
-<p style="font-size:11px; color:var(--green); font-weight:700; text-align:center;">Zero automated rejections. Human-in-the-loop is architecture, not a disclaimer. EU AI Act compliant by design.</p>
+<div style="padding:18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Layer 2</div>
+<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">Trust Layer</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">Cross-company signal graph. Every application processed contributes to network-level intelligence built from behavioral patterns, tool signals, and anomaly clusters across the Sentriq network. No employer shares identifiable data.</p>
+<div style="display:flex;flex-wrap:wrap;gap:4px;">
+<span class="signal-tag">Cross-company patterns</span>
+<span class="signal-tag">Campaign detection</span>
+</div>
+</div>
+<div style="padding:18px;background:rgba(68,204,136,0.05);border:1px solid rgba(68,204,136,0.18);border-radius:12px;">
+<div style="font-size:10px;font-weight:700;color:#44CC88;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Layer 3</div>
+<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">Async Personalized Challenge</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">Only triggered when Layer 1 surfaces anomalies. For flagged applications: a personalized challenge framed as part of the application. A proxy cannot replicate both the behavioral fingerprint and the knowledge of the person they impersonate.</p>
+<div style="padding:10px 12px;background:rgba(68,204,136,0.07);border-radius:8px;border:1px solid rgba(68,204,136,0.18);">
+<p style="font-size:11px;color:#44CC88;font-weight:700;text-align:center;">Zero automated rejections. Human-in-the-loop by architecture. EU AI Act compliant by design.</p>
 </div>
 </div>
 </div>
@@ -600,114 +602,117 @@
 </div><div class="slide bg-dark" data-index="4">
 <div class="slide-inner">
 <span class="label">The Attack Spectrum</span>
-<h2>The problem isn't one thing. <span style="color:var(--amber);">It's a spectrum.</span></h2>
+<h2>The problem is not one thing. <span style="color:var(--amber);">It is a spectrum.</span></h2>
 <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:0; border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; margin-top:18px; margin-bottom:16px;">
 <div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.06);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Passive</div>
 <div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Behavioral Baseline</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Typing dynamics, mouse movement, fill patterns. Establishes whether a human is completing this form - before any scoring begins.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Typing dynamics, mouse movement, fill patterns. Establishes whether a human is completing this form, before any scoring begins.</p>
 </div>
 <div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
 <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Automated</div>
 <div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.45); margin-bottom:8px;">Mass-Apply Bots</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Tools like Tsenta sending 1,500+ applications per day. Same behavioral fingerprint across dozens of companies. Detectable before a human sees them.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Tools like Tsenta sending 1,500+ applications per day. Same behavioral fingerprint across dozens of companies. Detectable before a human sees them.</p>
 </div>
 <div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.06);">
 <div style="font-size:9px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Gaming</div>
 <div style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.4); margin-bottom:8px;">CV-to-JD Overfitting</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Resumes hyper-engineered to beat ATS scoring via keyword injection and hidden text. A <a href="https://www.futuredatastats.com/ai-powered-resume-builders-market" style="color:inherit;" target="_blank">$400M market</a>: gaming the queue, not earning it.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Resumes hyper-engineered to beat ATS scoring via keyword injection and hidden text. A <a href="https://www.futuredatastats.com/ai-powered-resume-builders-market" style="color:inherit;" target="_blank">$400M market</a>: gaming the queue, not earning it.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(245,158,11,0.05);">
+<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.07);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Inflation</div>
 <div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Skills Anomaly</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Claimed skills with no supporting timeline or behavioral confidence. Title says senior engineer. Behavior says otherwise.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Claimed skills with no supporting timeline or behavioral confidence. Title says senior engineer. Behavior says otherwise.</p>
 </div>
-<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(249,115,22,0.05);">
+<div style="padding:18px 14px; border-right:1px solid rgba(255,255,255,0.07); background:rgba(232,160,32,0.09);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">Fabrication</div>
 <div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Profile Distortion</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Timeline manipulation, AI-generated CVs, false credentials. Real documents - fabricated history. The behavioral mismatch is the flag.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Timeline manipulation, AI-generated CVs, false credentials. Real documents, fabricated history. The behavioral mismatch is the flag.</p>
 </div>
 <div style="padding:18px 14px; background:rgba(239,68,68,0.07);">
 <div style="font-size:9px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">State-backed</div>
 <div style="font-size:14px; font-weight:700; color:#E8A020; margin-bottom:8px;">Proxy Fraud</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.6;">Stolen SSNs, live AI coaching, real credentials - wrong person. Passed four video interviews and a full background check at KnowBe4.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.6;">Stolen SSNs, live AI coaching, real credentials, wrong person. Passed four video interviews and a full background check at KnowBe4.</p>
 </div>
 </div>
 <div style="padding:14px 22px; background:rgba(232,160,32,0.07); border:1px solid rgba(232,160,32,0.2); border-radius:12px;">
-<p style="font-size:14px; color:rgba(255,255,255,0.85); line-height:1.6;"><strong style="color:var(--white);">Every point on this spectrum is a real problem today.</strong> Background checks catch none of it. ATS systems accelerate it. Sentriq is the only layer that catches all six - because we built the attacks first.</p>
+<p style="font-size:14px; color:rgba(255,255,255,0.85); line-height:1.6;"><strong style="color:var(--white);">Every point on this spectrum is a real problem today.</strong> Background checks catch none of it. ATS systems accelerate it. Sentriq is the only layer that catches all six, because we built the attacks first.</p>
 </div>
 </div>
 </div><div class="slide bg-dark" data-index="lc">
 <div class="slide-inner">
 <span class="label">The Shift-Left Advantage</span>
-<h2>By the time enterprises verify integrity, <span style="color:var(--amber);">$1,700 per candidate is already spent.</span></h2>
-<p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:700px;margin:10px 0 18px;line-height:1.6;">Sentriq is the only verification layer that operates at the moment of application - before a single recruiter, engineer, or executive minute is invested.</p>
-<div style="display:grid;grid-template-columns:repeat(8,1fr);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-bottom:16px;">
-<div style="padding:14px 8px;background:rgba(232,160,32,0.12);border-right:1px solid rgba(255,255,255,0.08);text-align:center;border-bottom:3px solid var(--amber-d);">
-<div style="font-size:9px;font-weight:800;color:#E8A020;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">▼ Sentriq</div>
-<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Application</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.4);line-height:1.4;">Captcha active</div>
-<div style="font-size:9px;color:#E8A020;margin-top:8px;line-height:1.3;">0 internal hours<br/><span style="font-size:8px;opacity:0.7;">external marginal cost</span></div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.08);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">ATS Screen</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">Comeet<br/>Greenhouse / Lever</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">~$5/application</div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.08);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">Assessment</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">HireVue / Criteria</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">~$30/candidate</div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.08);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">Phone Screen</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">Recruiter</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">~$30/screen</div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.08);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">Tech Interview</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">CodeSignal</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">~$500/candidate</div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);border-right:1px solid rgba(255,255,255,0.08);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">Final Panel</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">Greenhouse</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">~$1,800/candidate</div>
-</div>
-<div style="padding:14px 8px;background:rgba(234,88,12,0.1);border-right:1px solid rgba(255,255,255,0.08);text-align:center;border-bottom:3px solid #E8A020;">
-<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;">Bgd Check</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.4);line-height:1.4;">Checkr / HireRight</div>
-<div style="font-size:12px;font-weight:700;color:#E8A020;margin-top:8px;">$1,900+ bled</div>
-</div>
-<div style="padding:14px 8px;background:rgba(255,255,255,0.03);text-align:center;">
-<div style="font-size:9px;color:transparent;margin-bottom:6px;">·</div>
-<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:4px;">Onboarding</div>
-<div style="font-size:10px;color:rgba(255,255,255,0.35);line-height:1.4;">Rippling / Deel</div>
-<div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);margin-top:8px;">$3,200+ total</div>
-</div>
+<h2>By the time enterprises verify integrity, <span style="color:var(--amber);">$1,700 per application is already spent.</span></h2>
+<p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:700px;margin:10px 0 18px;line-height:1.6;">Sentriq is the only verification layer that operates at the moment of application, before a single recruiter, engineer, or executive minute is invested.</p>
+<div class="lc-grid-wrap">
+    <div class="lc-grid">
+        <div class="lc-stage lc-sentriq">
+            <div class="lc-badge">Sentriq<span style="color:#E8A020;">.</span></div>
+            <div class="lc-name">Application</div>
+            <div class="lc-tool">Sentriq Trust Layer</div>
+            <div class="lc-cost">Signal captured here</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">ATS Screen</div>
+            <div class="lc-tool">Greenhouse / Lever</div>
+            <div class="lc-cost">~$5 / application</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Assessment</div>
+            <div class="lc-tool">HireVue / Criteria</div>
+            <div class="lc-cost">~$30 / candidate</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Phone Screen</div>
+            <div class="lc-tool">Recruiter</div>
+            <div class="lc-cost">~$30 / screen</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Tech Interview</div>
+            <div class="lc-tool">CodeSignal</div>
+            <div class="lc-cost">~$500 / candidate</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Final Panel</div>
+            <div class="lc-tool">Hiring panel</div>
+            <div class="lc-cost">~$1,800 / candidate</div>
+        </div>
+        <div class="lc-stage lc-danger">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Background Check</div>
+            <div class="lc-tool">Checkr / HireRight</div>
+            <div class="lc-cost">$1,900+ bled</div>
+        </div>
+        <div class="lc-stage">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Onboarding</div>
+            <div class="lc-tool">Rippling / Deel</div>
+            <div class="lc-cost">$3,200+ total</div>
+        </div>
+    </div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-<div style="padding:14px 18px;background:rgba(68,204,136,0.08);border:1px solid rgba(68,204,136,0.2);border-radius:10px;">
-<div style="font-size:13px;font-weight:700;color:#E8A020;margin-bottom:6px;">Sentriq screens at $0</div>
+<div style="padding:14px 18px;background:rgba(68,204,136,0.06);border:1px solid rgba(68,204,136,0.18);border-radius:10px;">
+<div style="font-size:13px;font-weight:700;color:#44CC88;margin-bottom:6px;">Sentriq screens at $0 internal cost</div>
 <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">Before the first phone call. Before the first calendar invite. Before any human time is spent.</div>
 </div>
-<div style="padding:14px 18px;background:rgba(234,88,12,0.08);border:1px solid rgba(234,88,12,0.2);border-radius:10px;">
-<div style="font-size:13px;font-weight:700;color:#E8A020;margin-bottom:6px;">Background checks run last</div>
+<div style="padding:14px 18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.18);border-radius:10px;">
+<div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px;">Background checks run last</div>
 <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">After 6+ interview rounds. After $1,900+ in recruiter, engineer, and executive time is already gone.</div>
 </div>
-<div style="padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">
+<div style="padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;">
 <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">The shift-left principle</div>
 <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;">In security, catching problems earlier reduces cost 100x. Sentriq applies shift-left to hiring: detect fraud at the source, not after the damage.</div>
 </div>
 </div>
 <div class="sources">
-<a href="https://www.shrm.org/topics-tools/news/talent-acquisition/real-costs-recruitment" target="_blank">SHRM 2025: avg. cost per hire $4,700–$5,475 (non-executive roles)</a> · Stage-level cost breakdown is an internal model anchored to this industry benchmark.
-            </div>
+<a href="https://www.shrm.org/topics-tools/news/talent-acquisition/real-costs-recruitment" target="_blank">SHRM 2025: avg. cost per hire $4,700-$5,475 (non-executive roles)</a> · Stage-level cost breakdown is an internal model anchored to this industry benchmark.
+</div>
 </div>
 </div><div class="slide bg-dark" data-index="7">
 <div class="slide-inner">
@@ -799,8 +804,8 @@
 <div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">vs. Distribution Risks</div>
 <p style="font-size:11.5px; color:var(--text-sub); line-height:1.55;">Persona and ATS incumbents have distribution but not the detection. DPRK operatives pass identity checks using real stolen SSNs. ATS customer contracts permanently block the cross-company graph: not a temporary gap, a legal constraint written into every enterprise agreement.</p>
 </div>
-<div style="padding:14px 16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Clarity + GetReal + HireVue: Validation</div>
+<div style="padding:14px 16px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:10px;">
+<div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Clarity + GetReal + HireVue: Validation</div>
 <p style="font-size:11.5px; color:var(--text-sub); line-height:1.55;">$490M+ in capital flowing to late-funnel deepfake detection confirms hiring fraud is a funded enterprise security category. All three operate after Sentriq in the funnel. All three validate the ask without competing for the same position.</p>
 </div>
 <div style="padding:14px 16px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:10px;">
@@ -817,17 +822,17 @@
 <div style="padding:20px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:14px;">
 <div style="font-size:28px; font-weight:800; color:rgba(232,160,32,0.2); margin-bottom:10px;">01</div>
 <h3 style="color:var(--amber); font-size:14px;">The R&D Tool</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">Built a live tool that helped candidates beat ATS systems. 100 beta users, $300K of our own capital invested. We didn't study hiring signal. We manipulated it at scale - on real production systems.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.65;">Built a live tool that helped candidates beat ATS systems. 100 beta users, $300K of our own capital invested. We did not study hiring signal. We manipulated it at scale, on real production systems.</p>
 </div>
-<div style="padding:20px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:14px;">
-<div style="font-size:28px; font-weight:800; color:rgba(245,158,11,0.2); margin-bottom:10px;">02</div>
+<div style="padding:20px; background:rgba(232,160,32,0.05); border:1px solid rgba(232,160,32,0.15); border-radius:14px;">
+<div style="font-size:28px; font-weight:800; color:rgba(232,160,32,0.2); margin-bottom:10px;">02</div>
 <h3 style="color:var(--amber); font-size:14px;">The Experiments</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">30+ live scoring experiments across Comeet, Greenhouse, and Niloos. Discovered 17 rules ATS companies didn't know they were enforcing. We mapped exactly where and how signal breaks.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.65;">30+ live scoring experiments across Comeet, Greenhouse, and Niloos. Discovered 17 rules ATS companies did not know they were enforcing. We mapped exactly where and how signal breaks.</p>
 </div>
-<div style="padding:20px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.06); border-radius:14px;">
+<div style="padding:20px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.15); border-radius:14px;">
 <div style="font-size:28px; font-weight:800; color:rgba(232,160,32,0.18); margin-bottom:10px;">03</div>
 <h3 style="color:var(--green); font-size:14px;">The Flip</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">Every attack method we used became a detection signature. No competitor approached this from the inside. You can't buy this knowledge. You have to earn it by running the attacks.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.65;">Every attack method we used became a detection signature. No competitor approached this from the inside. You cannot buy this knowledge. You have to earn it by running the attacks.</p>
 </div>
 </div>
 <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; padding:16px 24px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-align:center;">
@@ -851,38 +856,35 @@
 </div><div class="slide bg-dark" data-index="11">
 <div class="slide-inner">
 <span class="label">Network Effects</span>
-<h2>The graph compounds. <span style="color:var(--amber);">Every node makes every other node smarter.</span></h2>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;">
-<div style="display:flex; flex-direction:column; gap:12px;">
-<div style="padding:18px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.2); border-radius:14px;">
-<div style="display:flex; flex-direction:column; gap:10px;">
-<div style="display:flex; align-items:flex-start; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border-left:3px solid rgba(232,160,32,0.4);">
-<div style="width:26px; height:26px; border-radius:50%; background:var(--amber); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">1</div>
-<p style="font-size:12px; color:var(--text); line-height:1.5; margin:0;">Absolute anomaly detection from day one. No prior data needed.</p>
+<h2>Every customer makes the product <span style="color:var(--amber);">better for everyone else.</span></h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;">
+<div style="display:flex;flex-direction:column;gap:12px;">
+<div style="padding:18px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
+<div style="display:flex;flex-direction:column;gap:10px;">
+<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid rgba(232,160,32,0.35);">
+<div style="width:26px;height:26px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#09090F;">1</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;margin:0;">Absolute anomaly detection from day one. No prior data needed.</p>
 </div>
-<div style="display:flex; align-items:flex-start; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border-left:3px solid rgba(232,160,32,0.6);">
-<div style="width:26px; height:26px; border-radius:50%; background:var(--amber); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">10</div>
-<p style="font-size:12px; color:var(--text); line-height:1.5; margin:0;"><strong style="color:var(--white);">Cross-company patterns emerge.</strong> Same fingerprint at three companies last month? Flagged on arrival at the fourth - without employers sharing data.</p>
+<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid rgba(232,160,32,0.55);">
+<div style="width:26px;height:26px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#09090F;">10</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;margin:0;"><strong style="color:var(--text);">Cross-company patterns emerge.</strong> Same fingerprint at three companies last month? Flagged on arrival at the fourth, without employers sharing data.</p>
 </div>
-<div style="display:flex; align-items:flex-start; gap:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border-left:3px solid var(--amber);">
-<div style="width:26px; height:26px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0;">100</div>
-<p style="font-size:12px; color:var(--text); line-height:1.5; margin:0;"><strong style="color:var(--white);">Campaign-level detection.</strong> Coordinated clusters - the signature of state-backed operations - identified across the network before reaching any single employer.</p>
-</div>
-</div>
-</div>
-<div style="padding:14px 18px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:12px; text-align:center;">
-<p style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.6;"><strong style="color:var(--amber);">Graph activation threshold: 15 companies.</strong><br/><span style="font-size:11px; color:var(--text-dim);">At 15 nodes, the correlation engine surfaces patterns no single company sees alone. Target: end of year 1.</span></p>
+<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid var(--amber);">
+<div style="width:26px;height:26px;border-radius:50%;background:#44CC88;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:#09090F;">100</div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;margin:0;"><strong style="color:var(--text);">Campaign-level detection.</strong> Coordinated clusters, the signature of state-backed operations, identified across the network before reaching any single employer.</p>
 </div>
 </div>
-<div style="padding:20px; background:rgba(232,160,32,0.04); border:1px solid rgba(232,160,32,0.15); border-radius:14px; display:flex; flex-direction:column; gap:10px;">
-<h3 style="font-size:13px; color:var(--amber); margin-bottom:4px;">A knowledge graph for hiring integrity</h3>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">At 15 customers, the graph starts returning signal no single employer can see alone. At 100, coordinated campaigns are detected before they reach any one company. The product gets more accurate with every customer added, without any customer sharing identifiable data. This is a correlation engine: the same signal that meant nothing in isolation becomes definitive evidence when the graph connects it across employers.</p>
-<p style="font-size:12px; color:var(--text); line-height:1.65;">This is not a feature that incumbents can build. Greenhouse controls ~30% of the market and their customer contracts legally prohibit cross-employer data sharing. That is a permanent structural constraint. Sentriq requires neutral ground and direct candidate consent. No ATS can offer either.</p>
-<div style="padding:10px 14px; background:rgba(232,160,32,0.1); border-radius:8px; border:1px solid rgba(232,160,32,0.2);">
-<p style="font-size:12px; color:rgba(255,255,255,0.4); font-weight:600; text-align:center;">The more companies join the network, the harder it becomes to defraud any of them. That is the platform.</p>
 </div>
-<div style="padding:10px 14px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.07);">
-<p style="font-size:11px; color:var(--text-dim); line-height:1.6; text-align:center;">Every enterprise that hires is a potential node. EU AI Act (August 2026) makes integrity infrastructure a compliance requirement, not a discretionary purchase. The category is being created now.</p>
+<div style="padding:14px 18px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;text-align:center;">
+<p style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.6;"><strong style="color:var(--amber);">Network signal threshold: 15 companies.</strong><br/><span style="font-size:11px;color:var(--muted);">At 15 customers, the graph detects patterns no single company sees alone. Target: end of year 1.</span></p>
+</div>
+</div>
+<div style="padding:20px;background:rgba(232,160,32,0.03);border:1px solid rgba(232,160,32,0.15);border-radius:14px;display:flex;flex-direction:column;gap:10px;">
+<h3 style="font-size:13px;color:var(--amber);margin-bottom:4px;">What Sentriq becomes at scale</h3>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;">At 15 customers, the graph starts returning signal no single employer can see alone. At 100, coordinated campaigns are detected before they reach any one company. The product gets more accurate with every customer added: without any customer sharing identifiable data.</p>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.65;">This is not a feature that incumbents can build. Greenhouse controls ~30% of the market and their customer contracts legally prohibit cross-employer data sharing. That is a permanent structural constraint. Sentriq requires neutral ground and direct candidate consent. No ATS can offer either.</p>
+<div style="padding:10px 14px;background:rgba(232,160,32,0.08);border-radius:8px;border:1px solid rgba(232,160,32,0.2);">
+<p style="font-size:12px;color:var(--amber);font-weight:600;text-align:center;">The more companies join the network, the harder it becomes to defraud any of them. That is the platform.</p>
 </div>
 </div>
 </div>
@@ -932,31 +934,31 @@
 <div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">HR starts a POC</div>
 <p style="font-size:10px; color:var(--text-dim); line-height:1.5;">No CISO approval needed. Near-zero cost. "Show us what is actually in our live applicant data."</p>
 </div>
-<div style="text-align:center; font-size:18px; color:var(--green);">→</div>
-<div style="padding:14px; background:rgba(245,158,11,0.05); border-radius:10px; border:1px solid rgba(245,158,11,0.18);">
-<div style="font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px;">Step 2</div>
-<div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">Real fraud surfaces</div>
-<p style="font-size:10px; color:var(--text-dim); line-height:1.5;">The data does the selling. Fraud flags in their own live pipeline turn a pilot into a security incident.</p>
+<div style="text-align:center;font-size:18px;color:#44CC88;">&#8594;</div>
+<div style="padding:14px;background:rgba(232,160,32,0.05);border-radius:10px;border:1px solid rgba(232,160,32,0.18);">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">Step 2</div>
+<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Real fraud surfaces</div>
+<p style="font-size:10px;color:var(--muted);line-height:1.5;">The data does the selling. Fraud flags in their own live pipeline turn a pilot into a security incident.</p>
 </div>
-<div style="text-align:center; font-size:18px; color:var(--green);">→</div>
-<div style="padding:14px; background:rgba(239,68,68,0.05); border-radius:10px; border:1px solid rgba(239,68,68,0.18);">
-<div style="font-size:10px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px;">Step 3</div>
-<div style="font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px;">CISO owns the outcome</div>
-<p style="font-size:10px; color:var(--text-dim); line-height:1.5;">Security incident in hiring = CISO's problem. EU AI Act compliance = CISO's budget line. Contract follows.</p>
-</div>
-</div>
-<div style="margin-top:10px; padding:8px 14px; background:rgba(232,160,32,0.06); border-radius:8px;">
-<p style="font-size:11px; color:#E8A020; text-align:center; font-weight:600;">HR never needs to sell internally. The findings surface a security incident. The CISO owns it from there.</p>
+<div style="text-align:center;font-size:18px;color:#44CC88;">&#8594;</div>
+<div style="padding:14px;background:rgba(232,160,32,0.05);border-radius:10px;border:1px solid rgba(232,160,32,0.18);">
+<div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">Step 3</div>
+<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">CISO owns the outcome</div>
+<p style="font-size:10px;color:var(--muted);line-height:1.5;">Security incident in hiring = CISO's problem. EU AI Act compliance = CISO's budget line. Contract follows.</p>
 </div>
 </div>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-<div style="padding:16px 18px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:12px;">
-<div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:8px;">🎯 VP HR: the entry point</div>
-<p style="font-size:11px; color:var(--text); line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. Pays for itself before the second mis-hire. They feel it. They want it. They start the POC.</p>
+<div style="margin-top:10px;padding:8px 14px;background:rgba(68,204,136,0.07);border-radius:8px;">
+<p style="font-size:11px;color:#44CC88;text-align:center;font-weight:600;">HR never needs to convince the CISO. The findings do it. The stalemate does not exist in this motion.</p>
 </div>
-<div style="padding:16px 18px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.18); border-radius:12px;">
-<div style="font-size:11px; font-weight:700; color:#E8A020; margin-bottom:8px;">🔐 CISO: where the money is</div>
-<p style="font-size:11px; color:var(--text); line-height:1.6;">Owns the risk of who gets inside post-DPRK. EU AI Act (August 2026) is a forced purchase event already in their Q3 budget. CISO budget is 10-50x HR budget. When the CISO owns the problem, the pricing conversation changes entirely.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+<div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
+<div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">VP HR: the entry point</div>
+<p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. Pays for itself before the second mis-hire. They feel it. They want it. They start the POC.</p>
+</div>
+<div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
+<div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">CISO: where the money is</div>
+<p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Owns the risk of who gets inside post-DPRK. EU AI Act (August 2026) is a forced purchase event already in their Q3 budget. CISO budget is 10-50x HR budget. When the CISO owns the problem, the pricing conversation changes entirely.</p>
 </div>
 </div>
 <div style="margin-top:10px; padding:12px 20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px;">
@@ -980,29 +982,29 @@
 <div class="slide-inner">
 <span class="label">Current Stage</span>
 <h2>Honest about where we stand. <span style="color:var(--amber);">The round is forming now.</span></h2>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;">
 <div>
-<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">What exists today</div>
-<div style="display:flex; flex-direction:column; gap:8px;">
-<div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:10px;">
-<div style="width:8px; height:8px; border-radius:50%; background:var(--green); flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Attack research complete.</strong> 17 documented techniques. 30+ experiments. No competitor has this corpus.</p>
+<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:4px;margin-bottom:10px;">What exists today</div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(68,204,136,0.05);border:1px solid rgba(68,204,136,0.16);border-radius:10px;">
+<div style="width:8px;height:8px;border-radius:50%;background:#44CC88;flex-shrink:0;"></div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;"><strong style="color:var(--text);">Attack research complete.</strong> 17 documented techniques. 30+ live ATS experiments. No competitor has this corpus.</p>
 </div>
-<div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:10px;">
-<div style="width:8px; height:8px; border-radius:50%; background:var(--green); flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Live demo.</strong> The product experience is real - you can interact with it today.</p>
+<div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(68,204,136,0.05);border:1px solid rgba(68,204,136,0.16);border-radius:10px;">
+<div style="width:8px;height:8px;border-radius:50%;background:#44CC88;flex-shrink:0;"></div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;"><strong style="color:var(--text);">Live demo.</strong> The product experience is real and interactive today.</p>
 </div>
-<div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:10px;">
-<div style="width:8px; height:8px; border-radius:50%; background:var(--amber); flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Engineering started.</strong> ATS integrations underway. Nothing in production yet.</p>
+<div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.14);border-radius:10px;">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;"></div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;"><strong style="color:var(--text);">Engineering started.</strong> ATS integrations underway. Nothing in production yet.</p>
 </div>
-<div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:10px;">
-<div style="width:8px; height:8px; border-radius:50%; background:var(--amber); flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Active design partner pipeline.</strong> Big 4 consulting, Optimove, a SAP-acquired unicorn, an American IT enterprise, one of the five largest companies in the world. Meetings this week. Each lead at a different stage of the process.</p>
+<div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.14);border-radius:10px;">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;"></div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;"><strong style="color:var(--text);">Active design partner pipeline.</strong> Big 4 consulting, Optimove, a SAP-acquired unicorn, an American IT enterprise, one of the five largest companies in the world. Meetings this week. Each lead at a different stage of the process.</p>
 </div>
-<div style="display:flex; gap:12px; align-items:center; padding:10px 14px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); border-radius:10px;">
-<div style="width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">SOC 2 audit begins Q3 2026.</strong> Type I target: Q4 2026. Required for enterprise contracts. That's what the seed covers.</p>
+<div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.14);border-radius:10px;">
+<div style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;"></div>
+<p style="font-size:12px;color:var(--text-sub);line-height:1.5;"><strong style="color:var(--text);">SOC 2 audit begins Q3 2026.</strong> Type I target: Q4 2026. Required for enterprise contracts. That is what the seed covers.</p>
 </div>
 </div>
 </div>
@@ -1012,39 +1014,39 @@
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
 <div style="display:flex; gap:8px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:11px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">97212 Ventures evaluating as an opening check.</strong> Eyal Bino ($20M fund, NYC ecosystem): $500K to anchor the round and activate US financial services introductions from day one. Round forming around FutureFirst as lead.</p>
+<p style="font-size:11px; color:var(--text-sub); line-height:1.5;"><strong style="color:var(--text);">97212 Ventures evaluating as an opening check.</strong> Eyal Bino ($20M fund, NYC ecosystem): $500K to anchor the round and activate US financial services introductions from day one. Round forming around FutureFirst as lead.</p>
 </div>
 <div style="display:flex; gap:8px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:11px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">Enterprise design partner pipeline.</strong> Optimove, Big 4 consulting, SAP-acquired unicorn, American IT enterprise, one of the five largest companies in the world. Meetings this week. Each lead at a different stage of the process. The caliber is the signal.</p>
+<p style="font-size:11px; color:var(--text-sub); line-height:1.5;"><strong style="color:var(--text);">Enterprise design partner pipeline.</strong> Optimove, Big 4 consulting, SAP-acquired unicorn, American IT enterprise, one of the five largest companies in the world. Meetings this week. Each lead at a different stage of the process. The caliber is the signal.</p>
 </div>
 <div style="display:flex; gap:8px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:11px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">EU AI Act: August 2, 2026.</strong> Hiring AI classified high-risk. Every enterprise with EU operations must buy this in Q3. Fines up to 7% of global revenue. Forced purchase event already in CISO Q3 budgets.</p>
+<p style="font-size:11px; color:var(--text-sub); line-height:1.5;"><strong style="color:var(--text);">EU AI Act: August 2, 2026.</strong> Hiring AI classified high-risk. Every enterprise with EU operations must buy this in Q3. Fines up to 7% of global revenue. Forced purchase event already in CISO Q3 budgets.</p>
 </div>
 <div style="display:flex; gap:8px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:11px; color:var(--text); line-height:1.5;"><strong style="color:var(--white);">YC funded the attack.</strong> Tsenta (S26): 1,500 applications per day per user. The offense is scaling now. The defense window is open: and closing as compliance deadlines arrive.</p>
+<p style="font-size:11px; color:var(--text-sub); line-height:1.5;"><strong style="color:var(--text);">YC funded the attack.</strong> Tsenta (S26): 1,500 applications per day per user. The offense is scaling now. The defense window is open, and closing as compliance deadlines arrive.</p>
 </div>
 </div>
 </div>
-<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">The milestones seed capital buys</div>
+<div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:4px; margin-bottom:10px;">The milestones seed capital buys</div>
 <div style="display:flex; flex-direction:column; gap:7px;">
-<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
+<div style="padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--amber); margin-bottom:4px;">Q3 2026</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">Product live in production. SOC 2 audit engaged. Design partner pilots running. Each lead at a different stage of the process.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.5;">Product live in production. SOC 2 audit engaged. Design partner pilots running.</p>
 </div>
-<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
+<div style="padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--amber); margin-bottom:4px;">Q4 2026</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">SOC 2 Type I complete. First paying contracts signed. Enterprise procurement open.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.5;">SOC 2 Type I complete. First paying contracts signed. Enterprise procurement open.</p>
 </div>
-<div style="padding:11px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.12); border-radius:10px;">
+<div style="padding:11px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px;">
 <div style="font-size:10px; font-weight:700; color:var(--amber); margin-bottom:4px;">Q1 2027</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">10-12 paying customers. ~$400K ARR. Approaching the 15-company graph threshold: cross-company fingerprint matching begins returning signal no single company can see alone.</p>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.5;">10-12 paying customers. ~$400K ARR. Approaching the 15-company graph threshold: cross-company fingerprint matching begins returning signal no single company can see alone.</p>
 </div>
-<div style="padding:11px 14px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.18); border-radius:10px;">
-<div style="font-size:10px; font-weight:700; color:var(--green); margin-bottom:4px;">Q4 2027: Series A milestone</div>
-<p style="font-size:11.5px; color:var(--text); line-height:1.5;">$1M ARR. 22-28 customers. 2 enterprise logos. 90%+ gross retention. Network graph operational: the product compounds. Each new customer makes detection stronger for every existing one.</p>
+<div style="padding:11px 14px; background:rgba(68,204,136,0.05); border:1px solid rgba(68,204,136,0.18); border-radius:10px;">
+<div style="font-size:10px; font-weight:700; color:#44CC88; margin-bottom:4px;">Q4 2027: Series A milestone</div>
+<p style="font-size:11.5px; color:var(--text-sub); line-height:1.5;">$1M ARR. 22-28 customers. 2 enterprise logos. 90%+ gross retention. Network graph operational: the product compounds. Each new customer makes detection stronger for every existing one.</p>
 </div>
 </div>
 </div>
@@ -1056,7 +1058,7 @@
 <h2>$3.5M seed. <span style="color:var(--amber);">FutureFirst leads. The window is Q2 2026.</span></h2>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
 <div>
-<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Use of funds - $3.5M</div>
+<div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Use of funds - $3.5M</div>
 <div style="display:flex; flex-direction:column; gap:8px;">
 <div style="display:flex; align-items:center; gap:10px; padding:10px 14px; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07);">
 <div style="font-size:14px; font-weight:800; color:var(--amber); min-width:36px;">43%</div>
@@ -1077,27 +1079,27 @@
 </div>
 </div>
 <div>
-<div style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Why FutureFirst</div>
+<div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px;">Why FutureFirst</div>
 <div style="display:flex; flex-direction:column; gap:9px;">
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">"Capital is a commodity. Trust is rare."</strong> Your own tagline is Sentriq's product thesis. Every hiring decision is a trust problem that organizations are currently solving with a fit score. The trust signal layer does not exist yet. That is what we are building.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">"Capital is a commodity. Trust is rare."</strong> Your own tagline is Sentriq's product thesis. Every hiring decision is a trust problem that organizations are currently solving with a fit score. The trust signal layer does not exist yet. That is what we are building.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">Vertical AI with private data moat.</strong> Your thesis is exactly this: proprietary domain-specific data that general-purpose models cannot access. The adversarial corpus: 30+ experiments, 17 labeled attack techniques, is that data. It was built on a B2C product specifically so the B2B defense would be defensible.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Vertical AI with private data moat.</strong> Your thesis is exactly this: proprietary domain-specific data that general-purpose models cannot access. The adversarial corpus: 30+ experiments, 17 labeled attack techniques, is that data. It was built on a B2C product specifically so the B2B defense would be defensible.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">Your LP network is the buyer profile.</strong> Senior US finance and healthcare executives. Both sectors are Sentriq's exact enterprise buyer: high volume hiring, high fraud risk, CISO budget. FutureFirst LPs become the first design partner introductions.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">Your LP network is the buyer profile.</strong> Senior US finance and healthcare executives. Both sectors are Sentriq's exact enterprise buyer: high volume hiring, high fraud risk, CISO budget. FutureFirst LPs become the first design partner introductions.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--green); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">The acquisition story is already written.</strong> Workday, SAP SuccessFactors, Greenhouse, and Checkr all need a trust signal layer embedded in their stacks. None can build it: it requires neutral ground and the adversarial corpus. At $1M ARR with 2 enterprise logos and a live knowledge graph, Sentriq is a compelling M&A target at a price that works for a fund your size.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">The acquisition story is already written.</strong> Workday, SAP SuccessFactors, Greenhouse, and Checkr all need a trust signal layer embedded in their stacks. None can build it: it requires neutral ground and the adversarial corpus. At $1M ARR with 2 enterprise logos and a live knowledge graph, Sentriq is a compelling M&A target at a price that works for a fund your size.</p>
 </div>
 <div style="display:flex; gap:10px; align-items:flex-start;">
 <div style="width:5px; height:5px; border-radius:50%; background:var(--amber); margin-top:5px; flex-shrink:0;"></div>
-<p style="font-size:12px; color:var(--text); line-height:1.6;"><strong style="color:var(--white);">97212 Ventures evaluating as an opening check.</strong> Eyal Bino ($20M fund, NYC) brings financial services ecosystem and a GTM board. FutureFirst leads. 97212 activates US distribution. The roles are clear and complementary. No exit thesis conflict: a $300M M&A exit is a 30x return on their $500K. Both investors win at the same outcome.</p>
+<p style="font-size:12px; color:var(--text-sub); line-height:1.6;"><strong style="color:var(--text);">97212 Ventures evaluating as an opening check.</strong> Eyal Bino ($20M fund, NYC) brings financial services ecosystem and a GTM board. FutureFirst leads. 97212 activates US distribution. The roles are clear and complementary. No exit thesis conflict: a $300M M&A exit is a 30x return on their $500K. Both investors win at the same outcome.</p>
 </div>
 </div>
 </div>
@@ -1112,13 +1114,13 @@
 <!-- /deck -->
 <div class="nav-bar">
 <div class="nav-logo">
-<svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
-        Sentriq / FutureFirst Ventures
-    </div>
+    <svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="10" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="13.5" width="4.5" height="32" rx="2" fill="#E8A020"/></svg>
+    Sentriq<span style="color:#E8A020;">.</span> / FutureFirst Ventures
+</div>
 <div class="nav-controls">
-<button class="nav-btn" onclick="navigate(-1)">←</button>
-<span class="slide-counter" id="slideCounter">1 / 13</span>
-<button class="nav-btn" onclick="navigate(1)">→</button>
+    <button class="nav-btn" onclick="navigate(-1)">&#8592;</button>
+    <span class="slide-counter" id="slideCounter">1 / 13</span>
+    <button class="nav-btn" onclick="navigate(1)">&#8594;</button>
 </div>
 </div>
 <script>
