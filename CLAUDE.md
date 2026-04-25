@@ -15,6 +15,34 @@ Before delivering any written output (HTML, Word doc, PDF, email copy, slide tex
 
 ---
 
+## PRODUCT ARCHITECTURE — FROZEN. DO NOT CHANGE WITHOUT EXPLICIT INSTRUCTION.
+
+The three-layer product architecture is a hard constant. The names, order, and concepts are locked.
+
+| Layer | Name | Trigger |
+|---|---|---|
+| Layer 1 | Behavioral Baseline | Always — passive, invisible |
+| Layer 2 | Async Challenge | Only when Layer 1 flags an anomaly |
+| Layer 3 | Human Review | Only when Layer 2 flags divergence |
+
+**What each name means:**
+- Layer 1: behavioral metadata captured while the form is filled. No friction.
+- Layer 2: short async task framed as part of the application. Not a quiz. Not biometric. Detects proxy impersonation and AI-assisted responses.
+- Layer 3: Sentriq analyst reviews the full signal stack. Employer decides. Zero automated rejections. EU AI Act compliant by design.
+
+**What is NOT a layer:**
+- The cross-company signal graph is NOT Layer 2. It is the network effect / moat, described separately in the Network Effects slide. It has never been a numbered product layer.
+
+**Pre-push check — run before committing any deck:**
+```bash
+grep -c 'Trust Layer' <file>       # must be 0 — Trust Layer is dead
+grep -c 'Async Personalized' <file> # must be 0 — old name, retired
+```
+
+**Authorization rule:** Never rename, reorder, or redefine any of the three layers in any deck, slide, email, or copy without Samuel explicitly saying so. If the product architecture changes, Samuel will state it. Do not infer it from memory, prior decks, or any other source.
+
+---
+
 ## Writing Rules
 
 ### Em Dashes
