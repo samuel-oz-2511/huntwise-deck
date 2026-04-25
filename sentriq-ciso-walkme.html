@@ -561,16 +561,24 @@ Every time this deck is unlocked, you get a push notification.
 </div>
 
 <script>
-    function trackAccess() {
-        const ts = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jerusalem', hour12: false });
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        try {
-            fetch('https://ntfy.sh/sentriq-ciso-walkme-x7k2', {
-                method: 'POST',
-                mode: 'no-cors',
-                body: 'WalkMe deck just unlocked.\nTime: ' + ts + '\nViewer timezone: ' + tz
+    function pingOpen() {
+        if (sessionStorage.getItem('ciso-walkme-pinged')) return;
+        sessionStorage.setItem('ciso-walkme-pinged', '1');
+        var t = new Date().toISOString();
+        fetch('https://ipapi.co/json/')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) {
+                var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+                var org = geo.org || '';
+                var msg = 'WalkMe CISO deck opened\n' + loc + '\n' + org + '\n' + t;
+                fetch('https://ntfy.sh/sentriq-ciso-walkme-x7k2', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+            })
+            .catch(function() {
+                fetch('https://ntfy.sh/sentriq-ciso-walkme-x7k2', {
+                    method: 'POST', mode: 'no-cors',
+                    body: 'WalkMe CISO deck opened (location unavailable)\n' + t
+                }).catch(function(){});
             });
-        } catch(e) {}
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -583,7 +591,7 @@ Every time this deck is unlocked, you get a push notification.
         if (val === atob('c2VudHJpcXdhbGttZTIwMjY=')) {
             document.getElementById('gate').style.display = 'none';
             document.querySelector('.page').style.display = '';
-            trackAccess();
+            pingOpen();
         } else {
             const err = document.getElementById('gateError');
             err.style.opacity = '1';
@@ -725,23 +733,23 @@ Every time this deck is unlocked, you get a push notification.
             <div class="layer-card">
                 <div class="layer-num">Layer 2</div>
                 <h3>Async Challenge</h3>
-                <div class="layer-desc">Sentriq does not evaluate each application in isolation. Every submission contributes to a cross-company signal graph that builds across all applications, across all companies on the network.</div>
+                <div class="layer-desc">When Layer 1 flags an anomaly, a short async task is deployed as part of the application flow. Not a quiz. Not biometric. It establishes whether the flag is real before any recruiter time is spent.</div>
                 <ul class="layer-bullets">
-                    <li>Cross-application pattern matching</li>
-                    <li>Network-wide anomaly scoring</li>
-                    <li>Shared fraud intelligence across companies</li>
-                    <li>Signal sharpens with every application processed</li>
+                    <li>Detects proxy impersonation and AI-assisted responses</li>
+                    <li>Framed as part of the application, not a security check</li>
+                    <li>Invisible friction for legitimate applicants</li>
+                    <li>Result surfaces in Lever alongside the application</li>
                 </ul>
             </div>
             <div class="layer-card">
                 <div class="layer-num">Layer 3</div>
                 <h3>Human Review</h3>
-                <div class="layer-desc">Flagged applications trigger a personalized async challenge sent to the applicant. It does not test skills. It establishes whether the flag is a real concern before any recruiter time is spent.</div>
+                <div class="layer-desc">When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack. The employer receives a structured recommendation. No automated rejections. EU AI Act compliant by design.</div>
                 <ul class="layer-bullets">
-                    <li>Tailored to the specific application and role</li>
-                    <li>Invisible friction for legitimate applicants</li>
-                    <li>No recruiter involvement required</li>
-                    <li>Result surfaces in Lever alongside the application</li>
+                    <li>Full signal stack reviewed by Sentriq analyst</li>
+                    <li>Employer makes the final decision</li>
+                    <li>Zero automated rejections</li>
+                    <li>Complete audit trail for compliance</li>
                 </ul>
             </div>
         </div>
@@ -770,13 +778,13 @@ Every time this deck is unlocked, you get a push notification.
                     <div class="stat-source">IBM / Ponemon, 2023</div>
                 </div>
                 <div>
-                    <div class="stat-label">Sentriq enterprise (annual)</div>
-                    <div class="stat-num white">$24K</div>
-                    <div class="stat-source">$2,000/mo standard rate</div>
+                    <div class="stat-label">Sentriq design partner (annual)</div>
+                    <div class="stat-num white">$84K</div>
+                    <div class="stat-source">WalkMe design partner rate</div>
                 </div>
                 <div>
                     <div class="stat-label">Risk coverage</div>
-                    <div class="stat-num">476x</div>
+                    <div class="stat-num">136x</div>
                     <div class="stat-source">Incident cost vs. annual Sentriq fee</div>
                 </div>
             </div>
@@ -821,7 +829,7 @@ Every time this deck is unlocked, you get a push notification.
             <div class="ask-card highlight">
                 <div class="ask-icon">&#128272;</div>
                 <h3>A pilot in your Lever flow</h3>
-                <p>Run Sentriq against your live hiring pipeline from launch. No integration overhead. No commitment beyond the conversation. Design partners shape the product and receive preferred commercial terms.</p>
+                <p>Run Sentriq against your live Lever pipeline. Pilot is free. Design partners shape the product roadmap and receive preferred commercial terms at launch. A simple design partner LOI formalizes the arrangement.</p>
             </div>
             <div class="ask-card highlight">
                 <div class="ask-icon">&#128202;</div>
@@ -834,8 +842,8 @@ Every time this deck is unlocked, you get a push notification.
     <!-- CTA -->
     <div class="cta">
         <div class="cta-left">
-            <h2>One conversation. No commitment.</h2>
-            <p>We can demo against a real hiring flow this week. No integration work required on your side.</p>
+            <h2>One design partner agreement. Pilot starts when we are ready.</h2>
+            <p>Pilot is free. Reference rights are unconditional from signing. The only ask is Lever API access. We have a simple LOI ready.</p>
         </div>
         <div class="cta-right">
             <div class="contact">samuel@sentriq.co</div>
