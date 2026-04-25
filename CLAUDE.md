@@ -369,8 +369,9 @@ grep -c 'rect x="10" y="20" width="9"' <file>
 # Required: 0
 
 # 12. Correct bracket+dot logo present
+# THE DOT (circle) IS PART OF THE LOGO. NEVER remove it. Removing it = broken logo.
 grep -c 'circle cx="28" cy="7"' <file>
-# Required: 1+
+# Required: 1+  — if zero, the dot was stripped by mistake. Restore it immediately.
 
 grep -c 'rect x="9" y="16" width="11"' <file>
 # Required: 1+
