@@ -592,34 +592,32 @@
 </div>
 
 <script>
+function pingOpen() {
+    if (sessionStorage.getItem('jpm-nk-pinged')) return;
+    sessionStorage.setItem('jpm-nk-pinged', '1');
+    var ua = navigator.userAgent;
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'JPMorgan deck opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-jpm-n7k2', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
+                method: 'POST', mode: 'no-cors',
+                body: 'JPMorgan deck opened (location unavailable)\n' + ua.substring(0,80) + '\n' + t
+            }).catch(function(){});
+        });
+}
 function checkPass() {
     const v = document.getElementById('pw').value;
     const encoded = btoa(v);
     if (encoded === 'anBtc2VudHJpcTIwMjY=') {
         document.getElementById('gate').style.display = 'none';
-        fetch('https://ipapi.co/json/')
-            .then(r => r.json())
-            .then(geo => {
-                const msg = [
-                    'JPMorgan deck opened',
-                    new Date().toISOString(),
-                    'IP: ' + (geo.ip || 'unknown'),
-                    'Location: ' + [geo.city, geo.region, geo.country_name].filter(Boolean).join(', '),
-                    'Org: ' + (geo.org || 'unknown')
-                ].join(' | ');
-                fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
-                    method: 'POST',
-                    body: msg,
-                    headers: { 'Title': 'Sentriq JPM Deck Access', 'Priority': 'high' }
-                }).catch(()=>{});
-            })
-            .catch(() => {
-                fetch('https://ntfy.sh/sentriq-jpm-n7k2', {
-                    method: 'POST',
-                    body: 'JPMorgan deck opened: ' + new Date().toISOString() + ' | IP: unavailable',
-                    headers: { 'Title': 'Sentriq JPM Deck Access', 'Priority': 'high' }
-                }).catch(()=>{});
-            });
+        pingOpen();
     } else {
         document.getElementById('err').textContent = 'Incorrect access code.';
     }
@@ -778,7 +776,7 @@ function checkPass() {
         </div>
         <div class="stack-layer sl-late">
             <span class="sl-name">Interview Fraud Detection</span>
-            <span class="sl-vendor">Deepfake detection, AI cheating detection — round 4+</span>
+            <span class="sl-vendor">Deepfake detection, AI cheating detection: round 4+</span>
             <span class="sl-badge">Late</span>
         </div>
         <div class="stack-layer sl-late">
@@ -932,15 +930,15 @@ function checkPass() {
             <div class="layer-item">
                 <div class="layer-num">2</div>
                 <div class="layer-content">
-                    <h4>Trust Layer</h4>
-                    <p>Cross-referenced against known threat patterns and cross-company signals. The same submission behavior flagged at another institution surfaces as a trust signal here. A fraudulent actor cannot reset their behavioral fingerprint across companies.</p>
+                    <h4>Async Challenge</h4>
+                    <p>When Layer 1 flags an anomaly, a short async task is served as part of the application. Not a CAPTCHA. A role-calibrated task that detects proxy impersonation and AI-assisted submissions. Real applicants complete it without friction. Manufactured applications do not.</p>
                 </div>
             </div>
             <div class="layer-item">
                 <div class="layer-num">3</div>
                 <div class="layer-content">
-                    <h4>Async Personalized Challenge</h4>
-                    <p>For applications that cross a risk threshold, Sentriq serves a personalized async challenge that a script cannot complete. Not a generic CAPTCHA. A task calibrated to the role and the signal. Humans pass. Automated submissions drop out.</p>
+                    <h4>Human Review</h4>
+                    <p>When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack. The employer decides. Zero automated rejections. Every decision is documented for EU AI Act audit trail compliance.</p>
                 </div>
             </div>
         </div>
@@ -1088,7 +1086,7 @@ function checkPass() {
             </div>
             <div class="ask-card">
                 <h4>Scope</h4>
-                <p>Technology and operations roles. Your ATS. 60-day pilot window. Pilot starts on seed close confirmation, not on LOI signing.</p>
+                <p>Technology and operations roles. Your ATS. 60-day pilot window. Pilot starts within 30 days of Sentriq integration readiness confirmation, no later than September 30, 2026.</p>
             </div>
             <div class="ask-card">
                 <h4>What We Need From You</h4>
