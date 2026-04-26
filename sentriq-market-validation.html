@@ -31,18 +31,7 @@
 body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 a{color:inherit;text-decoration:none;}
 
-/* GATE */
-#gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;}
-#gate-inner{width:100%;max-width:360px;padding:0 24px;text-align:center;}
-#gate-logo{font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--text);margin-bottom:4px;}
-#gate-logo span{color:var(--amber);}
-#gate-sub{font-size:13px;color:var(--text-dim);margin-bottom:36px;}
-#gate-input{width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:var(--text);font-size:15px;font-family:inherit;outline:none;text-align:center;letter-spacing:0.05em;margin-bottom:10px;transition:border-color 0.2s;}
-#gate-input:focus{border-color:rgba(232,160,32,0.4);}
-#gate-btn{width:100%;padding:14px;border-radius:10px;border:none;background:var(--amber);color:var(--bg);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:background 0.2s;}
-#gate-btn:hover{background:var(--amber-d);}
-#gate-err{font-size:12px;color:rgba(232,160,32,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;}
-#gate-fine{margin-top:28px;font-size:11px;color:rgba(255,255,255,0.18);line-height:1.7;}
+/* GATE (removed) */
 
 /* LAYOUT */
 .page{max-width:980px;margin:0 auto;padding:60px 40px;}
@@ -66,6 +55,25 @@ a{color:inherit;text-decoration:none;}
 .exec p{font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:10px;}
 .exec p:last-child{margin-bottom:0;}
 .exec strong{color:var(--text);font-weight:700;}
+
+/* TRACTION OPPORTUNITIES */
+.traction-section{margin-bottom:56px;background:rgba(68,204,136,0.04);border:1px solid rgba(68,204,136,0.14);border-radius:16px;padding:28px 32px;}
+.traction-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(68,204,136,0.12);}
+.traction-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--green);}
+.traction-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(68,204,136,0.7);background:rgba(68,204,136,0.1);border:1px solid rgba(68,204,136,0.18);border-radius:20px;padding:3px 10px;}
+.traction-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.traction-card{background:rgba(9,9,15,0.6);border:1px solid rgba(68,204,136,0.16);border-radius:12px;padding:18px 20px;}
+.traction-priority{display:inline-block;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;border-radius:20px;padding:2px 8px;margin-bottom:10px;}
+.tp-high{background:rgba(68,204,136,0.15);color:var(--green);border:1px solid rgba(68,204,136,0.25);}
+.tp-medium{background:rgba(232,160,32,0.12);color:var(--amber);border:1px solid rgba(232,160,32,0.22);}
+.traction-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.traction-role{font-size:11px;color:var(--text-dim);margin-bottom:10px;}
+.traction-why{font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;}
+.traction-angle{font-size:11px;color:rgba(68,204,136,0.8);line-height:1.6;border-left:2px solid rgba(68,204,136,0.25);padding-left:10px;}
+.traction-source{font-size:10px;color:var(--text-dim);margin-top:8px;font-style:italic;}
+.featured-quote{background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.18);border-left:3px solid var(--amber);border-radius:12px;padding:18px 22px;margin-bottom:10px;}
+.featured-quote-text{font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:6px;}
+.featured-quote-attr{font-size:11px;color:var(--text-dim);}
 
 /* STATS BAR */
 .stats-bar{display:grid;grid-template-columns:repeat(8,1fr);background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:56px;cursor:pointer;}
@@ -128,8 +136,10 @@ a{color:inherit;text-decoration:none;}
 .t-REPORT{background:rgba(100,116,139,0.12);color:rgba(148,163,184,0.85);border:1px solid rgba(100,116,139,0.2);}
 .t-REGULATORY{background:rgba(245,200,80,0.1);color:rgba(251,210,80,0.85);border:1px solid rgba(245,200,80,0.2);}
 .t-HR_CROSSOVER{background:rgba(68,204,136,0.08);color:rgba(100,220,160,0.85);border:1px solid rgba(68,204,136,0.15);}
-.src-link{font-size:11px;color:var(--amber);font-weight:600;opacity:0.8;display:flex;align-items:center;gap:3px;transition:opacity 0.15s;flex-shrink:0;}
-.src-link:hover{opacity:1;}
+.src-link{font-size:12px;color:var(--amber);font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(232,160,32,0.3);border-radius:20px;transition:all 0.15s;flex-shrink:0;background:rgba(232,160,32,0.06);}
+.src-link:hover{background:rgba(232,160,32,0.14);border-color:rgba(232,160,32,0.5);}
+.tag{cursor:pointer;transition:opacity 0.15s;}
+.tag:hover{opacity:0.75;}
 
 /* FOOTER */
 .lib-footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
@@ -153,31 +163,11 @@ a{color:inherit;text-decoration:none;}
 </head>
 <body>
 
-<!-- GATE -->
-<div id="gate">
-  <div id="gate-inner">
-    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;">
-      <svg width="22" height="22" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="9" y="16" width="11" height="5" rx="1" fill="#E8A020"/>
-        <rect x="9" y="35" width="11" height="5" rx="1" fill="#E8A020"/>
-        <rect x="9" y="16" width="5" height="24" rx="1" fill="#E8A020"/>
-        <rect x="36" y="16" width="11" height="5" rx="1" fill="#E8A020"/>
-        <rect x="36" y="35" width="11" height="5" rx="1" fill="#E8A020"/>
-        <rect x="42" y="16" width="5" height="24" rx="1" fill="#E8A020"/>
-        <circle cx="28" cy="7" r="3" fill="#E8A020"/>
-      </svg>
-      <div id="gate-logo">Sentriq</div>
-    </div>
-    <div id="gate-sub">Market Validation Library: Confidential</div>
-    <input id="gate-input" type="password" placeholder="Access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()">
-    <button id="gate-btn" onclick="checkPass()">View Library</button>
-    <div id="gate-err">Incorrect access code.</div>
-    <div id="gate-fine">This document contains proprietary research and intelligence.<br>Authorized recipients only.</div>
-  </div>
-</div>
-
 <script>
-function pingOpen(){
+// Open tracking (no gate, page is public)
+(function(){
+  if(sessionStorage.getItem('mktval-pinged'))return;
+  sessionStorage.setItem('mktval-pinged','1');
   var t=new Date().toISOString();
   fetch('https://ipapi.co/json/')
     .then(function(r){return r.json();})
@@ -189,30 +179,7 @@ function pingOpen(){
     .catch(function(){
       fetch('https://ntfy.sh/sentriq-mktval-sk26',{method:'POST',mode:'no-cors',body:'Market Validation Library opened (no geo)\n'+t}).catch(function(){});
     });
-}
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelector('.page').style.display='none';
-  if(sessionStorage.getItem('mktval-open')){
-    document.getElementById('gate').style.display='none';
-    document.querySelector('.page').style.display='';
-  }
-});
-function checkPass(){
-  var v=document.getElementById('gate-input').value;
-  if(v===atob('c2VudHJpcW1rdHZhbDIwMjY=')){
-    document.getElementById('gate').style.display='none';
-    document.querySelector('.page').style.display='';
-    if(!sessionStorage.getItem('mktval-open')){
-      sessionStorage.setItem('mktval-open','1');
-      pingOpen();
-    }
-  }else{
-    var e=document.getElementById('gate-err');
-    e.style.opacity='1';
-    setTimeout(function(){e.style.opacity='0';},2500);
-    document.getElementById('gate-input').value='';
-  }
-}
+})();
 </script>
 
 <!-- MAIN PAGE -->
@@ -281,6 +248,59 @@ function checkPass(){
     <div class="stat-item" onclick="filterTag('REGULATORY')" data-tag="REGULATORY">
       <div class="stat-num" id="count-REGULATORY">0</div>
       <div class="stat-label">Regulatory</div>
+    </div>
+  </div>
+
+  <!-- TRACTION OPPORTUNITIES -->
+  <div class="traction-section">
+    <div class="traction-head">
+      <div class="traction-label">Live Traction Opportunities</div>
+      <div class="traction-badge">Internal Only</div>
+    </div>
+
+    <div class="featured-quote">
+      <div class="featured-quote-text">"The threat doesn't begin at the firewall. It begins at the job application."</div>
+      <div class="featured-quote-attr">Jones Walker LLP, shared and amplified by Brooke Johnson, SVP Legal + Security + HR, Ivanti</div>
+    </div>
+
+    <div class="traction-grid">
+      <div class="traction-card">
+        <div class="traction-priority tp-high">High Priority</div>
+        <div class="traction-name">Brooke Johnson</div>
+        <div class="traction-role">SVP and Chief Legal Counsel (also owns Security + HR) (Ivanti)</div>
+        <div class="traction-why">Owns Legal, Security, AND HR at a major enterprise security company ($3B+ valuation). She is personally navigating the exact dual-buyer problem Sentriq solves and is publicly amplifying it. Shared a post titled "Your next data breach may start with a job interview." She bypasses the CISO/HR ownership split entirely.</div>
+        <div class="traction-angle">Outreach: reference her own post language. "The threat doesn't begin at the firewall. It begins at the job application." That is Sentriq's upstream positioning verbatim. She already believes it. Run warm path finder on Ivanti before cold.</div>
+        <div class="traction-source">Source: LinkedIn post, April 2026</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-priority tp-high">High Priority</div>
+        <div class="traction-name">Sophos Threat Intelligence Team</div>
+        <div class="traction-role">CISO Advisory Function (Sophos) (500K+ enterprise customers)</div>
+        <div class="traction-why">Sophos published a full CISO Playbook for fraudulent North Korean hires including a four-function control matrix covering HR, Finance, IT, and Legal. The application-layer control (Sentriq's exact layer) is absent from their matrix. They wrote the playbook that Sentriq should be listed in, and their customer base is 500K+ enterprise CISOs who downloaded it.</div>
+        <div class="traction-angle">Outreach to Sophos threat advisory team: "You built the control matrix. Sentriq is the application-layer control missing from Section 2. Let's add it." Also: every CISO who downloaded the Sophos playbook is a warm audience for outreach.</div>
+        <div class="traction-source">Source: CISO Playbook, November 2025</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-priority tp-high">High Priority (UK)</div>
+        <div class="traction-name">Keith Rosser</div>
+        <div class="traction-role">Chair, Better Hiring Institute / Director, Reed Screening (London)</div>
+        <div class="traction-why">Single most influential figure in UK hiring fraud prevention. Chairs BHI (government-endorsed), directs Reed Screening (largest UK background check firm), produced the November 2025 "Tackling Hiring Fraud 2.0" guide co-published with the NCA, CIFAS, and UK Fraud Minister Lord Hanson. A BHI endorsement is the fastest path to UK enterprise credibility.</div>
+        <div class="traction-angle">Outreach: Sentriq addresses the pre-application layer that BHI's own framework identifies as the critical gap. Background checks confirm identity after hire; Sentriq signals authenticity at submission. Propose co-authorship on a 2026 update or an advisory relationship.</div>
+        <div class="traction-source">Source: Better Hiring Institute "Tackling Hiring Fraud 2.0," November 2025</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-priority tp-medium">Channel Opportunity</div>
+        <div class="traction-name">EBC Global / Matt Masson</div>
+        <div class="traction-role">Director, EBC Global (UK automated background screening</div>
+        <div class="traction-why">Published the Gartner 1-in-4 statistic framed as a verification problem. Adjacent player in background screening, not a direct buyer. However, the companies citing and sharing their content are the actual enterprise targets. Reed Screening overlap with BHI makes this a secondary UK channel path.</div>
+        <div class="traction-angle">Indirect: use EBC Global as a market signal source and UK channel reference. Primary path is through Keith Rosser at BHI first.</div>
+        <div class="traction-source">Source: LinkedIn Pulse, March 30, 2026</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:14px 18px;background:rgba(9,9,15,0.5);border:1px solid rgba(68,204,136,0.1);border-radius:10px;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(68,204,136,0.6);margin-bottom:6px;">Microsoft Signal</div>
+      <div style="font-size:12px;color:var(--text-sub);line-height:1.65;">Microsoft's April 21, 2026 security blog explicitly names the Workday <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:4px;font-size:11px;">hrrecruiting</code> API as the primary attack entry vector. Sentriq sits upstream of Workday at the application layer: the exact gap Microsoft identifies and does not address. Use this as a Workday positioning anchor: "Microsoft just confirmed the attack starts at the Workday API. Here is the tool that sits before it."</div>
     </div>
   </div>
 
@@ -483,7 +503,15 @@ var SOURCES=[
   {id:'hr03',org:'Greenhouse / SHRM',date:'2025-2026',title:'Greenhouse: Lessons from 2025: AI, Fraud and the Future of Fair Hiring',summary:'"Efficiency is up while trust is down" framing from the talent acquisition community. Industry guidance acknowledging that hiring fraud has fundamentally changed the trust calculus in recruiting.',url:'https://www.greenhouse.com/guidance/lessons-from-2025-ai-fraud-and-the-future-of-fair-hiring',tags:['HR_CROSSOVER'],featured:false},
   {id:'hr04',org:'SHRM',date:'2024',title:'SHRM: Cybercriminals Use Malware-Laced Fake Resumes to Target Recruiters',summary:"SHRM, the world's largest HR membership organization, warned members that opening application emails and downloading resumes is now a malware delivery vector. When the global HR professional association publishes a cybersecurity warning, the crossover is officially recognized.",url:'https://www.shrm.org/topics-tools/news/talent-acquisition/cybercriminals-use-malware-laced-fake-resumes-to-target-recruiters',tags:['HR_CROSSOVER','PRESS'],featured:false},
   {id:'hr05',org:'Okta',date:'2025',title:'Okta: Verifying the Identity of Your Remote Workforce (Hiring Stage)',summary:'Okta, the enterprise identity platform, published guidance specifically on verifying identity during hiring and onboarding as a security control. An identity security vendor claiming the hiring pipeline as their domain confirms this is now a security product category.',url:'https://www.okta.com/es-es/newsroom/articles/verifying-identity-remote-workforce/',tags:['HR_CROSSOVER'],featured:false},
-  {id:'hr06',org:'Microsoft Security',date:'2025',title:'Microsoft: Fake Employees, Real Threat: Decentralized Identity to Combat Deepfake Hiring',summary:"Microsoft's security blog frames hiring-stage identity fraud as a security product problem and proposes decentralized identity as a technical solution. Microsoft Security covering hiring fraud confirms this is security infrastructure, not HR process.",url:'https://techcommunity.microsoft.com/blog/microsoft-security-blog/fake-employees-real-threat-decentralized-identity-to-combat-deepfake-hiring/4479864',tags:['HR_CROSSOVER','REPORT'],featured:false}
+  {id:'hr06',org:'Microsoft Security',date:'2025',title:'Microsoft: Fake Employees, Real Threat: Decentralized Identity to Combat Deepfake Hiring',summary:"Microsoft's security blog frames hiring-stage identity fraud as a security product problem and proposes decentralized identity as a technical solution. Microsoft Security covering hiring fraud confirms this is security infrastructure, not HR process.",url:'https://techcommunity.microsoft.com/blog/microsoft-security-blog/fake-employees-real-threat-decentralized-identity-to-combat-deepfake-hiring/4479864',tags:['HR_CROSSOVER','REPORT'],featured:false},
+
+  // --- BATCH 2: Added April 26, 2026 ---
+  {id:'b2-01',org:'EBC Global',date:'Mar 30, 2026',title:'By 2028, 1 in 4 Candidate Profiles Could Be Fake',summary:'EBC Global leads with the Gartner 1-in-4 statistic and argues that AI-generated CVs, synthetic identities, and fabricated employment histories are escalating beyond what manual screening can detect. UK-focused, targeting compliance-sensitive sectors (care, security, finance, education). Published by UK automated background screening firm with direct government relationships.',url:'https://www.linkedin.com/pulse/2028-1-4-candidate-profiles-could-fake-ebc-global-wcq3e/',tags:['PRESS','HR_CROSSOVER'],featured:false},
+  {id:'b2-02',org:'Better Hiring Institute / NCA / HM Government',date:'Nov 2025',title:'Tackling Hiring Fraud 2.0: The Essential Guide for UK Business on Making Hiring Safe',summary:'UK government-endorsed definitive guide to hiring fraud prevention. Catalogs all major fraud types in the hiring pipeline (fake credentials, reference houses, right-to-work fraud, polygamous working, AI-enabled fake IT workers). Co-published with the NCA, Stop Think Fraud, CIFAS, and UK Fraud Minister Lord Hanson. Parliamentary launch November 20, 2025. The BHI framework identifies the application-submission stage as the critical unaddressed gap: the exact layer Sentriq covers.',url:'https://cdn.prod.website-files.com/60608169343bd79aa75af204/691db9c1a7023478951430a9_Tackling%20Hiring%20Fraud%202.0.pdf',tags:['REPORT','REGULATORY','HR_CROSSOVER','GOVERNMENT'],featured:true},
+  {id:'b2-03',org:'Jones Walker LLP / Brooke Johnson, SVP, Ivanti',date:'Apr 2026',title:'"The Threat Doesn\'t Begin at the Firewall. It Begins at the Job Application."',summary:'Jones Walker LLP attorneys documented the deepfake candidate problem and the enterprise security risk of hiring infiltration. Amplified by Brooke Johnson, SVP Legal + Security + HR at Ivanti, who owns all three functions simultaneously. Johnson is the rare executive who personally experiences both sides of the CISO/HR dual-buyer split. Her public amplification of this framing is the clearest external validation of Sentriq\'s upstream positioning.',url:'https://www.linkedin.com/posts/brooke-johnson-797b4b3_your-next-data-breach-may-start-with-a-job-share-7443403485821411328-qgug/',tags:['THOUGHT_LEADER','HR_CROSSOVER'],featured:true},
+  {id:'b2-04',org:'Microsoft Threat Intelligence',date:'Apr 21, 2026',title:'Microsoft: Detection Strategies Across Cloud and Identities Against Infiltrating IT Workers',summary:'Microsoft formally identifies the infiltrating IT worker attack pattern as a structured campaign (Jasper Sleet). Details all three attack phases: pre-recruitment (API scraping of Workday hrrecruiting portals), recruiting (AI-generated personas passing interviews), and post-hire (payroll modification, cloud access abuse). Microsoft explicitly names the application-submission phase as the detection opportunity. The Workday hrrecruiting API is called out as the primary entry vector. Sentriq sits upstream of it.',url:'https://www.microsoft.com/en-us/security/blog/2026/04/21/detection-strategies-cloud-identities-against-infiltrating-it-workers/',tags:['REPORT','INCIDENT'],featured:true},
+  {id:'b2-05',org:'The Daily Tech Feed',date:'Apr 23, 2026',title:'North Korean Group Jasper Sleet Masquerades as IT Workers to Breach Cloud Systems, Microsoft Warns',summary:'Press synthesis of the Microsoft April 21 blog. Names the attack vector as the hiring and onboarding pipeline, not the network perimeter, and ties post-hire access to Teams, SharePoint, OneDrive, and Exchange Online. Published 48 hours after the Microsoft disclosure, confirming the news cycle is active.',url:'https://thedailytechfeed.com/north-korean-group-jasper-sleet-masquerades-as-it-workers-to-breach-cloud-systems-microsoft-warns/',tags:['PRESS','INCIDENT'],featured:false},
+  {id:'b2-06',org:'Sophos',date:'Nov 6, 2025',title:'CISO Playbook: Mitigate Risk from Fraudulent North Korean Hires',summary:'Sophos produced a full CISO-facing playbook with control matrices, training slides, and implementation guides. Explicitly frames the problem as cross-functional (HR, Finance, IT, Legal) and provides a four-function control matrix. 500K+ enterprise customers globally received this guidance. The application-layer control Sentriq provides is absent from the playbook\'s current control matrix. Sophos is both a potential channel partner and a gateway to every CISO who downloaded the playbook.',url:'https://www.linkedin.com/pulse/ciso-playbook-mitigate-risk-from-fraudulent-north-korean-hires-ju4xc/',tags:['REPORT','THOUGHT_LEADER','HR_CROSSOVER'],featured:true}
 ];
 
 var TAG_LABELS={
@@ -511,56 +539,83 @@ function buildStats(){
     var el=document.getElementById('count-'+t);
     if(el)el.textContent=countForTag(t);
   });
-  document.getElementById('footer-updated').textContent='Last updated: April 26, 2026, '++SOURCES.length+' sources';
+  document.getElementById('footer-updated').textContent='Last updated: April 26, 2026. '+SOURCES.length+' sources.';
   document.getElementById('lib-section-count').textContent=SOURCES.length+' sources';
 }
 
 function buildFilterRow(){
   var row=document.getElementById('filterRow');
+  // Clear existing buttons (avoid duplicates on re-init)
+  row.innerHTML='';
   TAG_ORDER.forEach(function(t){
     var cnt=countForTag(t);
+    if(t!=='ALL'&&cnt===0)return; // hide empty categories
     var btn=document.createElement('button');
     btn.className='filter-btn'+(t==='ALL'?' active':'');
     btn.setAttribute('data-tag',t);
     btn.onclick=function(){filterTag(t);};
-    btn.innerHTML=TAG_LABELS[t]+'<span class="cnt">'+cnt+'</span>';
+    // Full category label with count badge
+    var label=TAG_LABELS[t];
+    btn.innerHTML=label+'<span class="cnt">'+cnt+'</span>';
     row.appendChild(btn);
   });
 }
 
 function filterTag(tag){
   currentTag=tag;
-  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tag')===tag);});
-  document.querySelectorAll('.stat-item').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tag')===tag);});
+  // Update filter button states
+  document.querySelectorAll('.filter-btn').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-tag')===tag);
+  });
+  // Update stats bar states
+  document.querySelectorAll('.stat-item').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-tag')===tag);
+  });
+  // Clear search when switching categories
   applyFilters();
 }
 
 function applyFilters(){
   var q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
-  var cards=document.querySelectorAll('.src-card');
   var visible=0;
-  cards.forEach(function(card){
-    var id=card.getAttribute('data-id');
-    var src=SOURCES.find(function(s){return s.id===id;});
-    if(!src){card.classList.add('hidden');return;}
-    var tagMatch=currentTag==='ALL'||src.tags.indexOf(currentTag)>-1;
-    var qMatch=!q||(src.title.toLowerCase().indexOf(q)>-1||src.org.toLowerCase().indexOf(q)>-1||src.summary.toLowerCase().indexOf(q)>-1);
-    if(tagMatch&&qMatch){card.classList.remove('hidden');visible++;}
-    else{card.classList.add('hidden');}
+  var total=SOURCES.length;
+  SOURCES.forEach(function(s){
+    var card=document.querySelector('.src-card[data-id="'+s.id+'"]');
+    if(!card)return;
+    var tagMatch=currentTag==='ALL'||s.tags.indexOf(currentTag)>-1;
+    var qMatch=!q||(
+      s.title.toLowerCase().indexOf(q)>-1||
+      s.org.toLowerCase().indexOf(q)>-1||
+      s.summary.toLowerCase().indexOf(q)>-1||
+      s.tags.join(' ').toLowerCase().indexOf(q)>-1
+    );
+    if(tagMatch&&qMatch){
+      card.style.display='flex';
+      visible++;
+    }else{
+      card.style.display='none';
+    }
   });
   var meta=document.getElementById('resultsMeta');
-  var label=currentTag==='ALL'?'all sources':TAG_LABELS[currentTag]+' sources';
-  meta.innerHTML='Showing <b>'+visible+'</b> of <b>'+SOURCES.length+'</b> sources'+(q?' matching "'+q+'"':'')+'';
+  var catLabel=currentTag==='ALL'?'all sources':TAG_LABELS[currentTag];
+  var qPart=q?' matching <b>"'+q+'"</b>':'';
+  meta.innerHTML='<b>'+visible+'</b> of <b>'+total+'</b> sources &nbsp;|&nbsp; '+catLabel+qPart;
 }
 
 function buildCards(){
   var grid=document.getElementById('sourcesGrid');
+  grid.innerHTML='';
   SOURCES.forEach(function(s){
-    var tags=s.tags.map(function(t){return '<span class="tag t-'+t+'">'+TAG_LABELS[t]+'</span>';}).join('');
-    var link=s.url?'<a class="src-link" href="'+s.url+'" target="_blank" rel="noopener">View &#8599;</a>':'';
+    var tags=s.tags.map(function(t){
+      return '<span class="tag t-'+t+'" data-tag="'+t+'" onclick="filterTag(\''+t+'\')" title="Filter: '+TAG_LABELS[t]+'">'+TAG_LABELS[t]+'</span>';
+    }).join('');
+    var link=s.url
+      ?'<a class="src-link" href="'+s.url+'" target="_blank" rel="noopener noreferrer">Read source &#8599;</a>'
+      :'<span class="src-link" style="opacity:0.3;cursor:default;">No URL</span>';
     var card=document.createElement('div');
     card.className='src-card'+(s.featured?' featured':'');
     card.setAttribute('data-id',s.id);
+    card.style.display='flex';
     card.innerHTML=
       '<div class="src-meta"><div class="src-org">'+s.org+'</div><div class="src-date">'+s.date+'</div></div>'+
       '<div class="src-title">'+s.title+'</div>'+
