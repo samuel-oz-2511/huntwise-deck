@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentriq | Hiring Pipeline Security</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: #09090F;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* PASSWORD GATE */
+        #gate {
+            position: fixed; inset: 0;
+            background: #09090F;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 20px;
+        }
+        #gate .gate-logo {
+            display: flex; flex-direction: row; align-items: center; gap: 10px;
+            margin-bottom: 16px;
+        }
+        #gate .gate-logo span {
+            font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+            color: #fff;
+        }
+        #gate h2 {
+            font-size: 15px; font-weight: 700; color: #fff;
+            letter-spacing: -0.01em; text-align: center;
+        }
+        #gate p { font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; letter-spacing: 0.05em; }
+        #gate input {
+            background: transparent; border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            color: #fff; font-family: inherit; font-size: 16px;
+            padding: 12px 0; width: 240px;
+            outline: none; text-align: center;
+            letter-spacing: 0.12em;
+            transition: border-color 0.2s;
+        }
+        #gate input:focus { border-bottom-color: #E8A020; }
+        #gate input::placeholder { color: rgba(255,255,255,0.2); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; }
+        #gate button {
+            background: transparent; color: #E8A020;
+            border: 1px solid rgba(232,160,32,0.35); padding: 11px 28px; border-radius: 4px;
+            font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; cursor: pointer; width: 240px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        #gate button:hover { background: rgba(232,160,32,0.08); border-color: #E8A020; }
+        #gate .err { color: #ff5555; font-size: 11px; min-height: 16px; letter-spacing: 0.05em; }
+
+        /* LAYOUT */
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            text-transform: none;
+            margin-bottom: 72px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg { width: 22px; height: 22px; }
+
+        .section { margin-bottom: 72px; }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #E8A020;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #161728;
+        }
+
+        /* HERO */
+        .hero { margin-bottom: 72px; }
+        .hero-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #E8A020;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(30px, 4.5vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 24px;
+            max-width: 720px;
+        }
+        .hero h1 span { color: #E8A020; }
+        .hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.68);
+            line-height: 1.8;
+            max-width: 640px;
+        }
+
+        /* STAT GRID */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .stat-card {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 28px 22px;
+        }
+        .stat-num {
+            font-size: clamp(26px, 3.5vw, 38px);
+            font-weight: 800;
+            color: #E8A020;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+        }
+        .stat-source {
+            font-size: 10px;
+            color: rgba(255,255,255,0.25);
+            margin-top: 8px;
+        }
+
+        /* INCIDENT CARDS */
+        .incident-stack { display: flex; flex-direction: column; gap: 16px; }
+        .incident-card {
+            background: #0D0E1A;
+            border: 1px solid #1e0a0a;
+            border-left: 3px solid #CC3333;
+            border-radius: 0 12px 12px 0;
+            padding: 24px 24px 24px 28px;
+        }
+        .incident-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .incident-amount {
+            font-size: 22px;
+            font-weight: 800;
+            color: #CC3333;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .incident-body {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+        .incident-relevance {
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(232,160,32,0.8);
+            font-weight: 600;
+        }
+        .incident-source {
+            font-size: 10px;
+            color: rgba(255,255,255,0.22);
+            margin-top: 6px;
+        }
+
+        /* THREAT SECTION */
+        .threat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .threat-card {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 24px 22px;
+        }
+        .threat-card .t-icon {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .threat-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .threat-card p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+        }
+        .threat-card .t-stat {
+            font-size: 20px;
+            font-weight: 800;
+            color: #E8A020;
+            margin-top: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        /* GAP VISUAL */
+        .stack-layer {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 8px;
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        .stack-layer .sl-name { font-weight: 600; color: rgba(255,255,255,0.8); }
+        .stack-layer .sl-vendor { font-size: 12px; color: rgba(255,255,255,0.35); }
+        .stack-layer .sl-badge {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .sl-covered .sl-badge { background: rgba(68,204,136,0.1); color: #44CC88; border: 1px solid rgba(68,204,136,0.25); }
+        .sl-late .sl-badge { background: rgba(232,160,32,0.08); color: #E8A020; border: 1px solid rgba(232,160,32,0.25); }
+        .stack-layer-threat {
+            background: rgba(30,10,10,0.8);
+            border: 1px solid #CC3333;
+            border-radius: 8px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        .stack-layer-threat .sl-name { font-weight: 700; color: #fff; }
+        .stack-layer-threat .sl-badge { background: rgba(204,51,51,0.1); color: #CC3333; border: 1px solid rgba(204,51,51,0.3); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; }
+        .stack-layer-zero {
+            background: rgba(232,160,32,0.04);
+            border: 1px solid rgba(232,160,32,0.3);
+            box-shadow: 0 0 24px rgba(232,160,32,0.06);
+            border-radius: 8px;
+            padding: 20px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+        .stack-layer-zero .sl-name { font-weight: 800; color: #E8A020; font-size: 14px; }
+        .stack-layer-zero .sl-badge { background: rgba(232,160,32,0.12); color: #E8A020; border: 1px solid rgba(232,160,32,0.35); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; }
+
+        /* LIFECYCLE */
+        .lc-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+        .lc-table td {
+            padding: 14px 18px;
+            font-size: 13px;
+            background: #0D0E1A;
+            border-top: 1px solid #161728;
+            border-bottom: 1px solid #161728;
+        }
+        .lc-table td:first-child {
+            border-left: 1px solid #161728;
+            border-radius: 8px 0 0 8px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.85);
+            width: 30%;
+        }
+        .lc-table td:nth-child(2) {
+            color: rgba(255,255,255,0.45);
+            width: 35%;
+        }
+        .lc-table td:last-child {
+            border-right: 1px solid #161728;
+            border-radius: 0 8px 8px 0;
+            text-align: right;
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+        }
+        .lc-sentriq td {
+            background: rgba(232,160,32,0.04);
+            border-top: 1px solid rgba(232,160,32,0.25);
+            border-bottom: 1px solid rgba(232,160,32,0.25);
+        }
+        .lc-sentriq td:first-child {
+            border-left: 1px solid rgba(232,160,32,0.25);
+            color: #E8A020;
+        }
+        .lc-sentriq td:nth-child(2) { color: rgba(232,160,32,0.75); }
+        .lc-sentriq td:last-child {
+            border-right: 1px solid rgba(232,160,32,0.25);
+            color: rgba(232,160,32,0.5);
+        }
+        .lc-danger td {
+            background: rgba(30,10,10,0.6);
+            border-top: 1px solid rgba(204,51,51,0.2);
+            border-bottom: 1px solid rgba(204,51,51,0.2);
+        }
+        .lc-danger td:first-child {
+            border-left: 1px solid rgba(204,51,51,0.2);
+            color: rgba(255,255,255,0.7);
+        }
+        .lc-danger td:last-child {
+            border-right: 1px solid rgba(204,51,51,0.2);
+            color: #CC3333;
+        }
+
+        /* HOW IT WORKS */
+        .layer-stack { display: flex; flex-direction: column; gap: 12px; }
+        .layer-item {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 22px 24px;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+        .layer-num {
+            width: 44px; height: 44px;
+            border: 1px solid rgba(232,160,32,0.3);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 800; color: #E8A020;
+        }
+        .layer-content h4 {
+            font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px;
+        }
+        .layer-content p {
+            font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6;
+        }
+
+        /* ROI */
+        .roi-compare {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .roi-box {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 24px 22px;
+            text-align: center;
+        }
+        .roi-box.threat { border-color: rgba(204,51,51,0.3); }
+        .roi-box.solution { border-color: rgba(232,160,32,0.3); }
+        .roi-amount {
+            font-size: clamp(22px, 3vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 6px;
+        }
+        .roi-box.threat .roi-amount { color: #CC3333; }
+        .roi-box.solution .roi-amount { color: #E8A020; }
+        .roi-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+        .roi-vs {
+            font-size: 22px; font-weight: 800; color: rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        .roi-multiplier {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+        }
+        .roi-multiplier span {
+            font-size: 28px;
+            font-weight: 800;
+            color: #E8A020;
+            display: block;
+            letter-spacing: -0.03em;
+        }
+
+        /* CLOCK */
+        .clock-block {
+            background: rgba(30,10,10,0.5);
+            border: 1px solid rgba(204,51,51,0.3);
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        .clock-days {
+            font-size: 64px;
+            font-weight: 800;
+            color: #CC3333;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .clock-days span { font-size: 18px; color: rgba(204,51,51,0.6); display: block; margin-top: 4px; }
+        .clock-text h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .clock-text p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+        .clock-text ul { margin-top: 10px; padding-left: 16px; }
+        .clock-text ul li { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+        /* HONEST STAGE */
+        .stage-block {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 28px 28px;
+        }
+        .stage-block h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .stage-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            align-items: flex-start;
+        }
+        .stage-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        .stage-dot.green { background: #44CC88; }
+        .stage-dot.amber { background: #E8A020; }
+        .stage-row p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+        .stage-row strong { color: #fff; }
+
+        /* ASK */
+        .ask-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .ask-card {
+            background: #0D0E1A;
+            border: 1px solid #161728;
+            border-radius: 12px;
+            padding: 24px 22px;
+        }
+        .ask-card h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .ask-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+        /* CTA */
+        .cta-block {
+            background: rgba(232,160,32,0.04);
+            border: 1px solid rgba(232,160,32,0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+        .cta-block h2 {
+            font-size: clamp(22px, 3vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .cta-block p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+        .cta-founders {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .cta-founder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .cta-founder-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+        .cta-founder-title {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .cta-founder-email {
+            font-size: 13px;
+            font-weight: 600;
+            color: #E8A020;
+            margin-top: 2px;
+        }
+        .cta-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+            align-self: stretch;
+        }
+        @media (max-width: 500px) {
+            .cta-divider { display: none; }
+            .cta-founders { gap: 20px; }
+        }
+
+        /* DIVIDER */
+        .divider {
+            border: none;
+            border-top: 1px solid #161728;
+            margin: 8px 0 28px;
+        }
+
+        /* QUOTE */
+        .quote-block {
+            border-left: 3px solid #E8A020;
+            padding: 16px 24px;
+            background: rgba(232,160,32,0.03);
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+        .quote-block p {
+            font-size: 15px;
+            font-style: italic;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+        .quote-block cite {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 8px;
+            display: block;
+            font-style: normal;
+        }
+
+        /* MOBILE */
+        @media (max-width: 640px) {
+            .page { padding: 40px 22px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+            div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+            .threat-grid { grid-template-columns: 1fr; }
+            .ask-grid { grid-template-columns: 1fr; }
+            .roi-compare { grid-template-columns: 1fr; }
+            .roi-vs { display: none; }
+            .clock-block { flex-direction: column; gap: 16px; }
+            .clock-days { font-size: 48px; }
+            .layer-item { grid-template-columns: 1fr; }
+            .layer-num { width: 36px; height: 36px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+    <div class="gate-logo">
+        <svg width="32" height="32" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        <span>Sentriq<span style="color:#E8A020;">.</span></span>
+    </div>
+    <h2>The Hiring Pipeline Security</h2>
+    <input type="password" id="pw" placeholder="Access code" onkeydown="if(event.key==='Enter')checkPass()"/>
+    <button onclick="checkPass()">Continue</button>
+    <div class="err" id="err"></div>
+</div>
+
+<script>
+function pingOpen() {
+    if (sessionStorage.getItem('jpm-dr-pinged')) return;
+    sessionStorage.setItem('jpm-dr-pinged', '1');
+    var ua = navigator.userAgent;
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'JPMorgan deck opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-jpm-dr-x4k8', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-jpm-dr-x4k8', {
+                method: 'POST', mode: 'no-cors',
+                body: 'JPMorgan deck opened (location unavailable)\n' + ua.substring(0,80) + '\n' + t
+            }).catch(function(){});
+        });
+}
+function checkPass() {
+    const v = document.getElementById('pw').value;
+    const encoded = btoa(v);
+    if (encoded === 'c2VudHJpcWpwZDIwMjY=') {
+        document.getElementById('gate').style.display = 'none';
+        pingOpen();
+    } else {
+        document.getElementById('err').textContent = 'Incorrect access code.';
+    }
+}
+</script>
+
+<div class="page">
+
+    <!-- LOGO -->
+    <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        Sentriq<span style="color:#E8A020;">.</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-label">Security Briefing | J.P. Morgan Chase</div>
+        <h1>You spend <span>$600M a year</span> on cybersecurity. Your hiring pipeline gets none of it.</h1>
+        <p>
+            J.P. Morgan processes hundreds of thousands of job applications every year. Every one of them is an unauthenticated access request to one of the most regulated financial institutions on earth. No security tool in your stack sits at that layer.
+        </p>
+    </div>
+
+    <!-- SCALE -->
+    <div class="section">
+        <div class="section-label">The Scale of the Exposure</div>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-num">493K</div>
+                <div class="stat-label">Applications received for entry-level positions alone in 2024</div>
+                <div class="stat-source">Mary Callahan Erdoes, JPMorgan Investor Day, May 2024</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">317K</div>
+                <div class="stat-label">Employees globally. Every hire started as an unverified application.</div>
+                <div class="stat-source">JPMorgan Chase 2024 Annual Report</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">81 days</div>
+                <div class="stat-label">Average time to detect an insider threat in financial services</div>
+                <div class="stat-source">Ponemon Institute, 2025. $20.68M average incident cost.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YOU'VE BEEN HERE BEFORE -->
+    <div class="section">
+        <div class="section-label">You Have Been Here Before</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            Each of these incidents shares the same root: unverified actors entered J.P. Morgan systems through a trusted channel. No perimeter tool caught them because none sat at the entry point.
+        </p>
+        <div class="incident-stack">
+
+            <div class="incident-card">
+                <div class="incident-title">Charlie Javice / Frank Acquisition (2021-2025)</div>
+                <div class="incident-amount">$175M acquisition. 4.25 million synthetic accounts.</div>
+                <div class="incident-body">
+                    Frank founder Charlie Javice paid a data scientist $18,000 to generate 4.25 million fake user records. Those records passed J.P. Morgan's third-party due diligence because the verifier counted data fields instead of authenticating users. JPMorgan paid $175M for a company with fewer than 300,000 real customers. Javice was sentenced to 85 months in federal prison in September 2025.
+                </div>
+                <div class="incident-relevance">Exact attack vector: synthetic data bypasses process-level verification. The same attack runs against your ATS today.</div>
+                <div class="incident-source">Source: DOJ, CBS News, CNN (2025). $287.5M total restitution ordered.</div>
+            </div>
+
+            <div class="incident-card">
+                <div class="incident-title">2014 JPMorgan Data Breach</div>
+                <div class="incident-amount">83 million accounts. One compromised credential.</div>
+                <div class="incident-body">
+                    Attackers entered through a single unpatched server tied to a corporate charity race website. One employee credential, compromised via malware, gave two months of undetected access. 76 million households and 7 million small businesses exposed. JPMorgan doubled its cybersecurity budget to $500M in response.
+                </div>
+                <div class="incident-relevance">The pattern: a single trusted entry point, insufficient verification, months of invisible access.</div>
+                <div class="incident-source">Source: Washington Post, BitSight analysis, 2014-2015.</div>
+            </div>
+
+            <div class="incident-card">
+                <div class="incident-title">Sons and Daughters Hiring Program (2016)</div>
+                <div class="incident-amount">$264M settlement. Hiring used as an access mechanism.</div>
+                <div class="incident-body">
+                    J.P. Morgan maintained a formal, spreadsheet-tracked program hiring unqualified relatives of foreign government officials in exchange for business. 100 unqualified hires. The program generated over $100M in revenues and triggered joint enforcement by the SEC, DOJ, and Federal Reserve.
+                </div>
+                <div class="incident-relevance">Proof point: who you hire is a regulated activity. The hiring pipeline is a documented risk vector, not a back-office function.</div>
+                <div class="incident-source">Source: SEC Press Release, November 2016. FCPA violation.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- THE NEW THREAT -->
+    <div class="section">
+        <div class="section-label">The Attack Has Industrialized</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            What Charlie Javice did manually with an $18,000 data scientist now runs at scale, for free, against every open role at J.P. Morgan.
+        </p>
+        <div class="threat-grid">
+            <div class="threat-card">
+                <div class="t-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                <h4>North Korean IT Workers</h4>
+                <p>OFAC, FBI, and the U.S. Departments of State and Treasury issued joint advisories warning financial institutions about DPRK operatives applying for IT roles. These workers generate revenue for weapons programs by maintaining employment inside US companies for months before detection.</p>
+                <div class="t-stat">$800M/yr</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:4px;">DPRK IT worker annual revenue generation. Source: Treasury, 2024.</div>
+            </div>
+            <div class="threat-card">
+                <div class="t-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8h.01M15 8h.01M9 12h6"/></svg></div>
+                <h4>Synthetic Application Fraud</h4>
+                <p>The threat is not AI writing a resume. The threat is AI fabricating a candidate: manufacturing experience, overfitting qualifications to the exact job description, and submitting at scale across every open role. Funded platforms now sell this as a service. The application looks perfect because it was engineered to.</p>
+                <div class="t-stat" style="color:rgba(255,255,255,0.85);">$0</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:4px;">Marginal cost per synthetic application. The infrastructure is already built and funded.</div>
+            </div>
+            <div class="threat-card">
+                <div class="t-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                <h4>The Day One Gap</h4>
+                <p>IT provisioning and background checks run on separate tracks. At most financial institutions, a new hire receives VPN credentials and system access before background check results are confirmed. For a fraudulent hire, Day One is mission complete.</p>
+                <div class="t-stat" style="color:rgba(255,255,255,0.85);">Day 1</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:4px;">When access is granted. Background check arrives weeks later.</div>
+            </div>
+            <div class="threat-card">
+                <div class="t-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC3333" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <h4>Your Tech Roles Are the Target</h4>
+                <p>Developers, data engineers, infrastructure teams: each carries privileged access to core banking systems. A fraudulent hire does not steal a laptop. They hold network access, deployment rights, and team trust for months before anyone notices.</p>
+                <div class="t-stat" style="color:rgba(255,255,255,0.85);">81 days</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:4px;">Average detection time. $20.68M average cost. Source: Ponemon 2025.</div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <p>"Cybersecurity is the thing that scares me the most."</p>
+            <cite>Jamie Dimon, CEO J.P. Morgan Chase. JPMorgan spends $600M/year on cybersecurity. The hiring pipeline is not in that budget.</cite>
+        </div>
+    </div>
+
+    <!-- THE GAP -->
+    <div class="section">
+        <div class="section-label">Where the Gap Lives</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            Every layer of your security stack protects known users inside the perimeter. The hiring pipeline sits before the perimeter. It is the only entry point where an actor self-selects, self-describes, and submits documents with no authentication layer.
+        </p>
+
+        <div class="stack-layer sl-covered">
+            <span class="sl-name">Network Security</span>
+            <span class="sl-vendor">Palo Alto, Cisco</span>
+            <span class="sl-badge">Covered</span>
+        </div>
+        <div class="stack-layer sl-covered">
+            <span class="sl-name">Endpoint Detection</span>
+            <span class="sl-vendor">CrowdStrike, SentinelOne</span>
+            <span class="sl-badge">Covered</span>
+        </div>
+        <div class="stack-layer sl-covered">
+            <span class="sl-name">Identity and Access</span>
+            <span class="sl-vendor">Okta, CyberArk</span>
+            <span class="sl-badge">Covered</span>
+        </div>
+        <div class="stack-layer sl-covered">
+            <span class="sl-name">Email and Phishing</span>
+            <span class="sl-vendor">Proofpoint, Mimecast</span>
+            <span class="sl-badge">Covered</span>
+        </div>
+        <div class="stack-layer sl-late">
+            <span class="sl-name">Interview Fraud Detection</span>
+            <span class="sl-vendor">Deepfake detection, AI cheating detection: round 4+</span>
+            <span class="sl-badge">Late</span>
+        </div>
+        <div class="stack-layer sl-late">
+            <span class="sl-name">Background Checks</span>
+            <span class="sl-vendor">Post-offer, identity only, weeks after application</span>
+            <span class="sl-badge">Late</span>
+        </div>
+        <div class="stack-layer-threat">
+            <span class="sl-name">Application Submission Layer: 493,000 per year</span>
+            <span class="sl-badge">No Tool Exists</span>
+        </div>
+        <div class="stack-layer-zero">
+            <span class="sl-name">Layer 0: Sentriq</span>
+            <span style="font-size:12px; color:rgba(232,160,32,0.6);">Pre-submission trust layer. Every application. Before the ATS.</span>
+            <span class="sl-badge">The Gap Closes Here</span>
+        </div>
+    </div>
+
+
+
+    <!-- LAYER 0 EXPLAINER -->
+    <div class="section">
+        <div class="section-label">Why This Is a New Category</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:32px; max-width:680px;">
+            Every tool in the stack above is built for one problem: protect known users from known threats inside a defined perimeter. Firewalls stop external attacks. Endpoint detection catches compromised machines. Identity systems control what authenticated employees can access.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px;">
+            <div style="background:#0D0E1A; border:1px solid #161728; border-radius:12px; padding:24px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:rgba(255,255,255,0.3); text-transform:uppercase; margin-bottom:12px;">Every Layer Above</div>
+                <div style="font-size:14px; color:rgba(255,255,255,0.75); line-height:1.8;">Protects authenticated users who are already inside. The attacker has to break through a defended perimeter to reach the asset.</div>
+            </div>
+            <div style="background:rgba(232,160,32,0.04); border:1px solid rgba(232,160,32,0.2); border-radius:12px; padding:24px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:#E8A020; text-transform:uppercase; margin-bottom:12px;">Layer 0: The Hiring Pipeline</div>
+                <div style="font-size:14px; color:rgba(255,255,255,0.75); line-height:1.8;">No perimeter. No authentication. A threat actor submits their own credentials, constructs their own narrative, and waits to be invited inside. No existing tool sees this moment.</div>
+            </div>
+        </div>
+        <div style="border-left:3px solid #E8A020; padding:20px 24px; background:rgba(232,160,32,0.03); border-radius:0 8px 8px 0; margin-bottom:0;">
+            <p style="font-size:15px; font-weight:600; color:#fff; line-height:1.7; margin-bottom:8px;">Tools exist for interview fraud. Deepfake detection, AI cheating detection. They catch fraud at round four. The application that got the candidate to round four was never verified.</p>
+            <p style="font-size:13px; color:rgba(255,255,255,0.45); line-height:1.7;">The industry built fraud detection for the wrong end of the funnel. Sentriq operates at the moment of submission: before the first recruiter, before the first screen, before any resource is spent. No product exists at this layer.</p>
+        </div>
+    </div>
+
+    <!-- SHIFT LEFT PIPELINE -->
+    <div class="section">
+        <div class="section-label">The Shift-Left Principle</div>
+        <h2 style="font-size:clamp(20px,2.8vw,30px); font-weight:800; letter-spacing:-0.03em; color:#fff; margin-bottom:12px;">By the time J.P. Morgan verifies integrity, <span style="color:#E8A020;">$1,900 per candidate is already spent.</span></h2>
+        <p style="font-size:14px; color:rgba(255,255,255,0.5); max-width:680px; margin-bottom:24px; line-height:1.7;">Sentriq is the only layer that operates at the moment of application. Before the first recruiter minute. Before the first calendar invite. Before any internal resource is committed.</p>
+
+        <div style="overflow-x:auto; margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns:repeat(8,minmax(110px,1fr)); border:1px solid rgba(255,255,255,0.1); border-radius:12px; overflow:hidden; min-width:880px;">
+            <div style="padding:14px 8px; background:rgba(232,160,32,0.12); border-right:1px solid rgba(255,255,255,0.08); text-align:center; border-bottom:3px solid #E8A020;">
+                <div style="font-size:9px; font-weight:800; color:#E8A020; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">&#9660; Sentriq</div>
+                <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">Application</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.4); line-height:1.4;">Captcha active</div>
+                <div style="font-size:9px; color:#E8A020; margin-top:8px; line-height:1.3;">0 internal hours<br/><span style="font-size:8px; opacity:0.7;">external marginal cost</span></div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); border-right:1px solid rgba(255,255,255,0.08); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">ATS Screen</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">Workday / Taleo</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">~$5/application</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); border-right:1px solid rgba(255,255,255,0.08); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">Assessment</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">HireVue / Criteria</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">~$30/candidate</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); border-right:1px solid rgba(255,255,255,0.08); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">Phone Screen</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">Recruiter</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">~$30/screen</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); border-right:1px solid rgba(255,255,255,0.08); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">Tech Interview</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">HireVue / Panel</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">~$500/candidate</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); border-right:1px solid rgba(255,255,255,0.08); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">Final Panel</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">Hiring Manager</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">~$1,800/candidate</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(234,88,12,0.1); border-right:1px solid rgba(255,255,255,0.08); text-align:center; border-bottom:3px solid #E8A020;">
+                <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">Bgd Check</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.4); line-height:1.4;">Checkr / HireRight</div>
+                <div style="font-size:12px; font-weight:700; color:#E8A020; margin-top:8px;">$1,900+ bled</div>
+            </div>
+            <div style="padding:14px 8px; background:rgba(255,255,255,0.03); text-align:center;">
+                <div style="font-size:9px; color:transparent; margin-bottom:6px;">·</div>
+                <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px;">Onboarding</div>
+                <div style="font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4;">Workday / Rippling</div>
+                <div style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:8px;">$3,200+ total</div>
+            </div>
+        </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+            <div style="padding:16px 18px; background:rgba(232,160,32,0.06); border:1px solid rgba(232,160,32,0.2); border-radius:10px;">
+                <div style="font-size:13px; font-weight:700; color:#E8A020; margin-bottom:6px;">Sentriq screens at $0</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6;">Before the first phone call. Before the first calendar invite. Before any human time is spent.</div>
+            </div>
+            <div style="padding:16px 18px; background:rgba(204,51,51,0.06); border:1px solid rgba(204,51,51,0.2); border-radius:10px;">
+                <div style="font-size:13px; font-weight:700; color:#CC6655; margin-bottom:6px;">Background checks run last</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6;">After six interview rounds. After $1,900 in recruiter, engineer, and executive time is already gone.</div>
+            </div>
+            <div style="padding:16px 18px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px;">
+                <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:6px;">The shift-left principle</div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6;">In security, catching problems earlier reduces cost 100x. Sentriq applies shift-left to hiring: detect fraud at the source, not after the damage.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE CLOCK -->
+    <div class="section">
+        <div class="section-label">The Regulatory Clock</div>
+        <div class="clock-block">
+            <div class="clock-days" id="daysLeft">102<span>days left</span></div>
+            <div class="clock-text">
+                <h3>EU AI Act, Article 9. August 2, 2026.</h3>
+                <p>
+                    AI used in hiring and candidate screening is classified as high-risk under the EU AI Act. J.P. Morgan's European operations must have documented AI application risk management in place by August 2, 2026. Penalties reach EUR 15 million or 3% of global annual turnover, whichever is higher.
+                </p>
+                <ul>
+                    <li>Mandatory risk assessments for AI in employment decision-making</li>
+                    <li>Technical documentation of screening processes</li>
+                    <li>Human oversight requirements for AI-influenced hiring</li>
+                    <li>Transparency obligations to applicants</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW SENTRIQ WORKS -->
+    <div class="section">
+        <div class="section-label">How Sentriq Works</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            Think of Sentriq as Cloudflare for the hiring pipeline. Cloudflare sits between the internet and your web infrastructure, invisible to legitimate users, lethal to automated attacks. Sentriq sits between candidates and your ATS. Real applicants pass through without friction. Manufactured applications do not.
+        </p>
+        <div class="layer-stack">
+            <div class="layer-item">
+                <div class="layer-num">1</div>
+                <div class="layer-content">
+                    <h4>Behavioral Baseline</h4>
+                    <p>Every application carries a behavioral fingerprint: timing patterns, session depth, form interaction, device signals. A human filling out a job application behaves differently from a script running at scale. Sentriq reads that signal before the application reaches your ATS.</p>
+                </div>
+            </div>
+            <div class="layer-item">
+                <div class="layer-num">2</div>
+                <div class="layer-content">
+                    <h4>Async Challenge</h4>
+                    <p>When Layer 1 flags an anomaly, a short async task is served as part of the application. Not a CAPTCHA. A role-calibrated task that detects proxy impersonation and AI-assisted submissions. Real applicants complete it without friction. Manufactured applications do not.</p>
+                </div>
+            </div>
+            <div class="layer-item">
+                <div class="layer-num">3</div>
+                <div class="layer-content">
+                    <h4>Human Review</h4>
+                    <p>When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack. The employer decides. Zero automated rejections. Every decision is documented for EU AI Act audit trail compliance.</p>
+                </div>
+            </div>
+        </div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.4); margin-top:20px; line-height:1.6;">
+            Sentriq is platform-agnostic. It operates as a pre-submission layer, upstream of any ATS. No rip-and-replace. No change to recruiter workflow. Trust signals surface inside your existing recruiter interface.
+        </p>
+    </div>
+
+    <!-- ROI -->
+    <div class="section">
+        <div class="section-label">The Security Case</div>
+        <div class="roi-compare">
+            <div class="roi-box threat">
+                <div class="roi-amount">$20.68M</div>
+                <div class="roi-desc">Average insider threat incident cost in financial services. 81-day detection window. Source: Ponemon Institute, 2025.</div>
+            </div>
+            <div class="roi-vs">vs</div>
+            <div class="roi-box solution">
+                <div class="roi-amount">$192K/yr</div>
+                <div class="roi-desc">Sentriq annual coverage for a Tier 1 enterprise. Full trust signal on every application in scope.</div>
+            </div>
+        </div>
+        <div class="roi-multiplier">
+            <span>107x</span>
+            coverage ratio before a single incident
+        </div>
+    </div>
+
+    <!-- HR ROI -->
+    <div class="section">
+        <div class="section-label">The Recruiter Cost</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            The problem is not limited to fraud. AI tools have made it free to apply to 500 companies simultaneously. Most of those applications are from real people who invested 30 seconds and a prompt. Your recruiters cannot tell the difference without spending time on each one.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px;">
+            <div class="stat-card">
+                <div class="stat-num" style="color:#E8A020;">493K</div>
+                <div class="stat-label">Applications for entry-level positions at JPMorgan in 2024. One hiring cycle.</div>
+                <div class="stat-source">Mary Callahan Erdoes, JPMorgan Investor Day, May 2024</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">8.44 hrs</div>
+                <div class="stat-label">Recruiter time per role across initial screen, outreach, and phone screen. Industry benchmark.</div>
+                <div class="stat-source">Sentriq lifecycle benchmark. $60/hr loaded recruiter capacity rate.</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" style="color:#ffffff;">$2.27M</div>
+                <div class="stat-label">Recruiter capacity cost for the summer program alone at 4,483 roles x 8.44 hrs x $60/hr.</div>
+                <div class="stat-source">Based on 0.91% acceptance rate applied to 493K applications.</div>
+            </div>
+        </div>
+
+        <div style="background:#0D0E1A; border:1px solid #161728; border-radius:12px; padding:28px 28px;">
+            <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:16px;">Where the time goes</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Initial resume review</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:100%; height:100%; background:rgba(204,51,51,0.6); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">All 493K enter queue</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Shortlist and outreach</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:35%; height:100%; background:rgba(204,51,51,0.45); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">Filtered pool</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="width:160px; font-size:12px; color:rgba(255,255,255,0.45); flex-shrink:0;">Phone screen</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:12%; height:100%; background:rgba(204,51,51,0.3); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:rgba(255,255,255,0.4); width:80px; text-align:right;">Smaller pool</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px; margin-top:4px;">
+                    <div style="width:160px; font-size:12px; color:#E8A020; font-weight:700; flex-shrink:0;">With Sentriq</div>
+                    <div style="flex:1; background:#161728; border-radius:4px; height:6px; overflow:hidden;">
+                        <div style="width:100%; height:100%; background:rgba(232,160,32,0.35); border-radius:4px;"></div>
+                    </div>
+                    <div style="font-size:12px; color:#E8A020; width:80px; text-align:right;">Trust signal before queue</div>
+                </div>
+            </div>
+            <div style="margin-top:20px; padding-top:16px; border-top:1px solid #161728; font-size:13px; color:rgba(255,255,255,0.5); line-height:1.7;">
+                Sentriq surfaces a trust signal on every application before it enters recruiter view. Recruiters do not screen fewer candidates. They screen the same pool with a signal that tells them where to spend their time. The noise does not disappear from your inbox. It arrives labeled.
+            </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+            <div style="background:#0D0E1A; border:1px solid #161728; border-radius:12px; padding:22px;">
+                <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Without Sentriq</div>
+                <div style="font-size:15px; color:rgba(255,255,255,0.75); line-height:1.7;">Every application looks the same. Recruiters spend equal time on a 30-second AI submission and a considered application from a strong candidate. At 493K applications, that is not a process problem. It is a structural one.</div>
+            </div>
+            <div style="background:rgba(232,160,32,0.03); border:1px solid rgba(232,160,32,0.2); border-radius:12px; padding:22px;">
+                <div style="font-size:12px; font-weight:700; color:#E8A020; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">With Sentriq</div>
+                <div style="font-size:15px; color:rgba(255,255,255,0.75); line-height:1.7;">Every application arrives with a trust signal. Recruiters route attention toward high-signal applications first. The $2.27M in recruiter capacity gets reallocated from noise to pipeline. The best candidates surface faster.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HONEST STAGE -->
+    <div class="section">
+        <div class="section-label">Where Sentriq Is Today</div>
+        <div class="stage-block">
+            <h3>We will not overstate what we have. Here is the exact state.</h3>
+            <div class="stage-row">
+                <div class="stage-dot green"></div>
+                <p><strong>Product:</strong> Working demo demonstrating the application side of the hiring captcha. Full walkthrough available on request.</p>
+            </div>
+            <div class="stage-row">
+                <div class="stage-dot green"></div>
+                <p><strong>Stage:</strong> Pre-revenue. Pre-investment committee. Seed investors have reached internal consensus: a US enterprise confirming the problem is real and expressing willingness to pilot the product when ready is the condition for a $5M check. That is the only gate between here and close.</p>
+            </div>
+            <div class="stage-row">
+                <div class="stage-dot green"></div>
+                <p><strong>Funding:</strong> $5M seed round in progress. Institutional investors in active due diligence.</p>
+            </div>
+            <div class="stage-row">
+                <div class="stage-dot amber"></div>
+                <p><strong>What a design partner gets:</strong> Co-development influence on the product. First-mover commercial terms. Threat intelligence on your specific application pool during the pilot. Full reference rights for your CISO.</p>
+            </div>
+            <div class="stage-row">
+                <div class="stage-dot amber"></div>
+                <p><strong>What the pilot requires:</strong> Recruiter-level API access to your ATS for the scoped roles. An internal CISO or security lead as point of contact. 60 days.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE ASK -->
+    <div class="section">
+        <div class="section-label">The Design Partner Ask</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin-bottom:28px; max-width:680px;">
+            We are not asking J.P. Morgan to be a customer. We are asking J.P. Morgan to be the institution that closed this gap first, co-developed the standard with us, and holds first-mover terms when the market catches up.
+        </p>
+        <div class="ask-grid">
+            <div class="ask-card">
+                <h4>What Sentriq Delivers</h4>
+                <p>Full behavioral trust signal on every application in scope. Weekly anomaly report to your security team. Threat assessment report at pilot close, cleared for internal distribution.</p>
+            </div>
+            <div class="ask-card">
+                <h4>What J.P. Morgan Gets</h4>
+                <p>First institutional design partner in global banking. Co-development input on product direction. First-mover annual pricing locked at signature. CISO-ready threat documentation from Day 1.</p>
+            </div>
+            <div class="ask-card">
+                <h4>Scope</h4>
+                <p>Technology and operations roles. Your ATS. 60-day pilot window. Pilot starts within 30 days of Sentriq integration readiness confirmation, no later than September 30, 2026.</p>
+            </div>
+            <div class="ask-card">
+                <h4>What We Need From You</h4>
+                <p>One meeting with your CISO or Head of Security. ATS recruiter-level API access for the scoped roles. A 60-day commitment to structured feedback.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="section">
+        <div class="cta-block">
+            <h2>The hiring pipeline is the last unguarded entry point. Let's close it.</h2>
+            <p>The right conversation is between us, your CISO, and your Head of Talent Acquisition. You are the bridge that makes that happen. Thirty minutes. We will show you the demo and the threat data that is directly relevant to your open roles today.</p>
+            <div class="cta-founders">
+                <div class="cta-founder">
+                    <div class="cta-founder-name">Samuel Kemper</div>
+                    <div class="cta-founder-title">CEO and Co-Founder</div>
+                    <div class="cta-founder-email">samuel@sentriq.co</div>
+                </div>
+            </div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.2); margin-top:20px; letter-spacing:0.06em;">SENTRIQ.CO</div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
