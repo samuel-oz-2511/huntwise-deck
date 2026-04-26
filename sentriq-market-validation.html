@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Sentriq Library</title>
+<meta name="description" content="54 sources proving the hiring pipeline is a security problem, not an HR problem. Government advisories, DOJ indictments, threat intelligence reports, named incidents, and regulatory guidance.">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -68,7 +69,7 @@ a{color:inherit;text-decoration:none;}
 .killer-c{font-size:10px;color:var(--text-dim);margin-top:6px;font-style:italic;}
 
 /* FILTER */
-.filter-wrap{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0 0;margin-bottom:0;}
+.filter-wrap{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0 0;margin-bottom:0;border-bottom:1px solid var(--border);}
 .filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
 .filter-btn{padding:7px 13px;border-radius:30px;border:1px solid var(--border);background:transparent;color:var(--text-dim);font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:5px;letter-spacing:0.01em;}
 .filter-btn:hover{border-color:rgba(232,160,32,0.3);color:var(--text);}
@@ -80,18 +81,17 @@ a{color:inherit;text-decoration:none;}
 .search-input{width:100%;padding:11px 16px 11px 36px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color 0.15s;}
 .search-input::placeholder{color:var(--text-dim);}
 .search-input:focus{border-color:rgba(232,160,32,0.35);}
-.results-meta{font-size:12px;color:var(--text-dim);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.results-meta{display:none;font-size:12px;color:var(--text-dim);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
 .results-meta b{color:var(--amber);}
 
 /* SOURCE CARDS */
 .sources-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .src-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color 0.15s;position:relative;}
 .src-card:hover{border-color:rgba(232,160,32,0.2);}
-.src-card.featured{border-color:rgba(232,160,32,0.22);}
-.src-card.featured::before{content:'KEY SOURCE';position:absolute;top:14px;right:14px;font-size:8px;font-weight:800;letter-spacing:0.1em;color:var(--amber);opacity:0.6;}
+.src-card.featured{border-color:rgba(232,160,32,0.45);border-left:3px solid var(--amber);}
 .src-meta{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-dim);}
 .src-meta span{color:rgba(255,255,255,0.25);margin:0 5px;}
-.src-quote{font-size:13px;color:var(--text-sub);line-height:1.7;border-left:2px solid rgba(232,160,32,0.25);padding-left:12px;}
+.src-quote{font-size:13px;color:var(--text-sub);line-height:1.7;border-left:2px solid rgba(232,160,32,0.4);padding-left:12px;}
 .src-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
 .src-tags{display:flex;gap:4px;flex-wrap:wrap;}
 .tag{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;padding:2px 7px;border-radius:20px;cursor:pointer;transition:opacity 0.15s;}
@@ -103,14 +103,15 @@ a{color:inherit;text-decoration:none;}
 .t-THOUGHT_LEADER{background:rgba(232,160,32,0.18);color:var(--amber);border:1px solid rgba(232,160,32,0.32);}
 .t-REPORT{background:rgba(100,116,139,0.12);color:rgba(148,163,184,0.85);border:1px solid rgba(100,116,139,0.2);}
 .t-REGULATORY{background:rgba(245,200,80,0.1);color:rgba(251,210,80,0.85);border:1px solid rgba(245,200,80,0.2);}
-.t-HR_CROSSOVER{background:rgba(68,204,136,0.08);color:rgba(100,220,160,0.85);border:1px solid rgba(68,204,136,0.15);}
+.t-HR_CROSSOVER{background:rgba(96,165,250,0.1);color:rgba(147,197,253,0.85);border:1px solid rgba(96,165,250,0.2);}
 .src-link{font-size:12px;color:var(--amber);font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid rgba(232,160,32,0.3);border-radius:20px;transition:all 0.15s;flex-shrink:0;background:rgba(232,160,32,0.06);}
 .src-link:hover{background:rgba(232,160,32,0.14);border-color:rgba(232,160,32,0.5);}
 
 /* FOOTER */
-.lib-footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.lib-footer-l{font-size:12px;color:var(--text-dim);}
-.lib-footer-r{font-size:12px;color:var(--text-dim);}
+.lib-footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;}
+.lib-footer-brand{font-size:14px;font-weight:800;color:var(--amber);letter-spacing:-0.01em;margin-bottom:4px;}
+.lib-footer-sub{font-size:11px;color:var(--text-dim);}
+.lib-footer-r{font-size:11px;color:var(--text-dim);text-align:right;}
 
 /* MOBILE */
 @media(max-width:680px){
@@ -161,21 +162,24 @@ a{color:inherit;text-decoration:none;}
   </div>
 
   <div class="hero">
-    <div class="hero-label">The Sentriq Library</div>
-    <h1>The hiring pipeline is a <span>security problem.</span><br>Here is the evidence.</h1>
+    <div class="hero-label">Threat Intelligence Archive</div>
+    <h1>The hiring pipeline is a <span>security problem.</span> Here is the evidence.</h1>
   </div>
 
   <div class="exec">
-    <div class="exec-label">Executive Summary</div>
-    <p>The weight of evidence is unambiguous: the hiring pipeline is not an HR problem that happens to create security risk. It is an <strong>active attack surface, systematically exploited by nation-states, organized criminal networks, and opportunistic insiders.</strong> The evidence spans every authoritative category: FBI public service announcements, DOJ indictments with prison sentences, CISA advisories co-signed by five allied governments, named Fortune 500 breaches, major threat intelligence reports from CrowdStrike, Mandiant, Microsoft, Palo Alto, Okta, and SentinelOne, formal regulatory guidance from New York DFS, and a Gartner prediction that 1 in 4 job applicants will be fake by 2028.</p>
-    <p>The single most authoritative rebuttal anchor is the U.S. Department of Justice. The DOJ has indicted North Korean nationals and their American facilitators, <strong>prosecuted a US citizen to 102 months in federal prison,</strong> seized laptop farms across 16 states, and publicly named Fortune 500 companies including an American automaker, an aerospace manufacturer, and a Silicon Valley tech company as victims. This is not threat research. This is criminal prosecution.</p>
-    <p>When someone says "that is HR's problem, not ours," the correct answer is: <strong>Amazon's Chief Security Officer personally leads the defense, the FBI presented this at RSA Conference, Gartner's HR research director called it a cybersecurity risk, and the DOJ already sent someone to prison for it.</strong> Every other enterprise perimeter has a security owner. The hiring funnel does not. That is the gap Sentriq closes.</p>
+    <div class="exec-label">The case in three facts</div>
+    <p>The hiring pipeline is an <strong>active attack surface</strong>, systematically exploited by nation-states, organized criminal networks, and opportunistic insiders. Every other enterprise perimeter has a security owner. The hiring funnel does not.</p>
+    <p style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
+      <strong>DOJ:</strong> A US citizen was sentenced to 102 months in federal prison for placing North Korean workers inside 300+ companies. Laptop farms. 68 stolen identities. Named Fortune 500 victims. This is criminal prosecution, not threat research.<br><br>
+      <strong>Amazon:</strong> The Chief Security Officer personally built and runs a program that has blocked 1,800+ DPRK job applicants since April 2024. Not HR. The CSO.<br><br>
+      <strong>Gartner:</strong> "Candidate fraud creates cybersecurity risks that can be far more serious than making a bad hire." 1 in 4 candidate profiles will be fake by 2028.
+    </p>
   </div>
 
   <div class="section">
     <div class="section-head">
       <div class="section-label">Top 10 Objection Killers</div>
-      <div class="section-count">For when they say "that's HR, not security"</div>
+      <div class="section-count">10 reasons the evidence is unambiguous</div>
     </div>
     <div class="killers-grid">
       <div class="killer">
@@ -230,7 +234,7 @@ a{color:inherit;text-decoration:none;}
         <div class="killer-n">7</div>
         <div>
           <div class="killer-t">Every major threat intelligence vendor has a named threat actor for it.</div>
-          <div class="killer-d">Mandiant (UNC5267), CrowdStrike (FAMOUS CHOLLIMA), Microsoft (Jasper Sleet), SentinelOne, Okta, and Palo Alto Unit 42 all maintain active threat actor profiles for hiring infiltration.</div>
+          <div class="killer-d">Mandiant (UNC5267), CrowdStrike (FAMOUS CHOLLIMA), Microsoft (Jasper Sleet), SentinelOne, Okta, and Unit 42 all maintain active named threat actor profiles for hiring-based infiltration.</div>
           <div class="killer-c">Multiple vendors, 2024-2025</div>
         </div>
       </div>
@@ -246,7 +250,7 @@ a{color:inherit;text-decoration:none;}
         <div class="killer-n">9</div>
         <div>
           <div class="killer-t">The resume itself is a malware delivery vector.</div>
-          <div class="killer-d">The More_eggs backdoor campaign targets HR teams and recruiters with malware-laced resumes. Attackers built purpose-specific candidate sites with IP filtering to bypass security sandboxes. Your email gateway does not block resumes.</div>
+          <div class="killer-d">The More_eggs backdoor targets HR teams with malware-laced resumes delivered via purpose-built candidate sites that bypass security sandboxes. Your email gateway does not block resumes.</div>
           <div class="killer-c">eSentire, The Hacker News, SC Media, 2024</div>
         </div>
       </div>
@@ -280,7 +284,10 @@ a{color:inherit;text-decoration:none;}
   </div>
 
   <div class="lib-footer">
-    <div class="lib-footer-l">Sentriq &nbsp;|&nbsp; sentriq.co</div>
+    <div>
+      <div class="lib-footer-brand">The Sentriq Library</div>
+      <div class="lib-footer-sub">sentriq.co &nbsp;|&nbsp; Hiring pipeline threat intelligence</div>
+    </div>
     <div class="lib-footer-r" id="footer-updated"></div>
   </div>
 
@@ -430,9 +437,15 @@ function applyFilters(){
     }
   });
   var meta=document.getElementById('resultsMeta');
-  var catLabel=currentTag==='ALL'?'all sources':TAG_LABELS[currentTag];
-  var qPart=q?' matching <b>"'+q+'"</b>':'';
-  meta.innerHTML='<b>'+visible+'</b> of <b>'+total+'</b> sources &nbsp;|&nbsp; '+catLabel+qPart;
+  var isFiltered=currentTag!=='ALL'||q.length>0;
+  if(isFiltered){
+    var catLabel=currentTag==='ALL'?'all sources':TAG_LABELS[currentTag];
+    var qPart=q?' matching <b>"'+q+'"</b>':'';
+    meta.style.display='block';
+    meta.innerHTML='<b>'+visible+'</b> of <b>'+total+'</b> &nbsp;|&nbsp; '+catLabel+qPart;
+  }else{
+    meta.style.display='none';
+  }
 }
 
 function buildCards(){
