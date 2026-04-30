@@ -293,114 +293,112 @@
 </div>
 </div>
 
-<!-- SLIDE 2: THE THREAT -->
+<!-- SLIDE 2: THE PROBLEM -->
 <div class="slide bg-dark" data-index="1">
 <div class="slide-inner">
-    <span class="label">The Threat</span>
-    <h2>The application layer has never been defended. <span style="color:var(--amber);">Now it is the primary attack surface.</span></h2>
+    <span class="label">The Problem</span>
+    <h2>Recruiting teams have more applications. <span style="color:var(--amber);">Less confidence in which are real.</span></h2>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
         <div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
-            <div class="stat-num" style="color:var(--amber);">1,500+</div>
-            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Applications per day from a single bot user. Mass-apply tools are YC-funded, widely available, and growing 20% per year.</p>
+            <div class="stat-num" style="color:var(--amber);">25%</div>
+            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">of job applications will be AI-generated or significantly AI-altered by 2028. Already happening at scale today.</p>
+            <p style="font-size:10px;color:var(--muted);margin-top:4px;">Gartner, Jul 2025</p>
         </div>
         <div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
-            <div class="stat-num" style="color:var(--amber);">41%</div>
-            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">of companies already hired a fraudulent employee. Not nearly hired. Hired. Onboarded. Gave access.</p>
-            <p style="font-size:10px;color:var(--muted);margin-top:4px;">GetReal Security, 668 IT/cybersecurity leaders, Dec 2025</p>
+            <div class="stat-num" style="color:var(--amber);">23 hrs</div>
+            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Median recruiter time to build a quality shortlist for a single role. AI has not reduced this. It has made it worse.</p>
+            <p style="font-size:10px;color:var(--muted);margin-top:4px;">LinkedIn Talent Insights, 2025</p>
         </div>
         <div style="padding:18px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;text-align:center;">
-            <div class="stat-num" style="color:var(--amber);">$4.88M</div>
-            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Average cost of a data breach (IBM, 2024). A fraudulent hire who gains internal access is a breach in progress.</p>
+            <div class="stat-num" style="color:var(--amber);">3:1</div>
+            <p style="font-size:12px;color:var(--text-sub);margin-top:6px;">Interviews per hire. One in three candidates advanced to interview does not match the role. Recruiters are flying blind on shortlist quality.</p>
+            <p style="font-size:10px;color:var(--muted);margin-top:4px;">SHRM, 2025</p>
         </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
         <div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.15);border-radius:12px;">
             <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">The signal destruction economy</div>
-            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;">AI resume tools, auto-apply bots, and interview-cheat software make up a <strong style="color:var(--text);">~$2.5B market growing ~20%/year.</strong> YC funded Tsenta: a tool that helps candidates send 1,500 applications per day. YC is funding the attack. We are building the defense.</p>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;">AI resume tools, mass-apply bots, and profile-generation software make up a <strong style="color:var(--text);">~$2.5B market growing ~20%/year.</strong> YC funded Tsenta: one tool that sends 1,500 applications per day on behalf of a single candidate. Every ATS in the market ingests these without distinction.</p>
         </div>
         <div style="padding:16px 18px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.15);border-radius:12px;">
-            <div style="font-size:10px;font-weight:700;color:rgba(232,160,32,0.85);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">The extreme version: national security</div>
-            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;">320+ North Korean operative cases investigated, up 220% YoY. <sup style="font-size:9px;color:var(--muted);">[CrowdStrike/TechCrunch, Aug 2025]</sup> Stolen SSNs, fabricated GitHub histories, live AI coaching during video interviews. KnowBe4 hired one: they passed <strong style="color:var(--text);">four video interviews and a full background check.</strong></p>
+            <div style="font-size:10px;font-weight:700;color:rgba(232,160,32,0.85);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">The root problem: ATS has no quality layer</div>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;">Your ATS shows what candidates submitted. It does not show whether the submission reflects who they are, what they know, or whether a human touched it. <strong style="color:var(--text);">Every ATS in the market has this gap.</strong> Nobody has built the layer that sits upstream and surfaces it.</p>
         </div>
     </div>
     <div style="padding:14px 20px;background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.18);border-radius:12px;display:flex;align-items:flex-start;gap:12px;">
         <div style="flex-shrink:0;width:3px;min-height:36px;background:var(--amber);border-radius:2px;align-self:stretch;"></div>
         <div>
-            <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">The attack infrastructure is already deployed</div>
-            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin:0;">Camoufox: a Firefox fork patched at the C++ level to defeat browser fingerprinting, paired with residential proxy rotation and OS-level keyboard simulation that bypasses React input detection. MIT licensed. ~1M PyPI downloads/month. IP blocking and fingerprinting are already defeated. Behavioral detection is what remains.</p>
+            <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">The category is Application Intelligence for Talent Acquisition. It does not exist yet.</div>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin:0;">Recruiting teams are not asking for more applications. They are asking for confidence in the ones they already have. That is the product. Not a filter. Not a fraud detector. An application quality layer that tells recruiters which submissions deserve human time and which need clarification before any time is spent.</p>
         </div>
     </div>
     <div class="sources">
-        GetReal Security, 668 IT/cybersecurity leaders, Dec 2025 ·
-        Gartner Research, Jul 2025 ·
-        CrowdStrike / TechCrunch, Aug 2025 ·
-        FBI IC3 PSA, Jan 2025 · DOJ, Nov 2024 ·
-        YC S26: Tsenta · Camoufox: pypistats.org/packages/camoufox
+        Gartner, Jul 2025 · LinkedIn Talent Insights, 2025 · SHRM, 2025 · YC S26: Tsenta
     </div>
 </div>
 </div>
 
-<!-- SLIDE 3: STRUCTURAL GAP -->
+<!-- SLIDE 3: THE MISSING LAYER -->
 <div class="slide bg-dark" data-index="2">
 <div class="slide-inner">
-    <span class="label">The Structural Gap</span>
-    <h2>Every enterprise has 6 security layers. <span style="color:var(--amber);">None defends the hiring funnel.</span></h2>
-    <p style="font-size:14px;color:rgba(255,255,255,0.55);max-width:760px;line-height:1.6;margin-bottom:16px;">State-backed operatives clear Okta. They pass Persona. They survive background checks with real stolen SSNs. The attack enters through hiring because hiring has no infrastructure layer. Every other perimeter is defended.</p>
+    <span class="label">The Missing Layer</span>
+    <h2>The HR stack has a tool for every stage. <span style="color:var(--amber);">None for application quality.</span></h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.55);max-width:760px;line-height:1.6;margin-bottom:16px;">Every recruiter has an ATS to track, an assessment to test, and a background check to close. What does not exist is a layer that evaluates the quality of what arrived before anyone touches it.</p>
 
     <div style="margin-bottom:14px;">
         <div class="stack-layer">
-            <span class="stack-layer-label">SIEM / SOC</span>
-            <span class="stack-layer-vendors">Splunk · IBM QRadar · Microsoft Sentinel · Sumo Logic</span>
-            <span class="stack-layer-badge">Protected</span>
+            <span class="stack-layer-label">JOB SOURCING</span>
+            <span class="stack-layer-vendors">LinkedIn · Indeed · Glassdoor · Wellfound · Company careers page</span>
+            <span class="stack-layer-badge">Covered</span>
         </div>
         <div class="stack-layer">
-            <span class="stack-layer-label">ENDPOINT (EDR)</span>
-            <span class="stack-layer-vendors">CrowdStrike · SentinelOne · Microsoft Defender · Cortex XDR</span>
-            <span class="stack-layer-badge">Protected</span>
+            <span class="stack-layer-label">APPLICANT TRACKING</span>
+            <span class="stack-layer-vendors">Greenhouse · Lever · Ashby · iCIMS · Workday · SmartRecruiters</span>
+            <span class="stack-layer-badge">Covered</span>
         </div>
         <div class="stack-layer">
-            <span class="stack-layer-label">IDENTITY / AUTH</span>
-            <span class="stack-layer-vendors">Okta · CyberArk · Azure AD · BeyondTrust · Ping Identity</span>
-            <span class="stack-layer-badge">Protected</span>
+            <span class="stack-layer-label">ASSESSMENT</span>
+            <span class="stack-layer-vendors">HireVue · Criteria · CodeSignal · Pymetrics · Karat</span>
+            <span class="stack-layer-badge">Covered</span>
         </div>
         <div class="stack-layer">
-            <span class="stack-layer-label">CLOUD SECURITY</span>
-            <span class="stack-layer-vendors">Wiz · Orca Security · Prisma Cloud · Lacework · Aqua</span>
-            <span class="stack-layer-badge">Protected</span>
+            <span class="stack-layer-label">INTERVIEWS</span>
+            <span class="stack-layer-vendors">Hiring managers · Scheduling tools · Structured panels · Offer letters</span>
+            <span class="stack-layer-badge">Covered</span>
         </div>
         <div class="stack-layer">
-            <span class="stack-layer-label">NETWORK / PERIMETER</span>
-            <span class="stack-layer-vendors">Cloudflare · Palo Alto Networks · Zscaler · Akamai · Fortinet</span>
-            <span class="stack-layer-badge">Protected</span>
+            <span class="stack-layer-label">BACKGROUND CHECK</span>
+            <span class="stack-layer-vendors">Checkr · HireRight · Sterling · First Advantage</span>
+            <span class="stack-layer-badge">Covered</span>
         </div>
         <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(232,160,32,0.5);background:rgba(232,160,32,0.08);margin-bottom:5px;">
-            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.9);width:160px;flex-shrink:0;">HIRING FUNNEL</span>
-            <span style="font-size:11px;color:rgba(232,160,32,0.7);font-weight:600;">Every application. Every role. Every ATS. Zero infrastructure. This is where threats enter.</span>
-            <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.18);color:rgba(255,255,255,0.85);border:1px solid rgba(232,160,32,0.4);">UNDEFENDED</span>
+            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.9);width:180px;flex-shrink:0;">APPLICATION QUALITY</span>
+            <span style="font-size:11px;color:rgba(232,160,32,0.7);font-weight:600;">Every submission. Every role. Every ATS. Zero signal on whether what arrived is worth a recruiter's time.</span>
+            <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.18);color:rgba(255,255,255,0.85);border:1px solid rgba(232,160,32,0.4);">MISSING</span>
         </div>
         <div style="display:flex;align-items:center;padding:11px 14px;border-radius:8px;border:1.5px solid rgba(232,160,32,0.5);background:rgba(232,160,32,0.1);">
-            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);width:160px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
-            <span style="font-size:11px;color:rgba(232,160,32,0.9);font-weight:600;">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything. The primitive that does not exist yet.</span>
+            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);width:180px;flex-shrink:0;">LAYER 0: SENTRIQ</span>
+            <span style="font-size:11px;color:rgba(232,160,32,0.9);font-weight:600;">Application quality layer: pre-ATS, platform-agnostic, upstream of everything. The primitive that does not exist yet.</span>
             <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.2);color:var(--amber);border:1px solid rgba(232,160,32,0.4);">BUILDING IT</span>
         </div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
         <div style="padding:14px 16px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:10px;text-align:center;">
-            <div style="font-size:30px;font-weight:700;color:var(--amber);">41%</div>
-            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">of enterprises already hired a fraudulent employee. Not nearly. Hired. Onboarded. Given access.</p>
+            <div style="font-size:30px;font-weight:700;color:var(--amber);">25%</div>
+            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">of applications AI-generated by 2028, per Gartner. ATS ingests all of them without distinction.</p>
         </div>
         <div style="padding:14px 16px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:10px;text-align:center;">
             <div style="font-size:30px;font-weight:700;color:var(--amber);">$1,900+</div>
-            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">in process cost spent before a background check runs. 6+ interviews. The fraud is already inside.</p>
+            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">in recruiter and interview cost spent per candidate before clarity on application quality emerges.</p>
         </div>
         <div style="padding:14px 16px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:10px;text-align:center;">
             <div style="font-size:30px;font-weight:700;color:var(--amber);">$2.5B</div>
-            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">signal-destruction economy: mass-apply bots, AI resume tools, proxy fraud networks. YC-funded. Growing 20%+.</p>
+            <p style="font-size:11px;color:var(--text-sub);margin-top:5px;line-height:1.5;">signal-destruction economy: mass-apply bots, AI resume tools, auto-generated cover letters. Growing 20%+/year.</p>
         </div>
     </div>
     <div style="margin-top:12px;padding:13px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:10px;border-left:3px solid var(--amber);">
-        <p style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.65;"><strong style="color:var(--text);">KnowBe4: documented public incident.</strong> A security awareness company hired a North Korean state operative. The candidate passed four rounds of interviews and a standard background check using a real stolen US identity. Discovered only after the operative attempted to load malware on day one.</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.65;">Like Cloudflare sitting upstream of every web server, Sentriq sits upstream of every ATS. It does not replace the recruiter's workflow. It tells them, before they open a single application, which submissions have the signal to deserve their time.</p>
     </div>
 </div>
 </div>
@@ -487,40 +485,40 @@
 <div class="slide bg-dark" data-index="4">
 <div class="slide-inner">
     <span class="label">The Deal Cycle</span>
-    <h2>HR opens the door. <span style="color:var(--amber);">The data forces the escalation.</span> CISO signs the check.</h2>
+    <h2>Head of TA sees the problem. <span style="color:var(--amber);">The data closes the deal.</span> HR signs the contract.</h2>
     <div style="margin-top:16px;padding:16px 20px;background:rgba(68,204,136,0.04);border:1px solid rgba(68,204,136,0.18);border-radius:12px;margin-bottom:14px;">
-        <div style="font-size:10px;font-weight:700;color:#44CC88;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">How the deal closes: no stalemate, no dual approval</div>
+        <div style="font-size:10px;font-weight:700;color:#44CC88;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">How the deal closes: HR-owned, fast, no security approval gate</div>
         <div style="display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;gap:4px;align-items:center;">
             <div style="padding:14px;background:rgba(232,160,32,0.05);border-radius:10px;border:1px solid rgba(232,160,32,0.18);">
                 <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">Step 1</div>
-                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">HR starts a POC</div>
-                <p style="font-size:10px;color:var(--muted);line-height:1.5;">No CISO approval needed. Near-zero cost. "Show us what is actually in our live applicant data."</p>
+                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Head of TA starts a POC</div>
+                <p style="font-size:10px;color:var(--muted);line-height:1.5;">Near-zero cost. No security approval gate. "Show us what is actually in our live applicant data."</p>
             </div>
             <div style="text-align:center;font-size:18px;color:#44CC88;">&#8594;</div>
             <div style="padding:14px;background:rgba(232,160,32,0.05);border-radius:10px;border:1px solid rgba(232,160,32,0.18);">
                 <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">Step 2</div>
-                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Real fraud surfaces</div>
-                <p style="font-size:10px;color:var(--muted);line-height:1.5;">The data does the selling. Fraud flags in their own live pipeline turn a pilot into a security incident.</p>
+                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Signal clarity surfaces</div>
+                <p style="font-size:10px;color:var(--muted);line-height:1.5;">Hours saved, low-signal applications identified before a single screen. The data does the selling.</p>
             </div>
             <div style="text-align:center;font-size:18px;color:#44CC88;">&#8594;</div>
             <div style="padding:14px;background:rgba(232,160,32,0.05);border-radius:10px;border:1px solid rgba(232,160,32,0.18);">
                 <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">Step 3</div>
-                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">CISO owns the outcome</div>
-                <p style="font-size:10px;color:var(--muted);line-height:1.5;">Security incident in hiring is a CISO problem. EU AI Act compliance is a CISO budget line. Contract follows.</p>
+                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">HR signs. Procurement follows.</div>
+                <p style="font-size:10px;color:var(--muted);line-height:1.5;">Pilot converts to a paid contract. EU AI Act compliance (August 2026) accelerates the timeline for enterprise deals.</p>
             </div>
         </div>
         <div style="margin-top:10px;padding:8px 14px;background:rgba(68,204,136,0.07);border-radius:8px;">
-            <p style="font-size:11px;color:#44CC88;text-align:center;font-weight:600;">HR never needs to convince the CISO. The findings do it. The stalemate does not exist in this motion.</p>
+            <p style="font-size:11px;color:#44CC88;text-align:center;font-weight:600;">HR owns the buying decision. The ROI is immediate and measurable. No cross-departmental negotiation required to start.</p>
         </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
-            <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">VP HR: the entry point</div>
-            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, bad hires prevented. Pays for itself before the second mis-hire. They feel it. They want it. They start the POC.</p>
+            <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">Head of TA / VP People: the buyer</div>
+            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Drowning in 6,500 applications per role. ROI is immediate: hours saved, shortlist quality improved, hiring manager acceptance rate up. Sentriq pays for itself before the second mis-hire. They feel the problem every day. They own the budget to solve it.</p>
         </div>
         <div style="padding:16px 18px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;">
-            <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">CISO: where the money is</div>
-            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Owns the risk of who gets inside post-DPRK. EU AI Act (August 2026) is a forced purchase event already in their Q3 budget. CISO budget is 10-50x HR budget. When the CISO owns the problem, pricing changes entirely.</p>
+            <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">EU AI Act: the urgency driver</div>
+            <p style="font-size:11px;color:var(--text-sub);line-height:1.6;">Hiring AI is classified as high-risk under Annex III from August 2, 2026. Any company with EU operations must prove human oversight, bias testing, and audit trails. Sentriq is compliant by architecture. Zero automated rejections. Human in the loop at every flag. Full audit trail from day one.</p>
         </div>
     </div>
 </div>
@@ -849,9 +847,9 @@
         </div>
         <div style="padding:20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
             <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Force 2: Now</div>
-            <h3 style="font-size:14px;color:var(--text);">Fraud became enterprise security risk</h3>
-            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">State-sponsored operatives, deepfake interviews, AI-coached live responses. 41% of enterprises already hired a fraudulent employee. FBI issued PSAs. DOJ filed indictments. CISO owns this now.</p>
-            <div style="font-size:12px;font-weight:700;color:var(--amber);">Budget moved from HR to security. The conversation changes.</div>
+            <h3 style="font-size:14px;color:var(--text);">Application quality became a TA crisis</h3>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.65;margin-bottom:10px;">More applications. Less signal. Shortlist confidence collapsed. TA teams are spending more time reviewing submissions that look complete but cannot be trusted. The problem is not the ATS. The problem is what gets into it.</p>
+            <div style="font-size:12px;font-weight:700;color:var(--amber);">HR feels it every day. The budget is already there.</div>
         </div>
         <div style="padding:20px;background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;">
             <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Force 3: August 2, 2026</div>
@@ -862,7 +860,7 @@
     </div>
     <div style="padding:16px 20px;background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-radius:12px;margin-bottom:12px;">
         <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">US Enterprise: the first market</div>
-        <p style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.65;margin-bottom:10px;">Financial services in the US is the highest-value, highest-risk hiring market in the world. Banks and fintechs are the first companies with CISOs and HR budgets large enough to act before the EU AI Act deadline. Active conversations are already live with HSBC Innovation Banking, Wells Fargo Emerging Tech, JPMorgan, and PwC. The US is not a future market. It is the current one.</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.65;margin-bottom:10px;">Financial services in the US is the highest-value, highest-risk hiring market in the world. Banks and fintechs are the first companies with TA teams and HR budgets large enough to act before the EU AI Act deadline. Active conversations are already live with HSBC Innovation Banking, Wells Fargo Emerging Tech, JPMorgan, and PwC. The US is not a future market. It is the current one.</p>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
             <div style="padding:9px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;text-align:center;">
                 <div style="font-size:11px;font-weight:700;color:var(--text);">HSBC</div>
@@ -893,7 +891,7 @@
         </div>
         <div>
             <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:3px;">Expand</div>
-            <p style="font-size:10px;color:var(--muted);">CISO escalation triggered by findings. EU AI Act deadline accelerates timeline. Full pipeline coverage.</p>
+            <p style="font-size:10px;color:var(--muted);">More roles, more signal, full pipeline. EU AI Act deadline accelerates procurement. HR owns the contract.</p>
         </div>
     </div>
     <div class="sources">
