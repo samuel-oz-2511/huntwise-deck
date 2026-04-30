@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:      #09090F;
+        --card:    #0D0E1A;
+        --border:  #161728;
+        --muted:   #8080A8;
+        --amber:   #E8A020;
+        --amber-d: #B87010;
+        --text:    #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --green:   #44CC88;
+        --primary: #E8A020;
+        --white: #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange: #E8A020;
+        --red: #E05555;
+        --purple: #3A2058;
+        --text-dim: rgba(255,255,255,0.52);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.02;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    .deck { width: 100%; height: 100%; position: relative; }
+
+    .slide {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        justify-content: flex-start; align-items: center;
+        padding: clamp(24px, 3.5vh, 48px) clamp(28px, 5vw, 80px) 78px;
+        overflow-y: auto; overflow-x: hidden;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+    .slide > .slide-inner { margin: auto 0; }
+    .slide.active { opacity: 1; pointer-events: all; }
+    .slide .slide-inner { transition: opacity 0.4s ease, transform 0.4s ease; opacity: 0; transform: translateY(10px); }
+    .slide.active .slide-inner { opacity: 1; transform: translateY(0); }
+    .slide-inner { max-width: 1080px; width: 100%; position: relative; z-index: 1; }
+
+    .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
+    .bg-cover {
+        background:
+            radial-gradient(ellipse 40% 35% at 50% 32%, rgba(232,160,32,0.38) 0%, rgba(232,160,32,0.10) 55%, transparent 100%),
+            radial-gradient(ellipse 85% 65% at 50% 35%, rgba(26,26,53,0.55) 0%, #09090F 70%);
+    }
+
+    .nav-bar {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 40px;
+        background: rgba(9,9,15,0.92); backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border); z-index: 100;
+    }
+    .nav-logo { font-weight: 500; font-size: 13px; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; gap: 7px; }
+    .nav-controls { display: flex; align-items: center; gap: 14px; }
+    .nav-btn {
+        background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
+        color: var(--white); width: 38px; height: 38px; border-radius: 8px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 17px; transition: all 0.25s;
+    }
+    .nav-btn:hover { background: var(--amber); border-color: var(--amber); }
+    .slide-counter { font-size: 12px; color: var(--muted); font-weight: 500; min-width: 52px; text-align: center; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
+
+    .progress-bar {
+        position: fixed; top: 0; left: 0; height: 2px;
+        background: var(--amber);
+        box-shadow: 0 0 8px rgba(232,160,32,0.45);
+        transition: width 0.35s ease; z-index: 100;
+    }
+
+    .confidential { position: fixed; top: 16px; right: 22px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100; }
+    .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); opacity: 0; transition: opacity 0.3s ease; }
+
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 12px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+    .center .label { justify-content: center; }
+    .center .label::before { display: none; }
+
+    h1 { font-size: clamp(36px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 18px; }
+    h2 { font-size: clamp(22px, 3.2vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
+    h3 { font-size: clamp(14px, 1.6vw, 18px); font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+
+    .card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 14px; padding: clamp(16px, 2vw, 24px);
+    }
+    .card p { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+
+    .pill { display: inline-block; padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid; }
+    .pill-blue { background: rgba(232,160,32,0.08); color: var(--amber); border-color: rgba(232,160,32,0.2); }
+    .pill-green { background: rgba(68,204,136,0.08); color: #44CC88; border-color: rgba(68,204,136,0.2); }
+    .pill-red { background: rgba(224,85,85,0.10); color: #E05555; border-color: rgba(224,85,85,0.25); }
+
+    .stat-num { font-size: clamp(36px, 5vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+
+    .signal-tag {
+        display: inline-flex; align-items: center; gap: 5px;
+        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px; font-weight: 600;
+        background: rgba(232,160,32,0.08); color: var(--amber);
+        border: 1px solid rgba(232,160,32,0.2);
+    }
+
+    .sources { margin-top: 14px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+    .src-toggle { display: block; width: 100%; padding: 7px 14px; background: none; border: none; cursor: pointer; font-size: 10px; color: var(--muted); font-weight: 600; font-family: inherit; text-align: left; transition: color 0.2s; }
+    .src-toggle:hover { color: rgba(255,255,255,0.6); }
+    .src-toggle::after { content: ' ▸'; }
+    .sources.open .src-toggle::after { content: ' ▾'; }
+    .src-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 14px; }
+    .sources.open .src-content { max-height: 220px; padding: 0 14px 10px; }
+    .src-content p { font-size: 10px; color: var(--muted); line-height: 1.8; }
+
+    .stack-layer { display:flex; align-items:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); margin-bottom:5px; }
+    .stack-layer-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); width:200px; flex-shrink:0; }
+    .stack-layer-vendors { font-size:12px; color:rgba(255,255,255,0.28); }
+    .stack-layer-badge { margin-left:auto; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:3px 8px; border-radius:4px; }
+    .stack-layer-badge.defended { background:rgba(68,204,136,0.1); color:#44CC88; border:1px solid rgba(68,204,136,0.2); }
+    .stack-layer-badge.gap { background:rgba(224,85,85,0.12); color:#E05555; border:1px solid rgba(224,85,85,0.25); }
+    .stack-layer-zero { display:flex; align-items:center; padding:18px 20px; border-radius:10px; border:2px solid rgba(232,160,32,0.75); background:rgba(232,160,32,0.12); margin-bottom:5px; box-shadow:0 0 28px rgba(232,160,32,0.12); }
+    .stack-layer-zero .stack-layer-label { font-size:13px; font-weight:800; color:#E8A020; width:200px; }
+    .stack-layer-zero .stack-layer-vendors { font-size:13px; color:rgba(255,255,255,0.92); font-weight:600; }
+    .stack-layer-threat { display:flex; align-items:center; padding:14px 16px; border-radius:8px; border:2px solid rgba(239,68,68,0.55); background:rgba(239,68,68,0.08); margin-bottom:6px; }
+
+    .lc-grid { display:grid; grid-template-columns:repeat(6,1fr); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:12px; }
+    .lc-stage { padding:14px 8px; border-right:1px solid var(--border); text-align:center; background:rgba(255,255,255,0.02); }
+    .lc-stage:last-child { border-right:none; }
+    .lc-badge { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; min-height:13px; color:transparent; }
+    .lc-name { font-size:11px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px; line-height:1.3; }
+    .lc-tool { font-size:10px; color:rgba(255,255,255,0.28); line-height:1.4; }
+    .lc-cost { font-size:10px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:7px; }
+    .lc-stage.lc-sentriq { background:rgba(232,160,32,0.10); border-bottom:3px solid #E8A020; }
+    .lc-stage.lc-sentriq .lc-badge { color:#E8A020; }
+    .lc-stage.lc-sentriq .lc-name { color:#fff; font-weight:800; }
+    .lc-stage.lc-sentriq .lc-cost { color:#E8A020; font-weight:800; font-size:11px; }
+    .lc-stage.lc-danger { background:rgba(239,68,68,0.07); border-bottom:3px solid rgba(239,68,68,0.65); }
+    .lc-stage.lc-danger .lc-cost { color:#E05555; font-weight:800; }
+
+    .moat-card { position:relative; overflow:hidden; padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; }
+    .moat-watermark { position:absolute; bottom:-10px; right:8px; font-size:72px; font-weight:800; color:rgba(255,255,255,0.07); letter-spacing:-0.04em; line-height:1; pointer-events:none; user-select:none; }
+
+    .hero-quote { margin-top:18px; padding:22px 32px; background:rgba(232,160,32,0.06); border-left:3px solid #E8A020; border-radius:0 12px 12px 0; }
+    .hero-quote p { font-size:19px; color:rgba(255,255,255,0.94); font-weight:700; letter-spacing:-0.02em; line-height:1.4; }
+    .hero-quote small { display:block; font-size:12px; color:rgba(255,255,255,0.38); margin-top:8px; letter-spacing:0.02em; }
+
+    .milestone-card { padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; gap:16px; }
+    .milestone-num { flex-shrink:0; text-align:center; min-width:52px; }
+    .milestone-num .date { font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
+    .milestone-num .value { font-size:20px; font-weight:800; color:var(--amber); letter-spacing:-0.02em; line-height:1; }
+    .milestone-num .unit { font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px; }
+    .milestone-body { font-size:12px; color:rgba(255,255,255,0.78); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px; }
+
+    @media (max-width: 900px) {
+        .slide { padding: 22px 16px 70px; }
+        h1 { font-size: 24px; } h2 { font-size: 18px; }
+        .nav-bar { padding: 10px 16px; }
+    }
+    .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    @media (max-width: 640px) {
+        .lc-grid { min-width: 420px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
+        <div style="margin-bottom:32px;">
+            <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px;">
+                <svg width="36" height="36" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+                <span style="font-size:22px;font-weight:500;color:#ffffff;letter-spacing:-0.01em;">Sentriq<span style="color:#E8A020;">.</span></span>
+            </div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">For Eliana</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
+        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#E8A020;color:#09090F;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">View</button>
+        <div id="gateError" style="font-size:12px;color:rgba(232,160,32,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
+    </div>
+</div>
+
+<script>
+    function pingOpen() {
+        var ua = navigator.userAgent;
+        var t = new Date().toISOString();
+        fetch('https://ipapi.co/json/')
+            .then(function(r){ return r.json(); })
+            .then(function(geo) {
+                var loc = (geo.city||'') + ', ' + (geo.country_name||'') + ' (' + (geo.ip||'') + ')';
+                var org = geo.org || '';
+                var msg = 'Eliana deck opened\n' + loc + '\n' + org + '\n' + t;
+                fetch('https://ntfy.sh/sentriq-eliana-m3k9', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+            })
+            .catch(function() {
+                fetch('https://ntfy.sh/sentriq-eliana-m3k9', {
+                    method: 'POST', mode: 'no-cors',
+                    body: 'Eliana deck opened (location unavailable)\n' + ua.substring(0,80) + '\n' + t
+                }).catch(function(){});
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('deck').style.display = 'none';
+        if (sessionStorage.getItem('eliana-pinged')) {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('deck').style.display = '';
+            setTimeout(function(){
+                document.getElementById('meetingBadge').style.opacity = '1';
+                showSlide(0);
+            }, 100);
+        }
+    });
+
+    function checkPass() {
+        var val = document.getElementById('gateInput').value;
+        if (val === atob('c2VudHJpcWVsaWFuYTIwMjY=')) {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('deck').style.display = '';
+            document.getElementById('meetingBadge').style.opacity = '1';
+            if (!sessionStorage.getItem('eliana-pinged')) {
+                pingOpen();
+                sessionStorage.setItem('eliana-pinged', '1');
+            }
+            showSlide(0);
+        } else {
+            var err = document.getElementById('gateError');
+            err.style.opacity = '1';
+            setTimeout(function() { err.style.opacity = '0'; }, 2500);
+            document.getElementById('gateInput').value = '';
+        }
+    }
+</script>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="confidential">Confidential</div>
+<div class="meeting-badge" id="meetingBadge">Eliana</div>
+
+<div class="deck" id="deck">
+
+<!-- SLIDE 1: COVER -->
+<div class="slide bg-cover" data-index="0">
+<div class="slide-inner center" style="text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:60vh;">
+    <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:24px;">
+        <svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        <h1 style="font-size:clamp(36px,5vw,60px);margin-bottom:0;">Sentriq<span style="color:#E8A020;">.</span></h1>
+    </div>
+    <p style="font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,0.88);font-weight:700;margin-bottom:10px;max-width:640px;line-height:1.35;letter-spacing:-0.02em;">Your ATS shows what candidates submitted.<br>Sentriq shows what needs a closer look.</p>
+    <p style="font-size:clamp(13px,1.5vw,16px);color:rgba(255,255,255,0.42);margin-bottom:36px;max-width:500px;line-height:1.65;">Application quality layer for people teams. Built by someone who lived inside ATS systems. Shared with you because Seffi thought the problem would resonate.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <span class="pill pill-blue">Application Quality Layer</span>
+        <span class="pill" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1);">No automated rejections. Ever.</span>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide bg-dark" data-index="1">
+<div class="slide-inner">
+    <span class="label">The Problem</span>
+    <h2>Recruiters are drowning in volume. <span style="color:var(--amber);">None of it comes with signal.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">The ATS captures what was submitted. It has never captured how the application was created, whether the answers were written by the person, or whether the claimed experience maps to anything real.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div class="card" style="border-left:3px solid rgba(232,160,32,0.6);">
+            <div style="font-size:32px;font-weight:800;color:var(--amber);letter-spacing:-0.03em;margin-bottom:6px;">25%</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Of applications AI-generated by 2028</div>
+            <p style="font-size:12px;">Applications look more polished. The signal behind them has not improved.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">Gartner, 2024</div>
+        </div>
+        <div class="card" style="border-left:3px solid rgba(232,160,32,0.6);">
+            <div style="font-size:32px;font-weight:800;color:var(--amber);letter-spacing:-0.03em;margin-bottom:6px;">23 hrs</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Average recruiter time to shortlist one role</div>
+            <p style="font-size:12px;">Most of that time is spent reviewing applications that should never have made the list.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">LinkedIn Talent Insights, 2024</div>
+        </div>
+        <div class="card" style="border-left:3px solid rgba(224,85,85,0.6);">
+            <div style="font-size:32px;font-weight:800;color:#E05555;letter-spacing:-0.03em;margin-bottom:6px;">3:1</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Applications reviewed per shortlisted candidate</div>
+            <p style="font-size:12px;">Hiring managers reject most shortlists. Recruiters go back and review again.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">SHRM Recruiting Benchmarks, 2024</div>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-left:4px solid var(--amber);border-radius:12px;padding:18px 24px;">
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.88);margin-bottom:6px;">The core problem is not volume. It is confidence.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;">Recruiting teams have more applications than ever, but less certainty about which ones are worth human time. The ATS shows the submission. It has never shown the signal behind it. That gap is what Sentriq closes.</div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 3: HOW IT WORKS -->
+<div class="slide bg-dark" data-index="2">
+<div class="slide-inner">
+    <span class="label">How It Works</span>
+    <h2>Signal at submission. <span style="color:var(--amber);">Continuous through every stage after.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:18px;max-width:700px;line-height:1.7;">Sentriq enriches every inbound application with behavioral, consistency, and gap signals. The recruiter stays in their ATS. No candidate is automatically rejected at any stage.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:10px;">Layer 1</div>
+            <h3 style="font-size:14px;margin-bottom:6px;">Behavioral Baseline</h3>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.6;">Captured passively while the application is filled. Timing, edit patterns, tool signatures. Zero friction. No changes to the form.</p>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:10px;">Layer 2</div>
+            <h3 style="font-size:14px;margin-bottom:6px;">Async Clarification</h3>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.6;">Triggered only when Layer 1 finds a gap worth surfacing. A short, specific question tied to what was detected. Candidates with strong applications never see it.</p>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:10px;">Layer 3</div>
+            <h3 style="font-size:14px;margin-bottom:6px;">Human Review</h3>
+            <p style="font-size:12px;color:var(--text-sub);line-height:1.6;">When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack. A trust signal surfaces alongside the application. The recruiter decides.</p>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.18);border-left:4px solid rgba(232,160,32,0.5);border-radius:0 10px 10px 0;padding:14px 20px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);white-space:nowrap;">Gap Assessor</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">The same signal engine re-runs after every hiring stage. HR screen notes, test scores, interview transcripts, manager assessments. Each new data point is evaluated against what the candidate originally claimed. Gaps that reach offer stage are surfaced, not discovered after hire.</div>
+        </div>
+    </div>
+
+    <div class="lc-grid-wrap">
+    <div class="lc-grid">
+        <div class="lc-stage lc-sentriq">
+            <div class="lc-badge">Sentriq</div>
+            <div class="lc-name">Application</div>
+            <div class="lc-tool">Claim record built</div>
+            <div class="lc-cost">Gap Assessor starts</div>
+        </div>
+        <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.4);">
+            <div class="lc-badge" style="color:rgba(232,160,32,0.5);">Sentriq</div>
+            <div class="lc-name">HR Screen</div>
+            <div class="lc-tool">Notes evaluated</div>
+            <div class="lc-cost">Gap Assessor runs</div>
+        </div>
+        <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.4);">
+            <div class="lc-badge" style="color:rgba(232,160,32,0.5);">Sentriq</div>
+            <div class="lc-name">Skills Test</div>
+            <div class="lc-tool">Score vs. claims</div>
+            <div class="lc-cost">Gap Assessor runs</div>
+        </div>
+        <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.4);">
+            <div class="lc-badge" style="color:rgba(232,160,32,0.5);">Sentriq</div>
+            <div class="lc-name">Interview</div>
+            <div class="lc-tool">Transcript vs. claims</div>
+            <div class="lc-cost">Gap Assessor runs</div>
+        </div>
+        <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.4);">
+            <div class="lc-badge" style="color:rgba(232,160,32,0.5);">Sentriq</div>
+            <div class="lc-name">Manager Review</div>
+            <div class="lc-tool">Assessment vs. claims</div>
+            <div class="lc-cost">Gap Assessor runs</div>
+        </div>
+        <div class="lc-stage lc-danger">
+            <div class="lc-badge">&nbsp;</div>
+            <div class="lc-name">Background Check</div>
+            <div class="lc-tool">HireRight / standard</div>
+            <div class="lc-cost">Identity only</div>
+        </div>
+    </div>
+    </div>
+    <p style="font-size:11px;color:var(--text-dim);">Every flag is explainable: what was detected, at which stage, where in the evidence, and what the recruiter should do next. No black boxes.</p>
+</div>
+</div>
+
+<!-- SLIDE 4: WHAT CHANGES -->
+<div class="slide bg-dark" data-index="3">
+<div class="slide-inner">
+    <span class="label">What Changes</span>
+    <h2>Faster shortlists. Fewer wasted interviews. <span style="color:var(--amber);">No silent rejections.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">Sentriq enriches the pipeline without replacing it. The recruiter workflow does not change. The quality of what they have to work with does.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For recruiting teams</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">25-40% reduction in initial review time per application</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-40% faster time to shortlist</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Every signal has a source, a stage, and a plain-language reason</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gaps visible inside the ATS before the recruiter spends time</div>
+                </div>
+            </div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For hiring managers</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">10-20% improvement in shortlist acceptance rate</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-30% fewer low-signal candidates in interviews</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gaps between claimed and demonstrated skill caught before offer</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Full evidence trail per application, auditable from day one</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;padding:18px 24px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.7);margin-bottom:8px;">For candidates</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;">Candidates whose applications lack signal get a specific, short clarification step instead of a silent rejection. The question is always tied to a real gap. No automated decisions. No black boxes. Candidate experience at scale improves, not degrades.</div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 5: WHO WE ARE -->
+<div class="slide bg-dark" data-index="4">
+<div class="slide-inner">
+    <span class="label">Who We Are</span>
+    <h2>One who lived in the ATS. <span style="color:var(--amber);">One who broke them for a living.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:24px;max-width:680px;line-height:1.7;">Two founders. One came from HR operations: ran recruiting, lived inside ATS systems, saw the signal gap firsthand. One came from offensive security: understands exactly how application-layer trust is exploited.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;">Samuel Kemper</div>
+            <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:14px;">CEO</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">Founded TechRuiter IL and operated inside ATS systems as an HR practitioner. Built and ran recruiting pipelines across Israel and the US. The signal gap in inbound applications is not a theory. It is what he watched cost recruiting teams time every week.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;">Ben Czarninski</div>
+            <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:14px;">CTO</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">Two IDF intelligence units: offensive cyber and full-stack engineering. KPMG international pentesting, AppSec lead at AppsFlyer. Two prior ventures. Builds the layer that reads what the ATS never looked for.</div>
+        </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div style="max-width:580px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;">Happy to talk through it.</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.65;">No agenda beyond a conversation. You have built recruiting at a scale where this problem is real. That perspective is what we are trying to build around, not sell to.</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);">samuel@sentriq.co</div>
+            <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">sentriq.co</div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div><!-- /deck -->
+
+<div class="nav-bar">
+    <div class="nav-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        <span style="color:var(--text);">Sentriq<span style="color:var(--amber);">.</span></span>
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()" title="Previous">&#8592;</button>
+        <div class="slide-counter" id="counter">1 / 5</div>
+        <button class="nav-btn" onclick="nextSlide()" title="Next">&#8594;</button>
+    </div>
+</div>
+
+<script>
+    var slides = document.querySelectorAll('.slide');
+    var total = slides.length;
+    var cur = 0;
+
+    function showSlide(n) {
+        slides[cur].classList.remove('active');
+        cur = (n + total) % total;
+        slides[cur].classList.add('active');
+        document.getElementById('counter').textContent = (cur + 1) + ' / ' + total;
+        document.getElementById('progressBar').style.width = ((cur + 1) / total * 100) + '%';
+        var badge = document.getElementById('meetingBadge');
+        if (badge) badge.style.opacity = cur === 0 ? '0' : '1';
+    }
+    function nextSlide() { showSlide(cur + 1); }
+    function prevSlide() { showSlide(cur - 1); }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+    });
+
+    (function() {
+        var touchStartX = 0;
+        document.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', function(e){
+            var dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) { if (dx < 0) nextSlide(); else prevSlide(); }
+        });
+    })();
+
+    showSlide(0);
+</script>
+
+</body>
+</html>
