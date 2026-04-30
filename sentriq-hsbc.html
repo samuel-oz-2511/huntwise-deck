@@ -417,13 +417,13 @@
 
         <div style="background:rgba(232,160,32,0.05);border:2px solid rgba(232,160,32,0.25);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;">
             <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:rgba(232,160,32,0.7);margin-bottom:14px;">The stage that has no equivalent yet</div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(232,160,32,0.08);border:1px solid rgba(232,160,32,0.3);border-radius:8px;margin-bottom:10px;">
-                <div style="width:7px;height:7px;background:#E8A020;border-radius:50%;flex-shrink:0;"></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(232,160,32,0.08);border:1px solid rgba(232,160,32,0.3);border-radius:8px;margin-bottom:10px;">
+                <div style="width:7px;height:7px;background:#E8A020;border-radius:50%;flex-shrink:0;margin-top:3px;"></div>
                 <div>
                     <div style="font-size:13px;font-weight:700;color:#E8A020;">Sentriq</div>
-                    <div style="font-size:11px;color:rgba(232,160,32,0.65);">Behavioral trust signal at application submission. Pre-pipeline.</div>
+                    <div style="font-size:11px;color:rgba(232,160,32,0.65);line-height:1.5;">Behavioral trust signal at submission. Gap Assessor then runs through every subsequent stage, evaluating each new data point against the original claim record.</div>
                 </div>
-                <div style="margin-left:auto;font-size:10px;color:#E8A020;font-weight:700;background:rgba(232,160,32,0.1);padding:3px 8px;border-radius:4px;border:1px solid rgba(232,160,32,0.35);white-space:nowrap;">Pre-hire</div>
+                <div style="margin-left:auto;font-size:10px;color:#E8A020;font-weight:700;background:rgba(232,160,32,0.1);padding:3px 8px;border-radius:4px;border:1px solid rgba(232,160,32,0.35);white-space:nowrap;flex-shrink:0;">Full lifecycle</div>
             </div>
             <p style="font-size:13px;color:rgba(232,160,32,0.8);line-height:1.6;margin-top:auto;">No one in the HSBC Ventures portfolio sits at the application layer. The gap is open.</p>
         </div>
@@ -434,8 +434,8 @@
         <div class="lc-stage lc-sentriq">
             <div class="lc-badge">Sentriq</div>
             <div class="lc-name">Application</div>
-            <div class="lc-tool">Behavioral signal captured</div>
-            <div class="lc-cost">Before pipeline</div>
+            <div class="lc-tool">Claim record established</div>
+            <div class="lc-cost">Gap Assessor runs after</div>
         </div>
         <div class="lc-stage">
             <div class="lc-badge">&nbsp;</div>
@@ -515,9 +515,15 @@
         <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">Platform-agnostic. No ATS changes. No PII stored at Sentriq.</div>
     </div>
 
-    <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px 22px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:6px;">The Cloudflare analogy</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;">Like Cloudflare, Sentriq sits upstream of the hiring stack and evaluates every application against behavioral patterns from across the full customer network.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px 22px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:6px;">The Cloudflare analogy</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;">Like Cloudflare, Sentriq sits upstream of the hiring stack and evaluates every application against behavioral patterns from across the full customer network.</div>
+        </div>
+        <div style="background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:16px 22px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.6);margin-bottom:6px;">This is not where Sentriq stops</div>
+            <div style="font-size:13px;color:rgba(232,160,32,0.7);line-height:1.75;">The claim record built at submission becomes the baseline for every stage that follows. The Gap Assessor evaluates each new data point against it through to offer.</div>
+        </div>
     </div>
 </div>
 </div>
