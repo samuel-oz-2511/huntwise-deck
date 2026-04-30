@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:      #09090F;
+        --card:    #0D0E1A;
+        --border:  #161728;
+        --muted:   #8080A8;
+        --amber:   #E8A020;
+        --amber-d: #B87010;
+        --text:    #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --green:   #44CC88;
+        --primary: #E8A020;
+        --white: #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange: #E8A020;
+        --red: #E05555;
+        --purple: #3A2058;
+        --text-dim: rgba(255,255,255,0.52);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.02;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    .deck { width: 100%; height: 100%; position: relative; }
+
+    .slide {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        justify-content: flex-start; align-items: center;
+        padding: clamp(24px, 3.5vh, 48px) clamp(28px, 5vw, 80px) 78px;
+        overflow-y: auto; overflow-x: hidden;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+    .slide > .slide-inner { margin: auto 0; }
+    .slide.active { opacity: 1; pointer-events: all; }
+    .slide .slide-inner { transition: opacity 0.4s ease, transform 0.4s ease; opacity: 0; transform: translateY(10px); }
+    .slide.active .slide-inner { opacity: 1; transform: translateY(0); }
+    .slide-inner { max-width: 1080px; width: 100%; position: relative; z-index: 1; }
+
+    .bg-dark { background: linear-gradient(135deg, #09090F 0%, #0D0E1A 100%); }
+    .bg-cover {
+        background:
+            radial-gradient(ellipse 40% 35% at 50% 32%, rgba(232,160,32,0.38) 0%, rgba(232,160,32,0.10) 55%, transparent 100%),
+            radial-gradient(ellipse 85% 65% at 50% 35%, rgba(26,26,53,0.55) 0%, #09090F 70%);
+    }
+
+    .nav-bar {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 40px;
+        background: rgba(9,9,15,0.92); backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border); z-index: 100;
+    }
+    .nav-logo { font-weight: 500; font-size: 13px; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; gap: 7px; }
+    .nav-controls { display: flex; align-items: center; gap: 14px; }
+    .nav-btn {
+        background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
+        color: var(--white); width: 38px; height: 38px; border-radius: 8px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 17px; transition: all 0.25s;
+    }
+    .nav-btn:hover { background: var(--amber); border-color: var(--amber); }
+    .slide-counter { font-size: 12px; color: var(--muted); font-weight: 500; min-width: 52px; text-align: center; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
+
+    .progress-bar {
+        position: fixed; top: 0; left: 0; height: 2px;
+        background: var(--amber);
+        box-shadow: 0 0 8px rgba(232,160,32,0.45);
+        transition: width 0.35s ease; z-index: 100;
+    }
+
+    .confidential { position: fixed; top: 16px; right: 22px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100; }
+    .meeting-badge { position: fixed; top: 16px; left: 22px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(232,160,32,0.7); z-index: 100; background: rgba(232,160,32,0.12); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(232,160,32,0.25); opacity: 0; transition: opacity 0.3s ease; }
+
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 12px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+    .center .label { justify-content: center; }
+    .center .label::before { display: none; }
+
+    h1 { font-size: clamp(36px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 18px; }
+    h2 { font-size: clamp(22px, 3.2vw, 42px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
+    h3 { font-size: clamp(14px, 1.6vw, 18px); font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+
+    .card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 14px; padding: clamp(16px, 2vw, 24px);
+    }
+    .card p { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+
+    .pill { display: inline-block; padding: 5px 13px; border-radius: 20px; font-size: 12px; font-weight: 600; border: 1px solid; }
+    .pill-blue { background: rgba(232,160,32,0.08); color: var(--amber); border-color: rgba(232,160,32,0.2); }
+    .pill-green { background: rgba(68,204,136,0.08); color: #44CC88; border-color: rgba(68,204,136,0.2); }
+    .pill-red { background: rgba(224,85,85,0.10); color: #E05555; border-color: rgba(224,85,85,0.25); }
+
+    .stat-num { font-size: clamp(36px, 5vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+
+    .signal-tag {
+        display: inline-flex; align-items: center; gap: 5px;
+        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px; font-weight: 600;
+        background: rgba(232,160,32,0.08); color: var(--amber);
+        border: 1px solid rgba(232,160,32,0.2);
+    }
+
+    .sources { margin-top: 14px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+    .src-toggle { display: block; width: 100%; padding: 7px 14px; background: none; border: none; cursor: pointer; font-size: 10px; color: var(--muted); font-weight: 600; font-family: inherit; text-align: left; transition: color 0.2s; }
+    .src-toggle:hover { color: rgba(255,255,255,0.6); }
+    .src-toggle::after { content: ' ▸'; }
+    .sources.open .src-toggle::after { content: ' ▾'; }
+    .src-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 14px; }
+    .sources.open .src-content { max-height: 220px; padding: 0 14px 10px; }
+    .src-content p { font-size: 10px; color: var(--muted); line-height: 1.8; }
+
+    .stack-layer { display:flex; align-items:center; padding:11px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); margin-bottom:5px; }
+    .stack-layer-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); width:200px; flex-shrink:0; }
+    .stack-layer-vendors { font-size:12px; color:rgba(255,255,255,0.28); }
+    .stack-layer-badge { margin-left:auto; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; padding:3px 8px; border-radius:4px; }
+    .stack-layer-badge.defended { background:rgba(68,204,136,0.1); color:#44CC88; border:1px solid rgba(68,204,136,0.2); }
+    .stack-layer-badge.gap { background:rgba(224,85,85,0.12); color:#E05555; border:1px solid rgba(224,85,85,0.25); }
+    .stack-layer-zero { display:flex; align-items:center; padding:18px 20px; border-radius:10px; border:2px solid rgba(232,160,32,0.75); background:rgba(232,160,32,0.12); margin-bottom:5px; box-shadow:0 0 28px rgba(232,160,32,0.12); }
+    .stack-layer-zero .stack-layer-label { font-size:13px; font-weight:800; color:#E8A020; width:200px; }
+    .stack-layer-zero .stack-layer-vendors { font-size:13px; color:rgba(255,255,255,0.92); font-weight:600; }
+    .stack-layer-threat { display:flex; align-items:center; padding:14px 16px; border-radius:8px; border:2px solid rgba(239,68,68,0.55); background:rgba(239,68,68,0.08); margin-bottom:6px; }
+
+    .lc-grid { display:grid; grid-template-columns:repeat(6,1fr); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:12px; }
+    .lc-stage { padding:14px 8px; border-right:1px solid var(--border); text-align:center; background:rgba(255,255,255,0.02); }
+    .lc-stage:last-child { border-right:none; }
+    .lc-badge { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; min-height:13px; color:transparent; }
+    .lc-name { font-size:11px; font-weight:700; color:rgba(255,255,255,0.75); margin-bottom:4px; line-height:1.3; }
+    .lc-tool { font-size:10px; color:rgba(255,255,255,0.28); line-height:1.4; }
+    .lc-cost { font-size:10px; font-weight:600; color:rgba(255,255,255,0.35); margin-top:7px; }
+    .lc-stage.lc-sentriq { background:rgba(232,160,32,0.10); border-bottom:3px solid #E8A020; }
+    .lc-stage.lc-sentriq .lc-badge { color:#E8A020; }
+    .lc-stage.lc-sentriq .lc-name { color:#fff; font-weight:800; }
+    .lc-stage.lc-sentriq .lc-cost { color:#E8A020; font-weight:800; font-size:11px; }
+    .lc-stage.lc-danger { background:rgba(239,68,68,0.07); border-bottom:3px solid rgba(239,68,68,0.65); }
+    .lc-stage.lc-danger .lc-cost { color:#E05555; font-weight:800; }
+
+    .moat-card { position:relative; overflow:hidden; padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; }
+    .moat-watermark { position:absolute; bottom:-10px; right:8px; font-size:72px; font-weight:800; color:rgba(255,255,255,0.07); letter-spacing:-0.04em; line-height:1; pointer-events:none; user-select:none; }
+
+    .hero-quote { margin-top:18px; padding:22px 32px; background:rgba(232,160,32,0.06); border-left:3px solid #E8A020; border-radius:0 12px 12px 0; }
+    .hero-quote p { font-size:19px; color:rgba(255,255,255,0.94); font-weight:700; letter-spacing:-0.02em; line-height:1.4; }
+    .hero-quote small { display:block; font-size:12px; color:rgba(255,255,255,0.38); margin-top:8px; letter-spacing:0.02em; }
+
+    .milestone-card { padding:12px 14px; background:#0D0E1A; border:1px solid rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; gap:16px; }
+    .milestone-num { flex-shrink:0; text-align:center; min-width:52px; }
+    .milestone-num .date { font-size:9px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
+    .milestone-num .value { font-size:20px; font-weight:800; color:var(--amber); letter-spacing:-0.02em; line-height:1; }
+    .milestone-num .unit { font-size:9px; color:rgba(255,255,255,0.3); margin-top:1px; }
+    .milestone-body { font-size:12px; color:rgba(255,255,255,0.78); line-height:1.5; border-left:1px solid rgba(255,255,255,0.08); padding-left:16px; }
+
+    @media (max-width: 900px) {
+        .slide { padding: 22px 16px 70px; }
+        h1 { font-size: 24px; } h2 { font-size: 18px; }
+        .nav-bar { padding: 10px 16px; }
+    }
+    .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    @media (max-width: 640px) {
+        .lc-grid { min-width: 420px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#09090F;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',system-ui,sans-serif;">
+    <div style="width:100%;max-width:360px;padding:0 24px;text-align:center;">
+        <div style="margin-bottom:32px;">
+            <div style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:6px;">
+                <svg width="36" height="36" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+                <span style="font-size:22px;font-weight:500;color:#ffffff;letter-spacing:-0.01em;">Sentriq<span style="color:#E8A020;">.</span></span>
+            </div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:500;">Product Overview</div>
+        </div>
+        <input id="gateInput" type="password" placeholder="Enter access code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkPass()" style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
+        <button onclick="checkPass()" style="width:100%;padding:14px;border-radius:10px;border:none;background:#E8A020;color:#09090F;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#B87010'" onmouseout="this.style.background='#E8A020'">View</button>
+        <div id="gateError" style="font-size:12px;color:rgba(232,160,32,0.9);margin-top:10px;opacity:0;transition:opacity 0.3s;">Incorrect access code. Please try again.</div>
+    </div>
+</div>
+
+<script>
+    function pingOpen() {
+        var ua = navigator.userAgent;
+        var t = new Date().toISOString();
+        fetch('https://ipapi.co/json/')
+            .then(function(r){ return r.json(); })
+            .then(function(geo) {
+                var loc = (geo.city||'') + ', ' + (geo.country_name||'') + ' (' + (geo.ip||'') + ')';
+                var org = geo.org || '';
+                var msg = 'Friend deck opened\n' + loc + '\n' + org + '\n' + t;
+                fetch('https://ntfy.sh/sentriq-friend-m4k8', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+            })
+            .catch(function() {
+                fetch('https://ntfy.sh/sentriq-friend-m4k8', {
+                    method: 'POST', mode: 'no-cors',
+                    body: 'Friend deck opened (location unavailable)\n' + ua.substring(0,80) + '\n' + t
+                }).catch(function(){});
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('deck').style.display = 'none';
+        if (sessionStorage.getItem('friend-pinged')) {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('deck').style.display = '';
+            setTimeout(function(){
+                document.getElementById('meetingBadge').style.opacity = '1';
+                showSlide(0);
+            }, 100);
+        }
+    });
+
+    function checkPass() {
+        var val = document.getElementById('gateInput').value;
+        if (val === atob('c2VudHJpcWZyaWVuZDIwMjY=')) {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('deck').style.display = '';
+            document.getElementById('meetingBadge').style.opacity = '1';
+            if (!sessionStorage.getItem('friend-pinged')) {
+                pingOpen();
+                sessionStorage.setItem('friend-pinged', '1');
+            }
+            showSlide(0);
+        } else {
+            var err = document.getElementById('gateError');
+            err.style.opacity = '1';
+            setTimeout(function() { err.style.opacity = '0'; }, 2500);
+            document.getElementById('gateInput').value = '';
+        }
+    }
+</script>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="confidential">Confidential</div>
+<div class="meeting-badge" id="meetingBadge">Sentriq</div>
+
+<div class="deck" id="deck">
+
+<!-- SLIDE 1: COVER -->
+<div class="slide bg-cover" data-index="0">
+<div class="slide-inner center" style="text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:60vh;">
+    <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:24px;">
+        <svg width="52" height="52" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        <h1 style="font-size:clamp(36px,5vw,60px);margin-bottom:0;">Sentriq<span style="color:#E8A020;">.</span></h1>
+    </div>
+    <p style="font-size:clamp(16px,2.2vw,24px);color:rgba(255,255,255,0.88);font-weight:700;margin-bottom:10px;max-width:680px;line-height:1.3;letter-spacing:-0.02em;">Companies defend every layer of their stack.<br>Their hiring pipeline has no equivalent layer.</p>
+    <p style="font-size:clamp(13px,1.5vw,17px);color:rgba(255,255,255,0.42);margin-bottom:36px;max-width:520px;line-height:1.6;">The application is the one entry point that carries zero behavioral signal. Sentriq closes it.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <span class="pill pill-blue">Candidate Hiring Captcha</span>
+        <span class="pill pill-green">EU AI Act Compliant by Design</span>
+        <span class="pill" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.1);">Application Quality Layer</span>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide bg-dark" data-index="1">
+<div class="slide-inner">
+    <span class="label">The Problem</span>
+    <h2>More applications. <span style="color:var(--amber);">Less signal in each one.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">The ATS shows what candidates submitted. It does not show how the application was created.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div class="card" style="border-left:3px solid rgba(232,160,32,0.6);">
+            <div style="font-size:32px;font-weight:800;color:var(--amber);letter-spacing:-0.03em;margin-bottom:6px;">25%</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Of applications AI-generated by 2028</div>
+            <p style="font-size:12px;">Recruiters cannot tell the difference between authentic effort and generated output.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">Gartner, 2024</div>
+        </div>
+        <div class="card" style="border-left:3px solid rgba(224,85,85,0.6);">
+            <div style="font-size:32px;font-weight:800;color:#E05555;letter-spacing:-0.03em;margin-bottom:6px;">85 days</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Average time to detect a malicious insider</div>
+            <p style="font-size:12px;">Privileged access is granted long before the problem surfaces.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">IBM Security / Ponemon, 2023</div>
+        </div>
+        <div class="card" style="border-left:3px solid rgba(232,160,32,0.6);">
+            <div style="font-size:32px;font-weight:800;color:var(--amber);letter-spacing:-0.03em;margin-bottom:6px;">$11.45M</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Average malicious insider incident</div>
+            <p style="font-size:12px;">Regulatory exposure, data liability, and reputational cost combined.</p>
+            <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">IBM Security / Ponemon, 2023</div>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-left:4px solid var(--amber);border-radius:12px;padding:18px 22px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.85);margin-bottom:6px;">Already happened. Documented. Not theoretical.</div>
+        <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.88);margin-bottom:5px;">KnowBe4 hired a North Korean IT worker who immediately attempted to load malware. The hire passed a resume screen, four video interviews, and a full background check using a stolen US identity.</div>
+        <div style="font-size:13px;color:rgba(232,160,32,0.75);line-height:1.6;">Financial services, defense, healthcare, and enterprise SaaS are the primary targets. The entry point is always the application, not the network perimeter.</div>
+        <div style="font-size:10px;color:rgba(232,160,32,0.55);margin-top:8px;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024. CrowdStrike Threat Intelligence 2025.</div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 3: THE UNDEFENDED LAYER -->
+<div class="slide bg-dark" data-index="2">
+<div class="slide-inner">
+    <span class="label">The Gap</span>
+    <h2>Every layer of the enterprise is defended. <span style="color:var(--amber);">Except one.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">Every hiring application that enters the ATS carries zero behavioral signal. The stack stops at the perimeter. It never reaches the pipeline.</p>
+
+    <div class="stack-layer">
+        <div class="stack-layer-label">Customer-Facing Systems</div>
+        <div class="stack-layer-vendors">Behavioral biometrics, fraud detection, entity resolution, transaction monitoring</div>
+        <div class="stack-layer-badge defended">Defended</div>
+    </div>
+    <div class="stack-layer">
+        <div class="stack-layer-label">Digital Identity Access</div>
+        <div class="stack-layer-vendors">Behavioral authentication, digital ID verification, document collection workflows</div>
+        <div class="stack-layer-badge defended">Defended</div>
+    </div>
+    <div class="stack-layer">
+        <div class="stack-layer-label">Network Perimeter</div>
+        <div class="stack-layer-vendors">Firewall, SIEM, endpoint detection, Zero Trust architecture</div>
+        <div class="stack-layer-badge defended">Defended</div>
+    </div>
+    <div class="stack-layer">
+        <div class="stack-layer-label">IT System Access</div>
+        <div class="stack-layer-vendors">MFA, PAM, privileged access controls, identity governance</div>
+        <div class="stack-layer-badge defended">Defended</div>
+    </div>
+    <div class="stack-layer-threat">
+        <div class="stack-layer-label" style="color:#E05555;font-weight:800;">Hiring Applications</div>
+        <div class="stack-layer-vendors" style="color:rgba(224,85,85,0.75);">Background check runs post-offer, identity only. No behavioral baseline, no application-level trust signal.</div>
+        <div class="stack-layer-badge gap">Undefended</div>
+    </div>
+    <div class="stack-layer-zero">
+        <div class="stack-layer-label">Layer 0: Sentriq</div>
+        <div class="stack-layer-vendors">Behavioral baseline at the moment of application submission. Before the pipeline starts.</div>
+        <div class="stack-layer-badge" style="background:rgba(232,160,32,0.15);color:#E8A020;border:1px solid rgba(232,160,32,0.4);margin-left:auto;">This is where we sit</div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 4: HOW IT WORKS -->
+<div class="slide bg-dark" data-index="3">
+<div class="slide-inner">
+    <span class="label">How It Works</span>
+    <h2>Three layers. Zero friction for legitimate applicants. <span style="color:var(--amber);">Zero automated rejections.</span></h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 1</div>
+            <h3>Behavioral Baseline</h3>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;">Every application submission carries a fingerprint: timing patterns, tool signatures, device signals. Sentriq reads these passively at submission with zero friction and no changes to the application form.</p>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 2</div>
+            <h3>Async Challenge</h3>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;">Triggered only when Layer 1 flags an anomaly. A personalized async task detects proxy impersonation and AI-assisted responses: legitimate applicants proceed unimpeded, proxies fail.</p>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 3</div>
+            <h3>Human Review</h3>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;">Triggered only when Layer 2 flags divergence. A Sentriq analyst reviews the full signal stack and surfaces a trust signal alongside the application: zero automated rejections, full audit trail, employer decides.</p>
+        </div>
+    </div>
+
+    <div style="background:var(--card);border-radius:12px;padding:18px 24px;border-left:4px solid var(--amber);margin-bottom:12px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:6px;">What it looks like in the hiring flow</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);">Each application arrives with a trust signal. High-risk applications trigger a parallel alert before recruiter time is spent; normal applications proceed with zero delay.</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:8px;">Platform-agnostic, no ATS changes, no PII stored at Sentriq.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px 22px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:6px;">The Cloudflare analogy</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.75;">Like Cloudflare, Sentriq sits upstream of the hiring stack and evaluates every application against behavioral patterns from across the full customer network.</div>
+        </div>
+        <div style="background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:16px 22px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.6);margin-bottom:6px;">This is not where Sentriq stops</div>
+            <div style="font-size:13px;color:rgba(232,160,32,0.7);line-height:1.75;">The claim record built at submission becomes the baseline for every stage that follows. The Gap Assessor evaluates each new data point against it through to offer.</div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 5: GAP ASSESSOR -->
+<div class="slide bg-dark" data-index="4">
+<div class="slide-inner">
+    <span class="label">Gap Assessor</span>
+    <h2>Claims are made at application. <span style="color:var(--amber);">Every stage after tests them.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:16px;max-width:720px;line-height:1.7;">Sentriq builds a claim record at submission and evaluates each new data point against it throughout the hiring lifecycle. When evidence diverges from claims, the gap surfaces immediately.</p>
+
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;overflow-x:auto;padding-bottom:2px;">
+        <div style="padding:7px 13px;background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.35);border-radius:8px;font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap;">Application</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.22);flex-shrink:0;">›</div>
+        <div style="padding:7px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);white-space:nowrap;">HR Screen</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.22);flex-shrink:0;">›</div>
+        <div style="padding:7px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);white-space:nowrap;">Skills Test</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.22);flex-shrink:0;">›</div>
+        <div style="padding:7px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);white-space:nowrap;">Interview</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.22);flex-shrink:0;">›</div>
+        <div style="padding:7px 13px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);white-space:nowrap;">Manager Review</div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.04);border:1px solid rgba(232,160,32,0.18);border-left:4px solid rgba(232,160,32,0.5);border-radius:0 10px 10px 0;padding:11px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:14px;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);white-space:nowrap;">Gap Assessor</div>
+            <div style="font-size:12px;color:var(--text-sub);">Runs across every stage. Feeds from: interview notes, test results, call transcripts, manager assessments.</div>
+        </div>
+        <div style="font-size:11px;color:rgba(232,160,32,0.65);white-space:nowrap;">Gap detected → challenge option → updated signal</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:3fr 2fr;gap:14px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:12px;">Example: senior engineer role</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:rgba(232,160,32,0.06);border-radius:6px;">
+                    <div style="font-size:10px;font-weight:700;color:rgba(232,160,32,0.6);white-space:nowrap;padding-top:1px;min-width:90px;">Application</div>
+                    <div style="font-size:11px;color:var(--text-sub);">Claims 6 years distributed systems and production Kubernetes. Claim record created.</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:6px;">
+                    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);white-space:nowrap;padding-top:1px;min-width:90px;">HR Screen</div>
+                    <div style="font-size:11px;color:var(--text-sub);">Verbal confirmation of background. Consistent with claim record.</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:6px;">
+                    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);white-space:nowrap;padding-top:1px;min-width:90px;">Skills Test</div>
+                    <div style="font-size:11px;color:var(--text-sub);">38/100 on systems design assessment. <span style="color:var(--amber);font-weight:700;">Gap detected.</span></div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:6px;">
+                    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.28);white-space:nowrap;padding-top:1px;min-width:90px;">Interview</div>
+                    <div style="font-size:11px;color:var(--text-sub);">Cannot explain stateful set failover. <span style="color:var(--amber);font-weight:700;">Gap confirmed.</span></div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;background:rgba(232,160,32,0.08);border:1px solid rgba(232,160,32,0.22);border-radius:6px;">
+                    <div style="font-size:10px;font-weight:700;color:var(--amber);white-space:nowrap;padding-top:1px;min-width:90px;">Sentriq</div>
+                    <div style="font-size:11px;color:rgba(232,160,32,0.85);">Gap surfaced before offer decision, async challenge option available. Recruiter decides.</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:12px;">You control the rigor</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <div>
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">Which stages trigger assessment</div>
+                    <div style="font-size:11px;color:var(--text-sub);line-height:1.5;">HR screen only, or all the way through manager review.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">Gap threshold to fire a challenge</div>
+                    <div style="font-size:11px;color:var(--text-sub);line-height:1.5;">Tighter for privileged roles, lighter for volume hiring.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">Re-assessments per candidate</div>
+                    <div style="font-size:11px;color:var(--text-sub);line-height:1.5;">One maximum, or unlimited for critical access roles.</div>
+                </div>
+                <div>
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">Data sources</div>
+                    <div style="font-size:11px;color:var(--text-sub);line-height:1.5;">ATS notes, test platforms, transcripts, manager feedback fields.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 6: WHAT CHANGES -->
+<div class="slide bg-dark" data-index="5">
+<div class="slide-inner">
+    <span class="label">What Changes</span>
+    <h2>Better shortlists. Fewer wasted interviews. <span style="color:var(--amber);">No silent rejections.</span></h2>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:720px;line-height:1.7;">Sentriq enriches the application pipeline without replacing it. Recruiters stay in their ATS. Candidates are never automatically rejected. Every signal is explainable.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For recruiting teams</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">25-40% reduction in initial review time per application</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-40% faster time to shortlist</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Every signal has a source, a stage, and a plain-language reason</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gap timeline visible by stage inside the existing ATS</div>
+                </div>
+            </div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For hiring managers</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">10-20% improvement in shortlist acceptance rate</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-30% fewer low-signal candidates reaching interviews</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gaps caught before offer, not discovered after hire</div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                    <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Full evidence trail per candidate, auditable from day one</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.18);border-radius:14px;padding:20px 26px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.7);margin-bottom:10px;">For candidates</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.82);line-height:1.7;">Candidates with unclear applications get a fair chance to add signal instead of being silently ignored. The clarification step is short, specific, and always tied to a real gap in the application. No automated rejections at any stage.</div>
+    </div>
+</div>
+</div>
+
+<!-- SLIDE 7: THE TEAM -->
+<div class="slide bg-dark" data-index="6">
+<div class="slide-inner">
+    <span class="label">The Team</span>
+    <h2>One lived in the ATS. <span style="color:var(--amber);">One broke them for a living.</span></h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;">Samuel Kemper</div>
+            <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:14px;">CEO</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">Founded TechRuiter IL and operated inside ATS systems as an HR practitioner. Knows the recruiting workflow from the inside: where signal gets lost, where time gets wasted, and where the gaps are.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;">Ben Czarninski</div>
+            <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:14px;">CTO</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">Two IDF intelligence units: offensive cyber and full-stack engineering. KPMG international pentesting, AppSec lead at AppsFlyer (25-person team), two prior ventures including a company with paying customers in AdTech.</div>
+        </div>
+    </div>
+
+    <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:14px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+            <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;">Want to know more?</div>
+            <div style="font-size:13px;color:var(--text-sub);">Happy to walk through the product, the problem, or anything else.</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:15px;font-weight:700;color:var(--text);">samuel@sentriq.co</div>
+            <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">sentriq.co</div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div><!-- /deck -->
+
+<div class="nav-bar">
+    <div class="nav-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none"><rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/><rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/><circle cx="28" cy="7" r="3" fill="#E8A020"/></svg>
+        <span style="color:var(--text);">Sentriq<span style="color:var(--amber);">.</span></span>
+    </div>
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()" title="Previous">&#8592;</button>
+        <div class="slide-counter" id="counter">1 / 7</div>
+        <button class="nav-btn" onclick="nextSlide()" title="Next">&#8594;</button>
+    </div>
+</div>
+
+<script>
+    var slides = document.querySelectorAll('.slide');
+    var total = slides.length;
+    var cur = 0;
+
+    function showSlide(n) {
+        slides[cur].classList.remove('active');
+        cur = (n + total) % total;
+        slides[cur].classList.add('active');
+        document.getElementById('counter').textContent = (cur + 1) + ' / ' + total;
+        document.getElementById('progressBar').style.width = ((cur + 1) / total * 100) + '%';
+        var badge = document.getElementById('meetingBadge');
+        if (badge) badge.style.opacity = cur === 0 ? '0' : '1';
+    }
+    function nextSlide() { showSlide(cur + 1); }
+    function prevSlide() { showSlide(cur - 1); }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+    });
+
+    (function() {
+        var touchStartX = 0;
+        document.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', function(e){
+            var dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) { if (dx < 0) nextSlide(); else prevSlide(); }
+        });
+    })();
+
+    showSlide(0);
+</script>
+
+</body>
+</html>
