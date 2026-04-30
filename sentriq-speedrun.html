@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sentriq -- a16z Speedrun</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq - a16z Speedrun</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --amber: #E8A020;
-    --bg: #09090F;
-    --surface: #111118;
-    --border: rgba(255,255,255,0.08);
-    --muted: rgba(255,255,255,0.45);
-    --text: rgba(255,255,255,0.92);
+    --bg:       #09090F;
+    --card:     #0D0E1A;
+    --border:   #161728;
+    --muted:    #8080A8;
+    --amber:    #E8A020;
+    --amber-d:  #B87010;
+    --text:     #ffffff;
+    --text-sub: rgba(255,255,255,0.72);
+    --text-dim: rgba(255,255,255,0.52);
+    --green:    #44CC88;
+    --primary:  #E8A020;
+    --white:    #ffffff;
+    --gray-900: #09090F;
+    --gray-800: #0D0E1A;
+    --orange:   #E8A020;
+    --red:      #E05555;
+    --purple:   #3A2058;
   }
 
   html { scroll-behavior: smooth; }
@@ -22,72 +35,83 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
+  body::after {
+    content: '';
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; z-index: 9999; opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat; background-size: 256px;
+  }
+
   .wrap {
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 28px 80px;
   }
 
   /* HEADER */
   header {
-    padding: 40px 0 0;
+    padding: 44px 0 0;
+    margin-bottom: 52px;
   }
 
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 48px;
+    gap: 12px;
   }
 
   .logo svg { flex-shrink: 0; }
 
   .logo-name {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
     color: var(--text);
   }
+
+  .logo-name span { color: var(--amber); }
 
   .badge {
     display: inline-block;
     background: rgba(232,160,32,0.12);
     border: 1px solid rgba(232,160,32,0.3);
     color: var(--amber);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
   /* HERO */
   .hero {
-    padding: 0 0 56px;
-    border-bottom: 1px solid var(--border);
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 0;
   }
 
   .hook {
-    font-size: clamp(13px, 2vw, 14px);
+    font-size: 13px;
     color: var(--muted);
     font-style: italic;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    margin-bottom: 22px;
+    line-height: 1.55;
   }
 
   h1 {
-    font-size: clamp(26px, 5vw, 38px);
-    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    line-height: 1.1;
     margin-bottom: 20px;
     color: #fff;
   }
@@ -95,40 +119,51 @@
   h1 span { color: var(--amber); }
 
   .sub {
-    font-size: clamp(15px, 2.5vw, 17px);
-    color: rgba(255,255,255,0.65);
+    font-size: clamp(15px, 2.2vw, 17px);
+    color: var(--text-sub);
     line-height: 1.65;
-    max-width: 580px;
+    max-width: 600px;
   }
 
   /* SECTIONS */
   section {
-    padding: 48px 0;
-    border-bottom: 1px solid var(--border);
+    padding: 52px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
-  section:last-of-type { border-bottom: none; }
-
-  h2 {
+  .label {
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--amber);
-    margin-bottom: 20px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--amber);
+    border-radius: 2px;
+    flex-shrink: 0;
   }
 
   h3 {
-    font-size: clamp(18px, 3vw, 22px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   p {
-    color: rgba(255,255,255,0.7);
+    color: var(--text-sub);
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 16px;
@@ -138,29 +173,106 @@
 
   /* HIGHLIGHT BOX */
   .highlight {
-    background: rgba(232,160,32,0.07);
+    background: rgba(232,160,32,0.06);
     border-left: 3px solid var(--amber);
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     margin: 24px 0;
   }
 
   .highlight p {
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.88);
     font-size: 14px;
     margin: 0;
+    line-height: 1.65;
+  }
+
+  /* SECURITY STACK */
+  .stack-layer {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(232,160,32,0.18);
+    background: rgba(232,160,32,0.04);
+    margin-bottom: 5px;
+  }
+
+  .stack-layer-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    width: 180px;
+    flex-shrink: 0;
+  }
+
+  .stack-layer-vendors {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .stack-layer-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(232,160,32,0.1);
+    color: var(--amber);
+    border: 1px solid rgba(232,160,32,0.25);
+  }
+
+  .stack-layer-threat {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 2px solid rgba(232,160,32,0.5);
+    background: rgba(232,160,32,0.08);
+    margin-bottom: 5px;
+  }
+
+  .stack-layer-zero {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(232,160,32,0.75);
+    background: rgba(232,160,32,0.14);
+    margin-bottom: 5px;
+    box-shadow: 0 0 28px rgba(232,160,32,0.12), inset 0 1px 0 rgba(232,160,32,0.2);
+  }
+
+  .stack-layer-zero .stack-layer-label {
+    font-size: 13px;
+    font-weight: 800;
+    color: #E8A020;
+  }
+
+  .stack-layer-zero .stack-layer-vendors {
+    font-size: 13px;
+    color: rgba(255,255,255,0.95);
+    font-weight: 600;
+  }
+
+  .stack-wrap {
+    margin-top: 28px;
   }
 
   /* LAYERS */
   .layers {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     margin-top: 24px;
   }
 
   .layer {
-    background: var(--surface);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 16px 20px;
@@ -170,49 +282,49 @@
   }
 
   .layer-num {
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 800;
     color: var(--amber);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     flex-shrink: 0;
     margin-top: 2px;
-    width: 20px;
+    width: 22px;
   }
 
   .layer-title {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   .layer-desc {
     font-size: 13px;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.55;
     margin: 0;
   }
 
   /* MOAT */
   .moat-box {
-    background: var(--surface);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 24px;
+    padding: 24px 28px;
     margin-top: 24px;
   }
 
   .moat-headline {
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .moat-body {
     font-size: 14px;
     color: rgba(255,255,255,0.65);
-    line-height: 1.65;
+    line-height: 1.7;
     margin: 0;
   }
 
@@ -225,21 +337,21 @@
   .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
     margin-top: 24px;
   }
 
   .stat {
-    background: var(--surface);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 18px 14px;
+    padding: 18px 12px;
     text-align: center;
   }
 
   .stat-val {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--amber);
     letter-spacing: -0.03em;
     display: block;
@@ -252,7 +364,6 @@
     line-height: 1.4;
   }
 
-  /* TRACTION LIST */
   .traction-list {
     display: flex;
     flex-direction: column;
@@ -265,24 +376,21 @@
     gap: 14px;
     align-items: flex-start;
     font-size: 14px;
-    color: rgba(255,255,255,0.72);
+    color: var(--text-sub);
     line-height: 1.55;
   }
 
   .traction-item::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--amber);
     flex-shrink: 0;
-    margin-top: 6px;
+    margin-top: 7px;
   }
 
-  .traction-item strong {
-    color: #fff;
-    font-weight: 600;
-  }
+  .traction-item strong { color: #fff; font-weight: 600; }
 
   /* TEAM */
   .team-grid {
@@ -293,32 +401,32 @@
   }
 
   .team-card {
-    background: var(--surface);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 18px;
+    padding: 20px;
   }
 
   .team-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .team-role {
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 700;
     color: var(--amber);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .team-bio {
     font-size: 12px;
     color: var(--muted);
-    line-height: 1.55;
+    line-height: 1.6;
     margin: 0;
   }
 
@@ -326,8 +434,8 @@
   .fit-list {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: 20px;
+    gap: 16px;
+    margin-top: 24px;
   }
 
   .fit-item {
@@ -337,56 +445,56 @@
   }
 
   .fit-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--amber);
     flex-shrink: 0;
-    margin-top: 7px;
+    margin-top: 8px;
   }
 
   .fit-text {
     font-size: 14px;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.6;
+    color: var(--text-sub);
+    line-height: 1.65;
     margin: 0;
   }
 
   .fit-text strong {
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* CTA */
   .cta-section {
-    padding: 48px 0 56px;
+    padding: 52px 0 64px;
   }
 
   .cta-box {
-    background: rgba(232,160,32,0.06);
-    border: 1px solid rgba(232,160,32,0.2);
+    background: rgba(232,160,32,0.05);
+    border: 1px solid rgba(232,160,32,0.22);
     border-radius: 12px;
     padding: 32px;
   }
 
   .cta-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     color: #fff;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
+    letter-spacing: -0.025em;
+    margin-bottom: 6px;
   }
 
   .cta-sub {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--muted);
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
 
   .cta-asks {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
     margin-bottom: 28px;
   }
 
@@ -397,30 +505,30 @@
   }
 
   .ask-num {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 800;
     color: var(--amber);
     flex-shrink: 0;
-    width: 20px;
+    width: 22px;
     margin-top: 1px;
   }
 
   .ask-text {
     font-size: 14px;
-    color: rgba(255,255,255,0.78);
-    line-height: 1.55;
+    color: var(--text-sub);
+    line-height: 1.6;
     margin: 0;
   }
 
-  .ask-text strong { color: #fff; }
+  .ask-text strong { color: #fff; font-weight: 700; }
 
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 14px;
     align-items: center;
     padding-top: 20px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
 
   .contact-item {
@@ -433,21 +541,13 @@
     text-decoration: none;
   }
 
-  /* DIVIDER */
-  .divider {
-    width: 32px;
-    height: 2px;
-    background: var(--amber);
-    margin: 0 0 20px;
-    border-radius: 2px;
-  }
-
   /* RESPONSIVE */
   @media (max-width: 560px) {
     .stats { grid-template-columns: 1fr 1fr; }
     .team-grid { grid-template-columns: 1fr; }
+    .stack-layer-label { width: 110px; }
     header { padding: 28px 0 0; }
-    .cta-box { padding: 24px 20px; }
+    .cta-box { padding: 24px 18px; }
   }
 </style>
 </head>
@@ -456,13 +556,14 @@
 
   <header>
     <div class="logo">
-      <svg width="28" height="28" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="4" y="4" width="8" height="48" fill="#E8A020"/>
-        <rect x="4" y="4" width="28" height="8" fill="#E8A020"/>
-        <rect x="4" y="44" width="28" height="8" fill="#E8A020"/>
-        <rect x="44" y="4" width="8" height="48" fill="#E8A020"/>
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+        <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+        <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+        <circle cx="28" cy="7" r="3" fill="#E8A020"/>
       </svg>
-      <span class="logo-name">Sentriq</span>
+      <span class="logo-name">Sentriq<span>.</span></span>
     </div>
   </header>
 
@@ -470,40 +571,69 @@
   <div class="hero">
     <div class="badge">a16z Speedrun</div>
 
-    <p class="hook">Noya -- you told us in September 2025 that Sparqlee's market was too crowded. You were right. We built the other side of the table.</p>
+    <p class="hook">Noya: you told us in September 2025 that Sparqlee's market was too crowded. You were right. We built the other side of the table.</p>
 
     <h1>YC funded the attack.<br><span>Here's the defense layer.</span></h1>
 
-    <p class="sub">The same tools that help candidates fabricate credentials and game hiring pipelines are creating an attack surface nobody has built infrastructure for yet. Sentriq is the trust layer that sits upstream of every ATS and detects it -- before a single fraudulent application reaches a recruiter.</p>
+    <p class="sub">The same tools that help candidates fabricate credentials and game hiring pipelines are creating an attack surface nobody has built infrastructure for yet. Sentriq is the trust layer that sits upstream of every ATS and detects it before a single fraudulent application reaches a recruiter.</p>
   </div>
 
   <!-- PROBLEM -->
   <section>
-    <h2>The Problem</h2>
-    <div class="divider"></div>
+    <span class="label">The Problem</span>
     <h3>Every enterprise hiring pipeline is undefended</h3>
-    <p>Enterprises have Okta, CrowdStrike, Palo Alto. They have nothing at the job application layer. It is now trivial to fabricate credentials, manufacture behavioral consistency, and flood a hiring funnel with hundreds of targeted applications per day.</p>
+    <p>Enterprises have Okta, CrowdStrike, Palo Alto. They have nothing at the job application layer. Fabricating credentials, manufacturing behavioral consistency, and flooding a hiring funnel with hundreds of targeted applications per day is now trivial.</p>
 
     <div class="highlight">
       <p>Gartner projects 25% of all job applications will be AI-generated by 2028. KnowBe4 hired a North Korean operative through four video interviews and a full background check. The CISO attack surface and the HR noise problem are the same problem. Nobody owns that layer.</p>
     </div>
 
-    <p>CISOs recognize it as an infiltration risk. HR leaders feel it as a signal quality collapse. Sentriq sits at the intersection and owns the layer both buyers need someone to own.</p>
+    <div class="stack-wrap">
+      <div class="stack-layer">
+        <span class="stack-layer-label">SIEM / SOC</span>
+        <span class="stack-layer-vendors">Splunk, IBM QRadar, Microsoft Sentinel</span>
+        <span class="stack-layer-badge">Protected</span>
+      </div>
+      <div class="stack-layer">
+        <span class="stack-layer-label">ENDPOINT (EDR)</span>
+        <span class="stack-layer-vendors">CrowdStrike, SentinelOne, Microsoft Defender</span>
+        <span class="stack-layer-badge">Protected</span>
+      </div>
+      <div class="stack-layer">
+        <span class="stack-layer-label">IDENTITY / AUTH</span>
+        <span class="stack-layer-vendors">Okta, CyberArk, Azure AD, BeyondTrust</span>
+        <span class="stack-layer-badge">Protected</span>
+      </div>
+      <div class="stack-layer">
+        <span class="stack-layer-label">NETWORK / PERIMETER</span>
+        <span class="stack-layer-vendors">Cloudflare, Palo Alto, Zscaler, Akamai</span>
+        <span class="stack-layer-badge">Protected</span>
+      </div>
+      <div class="stack-layer-threat">
+        <span style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.9);width:180px;flex-shrink:0;">HIRING FUNNEL</span>
+        <span style="font-size:12px;color:rgba(232,160,32,0.75);font-weight:500;">Every application. Every ATS. Zero infrastructure. This is where threats enter.</span>
+        <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.15);color:rgba(255,255,255,0.85);border:1px solid rgba(232,160,32,0.4);">UNDEFENDED</span>
+      </div>
+      <div class="stack-layer-zero">
+        <span class="stack-layer-label">LAYER 0: SENTRIQ</span>
+        <span class="stack-layer-vendors">Pre-submission behavioral trust layer. Platform-agnostic. Upstream of everything.</span>
+        <span style="margin-left:auto;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 8px;border-radius:4px;background:rgba(232,160,32,0.2);color:var(--amber);border:1px solid rgba(232,160,32,0.4);">BUILDING IT</span>
+      </div>
+    </div>
   </section>
 
   <!-- PRODUCT -->
   <section>
-    <h2>What Sentriq Does</h2>
-    <div class="divider"></div>
+    <span class="label">What Sentriq Does</span>
     <h3>A trust layer upstream of the ATS, invisible to legitimate applicants</h3>
-    <p>Sentriq integrates as a webhook on the careers page. Every application passes through three layers before it reaches the recruiter. The product is live -- demo available on any call.</p>
+    <p>Sentriq integrates as a webhook on the careers page. Every application passes through three layers before it reaches the recruiter. The product is live: demo available on any call.</p>
 
     <div class="layers">
       <div class="layer">
         <span class="layer-num">01</span>
         <div>
-          <div class="layer-title">Behavioral Detection</div>
-          <p class="layer-desc">Monitors how the form was filled: automation patterns, submission timing, behavioral fingerprinting. Platform-agnostic -- upstream of every ATS, works on any careers page.</p>
+          <div class="layer-title">Behavioral Baseline</div>
+          <p class="layer-desc">Passive monitoring of how the form was filled: automation patterns, submission timing, behavioral fingerprinting. No friction. Platform-agnostic. Upstream of every ATS.</p>
         </div>
       </div>
       <div class="layer">
@@ -516,7 +646,7 @@
       <div class="layer">
         <span class="layer-num">03</span>
         <div>
-          <div class="layer-title">Trust Signal + ATS Enrichment</div>
+          <div class="layer-title">Human Review + Trust Signal</div>
           <p class="layer-desc">An analyst reviews flagged applications and delivers a trust signal directly inside the recruiter's existing ATS. No new dashboard. Full EU AI Act audit trail on every decision.</p>
         </div>
       </div>
@@ -525,20 +655,18 @@
 
   <!-- MOAT -->
   <section>
-    <h2>The Moat</h2>
-    <div class="divider"></div>
+    <span class="label">The Moat</span>
     <h3>Every company that plugs in makes the network smarter for every other</h3>
 
     <div class="moat-box">
       <p class="moat-headline">Cross-company behavioral graph</p>
-      <p class="moat-body">Sentriq builds a behavioral fingerprint layer across its entire customer network. A synthetic application pattern detected at Company A becomes a detection signal for Companies B through Z -- <strong>without sharing any candidate data.</strong> The same compounding network effect Cloudflare built for web traffic, applied to hiring. Every enterprise that joins raises the floor for the entire network. This is the moat no point solution can replicate.</p>
+      <p class="moat-body">Sentriq builds a behavioral fingerprint layer across its entire customer network. A synthetic application pattern detected at Company A becomes a detection signal for Companies B through Z: <strong>no candidate data shared.</strong> The same compounding network effect Cloudflare built for web traffic, applied to hiring. Every enterprise that joins raises the floor for the entire network. This is the moat no point solution can replicate.</p>
     </div>
   </section>
 
   <!-- TRACTION -->
   <section>
-    <h2>Traction</h2>
-    <div class="divider"></div>
+    <span class="label">Traction</span>
     <h3>Live demo. Enterprise pipeline active. Raising now.</h3>
 
     <div class="stats">
@@ -560,47 +688,45 @@
       </div>
     </div>
 
-    <div class="traction-list" style="margin-top:28px;">
-      <div class="traction-item"><strong>Global enterprise software companies</strong> -- two in active design partner conversations</div>
-      <div class="traction-item"><strong>Tier 1 global banks</strong> -- two in pipeline, one meeting this week</div>
-      <div class="traction-item"><strong>6 months from pivot to pipeline</strong> -- October 2025 pivot, four enterprise conversations active by April 2026</div>
+    <div class="traction-list">
+      <div class="traction-item"><strong>Global enterprise software companies:</strong> two in active design partner conversations</div>
+      <div class="traction-item"><strong>Tier 1 global banks:</strong> two in pipeline, one meeting this week</div>
+      <div class="traction-item"><strong>6 months from pivot to pipeline.</strong> October 2025 pivot, four enterprise conversations active by April 2026</div>
     </div>
   </section>
 
   <!-- TEAM -->
   <section>
-    <h2>The Team</h2>
-    <div class="divider"></div>
+    <span class="label">The Team</span>
     <h3>Two IDF intelligence veterans. One built the attack. One lived in the ATS.</h3>
 
     <div class="team-grid">
       <div class="team-card">
         <div class="team-name">Samuel Kemper</div>
         <div class="team-role">CEO</div>
-        <p class="team-bio">Former head of TechRuiter IL -- lived inside ATS systems for years as an enterprise HR operator. Knows exactly where recruiters lose signal and where trust breaks down. Ran the attack side (Sparqlee) before building the defense.</p>
+        <p class="team-bio">Former head of TechRuiter IL. Lived inside ATS systems for years as an enterprise HR operator. Knows exactly where recruiters lose signal and where trust breaks down. Ran the attack side (Sparqlee) before building the defense.</p>
       </div>
       <div class="team-card">
         <div class="team-name">Ben Czarninski</div>
         <div class="team-role">CTO</div>
-        <p class="team-bio">IDF Unit Tamar (offensive cyber) + Yachlam. KPMG international pentest, AppsFlyer AppSec. Spent his career building and breaking systems -- now building the detection layer for hiring.</p>
+        <p class="team-bio">IDF Unit Tamar (offensive cyber) and Yachlam. KPMG international pentest, AppsFlyer AppSec. Spent his career building and breaking systems. Now building the detection layer for hiring.</p>
       </div>
     </div>
   </section>
 
   <!-- WHY A16Z -->
   <section>
-    <h2>Why a16z Speedrun</h2>
-    <div class="divider"></div>
+    <span class="label">Why a16z Speedrun</span>
     <h3>Five reasons this is the thesis</h3>
 
     <div class="fit-list">
       <div class="fit-item">
         <div class="fit-dot"></div>
-        <p class="fit-text"><strong>Infrastructure with network effects.</strong> Not a SaaS tool -- a behavioral graph that compounds with every enterprise added. The moat builds automatically. This is the Cloudflare model applied to hiring.</p>
+        <p class="fit-text"><strong>Infrastructure with network effects.</strong> Not a SaaS tool: a behavioral graph that compounds with every enterprise added. The moat builds automatically. The Cloudflare model applied to hiring.</p>
       </div>
       <div class="fit-item">
         <div class="fit-dot"></div>
-        <p class="fit-text"><strong>YC funded the attack. a16z should fund the defense.</strong> The companies generating this problem -- AI CV tools, application automation -- are YC-backed. Sentriq is the infrastructure response. The timing closes a loop that is publicly visible.</p>
+        <p class="fit-text"><strong>YC funded the attack. a16z should fund the defense.</strong> The companies generating this problem are YC-backed. Sentriq is the infrastructure response. The timing closes a loop that is publicly visible.</p>
       </div>
       <div class="fit-item">
         <div class="fit-dot"></div>
@@ -612,7 +738,7 @@
       </div>
       <div class="fit-item">
         <div class="fit-dot"></div>
-        <p class="fit-text"><strong>Both founders relocating to SF for the full 12 weeks.</strong> Samuel and Ben are committed to the full residency, July 27 to October 11. The $1M Speedrun investment anchors the $5M seed round we are raising now. This is the window.</p>
+        <p class="fit-text"><strong>Both founders relocating to SF for the full 12 weeks.</strong> Samuel and Ben committed to the full residency, July 27 to October 11. The $1M Speedrun investment anchors the $5M seed round raising now. This is the window.</p>
       </div>
     </div>
   </section>
@@ -626,11 +752,11 @@
       <div class="cta-asks">
         <div class="ask">
           <span class="ask-num">01</span>
-          <p class="ask-text"><strong>Speedrun SR007 consideration.</strong> If this fits the thesis and the team clears your bar, surface us to the investment team. The application deadline is May 17. Happy to do a 20-min call before then or send whatever the process requires.</p>
+          <p class="ask-text"><strong>Speedrun SR007 consideration.</strong> If this fits the thesis and the team clears your bar, surface us to the investment team. Application deadline is May 17. Happy to do a 20-min call before then or send whatever the process requires.</p>
         </div>
         <div class="ask">
           <span class="ask-num">02</span>
-          <p class="ask-text"><strong>Israeli Founder Sprint -- NY Tech Week, June 1-7.</strong> We saw your post. Dinner with the speedrun team, direct customer introductions, VIP events. The US enterprise pipeline is already live -- this accelerates it. We want to be in that room. Put us on the list.</p>
+          <p class="ask-text"><strong>Israeli Founder Sprint, NY Tech Week, June 1-7.</strong> We saw your post. Dinner with the speedrun team, direct customer introductions, VIP events. The US enterprise pipeline is already live. This accelerates it. Put us on the list.</p>
         </div>
       </div>
 
