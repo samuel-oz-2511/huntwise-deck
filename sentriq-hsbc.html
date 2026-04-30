@@ -186,9 +186,9 @@
         h1 { font-size: 24px; } h2 { font-size: 18px; }
         .nav-bar { padding: 10px 16px; }
     }
+    .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
     @media (max-width: 640px) {
         .lc-grid { min-width: 560px; }
-        .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
     }
 </style>
 </head>
@@ -291,7 +291,7 @@
 <div class="slide-inner">
     <span class="label">The Gap</span>
     <h2>Every layer of HSBC is defended. <span style="color:var(--amber);">Except one.</span></h2>
-    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">HSBC monitors over 1.2 billion transactions per month. 117 million customer records are screened for sanctions every 30 days. The investment in Callsign, BioCatch, and Yoti proves you know what behavioral integrity is worth. But the hiring application has no equivalent check. Every flagged application that clears your ATS enters your pipeline without a single behavioral signal attached.</p>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:22px;max-width:700px;line-height:1.7;">HSBC monitors over 1.2 billion transactions per month. 117 million customer records are screened for sanctions every 30 days. The hiring application receives none of that scrutiny: every submission that enters your ATS carries zero behavioral signal.</p>
 
     <div class="stack-layer">
         <div class="stack-layer-label">Customer Transactions</div>
@@ -337,8 +337,8 @@
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;">
         <div class="card" style="border-left:3px solid rgba(224,85,85,0.6);">
             <div style="font-size:32px;font-weight:800;color:#E05555;letter-spacing:-0.03em;margin-bottom:6px;">$1.9B</div>
-            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">HSBC's largest compliance penalty</div>
-            <p style="font-size:12px;">The 2012 settlement started with internal failures to monitor who was operating inside. Insider risk is not abstract for this institution.</p>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">HSBC's largest compliance settlement</div>
+            <p style="font-size:12px;">AML and sanctions monitoring failures inside the institution. The lesson HSBC paid $1.9B to learn: what happens inside your walls, unchecked, becomes a regulatory event.</p>
             <div style="font-size:10px;color:var(--text-dim);margin-top:8px;">US DOJ / OFAC / FinCEN, 2012</div>
         </div>
         <div class="card" style="border-left:3px solid rgba(232,160,32,0.6);">
@@ -358,7 +358,7 @@
     <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-left:4px solid var(--amber);border-radius:12px;padding:18px 22px;margin-bottom:14px;">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(232,160,32,0.85);margin-bottom:6px;">Already happened. Documented. Not theoretical.</div>
         <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.88);margin-bottom:5px;">KnowBe4 hired a North Korean IT worker who immediately attempted to load malware. The hire passed a resume screen, four video interviews, and a full background check using a stolen US identity.</div>
-        <div style="font-size:13px;color:rgba(232,160,32,0.75);line-height:1.6;">KnowBe4 is a cybersecurity company. HSBC hires engineers, compliance analysts, and financial crime investigators with privileged access to systems that process the global flow of capital. CrowdStrike confirmed DPRK-related malicious insider activity at 150+ organizations. Financial services are a primary target sector.</div>
+        <div style="font-size:13px;color:rgba(232,160,32,0.75);line-height:1.6;">HSBC hires compliance analysts, engineers, and financial crime investigators with privileged access to systems that process the global flow of capital. CrowdStrike confirmed DPRK-related malicious insider activity at 150+ organizations, with financial services named as a primary target sector.</div>
         <div style="font-size:10px;color:rgba(232,160,32,0.55);margin-top:8px;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024. CrowdStrike Threat Intelligence 2025.</div>
     </div>
 
@@ -374,7 +374,7 @@
 <div class="slide-inner">
     <span class="label">The Portfolio Mirror</span>
     <h2>You invested in identity. <span style="color:var(--amber);">You haven't invested in it for hiring.</span></h2>
-    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:720px;line-height:1.7;">HSBC Ventures has backed Callsign (behavioral authentication), BioCatch (behavioral biometrics), Yoti (digital identity), and Lightico (document verification). Every one of these products activates after a person joins or becomes a customer. Not one of them monitors the hiring application entry point. The thesis that drove those investments is exactly the thesis Sentriq is built on. The stage is different.</p>
+    <p style="font-size:14px;color:var(--text-sub);margin-bottom:20px;max-width:720px;line-height:1.7;">HSBC Ventures has backed Callsign, BioCatch, Yoti, and Lightico. Every one activates after a person joins or becomes a customer. The thesis behind those bets is exactly the thesis Sentriq is built on. The stage is different.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
@@ -496,7 +496,7 @@
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
             <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 1</div>
             <h3>Behavioral Baseline</h3>
-            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Every application submission carries a fingerprint: how the form was filled, timing patterns, tool signatures, device signals. Sentriq reads these passively at submission. No friction. No candidate awareness. No change to the application form.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Every application submission carries a fingerprint: how the form was filled, timing patterns, tool signatures, device signals. Sentriq reads these passively at submission. No friction. No change to the application form.</p>
             <ul style="list-style:none;padding:0;">
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Automation and tool fingerprinting</li>
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Behavioral anomaly detection</li>
@@ -507,7 +507,7 @@
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
             <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 2</div>
             <h3>Async Challenge</h3>
-            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Only when Layer 1 flags an anomaly. A short async task is sent to the applicant as part of the process. Not a skills test. Not biometric. It detects proxy impersonation and AI-assisted responses. Legitimate applicants proceed without noticing. Proxies fail.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Triggered only when Layer 1 flags an anomaly. A short async task sent as part of the process detects proxy impersonation and AI-assisted responses. Legitimate applicants proceed without noticing. Proxies fail.</p>
             <ul style="list-style:none;padding:0;">
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Triggered only on anomalous applications</li>
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Tailored to the specific role and application</li>
@@ -518,7 +518,7 @@
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;">
             <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);background:rgba(232,160,32,0.08);border-radius:6px;padding:3px 10px;margin-bottom:12px;">Layer 3</div>
             <h3>Human Review</h3>
-            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Only when Layer 2 flags divergence. A Sentriq analyst reviews the full signal stack and surfaces a trust signal alongside the application. The employer decides. Zero automated rejections. Every screening decision has a human and an audit trail. EU AI Act compliant by design.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.65;margin-bottom:12px;">Triggered only when Layer 2 flags divergence. A Sentriq analyst reviews the full signal stack and surfaces a trust signal alongside the application. Zero automated rejections. Every screening decision has a human and a full audit trail.</p>
             <ul style="list-style:none;padding:0;">
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Zero automated rejections</li>
                 <li style="font-size:12px;color:var(--text-sub);padding:3px 0 3px 14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--amber);border-radius:50%;display:block;"></span>Full audit trail per application</li>
@@ -634,9 +634,9 @@
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
         <div style="background:rgba(68,204,136,0.05);border:1px solid rgba(68,204,136,0.2);border-radius:12px;padding:20px 22px;">
-            <div style="font-size:18px;margin-bottom:10px;">&#127988;</div>
+            <div style="font-size:18px;margin-bottom:10px;">&#128272;</div>
             <h3 style="color:#44CC88;margin-bottom:8px;">Design partner pilot</h3>
-            <p style="font-size:13px;color:rgba(68,204,136,0.85);line-height:1.65;">6-week pilot against 1-2 live open roles. No integration overhead. No candidate data stored. We surface behavioral trust signals alongside your existing pipeline. You tell us what is useful and what is not. That feedback shapes the product.</p>
+            <p style="font-size:13px;color:rgba(68,204,136,0.85);line-height:1.65;">6-week pilot against 1-2 live open roles. No integration overhead. No PII stored. We surface behavioral trust signals alongside your existing pipeline, and your feedback directly shapes the product.</p>
         </div>
         <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.2);border-radius:12px;padding:20px 22px;">
             <div style="font-size:18px;margin-bottom:10px;">&#128101;</div>
@@ -684,7 +684,7 @@
     <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.18);border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
         <div>
             <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;">One conversation. No commitment required.</div>
-            <div style="font-size:13px;color:var(--text-sub);">We can demo against a live hiring flow. No integration required. We just need the right room.</div>
+            <div style="font-size:13px;color:var(--text-sub);">We can demonstrate against a live hiring flow. No integration required on your side.</div>
         </div>
         <div style="text-align:right;flex-shrink:0;">
             <div style="font-size:15px;font-weight:700;color:var(--text);">samuel@sentriq.co</div>
