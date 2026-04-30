@@ -821,7 +821,7 @@
     </div>
     <div class="nav-controls">
         <button class="nav-btn" onclick="prevSlide()" title="Previous">&#8592;</button>
-        <div class="slide-counter" id="counter">1 / 7</div>
+        <div class="slide-counter" id="counter">1 / 9</div>
         <button class="nav-btn" onclick="nextSlide()" title="Next">&#8594;</button>
     </div>
 </div>
@@ -856,6 +856,8 @@
             if (Math.abs(dx) > 50) { if (dx < 0) nextSlide(); else prevSlide(); }
         });
     })();
+
+    showSlide(0);
 </script>
 
 </body>
