@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentriq -- a16z Speedrun</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber: #E8A020;
+    --bg: #09090F;
+    --surface: #111118;
+    --border: rgba(255,255,255,0.08);
+    --muted: rgba(255,255,255,0.45);
+    --text: rgba(255,255,255,0.92);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HEADER */
+  header {
+    padding: 40px 0 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .logo svg { flex-shrink: 0; }
+
+  .logo-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.3);
+    color: var(--amber);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 0 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hook {
+    font-size: clamp(13px, 2vw, 14px);
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  h1 span { color: var(--amber); }
+
+  .sub {
+    font-size: clamp(15px, 2.5vw, 17px);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 580px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  p {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: rgba(232,160,32,0.07);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+
+  .highlight p {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* LAYERS */
+  .layers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .layer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .layer-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 20px;
+  }
+
+  .layer-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .layer-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* MOAT */
+  .moat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+
+  .moat-headline {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .moat-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .moat-body strong {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  /* STATS GRID */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.03em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* TEAM */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .team-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .team-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .team-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 3px 7px;
+  }
+
+  .team-bio {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* FIT SECTION */
+  .fit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .fit-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .fit-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .fit-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .fit-text strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 48px 0 56px;
+  }
+
+  .cta-box {
+    background: rgba(232,160,32,0.06);
+    border: 1px solid rgba(232,160,32,0.2);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .cta-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .cta-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .cta-asks {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .ask {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .ask-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--amber);
+    flex-shrink: 0;
+    width: 20px;
+    margin-top: 1px;
+  }
+
+  .ask-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ask-text strong { color: #fff; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-item {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .contact-item a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 32px;
+    height: 2px;
+    background: var(--amber);
+    margin: 0 0 20px;
+    border-radius: 2px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    header { padding: 28px 0 0; }
+    .cta-box { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="8" height="48" fill="#E8A020"/>
+        <rect x="4" y="4" width="28" height="8" fill="#E8A020"/>
+        <rect x="4" y="44" width="28" height="8" fill="#E8A020"/>
+        <rect x="44" y="4" width="8" height="48" fill="#E8A020"/>
+      </svg>
+      <span class="logo-name">Sentriq</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="badge">a16z Speedrun -- Scout Brief</div>
+
+    <p class="hook">Noya -- you told us in September 2025 that Sparqlee's market was too crowded. You were right. We built the other side of the table.</p>
+
+    <h1>YC funded the attack.<br><span>Here's the defense layer.</span></h1>
+
+    <p class="sub">The same AI tools that help candidates game ATS systems -- the ones flooding hiring pipelines at every enterprise -- are creating a new attack surface nobody has built infrastructure for yet. Sentriq is the trust layer that sits upstream of everything and detects it.</p>
+  </div>
+
+  <!-- PROBLEM -->
+  <section>
+    <h2>The Problem</h2>
+    <div class="divider"></div>
+    <h3>Every enterprise hiring pipeline is now undefended</h3>
+    <p>Enterprises have Okta, CrowdStrike, Palo Alto. They have nothing at the job application layer. AI tools have made it trivial to fabricate credentials, manufacture behavioral consistency, and submit hundreds of targeted applications per day. The hiring funnel is the only enterprise attack surface with zero infrastructure protection.</p>
+
+    <div class="highlight">
+      <p>YC-backed resume optimization tools created this problem at scale. Gartner projects 25% of job applications will be AI-generated by 2028. KnowBe4 hired a North Korean operative through four video interviews and a full background check. The problem is already here.</p>
+    </div>
+
+    <p>CISOs recognize it. HR leaders feel it. Nobody owns the layer. That is the gap Sentriq fills.</p>
+  </section>
+
+  <!-- PRODUCT -->
+  <section>
+    <h2>What Sentriq Does</h2>
+    <div class="divider"></div>
+    <h3>A trust layer that sits before the ATS, invisible to the applicant</h3>
+    <p>Sentriq integrates as a webhook on the careers page. Every application that enters the funnel passes through three layers before it reaches the recruiter.</p>
+
+    <div class="layers">
+      <div class="layer">
+        <span class="layer-num">01</span>
+        <div>
+          <div class="layer-title">Behavioral Detection</div>
+          <p class="layer-desc">Monitors how the application was filled: bot vs. human, automation patterns, submission timing, behavioral anomalies. Platform-agnostic -- works upstream of every ATS.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-num">02</span>
+        <div>
+          <div class="layer-title">Async Challenge</div>
+          <p class="layer-desc">When an anomaly is detected, a personalized micro-challenge is served -- invisible to legitimate candidates, a wall for automated submissions. Fully customized to the role and the candidate's stated profile.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="layer-num">03</span>
+        <div>
+          <div class="layer-title">Human Review + ATS Enrichment</div>
+          <p class="layer-desc">An analyst reviews flagged applications and delivers a trust signal directly inside the recruiter's existing ATS. No new dashboard. EU AI Act compliant audit trail on every decision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOAT -->
+  <section>
+    <h2>The Moat</h2>
+    <div class="divider"></div>
+    <h3>Every company that plugs in makes the network smarter for every other</h3>
+
+    <div class="moat-box">
+      <p class="moat-headline">Cross-company behavioral graph</p>
+      <p class="moat-body">Sentriq builds a behavioral fingerprint layer across the entire network. A fraudulent application pattern detected at Company A becomes a detection signal for Companies B through Z -- <strong>without sharing any candidate data.</strong> The same compounding network effect Cloudflare built for web traffic, applied to hiring. Every enterprise that joins raises the floor for the entire network. This is the moat no point solution can replicate.</p>
+    </div>
+  </section>
+
+  <!-- TRACTION -->
+  <section>
+    <h2>Traction</h2>
+    <div class="divider"></div>
+    <h3>Enterprise conversations active now</h3>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-val">$5M</span>
+        <span class="stat-label">Seed round raising</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">2</span>
+        <span class="stat-label">Tier 1 enterprises in active evaluation</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Tier 1</span>
+        <span class="stat-label">Global banks in pipeline</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Aug 26</span>
+        <span class="stat-label">EU AI Act deadline creating urgency</span>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:24px;">
+      <p>WalkMe (SAP) and Optimove are in active design partner conversations. HSBC Innovation Banking meeting this week. Wells Fargo pipeline open. The US enterprise funnel is live.</p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section>
+    <h2>The Team</h2>
+    <div class="divider"></div>
+    <h3>Two IDF intelligence veterans. One built the attack. One lived in the ATS.</h3>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Samuel Kemper</div>
+        <p class="team-bio">CEO. Former head of TechRuiter IL -- lived inside ATS systems for years as an enterprise HR operator. Knows exactly where recruiters feel pain and where trust signals break down.</p>
+        <div class="team-tags">
+          <span class="tag">HR Operator</span>
+          <span class="tag">GTM</span>
+          <span class="tag">Enterprise Sales</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Ben Czarninski</div>
+        <p class="team-bio">CTO. IDF Unit 8200 (offensive cyber) + Yachlam. KPMG pentest, AppsFlyer AppSec. Spent his career building and breaking systems -- now building the detection layer for hiring.</p>
+        <div class="team-tags">
+          <span class="tag">IDF Offensive Cyber</span>
+          <span class="tag">Security Infra</span>
+          <span class="tag">Full Stack</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY A16Z -->
+  <section>
+    <h2>Why a16z Speedrun</h2>
+    <div class="divider"></div>
+    <h3>This is exactly the thesis</h3>
+
+    <div class="fit-list">
+      <div class="fit-item">
+        <div class="fit-dot"></div>
+        <p class="fit-text"><strong>Infrastructure with network effects.</strong> Not a SaaS tool -- a behavioral graph layer that compounds with every enterprise added. The moat grows automatically.</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-dot"></div>
+        <p class="fit-text"><strong>YC funded the attack. a16z should fund the defense.</strong> The companies generating this problem (AI CV tools, application automation) are YC-backed. Sentriq is the infrastructure response. The timing closes a loop.</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-dot"></div>
+        <p class="fit-text"><strong>Israeli founders building for the US enterprise market.</strong> Two IDF veterans with US enterprise deals already in motion -- HSBC, Wells Fargo, JPMorgan. Not testing the market. Already in it.</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-dot"></div>
+        <p class="fit-text"><strong>Regulatory tailwind baked in.</strong> EU AI Act Article 22 creates mandatory audit requirements for AI in hiring by August 2026. Every enterprise in Europe has a compliance deadline. Sentriq is the audit trail.</p>
+      </div>
+      <div class="fit-item">
+        <div class="fit-dot"></div>
+        <p class="fit-text"><strong>Pre-seed stage -- the right entry point.</strong> No revenue yet. The next 6 months produce the first paid pilots. The infrastructure moat is still being built. This is the window.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-box">
+      <p class="cta-title">Two asks, Noya</p>
+      <p class="cta-sub">One for the fund. One for NY Tech Week.</p>
+
+      <div class="cta-asks">
+        <div class="ask">
+          <span class="ask-num">01</span>
+          <p class="ask-text"><strong>Speedrun consideration for SR007.</strong> If this fits the thesis and the team clears your bar, we would love to be surfaced to the investment team. Happy to do a 20-min call or send whatever the speedrun process requires.</p>
+        </div>
+        <div class="ask">
+          <span class="ask-num">02</span>
+          <p class="ask-text"><strong>Israeli Founder Sprint -- NY Tech Week (June 1-7).</strong> We saw your post. We want to be in that room. The US enterprise pipeline is live, the timing is perfect, and access to a16z customers + team during Tech Week is exactly what we need at this stage. Put us on the list.</p>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <span class="contact-item">Samuel Kemper</span>
+        <span class="contact-item"><a href="mailto:samuel@sentriq.co">samuel@sentriq.co</a></span>
+        <span class="contact-item"><a href="https://sentriq.co">sentriq.co</a></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
