@@ -248,6 +248,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
         font-size: 11px; font-weight: 700; text-transform: uppercase;
         letter-spacing: 0.1em; color: var(--amber); margin-bottom: 10px;
     }
+    .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .gap-bullets { display: flex; flex-direction: column; gap: 8px; }
     .gap-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-sub); line-height: 1.5; }
     .gap-bullet::before {
@@ -282,6 +283,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
         .roi-row { grid-template-columns: 1fr 1fr; gap: 12px; }
         .roi-op { display: none; }
         .ask-grid { grid-template-columns: 1fr; }
+        .gap-grid { grid-template-columns: 1fr; }
         .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
         .cta-right { text-align: left; }
     }
@@ -383,7 +385,6 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                     <div class="lc-name">Application</div>
                     <div class="lc-tool">Claim record built</div>
                     <div class="lc-cost">Gap Assessor starts</div>
-                    <div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:rgba(232,160,32,0.6);margin-top:6px;">Entry point</div>
                 </div>
                 <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
                     <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
@@ -488,7 +489,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
             <div style="font-size:15px;font-weight:700;color:#ffffff;margin-bottom:8px;">Signal at submission. Tracked through every stage after.</div>
             <div style="font-size:13px;color:var(--text-sub);line-height:1.75;">The same engine that profiles the application re-runs at every downstream stage: phone screen notes, test scores, interview transcripts, manager assessments. Each new data point is evaluated against what the candidate originally claimed. Gaps that were not surfaced upfront become visible later, before they reach a client.</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="gap-grid">
             <div class="gap-card">
                 <div class="gap-card-label">What gets checked</div>
                 <div class="gap-bullets">
