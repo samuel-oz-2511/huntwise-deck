@@ -589,7 +589,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="roi-card">
                 <div class="roi-card-label">תפוקת מגייסים לתפקיד</div>
                 <div class="roi-inputs">
-                    <div class="roi-input-row"><span>תפקידים מאוישים בשנה</span><input type="number" id="roiRoles" class="roi-calc-input" value="1000" min="100" max="50000" step="100" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>תפקידים מאוישים בשנה</span><input type="number" id="roiRoles" class="roi-calc-input" value="1000" min="100" max="50000" step="100" oninput="scaleDefaults(); calcROI()"></div>
                     <div class="roi-input-row"><span>שעות ל-shortlist, כיום</span><span>~23 שע'</span></div>
                     <div class="roi-input-row"><span>שעות ל-shortlist, עם Sentriq</span><span>~14 שע'</span></div>
                     <div class="roi-input-row"><span>שעות שנחסכות לתפקיד</span><span>~9 שע'</span></div>
@@ -697,22 +697,31 @@ function fmtNIS(n) {
     return '&#8362;' + n.toLocaleString();
 }
 
-var ANNUAL_COST_NIS = 550000;
+var BASE_ROLES = 1000;
+var BASE_COST  = 550000;
+
+function scaleDefaults() {
+    var roles = parseInt(document.getElementById('roiRoles').value) || 1000;
+    var scale = roles / BASE_ROLES;
+    document.getElementById('roiMisplace').value    = Math.max(1, Math.round(10 * scale));
+    document.getElementById('roiContractBad').value = Math.max(1, Math.round(5  * scale));
+}
 
 function calcROI() {
-    var roles           = parseInt(document.getElementById('roiRoles').value)          || 1000;
-    var misplace        = parseInt(document.getElementById('roiMisplace').value)       || 10;
-    var contractSalary  = parseInt(document.getElementById('roiContractSalary').value) || 25000;
-    var contractMonths  = parseInt(document.getElementById('roiContractMonths').value) || 9;
-    var contractBad     = parseInt(document.getElementById('roiContractBad').value)    || 5;
+    var roles          = parseInt(document.getElementById('roiRoles').value)          || 1000;
+    var misplace       = parseInt(document.getElementById('roiMisplace').value)       || 10;
+    var contractSalary = parseInt(document.getElementById('roiContractSalary').value) || 25000;
+    var contractMonths = parseInt(document.getElementById('roiContractMonths').value) || 9;
+    var contractBad    = parseInt(document.getElementById('roiContractBad').value)    || 5;
 
+    var annualCost   = Math.round(BASE_COST * roles / BASE_ROLES);
     var throughput   = roles * 9 * 84;
     var prevention   = misplace * 62000;
     var marginMonth  = contractSalary * 0.20;
     var contractor   = contractBad * contractMonths * marginMonth;
     var totalROI     = throughput + prevention + contractor;
-    var ratio        = Math.round(totalROI / ANNUAL_COST_NIS);
-    var breakeven    = Math.ceil(ANNUAL_COST_NIS / 62000);
+    var ratio        = Math.round(totalROI / annualCost);
+    var breakeven    = Math.ceil(annualCost / 62000);
 
     document.getElementById('roiThroughput').innerHTML          = fmtNIS(throughput);
     document.getElementById('roiPrevention').innerHTML          = fmtNIS(prevention);
