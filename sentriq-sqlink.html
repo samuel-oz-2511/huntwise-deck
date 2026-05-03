@@ -225,6 +225,10 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
     .roi-breakeven { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-left: 4px solid var(--amber); border-radius: 12px; padding: 18px 24px; margin-bottom: 12px; }
     .roi-breakeven p { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.5; }
+    .roi-ratio-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .roi-ratio-cell { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.15); border-radius: 10px; padding: 16px 18px; text-align: center; }
+    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .roi-ratio-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
     .roi-calc-input {
         width: 80px; padding: 5px 10px;
         border: 1px solid rgba(232,160,32,0.3); border-radius: 6px;
@@ -294,6 +298,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
 .ask-grid { grid-template-columns: 1fr; }
         .gap-grid { grid-template-columns: 1fr; }
         .roi-cards { grid-template-columns: 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr; }
         .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
         .cta-right { text-align: left; }
     }
@@ -625,8 +630,19 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                 </div>
             </div>
         </div>
-        <div class="roi-breakeven">
-            <p id="roiBreakeven">Sentriq needs to prevent just 9 bad placements per year to cover its full annual cost. At 1,000 placements, that is a 0.9% threshold.</p>
+        <div class="roi-ratio-strip">
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiPerPosition">&#8362;3,850</div>
+                <div class="roi-ratio-label">ROI per position</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiReturnRatio">7:1</div>
+                <div class="roi-ratio-label">Return ratio</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiBreakevenCount">9</div>
+                <div class="roi-ratio-label">Bad placements to break even</div>
+            </div>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
             Hourly rate: 84 NIS (15,600 NIS employer cost / 186 working hours). Shortlist benchmark: LinkedIn Talent Insights 2024. Placement fee: 17% of 360K NIS average tech annual salary. Misplacement cost includes fee forfeited and full re-search time at 84 NIS/hr. Contractor margin: 20% monthly overhead on placed salary, calculated over remaining contract duration lost on early exit.
@@ -676,6 +692,8 @@ function fmtNIS(n) {
     return '₪' + n.toLocaleString();
 }
 
+var ANNUAL_COST_NIS = 550000;
+
 function calcROI() {
     var roles           = parseInt(document.getElementById('roiRoles').value)          || 1000;
     var misplace        = parseInt(document.getElementById('roiMisplace').value)       || 10;
@@ -687,16 +705,18 @@ function calcROI() {
     var prevention   = misplace * 62000;
     var marginMonth  = contractSalary * 0.20;
     var contractor   = contractBad * contractMonths * marginMonth;
-    var breakeven    = Math.ceil(555000 / 62000);
+    var totalROI     = throughput + prevention + contractor;
+    var perPosition  = Math.round(totalROI / roles);
+    var ratio        = Math.round(totalROI / ANNUAL_COST_NIS);
+    var breakeven    = Math.ceil(ANNUAL_COST_NIS / 62000);
 
-    document.getElementById('roiThroughput').textContent   = fmtNIS(throughput);
-    document.getElementById('roiPrevention').textContent   = fmtNIS(prevention);
-    document.getElementById('roiContractor').textContent   = fmtNIS(contractor);
-    document.getElementById('roiMarginPerMonth').textContent = Math.round(marginMonth).toLocaleString() + ' NIS';
-    document.getElementById('roiBreakeven').textContent =
-        'Sentriq needs to prevent just ' + breakeven + ' bad placements per year to cover its full annual cost. At ' +
-        roles.toLocaleString() + ' placements, that is a ' +
-        ((breakeven / roles) * 100).toFixed(1) + '% threshold.';
+    document.getElementById('roiThroughput').textContent          = fmtNIS(throughput);
+    document.getElementById('roiPrevention').textContent          = fmtNIS(prevention);
+    document.getElementById('roiContractor').textContent          = fmtNIS(contractor);
+    document.getElementById('roiMarginPerMonth').textContent      = Math.round(marginMonth).toLocaleString() + ' NIS';
+    document.getElementById('roiPerPosition').textContent         = fmtNIS(perPosition);
+    document.getElementById('roiReturnRatio').textContent         = ratio + ':1';
+    document.getElementById('roiBreakevenCount').textContent      = breakeven;
 }
 </script>
 </body>
