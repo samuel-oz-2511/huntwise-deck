@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ: SQLINK GROUP ONE-PAGER (HEBREW)
+HR buyer: Head of Talent / VP People / CEO
+Created: May 2026
+ntfy topic: sentriq-sqlink-he-n4k8
+=============================================================
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq עבור SQLink</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:       #09090F;
+        --card:     #0D0E1A;
+        --border:   #161728;
+        --muted:    #8080A8;
+        --amber:    #E8A020;
+        --amber-d:  #B87010;
+        --text:     #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --text-dim: rgba(255,255,255,0.52);
+        --green:    #44CC88;
+        --primary:  #E8A020;
+        --white:    #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange:   #E8A020;
+        --red:      #E05555;
+        --purple:   #3A2058;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Heebo', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    .page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 80px; }
+
+    .confidential {
+        position: fixed; top: 16px; left: 22px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100;
+    }
+
+    /* Logo row */
+    .logo-row {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 72px;
+    }
+    .logo-mark {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 15px; font-weight: 500; color: #ffffff; letter-spacing: -0.01em;
+    }
+    .logo-mark span { color: var(--amber); }
+    .logo-for {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: rgba(255,255,255,0.28);
+    }
+
+    /* Section label */
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 18px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+
+    /* Section spacing */
+    .section { margin-bottom: 64px; }
+
+    /* Hero */
+    .hero { margin-bottom: 64px; }
+    .hero h1 {
+        font-size: clamp(30px, 4.5vw, 52px); font-weight: 800;
+        line-height: 1.15; letter-spacing: -0.02em;
+        color: #ffffff; margin-bottom: 22px; max-width: 760px;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero p {
+        font-size: 16px; color: var(--text-sub); line-height: 1.85;
+        max-width: 780px;
+    }
+
+    /* Pain cards */
+    .pain-grid {
+        display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+        margin-bottom: 8px;
+    }
+    .pain-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 20px;
+    }
+    .pain-num {
+        font-size: clamp(36px, 5vw, 54px); font-weight: 800;
+        color: var(--amber); margin-bottom: 6px;
+        letter-spacing: -0.04em; line-height: 1;
+    }
+    .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; }
+
+    /* Lifecycle */
+    .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .lc-grid {
+        display: grid; grid-template-columns: repeat(8, 1fr);
+        border: 1px solid var(--border); border-radius: 12px;
+        overflow: hidden; margin-bottom: 14px; min-width: 560px;
+    }
+    .lc-stage {
+        padding: 14px 8px; border-left: 1px solid var(--border);
+        text-align: center; background: rgba(255,255,255,0.03);
+    }
+    .lc-stage:last-child { border-left: none; }
+    .lc-badge {
+        font-size: 9px; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent;
+    }
+    .lc-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 4px; line-height: 1.3; }
+    .lc-tool { font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+    .lc-cost { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); margin-top: 8px; }
+    .lc-stage.lc-sentriq { background: rgba(232,160,32,0.12); border-bottom: 3px solid #E8A020; }
+    .lc-stage.lc-sentriq .lc-badge { color: #E8A020; }
+    .lc-stage.lc-sentriq .lc-name { color: #fff; font-weight: 800; }
+    .lc-stage.lc-sentriq .lc-cost { color: #E8A020; font-weight: 800; }
+    .lc-stage.lc-danger { background: rgba(224,85,85,0.08); border-bottom: 3px solid rgba(224,85,85,0.7); }
+    .lc-stage.lc-danger .lc-cost { color: #E05555; font-weight: 800; }
+
+    .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .lc-callout {
+        padding: 14px 16px; border-radius: 10px;
+        border: 1px solid var(--border); background: var(--card);
+    }
+    .lc-callout.lc-amber { background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.18); }
+    .lc-callout h4 { font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
+    .lc-callout.lc-amber h4 { color: rgba(232,160,32,0.9); }
+    .lc-callout p { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .lc-callout.lc-amber p { color: rgba(232,160,32,0.8); }
+
+    /* Solution layers */
+    .layers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .layer-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .layer-num {
+        display: inline-block; font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber);
+        background: rgba(232,160,32,0.08); border-radius: 6px;
+        padding: 3px 10px; margin-bottom: 12px;
+    }
+    .layer-card h3 { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .layer-desc { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .layer-bullets { list-style: none; padding: 0; margin-top: 12px; }
+    .layer-bullets li {
+        font-size: 12px; color: var(--text-sub); padding: 4px 16px 4px 0;
+        position: relative; line-height: 1.5;
+    }
+    .layer-bullets li::before {
+        content: ''; position: absolute; right: 0; top: 10px;
+        width: 5px; height: 5px; background: var(--amber); border-radius: 50%;
+    }
+
+    .layer-output {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 28px; margin-top: 14px;
+    }
+    .output-label {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px;
+    }
+    .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
+    .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* Captcha quote */
+    .captcha-block {
+        background: rgba(232,160,32,0.06);
+        border: 1px solid rgba(232,160,32,0.18);
+        border-right: 4px solid var(--amber);
+        border-radius: 12px; padding: 28px 32px; margin-bottom: 64px;
+    }
+    .captcha-block .quote { font-size: 19px; font-weight: 700; color: var(--amber); margin-bottom: 10px; line-height: 1.5; }
+    .captcha-block .quote-source { font-size: 13px; color: rgba(232,160,32,0.65); }
+
+    /* Value props */
+    .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .value-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 20px;
+    }
+    .value-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .value-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+    /* ROI cards */
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; }
+    .roi-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .roi-inputs { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .roi-input-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; color: var(--text-sub); line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+    .roi-input-row:last-child { border-bottom: none; }
+    .roi-input-row span:last-child { font-weight: 700; color: rgba(255,255,255,0.88); white-space: nowrap; }
+    .roi-result-block { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(232,160,32,0.2); }
+    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+    .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .roi-breakeven { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-right: 4px solid var(--amber); border-radius: 12px; padding: 18px 24px; margin-bottom: 12px; }
+    .roi-breakeven p { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.5; }
+    .roi-ratio-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .roi-ratio-cell { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.15); border-radius: 10px; padding: 16px 18px; text-align: center; }
+    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .roi-ratio-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .roi-calc-input {
+        width: 80px; padding: 5px 10px;
+        border: 1px solid rgba(232,160,32,0.3); border-radius: 6px;
+        font-size: 13px; font-weight: 700; color: #ffffff;
+        background: rgba(232,160,32,0.08); text-align: center;
+        font-family: inherit; outline: none; flex-shrink: 0;
+        direction: ltr;
+    }
+    .roi-calc-input:focus { border-color: var(--amber); box-shadow: 0 0 0 2px rgba(232,160,32,0.12); }
+    .roi-calc-input::-webkit-inner-spin-button,
+    .roi-calc-input::-webkit-outer-spin-button { opacity: 0.4; }
+
+    /* Ask / pilot */
+    .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .ask-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .ask-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .ask-card p { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+    .ask-card.highlight {
+        background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.22);
+    }
+    .ask-card.highlight h3 { color: rgba(232,160,32,0.92); }
+    .ask-card.highlight p { color: rgba(232,160,32,0.75); }
+
+    /* Gap Assessor cards */
+    .gap-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 20px 22px;
+    }
+    .gap-card-label {
+        font-size: 11px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--amber); margin-bottom: 10px;
+    }
+    .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .gap-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .gap-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+    .gap-bullet::before {
+        content: ''; width: 5px; height: 5px; background: var(--amber);
+        border-radius: 50%; flex-shrink: 0; margin-top: 6px; display: block;
+    }
+
+    /* CTA */
+    .cta {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px;
+        display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .cta-left h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-left p { font-size: 14px; color: var(--text-dim); line-height: 1.7; max-width: 400px; }
+    .cta-right { text-align: left; flex-shrink: 0; }
+    .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .cta-right .contact-sub { font-size: 13px; color: rgba(255,255,255,0.45); direction: ltr; text-align: left; }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+        .page { padding: 40px 20px 60px; }
+        .logo-row { margin-bottom: 48px; }
+        .pain-grid { grid-template-columns: 1fr; }
+        .lc-callouts { grid-template-columns: 1fr; }
+        .layers-grid { grid-template-columns: 1fr; }
+        .layers-grid .layer-card { margin-bottom: 0; }
+        .value-grid { grid-template-columns: 1fr; }
+        .ask-grid { grid-template-columns: 1fr; }
+        .gap-grid { grid-template-columns: 1fr; }
+        .roi-cards { grid-template-columns: 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr; }
+        .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
+        .cta-right { text-align: right; }
+    }
+</style>
+</head>
+<body>
+
+<div class="confidential">Confidential</div>
+
+<!-- OPEN TRACKING -->
+<script>
+(function() {
+    if (sessionStorage.getItem('sqlink-he-pinged')) return;
+    sessionStorage.setItem('sqlink-he-pinged', '1');
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'SQLink one-pager (Hebrew) opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-sqlink-he-n4k8', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-sqlink-he-n4k8', {
+                method: 'POST', mode: 'no-cors',
+                body: 'SQLink one-pager (Hebrew) opened (location unavailable)\n' + t
+            }).catch(function(){});
+        });
+})();
+</script>
+
+<div class="page">
+
+    <!-- LOGO ROW -->
+    <div class="logo-row">
+        <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="logo-for">עבור SQLink Group</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="label">איכות מועמדות לפעילות Talent</div>
+        <h1>עסק ההשמה הגדול בישראל מחמיץ <em>signal ברמת המועמדות</em> בקנה מידה.</h1>
+        <p>SQLink וגוטפרנדס מעבדים יותר מועמדויות מכל קבוצת IT services אחרת בישראל. צוואר הבקבוק אינו נפח המועמדות. הבעיה היא לדעת, לפני שמגייס משקיע זמן, אילו מועמדויות שוות בדיקה. זו הפרצה שSentriq סוגרת.</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PROBLEM -->
+    <div class="section">
+        <div class="label">פרצת ה-Signal</div>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-num">300K+</div>
+                <div class="pain-label">פרופילי מועמדים המעובדים בפורטפוליו SQLink מדי שנה, עם signal מובנה מינימלי לכל מועמדות.</div>
+                <div class="pain-source">SQLink / Gotfriends scale estimate</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">25%</div>
+                <div class="pain-label">ממועמדויות העבודה צפויות להיות סינתטיות עד 2028. AI גורם לכל הגשה להיראות מלוטשת.</div>
+                <div class="pain-source">Gartner, 2024</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">1:50</div>
+                <div class="pain-label">יחס signal לרעש על תפקידים בנפח גבוה: מועמד חזק אחד לכל 50 מועמדויות שנבדקות. המגייסים נושאים בכל העלות.</div>
+                <div class="pain-source">Pin Research, 2026</div>
+            </div>
+        </div>
+        <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
+                עבור צוות TA פנימי, מועמד עם signal נמוך מבזבז זמן מגייסים. עבור SQLink, הוא מגיע ללקוח ופוגע במערכת היחסים. עם 1,000+ השמות בשנה, שולי הטעות על מועמדויות עם signal נמוך הם אפסיים.
+            </p>
+        </div>
+    </div>
+
+    <!-- LIFECYCLE -->
+    <div class="section">
+        <div class="label">איפה Sentriq רץ</div>
+        <div class="lc-grid-wrap">
+            <div class="lc-grid">
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">פרסום משרה</div>
+                    <div class="lc-tool">LinkedIn, Glassdoor</div>
+                    <div class="lc-cost">$0</div>
+                </div>
+                <div class="lc-stage lc-sentriq">
+                    <div class="lc-badge">Sentriq</div>
+                    <div class="lc-name">הגשה</div>
+                    <div class="lc-tool">בניית record</div>
+                    <div class="lc-cost">Gap Assessor מתחיל</div>
+                </div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
+                    <div class="lc-name">שיחת מיון</div>
+                    <div class="lc-tool">הערות מוערכות</div>
+                    <div class="lc-cost">Gap Assessor רץ</div>
+                </div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
+                    <div class="lc-name">מבחן טכני</div>
+                    <div class="lc-tool">ציון מול תביעות</div>
+                    <div class="lc-cost">Gap Assessor רץ</div>
+                </div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
+                    <div class="lc-name">ראיון</div>
+                    <div class="lc-tool">תמלול מול תביעות</div>
+                    <div class="lc-cost">Gap Assessor רץ</div>
+                </div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
+                    <div class="lc-name">Shortlist ללקוח</div>
+                    <div class="lc-tool">פערים פתוחים מסומנים</div>
+                    <div class="lc-cost">לפני שהלקוח רואה</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">הצעה</div>
+                    <div class="lc-tool">פנימי</div>
+                    <div class="lc-cost">~$1,200</div>
+                </div>
+                <div class="lc-stage lc-danger">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">בדיקת רקע</div>
+                    <div class="lc-tool">Checkr, מקומי</div>
+                    <div class="lc-cost">זהות בלבד</div>
+                </div>
+            </div>
+        </div>
+        <div class="lc-callouts">
+            <div class="lc-callout lc-amber">
+                <h4>Signal מתחיל בהגשה</h4>
+                <p>כל קרדנציאל שהוצהר מתועד. ה-Gap Assessor עוקב אחריהם מול כל נקודת מידע שנוספת בהמשך התהליך.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>תמלולי ראיון נבדקים</h4>
+                <p>אם פער זוהה בהגשה, Sentriq קורא את תמלול הראיון כדי לוודא שטופל לפני שהמועמד מגיע ללקוח.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>בדיקת הרקע מגיעה מאוחר מדי</h4>
+                <p>אימות זהות קורה לאחר ההצעה. איכות המועמדות, עקביות ופערי ראיון לא עולים לפני כן. זה מה שSentriq מחליף.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="section">
+        <div class="label">איך Sentriq עובד</div>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1</div>
+                <h3>Behavioral Baseline</h3>
+                <p class="layer-desc">פסיבי, בלתי נראה. לוכד כיצד המועמדות הושלמה: תזמון, ניווט, דפוסי קלט. אפס חיכוך למועמד.</p>
+                <ul class="layer-bullets">
+                    <li>SDK משובץ בטופס הגשה</li>
+                    <li>עובד עם כל ATS או intake מותאם</li>
+                    <li>אפס השפעה על חוויית המועמד</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2</div>
+                <h3>Async Clarification</h3>
+                <p class="layer-desc">מופעל רק כאשר Layer 1 מוצא פער שדורש בדיקה. שאלה ספציפית וקצרה הקשורה למה שזוהה. מועמדים עם מועמדויות חזקות לעולם לא רואים אותה.</p>
+                <ul class="layer-bullets">
+                    <li>לא מבחן, לא חידון, לא CAPTCHA</li>
+                    <li>מועמדים עונים במילים שלהם</li>
+                    <li>מוסיף signal, לא מוציא מועמדים</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 3</div>
+                <h3>Human Review</h3>
+                <p class="layer-desc">כאשר Layer 2 מזהה סטייה, אנליסט Sentriq בוחן את מחסנית ה-signal המלאה ומציף trust signal לצד המועמדות. המגייס מחליט.</p>
+                <ul class="layer-bullets">
+                    <li>אפס דחיות אוטומטיות בכל שלב</li>
+                    <li>כל דגל כולל הסבר בשפה פשוטה</li>
+                    <li>עומד בדרישות EU AI Act by design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div class="output-label">פלט ATS</div>
+            <div class="output-text">Candidate Signal Profile</div>
+            <div class="output-sub">כל מועמדות נכנסת לבדיקת המגייס עם תווית אמון, תיאור הסבר והמלצה. המגייסים מתחילים עם signal מובנה, לא קורות חיים ריקים.</div>
+        </div>
+    </div>
+
+    <!-- GAP ASSESSOR -->
+    <div class="section">
+        <div class="label">Gap Assessor</div>
+        <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.2);border-right:4px solid var(--amber);border-radius:12px;padding:22px 28px;margin-bottom:14px;">
+            <div style="font-size:15px;font-weight:700;color:#ffffff;margin-bottom:8px;">Signal בהגשה. עוקב בכל שלב לאחר מכן.</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.85;">אותו מנוע שמפרט את המועמדות רץ שוב בכל שלב: הערות שיחת מיון, ציוני מבחן, תמלולי ראיון, הערכות מנהלים. כל נקודת מידע חדשה מוערכת מול מה שהמועמד טען במקור. פערים שלא עלו בתחילה הופכים גלויים מאוחר יותר, לפני שמגיעים ללקוח.</div>
+        </div>
+        <div class="gap-grid">
+            <div class="gap-card">
+                <div class="gap-card-label">מה נבדק</div>
+                <div class="gap-bullets">
+                    <div class="gap-bullet">ניסיון מוצהר מול ציון מבחן</div>
+                    <div class="gap-bullet">תשובות הגשה מול תמלול ראיון</div>
+                    <div class="gap-bullet">פערים שזוהו מול follow-up מגייס בשיחה</div>
+                    <div class="gap-bullet">תביעות ציר זמן מול דפוסי נתוני reference</div>
+                </div>
+            </div>
+            <div class="gap-card">
+                <div class="gap-card-label">לפני ה-Shortlist ללקוח</div>
+                <div class="gap-bullets">
+                    <div class="gap-bullet">דגל אם מגייס לא טיפל בפער שזוהה בראיון</div>
+                    <div class="gap-bullet">פערים עולים לפני ההצעה, לא אחרי שהלקוח מתקשר בחזרה</div>
+                    <div class="gap-bullet">אילו תביעות אומתו בנתונים, אילו פערים נשארים פתוחים ב-shortlist</div>
+                    <div class="gap-bullet">trail ראיות מבוקר לכל מועמד: ממועמדות ועד השמה</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPTCHA QUOTE -->
+    <div class="captcha-block">
+        <div class="quote">"זה ה-Candidate Hiring Captcha לגיוס."</div>
+        <div class="quote-source">יזם עם 2 אקזיטים, לאחר שמיעה ראשונה על Sentriq</div>
+    </div>
+
+    <!-- VALUE FOR SQLINK -->
+    <div class="section">
+        <div class="label">מה משתנה עבור SQLink</div>
+        <div class="value-grid" style="margin-bottom:14px;">
+            <div class="value-card">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">עבור מגייסי SQLink</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">25-40% צמצום בזמן סקירה ראשוני לכל מועמדות</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% קיצור זמן ל-shortlist לכל תפקיד</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">Signal גלוי ב-ATS לפני שסקירת המגייס מתחילה</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">כל דגל מתועד ומוסבר. ללא קופסה שחורה.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="value-card">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">עבור לקוחות SQLink</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">10-20% שיפור בשיעור קבלת ה-shortlist</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-30% פחות מועמדים עם signal נמוך מגיעים לראיון</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">נתוני אמון מובנים לצד כל shortlist</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">סיפור איכות השמה מבדל. אף חברה ישראלית אחרת אין לה את זה.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-dim);white-space:nowrap;flex-shrink:0;">אות מוקדם</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">לאחר פגישה ראשונה, HSBC Innovation Banking הציגה אותנו לראש ארכיטקטורת כוח האדם והתכנון שלהם. שיחה אחת. הבעיה נקראת כאמיתית באחד הבנקים הגדולים בעולם.</div>
+        </div>
+    </div>
+
+    <!-- ROI -->
+    <div class="section">
+        <div class="label">ROI אינדיקטיבי</div>
+        <div class="roi-cards">
+            <div class="roi-card">
+                <div class="roi-card-label">תפוקת מגייסים לתפקיד</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>תפקידים מאוישים בשנה</span><input type="number" id="roiRoles" class="roi-calc-input" value="1000" min="100" max="50000" step="100" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>שעות ל-shortlist, כיום</span><span>~23 שע'</span></div>
+                    <div class="roi-input-row"><span>שעות ל-shortlist, עם Sentriq</span><span>~14 שע'</span></div>
+                    <div class="roi-input-row"><span>שעות שנחסכות לתפקיד</span><span>~9 שע'</span></div>
+                    <div class="roi-input-row"><span>עלות מגייס לשעה</span><span>84 ₪</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiThroughput">&#8362;756K</div>
+                    <div class="roi-result-label">לשנה בזמן מגייסים שהושב</div>
+                </div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-card-label">מניעת השמות כושלות</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>שכר ממוצע לתפקיד טכנולוגי</span><span>360,000 ₪</span></div>
+                    <div class="roi-input-row"><span>דמי השמה (17%)</span><span>~61,000 ₪</span></div>
+                    <div class="roi-input-row"><span>עלות השמה כושלת (דמי השמה + חזרה)</span><span>~62,000 ₪</span></div>
+                    <div class="roi-input-row"><span>השמות כושלות שנמנעו בשנה</span><input type="number" id="roiMisplace" class="roi-calc-input" value="10" min="1" max="500" step="1" oninput="calcROI()"></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiPrevention">&#8362;620K</div>
+                    <div class="roi-result-label">לשנה מהשמות מוגנות</div>
+                </div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-card-label">מרווח קבלן בסיכון</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>שכר חודשי ממוצע לקבלן</span><input type="number" id="roiContractSalary" class="roi-calc-input" value="25000" min="5000" max="100000" step="1000" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>מרווח overhead של 20% לחודש</span><span id="roiMarginPerMonth">5,000 ₪</span></div>
+                    <div class="roi-input-row"><span>חודשי חוזה ממוצעים שאבדו</span><input type="number" id="roiContractMonths" class="roi-calc-input" value="9" min="1" max="36" step="1" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>השמות קבלן כושלות שנמנעו</span><input type="number" id="roiContractBad" class="roi-calc-input" value="5" min="1" max="200" step="1" oninput="calcROI()"></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiContractor">&#8362;1.1M</div>
+                    <div class="roi-result-label">לשנה במרווח חוזר מוגן</div>
+                </div>
+            </div>
+        </div>
+        <div class="roi-ratio-strip">
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiPerPosition">&#8362;3,850</div>
+                <div class="roi-ratio-label">ROI לתפקיד</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiReturnRatio">7:1</div>
+                <div class="roi-ratio-label">יחס תשואה</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiBreakevenCount">9</div>
+                <div class="roi-ratio-label">השמות כושלות לנקודת איזון</div>
+            </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);line-height:1.8;">
+            עלות שעתית: 84 ₪ (15,600 ₪ עלות מעסיק / 186 שעות עבודה). Benchmark shortlist: LinkedIn Talent Insights 2024. דמי השמה: 17% משכר טכנולוגי שנתי ממוצע של 360K ₪. עלות השמה כושלת כוללת דמי השמה שאבדו וזמן חיפוש מחדש מלא ב-84 ₪/שעה. מרווח קבלן: 20% overhead חודשי על השכר המוצהר, מחושב על פני משך החוזה שנותר שאבד עקב יציאה מוקדמת.
+        </p>
+    </div>
+
+    <!-- THE ASK -->
+    <div class="section">
+        <div class="label">הפיילוט</div>
+        <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:22px 24px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);">חינם: ניתוח רטרואקטיבי</span>
+                <span style="font-size:11px;background:rgba(232,160,32,0.15);color:var(--amber);border-radius:20px;padding:2px 10px;font-weight:700;">ללא התחייבות</span>
+            </div>
+            <p style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:8px;line-height:1.6;">תנו לנו תפקיד אחד שאוייש. נראה לכם מה היינו תופסים.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.75;">קחו כל תפקיד שאיישתם ב-90 הימים האחרונים. אנחנו מריצים את ניתוח ה-signal המלא של Sentriq על pool המועמדות ומספקים Candidate Signal Profile לכל הגשה. תראו בדיוק אילו מועמדים היו מסומנים, אילו signals הופעלו, ומה אותה השמה עלתה לכם לעומת מה שSentriq היה מציף. אף מידע לא יוצא מהשליטה שלכם. לוקח פגישה אחת להתחיל.</p>
+        </div>
+        <div class="ask-grid">
+            <div class="ask-card highlight">
+                <h3>35,000 ₪ / פיילוט 6 שבועות</h3>
+                <p>בזיכוי לחוזה שנתי בהמרה. 2-3 תפקידים פעילים, instrumentation signal מלא, Candidate Signal Profiles מועברים ל-ATS הקיים שלכם. מדד הוכחת ערך מוגדר לפני יום ראשון. אם זה עובד, עוברים לאינטגרציה מלאה. ללא החלפת מערכות.</p>
+            </div>
+            <div class="ask-card">
+                <h3>מה שנגדיר יחד</h3>
+                <p>לפני שהפיילוט מתחיל: המדד שמוכיח ערך. זמן מגייס ל-shortlist, שיעור קבלת shortlist, או ציון משוב לקוח. אנחנו מסכימים על ה-benchmark מראש. אין עמימות בסיום.</p>
+            </div>
+        </div>
+        <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
+                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם צוותי HR enterprise בשירותים פיננסיים ובטכנולוגיה enterprise גלובלית. Demo זמין. מחקר signal התנהגותי הושלם על 30+ סביבות ATS.
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>בואו נקבע שיחה.</h2>
+            <p>30 דקות. נעבור על profile ה-signal על תפקיד חי. ללא מצגות. רק המוצר עושה את עבודתו על מועמדויות שכבר יש לכם.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">שמואל קמפר</div>
+            <div class="contact-sub">CEO, Sentriq</div>
+            <div class="contact-sub" style="margin-top:4px;">samuel@sentriq.co</div>
+            <div class="contact-sub" style="margin-top:2px;">sentriq.co</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function fmtNIS(n) {
+    if (n >= 1000000) return '&#8362;' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000)    return '&#8362;' + Math.round(n / 1000) + 'K';
+    return '&#8362;' + n.toLocaleString();
+}
+
+var ANNUAL_COST_NIS = 550000;
+
+function calcROI() {
+    var roles           = parseInt(document.getElementById('roiRoles').value)          || 1000;
+    var misplace        = parseInt(document.getElementById('roiMisplace').value)       || 10;
+    var contractSalary  = parseInt(document.getElementById('roiContractSalary').value) || 25000;
+    var contractMonths  = parseInt(document.getElementById('roiContractMonths').value) || 9;
+    var contractBad     = parseInt(document.getElementById('roiContractBad').value)    || 5;
+
+    var throughput   = roles * 9 * 84;
+    var prevention   = misplace * 62000;
+    var marginMonth  = contractSalary * 0.20;
+    var contractor   = contractBad * contractMonths * marginMonth;
+    var totalROI     = throughput + prevention + contractor;
+    var perPosition  = Math.round(totalROI / roles);
+    var ratio        = Math.round(totalROI / ANNUAL_COST_NIS);
+    var breakeven    = Math.ceil(ANNUAL_COST_NIS / 62000);
+
+    document.getElementById('roiThroughput').innerHTML          = fmtNIS(throughput);
+    document.getElementById('roiPrevention').innerHTML          = fmtNIS(prevention);
+    document.getElementById('roiContractor').innerHTML          = fmtNIS(contractor);
+    document.getElementById('roiMarginPerMonth').textContent    = Math.round(marginMonth).toLocaleString() + ' ₪';
+    document.getElementById('roiPerPosition').innerHTML         = fmtNIS(perPosition);
+    document.getElementById('roiReturnRatio').textContent       = ratio + ':1';
+    document.getElementById('roiBreakevenCount').textContent    = breakeven;
+}
+</script>
+</body>
+</html>
