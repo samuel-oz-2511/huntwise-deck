@@ -673,11 +673,11 @@
                     <td style="padding:7px 10px;font-size:11px;color:var(--text-sub);">Identity only. Confirms the person is real, not that the application is. DPRK operatives pass Persona with real stolen SSNs. If they build behavioral detection, they arrive pre-installed in 30% of enterprise ATS.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Greenhouse + Ashby + iCIMS</div><div style="font-size:9px;color:var(--muted);">ATS incumbents · Native fraud detection, 2025</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
+                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Workday, Greenhouse + iCIMS</div><div style="font-size:9px;color:var(--muted);">ATS incumbents · "Can they just build this?" No.</div></td>
+                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Structurally Blocked</span></td>
                     <td style="padding:7px 6px;text-align:center;color:rgba(255,255,255,0.22);font-size:13px;">&#10007;</td>
                     <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Permanently blocked</td>
-                    <td style="padding:7px 10px;font-size:11px;color:var(--text-sub);">ATS customer contracts prohibit cross-employer data sharing. The cross-company graph requires neutral ground: architecturally unavailable to any ATS vendor.</td>
+                    <td style="padding:7px 10px;font-size:11px;color:var(--text-sub);">Three hard blockers: their customer contracts prohibit cross-employer data sharing; they observe submissions post-receipt, not during form completion; and they cannot build the behavioral calibration corpus without 18+ months of adversarial research on neutral ground they will never control.</td>
                 </tr>
                 <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.03);">
                     <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Clarity + GetReal + HireVue</div><div style="font-size:9px;color:var(--muted);">$16M + $24.5M + $450M · Late-funnel deepfakes</div></td>
@@ -695,6 +695,23 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div style="margin-top:14px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(232,160,32,0.2);border-radius:12px;">
+        <div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Why Workday cannot build a feature that replaces this</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+            <div style="padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;">
+                <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">01. Contractual</div>
+                <p style="font-size:11px;color:var(--text-sub);line-height:1.55;margin:0;">Workday and Greenhouse customer contracts legally prohibit sharing application data across employers. The cross-company fraud graph requires that exact data. It is not a product decision they can reverse. It is a sales promise written into every enterprise contract.</p>
+            </div>
+            <div style="padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;">
+                <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">02. Positional</div>
+                <p style="font-size:11px;color:var(--text-sub);line-height:1.55;margin:0;">ATS systems receive an application after it is submitted. Sentriq captures behavioral signals during form completion, a surface the ATS never touches. The pre-submission observation window does not exist inside any ATS. It cannot be added to an existing product without rebuilding the intake layer from scratch.</p>
+            </div>
+            <div style="padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;">
+                <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px;">03. Corpus depth</div>
+                <p style="font-size:11px;color:var(--text-sub);line-height:1.55;margin:0;">The behavioral calibration baseline is built from 73,500 lines of code, 17 ATS scoring rules, and 30+ live adversarial experiments run against real ATS environments. That corpus took 18 months to build. Any incumbent starting today arrives 18 months behind on a target that moves daily.</p>
+            </div>
+        </div>
     </div>
 </div>
 </div>
