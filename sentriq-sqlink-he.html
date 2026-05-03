@@ -283,6 +283,14 @@ ntfy topic: sentriq-sqlink-he-n4k8
     /* Divider */
     .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
 
+    /* Tablet */
+    @media (max-width: 900px) {
+        .page { padding: 48px 32px 64px; }
+        .layers-grid { grid-template-columns: 1fr 1fr; }
+        .lc-callouts { grid-template-columns: 1fr 1fr; }
+        .roi-cards { grid-template-columns: 1fr; }
+    }
+
     /* Mobile */
     @media (max-width: 640px) {
         .page { padding: 40px 20px 60px; }
@@ -298,6 +306,8 @@ ntfy topic: sentriq-sqlink-he-n4k8
         .roi-ratio-strip { grid-template-columns: 1fr; }
         .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
         .cta-right { text-align: right; }
+        .captcha-block { padding: 20px 20px; }
+        .roi-calc-input { width: 68px; }
     }
 </style>
 </head>
