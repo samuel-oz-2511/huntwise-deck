@@ -55,51 +55,6 @@ Password: mizrahi (atob: bWl6cmFoaQ==)
         background-repeat: repeat; background-size: 256px;
     }
 
-    /* Password gate */
-    .gate-overlay {
-        position: fixed; inset: 0; background: var(--bg);
-        display: flex; align-items: center; justify-content: center;
-        z-index: 10000;
-    }
-    .gate-box {
-        background: var(--card); border: 1px solid var(--border);
-        border-radius: 16px; padding: 40px 44px; text-align: center;
-        max-width: 360px; width: 90%;
-    }
-    .gate-logo {
-        display: flex; align-items: center; justify-content: center;
-        gap: 8px; font-size: 16px; font-weight: 600;
-        margin-bottom: 28px; direction: ltr;
-    }
-    .gate-logo span { color: var(--amber); }
-    .gate-label {
-        font-size: 11px; font-weight: 700; text-transform: uppercase;
-        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 18px;
-    }
-    .gate-input {
-        width: 100%; padding: 12px 16px;
-        background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-        border-radius: 10px; font-size: 15px; color: #fff;
-        font-family: inherit; outline: none; text-align: center;
-        letter-spacing: 0.08em; margin-bottom: 14px;
-        transition: border-color 0.15s; direction: ltr;
-    }
-    .gate-input:focus { border-color: rgba(232,160,32,0.4); }
-    .gate-input.error { border-color: rgba(224,85,85,0.6); }
-    .gate-btn {
-        width: 100%; padding: 12px;
-        background: var(--amber); color: #000;
-        border: none; border-radius: 10px;
-        font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
-        font-family: inherit; cursor: pointer;
-        transition: opacity 0.15s;
-    }
-    .gate-btn:hover { opacity: 0.88; }
-    .gate-sub {
-        font-size: 11px; color: var(--text-dim);
-        margin-top: 16px; line-height: 1.6;
-    }
-
     .page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 80px; }
 
     .confidential {
@@ -318,17 +273,31 @@ Password: mizrahi (atob: bWl6cmFoaQ==)
 
     .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
 
+    @media (max-width: 900px) {
+        .roi-ratio-strip { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 640px) {
-        .page { padding: 40px 20px 60px; }
-        .logo-row { margin-bottom: 48px; }
+        body { overflow-x: hidden; }
+        .page { padding: 36px 18px 56px; }
+        .logo-row { margin-bottom: 40px; }
         .pain-grid { grid-template-columns: 1fr; }
         .layers-grid { grid-template-columns: 1fr; }
         .roi-cards { grid-template-columns: 1fr; }
-        .roi-ratio-strip { grid-template-columns: 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr 1fr; }
         .ask-grid { grid-template-columns: 1fr; }
-        .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
+        .cta { flex-direction: column; gap: 24px; padding: 28px 20px; }
         .cta-right { text-align: right; }
+        .cta-left p { max-width: 100%; }
         .stack-layer { flex-direction: column; align-items: flex-start; gap: 8px; }
+        .validation-block { padding: 20px 18px; }
+        .hero h1 { max-width: 100%; }
+        .hero p { max-width: 100%; }
+        .roi-input-row { font-size: 12px; gap: 8px; }
+        .roi-calc-input { width: 64px; }
+    }
+    @media (max-width: 380px) {
+        .roi-ratio-strip { grid-template-columns: 1fr; }
+        .page { padding: 28px 14px 48px; }
     }
 </style>
 </head>
@@ -355,59 +324,6 @@ Password: mizrahi (atob: bWl6cmFoaQ==)
             }).catch(function(){});
         });
 })();
-</script>
-
-<!-- PASSWORD GATE -->
-<div class="gate-overlay" id="gateOverlay">
-    <div class="gate-box">
-        <div class="gate-logo">
-            <svg width="26" height="26" viewBox="0 0 56 56" fill="none">
-                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
-                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
-                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
-                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
-                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
-            </svg>
-            Sentriq<span>.</span>
-        </div>
-        <div class="gate-label">סודי: מזרחי טפחות</div>
-        <input type="password" id="gateInput" class="gate-input" placeholder="קוד גישה" autocomplete="off"/>
-        <button class="gate-btn" onclick="checkGate()">כניסה</button>
-        <div class="gate-sub">הוכן בלעדית לצמרת מזרחי טפחות.<br>גישה בלתי מורשית אסורה.</div>
-    </div>
-</div>
-
-<script>
-function checkGate() {
-    var v = document.getElementById('gateInput').value;
-    if (v === atob('bWl6cmFoaQ==')) {
-        document.getElementById('gateOverlay').style.display = 'none';
-        if (!sessionStorage.getItem('mizrahi-he-unlocked')) {
-            sessionStorage.setItem('mizrahi-he-unlocked', '1');
-            var t = new Date().toISOString();
-            fetch('https://ipapi.co/json/')
-                .then(function(r){ return r.json(); })
-                .then(function(geo) {
-                    var loc = (geo.city||'') + ', ' + (geo.country_name||'') + ' (' + (geo.ip||'') + ')';
-                    var msg = 'Mizrahi (Hebrew) UNLOCKED\n' + loc + '\n' + (geo.org||'') + '\n' + t;
-                    fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
-                })
-                .catch(function(){
-                    fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', {
-                        method: 'POST', mode: 'no-cors',
-                        body: 'Mizrahi (Hebrew) UNLOCKED (location unavailable)\n' + t
-                    }).catch(function(){});
-                });
-        }
-    } else {
-        var inp = document.getElementById('gateInput');
-        inp.classList.add('error');
-        inp.value = '';
-        inp.placeholder = 'שגוי';
-        setTimeout(function(){ inp.classList.remove('error'); inp.placeholder = 'קוד גישה'; }, 1200);
-    }
-}
-document.getElementById('gateInput').addEventListener('keydown', function(e){ if (e.key === 'Enter') checkGate(); });
 </script>
 
 <div class="confidential">Confidential</div>
@@ -586,7 +502,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                     <div class="roi-input-row"><span>משרות מגויסות בשנה</span><input type="number" id="roiRoles" class="roi-calc-input" value="700" min="50" max="10000" step="50" oninput="calcROI()"/></div>
                     <div class="roi-input-row"><span>הגשות למשרה (ממוצע)</span><input type="number" id="roiApps" class="roi-calc-input" value="80" min="20" max="500" step="10" oninput="calcROI()"/></div>
                     <div class="roi-input-row"><span>עלות שיחת סינון טלפוני</span><span>&#8362;75</span></div>
-                    <div class="roi-input-row"><span>הגשות שסוננו לפני שיחה</span><span>30%</span></div>
+                    <div class="roi-input-row"><span>הגשות שסוננו לפני שיחה</span><span>25%</span></div>
                 </div>
                 <div class="roi-result-block">
                     <div class="roi-big-num" id="roiScreenSaved">&#8362;1.3M</div>
@@ -622,7 +538,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
             </div>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.8;direction:ltr;">
-            Screening cost: &#8362;75/call. Triage rate: 30% (high-volume enterprise benchmark; conservative baseline is 15%). Sentriq Mid-Market tier: &#8362;250K/yr. Breakeven: 3,334 calls screened/yr covers full annual cost. Compliance exposure: privileged-access roles x &#8362;34M (IBM/Ponemon $11.45M at 2.98 NIS/USD). Coverage ratio: 34M / 250K = 136x per incident. Sentriq does not guarantee incident prevention.
+            Screening cost: &#8362;75/call. Triage rate: 25% (enterprise benchmark for high-volume financial services hiring). Sentriq Mid-Market tier: &#8362;250K/yr. Breakeven: 3,334 calls screened/yr covers full annual cost. Compliance exposure: privileged-access roles x &#8362;34M (IBM/Ponemon $11.45M at 2.98 NIS/USD). Coverage ratio: 34M / 250K = 136x per incident. Sentriq does not guarantee incident prevention.
         </p>
     </div>
 
@@ -695,7 +611,7 @@ function calcROI() {
     var priv         = parseInt(document.getElementById('roiPriv').value)  || 200;
 
     var totalApps      = roles * apps;
-    var triageRate     = 0.30;
+    var triageRate     = 0.25;
     var screenCost     = 75;
     var sentriqCost    = 250000;
     var incidentCost   = 34000000;
