@@ -438,14 +438,14 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         <div class="label">The Exposure</div>
         <div class="pain-grid">
             <div class="pain-card amber-border">
-                <div class="pain-num">$195M</div>
-                <div class="pain-label">Mizrahi Tefahot deferred prosecution agreement with the U.S. DOJ. Employees in trusted client-facing roles facilitated tax evasion over multiple years. Each one was hired through a standard process.</div>
+                <div class="pain-num">&#8362;700M</div>
+                <div class="pain-label">Mizrahi Tefahot deferred prosecution agreement with the U.S. DOJ ($195M). Employees in trusted client-facing roles facilitated tax evasion over multiple years. Each one was hired through a standard process.</div>
                 <div class="pain-source">U.S. Department of Justice, 2014</div>
             </div>
             <div class="pain-card">
-                <div class="pain-num">$11.45M</div>
+                <div class="pain-num">&#8362;40M</div>
                 <div class="pain-label">Average cost of a malicious insider incident at a financial institution. Wire transfers, customer records, and privileged system access within reach from day one.</div>
-                <div class="pain-source">IBM Security / Ponemon Institute, 2023</div>
+                <div class="pain-source">IBM Security / Ponemon Institute, 2023 (converted at 3.5 NIS/USD)</div>
             </div>
             <div class="pain-card">
                 <div class="pain-num">85 days</div>
@@ -580,11 +580,11 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 <div class="roi-inputs">
                     <div class="roi-input-row"><span>Roles filled per year</span><input type="number" id="roiRoles" class="roi-calc-input" value="700" min="50" max="10000" step="50" oninput="calcROI()"/></div>
                     <div class="roi-input-row"><span>Applications per role (avg)</span><input type="number" id="roiApps" class="roi-calc-input" value="80" min="20" max="500" step="10" oninput="calcROI()"/></div>
-                    <div class="roi-input-row"><span>Phone screen cost per call</span><span>$25</span></div>
+                    <div class="roi-input-row"><span>Phone screen cost per call</span><span>&#8362;90</span></div>
                     <div class="roi-input-row"><span>Applications cleared before screen</span><span id="roiClearedPct">30%</span></div>
                 </div>
                 <div class="roi-result-block">
-                    <div class="roi-big-num" id="roiScreenSaved">$420K</div>
+                    <div class="roi-big-num" id="roiScreenSaved">&#8362;1.5M</div>
                     <div class="roi-result-label">per year in screening costs recovered</div>
                 </div>
             </div>
@@ -592,12 +592,12 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 <div class="roi-card-label">Compliance incident floor</div>
                 <div class="roi-inputs">
                     <div class="roi-input-row"><span>Privileged-access roles per year</span><input type="number" id="roiPriv" class="roi-calc-input" value="200" min="10" max="2000" step="10" oninput="calcROI()"/></div>
-                    <div class="roi-input-row"><span>Average insider incident cost</span><span>$11.45M</span></div>
-                    <div class="roi-input-row"><span>Sentriq annual cost (Scale tier)</span><span>$84K</span></div>
-                    <div class="roi-input-row"><span>Coverage: Sentriq cost vs. 1 incident</span><span id="roiCoverageRatio">136x</span></div>
+                    <div class="roi-input-row"><span>Average insider incident cost</span><span>&#8362;40M</span></div>
+                    <div class="roi-input-row"><span>Sentriq annual cost (Scale tier)</span><span>&#8362;300K</span></div>
+                    <div class="roi-input-row"><span>Coverage: Sentriq cost vs. 1 incident</span><span id="roiCoverageRatio">133x</span></div>
                 </div>
                 <div class="roi-result-block">
-                    <div class="roi-big-num" id="roiExposure">$2.29B</div>
+                    <div class="roi-big-num" id="roiExposure">&#8362;8B</div>
                     <div class="roi-result-label">compliance exposure across privileged-access hiring cohort</div>
                 </div>
             </div>
@@ -608,16 +608,16 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 <div class="roi-ratio-label">Return on screening alone</div>
             </div>
             <div class="roi-ratio-cell">
-                <div class="roi-ratio-num">136x</div>
+                <div class="roi-ratio-num">133x</div>
                 <div class="roi-ratio-label">Single incident vs. Sentriq cost</div>
             </div>
             <div class="roi-ratio-cell">
-                <div class="roi-ratio-num" id="roiBreakevenCalls">336</div>
+                <div class="roi-ratio-num" id="roiBreakevenCalls">3,334</div>
                 <div class="roi-ratio-label">Screening calls to break even</div>
             </div>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
-            Screening cost: $25 per phone screen call. Triage rate: 30% of applications cleared before recruiter screen. Sentriq Scale tier: $84K/yr (covers 700+ roles annually). Compliance exposure: privileged-access roles x $11.45M IBM/Ponemon average. Sentriq does not guarantee incident prevention. The ratio reflects cost-to-protect vs. cost-of-single-event.
+            Screening cost: &#8362;90 per phone screen call. Triage rate: 30% of applications cleared before recruiter screen. Sentriq Scale tier: &#8362;300K/yr (covers 700+ roles annually). Compliance exposure: privileged-access roles x &#8362;40M IBM/Ponemon average (converted from $11.45M at 3.5 NIS/USD). Sentriq does not guarantee incident prevention. The ratio reflects cost-to-protect vs. cost-of-single-event.
         </p>
     </div>
 
@@ -634,7 +634,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         </div>
         <div class="ask-grid">
             <div class="ask-card highlight">
-                <h3>$10,000 / 6-week pilot</h3>
+                <h3>&#8362;35,000 / 6-week pilot</h3>
                 <p>Credited toward annual contract on conversion. 1-2 active roles, full signal instrumentation, Candidate Signal Profiles delivered to your existing ATS. No ATS changes, no integration overhead, no PII stored at Sentriq. ROI metric agreed before day one. If it works, we move to full deployment across privileged-access roles. If it does not, you paid for a thorough answer.</p>
             </div>
             <div class="ask-card">
@@ -666,7 +666,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
     <!-- SOURCES -->
     <div style="margin-top:32px;padding:16px 22px;border-top:1px solid var(--border);">
         <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.8;">
-            [1] IBM Security / Ponemon Institute, "2023 Cost of Insider Threats: Global Report." $11.45M average cost, 85-day detection window.
+            [1] IBM Security / Ponemon Institute, "2023 Cost of Insider Threats: Global Report." $11.45M average cost (&#8362;40M at 3.5 NIS/USD), 85-day detection window.
             [2] Mizrahi Tefahot Bank deferred prosecution agreement: U.S. Department of Justice, Office of Public Affairs, 2014.
             [3] KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024. CrowdStrike Threat Intelligence 2025.
             [4] HSBC hiring volume estimate based on LinkedIn Jobs data, April 2026, and HSBC Annual Report 2025 employee count.
@@ -677,11 +677,11 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
 </div>
 
 <script>
-function fmtUSD(n) {
-    if (n >= 1000000000) return '$' + (n / 1000000000).toFixed(1) + 'B';
-    if (n >= 1000000)    return '$' + (n / 1000000).toFixed(1) + 'M';
-    if (n >= 1000)       return '$' + Math.round(n / 1000) + 'K';
-    return '$' + Math.round(n);
+function fmtNIS(n) {
+    if (n >= 1000000000) return '₪' + (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000)    return '₪' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000)       return '₪' + Math.round(n / 1000) + 'K';
+    return '₪' + Math.round(n);
 }
 
 function calcROI() {
@@ -691,17 +691,17 @@ function calcROI() {
 
     var totalApps        = roles * apps;
     var triageRate       = 0.30;
-    var screenCost       = 25;
+    var screenCost       = 90;
     var screenSaved      = totalApps * triageRate * screenCost;
-    var sentriqCost      = 84000;
-    var incidentCost     = 11450000;
+    var sentriqCost      = 300000;
+    var incidentCost     = 40000000;
     var exposure         = priv * incidentCost;
     var coverageRatio    = Math.round(incidentCost / sentriqCost);
     var returnRatio      = Math.round((screenSaved / sentriqCost) * 10) / 10;
     var breakevenCalls   = Math.ceil(sentriqCost / screenCost);
 
-    document.getElementById('roiScreenSaved').textContent  = fmtUSD(screenSaved);
-    document.getElementById('roiExposure').textContent     = fmtUSD(exposure);
+    document.getElementById('roiScreenSaved').textContent  = fmtNIS(screenSaved);
+    document.getElementById('roiExposure').textContent     = fmtNIS(exposure);
     document.getElementById('roiCoverageRatio').textContent = coverageRatio + 'x';
     document.getElementById('roiReturnRatio').textContent  = returnRatio.toFixed(1) + ':1';
     document.getElementById('roiBreakevenCalls').textContent = breakevenCalls.toLocaleString();
