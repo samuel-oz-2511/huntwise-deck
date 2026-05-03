@@ -212,18 +212,19 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .value-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
     .value-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
 
-    /* ROI multiplier row */
-    .roi-row {
-        background: var(--card); border: 1px solid var(--border);
-        border-radius: 12px; padding: 28px 32px; margin-bottom: 14px;
-        display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-        align-items: center; gap: 0;
-    }
-    .roi-item { text-align: center; }
-    .roi-num { font-size: 26px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-    .roi-label { font-size: 11px; color: var(--text-sub); line-height: 1.5; }
-    .roi-op { font-size: 22px; font-weight: 300; color: rgba(255,255,255,0.15); text-align: center; padding: 0 6px; }
-    .roi-result .roi-num { color: var(--amber); font-size: 30px; }
+    /* ROI cards */
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; }
+    .roi-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .roi-inputs { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .roi-input-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; color: var(--text-sub); line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+    .roi-input-row:last-child { border-bottom: none; }
+    .roi-input-row span:last-child { font-weight: 700; color: rgba(255,255,255,0.88); white-space: nowrap; }
+    .roi-result-block { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(232,160,32,0.2); }
+    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+    .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .roi-breakeven { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-left: 4px solid var(--amber); border-radius: 12px; padding: 18px 24px; margin-bottom: 12px; }
+    .roi-breakeven p { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.5; }
 
     /* Ask / pilot */
     .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
@@ -284,6 +285,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
         .roi-op { display: none; }
         .ask-grid { grid-template-columns: 1fr; }
         .gap-grid { grid-template-columns: 1fr; }
+        .roi-cards { grid-template-columns: 1fr; }
         .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
         .cta-right { text-align: left; }
     }
@@ -573,29 +575,40 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     <!-- ROI -->
     <div class="section">
         <div class="label">Indicative ROI</div>
-        <div class="roi-row">
-            <div class="roi-item">
-                <div class="roi-num">50</div>
-                <div class="roi-label">Active recruiters across portfolio</div>
+        <div class="roi-cards">
+            <div class="roi-card">
+                <div class="roi-card-label">Recruiter throughput per role</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>Roles filled per year</span><span>1,000+</span></div>
+                    <div class="roi-input-row"><span>Hours to shortlist, current</span><span>~23 hrs</span></div>
+                    <div class="roi-input-row"><span>Hours to shortlist, with Sentriq</span><span>~14 hrs</span></div>
+                    <div class="roi-input-row"><span>Hours saved per role</span><span>~9 hrs</span></div>
+                    <div class="roi-input-row"><span>Recruiter cost per hour</span><span>84 NIS</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num">&#8362;756K</div>
+                    <div class="roi-result-label">per year in recruiter time recovered</div>
+                </div>
             </div>
-            <div class="roi-op">x</div>
-            <div class="roi-item">
-                <div class="roi-num">2 hrs</div>
-                <div class="roi-label">Weekly time on low-signal review</div>
-            </div>
-            <div class="roi-op">x</div>
-            <div class="roi-item">
-                <div class="roi-num">40%</div>
-                <div class="roi-label">Reduction in low-signal review time</div>
-            </div>
-            <div class="roi-op">=</div>
-            <div class="roi-item roi-result">
-                <div class="roi-num">&#8362;161K+</div>
-                <div class="roi-label">NIS / year in recruiter capacity recovered</div>
+            <div class="roi-card">
+                <div class="roi-card-label">Bad placement prevention</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>Average tech salary placed</span><span>360,000 NIS</span></div>
+                    <div class="roi-input-row"><span>Placement fee (17%)</span><span>~61,000 NIS</span></div>
+                    <div class="roi-input-row"><span>Cost per misplacement (fee + redo)</span><span>~62,000 NIS</span></div>
+                    <div class="roi-input-row"><span>Misplacements avoided per year</span><span>10</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num">&#8362;620K</div>
+                    <div class="roi-result-label">per year from placements protected</div>
+                </div>
             </div>
         </div>
+        <div class="roi-breakeven">
+            <p>Sentriq needs to prevent just 9 bad placements per year to cover its full annual cost. At 1,000+ placements, that is a 1% threshold.</p>
+        </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
-            Calculated at 84 NIS/hr (15,600 NIS monthly employer cost / 186 working hours), 48-week year. Does not include downstream savings from reduced misplacement events or client SLA impact.
+            Hourly rate: 84 NIS (15,600 NIS employer cost / 186 working hours). Shortlist benchmark: LinkedIn Talent Insights 2024. Placement fee: 17% of 360K NIS average tech annual salary. Misplacement cost includes fee forfeited and full re-search time at 84 NIS/hr.
         </p>
     </div>
 
