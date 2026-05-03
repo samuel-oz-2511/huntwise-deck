@@ -505,7 +505,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="gap-card">
                 <div class="gap-card-label">מה נבדק</div>
                 <div class="gap-bullets">
-                    <div class="gap-bullet">נסיון מוצהר מול תוצאות ה-async challenge ומידע נוסף שיש לנו על ההגשה</div>
+                    <div class="gap-bullet">נסיון מוצהר מול תוצאות ה-async challenge</div>
                     <div class="gap-bullet">תשובות ההגשה מול תמלול הראיון</div>
                     <div class="gap-bullet">פערים שזוהו לעומת מה שנבדק בשיחת המיון</div>
                     <div class="gap-bullet">עקביות ציר הזמן מול נתוני reference</div>
@@ -542,7 +542,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% מהיר יותר מהגשה ל-shortlist לכל תפקיד</div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% מהיר יותר מהגשה ל-shortlist לכל תפקיד (בהערכה)</div>
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
@@ -731,6 +731,7 @@ function calcROI() {
     document.getElementById('roiReturnRatio').textContent       = ratio + ':1';
     document.getElementById('roiBreakevenCount').textContent    = breakeven;
 }
+calcROI();
 </script>
 </body>
 </html>
