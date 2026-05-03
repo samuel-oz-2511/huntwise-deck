@@ -590,7 +590,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 </div>
                 <div class="roi-result-block">
                     <div class="roi-big-num" id="roiScreenSaved">&#8362;1.3M</div>
-                    <div class="roi-result-label">לשנה בעלויות סינון שנחסכו</div>
+                    <div class="roi-result-label">חיסכון שנתי משוער בעלויות סינון</div>
                 </div>
             </div>
             <div class="roi-card">
@@ -599,26 +599,27 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                     <div class="roi-input-row"><span>תפקידים עם הרשאות מיוחסות בשנה</span><input type="number" id="roiPriv" class="roi-calc-input" value="200" min="10" max="2000" step="10" oninput="calcROI()"/></div>
                     <div class="roi-input-row"><span>עלות ממוצעת אירוע insider</span><span>&#8362;34M</span></div>
                     <div class="roi-input-row"><span>עלות Sentriq שנתית (Scale)</span><span>&#8362;250K</span></div>
-                    <div class="roi-input-row"><span>כיסוי: Sentriq לעומת אירוע 1</span><span id="roiCoverageRatio">136x</span></div>
+                    <div class="roi-input-row"><span>כיסוי: Sentriq לעומת אירוע אחד</span><span id="roiCoverageRatio">136x</span></div>
                 </div>
                 <div class="roi-result-block">
                     <div class="roi-big-num" id="roiExposure">&#8362;6.8B</div>
-                    <div class="roi-result-label">חשיפה רגולטורית ממשפך הגיוס</div>
+                    <div class="roi-result-label">חשיפה שנתית כוללת: תפקידי גישה מיוחסת</div>
                 </div>
             </div>
         </div>
         <div class="roi-ratio-strip">
             <div class="roi-ratio-cell">
                 <div class="roi-ratio-num" id="roiReturnRatio">5.0:1</div>
-                <div class="roi-ratio-label">תשואה על סינון בלבד</div>
+                <div class="roi-ratio-label">תשואה שנתית על חיסכון בסינון</div>
             </div>
             <div class="roi-ratio-cell">
-                <div class="roi-ratio-num">136x</div>
-                <div class="roi-ratio-label">אירוע יחיד לעומת עלות Sentriq</div>
+                <div class="roi-ratio-num" id="roiCoverageRatioStrip">136x</div>
+                <div class="roi-ratio-label">אירוע אבטחה יחיד לעומת עלות Sentriq שנתית</div>
             </div>
             <div class="roi-ratio-cell">
                 <div class="roi-ratio-num" id="roiBreakevenCalls">3,334</div>
-                <div class="roi-ratio-label">שיחות סינון לנקודת איזון</div>
+                <div class="roi-ratio-label">שיחות סינון שנתיות לנקודת האיזון</div>
+                <div style="font-size:10px;color:var(--text-dim);line-height:1.5;margin-top:4px;">כמות השיחות שעלותן מכסה את מלוא עלות Sentriq לשנה</div>
             </div>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.8;direction:ltr;">
@@ -705,11 +706,12 @@ function calcROI() {
     var returnRatio    = Math.round((screenSaved / sentriqCost) * 10) / 10;
     var breakevenCalls = Math.ceil(sentriqCost / screenCost);
 
-    document.getElementById('roiScreenSaved').innerHTML    = fmtNIS(screenSaved);
-    document.getElementById('roiExposure').innerHTML       = fmtNIS(exposure);
-    document.getElementById('roiCoverageRatio').textContent = coverageRatio + 'x';
-    document.getElementById('roiReturnRatio').textContent  = returnRatio.toFixed(1) + ':1';
-    document.getElementById('roiBreakevenCalls').textContent = breakevenCalls.toLocaleString();
+    document.getElementById('roiScreenSaved').innerHTML         = fmtNIS(screenSaved);
+    document.getElementById('roiExposure').innerHTML            = fmtNIS(exposure);
+    document.getElementById('roiCoverageRatio').textContent      = coverageRatio + 'x';
+    document.getElementById('roiCoverageRatioStrip').textContent = coverageRatio + 'x';
+    document.getElementById('roiReturnRatio').textContent        = returnRatio.toFixed(1) + ':1';
+    document.getElementById('roiBreakevenCalls').textContent     = breakevenCalls.toLocaleString();
 }
 
 calcROI();
