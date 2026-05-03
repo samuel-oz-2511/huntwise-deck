@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ: MIZRAHI TEFAHOT ONE-PAGER (HEBREW)
+Buyer: CISO / Security leadership
+Frame: fraud prevention and compliance risk
+Created: May 2026
+ntfy topic: sentriq-mizrahi-he-k3n1
+Password: mizrahi (atob: bWl6cmFoaQ==)
+=============================================================
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq עבור מזרחי טפחות</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:       #09090F;
+        --card:     #0D0E1A;
+        --border:   #161728;
+        --muted:    #8080A8;
+        --amber:    #E8A020;
+        --amber-d:  #B87010;
+        --text:     #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --text-dim: rgba(255,255,255,0.52);
+        --green:    #44CC88;
+        --primary:  #E8A020;
+        --white:    #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange:   #E8A020;
+        --red:      #E05555;
+        --purple:   #3A2058;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Heebo', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    /* Password gate */
+    .gate-overlay {
+        position: fixed; inset: 0; background: var(--bg);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 10000;
+    }
+    .gate-box {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px; text-align: center;
+        max-width: 360px; width: 90%;
+    }
+    .gate-logo {
+        display: flex; align-items: center; justify-content: center;
+        gap: 8px; font-size: 16px; font-weight: 600;
+        margin-bottom: 28px; direction: ltr;
+    }
+    .gate-logo span { color: var(--amber); }
+    .gate-label {
+        font-size: 11px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 18px;
+    }
+    .gate-input {
+        width: 100%; padding: 12px 16px;
+        background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+        border-radius: 10px; font-size: 15px; color: #fff;
+        font-family: inherit; outline: none; text-align: center;
+        letter-spacing: 0.08em; margin-bottom: 14px;
+        transition: border-color 0.15s; direction: ltr;
+    }
+    .gate-input:focus { border-color: rgba(232,160,32,0.4); }
+    .gate-input.error { border-color: rgba(224,85,85,0.6); }
+    .gate-btn {
+        width: 100%; padding: 12px;
+        background: var(--amber); color: #000;
+        border: none; border-radius: 10px;
+        font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+        font-family: inherit; cursor: pointer;
+        transition: opacity 0.15s;
+    }
+    .gate-btn:hover { opacity: 0.88; }
+    .gate-sub {
+        font-size: 11px; color: var(--text-dim);
+        margin-top: 16px; line-height: 1.6;
+    }
+
+    .page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 80px; }
+
+    .confidential {
+        position: fixed; top: 16px; left: 22px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100;
+    }
+
+    /* Logo row */
+    .logo-row {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 72px;
+    }
+    .logo-mark {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 15px; font-weight: 500; color: #ffffff;
+        direction: ltr;
+    }
+    .logo-mark span { color: var(--amber); }
+    .logo-for {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.12em; color: rgba(255,255,255,0.28);
+    }
+
+    /* Section label */
+    .label {
+        font-size: 11px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.12em; color: var(--amber); margin-bottom: 18px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+
+    .section { margin-bottom: 64px; }
+
+    /* Hero */
+    .hero { margin-bottom: 64px; }
+    .hero h1 {
+        font-size: clamp(28px, 4vw, 50px); font-weight: 800;
+        line-height: 1.2; letter-spacing: -0.02em;
+        color: #ffffff; margin-bottom: 22px; max-width: 820px;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero p {
+        font-size: 16px; color: var(--text-sub); line-height: 1.85;
+        max-width: 780px;
+    }
+
+    /* Stat cards */
+    .pain-grid {
+        display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+        margin-bottom: 8px;
+    }
+    .pain-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 20px;
+    }
+    .pain-card.amber-border { border-color: rgba(232,160,32,0.22); background: rgba(232,160,32,0.04); }
+    .pain-num {
+        font-size: clamp(34px, 5vw, 52px); font-weight: 800;
+        color: var(--amber); margin-bottom: 6px;
+        letter-spacing: -0.04em; line-height: 1;
+        direction: ltr; display: inline-block;
+    }
+    .pain-card.amber-border .pain-num { color: rgba(232,160,32,0.9); }
+    .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; direction: ltr; }
+
+    /* Security stack */
+    .stack-layers { display: flex; flex-direction: column; gap: 6px; }
+    .stack-layer {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 13px 20px; border-radius: 10px;
+        background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+        gap: 16px;
+    }
+    .stack-layer-left { display: flex; align-items: baseline; gap: 12px; min-width: 0; flex: 1; }
+    .stack-layer-name { font-size: 13px; font-weight: 600; color: var(--text-sub); white-space: nowrap; }
+    .stack-layer-tool { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+    .stack-layer-badge {
+        font-size: 10px; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.1em; padding: 3px 10px; border-radius: 20px;
+        white-space: nowrap; flex-shrink: 0; direction: ltr;
+    }
+    .badge-defended {
+        color: var(--green); background: rgba(68,204,136,0.08);
+        border: 1px solid rgba(68,204,136,0.2);
+    }
+    .badge-undefended {
+        color: rgba(255,255,255,0.44); background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+    .stack-layer-undefended {
+        background: rgba(224,85,85,0.05); border: 1px solid rgba(224,85,85,0.2);
+        border-right: 3px solid rgba(224,85,85,0.65);
+    }
+    .stack-layer-undefended .stack-layer-name { color: rgba(255,255,255,0.88); }
+    .stack-layer-zero {
+        background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.22);
+        border-right: 3px solid var(--amber); margin-top: 4px;
+    }
+    .stack-layer-zero .stack-layer-name { color: var(--amber); font-weight: 700; font-size: 14px; direction: ltr; }
+    .stack-layer-zero .stack-layer-tool { color: rgba(232,160,32,0.6); }
+
+    /* Validation block */
+    .validation-block {
+        background: rgba(232,160,32,0.05);
+        border: 1px solid rgba(232,160,32,0.18);
+        border-right: 4px solid var(--amber);
+        border-radius: 12px; padding: 28px 32px; margin-bottom: 14px;
+    }
+    .validation-quote {
+        font-size: 18px; font-weight: 700; color: var(--amber);
+        margin-bottom: 8px; line-height: 1.5; direction: ltr; text-align: left;
+    }
+    .validation-source {
+        font-size: 13px; color: rgba(232,160,32,0.6); margin-bottom: 20px;
+    }
+    .validation-outcomes { display: flex; flex-direction: column; gap: 10px; }
+    .validation-outcome {
+        display: flex; align-items: flex-start; gap: 10px;
+        font-size: 13px; color: var(--text-sub); line-height: 1.6;
+    }
+    .validation-outcome::before {
+        content: ''; width: 5px; height: 5px; background: var(--amber);
+        border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+    }
+
+    /* 3-layer solution */
+    .layers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .layer-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .layer-num {
+        display: inline-block; font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber);
+        background: rgba(232,160,32,0.08); border-radius: 6px;
+        padding: 3px 10px; margin-bottom: 12px; direction: ltr;
+    }
+    .layer-card h3 { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .layer-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+    .layer-bullets { list-style: none; padding: 0; margin-top: 12px; }
+    .layer-bullets li {
+        font-size: 12px; color: var(--text-sub);
+        padding: 4px 16px 4px 0;
+        position: relative; line-height: 1.5;
+    }
+    .layer-bullets li::before {
+        content: ''; position: absolute; right: 0; top: 10px;
+        width: 5px; height: 5px; background: var(--amber); border-radius: 50%;
+    }
+    .layer-output {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 28px; margin-top: 14px;
+    }
+    .output-label {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px;
+        direction: ltr;
+    }
+    .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; direction: ltr; }
+    .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* ROI */
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; }
+    .roi-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .roi-inputs { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .roi-input-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; color: var(--text-sub); line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+    .roi-input-row:last-child { border-bottom: none; }
+    .roi-input-row span:last-child { font-weight: 700; color: rgba(255,255,255,0.88); white-space: nowrap; direction: ltr; }
+    .roi-result-block { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(232,160,32,0.2); }
+    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; direction: ltr; display: inline-block; }
+    .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .roi-ratio-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-ratio-cell { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.15); border-radius: 10px; padding: 16px 18px; text-align: center; }
+    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; direction: ltr; display: block; }
+    .roi-ratio-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .roi-calc-input {
+        width: 80px; padding: 5px 10px;
+        border: 1px solid rgba(232,160,32,0.3); border-radius: 6px;
+        font-size: 13px; font-weight: 700; color: #ffffff;
+        background: rgba(232,160,32,0.08); text-align: center;
+        font-family: inherit; outline: none; flex-shrink: 0;
+        direction: ltr;
+    }
+    .roi-calc-input:focus { border-color: var(--amber); box-shadow: 0 0 0 2px rgba(232,160,32,0.12); }
+    .roi-calc-input::-webkit-inner-spin-button,
+    .roi-calc-input::-webkit-outer-spin-button { opacity: 0.4; }
+
+    /* Ask */
+    .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .ask-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .ask-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .ask-card p { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+    .ask-card.highlight {
+        background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.22);
+    }
+    .ask-card.highlight h3 { color: rgba(232,160,32,0.92); }
+    .ask-card.highlight p { color: rgba(232,160,32,0.75); }
+
+    /* CTA */
+    .cta {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px;
+        display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .cta-left h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-left p { font-size: 14px; color: var(--text-dim); line-height: 1.7; max-width: 400px; }
+    .cta-right { text-align: left; flex-shrink: 0; }
+    .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; direction: ltr; }
+    .cta-right .contact-sub { font-size: 13px; color: rgba(255,255,255,0.45); direction: ltr; text-align: left; }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    @media (max-width: 640px) {
+        .page { padding: 40px 20px 60px; }
+        .logo-row { margin-bottom: 48px; }
+        .pain-grid { grid-template-columns: 1fr; }
+        .layers-grid { grid-template-columns: 1fr; }
+        .roi-cards { grid-template-columns: 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr; }
+        .ask-grid { grid-template-columns: 1fr; }
+        .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
+        .cta-right { text-align: right; }
+        .stack-layer { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- OPEN TRACKING -->
+<script>
+(function() {
+    if (sessionStorage.getItem('mizrahi-he-pinged')) return;
+    sessionStorage.setItem('mizrahi-he-pinged', '1');
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'Mizrahi (Hebrew) one-pager opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', {
+                method: 'POST', mode: 'no-cors',
+                body: 'Mizrahi (Hebrew) one-pager opened (location unavailable)\n' + t
+            }).catch(function(){});
+        });
+})();
+</script>
+
+<!-- PASSWORD GATE -->
+<div class="gate-overlay" id="gateOverlay">
+    <div class="gate-box">
+        <div class="gate-logo">
+            <svg width="26" height="26" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="gate-label">סודי: מזרחי טפחות</div>
+        <input type="password" id="gateInput" class="gate-input" placeholder="קוד גישה" autocomplete="off"/>
+        <button class="gate-btn" onclick="checkGate()">כניסה</button>
+        <div class="gate-sub">הוכן בלעדית לצמרת מזרחי טפחות.<br>גישה בלתי מורשית אסורה.</div>
+    </div>
+</div>
+
+<script>
+function checkGate() {
+    var v = document.getElementById('gateInput').value;
+    if (v === atob('bWl6cmFoaQ==')) {
+        document.getElementById('gateOverlay').style.display = 'none';
+        if (!sessionStorage.getItem('mizrahi-he-unlocked')) {
+            sessionStorage.setItem('mizrahi-he-unlocked', '1');
+            var t = new Date().toISOString();
+            fetch('https://ipapi.co/json/')
+                .then(function(r){ return r.json(); })
+                .then(function(geo) {
+                    var loc = (geo.city||'') + ', ' + (geo.country_name||'') + ' (' + (geo.ip||'') + ')';
+                    var msg = 'Mizrahi (Hebrew) UNLOCKED\n' + loc + '\n' + (geo.org||'') + '\n' + t;
+                    fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+                })
+                .catch(function(){
+                    fetch('https://ntfy.sh/sentriq-mizrahi-he-k3n1', {
+                        method: 'POST', mode: 'no-cors',
+                        body: 'Mizrahi (Hebrew) UNLOCKED (location unavailable)\n' + t
+                    }).catch(function(){});
+                });
+        }
+    } else {
+        var inp = document.getElementById('gateInput');
+        inp.classList.add('error');
+        inp.value = '';
+        inp.placeholder = 'שגוי';
+        setTimeout(function(){ inp.classList.remove('error'); inp.placeholder = 'קוד גישה'; }, 1200);
+    }
+}
+document.getElementById('gateInput').addEventListener('keydown', function(e){ if (e.key === 'Enter') checkGate(); });
+</script>
+
+<div class="confidential">Confidential</div>
+
+<div class="page">
+
+    <!-- LOGO ROW -->
+    <div class="logo-row">
+        <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="logo-for">עבור מזרחי טפחות</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="label">Candidate Hiring Captcha</div>
+        <h1>עובד שחדר לארגון הוא <em>אירוע ציות.</em><br>לא אירוע HR.</h1>
+        <p>כל הגשת מועמדות שמגיעה למשפך הגיוס של מזרחי טפחות נכנסת ללא signal התנהגותי. בדיקת הרקע מתבצעת לאחר הצעת עבודה. הזהות נבדקת. אותנטיות ההגשה לא. Sentriq סוגר את הפער ברגע ההגשה, לפני שמגייס אחד מוציא שעה אחת עליה.</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- STAT CARDS -->
+    <div class="section">
+        <div class="label">החשיפה</div>
+        <div class="pain-grid">
+            <div class="pain-card amber-border">
+                <div class="pain-num">&#8362;580M</div>
+                <div class="pain-label">הסדר נדחה של מזרחי טפחות מול משרד המשפטים האמריקאי ($195M). עובדים בתפקידי אמון סייעו ללקוחות בהעלמת הכנסות לאורך שנים. כל אחד מהם עבר תהליך גיוס תקני.</div>
+                <div class="pain-source">U.S. Department of Justice, 2014</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">&#8362;34M</div>
+                <div class="pain-label">עלות ממוצעת של אירוע איום פנים ארגוני במוסד פיננסי. הוראות תשלום, מידע לקוחות והרשאות גישה מיוחסות בהישג יד מהיום הראשון.</div>
+                <div class="pain-source">IBM Security / Ponemon Institute, 2023 (2.98 ₪/$)</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">85 יום</div>
+                <div class="pain-label">חלון הגילוי הממוצע לאיום פנים ארגוני פעיל. הרשאות ניתנות ביום הראשון. הפרצה מתגלה כשלושה חודשים לאחר מכן.</div>
+                <div class="pain-source">IBM Security / Ponemon Institute, 2023</div>
+            </div>
+        </div>
+        <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.85;">
+                KnowBe4, חברת אבטחת מידע, גייסה עובד צפון קוריאני שניסה מיד לטעון malware. הוא עבר סינון קורות חיים, ארבעה ראיונות וידאו ובדיקת רקע מלאה תוך שימוש בזהות אמריקאית גנובה. השירותים הפיננסיים הם יעד העדיפות של גורמים מזוהים עם מדינות עוינות. נקודת הכניסה לא הייתה הרשת. היא הייתה ההגשה.
+            </p>
+            <p style="font-size:10px;color:var(--text-dim);margin-top:8px;direction:ltr;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024.</p>
+        </div>
+    </div>
+
+    <!-- SECURITY STACK -->
+    <div class="section">
+        <div class="label">השכבה הלא מוגנת</div>
+        <p style="font-size:14px;color:var(--text-sub);line-height:1.8;margin-bottom:20px;max-width:700px;">כל שכבת אבטחה בבנק מודרני מוגנת. חוץ מאחת. הגשת המועמדות נכנסת ללא signal התנהגותי, ובלי שכבת סינון מעל ה-ATS.</p>
+        <div class="stack-layers">
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">עסקאות לקוחות</div>
+                    <div class="stack-layer-tool">ביומטריה התנהגותית, ניטור AML, ניתוח ישויות</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">מוגן</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">זהות דיגיטלית</div>
+                    <div class="stack-layer-tool">אימות זהות לקוחות, איסוף מסמכים, זיהוי חיות</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">מוגן</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">היקף הרשת</div>
+                    <div class="stack-layer-tool">Firewall, SIEM, זיהוי נקודות קצה, Zero Trust</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">מוגן</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">גישה למערכות IT</div>
+                    <div class="stack-layer-tool">MFA, PAM, ניהול גישה מיוחסת, ניהול זהויות</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">מוגן</span>
+            </div>
+            <div class="stack-layer stack-layer-undefended">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">הגשות גיוס</div>
+                    <div class="stack-layer-tool">בדיקת רקע לאחר הצעת עבודה, זהות בלבד. ללא בסיס התנהגותי. ללא signal ברמת ההגשה.</div>
+                </div>
+                <span class="stack-layer-badge badge-undefended">לא מוגן</span>
+            </div>
+            <div class="stack-layer stack-layer-zero">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Layer 0: Sentriq</div>
+                    <div class="stack-layer-tool">signal אמינות ברגע ההגשה. לפני שמשפך הגיוס מתחיל. לפני שמגייס מוציא שקל אחד.</div>
+                </div>
+                <span class="stack-layer-badge" style="color:var(--amber);background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.25);direction:ltr;">כאן אנחנו יושבים</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VALIDATION -->
+    <div class="section">
+        <div class="label">אימות ממגזר הבנקאות</div>
+        <div class="validation-block">
+            <div class="validation-quote">"I actually think that's the right approach."</div>
+            <div class="validation-source">מנהל, HSBC Innovation Banking. ניהל את תהליך הבחינה וסינון הספקים מול ה-CISO ומנהיגות ה-IT הבכירה של HSBC במשך שש שנים.</div>
+            <div class="validation-outcomes">
+                <div class="validation-outcome">בשיחה ראשונה אחת, HSBC Innovation Banking זיהה מיד את בעל הבקרה על joiners, movers, leavers ואימות תחת ה-CISO כנקודת הכניסה הנכונה. ללא שאלה.</div>
+                <div class="validation-outcome">HSBC בתהליך חיבור פעיל מולנו לצוותי הסייבר ומשאבי האנוש שלהם. הניסוח נחת מיד: עובד שחדר לארגון הוא אירוע ציות, וה-CISO הוא הבעלים שלו.</div>
+                <div class="validation-outcome">ROI מאומת על ידי הנהגת HSBC: צמצום המשפך ושעות מגייסים שנחסכות לכל הגשה שסוננה. "אם המשפך קטן יותר, אם אתה מסוגל לסנן ביעילות, זה ה-ROI שאנחנו מחפשים."</div>
+                <div class="validation-outcome">משפך הגיוס של HSBC מעבד 600,000+ הגשות בשנה ללא signal התנהגותי. הבעיה אינה תיאורטית בסקייל. היא פונקציה של נפח.</div>
+            </div>
+        </div>
+        <div style="padding:14px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">השירותים הפיננסיים אינם ורטיקל שSentriq נכנסת אליו. זה המקום שבו הקטגוריה מתחילה. הבעיה מהדהדת בכל בנק גדול כי הסיכון מתועד, פער הכלים הוא מבני, ועלות הציות כבר על הספרים.</p>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+        <div class="label">כיצד Sentriq עובד</div>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1</div>
+                <h3>Behavioral Baseline</h3>
+                <p class="layer-desc">פסיבי, בלתי נראה. כל הגשה נושאת טביעת אצבע: דפוסי תזמון, חתימות כלים, איתותי מכשיר. נקלטת בהגשה ללא חיכוך ובלי שינוי בטופס.</p>
+                <ul class="layer-bullets">
+                    <li>ללא חיכוך למועמד. ללא שינויים בטפסים.</li>
+                    <li>עובד עם כל ATS או intake מותאם</li>
+                    <li>מזהה הגשת פרוקסי, מילוי AI, כלי bulk</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2</div>
+                <h3>Async Challenge</h3>
+                <p class="layer-desc">מופעל רק כש-Layer 1 מזהה חריגה. משימה אסינכרונית מותאמת אישית שמזהה התחזות על ידי פרוקסי ותגובות שהוכנו על ידי AI. מועמדים לגיטימיים ממשיכים ללא הפרעה.</p>
+                <ul class="layer-bullets">
+                    <li>מופעל רק על הגשות חריגות</li>
+                    <li>השאלות בנויות כך שAI לא יכול לענות</li>
+                    <li>אפס פסילות אוטומטיות בשום שלב</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 3</div>
+                <h3>Human Review</h3>
+                <p class="layer-desc">כשיש סטייה, אנליסט Sentriq בוחן את כל ה-signal שנצבר. signal אמינות מוצג לצד ההגשה. המעסיק מחליט. שובל ביקורת מלא בכל שלב.</p>
+                <ul class="layer-bullets">
+                    <li>אפס פסילות אוטומטיות בכל שלב</li>
+                    <li>כל דגל כולל הסבר בשפה פשוטה</li>
+                    <li>עומד בדרישות EU AI Act by design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div class="output-label">ATS Output</div>
+            <div class="output-text">Candidate Signal Profile</div>
+            <div class="output-sub">כל הגשה נכנסת לסקירת המגייס עם signal אמינות, תיעוד ודגל סיכון אם קיים. ללא dashboard נפרד. ללא מערכת חדשה. ללא PII אצל Sentriq. נכנס לתוך הקיים, לא מחליף דבר.</div>
+        </div>
+    </div>
+
+    <!-- ROI CALCULATOR -->
+    <div class="section">
+        <div class="label">ROI: מנקודת מבט הבנק</div>
+        <div class="roi-cards">
+            <div class="roi-card">
+                <div class="roi-card-label">חיסכון בעלות הסינון</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>משרות מגויסות בשנה</span><input type="number" id="roiRoles" class="roi-calc-input" value="700" min="50" max="10000" step="50" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>הגשות למשרה (ממוצע)</span><input type="number" id="roiApps" class="roi-calc-input" value="80" min="20" max="500" step="10" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>עלות שיחת סינון טלפוני</span><span>&#8362;75</span></div>
+                    <div class="roi-input-row"><span>הגשות שסוננו לפני שיחה</span><span>30%</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiScreenSaved">&#8362;1.3M</div>
+                    <div class="roi-result-label">לשנה בעלויות סינון שנחסכו</div>
+                </div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-card-label">רצפת חשיפה רגולטורית</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>תפקידים עם הרשאות מיוחסות בשנה</span><input type="number" id="roiPriv" class="roi-calc-input" value="200" min="10" max="2000" step="10" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>עלות ממוצעת אירוע insider</span><span>&#8362;34M</span></div>
+                    <div class="roi-input-row"><span>עלות Sentriq שנתית (Scale)</span><span>&#8362;250K</span></div>
+                    <div class="roi-input-row"><span>כיסוי: Sentriq לעומת אירוע 1</span><span id="roiCoverageRatio">136x</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiExposure">&#8362;6.8B</div>
+                    <div class="roi-result-label">חשיפה רגולטורית ממשפך הגיוס</div>
+                </div>
+            </div>
+        </div>
+        <div class="roi-ratio-strip">
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiReturnRatio">5.0:1</div>
+                <div class="roi-ratio-label">תשואה על סינון בלבד</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num">136x</div>
+                <div class="roi-ratio-label">אירוע יחיד לעומת עלות Sentriq</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiBreakevenCalls">3,334</div>
+                <div class="roi-ratio-label">שיחות סינון לנקודת איזון</div>
+            </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);line-height:1.8;direction:ltr;">
+            Screening cost: &#8362;75/call. Triage rate: 30%. Sentriq Scale tier: &#8362;250K/yr. Compliance exposure: privileged-access roles x &#8362;34M (IBM/Ponemon $11.45M at 2.98 NIS/USD). Coverage ratio: 34M / 250K = 136x. Sentriq does not guarantee incident prevention.
+        </p>
+    </div>
+
+    <!-- FREE ASSESSMENT + PILOT -->
+    <div class="section">
+        <div class="label">הפיילוט</div>
+        <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:22px 24px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);">חינם: ניתוח Signal רטרואקטיבי</span>
+                <span style="font-size:11px;background:rgba(232,160,32,0.15);color:var(--amber);border-radius:20px;padding:2px 10px;font-weight:700;">ללא התחייבות</span>
+            </div>
+            <p style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:8px;line-height:1.6;">תנו לנו תפקיד אחד שסגרתם. אנחנו מראים לכם מה היינו תופסים.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">קחו כל תפקיד שמולא ב-90 הימים האחרונים, כל דרג, עדיפות לתפקידי ציות או טכנולוגיה. אנחנו מריצים ניתוח signal מלא על כל מאגר ההגשות ומספקים Candidate Signal Profile לכל הגשה. תראו בדיוק אילו הגשות היו מסומנות, אילו signals הופעלו ומה ה-ROI מחושב על הנתונים שלכם. אף מידע לא יוצא מהשליטה שלכם. פגישה אחת להגדרה.</p>
+        </div>
+        <div class="ask-grid">
+            <div class="ask-card highlight">
+                <h3>&#8362;35,000 / פיילוט 6 שבועות</h3>
+                <p>מזוכה לחוזה שנתי עם חתימה. 1-2 תפקידים פעילים, אינסטרומנטציית signal מלאה, Candidate Signal Profiles ישירות ל-ATS הקיים. ללא שינויי ATS, ללא תקורה, ללא PII אצל Sentriq. מדד ROI מוסכם לפני יום ראשון. אם עובד, עוברים לפריסה מלאה על תפקידי גישה מיוחסת.</p>
+            </div>
+            <div class="ask-card">
+                <h3>תנאי Design Partner</h3>
+                <p>ללא מחיר רשימה. התנאים נקבעים על ידכם. ביקורת SOC 2 Type I מתחילה ברבעון 3 2026: לא נגיע לנתוני enterprise לפניה. תואם EU AI Act by architecture: אפס פסילות אוטומטיות, שובל ביקורת מלא, אדם בלולאה בכל דגל. תנאים מועדפים שמורים לאורך כל ההתרחבות.</p>
+            </div>
+        </div>
+        <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
+                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם מוסדות פיננסיים גלובליים וחברות טכנולוגיה enterprise. ניתוח ה-signal הרטרואקטיבי הוא הצעד הראשון בכל שיחה. הוא מסיר כל עמימות לגבי האם הבעיה קיימת בתוך משפך הגיוס הספציפי שלכם.
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>שיחה אחת. בלי מצגות.</h2>
+            <p>30 דקות. נריץ את פרופיל ה-signal על תפקיד אמיתי ממשפך הגיוס שלכם. המוצר עושה את עבודתו. אתם מחליטים אם הבעיה מספיק אמיתית כדי לבדוק עוד.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">Samuel Kemper</div>
+            <div class="contact-sub">CEO, Sentriq</div>
+            <div class="contact-sub" style="margin-top:4px;">samuel@sentriq.co</div>
+            <div class="contact-sub" style="margin-top:2px;">sentriq.co</div>
+        </div>
+    </div>
+
+    <!-- SOURCES -->
+    <div style="margin-top:32px;padding:16px 22px;border-top:1px solid var(--border);">
+        <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.8;direction:ltr;">
+            [1] IBM Security / Ponemon Institute, "2023 Cost of Insider Threats: Global Report." $11.45M average (&#8362;34M at 2.98 NIS/USD), 85-day detection window.
+            [2] Mizrahi Tefahot deferred prosecution agreement: U.S. Department of Justice, 2014.
+            [3] KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024.
+            [4] HSBC volume estimate: LinkedIn Jobs April 2026, HSBC Annual Report 2025.
+            All figures from public records. Sentriq is in design partner phase. No live production claims implied.
+        </p>
+    </div>
+
+</div>
+
+<script>
+function fmtNIS(n) {
+    if (n >= 1000000000) return '&#8362;' + (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000)    return '&#8362;' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000)       return '&#8362;' + Math.round(n / 1000) + 'K';
+    return '&#8362;' + Math.round(n);
+}
+
+function calcROI() {
+    var roles        = parseInt(document.getElementById('roiRoles').value) || 700;
+    var apps         = parseInt(document.getElementById('roiApps').value)  || 80;
+    var priv         = parseInt(document.getElementById('roiPriv').value)  || 200;
+
+    var totalApps      = roles * apps;
+    var triageRate     = 0.30;
+    var screenCost     = 75;
+    var sentriqCost    = 250000;
+    var incidentCost   = 34000000;
+    var screenSaved    = totalApps * triageRate * screenCost;
+    var exposure       = priv * incidentCost;
+    var coverageRatio  = Math.round(incidentCost / sentriqCost);
+    var returnRatio    = Math.round((screenSaved / sentriqCost) * 10) / 10;
+    var breakevenCalls = Math.ceil(sentriqCost / screenCost);
+
+    document.getElementById('roiScreenSaved').innerHTML    = fmtNIS(screenSaved);
+    document.getElementById('roiExposure').innerHTML       = fmtNIS(exposure);
+    document.getElementById('roiCoverageRatio').textContent = coverageRatio + 'x';
+    document.getElementById('roiReturnRatio').textContent  = returnRatio.toFixed(1) + ':1';
+    document.getElementById('roiBreakevenCalls').textContent = breakevenCalls.toLocaleString();
+}
+
+calcROI();
+</script>
+
+</body>
+</html>
