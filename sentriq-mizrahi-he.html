@@ -165,7 +165,7 @@ Password: mizrahi (atob: bWl6cmFoaQ==)
     }
     .pain-card.amber-border .pain-num { color: rgba(232,160,32,0.9); }
     .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
-    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; direction: ltr; }
+    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; direction: ltr; text-align: left; }
 
     /* Security stack */
     .stack-layers { display: flex; flex-direction: column; gap: 6px; }
@@ -460,7 +460,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         </div>
         <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.85;">
-                KnowBe4, חברת אבטחת מידע, גייסה עובד צפון קוריאני שניסה מיד לטעון malware. הוא עבר סינון קורות חיים, ארבעה ראיונות וידאו ובדיקת רקע מלאה תוך שימוש בזהות אמריקאית גנובה. השירותים הפיננסיים הם יעד העדיפות של גורמים מזוהים עם מדינות עוינות. נקודת הכניסה לא הייתה הרשת. היא הייתה ההגשה.
+                KnowBe4, חברת אבטחת מידע, גייסה עובד צפון קוריאני שניסה מיד להתקין malware. הוא עבר סינון קורות חיים, ארבעה ראיונות וידאו ובדיקת רקע מלאה תוך שימוש בזהות אמריקאית גנובה. השירותים הפיננסיים הם יעד העדיפות של גורמים מזוהים עם מדינות עוינות. נקודת הכניסה לא הייתה הרשת. היא הייתה ההגשה.
             </p>
             <p style="font-size:10px;color:var(--text-dim);margin-top:8px;direction:ltr;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024.</p>
         </div>
@@ -511,7 +511,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                     <div class="stack-layer-name">Layer 0: Sentriq</div>
                     <div class="stack-layer-tool">signal אמינות ברגע ההגשה. לפני שמשפך הגיוס מתחיל. לפני שמגייס מוציא שקל אחד.</div>
                 </div>
-                <span class="stack-layer-badge" style="color:var(--amber);background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.25);direction:ltr;">כאן אנחנו יושבים</span>
+                <span class="stack-layer-badge" style="color:var(--amber);background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.25);">כאן אנחנו יושבים</span>
             </div>
         </div>
     </div>
@@ -521,7 +521,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         <div class="label">אימות ממגזר הבנקאות</div>
         <div class="validation-block">
             <div class="validation-quote">"I actually think that's the right approach."</div>
-            <div class="validation-source">מנהל, HSBC Innovation Banking. ניהל את תהליך הבחינה וסינון הספקים מול ה-CISO ומנהיגות ה-IT הבכירה של HSBC במשך שש שנים.</div>
+            <div class="validation-source">מנהל, HSBC Innovation Banking. שש שנות ניהול בחינת ספקים מול CISO ומנהיגות IT בכירה של HSBC.</div>
             <div class="validation-outcomes">
                 <div class="validation-outcome">בשיחה ראשונה אחת, HSBC Innovation Banking זיהה מיד את בעל הבקרה על joiners, movers, leavers ואימות תחת ה-CISO כנקודת הכניסה הנכונה. ללא שאלה.</div>
                 <div class="validation-outcome">HSBC בתהליך חיבור פעיל מולנו לצוותי הסייבר ומשאבי האנוש שלהם. הניסוח נחת מיד: עובד שחדר לארגון הוא אירוע ציות, וה-CISO הוא הבעלים שלו.</div>
@@ -555,7 +555,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 <ul class="layer-bullets">
                     <li>מופעל רק על הגשות חריגות</li>
                     <li>השאלות בנויות כך שAI לא יכול לענות</li>
-                    <li>אפס פסילות אוטומטיות בשום שלב</li>
+                    <li>מועמד לגיטימי לא מרגיש הבדל</li>
                 </ul>
             </div>
             <div class="layer-card">
@@ -598,7 +598,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
                 <div class="roi-inputs">
                     <div class="roi-input-row"><span>תפקידים עם הרשאות מיוחסות בשנה</span><input type="number" id="roiPriv" class="roi-calc-input" value="200" min="10" max="2000" step="10" oninput="calcROI()"/></div>
                     <div class="roi-input-row"><span>עלות ממוצעת אירוע insider</span><span>&#8362;34M</span></div>
-                    <div class="roi-input-row"><span>עלות Sentriq שנתית (Scale)</span><span>&#8362;250K</span></div>
+                    <div class="roi-input-row"><span>עלות Sentriq שנתית (Mid-Market)</span><span>&#8362;250K</span></div>
                     <div class="roi-input-row"><span>כיסוי: Sentriq לעומת אירוע אחד</span><span id="roiCoverageRatio">136x</span></div>
                 </div>
                 <div class="roi-result-block">
@@ -619,11 +619,10 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
             <div class="roi-ratio-cell">
                 <div class="roi-ratio-num" id="roiBreakevenCalls">3,334</div>
                 <div class="roi-ratio-label">שיחות סינון שנתיות לנקודת האיזון</div>
-                <div style="font-size:10px;color:var(--text-dim);line-height:1.5;margin-top:4px;">כמות השיחות שעלותן מכסה את מלוא עלות Sentriq לשנה</div>
             </div>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.8;direction:ltr;">
-            Screening cost: &#8362;75/call. Triage rate: 30%. Sentriq Scale tier: &#8362;250K/yr. Compliance exposure: privileged-access roles x &#8362;34M (IBM/Ponemon $11.45M at 2.98 NIS/USD). Coverage ratio: 34M / 250K = 136x. Sentriq does not guarantee incident prevention.
+            Screening cost: &#8362;75/call. Triage rate: 30% (high-volume enterprise benchmark; conservative baseline is 15%). Sentriq Mid-Market tier: &#8362;250K/yr. Breakeven: 3,334 calls screened/yr covers full annual cost. Compliance exposure: privileged-access roles x &#8362;34M (IBM/Ponemon $11.45M at 2.98 NIS/USD). Coverage ratio: 34M / 250K = 136x per incident. Sentriq does not guarantee incident prevention.
         </p>
     </div>
 
@@ -641,7 +640,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         <div class="ask-grid">
             <div class="ask-card highlight">
                 <h3>&#8362;35,000 / פיילוט 6 שבועות</h3>
-                <p>מזוכה לחוזה שנתי עם חתימה. 1-2 תפקידים פעילים, אינסטרומנטציית signal מלאה, Candidate Signal Profiles ישירות ל-ATS הקיים. ללא שינויי ATS, ללא תקורה, ללא PII אצל Sentriq. מדד ROI מוסכם לפני יום ראשון. אם עובד, עוברים לפריסה מלאה על תפקידי גישה מיוחסת.</p>
+                <p>עלות הפיילוט מזוכה במלואה כנגד החוזה השנתי עם חתימה. 1-2 תפקידים פעילים, אינסטרומנטציית signal מלאה, Candidate Signal Profiles ישירות ל-ATS הקיים. ללא שינויי ATS, ללא תקורה, ללא PII אצל Sentriq. מדד ROI מוסכם לפני יום ראשון. אם עובד, עוברים לפריסה מלאה על תפקידי גישה מיוחסת (₪250K/שנה, Mid-Market).</p>
             </div>
             <div class="ask-card">
                 <h3>תנאי Design Partner</h3>
@@ -650,7 +649,7 @@ document.getElementById('gateInput').addEventListener('keydown', function(e){ if
         </div>
         <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
-                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם מוסדות פיננסיים גלובליים וחברות טכנולוגיה enterprise. ניתוח ה-signal הרטרואקטיבי הוא הצעד הראשון בכל שיחה. הוא מסיר כל עמימות לגבי האם הבעיה קיימת בתוך משפך הגיוס הספציפי שלכם.
+                <strong style="color:#ffffff;">הניתוח הרטרואקטיבי הוא הצעד הראשון בכל שיחה.</strong> HSBC עשו את זה. הם זיהו מיד אילו תפקידים לבחור ומה יוצג. הניתוח מסיר כל עמימות לגבי האם הבעיה קיימת בתוך משפך הגיוס הספציפי שלכם. אף מידע לא עוזב את הסביבה שלכם.
             </p>
         </div>
     </div>
