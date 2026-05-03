@@ -353,7 +353,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
 
     <!-- LIFECYCLE -->
     <div class="section">
-        <div class="label">Where the Gap Lives</div>
+        <div class="label">Where Sentriq Runs</div>
         <div class="lc-grid-wrap">
             <div class="lc-grid">
                 <div class="lc-stage">
@@ -365,32 +365,32 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                 <div class="lc-stage lc-sentriq">
                     <div class="lc-badge">Sentriq</div>
                     <div class="lc-name">Application</div>
-                    <div class="lc-tool">ATS intake layer</div>
-                    <div class="lc-cost">Signal here</div>
+                    <div class="lc-tool">Claim record built</div>
+                    <div class="lc-cost">Gap Assessor starts</div>
                 </div>
-                <div class="lc-stage">
-                    <div class="lc-badge"></div>
-                    <div class="lc-name">Recruiter Review</div>
-                    <div class="lc-tool">ATS queue</div>
-                    <div class="lc-cost">~$60/hr</div>
-                </div>
-                <div class="lc-stage">
-                    <div class="lc-badge"></div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
                     <div class="lc-name">Phone Screen</div>
-                    <div class="lc-tool">Calendly, manual</div>
-                    <div class="lc-cost">~$120</div>
+                    <div class="lc-tool">Notes evaluated</div>
+                    <div class="lc-cost">Gap Assessor runs</div>
                 </div>
-                <div class="lc-stage">
-                    <div class="lc-badge"></div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
                     <div class="lc-name">Technical Test</div>
-                    <div class="lc-tool">HackerRank, custom</div>
-                    <div class="lc-cost">~$200</div>
+                    <div class="lc-tool">Score vs. claims</div>
+                    <div class="lc-cost">Gap Assessor runs</div>
                 </div>
-                <div class="lc-stage">
-                    <div class="lc-badge"></div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
                     <div class="lc-name">Interview</div>
-                    <div class="lc-tool">HireVue, in-person</div>
-                    <div class="lc-cost">~$500</div>
+                    <div class="lc-tool">Transcript vs. claims</div>
+                    <div class="lc-cost">Gap Assessor runs</div>
+                </div>
+                <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
+                    <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
+                    <div class="lc-name">Client Shortlist</div>
+                    <div class="lc-tool">Open gaps flagged</div>
+                    <div class="lc-cost">Before client sees</div>
                 </div>
                 <div class="lc-stage">
                     <div class="lc-badge"></div>
@@ -402,22 +402,22 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                     <div class="lc-badge"></div>
                     <div class="lc-name">Background Check</div>
                     <div class="lc-tool">Checkr, local</div>
-                    <div class="lc-cost">Post-decision</div>
+                    <div class="lc-cost">Identity only</div>
                 </div>
             </div>
         </div>
         <div class="lc-callouts">
             <div class="lc-callout lc-amber">
-                <h4>Sentriq sits here</h4>
-                <p>At the application stage, before any recruiter time. Signal profile generated before review begins.</p>
+                <h4>Signal starts at application</h4>
+                <p>Every claimed credential is recorded. The Gap Assessor tracks them against every data point added downstream.</p>
             </div>
             <div class="lc-callout">
-                <h4>Background check arrives too late</h4>
-                <p>Identity verification happens post-offer. Application quality is never checked at intake.</p>
+                <h4>Interview transcripts checked</h4>
+                <p>If a gap was flagged at application, Sentriq reads the interview transcript to verify whether it was addressed before the candidate reaches the client.</p>
             </div>
             <div class="lc-callout">
-                <h4>The cost compounds upstream</h4>
-                <p>Every low-signal application that passes recruiter review multiplies the downstream cost for the client.</p>
+                <h4>Background check is too late</h4>
+                <p>Identity verification happens post-offer. Application quality, consistency, and interview gaps are never surfaced. That is what Sentriq replaces.</p>
             </div>
         </div>
     </div>
@@ -461,6 +461,59 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
             <div class="output-label">ATS Output</div>
             <div class="output-text">Candidate Signal Profile</div>
             <div class="output-sub">Every application enters recruiter review with a confidence label, explanation bullets, and a recommendation. Recruiters start with structured signal, not a blank resume.</div>
+        </div>
+    </div>
+
+    <!-- GAP ASSESSOR -->
+    <div class="section">
+        <div class="label">Gap Assessor</div>
+        <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.2);border-left:4px solid var(--amber);border-radius:12px;padding:22px 28px;margin-bottom:14px;">
+            <div style="font-size:15px;font-weight:700;color:#ffffff;margin-bottom:8px;">Signal at submission. Tracked through every stage after.</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.75;">The same engine that profiles the application re-runs at every downstream stage: phone screen notes, test scores, interview transcripts, manager assessments. Each new data point is evaluated against what the candidate originally claimed. Gaps that were not surfaced upfront become visible later, before they reach a client.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:10px;">What gets checked</div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Claimed experience vs. test score</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Application answers vs. interview transcript</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Flagged gaps vs. recruiter follow-up in the call</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Timeline claims vs. reference data patterns</div>
+                    </div>
+                </div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:10px;">What SQLink gets</div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">A flag if a recruiter did not address a detected gap in the interview</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Signal on which gaps were resolved vs. which remain open before client shortlisting</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">An auditable evidence trail per candidate: application through placement</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gaps surfaced before offer, not after the client calls back</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
