@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ: SQLINK GROUP ONE-PAGER
+HR buyer: Head of Talent / VP People / CEO
+Created: May 2026
+ntfy topic: sentriq-sqlink-r7k2
+Password: sqlink (atob: c3FsaW5r)
+=============================================================
+
+HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
+=============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq for SQLink</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:       #09090F;
+        --card:     #0D0E1A;
+        --border:   #161728;
+        --muted:    #8080A8;
+        --amber:    #E8A020;
+        --amber-d:  #B87010;
+        --text:     #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --text-dim: rgba(255,255,255,0.52);
+        --green:    #44CC88;
+        --primary:  #E8A020;
+        --white:    #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange:   #E8A020;
+        --red:      #E05555;
+        --purple:   #3A2058;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    .page { max-width: 860px; margin: 0 auto; padding: 64px 40px 80px; }
+
+    .confidential {
+        position: fixed; top: 16px; right: 22px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100;
+    }
+
+    /* Logo row */
+    .logo-row {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 72px;
+    }
+    .logo-mark {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 15px; font-weight: 500; color: #ffffff; letter-spacing: -0.01em;
+    }
+    .logo-mark span { color: var(--amber); }
+    .logo-for {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: rgba(255,255,255,0.28);
+    }
+
+    /* Section label */
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 18px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+
+    /* Section spacing */
+    .section { margin-bottom: 64px; }
+
+    /* Hero */
+    .hero { margin-bottom: 64px; }
+    .hero h1 {
+        font-size: clamp(30px, 4.5vw, 52px); font-weight: 800;
+        line-height: 1.08; letter-spacing: -0.04em;
+        color: #ffffff; margin-bottom: 22px; max-width: 760px;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero p {
+        font-size: 16px; color: var(--text-sub); line-height: 1.75;
+        max-width: 620px;
+    }
+
+    /* Pain cards */
+    .pain-grid {
+        display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+        margin-bottom: 8px;
+    }
+    .pain-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 20px;
+    }
+    .pain-num {
+        font-size: clamp(36px, 5vw, 54px); font-weight: 800;
+        color: var(--amber); margin-bottom: 6px;
+        letter-spacing: -0.04em; line-height: 1;
+    }
+    .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.55; }
+    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; }
+
+    /* Lifecycle */
+    .lc-grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .lc-grid {
+        display: grid; grid-template-columns: repeat(8, 1fr);
+        border: 1px solid var(--border); border-radius: 12px;
+        overflow: hidden; margin-bottom: 14px; min-width: 560px;
+    }
+    .lc-stage {
+        padding: 14px 8px; border-right: 1px solid var(--border);
+        text-align: center; background: rgba(255,255,255,0.03);
+    }
+    .lc-stage:last-child { border-right: none; }
+    .lc-badge {
+        font-size: 9px; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.06em; margin-bottom: 6px; min-height: 13px; color: transparent;
+    }
+    .lc-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 4px; line-height: 1.3; }
+    .lc-tool { font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+    .lc-cost { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); margin-top: 8px; }
+    .lc-stage.lc-sentriq { background: rgba(232,160,32,0.12); border-bottom: 3px solid #E8A020; }
+    .lc-stage.lc-sentriq .lc-badge { color: #E8A020; }
+    .lc-stage.lc-sentriq .lc-name { color: #fff; font-weight: 800; }
+    .lc-stage.lc-sentriq .lc-cost { color: #E8A020; font-weight: 800; }
+    .lc-stage.lc-danger { background: rgba(224,85,85,0.08); border-bottom: 3px solid rgba(224,85,85,0.7); }
+    .lc-stage.lc-danger .lc-cost { color: #E05555; font-weight: 800; }
+
+    .lc-callouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .lc-callout {
+        padding: 14px 16px; border-radius: 10px;
+        border: 1px solid var(--border); background: var(--card);
+    }
+    .lc-callout.lc-amber { background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.18); }
+    .lc-callout h4 { font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
+    .lc-callout.lc-amber h4 { color: rgba(232,160,32,0.9); }
+    .lc-callout p { font-size: 12px; color: var(--text-sub); line-height: 1.55; }
+    .lc-callout.lc-amber p { color: rgba(232,160,32,0.8); }
+
+    /* Solution layers */
+    .layers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .layer-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .layer-num {
+        display: inline-block; font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber);
+        background: rgba(232,160,32,0.08); border-radius: 6px;
+        padding: 3px 10px; margin-bottom: 12px;
+    }
+    .layer-card h3 { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .layer-desc { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .layer-bullets { list-style: none; padding: 0; margin-top: 12px; }
+    .layer-bullets li {
+        font-size: 12px; color: var(--text-sub); padding: 4px 0 4px 16px;
+        position: relative; line-height: 1.5;
+    }
+    .layer-bullets li::before {
+        content: ''; position: absolute; left: 0; top: 10px;
+        width: 5px; height: 5px; background: var(--amber); border-radius: 50%;
+    }
+
+    .layer-output {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 28px; margin-top: 14px;
+    }
+    .output-label {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px;
+    }
+    .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
+    .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* Captcha quote */
+    .captcha-block {
+        background: rgba(232,160,32,0.06);
+        border: 1px solid rgba(232,160,32,0.18);
+        border-left: 4px solid var(--amber);
+        border-radius: 12px; padding: 28px 32px; margin-bottom: 64px;
+    }
+    .captcha-block .quote { font-size: 19px; font-weight: 700; color: var(--amber); margin-bottom: 10px; line-height: 1.4; }
+    .captcha-block .quote-source { font-size: 13px; color: rgba(232,160,32,0.65); }
+
+    /* Value props */
+    .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .value-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 20px;
+    }
+    .value-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .value-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+    /* ROI multiplier row */
+    .roi-row {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 28px 32px; margin-bottom: 14px;
+        display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+        align-items: center; gap: 0;
+    }
+    .roi-item { text-align: center; }
+    .roi-num { font-size: 26px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .roi-label { font-size: 11px; color: var(--text-sub); line-height: 1.5; }
+    .roi-op { font-size: 22px; font-weight: 300; color: rgba(255,255,255,0.15); text-align: center; padding: 0 6px; }
+    .roi-result .roi-num { color: var(--amber); font-size: 30px; }
+
+    /* Ask / pilot */
+    .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .ask-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .ask-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .ask-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+    .ask-card.highlight {
+        background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.22);
+    }
+    .ask-card.highlight h3 { color: rgba(232,160,32,0.92); }
+    .ask-card.highlight p { color: rgba(232,160,32,0.75); }
+
+    /* CTA */
+    .cta {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px;
+        display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .cta-left h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-left p { font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 400px; }
+    .cta-right { text-align: right; flex-shrink: 0; }
+    .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .cta-right .contact-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+        .page { padding: 40px 20px 60px; }
+        .logo-row { margin-bottom: 48px; }
+        .pain-grid { grid-template-columns: 1fr; }
+        .lc-callouts { grid-template-columns: 1fr; }
+        .layers-grid { grid-template-columns: 1fr; }
+        .layers-grid .layer-card { margin-bottom: 0; }
+        .value-grid { grid-template-columns: 1fr; }
+        .roi-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+        .roi-op { display: none; }
+        .ask-grid { grid-template-columns: 1fr; }
+        .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
+        .cta-right { text-align: left; }
+    }
+</style>
+</head>
+<body>
+
+<div class="confidential">Confidential</div>
+
+<!-- OPEN TRACKING (fires once per session, no password required) -->
+<script>
+(function() {
+    if (sessionStorage.getItem('sqlink-pinged')) return;
+    sessionStorage.setItem('sqlink-pinged', '1');
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'SQLink one-pager opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-sqlink-r7k2', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-sqlink-r7k2', {
+                method: 'POST', mode: 'no-cors',
+                body: 'SQLink one-pager opened (location unavailable)\n' + t
+            }).catch(function(){});
+        });
+})();
+</script>
+
+<div class="page">
+
+    <!-- LOGO ROW -->
+    <div class="logo-row">
+        <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="logo-for">For SQLink Group</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="label">Application Quality for Talent Operations</div>
+        <h1>Israel's largest placement business deserves <em>application-level signal</em> at scale.</h1>
+        <p>SQLink and Gotfriends process more candidate applications than any other IT services group in Israel. The bottleneck is not volume. It is knowing, before any recruiter spends time, which applications are worth reviewing. That is the signal gap Sentriq closes.</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- PROBLEM -->
+    <div class="section">
+        <div class="label">The Signal Gap</div>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-num">300K+</div>
+                <div class="pain-label">Candidate profiles processed across the SQLink portfolio each year, with minimal structured signal per application.</div>
+                <div class="pain-source">SQLink / Gotfriends scale estimate</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">25%</div>
+                <div class="pain-label">Of job applications are predicted to be synthetic by 2028. AI makes every submission look polished.</div>
+                <div class="pain-source">Gartner, 2024</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">1:50</div>
+                <div class="pain-label">Signal-to-noise ratio on high-volume roles: one strong candidate per 50 applications reviewed. Recruiters carry the entire cost.</div>
+                <div class="pain-source">Pin Research, 2026</div>
+            </div>
+        </div>
+        <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">
+                For an internal TA team, a low-signal candidate wastes recruiter time. For SQLink, it reaches a client. Every misplaced candidate creates a client service risk, not just a hiring delay. At 1,000+ client placements per year, the margin for undetected low-signal applications is effectively zero.
+            </p>
+        </div>
+    </div>
+
+    <!-- LIFECYCLE -->
+    <div class="section">
+        <div class="label">Where the Gap Lives</div>
+        <div class="lc-grid-wrap">
+            <div class="lc-grid">
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Job Post</div>
+                    <div class="lc-tool">LinkedIn, Glassdoor</div>
+                    <div class="lc-cost">$0</div>
+                </div>
+                <div class="lc-stage lc-sentriq">
+                    <div class="lc-badge">Sentriq</div>
+                    <div class="lc-name">Application</div>
+                    <div class="lc-tool">ATS intake layer</div>
+                    <div class="lc-cost">Signal here</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Recruiter Review</div>
+                    <div class="lc-tool">ATS queue</div>
+                    <div class="lc-cost">~$60/hr</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Phone Screen</div>
+                    <div class="lc-tool">Calendly, manual</div>
+                    <div class="lc-cost">~$120</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Technical Test</div>
+                    <div class="lc-tool">HackerRank, custom</div>
+                    <div class="lc-cost">~$200</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Interview</div>
+                    <div class="lc-tool">HireVue, in-person</div>
+                    <div class="lc-cost">~$500</div>
+                </div>
+                <div class="lc-stage">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Offer</div>
+                    <div class="lc-tool">Internal</div>
+                    <div class="lc-cost">~$1,200</div>
+                </div>
+                <div class="lc-stage lc-danger">
+                    <div class="lc-badge"></div>
+                    <div class="lc-name">Background Check</div>
+                    <div class="lc-tool">Checkr, local</div>
+                    <div class="lc-cost">Post-decision</div>
+                </div>
+            </div>
+        </div>
+        <div class="lc-callouts">
+            <div class="lc-callout lc-amber">
+                <h4>Sentriq sits here</h4>
+                <p>At the application stage, before any recruiter time. Signal profile generated before review begins.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>Background check arrives too late</h4>
+                <p>Identity verification happens post-offer. Application quality is never checked at intake.</p>
+            </div>
+            <div class="lc-callout">
+                <h4>The cost compounds upstream</h4>
+                <p>Every low-signal application that passes recruiter review multiplies the downstream cost for the client.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="section">
+        <div class="label">How Sentriq Works</div>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1</div>
+                <h3>Behavioral Baseline</h3>
+                <p class="layer-desc">Passive, invisible. Captures how the application was completed: timing, navigation, input patterns. No candidate friction.</p>
+                <ul class="layer-bullets">
+                    <li>SDK embedded in application form</li>
+                    <li>Works across any ATS or custom intake</li>
+                    <li>Zero impact on candidate experience</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2</div>
+                <h3>Async Clarification</h3>
+                <p class="layer-desc">Triggered only when Layer 1 finds a gap worth surfacing. A short, specific question tied to what was detected. Candidates with strong applications never see it.</p>
+                <ul class="layer-bullets">
+                    <li>Not a quiz, not a test, not a CAPTCHA</li>
+                    <li>Candidates answer in their own words</li>
+                    <li>Adds signal, never removes candidates</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 3</div>
+                <h3>Human Review</h3>
+                <p class="layer-desc">When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack and surfaces a trust signal alongside the application. The recruiter decides.</p>
+                <ul class="layer-bullets">
+                    <li>Zero automated rejections at any stage</li>
+                    <li>Every flag includes a plain-language reason</li>
+                    <li>EU AI Act compliant by design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div class="output-label">ATS Output</div>
+            <div class="output-text">Candidate Signal Profile</div>
+            <div class="output-sub">Every application enters recruiter review with a confidence label, explanation bullets, and a recommendation. Recruiters start with structured signal, not a blank resume.</div>
+        </div>
+    </div>
+
+    <!-- CAPTCHA QUOTE -->
+    <div class="captcha-block">
+        <div class="quote">"This is the Candidate Hiring Captcha for recruitment."</div>
+        <div class="quote-source">Adi Dagan, HR leader, first hearing the product</div>
+    </div>
+
+    <!-- VALUE FOR SQLINK -->
+    <div class="section">
+        <div class="label">What Changes for SQLink</div>
+        <div class="value-grid" style="margin-bottom:14px;">
+            <div class="value-card">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For SQLink recruiters</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">25-40% reduction in initial review time per application</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-40% faster time to shortlist per role</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Signal visible inside the ATS before recruiter review begins</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Every flag sourced and explained. No black box.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="value-card">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-bottom:14px;">For SQLink clients</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">10-20% improvement in shortlist acceptance rate</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">20-30% fewer low-signal candidates reaching interview</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Structured confidence data alongside every shortlist</div>
+                    </div>
+                    <div style="display:flex;align-items:flex-start;gap:10px;">
+                        <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">A differentiated placement quality story. No other IL firm has this.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-dim);white-space:nowrap;flex-shrink:0;">Early signal</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">Following a first meeting, HSBC Innovation Banking introduced us to their Head of Workforce Architecture and Planning. One conversation. The problem reads as real at one of the world's largest banks.</div>
+        </div>
+    </div>
+
+    <!-- ROI -->
+    <div class="section">
+        <div class="label">Indicative ROI</div>
+        <div class="roi-row">
+            <div class="roi-item">
+                <div class="roi-num">50</div>
+                <div class="roi-label">Active recruiters across portfolio</div>
+            </div>
+            <div class="roi-op">x</div>
+            <div class="roi-item">
+                <div class="roi-num">2 hrs</div>
+                <div class="roi-label">Weekly time on low-signal review</div>
+            </div>
+            <div class="roi-op">x</div>
+            <div class="roi-item">
+                <div class="roi-num">40%</div>
+                <div class="roi-label">Reduction in low-signal review time</div>
+            </div>
+            <div class="roi-op">=</div>
+            <div class="roi-item roi-result">
+                <div class="roi-num">$115K+</div>
+                <div class="roi-label">Annual recruiter capacity recovered</div>
+            </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
+            Calculated at $60/hr loaded recruiter cost, 48 working weeks. Does not include downstream savings from reduced misplacement events or client SLA impact.
+        </p>
+    </div>
+
+    <!-- THE ASK -->
+    <div class="section">
+        <div class="label">The Pilot</div>
+        <div class="ask-grid">
+            <div class="ask-card highlight">
+                <h3>$10K / 6-week pilot</h3>
+                <p>Credited toward annual contract on conversion. 2-3 active roles, full signal instrumentation, Candidate Signal Profiles delivered to your existing ATS. Renewal proof metric defined before day one.</p>
+            </div>
+            <div class="ask-card">
+                <h3>What we define together</h3>
+                <p>Before the pilot starts: the metric that proves value. Recruiter time-to-shortlist, shortlist acceptance rate, or client feedback score. We agree the benchmark upfront. No ambiguity at review.</p>
+            </div>
+        </div>
+        <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">
+                <strong style="color:#ffffff;">Current pipeline:</strong> Design partner conversations active with enterprise HR teams in financial services and global enterprise tech. Demo available. Behavioral signal research complete across 30+ ATS environments.
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>Let's run a call.</h2>
+            <p>30 minutes. Walk through the signal profile on a live role. No slides. Just the product doing its job on applications you already have.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">Samuel Kemper</div>
+            <div class="contact-sub">CEO, Sentriq</div>
+            <div class="contact-sub" style="margin-top:4px;">samuel@sentriq.co</div>
+            <div class="contact-sub" style="margin-top:2px;">sentriq.co</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
