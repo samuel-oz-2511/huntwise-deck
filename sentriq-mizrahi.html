@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+SENTRIQ: MIZRAHI TEFAHOT ONE-PAGER
+Buyer: CISO / Security leadership (not HR)
+Frame: Fraud prevention and compliance risk. Efficiency is a byproduct.
+Created: May 2026
+ntfy topic: sentriq-mizrahi-b4k9
+Password: mizrahi (atob: bWl6cmFoaQ==)
+=============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sentriq for Mizrahi Tefahot</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --bg:       #09090F;
+        --card:     #0D0E1A;
+        --border:   #161728;
+        --muted:    #8080A8;
+        --amber:    #E8A020;
+        --amber-d:  #B87010;
+        --text:     #ffffff;
+        --text-sub: rgba(255,255,255,0.72);
+        --text-dim: rgba(255,255,255,0.52);
+        --green:    #44CC88;
+        --primary:  #E8A020;
+        --white:    #ffffff;
+        --gray-900: #09090F;
+        --gray-800: #0D0E1A;
+        --orange:   #E8A020;
+        --red:      #E05555;
+        --purple:   #3A2058;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    body::after {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none; z-index: 9999; opacity: 0.018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat; background-size: 256px;
+    }
+
+    /* Password gate */
+    .gate-overlay {
+        position: fixed; inset: 0; background: var(--bg);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 10000;
+    }
+    .gate-box {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px; text-align: center;
+        max-width: 360px; width: 90%;
+    }
+    .gate-logo {
+        display: flex; align-items: center; justify-content: center;
+        gap: 8px; font-size: 16px; font-weight: 600;
+        margin-bottom: 28px;
+    }
+    .gate-logo span { color: var(--amber); }
+    .gate-label {
+        font-size: 11px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 18px;
+    }
+    .gate-input {
+        width: 100%; padding: 12px 16px;
+        background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+        border-radius: 10px; font-size: 15px; color: #fff;
+        font-family: inherit; outline: none; text-align: center;
+        letter-spacing: 0.08em; margin-bottom: 14px;
+        transition: border-color 0.15s;
+    }
+    .gate-input:focus { border-color: rgba(232,160,32,0.4); }
+    .gate-input.error { border-color: rgba(224,85,85,0.6); }
+    .gate-btn {
+        width: 100%; padding: 12px;
+        background: var(--amber); color: #000;
+        border: none; border-radius: 10px;
+        font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+        font-family: inherit; cursor: pointer;
+        transition: opacity 0.15s;
+    }
+    .gate-btn:hover { opacity: 0.88; }
+    .gate-sub {
+        font-size: 11px; color: var(--text-dim);
+        margin-top: 16px; line-height: 1.5;
+    }
+
+    .page { max-width: 1100px; margin: 0 auto; padding: 64px 48px 80px; }
+
+    .confidential {
+        position: fixed; top: 16px; right: 22px;
+        font-size: 10px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.12em; color: rgba(255,255,255,0.2); z-index: 100;
+    }
+
+    /* Logo row */
+    .logo-row {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 72px;
+    }
+    .logo-mark {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 15px; font-weight: 500; color: #ffffff; letter-spacing: -0.01em;
+    }
+    .logo-mark span { color: var(--amber); }
+    .logo-for {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: rgba(255,255,255,0.28);
+    }
+
+    /* Section label */
+    .label {
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.15em; color: var(--amber); margin-bottom: 18px;
+        display: flex; align-items: center; gap: 9px;
+    }
+    .label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--amber); opacity: 0.5; }
+
+    .section { margin-bottom: 64px; }
+
+    /* Hero */
+    .hero { margin-bottom: 64px; }
+    .hero h1 {
+        font-size: clamp(28px, 4vw, 50px); font-weight: 800;
+        line-height: 1.1; letter-spacing: -0.04em;
+        color: #ffffff; margin-bottom: 22px; max-width: 820px;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+    .hero p {
+        font-size: 16px; color: var(--text-sub); line-height: 1.75;
+        max-width: 780px;
+    }
+
+    /* Stat cards */
+    .pain-grid {
+        display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+        margin-bottom: 8px;
+    }
+    .pain-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 20px;
+    }
+    .pain-card.amber-border { border-color: rgba(232,160,32,0.22); background: rgba(232,160,32,0.04); }
+    .pain-num {
+        font-size: clamp(34px, 5vw, 52px); font-weight: 800;
+        color: var(--amber); margin-bottom: 6px;
+        letter-spacing: -0.04em; line-height: 1;
+    }
+    .pain-card.amber-border .pain-num { color: rgba(232,160,32,0.9); }
+    .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.55; }
+    .pain-source { font-size: 10px; color: var(--text-dim); margin-top: 8px; }
+
+    /* Security stack */
+    .stack-layers { display: flex; flex-direction: column; gap: 6px; }
+    .stack-layer {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 13px 20px; border-radius: 10px;
+        background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+        gap: 16px;
+    }
+    .stack-layer-left { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+    .stack-layer-name { font-size: 13px; font-weight: 600; color: var(--text-sub); white-space: nowrap; }
+    .stack-layer-tool { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+    .stack-layer-badge {
+        font-size: 10px; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.1em; padding: 3px 10px; border-radius: 20px;
+        white-space: nowrap; flex-shrink: 0;
+    }
+    .badge-defended {
+        color: var(--green); background: rgba(68,204,136,0.08);
+        border: 1px solid rgba(68,204,136,0.2);
+    }
+    .badge-undefended {
+        color: rgba(255,255,255,0.44); background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+    .stack-layer-undefended {
+        background: rgba(224,85,85,0.05); border: 1px solid rgba(224,85,85,0.2);
+        border-left: 3px solid rgba(224,85,85,0.65);
+    }
+    .stack-layer-undefended .stack-layer-name { color: rgba(255,255,255,0.88); }
+    .stack-layer-zero {
+        background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.22);
+        border-left: 3px solid var(--amber); margin-top: 4px;
+    }
+    .stack-layer-zero .stack-layer-name { color: var(--amber); font-weight: 700; font-size: 14px; }
+    .stack-layer-zero .stack-layer-tool { color: rgba(232,160,32,0.6); }
+
+    /* Validation block */
+    .validation-block {
+        background: rgba(232,160,32,0.05);
+        border: 1px solid rgba(232,160,32,0.18);
+        border-left: 4px solid var(--amber);
+        border-radius: 12px; padding: 28px 32px; margin-bottom: 14px;
+    }
+    .validation-quote {
+        font-size: 18px; font-weight: 700; color: var(--amber);
+        margin-bottom: 8px; line-height: 1.4;
+    }
+    .validation-source {
+        font-size: 13px; color: rgba(232,160,32,0.6); margin-bottom: 20px;
+    }
+    .validation-outcomes { display: flex; flex-direction: column; gap: 10px; }
+    .validation-outcome {
+        display: flex; align-items: flex-start; gap: 10px;
+        font-size: 13px; color: var(--text-sub); line-height: 1.5;
+    }
+    .validation-outcome::before {
+        content: ''; width: 5px; height: 5px; background: var(--amber);
+        border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+    }
+
+    /* 3-layer solution */
+    .layers-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .layer-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .layer-num {
+        display: inline-block; font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber);
+        background: rgba(232,160,32,0.08); border-radius: 6px;
+        padding: 3px 10px; margin-bottom: 12px;
+    }
+    .layer-card h3 { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .layer-desc { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+    .layer-bullets { list-style: none; padding: 0; margin-top: 12px; }
+    .layer-bullets li {
+        font-size: 12px; color: var(--text-sub); padding: 4px 0 4px 16px;
+        position: relative; line-height: 1.5;
+    }
+    .layer-bullets li::before {
+        content: ''; position: absolute; left: 0; top: 10px;
+        width: 5px; height: 5px; background: var(--amber); border-radius: 50%;
+    }
+    .layer-output {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 22px 28px; margin-top: 14px;
+    }
+    .output-label {
+        font-size: 10px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px;
+    }
+    .output-text { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.4; }
+    .output-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* ROI */
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; }
+    .roi-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .roi-inputs { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .roi-input-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; color: var(--text-sub); line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+    .roi-input-row:last-child { border-bottom: none; }
+    .roi-input-row span:last-child { font-weight: 700; color: rgba(255,255,255,0.88); white-space: nowrap; }
+    .roi-result-block { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(232,160,32,0.2); }
+    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+    .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
+    .roi-ratio-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-ratio-cell { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.15); border-radius: 10px; padding: 16px 18px; text-align: center; }
+    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .roi-ratio-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .roi-calc-input {
+        width: 80px; padding: 5px 10px;
+        border: 1px solid rgba(232,160,32,0.3); border-radius: 6px;
+        font-size: 13px; font-weight: 700; color: #ffffff;
+        background: rgba(232,160,32,0.08); text-align: center;
+        font-family: inherit; outline: none; flex-shrink: 0;
+    }
+    .roi-calc-input:focus { border-color: var(--amber); box-shadow: 0 0 0 2px rgba(232,160,32,0.12); }
+    .roi-calc-input::-webkit-inner-spin-button,
+    .roi-calc-input::-webkit-outer-spin-button { opacity: 0.4; }
+
+    /* Ask */
+    .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+    .ask-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 24px 22px;
+    }
+    .ask-card h3 { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .ask-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+    .ask-card.highlight {
+        background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.22);
+    }
+    .ask-card.highlight h3 { color: rgba(232,160,32,0.92); }
+    .ask-card.highlight p { color: rgba(232,160,32,0.75); }
+
+    /* CTA */
+    .cta {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 40px 44px;
+        display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .cta-left h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-left p { font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 400px; }
+    .cta-right { text-align: right; flex-shrink: 0; }
+    .cta-right .contact { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .cta-right .contact-sub { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    @media (max-width: 640px) {
+        .page { padding: 40px 20px 60px; }
+        .logo-row { margin-bottom: 48px; }
+        .pain-grid { grid-template-columns: 1fr; }
+        .layers-grid { grid-template-columns: 1fr; }
+        .roi-cards { grid-template-columns: 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr; }
+        .ask-grid { grid-template-columns: 1fr; }
+        .cta { flex-direction: column; gap: 24px; padding: 28px 24px; }
+        .cta-right { text-align: left; }
+        .stack-layer { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- OPEN TRACKING: fires on page load, before password -->
+<script>
+(function() {
+    if (sessionStorage.getItem('mizrahi-pinged')) return;
+    sessionStorage.setItem('mizrahi-pinged', '1');
+    var t = new Date().toISOString();
+    fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(geo) {
+            var loc = (geo.city || '') + ', ' + (geo.country_name || '') + ' (' + (geo.ip || '') + ')';
+            var org = geo.org || '';
+            var msg = 'Mizrahi Tefahot one-pager opened\n' + loc + '\n' + org + '\n' + t;
+            fetch('https://ntfy.sh/sentriq-mizrahi-b4k9', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+        })
+        .catch(function() {
+            fetch('https://ntfy.sh/sentriq-mizrahi-b4k9', {
+                method: 'POST', mode: 'no-cors',
+                body: 'Mizrahi Tefahot one-pager opened (location unavailable)\n' + t
+            }).catch(function(){});
+        });
+})();
+</script>
+
+<!-- PASSWORD GATE -->
+<div class="gate-overlay" id="gateOverlay">
+    <div class="gate-box">
+        <div class="gate-logo">
+            <svg width="26" height="26" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="gate-label">Confidential: Mizrahi Tefahot</div>
+        <input type="password" id="gateInput" class="gate-input" placeholder="Access code" autocomplete="off"/>
+        <button class="gate-btn" onclick="checkGate()">Open</button>
+        <div class="gate-sub">Prepared exclusively for Mizrahi Tefahot leadership.<br>Unauthorized access is prohibited.</div>
+    </div>
+</div>
+
+<script>
+function checkGate() {
+    var v = document.getElementById('gateInput').value;
+    if (v === atob('bWl6cmFoaQ==')) {
+        document.getElementById('gateOverlay').style.display = 'none';
+        if (!sessionStorage.getItem('mizrahi-unlocked')) {
+            sessionStorage.setItem('mizrahi-unlocked', '1');
+            var t = new Date().toISOString();
+            fetch('https://ipapi.co/json/')
+                .then(function(r){ return r.json(); })
+                .then(function(geo) {
+                    var loc = (geo.city||'') + ', ' + (geo.country_name||'') + ' (' + (geo.ip||'') + ')';
+                    var msg = 'Mizrahi deck UNLOCKED\n' + loc + '\n' + (geo.org||'') + '\n' + t;
+                    fetch('https://ntfy.sh/sentriq-mizrahi-b4k9', { method: 'POST', mode: 'no-cors', body: msg }).catch(function(){});
+                })
+                .catch(function(){
+                    fetch('https://ntfy.sh/sentriq-mizrahi-b4k9', {
+                        method: 'POST', mode: 'no-cors',
+                        body: 'Mizrahi deck UNLOCKED (location unavailable)\n' + t
+                    }).catch(function(){});
+                });
+        }
+    } else {
+        var inp = document.getElementById('gateInput');
+        inp.classList.add('error');
+        inp.value = '';
+        inp.placeholder = 'Incorrect';
+        setTimeout(function(){ inp.classList.remove('error'); inp.placeholder = 'Access code'; }, 1200);
+    }
+}
+document.getElementById('gateInput').addEventListener('keydown', function(e){ if (e.key === 'Enter') checkGate(); });
+</script>
+
+<div class="confidential">Confidential</div>
+
+<div class="page">
+
+    <!-- LOGO ROW -->
+    <div class="logo-row">
+        <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 56 56" fill="none">
+                <rect x="9" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="9" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <rect x="36" y="16" width="11" height="4.5" rx="2" fill="#E8A020"/>
+                <rect x="42.5" y="19.5" width="4.5" height="32" rx="2" fill="#E8A020"/>
+                <circle cx="28" cy="7" r="3" fill="#E8A020"/>
+            </svg>
+            Sentriq<span>.</span>
+        </div>
+        <div class="logo-for">For Mizrahi Tefahot</div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="label">Candidate Hiring Captcha</div>
+        <h1>A compromised hire is a <em>compliance event.</em><br>Not an HR one.</h1>
+        <p>Every application entering Mizrahi Tefahot's pipeline carries zero behavioral signal. Background checks run post-offer. Identity is verified. Application authenticity is not. Sentriq closes that gap at the moment of submission, before a single recruiter hour is spent.</p>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- STAT CARDS -->
+    <div class="section">
+        <div class="label">The Exposure</div>
+        <div class="pain-grid">
+            <div class="pain-card amber-border">
+                <div class="pain-num">$195M</div>
+                <div class="pain-label">Mizrahi Tefahot deferred prosecution agreement with the U.S. DOJ. Employees in trusted client-facing roles facilitated tax evasion over multiple years. Each one was hired through a standard process.</div>
+                <div class="pain-source">U.S. Department of Justice, 2014</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">$11.45M</div>
+                <div class="pain-label">Average cost of a malicious insider incident at a financial institution. Wire transfers, customer records, and privileged system access within reach from day one.</div>
+                <div class="pain-source">IBM Security / Ponemon Institute, 2023</div>
+            </div>
+            <div class="pain-card">
+                <div class="pain-num">85 days</div>
+                <div class="pain-label">Average detection window after an insider threat is active. Credentials are provisioned on day one. The breach is discovered three months later.</div>
+                <div class="pain-source">IBM Security / Ponemon Institute, 2023</div>
+            </div>
+        </div>
+        <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.75;">
+                KnowBe4, a security-first company, hired a North Korean IT worker who immediately attempted to load malware. He passed a resume screen, four video interviews, and a full background check using a stolen U.S. identity. Financial services is the primary target sector for state-affiliated actors. The entry point was not the network. It was the application.
+            </p>
+            <p style="font-size:10px;color:var(--text-dim);margin-top:8px;">KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024.</p>
+        </div>
+    </div>
+
+    <!-- SECURITY STACK -->
+    <div class="section">
+        <div class="label">The Undefended Layer</div>
+        <p style="font-size:14px;color:var(--text-sub);line-height:1.7;margin-bottom:20px;max-width:700px;">Every layer of a modern bank's security stack is defended. Except one. The hiring application arrives with zero behavioral signal and no screening layer upstream of the ATS.</p>
+        <div class="stack-layers">
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Customer Transactions</div>
+                    <div class="stack-layer-tool">Behavioral biometrics, AML transaction monitoring, entity resolution</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">Defended</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Digital Identity</div>
+                    <div class="stack-layer-tool">Customer identity verification, document collection, liveness detection</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">Defended</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Network Perimeter</div>
+                    <div class="stack-layer-tool">Firewall, SIEM, endpoint detection, Zero Trust architecture</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">Defended</span>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">IT System Access</div>
+                    <div class="stack-layer-tool">MFA, PAM, privileged access controls, identity governance</div>
+                </div>
+                <span class="stack-layer-badge badge-defended">Defended</span>
+            </div>
+            <div class="stack-layer stack-layer-undefended">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Hiring Applications</div>
+                    <div class="stack-layer-tool">Background check runs post-offer, identity only. No behavioral baseline. No application-level signal.</div>
+                </div>
+                <span class="stack-layer-badge badge-undefended">Undefended</span>
+            </div>
+            <div class="stack-layer stack-layer-zero">
+                <div class="stack-layer-left">
+                    <div class="stack-layer-name">Layer 0: Sentriq</div>
+                    <div class="stack-layer-tool">Behavioral trust signal at submission. Before the pipeline starts. Before recruiter time is spent.</div>
+                </div>
+                <span class="stack-layer-badge" style="color:var(--amber);background:rgba(232,160,32,0.12);border:1px solid rgba(232,160,32,0.25);">This is where we sit</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HSBC VALIDATION -->
+    <div class="section">
+        <div class="label">Financial Services Validation</div>
+        <div class="validation-block">
+            <div class="validation-quote">"I actually think that's the right approach."</div>
+            <div class="validation-source">Director, HSBC Innovation Banking. Ran the PoC and vendor procurement pipeline with HSBC's CISO, CTO, and senior IT leadership for six years.</div>
+            <div class="validation-outcomes">
+                <div class="validation-outcome">In a single first call, HSBC Innovation Banking identified their control owner for joiners, movers, leavers, and authentication under the CISO as the right entry point. Unprompted.</div>
+                <div class="validation-outcome">HSBC is actively connecting us to their cyber and workforce teams. The framing landed immediately: a compromised hire is a compliance event, and the CISO owns it.</div>
+                <div class="validation-outcome">ROI frame validated by HSBC leadership: funnel reduction plus recruiter hours saved per screened application. "If the funnel is smaller, if you're able to screen more effectively, that's the ROI we're looking for."</div>
+                <div class="validation-outcome">HSBC's hiring pipeline runs 600,000+ applications per year with zero behavioral signal today. The problem is not hypothetical at scale. It is a function of volume.</div>
+            </div>
+        </div>
+        <div style="padding:14px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">Financial services is not a vertical Sentriq is entering. It is where the category begins. The problem reads as real inside every major bank because the risk is documented, the tooling gap is structural, and the compliance cost is already on the books.</p>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+        <div class="label">How Sentriq Works</div>
+        <div class="layers-grid">
+            <div class="layer-card">
+                <div class="layer-num">Layer 1</div>
+                <h3>Behavioral Baseline</h3>
+                <p class="layer-desc">Passive, invisible. Every application submission carries a fingerprint: timing patterns, tool signatures, device signals. Captured at submission with zero friction and no changes to the application form.</p>
+                <ul class="layer-bullets">
+                    <li>No candidate friction. No form changes.</li>
+                    <li>Works with any ATS or custom intake</li>
+                    <li>Detects proxy submission, AI-assisted fill, bulk tooling</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 2</div>
+                <h3>Async Challenge</h3>
+                <p class="layer-desc">Triggered only when Layer 1 flags an anomaly. A personalized async task designed to detect proxy impersonation and AI-assisted responses. Legitimate applicants proceed unimpeded.</p>
+                <ul class="layer-bullets">
+                    <li>Fired only on anomalous applications</li>
+                    <li>Questions are AI-proof by design</li>
+                    <li>Zero automated rejections at this stage</li>
+                </ul>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">Layer 3</div>
+                <h3>Human Review</h3>
+                <p class="layer-desc">When Layer 2 flags divergence, a Sentriq analyst reviews the full signal stack. A trust signal is surfaced alongside the application. The employer decides. Full audit trail at every stage.</p>
+                <ul class="layer-bullets">
+                    <li>Zero automated rejections at any stage</li>
+                    <li>Every flag includes a plain-language reason</li>
+                    <li>EU AI Act compliant by design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="layer-output">
+            <div class="output-label">ATS Output</div>
+            <div class="output-text">Candidate Signal Profile</div>
+            <div class="output-sub">Every application enters recruiter review with a confidence signal, documented evidence, and a risk flag if one exists. No separate dashboard. No new system. No PII stored at Sentriq. Plugs in, replaces nothing.</div>
+        </div>
+    </div>
+
+    <!-- ROI CALCULATOR -->
+    <div class="section">
+        <div class="label">ROI: Bank's View</div>
+        <div class="roi-cards">
+            <div class="roi-card">
+                <div class="roi-card-label">Screening cost recovery</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>Roles filled per year</span><input type="number" id="roiRoles" class="roi-calc-input" value="700" min="50" max="10000" step="50" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>Applications per role (avg)</span><input type="number" id="roiApps" class="roi-calc-input" value="80" min="20" max="500" step="10" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>Phone screen cost per call</span><span>$25</span></div>
+                    <div class="roi-input-row"><span>Applications cleared before screen</span><span id="roiClearedPct">30%</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiScreenSaved">$420K</div>
+                    <div class="roi-result-label">per year in screening costs recovered</div>
+                </div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-card-label">Compliance incident floor</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>Privileged-access roles per year</span><input type="number" id="roiPriv" class="roi-calc-input" value="200" min="10" max="2000" step="10" oninput="calcROI()"/></div>
+                    <div class="roi-input-row"><span>Average insider incident cost</span><span>$11.45M</span></div>
+                    <div class="roi-input-row"><span>Sentriq annual cost (Scale tier)</span><span>$84K</span></div>
+                    <div class="roi-input-row"><span>Coverage: Sentriq cost vs. 1 incident</span><span id="roiCoverageRatio">136x</span></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiExposure">$2.29B</div>
+                    <div class="roi-result-label">compliance exposure across privileged-access hiring cohort</div>
+                </div>
+            </div>
+        </div>
+        <div class="roi-ratio-strip">
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiReturnRatio">5:1</div>
+                <div class="roi-ratio-label">Return on screening alone</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num">136x</div>
+                <div class="roi-ratio-label">Single incident vs. Sentriq cost</div>
+            </div>
+            <div class="roi-ratio-cell">
+                <div class="roi-ratio-num" id="roiBreakevenCalls">336</div>
+                <div class="roi-ratio-label">Screening calls to break even</div>
+            </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
+            Screening cost: $25 per phone screen call. Triage rate: 30% of applications cleared before recruiter screen. Sentriq Scale tier: $84K/yr (covers 700+ roles annually). Compliance exposure: privileged-access roles x $11.45M IBM/Ponemon average. Sentriq does not guarantee incident prevention. The ratio reflects cost-to-protect vs. cost-of-single-event.
+        </p>
+    </div>
+
+    <!-- FREE ASSESSMENT -->
+    <div class="section">
+        <div class="label">The Pilot</div>
+        <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:22px 24px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);">Free: Retroactive Signal Analysis</span>
+                <span style="font-size:11px;background:rgba(232,160,32,0.15);color:var(--amber);border-radius:20px;padding:2px 10px;font-weight:700;">No commitment</span>
+            </div>
+            <p style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:8px;line-height:1.5;">Give us one closed role. We show you what we would have caught.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.6;">Take any position filled in the last 90 days, any seniority level, compliance or technology preferred. We run the full Sentriq signal analysis on the application pool and deliver a Candidate Signal Profile for each submission. You see exactly which applications would have been flagged, what behavioral signals triggered, and what the ROI calculates to from your own hiring data. No candidate data leaves your control. One meeting to set up.</p>
+        </div>
+        <div class="ask-grid">
+            <div class="ask-card highlight">
+                <h3>$10,000 / 6-week pilot</h3>
+                <p>Credited toward annual contract on conversion. 1-2 active roles, full signal instrumentation, Candidate Signal Profiles delivered to your existing ATS. No ATS changes, no integration overhead, no PII stored at Sentriq. ROI metric agreed before day one. If it works, we move to full deployment across privileged-access roles. If it does not, you paid for a thorough answer.</p>
+            </div>
+            <div class="ask-card">
+                <h3>Design partner terms</h3>
+                <p>No list price. Terms you define. SOC 2 Type I audit begins Q3 2026: no enterprise data touches Sentriq before it completes. EU AI Act compliant by architecture: zero automated rejections, full audit trail, human in the loop at every flag. Preferred commercial terms are preserved through expansion.</p>
+            </div>
+        </div>
+        <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">
+                <strong style="color:#ffffff;">Current pipeline:</strong> Design partner conversations active with global financial services institutions and enterprise technology companies. The retroactive signal analysis is the first step for every conversation. It removes all ambiguity about whether the problem is real inside your specific hiring pipeline.
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <div class="cta-left">
+            <h2>One conversation. No slides.</h2>
+            <p>30 minutes. Walk through the signal profile on a real role from your own pipeline. The product does its job. You decide if the problem is real enough to test further.</p>
+        </div>
+        <div class="cta-right">
+            <div class="contact">Samuel Kemper</div>
+            <div class="contact-sub">CEO, Sentriq</div>
+            <div class="contact-sub" style="margin-top:4px;">samuel@sentriq.co</div>
+            <div class="contact-sub" style="margin-top:2px;">sentriq.co</div>
+        </div>
+    </div>
+
+    <!-- SOURCES -->
+    <div style="margin-top:32px;padding:16px 22px;border-top:1px solid var(--border);">
+        <p style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.8;">
+            [1] IBM Security / Ponemon Institute, "2023 Cost of Insider Threats: Global Report." $11.45M average cost, 85-day detection window.
+            [2] Mizrahi Tefahot Bank deferred prosecution agreement: U.S. Department of Justice, Office of Public Affairs, 2014.
+            [3] KnowBe4 CEO Stu Sjouwerman, July 2024. FBI/CISA Joint Advisory 2024. CrowdStrike Threat Intelligence 2025.
+            [4] HSBC hiring volume estimate based on LinkedIn Jobs data, April 2026, and HSBC Annual Report 2025 employee count.
+            All figures are sourced from public records. Sentriq is in design partner phase. No live production data claims are implied.
+        </p>
+    </div>
+
+</div>
+
+<script>
+function fmtUSD(n) {
+    if (n >= 1000000000) return '$' + (n / 1000000000).toFixed(1) + 'B';
+    if (n >= 1000000)    return '$' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000)       return '$' + Math.round(n / 1000) + 'K';
+    return '$' + Math.round(n);
+}
+
+function calcROI() {
+    var roles   = parseInt(document.getElementById('roiRoles').value) || 700;
+    var apps    = parseInt(document.getElementById('roiApps').value) || 80;
+    var priv    = parseInt(document.getElementById('roiPriv').value) || 200;
+
+    var totalApps        = roles * apps;
+    var triageRate       = 0.30;
+    var screenCost       = 25;
+    var screenSaved      = totalApps * triageRate * screenCost;
+    var sentriqCost      = 84000;
+    var incidentCost     = 11450000;
+    var exposure         = priv * incidentCost;
+    var coverageRatio    = Math.round(incidentCost / sentriqCost);
+    var returnRatio      = Math.round((screenSaved / sentriqCost) * 10) / 10;
+    var breakevenCalls   = Math.ceil(sentriqCost / screenCost);
+
+    document.getElementById('roiScreenSaved').textContent  = fmtUSD(screenSaved);
+    document.getElementById('roiExposure').textContent     = fmtUSD(exposure);
+    document.getElementById('roiCoverageRatio').textContent = coverageRatio + 'x';
+    document.getElementById('roiReturnRatio').textContent  = returnRatio.toFixed(1) + ':1';
+    document.getElementById('roiBreakevenCalls').textContent = breakevenCalls.toLocaleString();
+}
+
+calcROI();
+</script>
+
+</body>
+</html>
