@@ -225,6 +225,16 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
     .roi-breakeven { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-left: 4px solid var(--amber); border-radius: 12px; padding: 18px 24px; margin-bottom: 12px; }
     .roi-breakeven p { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.5; }
+    .roi-calc-input {
+        width: 80px; padding: 5px 10px;
+        border: 1px solid rgba(232,160,32,0.3); border-radius: 6px;
+        font-size: 13px; font-weight: 700; color: #ffffff;
+        background: rgba(232,160,32,0.08); text-align: center;
+        font-family: inherit; outline: none; flex-shrink: 0;
+    }
+    .roi-calc-input:focus { border-color: var(--amber); box-shadow: 0 0 0 2px rgba(232,160,32,0.12); }
+    .roi-calc-input::-webkit-inner-spin-button,
+    .roi-calc-input::-webkit-outer-spin-button { opacity: 0.4; }
 
     /* Ask / pilot */
     .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
@@ -577,14 +587,14 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
             <div class="roi-card">
                 <div class="roi-card-label">Recruiter throughput per role</div>
                 <div class="roi-inputs">
-                    <div class="roi-input-row"><span>Roles filled per year</span><span>1,000+</span></div>
+                    <div class="roi-input-row"><span>Roles filled per year</span><input type="number" id="roiRoles" class="roi-calc-input" value="1000" min="100" max="50000" step="100" oninput="calcROI()"></div>
                     <div class="roi-input-row"><span>Hours to shortlist, current</span><span>~23 hrs</span></div>
                     <div class="roi-input-row"><span>Hours to shortlist, with Sentriq</span><span>~14 hrs</span></div>
                     <div class="roi-input-row"><span>Hours saved per role</span><span>~9 hrs</span></div>
                     <div class="roi-input-row"><span>Recruiter cost per hour</span><span>84 NIS</span></div>
                 </div>
                 <div class="roi-result-block">
-                    <div class="roi-big-num">&#8362;756K</div>
+                    <div class="roi-big-num" id="roiThroughput">&#8362;756K</div>
                     <div class="roi-result-label">per year in recruiter time recovered</div>
                 </div>
             </div>
@@ -594,16 +604,16 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                     <div class="roi-input-row"><span>Average tech salary placed</span><span>360,000 NIS</span></div>
                     <div class="roi-input-row"><span>Placement fee (17%)</span><span>~61,000 NIS</span></div>
                     <div class="roi-input-row"><span>Cost per misplacement (fee + redo)</span><span>~62,000 NIS</span></div>
-                    <div class="roi-input-row"><span>Misplacements avoided per year</span><span>10</span></div>
+                    <div class="roi-input-row"><span>Misplacements avoided per year</span><input type="number" id="roiMisplace" class="roi-calc-input" value="10" min="1" max="500" step="1" oninput="calcROI()"></div>
                 </div>
                 <div class="roi-result-block">
-                    <div class="roi-big-num">&#8362;620K</div>
+                    <div class="roi-big-num" id="roiPrevention">&#8362;620K</div>
                     <div class="roi-result-label">per year from placements protected</div>
                 </div>
             </div>
         </div>
         <div class="roi-breakeven">
-            <p>Sentriq needs to prevent just 9 bad placements per year to cover its full annual cost. At 1,000+ placements, that is a 1% threshold.</p>
+            <p id="roiBreakeven">Sentriq needs to prevent just 9 bad placements per year to cover its full annual cost. At 1,000 placements, that is a 0.9% threshold.</p>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
             Hourly rate: 84 NIS (15,600 NIS employer cost / 186 working hours). Shortlist benchmark: LinkedIn Talent Insights 2024. Placement fee: 17% of 360K NIS average tech annual salary. Misplacement cost includes fee forfeited and full re-search time at 84 NIS/hr.
@@ -646,5 +656,28 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
 
 </div>
 
+<script>
+function fmtNIS(n) {
+    if (n >= 1000000) return '₪' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000)    return '₪' + Math.round(n / 1000) + 'K';
+    return '₪' + n.toLocaleString();
+}
+
+function calcROI() {
+    var roles    = parseInt(document.getElementById('roiRoles').value)    || 1000;
+    var misplace = parseInt(document.getElementById('roiMisplace').value) || 10;
+
+    var throughput = roles * 9 * 84;
+    var prevention = misplace * 62000;
+    var breakeven  = Math.ceil(555000 / 62000); // annual cost ~$150K = ~555K NIS
+
+    document.getElementById('roiThroughput').textContent = fmtNIS(throughput);
+    document.getElementById('roiPrevention').textContent = fmtNIS(prevention);
+    document.getElementById('roiBreakeven').textContent  =
+        'Sentriq needs to prevent just ' + breakeven + ' bad placements per year to cover its full annual cost. At ' +
+        roles.toLocaleString() + ' placements, that is a ' +
+        ((breakeven / roles) * 100).toFixed(1) + '% threshold.';
+}
+</script>
 </body>
 </html>
