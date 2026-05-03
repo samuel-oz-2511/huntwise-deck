@@ -213,7 +213,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .value-card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
 
     /* ROI cards */
-    .roi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
     .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; }
     .roi-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
     .roi-inputs { display: flex; flex-direction: column; gap: 8px; flex: 1; }
@@ -611,12 +611,25 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                     <div class="roi-result-label">per year from placements protected</div>
                 </div>
             </div>
+            <div class="roi-card">
+                <div class="roi-card-label">Contractor margin at risk</div>
+                <div class="roi-inputs">
+                    <div class="roi-input-row"><span>Avg contractor monthly salary</span><input type="number" id="roiContractSalary" class="roi-calc-input" value="25000" min="5000" max="100000" step="1000" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>20% overhead margin per month</span><span id="roiMarginPerMonth">5,000 NIS</span></div>
+                    <div class="roi-input-row"><span>Avg contract months lost</span><input type="number" id="roiContractMonths" class="roi-calc-input" value="9" min="1" max="36" step="1" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>Bad contractor placements avoided</span><input type="number" id="roiContractBad" class="roi-calc-input" value="5" min="1" max="200" step="1" oninput="calcROI()"></div>
+                </div>
+                <div class="roi-result-block">
+                    <div class="roi-big-num" id="roiContractor">&#8362;1.1M</div>
+                    <div class="roi-result-label">per year in recurring margin protected</div>
+                </div>
+            </div>
         </div>
         <div class="roi-breakeven">
             <p id="roiBreakeven">Sentriq needs to prevent just 9 bad placements per year to cover its full annual cost. At 1,000 placements, that is a 0.9% threshold.</p>
         </div>
         <p style="font-size:11px;color:var(--text-dim);line-height:1.7;">
-            Hourly rate: 84 NIS (15,600 NIS employer cost / 186 working hours). Shortlist benchmark: LinkedIn Talent Insights 2024. Placement fee: 17% of 360K NIS average tech annual salary. Misplacement cost includes fee forfeited and full re-search time at 84 NIS/hr.
+            Hourly rate: 84 NIS (15,600 NIS employer cost / 186 working hours). Shortlist benchmark: LinkedIn Talent Insights 2024. Placement fee: 17% of 360K NIS average tech annual salary. Misplacement cost includes fee forfeited and full re-search time at 84 NIS/hr. Contractor margin: 20% monthly overhead on placed salary, calculated over remaining contract duration lost on early exit.
         </p>
     </div>
 
@@ -664,16 +677,23 @@ function fmtNIS(n) {
 }
 
 function calcROI() {
-    var roles    = parseInt(document.getElementById('roiRoles').value)    || 1000;
-    var misplace = parseInt(document.getElementById('roiMisplace').value) || 10;
+    var roles           = parseInt(document.getElementById('roiRoles').value)          || 1000;
+    var misplace        = parseInt(document.getElementById('roiMisplace').value)       || 10;
+    var contractSalary  = parseInt(document.getElementById('roiContractSalary').value) || 25000;
+    var contractMonths  = parseInt(document.getElementById('roiContractMonths').value) || 9;
+    var contractBad     = parseInt(document.getElementById('roiContractBad').value)    || 5;
 
-    var throughput = roles * 9 * 84;
-    var prevention = misplace * 62000;
-    var breakeven  = Math.ceil(555000 / 62000); // annual cost ~$150K = ~555K NIS
+    var throughput   = roles * 9 * 84;
+    var prevention   = misplace * 62000;
+    var marginMonth  = contractSalary * 0.20;
+    var contractor   = contractBad * contractMonths * marginMonth;
+    var breakeven    = Math.ceil(555000 / 62000);
 
-    document.getElementById('roiThroughput').textContent = fmtNIS(throughput);
-    document.getElementById('roiPrevention').textContent = fmtNIS(prevention);
-    document.getElementById('roiBreakeven').textContent  =
+    document.getElementById('roiThroughput').textContent   = fmtNIS(throughput);
+    document.getElementById('roiPrevention').textContent   = fmtNIS(prevention);
+    document.getElementById('roiContractor').textContent   = fmtNIS(contractor);
+    document.getElementById('roiMarginPerMonth').textContent = Math.round(marginMonth).toLocaleString() + ' NIS';
+    document.getElementById('roiBreakeven').textContent =
         'Sentriq needs to prevent just ' + breakeven + ' bad placements per year to cover its full annual cost. At ' +
         roles.toLocaleString() + ' placements, that is a ' +
         ((breakeven / roles) * 100).toFixed(1) + '% threshold.';
