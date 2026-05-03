@@ -461,7 +461,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <h3>Behavioral Baseline</h3>
                 <p class="layer-desc">פסיבי, בלתי נראה. מתעד איך טופס ההגשה מולא: תזמון, ניווט, דפוסי הקלדה. ללא חיכוך למועמד.</p>
                 <ul class="layer-bullets">
-                    <li>SDK משובץ בטופס הגשה</li>
+                    <li>SDK מוטמע בטופס הגשה</li>
                     <li>עובד עם כל ATS או intake מותאם</li>
                     <li>ללא השפעה על חוויית המועמד</li>
                 </ul>
@@ -469,9 +469,9 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="layer-card">
                 <div class="layer-num">Layer 2</div>
                 <h3>Async Clarification</h3>
-                <p class="layer-desc">מופעל רק כש-Layer 1 מזהה פער שדורש בדיקה. שאלה ספציפית וקצרה, מותאמת למה שזוהה. מועמדים עם הגשות חזקות לא נחשפים אליה בכלל.</p>
+                <p class="layer-desc">מופעל רק כש-Layer 1 מזהה פער שדורש בדיקה. תהליך קצר ומותאם אישית לכל מועמד. מועמדים עם הגשות חזקות לא נחשפים אליו בכלל.</p>
                 <ul class="layer-bullets">
-                    <li>לא מבחן, לא חידון, לא CAPTCHA</li>
+                    <li>לא שאלון גנרי. כל מועמד מקבל תהליך שונה.</li>
                     <li>מועמדים עונים במילים שלהם</li>
                     <li>מוסיף signal, לא פוסל מועמדים</li>
                 </ul>
@@ -499,13 +499,13 @@ ntfy topic: sentriq-sqlink-he-n4k8
         <div class="label">Gap Assessor</div>
         <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.2);border-right:4px solid var(--amber);border-radius:12px;padding:22px 28px;margin-bottom:14px;">
             <div style="font-size:15px;font-weight:700;color:#ffffff;margin-bottom:8px;">Signal בהגשה. עוקב בכל שלב לאחר מכן.</div>
-            <div style="font-size:13px;color:var(--text-sub);line-height:1.85;">אותו מנוע שניתח את ההגשה חוזר בכל שלב בתהליך: הערות שיחת המיון, ציוני מבחן, תמלולי ראיון, הערכות מנהלים. כל מידע חדש נבדק מול מה שהמועמד הצהיר בהגשה. פערים שלא עלו בהתחלה צפים בהמשך, לפני שהשמה יוצאת ללקוח.</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.85;">אותו מנוע שניתח את ההגשה חוזר בכל שלב בתהליך: הערות שיחת המיון, ציוני מבחן, תמלולי ראיון, הערכות מנהלים. כל מידע חדש נבדק מול מה שהמועמד הצהיר בהגשה. פערים שלא עלו בהתחלה צפים בהמשך, לפני שההשמה מבוצעת.</div>
         </div>
         <div class="gap-grid">
             <div class="gap-card">
                 <div class="gap-card-label">מה נבדק</div>
                 <div class="gap-bullets">
-                    <div class="gap-bullet">ניסיון מוצהר מול ציון מבחן</div>
+                    <div class="gap-bullet">נסיון מוצהר מול תוצאות ה-async challenge ומידע נוסף שיש לנו על ההגשה</div>
                     <div class="gap-bullet">תשובות ההגשה מול תמלול הראיון</div>
                     <div class="gap-bullet">פערים שזוהו לעומת מה שנבדק בשיחת המיון</div>
                     <div class="gap-bullet">עקביות ציר הזמן מול נתוני reference</div>
@@ -629,8 +629,8 @@ ntfy topic: sentriq-sqlink-he-n4k8
         </div>
         <div class="roi-ratio-strip">
             <div class="roi-ratio-cell">
-                <div class="roi-ratio-num" id="roiPerPosition">&#8362;3,850</div>
-                <div class="roi-ratio-label">ROI לתפקיד</div>
+                <div class="roi-ratio-num" id="roiPerPosition">&#8362;2.5M</div>
+                <div class="roi-ratio-label">ROI שנתי כולל</div>
             </div>
             <div class="roi-ratio-cell">
                 <div class="roi-ratio-num" id="roiReturnRatio">7:1</div>
@@ -660,7 +660,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
         <div class="ask-grid">
             <div class="ask-card highlight">
                 <h3>35,000 ₪ / פיילוט 6 שבועות</h3>
-                <p>יזוכה לחוזה שנתי עם חתימה. 2-3 תפקידים פעילים, full instrumentation, Candidate Signal Profiles ישירות ל-ATS הקיים. מדד הצלחה מוסכם לפני יום ראשון. אם זה עובד, עוברים לפריסה מלאה. ללא החלפת מערכות.</p>
+                <p>זיכוי לחוזה שנתי עם חתימה. 2-3 תפקידים פעילים, full instrumentation, Candidate Signal Profiles ישירות ל-ATS הקיים. מדד הצלחה מוסכם לפני יום ראשון. אם זה עובד, עוברים לפריסה מלאה. ללא החלפת מערכות.</p>
             </div>
             <div class="ask-card">
                 <h3>מה שנגדיר יחד</h3>
@@ -711,7 +711,6 @@ function calcROI() {
     var marginMonth  = contractSalary * 0.20;
     var contractor   = contractBad * contractMonths * marginMonth;
     var totalROI     = throughput + prevention + contractor;
-    var perPosition  = Math.round(totalROI / roles);
     var ratio        = Math.round(totalROI / ANNUAL_COST_NIS);
     var breakeven    = Math.ceil(ANNUAL_COST_NIS / 62000);
 
@@ -719,7 +718,7 @@ function calcROI() {
     document.getElementById('roiPrevention').innerHTML          = fmtNIS(prevention);
     document.getElementById('roiContractor').innerHTML          = fmtNIS(contractor);
     document.getElementById('roiMarginPerMonth').textContent    = Math.round(marginMonth).toLocaleString() + ' ₪';
-    document.getElementById('roiPerPosition').innerHTML         = fmtNIS(perPosition);
+    document.getElementById('roiPerPosition').innerHTML         = fmtNIS(totalROI);
     document.getElementById('roiReturnRatio').textContent       = ratio + ':1';
     document.getElementById('roiBreakevenCount').textContent    = breakeven;
 }
