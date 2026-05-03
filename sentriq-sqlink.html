@@ -155,7 +155,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .lc-callout.lc-amber { background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.18); }
     .lc-callout h4 { font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
     .lc-callout.lc-amber h4 { color: rgba(232,160,32,0.9); }
-    .lc-callout p { font-size: 12px; color: var(--text-sub); line-height: 1.55; }
+    .lc-callout p { font-size: 13px; color: var(--text-sub); line-height: 1.55; }
     .lc-callout.lc-amber p { color: rgba(232,160,32,0.8); }
 
     /* Solution layers */
@@ -239,6 +239,22 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     .ask-card.highlight h3 { color: rgba(232,160,32,0.92); }
     .ask-card.highlight p { color: rgba(232,160,32,0.75); }
 
+    /* Gap Assessor cards */
+    .gap-card {
+        background: var(--card); border: 1px solid var(--border);
+        border-radius: 12px; padding: 20px 22px;
+    }
+    .gap-card-label {
+        font-size: 11px; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.1em; color: var(--amber); margin-bottom: 10px;
+    }
+    .gap-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .gap-bullet { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-sub); line-height: 1.5; }
+    .gap-bullet::before {
+        content: ''; width: 5px; height: 5px; background: var(--amber);
+        border-radius: 50%; flex-shrink: 0; margin-top: 6px; display: block;
+    }
+
     /* CTA */
     .cta {
         background: var(--card); border: 1px solid var(--border);
@@ -318,7 +334,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
     <!-- HERO -->
     <div class="hero">
         <div class="label">Application Quality for Talent Operations</div>
-        <h1>Israel's largest placement business deserves <em>application-level signal</em> at scale.</h1>
+        <h1>Israel's largest placement business is missing <em>application-level signal</em> at scale.</h1>
         <p>SQLink and Gotfriends process more candidate applications than any other IT services group in Israel. The bottleneck is not volume. It is knowing, before any recruiter spends time, which applications are worth reviewing. That is the signal gap Sentriq closes.</p>
     </div>
 
@@ -346,7 +362,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
         </div>
         <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.7;">
-                For an internal TA team, a low-signal candidate wastes recruiter time. For SQLink, it reaches a client. Every misplaced candidate creates a client service risk, not just a hiring delay. At 1,000+ client placements per year, the margin for undetected low-signal applications is effectively zero.
+                For an internal TA team, a low-signal candidate wastes recruiter time. For SQLink, it reaches a client and damages the relationship. At 1,000+ placements per year, the margin for undetected low-signal applications is effectively zero.
             </p>
         </div>
     </div>
@@ -367,6 +383,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
                     <div class="lc-name">Application</div>
                     <div class="lc-tool">Claim record built</div>
                     <div class="lc-cost">Gap Assessor starts</div>
+                    <div style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:rgba(232,160,32,0.6);margin-top:6px;">Entry point</div>
                 </div>
                 <div class="lc-stage lc-sentriq" style="border-bottom-color:rgba(232,160,32,0.35);">
                     <div class="lc-badge" style="color:rgba(232,160,32,0.45);">Sentriq</div>
@@ -472,46 +489,22 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
             <div style="font-size:13px;color:var(--text-sub);line-height:1.75;">The same engine that profiles the application re-runs at every downstream stage: phone screen notes, test scores, interview transcripts, manager assessments. Each new data point is evaluated against what the candidate originally claimed. Gaps that were not surfaced upfront become visible later, before they reach a client.</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:10px;">What gets checked</div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Claimed experience vs. test score</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Application answers vs. interview transcript</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Flagged gaps vs. recruiter follow-up in the call</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Timeline claims vs. reference data patterns</div>
-                    </div>
+            <div class="gap-card">
+                <div class="gap-card-label">What gets checked</div>
+                <div class="gap-bullets">
+                    <div class="gap-bullet">Claimed experience vs. test score</div>
+                    <div class="gap-bullet">Application answers vs. interview transcript</div>
+                    <div class="gap-bullet">Flagged gaps vs. recruiter follow-up in the call</div>
+                    <div class="gap-bullet">Timeline claims vs. reference data patterns</div>
                 </div>
             </div>
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
-                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:10px;">What SQLink gets</div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">A flag if a recruiter did not address a detected gap in the interview</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Signal on which gaps were resolved vs. which remain open before client shortlisting</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">An auditable evidence trail per candidate: application through placement</div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;">
-                        <div style="width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.5;">Gaps surfaced before offer, not after the client calls back</div>
-                    </div>
+            <div class="gap-card">
+                <div class="gap-card-label">Before the client shortlist</div>
+                <div class="gap-bullets">
+                    <div class="gap-bullet">A flag if a recruiter did not address a detected gap in the interview</div>
+                    <div class="gap-bullet">Gaps surfaced before offer, not after the client calls back</div>
+                    <div class="gap-bullet">Which claims were verified by data, which gaps remain open at shortlist</div>
+                    <div class="gap-bullet">An auditable evidence trail per candidate: application through placement</div>
                 </div>
             </div>
         </div>
@@ -611,7 +604,7 @@ HARD STOPS BEFORE DELIVERY: run standard checklist before pushing.
         <div class="ask-grid">
             <div class="ask-card highlight">
                 <h3>$10K / 6-week pilot</h3>
-                <p>Credited toward annual contract on conversion. 2-3 active roles, full signal instrumentation, Candidate Signal Profiles delivered to your existing ATS. Renewal proof metric defined before day one.</p>
+                <p>Credited toward annual contract on conversion. 2-3 active roles, full signal instrumentation, Candidate Signal Profiles delivered to your existing ATS. Renewal proof metric defined before day one. If it works, we move to full integration across your open roles. No rip-and-replace required.</p>
             </div>
             <div class="ask-card">
                 <h3>What we define together</h3>
