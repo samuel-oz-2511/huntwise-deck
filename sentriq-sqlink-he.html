@@ -360,7 +360,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
         <div class="pain-grid">
             <div class="pain-card">
                 <div class="pain-num">300K+</div>
-                <div class="pain-label">הגשות מועמדים שעוברות בפורטפוליו SQLink מדי שנה, ללא signal מובנה לכל הגשה.</div>
+                <div class="pain-label">הגשות מועמדים שמגיעות לפורטפוליו SQLink מדי שנה, ללא signal מובנה לכל הגשה.</div>
                 <div class="pain-source">SQLink / Gotfriends scale estimate</div>
             </div>
             <div class="pain-card">
@@ -370,7 +370,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             </div>
             <div class="pain-card">
                 <div class="pain-num">1:50</div>
-                <div class="pain-label">יחס signal לרעש על תפקידים בנפח גבוה: מועמד חזק אחד לכל 50 מועמדויות שנבדקות. המגייסים נושאים בכל העלות.</div>
+                <div class="pain-label">יחס signal לרעש על תפקידים בנפח גבוה: מועמד חזק אחד לכל 50 מועמדויות שנבדקות. המגייסים סופגים את כל הנטל.</div>
                 <div class="pain-source">Pin Research, 2026</div>
             </div>
         </div>
@@ -443,7 +443,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             </div>
             <div class="lc-callout">
                 <h4>תמלולי ראיון נבדקים</h4>
-                <p>אם פער זוהה בהגשה, Sentriq קורא את תמלול הראיון כדי לוודא שטופל לפני שהמועמד מגיע ללקוח.</p>
+                <p>אם פער זוהה בהגשה, Sentriq מנתח את תמלול הראיון כדי לוודא שטופל לפני שהמועמד מגיע ללקוח.</p>
             </div>
             <div class="lc-callout">
                 <h4>בדיקת הרקע מגיעה מאוחר מדי</h4>
@@ -459,21 +459,21 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="layer-card">
                 <div class="layer-num">Layer 1</div>
                 <h3>Behavioral Baseline</h3>
-                <p class="layer-desc">פסיבי, בלתי נראה. לוכד איך טופס ההגשה מולא: תזמון, ניווט, דפוסי הקלדה. ללא חיכוך למועמד.</p>
+                <p class="layer-desc">פסיבי, בלתי נראה. מתעד איך טופס ההגשה מולא: תזמון, ניווט, דפוסי הקלדה. ללא חיכוך למועמד.</p>
                 <ul class="layer-bullets">
                     <li>SDK משובץ בטופס הגשה</li>
                     <li>עובד עם כל ATS או intake מותאם</li>
-                    <li>אפס השפעה על חוויית המועמד</li>
+                    <li>ללא השפעה על חוויית המועמד</li>
                 </ul>
             </div>
             <div class="layer-card">
                 <div class="layer-num">Layer 2</div>
                 <h3>Async Clarification</h3>
-                <p class="layer-desc">מופעל רק כשLayer 1 מזהה פער שדורש בדיקה. שאלה ספציפית וקצרה, מותאמת למה שזוהה. מועמדים עם הגשות חזקות לעולם לא רואים אותה.</p>
+                <p class="layer-desc">מופעל רק כשLayer 1 מזהה פער שדורש בדיקה. שאלה ספציפית וקצרה, מותאמת למה שזוהה. מועמדים עם הגשות חזקות לא נחשפים אליה בכלל.</p>
                 <ul class="layer-bullets">
                     <li>לא מבחן, לא חידון, לא CAPTCHA</li>
                     <li>מועמדים עונים במילים שלהם</li>
-                    <li>מוסיף signal, לא מוציא מועמדים</li>
+                    <li>מוסיף signal, לא פוסל מועמדים</li>
                 </ul>
             </div>
             <div class="layer-card">
@@ -481,7 +481,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <h3>Human Review</h3>
                 <p class="layer-desc">כשLayer 2 מזהה סטייה, אנליסט Sentriq בוחן את כל ה-signal שנצבר ומציף trust signal לצד ההגשה. המגייס מחליט.</p>
                 <ul class="layer-bullets">
-                    <li>אפס דחיות אוטומטיות בכל שלב</li>
+                    <li>ללא דחיות אוטומטיות בכל שלב</li>
                     <li>כל דגל כולל הסבר בשפה פשוטה</li>
                     <li>עומד בדרישות EU AI Act by design</li>
                 </ul>
@@ -506,8 +506,8 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <div class="gap-card-label">מה נבדק</div>
                 <div class="gap-bullets">
                     <div class="gap-bullet">ניסיון מוצהר מול ציון מבחן</div>
-                    <div class="gap-bullet">תשובות הגשה מול תמלול ראיון</div>
-                    <div class="gap-bullet">פערים שזוהו מול follow-up מגייס בשיחה</div>
+                    <div class="gap-bullet">תשובות ההגשה מול תמלול ראיון</div>
+                    <div class="gap-bullet">פערים שזוהו לעומת מה שנבדק בשיחת המיון</div>
                     <div class="gap-bullet">עקביות ציר הזמן מול נתוני reference</div>
                 </div>
             </div>
@@ -526,7 +526,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
     <!-- CAPTCHA QUOTE -->
     <div class="captcha-block">
         <div class="quote">"זה ה-Candidate Hiring Captcha של עולם הגיוס."</div>
-        <div class="quote-source">יזם עם 2 אקזיטים, לאחר שמיעה ראשונה על Sentriq</div>
+        <div class="quote-source">יזם עם 2 אקזיטים, בהיכרות הראשונה עם Sentriq</div>
     </div>
 
     <!-- VALUE FOR SQLINK -->
@@ -542,7 +542,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% קיצור זמן ל-shortlist לכל תפקיד</div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% מהיר יותר מהגשה ל-shortlist לכל תפקיד</div>
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
@@ -618,7 +618,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <div class="roi-inputs">
                     <div class="roi-input-row"><span>שכר חודשי ממוצע לקבלן</span><input type="number" id="roiContractSalary" class="roi-calc-input" value="25000" min="5000" max="100000" step="1000" oninput="calcROI()"></div>
                     <div class="roi-input-row"><span>Margin חודשי 20%</span><span id="roiMarginPerMonth">5,000 ₪</span></div>
-                    <div class="roi-input-row"><span>חודשי חוזה ממוצעים שאבדו</span><input type="number" id="roiContractMonths" class="roi-calc-input" value="9" min="1" max="36" step="1" oninput="calcROI()"></div>
+                    <div class="roi-input-row"><span>חודשי חוזה שאבדו בממוצע</span><input type="number" id="roiContractMonths" class="roi-calc-input" value="9" min="1" max="36" step="1" oninput="calcROI()"></div>
                     <div class="roi-input-row"><span>השמות קבלנים כושלות שנמנעו</span><input type="number" id="roiContractBad" class="roi-calc-input" value="5" min="1" max="200" step="1" oninput="calcROI()"></div>
                 </div>
                 <div class="roi-result-block">
@@ -655,7 +655,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <span style="font-size:11px;background:rgba(232,160,32,0.15);color:var(--amber);border-radius:20px;padding:2px 10px;font-weight:700;">ללא התחייבות</span>
             </div>
             <p style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:8px;line-height:1.6;">תנו לנו תפקיד אחד שאוייש. נראה לכם מה היינו תופסים.</p>
-            <p style="font-size:13px;color:var(--text-sub);line-height:1.75;">קחו כל תפקיד שאיישתם ב-90 הימים האחרונים. אנחנו מריצים את ניתוח ה-signal המלא של Sentriq על pool המועמדות ומספקים Candidate Signal Profile לכל הגשה. תראו בדיוק אילו מועמדים היו מסומנים, אילו signals הופעלו, ומה אותה השמה עלתה לכם לעומת מה שSentriq היה מציף. אף מידע לא יוצא מהשליטה שלכם. לוקח פגישה אחת להתחיל.</p>
+            <p style="font-size:13px;color:var(--text-sub);line-height:1.75;">קחו כל תפקיד שאיישתם ב-90 הימים האחרונים. אנחנו מריצים את ניתוח ה-signal המלא של Sentriq על pool ההגשות ומספקים Candidate Signal Profile לכל הגשה. תראו בדיוק אילו מועמדים היו מסומנים, אילו signals הופעלו, ומה אותה השמה עלתה לכם לעומת מה שSentriq היה מציף. אף מידע לא יוצא מהשליטה שלכם. לוקח פגישה אחת להתחיל.</p>
         </div>
         <div class="ask-grid">
             <div class="ask-card highlight">
@@ -664,12 +664,12 @@ ntfy topic: sentriq-sqlink-he-n4k8
             </div>
             <div class="ask-card">
                 <h3>מה שנגדיר יחד</h3>
-                <p>לפני שהפיילוט מתחיל: המדד שמוכיח ערך. זמן מגייס ל-shortlist, שיעור קבלת shortlist, או ציון משוב לקוח. אנחנו מסכימים על ה-benchmark מראש. אין עמימות בסיום.</p>
+                <p>לפני שהפיילוט מתחיל: המדד שמוכיח ערך. זמן מגייס ל-shortlist, שיעור קבלת shortlist, או ציון משוב לקוח. אנחנו מסכימים על ה-benchmark מראש. אין הפתעות בסוף הפיילוט.</p>
             </div>
         </div>
         <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
-                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם צוותי HR enterprise בשירותים פיננסיים ובטכנולוגיה enterprise גלובלית. Demo זמין. מחקר signal התנהגותי הושלם על 30+ סביבות ATS.
+                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם צוותי HR enterprise בשירותים פיננסיים ובטכנולוגיה enterprise גלובלית. Demo זמין. מחקר behavioral signal הושלם על 30+ סביבות ATS.
             </p>
         </div>
     </div>
