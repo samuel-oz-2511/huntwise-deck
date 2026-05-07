@@ -111,7 +111,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
     }
     .pain-num {
         font-size: clamp(36px, 5vw, 54px); font-weight: 800;
-        color: var(--amber); margin-bottom: 6px;
+        color: rgba(255,255,255,0.88); margin-bottom: 6px;
         letter-spacing: -0.04em; line-height: 1;
     }
     .pain-label { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
@@ -217,13 +217,13 @@ ntfy topic: sentriq-sqlink-he-n4k8
     .roi-input-row:last-child { border-bottom: none; }
     .roi-input-row span:last-child { font-weight: 700; color: rgba(255,255,255,0.88); white-space: nowrap; }
     .roi-result-block { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(232,160,32,0.2); }
-    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; }
+    .roi-big-num { font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--amber); letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px; direction: ltr; unicode-bidi: isolate; }
     .roi-result-label { font-size: 11px; color: rgba(255,255,255,0.45); }
     .roi-breakeven { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.2); border-right: 4px solid var(--amber); border-radius: 12px; padding: 18px 24px; margin-bottom: 12px; }
     .roi-breakeven p { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.5; }
     .roi-ratio-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 12px; }
     .roi-ratio-cell { background: rgba(232,160,32,0.06); border: 1px solid rgba(232,160,32,0.15); border-radius: 10px; padding: 16px 18px; text-align: center; }
-    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .roi-ratio-num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; color: var(--amber); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; direction: ltr; unicode-bidi: isolate; }
     .roi-ratio-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
     .roi-calc-input {
         width: 80px; padding: 5px 10px;
@@ -289,6 +289,8 @@ ntfy topic: sentriq-sqlink-he-n4k8
         .layers-grid { grid-template-columns: 1fr 1fr; }
         .lc-callouts { grid-template-columns: 1fr 1fr; }
         .roi-cards { grid-template-columns: 1fr; }
+        .pain-grid { grid-template-columns: 1fr 1fr; }
+        .roi-ratio-strip { grid-template-columns: 1fr 1fr; }
     }
 
     /* Mobile */
@@ -359,7 +361,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
     <div class="hero">
         <div class="label">Application Intelligence לצוותי הגיוס</div>
         <h1>קבוצת ההשמה הגדולה בישראל מחמיצה <em>signal ברמת ההגשה</em> בסקייל.</h1>
-        <p>SQLink וגוטפרנדס מעבדים יותר הגשות מכל קבוצת IT services אחרת בישראל. צוואר הבקבוק הוא לא נפח המועמדים. הבעיה היא לדעת, לפני שמגייס פותח קורות חיים, אילו הגשות בכלל שוות את הזמן. זה הפער ש-Sentriq סוגר.</p>
+        <p>SQLink וגוטפרנדס מעבדים יותר הגשות מכל קבוצת IT services אחרת בישראל. צוואר הבקבוק הוא לא נפח המועמדים. הבעיה היא לדעת, לפני שמגייס פותח קורות חיים, אילו הגשות בכלל מצדיקות עיון. Sentriq נותן לכל מגייס שלכם תשובה לפני שהם פותחים קורות חיים.</p>
     </div>
 
     <hr class="divider"/>
@@ -371,7 +373,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="pain-card">
                 <div class="pain-num">300K+</div>
                 <div class="pain-label">הגשות מועמדים שמגיעות לפורטפוליו SQLink מדי שנה, ללא signal מובנה לכל הגשה.</div>
-                <div class="pain-source">SQLink / Gotfriends scale estimate</div>
+                <div class="pain-source">הערכה בהתאם לסקייל המשולב של SQLink + Gotfriends</div>
             </div>
             <div class="pain-card">
                 <div class="pain-num">25%</div>
@@ -386,7 +388,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
         </div>
         <div style="margin-top:14px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
-                בארגון פנימי, מועמד עם signal נמוך מבזבז זמן מגייסים. עבור SQLink הוא מגיע ללקוח ופוגע בדיוק היכן שהכי כואב. ב-1,000+ השמות בשנה, אין מרחב לטעות.
+                בארגון פנימי, הגשה עם signal נמוך מבזבזת זמן מגייסים. עבור SQLink היא מגיעה ללקוח ומשקפת ישירות על רמת ה-shortlist. ב-10,000+ השמות בשנה, אי אפשר להרשות לעצמנו טעויות.
             </p>
         </div>
     </div>
@@ -441,7 +443,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                 <div class="lc-stage lc-danger">
                     <div class="lc-badge"></div>
                     <div class="lc-name">בדיקת רקע</div>
-                    <div class="lc-tool">Checkr, מקומי</div>
+                    <div class="lc-tool">ספקים מקומיים</div>
                     <div class="lc-cost">זהות בלבד</div>
                 </div>
             </div>
@@ -478,7 +480,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             </div>
             <div class="layer-card">
                 <div class="layer-num">Layer 2</div>
-                <h3>Async Clarification</h3>
+                <h3>Async Challenge</h3>
                 <p class="layer-desc">מופעל רק כש-Layer 1 מזהה פער שדורש בדיקה. תהליך קצר ומותאם אישית לכל מועמד. מועמדים עם הגשות חזקות לא נחשפים אליו בכלל.</p>
                 <ul class="layer-bullets">
                     <li>לא שאלון גנרי. כל מועמד מקבל תהליך שונה.</li>
@@ -489,7 +491,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="layer-card">
                 <div class="layer-num">Layer 3</div>
                 <h3>Human Review</h3>
-                <p class="layer-desc">כש-Layer 2 מזהה סטייה, אנליסט Sentriq בוחן את כל ה-signal שנצבר ומציף trust signal לצד ההגשה. המגייס מחליט.</p>
+                <p class="layer-desc">כש-Layer 2 מזהה סטייה, הצוות של Sentriq בוחן את כל ה-signal שנצבר ומציף trust signal לצד ההגשה. המגייס מחליט.</p>
                 <ul class="layer-bullets">
                     <li>ללא דחיות אוטומטיות בכל שלב</li>
                     <li>כל דגל כולל הסבר בשפה פשוטה</li>
@@ -515,7 +517,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
             <div class="gap-card">
                 <div class="gap-card-label">מה נבדק</div>
                 <div class="gap-bullets">
-                    <div class="gap-bullet">נסיון מוצהר מול תוצאות ה-async challenge</div>
+                    <div class="gap-bullet">ניסיון מוצהר מול תוצאות ה-async challenge</div>
                     <div class="gap-bullet">תשובות ההגשה מול תמלול הראיון</div>
                     <div class="gap-bullet">פערים שזוהו לעומת מה שנבדק בשיחת המיון</div>
                     <div class="gap-bullet">עקביות ציר הזמן מול נתוני reference</div>
@@ -552,7 +554,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% מהיר יותר מהגשה ל-shortlist לכל תפקיד (בהערכה)</div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">20-40% מהיר יותר מהגשה ל-shortlist לכל תפקיד</div>
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
@@ -581,14 +583,14 @@ ntfy topic: sentriq-sqlink-he-n4k8
                     </div>
                     <div style="display:flex;align-items:flex-start;gap:10px;">
                         <div style="width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:5px;"></div>
-                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">יתרון תחרותי שאף חברת השמה אחרת בישראל לא יכולה להציע.</div>
+                        <div style="font-size:13px;color:var(--text-sub);line-height:1.6;">יתרון תחרותי שאין עדיין לאף חברת השמה אחרת בישראל.</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px;">
-            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-dim);white-space:nowrap;flex-shrink:0;">Early Signal</div>
-            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">לאחר פגישה ראשונה, HSBC Innovation Banking הציגו אותנו לראש ארכיטקטורת כוח האדם שלהם. שיחה אחת. הבעיה מהדהדת גם באחד הבנקים הגדולים בעולם.</div>
+        <div style="background:rgba(232,160,32,0.05);border:1px solid rgba(232,160,32,0.18);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px;">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);white-space:nowrap;flex-shrink:0;">Early Signal</div>
+            <div style="font-size:13px;color:var(--text-sub);line-height:1.7;">לאחר פגישה ראשונה, HSBC Innovation Banking הציגו אותנו לצוות ה-People Strategy שלהם. שיחה אחת. הבעיה מהדהדת גם אצל הלקוחות שלכם.</div>
         </div>
     </div>
 
@@ -670,7 +672,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
         <div class="ask-grid">
             <div class="ask-card highlight">
                 <h3>35,000 ₪ / פיילוט 6 שבועות</h3>
-                <p>זיכוי לחוזה שנתי עם חתימה. 2-3 תפקידים פעילים, full instrumentation, Candidate Signal Profiles ישירות ל-ATS הקיים. מדד הצלחה מוסכם לפני יום ראשון. אם זה עובד, עוברים לפריסה מלאה. ללא החלפת מערכות.</p>
+                <p>פיילוט עצמאי, ללא התחייבות המשך. 2-3 תפקידים פעילים, full instrumentation, Candidate Signal Profiles ישירות ל-ATS הקיים. מדד הצלחה מוסכם לפני יום ראשון. ללא החלפת מערכות.</p>
             </div>
             <div class="ask-card">
                 <h3>מה שנגדיר יחד</h3>
@@ -679,7 +681,7 @@ ntfy topic: sentriq-sqlink-he-n4k8
         </div>
         <div style="padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:12px;">
             <p style="font-size:13px;color:var(--text-sub);line-height:1.8;">
-                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם צוותי HR enterprise בשירותים פיננסיים ובטכנולוגיה enterprise גלובלית. Demo זמין. תואם את כל ה-ATS הנפוצים בשוק הישראלי.
+                <strong style="color:#ffffff;">Pipeline נוכחי:</strong> שיחות design partner פעילות עם צוותי HR בשירותים פיננסיים ובחברות טכנולוגיה גלובליות. תואם את כל ה-ATS הנפוצים בשוק הישראלי.
             </p>
         </div>
     </div>
