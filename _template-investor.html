@@ -739,63 +739,134 @@ SLIDE ORDER (13 slides):
 <div class="slide bg-dark" data-index="7">
 <div class="slide-inner">
     <span class="label">Competitive Landscape</span>
-    <h2>Over $2B in adjacent capital is flowing toward this problem. <span style="color:var(--amber);">Nobody has the application layer.</span></h2>
-    <div style="overflow-x:auto;margin-top:14px;margin-bottom:16px;">
-        <table style="width:100%;border-collapse:collapse;font-size:11px;">
-            <thead>
-                <tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);">
-                    <th style="padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;width:22%;">Company</th>
-                    <th style="padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;width:13%;">Threat to Sentriq</th>
-                    <th style="padding:8px 6px;text-align:center;color:var(--muted);font-weight:600;width:11%;">Behavioral Detection</th>
-                    <th style="padding:8px 6px;text-align:center;color:var(--muted);font-weight:600;width:13%;">Cross-Company Graph</th>
-                    <th style="padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;">Sentriq's Edge</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Tofu</div><div style="font-size:9px;color:var(--muted);">$1.2M seed · hiretofu.com</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Direct</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">CV forensics and a static Fraudbase. No behavioral challenge, no live cross-company network. Detection signatures Tofu has never modeled.</td>
-                </tr>
-                <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Crosschq ApplicantX</div><div style="font-size:9px;color:var(--muted);">Series B · Launched Nov 2025</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Direct</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">Full-funnel detection with Series B distribution. No behavioral challenge. No cross-company graph. Series B overhead without a structural moat.</td>
-                </tr>
-                <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Persona</div><div style="font-size:9px;color:var(--muted);">$2B valuation · Inside Greenhouse, Workday, Ashby</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Blocked</td>
-                    <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">Identity only. Confirms the face, not the intent. DPRK operatives use real stolen SSNs and pass Persona. If they add a behavioral layer, they arrive with Greenhouse installed. Most important company to watch.</td>
-                </tr>
-                <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.04);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Greenhouse + Ashby + iCIMS</div><div style="font-size:9px;color:var(--muted);">ATS incumbents · Native fraud detection, 2025</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.35);">Distribution Risk</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Permanently blocked</td>
-                    <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">ATS customer contracts prohibit cross-employer data sharing. The cross-company graph requires neutral ground: architecturally unavailable to any ATS vendor.</td>
-                </tr>
-                <tr style="border-bottom:1px solid var(--border);background:rgba(232,160,32,0.03);">
-                    <td style="padding:7px 10px;"><div style="font-weight:700;color:var(--text);">Clarity + GetReal + HireVue</div><div style="font-size:9px;color:var(--muted);">$16M + $24.5M + $450M · Late-funnel deepfakes</div></td>
-                    <td style="padding:7px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.12);color:var(--amber);border:1px solid rgba(232,160,32,0.25);">Complement</span></td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:13px;">&#10007;</td>
-                    <td style="padding:7px 6px;text-align:center;color:var(--amber);font-size:10px;">Permanently blocked</td>
-                    <td style="padding:7px 10px;font-size:10.5px;color:var(--text-sub);">All three operate at the video interview stage, after $1,700+ in process cost is spent. Their $490M+ raised confirms hiring fraud is a fundable enterprise security problem. All three sit downstream of Sentriq.</td>
-                </tr>
-                <tr style="background:rgba(232,160,32,0.08);border:1px solid rgba(232,160,32,0.3);">
-                    <td style="padding:8px 10px;"><div style="font-weight:700;color:var(--text);">Sentriq</div><div style="font-size:9px;color:var(--amber);">Hiring Integrity Infrastructure</div></td>
-                    <td style="padding:8px 10px;"><span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(232,160,32,0.18);color:var(--amber);border:1px solid rgba(232,160,32,0.4);">The Layer</span></td>
-                    <td style="padding:8px 6px;text-align:center;color:#44CC88;font-weight:700;font-size:13px;">&#10003;</td>
-                    <td style="padding:8px 6px;text-align:center;color:#44CC88;font-weight:700;font-size:13px;">&#10003;</td>
-                    <td style="padding:8px 10px;font-size:10.5px;color:var(--amber);font-weight:600;">Only player at the application layer with both behavioral detection and a cross-company fraud graph. The graph requires neutral ground and direct candidate consent: architecturally unavailable to every ATS, background check company, and employer-deployed product.</td>
-                </tr>
-            </tbody>
-        </table>
+    <h2>Over $3B in adjacent capital is flowing toward this problem. <span style="color:var(--amber);">Nobody has the application layer.</span></h2>
+<!-- COMPETITIVE GANTT MAP -->
+<div style="margin-bottom:14px;">
+  <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Where every player operates</div>
+  <svg viewBox="0 0 620 284" style="width:100%;display:block;border:1px solid rgba(255,255,255,0.06);border-radius:8px;background:rgba(255,255,255,0.01);" xmlns="http://www.w3.org/2000/svg">
+    <!-- Amber zone: FORM FILL column -->
+    <rect x="90" y="0" width="106" height="284" fill="rgba(232,160,32,0.04)"/>
+    <!-- Header row -->
+    <rect x="0" y="0" width="620" height="26" fill="rgba(255,255,255,0.03)"/>
+    <text x="143" y="17" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="#E8A020">FORM FILL</text>
+    <text x="249" y="17" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,0.38)">APPLICATION</text>
+    <text x="355" y="17" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,0.38)">SCREENING</text>
+    <text x="461" y="17" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,0.38)">INTERVIEW</text>
+    <text x="567" y="17" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,0.38)">OFFER / HIRE</text>
+    <!-- Column dividers -->
+    <line x1="90" y1="0" x2="90" y2="284" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <line x1="196" y1="26" x2="196" y2="284" stroke="rgba(232,160,32,0.22)" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="302" y1="26" x2="302" y2="284" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <line x1="408" y1="26" x2="408" y2="284" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <line x1="514" y1="26" x2="514" y2="284" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <!-- ROW 1: Gem (APPLICATION to HIRE) -->
+    <rect x="0" y="26" width="620" height="22" fill="rgba(255,255,255,0.01)"/>
+    <text x="86" y="41" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Gem</text>
+    <rect x="198" y="31" width="420" height="12" rx="2" fill="rgba(224,85,85,0.28)"/>
+    <text x="408" y="41" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">AI Fraud Detection Agent</text>
+    <!-- ROW 2: Crosschq (APPLICATION to HIRE) -->
+    <rect x="198" y="53" width="420" height="12" rx="2" fill="rgba(224,85,85,0.22)"/>
+    <text x="86" y="63" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Crosschq</text>
+    <text x="408" y="63" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">ApplicantX</text>
+    <!-- ROW 3: Tofu (APPLICATION to SCREENING) -->
+    <rect x="0" y="70" width="620" height="22" fill="rgba(255,255,255,0.01)"/>
+    <text x="86" y="85" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Tofu</text>
+    <rect x="198" y="75" width="212" height="12" rx="2" fill="rgba(200,120,60,0.28)"/>
+    <text x="304" y="85" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">CV forensics</text>
+    <!-- ROW 4: Endorsed (APPLICATION to SCREENING) -->
+    <text x="86" y="107" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Endorsed</text>
+    <rect x="198" y="97" width="212" height="12" rx="2" fill="rgba(200,120,60,0.22)"/>
+    <text x="304" y="107" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Identity + ranking</text>
+    <!-- ROW 5: Persona (SCREENING to HIRE) -->
+    <rect x="0" y="114" width="620" height="22" fill="rgba(255,255,255,0.01)"/>
+    <text x="86" y="129" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Persona</text>
+    <rect x="304" y="119" width="314" height="12" rx="2" fill="rgba(140,90,210,0.28)"/>
+    <text x="461" y="129" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Identity verification</text>
+    <!-- ROW 6: Clarity (SCREENING to INTERVIEW) -->
+    <text x="86" y="151" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Clarity</text>
+    <rect x="304" y="141" width="212" height="12" rx="2" fill="rgba(60,130,220,0.28)"/>
+    <text x="410" y="151" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Interview intelligence</text>
+    <!-- ROW 7: GetReal (INTERVIEW) -->
+    <rect x="0" y="158" width="620" height="22" fill="rgba(255,255,255,0.01)"/>
+    <text x="86" y="173" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">GetReal</text>
+    <rect x="410" y="163" width="106" height="12" rx="2" fill="rgba(60,130,220,0.22)"/>
+    <text x="463" y="173" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Deepfakes</text>
+    <!-- ROW 8: HireVue (INTERVIEW to HIRE) -->
+    <text x="86" y="195" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">HireVue</text>
+    <rect x="410" y="185" width="208" height="12" rx="2" fill="rgba(60,130,220,0.18)"/>
+    <text x="514" y="195" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Video interview</text>
+    <!-- ROW 9: iProov (INTERVIEW to HIRE) -->
+    <rect x="0" y="202" width="620" height="22" fill="rgba(255,255,255,0.01)"/>
+    <text x="86" y="217" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">iProov</text>
+    <rect x="410" y="207" width="208" height="12" rx="2" fill="rgba(60,130,220,0.15)"/>
+    <text x="514" y="217" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Biometric identity</text>
+    <!-- ROW 10: Checkr (OFFER/HIRE) -->
+    <text x="86" y="239" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="rgba(255,255,255,0.65)">Checkr</text>
+    <rect x="516" y="229" width="102" height="12" rx="2" fill="rgba(100,100,100,0.35)"/>
+    <text x="567" y="239" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.45)">Background check</text>
+    <!-- SENTRIQ separator -->
+    <line x1="0" y1="248" x2="620" y2="248" stroke="rgba(232,160,32,0.18)" stroke-width="1"/>
+    <!-- SENTRIQ ROW -->
+    <rect x="0" y="248" width="620" height="30" fill="rgba(232,160,32,0.04)"/>
+    <text x="86" y="268" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="800" fill="#E8A020">Sentriq</text>
+    <!-- Entry point bar: FORM FILL (solid amber) -->
+    <rect x="92" y="254" width="102" height="16" rx="2" fill="rgba(232,160,32,0.5)"/>
+    <text x="143" y="266" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" font-weight="700" fill="#09090F">Entry point</text>
+    <!-- Gap Assessor bar: APPLICATION to HIRE (amber outline) -->
+    <rect x="196" y="254" width="422" height="16" rx="2" fill="rgba(232,160,32,0.1)" stroke="rgba(232,160,32,0.3)" stroke-width="1"/>
+    <text x="407" y="266" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7.5" font-weight="600" fill="rgba(232,160,32,0.75)">Gap Assessor: continuous pipeline coverage</text>
+    <!-- SUBMIT boundary label -->
+    <text x="196" y="282" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="7" font-weight="700" fill="rgba(232,160,32,0.4)">SUBMIT</text>
+  </svg>
+</div>
+<div style="overflow-x:auto;margin-top:14px;margin-bottom:16px;">
+  <table style="width:100%;border-collapse:collapse;font-size:10.5px;">
+    <thead>
+      <tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);">
+        <th style="padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;width:15%;">Competitor</th>
+        <th style="padding:8px 10px;text-align:left;color:var(--muted);font-weight:600;width:42%;">Their ceiling</th>
+        <th style="padding:8px 10px;text-align:left;color:var(--amber);font-weight:700;width:43%;">Sentriq's edge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Gem <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.3);margin-left:4px;">Direct</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">Fraud detection inside Gem's platform. Runs after submission. No form-fill behavioral baseline. No cross-company graph across other tools.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Platform-agnostic entry before the application exists. Catches what Gem's network never sees because Sentriq operates upstream of every ATS.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Crosschq <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.3);margin-left:4px;">Direct</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">Full-funnel scan of static signals. No behavioral challenge during form fill. No cross-company graph. Series B overhead without a structural moat.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Behavioral baseline during form fill captures what no static signal can. Cross-company graph requires neutral ground: architecturally unavailable to Crosschq.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Tofu <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.3);margin-left:4px;">Direct</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">CV forensics and a static Fraudbase. Signatures limited to fraud patterns Tofu has already catalogued. No behavioral challenge. No live cross-company network.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Behavioral baseline catches zero-day fraud. Cross-company graph catches repeating attack patterns across organizations Tofu cannot connect.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Persona <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.3);margin-left:4px;">Distribution Risk</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">Confirms the person is real. Cannot tell you if the application is real. No hiring-specific signal graph. Identity verification is a different question from application authenticity.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Complementary, not competing. You have Persona: you know the person is real. Sentriq tells you if the application is real. Both signals together, neither alone is enough.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Endorsed <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(232,160,32,0.15);color:var(--amber);border:1px solid rgba(232,160,32,0.3);margin-left:4px;">Direct</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">Identity check plus AI ranking, inside the ATS after the application exists. No pre-submission behavioral signal. No cross-company graph. Three products competing for one ATS integration slot.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Pre-submission behavioral baseline captures signals Endorsed will never have access to. Sentriq entry happens before Endorsed ever runs.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Clarity <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12);margin-left:4px;">Complement</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">Interview-stage deepfake detection. By the time Clarity runs, over $1,700 in process cost per candidate has already been spent reviewing a potentially fraudulent application.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Sentriq flags the anomaly at form fill. If flagged, Clarity never needs to run. Entry 10x earlier in the funnel, at a fraction of the downstream cost.</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:7px 10px;font-weight:700;color:var(--text);">Workday / Greenhouse / iCIMS <span style="font-size:8px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12);margin-left:4px;">Structurally Blocked</span></td>
+        <td style="padding:7px 10px;color:var(--text-sub);">ATS customer contracts prohibit cross-employer data sharing. The cross-company graph requires neutral ground. This is not a policy decision they can reverse.</td>
+        <td style="padding:7px 10px;color:var(--amber);">Neutral infrastructure model. Direct candidate consent model. The cross-company graph is architecturally unavailable to any ATS vendor, permanently.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </div>
 </div>
 </div>
