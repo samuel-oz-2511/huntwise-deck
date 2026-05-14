@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sapir — Privacy AI System</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090F;--sb:#0D0D1A;--card:#12121E;--border:#1A1A2E;
+  --blue:#4F8EF7;--purple:#8B5CF6;--green:#10B981;--orange:#F59E0B;--red:#EF4444;--teal:#06B6D4;
+  --text:#E0E0F0;--muted:#5A5A7A;--white:#fff;
+}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+#hdr{display:flex;align-items:center;gap:16px;padding:0 20px;height:56px;background:var(--sb);border-bottom:1px solid var(--border);flex-shrink:0}
+#hdr .logo{font-size:15px;font-weight:800;color:var(--white);white-space:nowrap}
+#hdr .logo span{color:var(--blue)}
+#hdr .xp-bar-wrap{flex:1;max-width:360px}
+#hdr .xp-label{font-size:11px;color:var(--muted);margin-bottom:3px;display:flex;justify-content:space-between}
+#hdr .xp-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+#hdr .xp-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:3px;transition:width .4s}
+#hdr .chip{background:var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--blue);white-space:nowrap}
+#layout{display:flex;flex:1;overflow:hidden}
+#sb{width:268px;flex-shrink:0;background:var(--sb);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+#sb::-webkit-scrollbar{width:4px}
+#sb::-webkit-scrollbar-thumb{background:var(--border)}
+.sb-name{padding:16px 14px 4px;font-size:13px;font-weight:700;color:var(--white)}
+.sb-name span{color:var(--blue)}
+.sb-sub{padding:0 14px 12px;font-size:11px;color:var(--muted);line-height:1.5;border-bottom:1px solid var(--border);margin-bottom:4px}
+.sb-sect{padding:12px 14px 4px;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.mod-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;border-left:3px solid transparent;transition:all .15s}
+.mod-item:hover{background:rgba(79,142,247,.07)}
+.mod-item.active{background:rgba(79,142,247,.12);border-left-color:var(--blue)}
+.mod-item.done{border-left-color:var(--green)}
+.mod-icon{font-size:18px;flex-shrink:0}
+.mod-info{flex:1;min-width:0}
+.mod-title{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.mod-check{font-size:14px;color:var(--green)}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#tabs{display:flex;padding:0 24px;border-bottom:1px solid var(--border);background:var(--sb);flex-shrink:0}
+.tab{padding:14px 20px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+#content{flex:1;overflow-y:auto;padding:32px 40px}
+#content::-webkit-scrollbar{width:6px}
+#content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.mod-hero{margin-bottom:28px}
+.mod-hero .ch{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.mod-hero h1{font-size:26px;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:8px}
+.mod-hero p{font-size:15px;color:var(--muted);line-height:1.6}
+.learn-body{max-width:760px}
+.learn-body h2{font-size:16px;font-weight:700;color:var(--blue);margin:28px 0 10px}
+.learn-body p{font-size:14px;color:var(--text);line-height:1.75;margin-bottom:12px}
+.learn-body ul{margin:0 0 14px;padding-left:0;list-style:none}
+.learn-body ul li{font-size:14px;color:var(--text);line-height:1.6;padding:3px 0 3px 20px;position:relative}
+.learn-body ul li::before{content:"›";position:absolute;left:4px;color:var(--blue);font-weight:700}
+.callout{background:var(--card);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.callout.green{border-left-color:var(--green)}
+.callout.orange{border-left-color:var(--orange)}
+.callout.purple{border-left-color:var(--purple)}
+.callout.red{border-left-color:var(--red)}
+.callout-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;color:var(--blue)}
+.callout.green .callout-label{color:var(--green)}
+.callout.orange .callout-label{color:var(--orange)}
+.callout.purple .callout-label{color:var(--purple)}
+.callout.red .callout-label{color:var(--red)}
+.callout p{margin:0;font-size:13.5px;line-height:1.6}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.compare-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px}
+.compare-box.bad{border-top:2px solid var(--red)}
+.compare-box.good{border-top:2px solid var(--green)}
+.compare-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.compare-box.bad .compare-label{color:var(--red)}
+.compare-box.good .compare-label{color:var(--green)}
+.compare-box p{font-size:13px;color:var(--text);line-height:1.6;margin:0;font-style:italic}
+.table-grid{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.table-grid th{background:var(--card);color:var(--blue);font-weight:700;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.table-grid td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.table-grid tr:last-child td{border-bottom:none}
+.drill-wrap{max-width:700px}
+.drill-title{font-size:22px;font-weight:700;color:var(--white);margin-bottom:8px}
+.drill-instr{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+.prompt-box{background:#0A0A1A;border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px}
+.prompt-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.prompt-box pre{font-family:'Courier New',monospace;font-size:12.5px;color:#A0C0FF;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.btn-copy{background:#1A1A3A;border:1px solid var(--blue);color:var(--blue);padding:8px 16px;font-size:12px;font-weight:600;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.btn-copy:hover{background:var(--blue);color:#fff}
+.btn-copy.copied{background:var(--green);border-color:var(--green);color:#fff}
+.drill-confirm{display:flex;align-items:center;gap:10px;margin:24px 0 8px;padding:14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.drill-confirm input{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+.drill-confirm label{font-size:13px;color:var(--muted);cursor:pointer}
+.btn-complete{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;opacity:.35;pointer-events:none}
+.btn-complete.ready{opacity:1;pointer-events:auto}
+.btn-complete.ready:hover{background:#0CA571}
+.complete-banner{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(79,142,247,.1));border:1px solid var(--green);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.complete-banner .icon{font-size:32px}
+.complete-banner h3{font-size:16px;font-weight:700;color:var(--green);margin-bottom:4px}
+.complete-banner p{font-size:13px;color:var(--muted);margin:0}
+.gloss-entry{padding:16px 0;border-bottom:1px solid var(--border)}
+.gloss-entry:last-child{border-bottom:none}
+.gloss-term{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.gloss-full{font-weight:400;color:var(--blue);font-size:13px}
+.gloss-def{font-size:13.5px;color:var(--muted);line-height:1.7}
+#hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px 8px;line-height:1;flex-shrink:0}
+#sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99}
+#sb-overlay.show{display:block}
+@media(max-width:700px){
+  #hamburger{display:block}
+  #sb{position:fixed;top:0;left:-280px;height:100%;z-index:100;transition:left .25s;width:268px}
+  #sb.open{left:0}
+  #content{padding:20px 16px}
+  .compare{grid-template-columns:1fr}
+  .tab{padding:12px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <button id="hamburger" onclick="toggleSb()">☰</button>
+  <div class="logo">Sapir — <span>Privacy AI System</span></div>
+  <div class="xp-bar-wrap">
+    <div class="xp-label"><span id="xp-text">XP: 0 / 750</span><span id="lv-text">Level 1</span></div>
+    <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+  </div>
+  <div class="chip" id="lv-chip">Lv.1</div>
+</div>
+
+<div id="layout">
+  <div id="sb-overlay" onclick="toggleSb()"></div>
+  <div id="sb">
+    <div class="sb-name">Sapir's <span>Learning Path</span></div>
+    <div class="sb-sub">Built from your intake answers. 5 modules, each solving a specific problem you named.</div>
+    <div class="sb-sect">Modules</div>
+    <div id="mod-list"></div>
+    <div class="sb-sect" style="margin-top:8px">Reference</div>
+    <div class="mod-item" id="mi-glossary" onclick="showGlossary()">
+      <div class="mod-icon">📖</div>
+      <div class="mod-info"><div class="mod-title">Terms and Definitions</div><div class="mod-sub">Privacy, legal, and tool terminology</div></div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="tabs">
+      <div class="tab active" onclick="setTab('learn')">Learn</div>
+      <div class="tab" onclick="setTab('drill')">Prompt Lab</div>
+    </div>
+    <div id="content"></div>
+  </div>
+</div>
+
+<script>
+const MODULES = [
+  {
+    icon:'📎', title:'Your Clause Library', sub:'Retrieve sentences, not just documents', xp:150,
+    learn:`<div class="mod-hero"><div class="ch">Module 1</div><h1>Your Clause Library</h1><p>You said you have sentences from redlines, comments, research, and memos that you wish you could reproduce when the relevance comes up. The problem is they are trapped inside documents organised by client and date — not by what they actually say.</p></div>
+<div class="learn-body">
+<h2>Why Document Search Does Not Solve This</h2>
+<p>What you are looking for is clause-level, not document-level. You need the specific sentence that handles a particular obligation, limitation, or risk — not the whole memo it once appeared in. Searching for a document and then hunting through it for the right sentence is two steps when it should be one.</p>
+<h2>What a Clause Library Is</h2>
+<p>A structured collection of individual sentences and short passages, categorised by what they do — not where they came from. Each entry has three things: the text itself, what situation it handles, and any conditions on its use.</p>
+<table class="table-grid">
+  <tr><th>Category</th><th>Examples</th></tr>
+  <tr><td>Limitation language</td><td>Qualifying "reasonable efforts," softening certainty claims, scoping obligations</td></tr>
+  <tr><td>Data subject rights</td><td>Response templates, timeframe qualifications, exemption language</td></tr>
+  <tr><td>Processor obligations</td><td>Standard DPA clauses, sub-processor controls, audit right formulations</td></tr>
+  <tr><td>Jurisdiction qualifications</td><td>GDPR vs CCPA differences on the same topic, multi-jurisdiction hedges</td></tr>
+  <tr><td>Redline positions</td><td>Your standard push-back on common overreaching clauses</td></tr>
+  <tr><td>Marketing and consent</td><td>Opt-in language variations, legitimate interest assertions, cookie consent formulations</td></tr>
+</table>
+<h2>How to Build It</h2>
+<p>Start with a spreadsheet — one row per clause. Columns: Category, Sub-type, Text, Jurisdiction, Notes. Paste the actual text. Do not paraphrase. The clause is the asset.</p>
+<p>Start with the categories where you feel the gap most — your redline positions and your limitation language. Those are the ones you recreate most often from memory.</p>
+<h2>AI's Role: Retrieval by Meaning</h2>
+<p>Once the library exists, you paste a selection of entries into Claude with a description of what you need. Claude finds the closest match and adapts it for the new context — jurisdiction, client type, risk level. You describe the situation. Claude retrieves and adapts the language.</p>
+<div class="callout green"><div class="callout-label">How It Grows</div><p>Every time you write a clause you are proud of — in any document, email, or Slack message — add it to the library. After six months you have a personal library that covers most of what you encounter. After a year it is a competitive asset that no one else on your team has.</p></div>
+</div>`,
+    drill:{
+      title:'Clause Retrieval Prompt',
+      instr:"Copy this prompt. Paste a block of entries from your clause library, then describe the situation you need language for. Use this every time you need to reproduce something you've written before.",
+      prompt:`You are helping a privacy consultant find and adapt language from her personal clause library.
+
+CLAUSE LIBRARY (selected entries):
+[Paste relevant rows from your clause library here — category, text, jurisdiction, notes]
+
+SITUATION I NEED LANGUAGE FOR:
+- Context: [e.g. GDPR DPA negotiation, client is a processor, counterparty wants unrestricted audit rights]
+- Jurisdiction: [e.g. GDPR / CCPA / both]
+- What the language needs to do: [e.g. accept audit rights but limit to annual, require reasonable notice, cap scope to relevant systems only]
+- Tone: [e.g. firm but commercial — this is a relationship we want to preserve]
+
+From my library:
+1. Quote the most relevant entry or entries
+2. Adapt the language for this specific situation
+3. Flag any jurisdiction-specific adjustments needed
+4. If nothing in my library directly fits, draft new language in my style and flag it as a candidate to add to the library
+
+Output the adapted clause ready to paste into a document.`
+    }
+  },
+  {
+    icon:'🚨', title:'The Two-Layer Pre-Send Scan', sub:'Wrong client name and dangerous language, one pass', xp:150,
+    learn:`<div class="mod-hero"><div class="ch">Module 2</div><h1>The Two-Layer Pre-Send Scan</h1><p>You named two things you want made impossible: using another client's name in a deliverable, and language that is too certain — "ensure", "never", "fully compliant". These are different problems but they can be caught in the same 90-second pass.</p></div>
+<div class="learn-body">
+<h2>Layer 1 — Cross-Client Contamination</h2>
+<p>Client names survive in documents in places a manual review misses: headers, footers, comments, tracked changes, document properties, and auto-populated fields. Ctrl+F on the body text catches the obvious ones. It does not catch the rest.</p>
+<p>The fix: before any client-facing send, copy all content including headers and footers, and run one prompt that checks for the previous client's identifying terms. You give AI the list. AI flags every match.</p>
+<h2>Layer 2 — Flag Words</h2>
+<p>Privacy advice carries legal risk when it overclaims. Words like "ensure", "guarantee", "never", "fully compliant" create obligations you cannot meet and expose you and your client to challenge. The standard is "reasonable efforts", "designed to", "intended to" — not absolutes.</p>
+<div class="compare">
+  <div class="compare-box bad"><div class="compare-label">Risky</div><p>"This process ensures full GDPR compliance and will prevent any data breach."</p></div>
+  <div class="compare-box good"><div class="compare-label">Safe</div><p>"This process is designed to support GDPR compliance obligations and reduce breach risk."</p></div>
+</div>
+<h2>Your Flag Word List — Start Here</h2>
+<ul>
+  <li><strong>Certainty absolutes:</strong> ensure, guarantee, never, always, fully, completely, eliminate</li>
+  <li><strong>Overclaiming compliance:</strong> fully compliant, 100% compliant, completely compliant</li>
+  <li><strong>Unqualified obligations:</strong> will prevent, will protect, will not occur, cannot happen</li>
+  <li><strong>Scope creep:</strong> all data, every instance, in all cases, at all times</li>
+</ul>
+<div class="callout orange"><div class="callout-label">Build Your List Over Time</div><p>Every time you catch a flag word in your own output or in a client document that caused a problem, add it. The prompt works on any list length — the longer it grows, the more it catches.</p></div>
+<h2>One Prompt, Both Layers</h2>
+<p>The prompt in the lab runs both checks simultaneously. You fill in the previous client's identifier list and your flag word list. AI returns two separate sections: contamination findings, and language risk findings with replacements suggested. Total time: 90 seconds per document.</p>
+</div>`,
+    drill:{
+      title:'Two-Layer Pre-Send Scan Prompt',
+      instr:'Copy this prompt. Run it before sending any client deliverable — memo, policy, redline, email, or report. Fill in the previous client terms and your flag word list, then paste the full document.',
+      prompt:`You are reviewing a privacy consultant's deliverable before it is sent to a client.
+
+Run two independent checks and report them in two separate sections.
+
+--- LAYER 1: CROSS-CLIENT CONTAMINATION ---
+
+PREVIOUS CLIENT IDENTIFIERS TO WATCH FOR:
+[List the previous client's name, abbreviations, contact names, matter codes, or any specific terms belonging to them and not the current client]
+
+CURRENT CLIENT:
+[Current client name — to confirm context]
+
+Scan the document for any of the previous client's identifiers. Flag:
+- Exact matches to the terms listed
+- Any sentence that reads as if written for a different client context
+- Any unfilled placeholder like [CLIENT NAME] still present in the document
+
+--- LAYER 2: LANGUAGE RISK ---
+
+FLAG WORDS TO CHECK:
+ensure, guarantee, never, always, fully compliant, 100% compliant, completely, eliminate, will prevent, will protect, will not occur, cannot happen, in all cases, every instance, at all times
+[Add your own below this line]
+
+Scan the document for all flag words and phrases. For each one found:
+- Quote the full sentence containing it
+- Explain the specific risk the language creates
+- Suggest a qualified replacement
+
+--- DOCUMENT TO REVIEW ---
+[Paste full document content here — include header and footer text separately if you have it]
+
+--- OUTPUT ---
+LAYER 1 FINDINGS: [each contamination issue found, or "CLEAR"]
+LAYER 2 FINDINGS: [each language risk with suggested replacement, or "CLEAR"]
+OVERALL: [safe to send / review before sending — one line]`
+    }
+  },
+  {
+    icon:'📬', title:'The Missed Response Problem', sub:'Never lose a draft that needs to reach a client', xp:150,
+    learn:`<div class="mod-hero"><div class="ch">Module 3</div><h1>The Missed Response Problem</h1><p>You described this precisely: a team member sends a draft response to you internally — not to the client. You do not realise it was not sent. Nobody follows up. You discover weeks later that the client never got an answer. This is a workflow gap, and the fix is a protocol plus a weekly prompt.</p></div>
+<div class="learn-body">
+<h2>Why This Keeps Happening</h2>
+<p>The gap is that "internal draft needing your review" and "information message" look identical in your inbox and Slack. Both are messages from a colleague. Nothing marks one as requiring your action before a client sees it. When you are stretched, the "just reviewing" messages collapse into noise.</p>
+<h2>The Two-Part Fix</h2>
+<p><strong>Part 1 — A subject line protocol.</strong> Any internal draft that requires your review before going to a client gets a consistent prefix — agree on one with your team. Something like <code>[DRAFT — NEEDS REVIEW]</code> in email subjects, or a specific emoji in Slack (a flag, a pin). Takes 10 minutes to introduce. Makes the category scannable without opening the message.</p>
+<p><strong>Part 2 — A draft tracking log.</strong> A single shared note or spreadsheet. Every time a draft response is created for a client, it gets one line: client, topic, date created, reviewed, sent, confirmed. It takes 30 seconds per entry and makes every open loop visible at a glance.</p>
+<table class="table-grid">
+  <tr><th>Client</th><th>Topic</th><th>Draft created</th><th>Reviewed</th><th>Sent</th><th>Confirmed</th></tr>
+  <tr><td>Client A</td><td>DSR response</td><td>May 12</td><td>May 13</td><td>May 13</td><td>Yes</td></tr>
+  <tr><td>Client B</td><td>Regulator question on transfers</td><td>May 14</td><td>—</td><td>—</td><td>No</td></tr>
+</table>
+<p>One glance at that table tells you Client B has an open loop. The prompt in the lab audits this log for you weekly — paste it in, get a list of everything that has not been confirmed as sent.</p>
+<div class="callout red"><div class="callout-label">The Risk You Named</div><p>"We find out too late that the response never went out." The damage is not the missed message — it is the unexplained silence on the client's side. The log makes this detectable before it becomes a relationship problem.</p></div>
+</div>`,
+    drill:{
+      title:'Open-Loop Draft Audit Prompt',
+      instr:'Copy this prompt. Run it once a week. Paste your draft tracking log and a summary of recent threads. AI flags everything that has not been confirmed as sent to the client.',
+      prompt:`I am a privacy consultant who manages client correspondence with a small team. I need to audit for draft responses that were prepared internally but may not have been sent to the client.
+
+MY DRAFT TRACKING LOG:
+[Paste your log — client, topic, date created, reviewed status, sent status, confirmed]
+
+RECENT EMAIL THREAD SUBJECTS (last 7 days):
+[Paste a list of recent email subject lines — subjects only, no content needed]
+
+RECENT SLACK THREAD SUMMARIES (optional):
+[Brief description of any Slack threads involving client topics — channel, topic, last activity]
+
+Review the above and identify:
+1. Any entry in the tracking log where "sent" or "confirmed" is blank or No
+2. Any email subject that suggests a draft or client response not appearing in the tracking log
+3. Any client with no outgoing communication in more than 5 business days where a response was expected
+
+For each open loop: state the client, topic, date of last action, and what step is missing.
+Output as a numbered list ordered by age — oldest unresolved item first.`
+    }
+  },
+  {
+    icon:'🍪', title:'CMP Review, Systematized', sub:'AI handles the report. You handle the checks.', xp:150,
+    learn:`<div class="mod-hero"><div class="ch">Module 4</div><h1>CMP Review, Systematized</h1><p>You said CMP review is one of your biggest time sinks — VPN checks from multiple geos, screenshotting two consent layers, reviewing runtime cookie drops, and then producing a presentable shareable report. AI cannot run the VPN checks or take the screenshots. But it can eliminate everything that comes after: structuring findings, comparing declared vs. actual cookies, and drafting the report and recommendations.</p></div>
+<div class="learn-body">
+<h2>Where AI Helps and Where It Does Not</h2>
+<table class="table-grid">
+  <tr><th>Step</th><th>AI can help?</th><th>How</th></tr>
+  <tr><td>VPN checks from multiple geos</td><td>No</td><td>Manual — stays with you</td></tr>
+  <tr><td>Screenshotting consent layers</td><td>No</td><td>Manual — stays with you</td></tr>
+  <tr><td>Noting runtime cookie drops per consent state</td><td>Partially</td><td>You observe, AI cross-references the structured list you paste in</td></tr>
+  <tr><td>Comparing declared vs. actual cookies</td><td>Yes</td><td>Paste both lists — AI flags every discrepancy</td></tr>
+  <tr><td>Drafting findings in report format</td><td>Yes</td><td>AI produces a client-ready findings section from your structured notes</td></tr>
+  <tr><td>Writing recommendations</td><td>Yes</td><td>AI drafts standard recommendations — you adjust for client context</td></tr>
+</table>
+<h2>The Observation Template</h2>
+<p>The key is capturing your manual observations in a consistent format as you work — so that pasting them into AI produces a clean report without interpretation. Fill this in per geography as you run your checks:</p>
+<div class="callout purple"><div class="callout-label">Fill In As You Check — One Block Per Geo</div><p>
+Geography: [country / VPN location]<br>
+Consent state tested: [pre-consent / reject all / accept all / custom selection]<br>
+First layer: [what the banner showed, categories presented, pre-ticked boxes?]<br>
+Cookies fired before any consent: [list names, or "none"]<br>
+Cookies fired on reject all: [list names, or "none"]<br>
+Cookies fired on accept all: [list names]<br>
+Second layer: [yes/no — what it contained, any dark patterns noted]<br>
+Issues flagged: [discrepancies, missing categories, non-compliant elements]
+</p></div>
+<p>Two or three of these blocks — one per geo tested — is everything the report prompt needs. You paste them in, AI produces the formatted finding ready for the client document.</p>
+<h2>Declared vs. Actual: The Core Check</h2>
+<p>The most important part of CMP review is comparing what the client declared they use against what actually fires. Paste the declared cookie list from their policy or CMP configuration alongside your observed list. AI identifies undeclared cookies, miscategorised cookies, and cookies firing outside the declared consent state — formatted as findings, not raw notes.</p>
+</div>`,
+    drill:{
+      title:'CMP Review Report Prompt',
+      instr:'Copy this prompt. After completing your manual VPN and screenshot work, paste your structured observation blocks. AI produces a formatted, client-ready findings and recommendations section.',
+      prompt:`You are drafting the findings section of a CMP (Consent Management Platform) compliance review for a privacy consultant.
+
+CLIENT CONTEXT:
+- Client: [current client name]
+- CMP used: [e.g. OneTrust, Cookiebot, Usercentrics, custom]
+- Website or app reviewed: [URL or app name]
+- Jurisdictions in scope: [e.g. GDPR / ePrivacy Directive / CCPA]
+
+DECLARED COOKIES (from client's cookie policy or CMP configuration):
+[Paste the declared cookie list — name, category, purpose, provider for each]
+
+OBSERVED FINDINGS (paste your filled-in observation blocks — one per geo tested):
+[Paste blocks here]
+
+Using the above, produce:
+
+1. SUMMARY TABLE — for each consent state and geography tested: what fired vs. what should have fired, pass / fail per state
+
+2. DISCREPANCIES — numbered list of specific issues:
+   - Undeclared cookies that fired
+   - Cookies firing in the wrong consent state
+   - Dark patterns or missing required elements in the consent UI
+   - Inaccurate categories or missing descriptions in the cookie policy
+
+3. RISK RATING — Low / Medium / High / Critical with one paragraph explaining the basis
+
+4. RECOMMENDATIONS — numbered list of required fixes, ordered by priority (critical first)
+
+Format for direct inclusion in a client report. Professional tone. Factual observations stated plainly. Legal conclusions appropriately qualified.`
+    }
+  },
+  {
+    icon:'🗂️', title:'One Source of Truth for Tasks', sub:'From four systems to one daily sweep', xp:150,
+    learn:`<div class="mod-hero"><div class="ch">Module 5</div><h1>One Source of Truth for Tasks</h1><p>You described managing tasks across your own Monday board, the client Monday board, Slack, Gmail, and your calendar — with no automation, duplicates everywhere, and assignments arriving in Slack and email that often never get recorded anywhere. AI cannot integrate these systems. But it can remove the friction of processing incoming assignments so that one system becomes the master and the others become inputs.</p></div>
+<div class="learn-body">
+<h2>Why You Are Recording Everything Everywhere</h2>
+<p>You are not doing double work by choice — you are doing it because no single system is trusted enough to be the only one. The client board might miss something. Your board might be out of sync. Slack has context the board does not. So you record in multiple places to feel covered, and the duplication creates exactly the mistakes it was meant to prevent.</p>
+<h2>The Decision That Changes Everything</h2>
+<p>Pick one system as the master — your own Monday board is the most likely candidate because it is the only one you fully control across all clients. Then:</p>
+<ul>
+  <li>Client boards become read sources. You check them, you do not maintain them as your task record.</li>
+  <li>Slack and Gmail become capture points. Anything that comes in gets processed into your Monday board once, not recorded in place.</li>
+  <li>Your calendar becomes a time reservation system only — not a task record. A task deadline goes on the calendar as a time block, but the task itself lives only in your Monday board.</li>
+</ul>
+<h2>The Daily Capture Routine — 10 Minutes</h2>
+<ul>
+  <li>Scan Slack for anything directed at you containing an assignment or request for a deliverable — paste it raw into the assignment parser prompt</li>
+  <li>Scan Gmail subject lines for the same — paste subjects and senders into the prompt</li>
+  <li>AI extracts each assignment: client, task, output expected, deadline, who assigned it</li>
+  <li>You copy the structured output into your Monday board — one entry per task, done</li>
+  <li>You do not record it anywhere else</li>
+</ul>
+<div class="callout orange"><div class="callout-label">The Calendar Rule</div><p>A task deadline goes in your calendar as a time block — "work on Client B DPA" — but the task itself only lives in your Monday board. The calendar entry is a reminder to do the work. It is not a second copy of the task record.</p></div>
+<div class="callout green"><div class="callout-label">The Actual Win</div><p>Once Slack and Gmail are inputs rather than records, you stop worrying about what might be hiding in each channel. You sweep them once a day, extract what matters in 10 minutes, and move on. The number of systems you have to actively maintain drops from four to one.</p></div>
+</div>`,
+    drill:{
+      title:'Assignment Parser Prompt',
+      instr:'Copy this prompt. Once a day, paste in raw Slack messages and email subjects where assignments were given or implied. AI extracts structured task entries ready to paste into your Monday board.',
+      prompt:`You are helping a privacy consultant extract and structure task assignments from her incoming messages.
+
+She receives assignments through Slack, email, and verbal conversations — often informally and without a clear task format. Your job is to identify every assignment or request buried in the input and convert it into a structured task entry.
+
+INPUT — messages from today:
+[Paste raw Slack messages, email subjects with sender names, or meeting notes exactly as they appear]
+
+For each assignment or request you identify, produce:
+
+CLIENT: [which client this relates to]
+TASK: [what needs to be done — one clear action verb + output]
+DELIVERABLE: [what the output is — memo, redline, policy update, response, report, etc.]
+ASSIGNED BY: [who made the request]
+DEADLINE: [explicit date if stated / "not specified" / "urgent — clarify" if implied urgency without a date]
+DEPENDENCIES: [anything that needs to happen first, or anyone else who needs to contribute]
+NOTES: [any context that matters for execution]
+
+At the end, list separately:
+UNCLEAR ITEMS: [any message that might be an assignment but is ambiguous — quote it and state what clarification is needed before it can be logged as a task]
+
+Output all entries as a clean list ready to paste into a task board. One entry per task.`
+    }
+  }
+];
+
+const S = { cur:0, tab:'learn', done:[], xp:0 };
+const MAX_XP = MODULES.reduce((a,m)=>a+m.xp,0);
+
+function init(){
+  document.getElementById('mod-list').innerHTML = MODULES.map((m,i)=>`
+    <div class="mod-item ${i===0?'active':''}" id="mi${i}" onclick="selMod(${i})">
+      <div class="mod-icon">${m.icon}</div>
+      <div class="mod-info"><div class="mod-title">${m.title}</div><div class="mod-sub">${m.sub}</div></div>
+      <div class="mod-check" id="mc${i}"></div>
+    </div>`).join('');
+  render();
+}
+
+function setTab(t){
+  S.tab=t;
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',i===(t==='learn'?0:1)));
+  render();
+}
+
+function render(){
+  const m=MODULES[S.cur], done=S.done.includes(S.cur);
+  const c=document.getElementById('content');
+  if(S.tab==='learn'){
+    c.innerHTML=(done?`<div class="complete-banner"><div class="icon">✅</div><div><h3>Module Complete</h3><p>+${m.xp} XP earned. Head to Prompt Lab to practice.</p></div></div>`:'')+m.learn;
+  } else {
+    c.innerHTML=`<div class="drill-wrap">
+      <div class="drill-title">${m.drill.title}</div>
+      <p class="drill-instr">${m.drill.instr}</p>
+      <div class="prompt-box"><div class="prompt-label">Ready-to-Use Prompt</div><pre id="pt">${esc(m.drill.prompt)}</pre></div>
+      <button class="btn-copy" id="cpbtn" onclick="cp()">Copy Prompt</button>
+      <div class="drill-confirm"><input type="checkbox" id="conf" onchange="chk()"><label for="conf">I ran this prompt and reviewed the output</label></div>
+      <button class="btn-complete ${done?'ready':''}" id="cbtn" onclick="complete()">
+        ${done?'✅ Module Complete':'Mark Complete +'+m.xp+' XP'}
+      </button>${done?'<p style="margin-top:10px;font-size:12px;color:var(--green)">✓ Completed</p>':''}
+    </div>`;
+  }
+  c.scrollTop=0;
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function cp(){
+  navigator.clipboard.writeText(MODULES[S.cur].drill.prompt).catch(()=>{});
+  const b=document.getElementById('cpbtn');
+  b.textContent='Copied!'; b.classList.add('copied');
+  setTimeout(()=>{b.textContent='Copy Prompt';b.classList.remove('copied');},2000);
+}
+
+function chk(){
+  const cb=document.getElementById('conf'),btn=document.getElementById('cbtn');
+  if(btn) btn.classList.toggle('ready',cb&&cb.checked);
+}
+
+function complete(){
+  if(S.done.includes(S.cur)) return;
+  S.done.push(S.cur); S.xp+=MODULES[S.cur].xp;
+  document.getElementById('mi'+S.cur).classList.add('done');
+  document.getElementById('mc'+S.cur).textContent='✓';
+  const pct=Math.min((S.xp/MAX_XP)*100,100);
+  const lv=S.xp<200?1:S.xp<400?2:S.xp<600?3:S.xp<750?4:5;
+  document.getElementById('xp-fill').style.width=pct+'%';
+  document.getElementById('xp-text').textContent=`XP: ${S.xp} / ${MAX_XP}`;
+  document.getElementById('lv-text').textContent=`Level ${lv}`;
+  document.getElementById('lv-chip').textContent=`Lv.${lv}`;
+  render();
+}
+
+const GLOSSARY = [
+  { term:'GDPR', full:'General Data Protection Regulation', def:'The EU privacy law that came into force in May 2018. Applies to any organisation that processes personal data of people in the EU, regardless of where the organisation is based. Sets out rules for lawful processing, data subject rights, breach notification, and more.' },
+  { term:'CCPA', full:'California Consumer Privacy Act', def:'California\'s main privacy law, effective January 2020 (amended by CPRA in 2023). Gives California residents rights over their personal data and imposes obligations on businesses that meet certain thresholds. Often treated as the US equivalent of GDPR for compliance purposes.' },
+  { term:'DPA', full:'Data Processing Agreement', def:'A contract required under GDPR (Article 28) between a data controller and a data processor. Sets out what data the processor handles, for what purpose, under what instructions, and what security and deletion obligations apply. Commonly negotiated in vendor and SaaS contracts.' },
+  { term:'DPIA', full:'Data Protection Impact Assessment', def:'A structured analysis of a high-risk processing activity, required under GDPR Article 35. Identifies the risks to individuals, assesses necessity and proportionality, and documents the mitigating measures. Required before starting certain types of processing (e.g. large-scale profiling, systematic monitoring).' },
+  { term:'DSR', full:'Data Subject Request', def:'A formal request from an individual exercising their privacy rights — typically the right to access their data, delete it, correct it, or restrict its processing. Organisations generally have 30 days to respond under GDPR.' },
+  { term:'RoPA', full:'Record of Processing Activities', def:'A documented inventory of all personal data processing activities within an organisation, required under GDPR Article 30. Lists what data is processed, for what purpose, on what legal basis, who has access, how long it is kept, and what security measures are in place.' },
+  { term:'CMP', full:'Consent Management Platform', def:'A tool that manages cookie consent on websites and apps. Presents users with a consent banner, records their choices, and controls which tracking technologies fire based on those choices. Examples: OneTrust, Cookiebot, Usercentrics. The consent layer is the banner itself; the second layer is the detailed preferences panel.' },
+  { term:'ePrivacy Directive', full:'ePrivacy Directive (2002/58/EC)', def:'EU law governing electronic communications privacy, including rules on cookies, marketing emails, and tracking. Often called the "Cookie Law." Works alongside GDPR — GDPR governs personal data generally; ePrivacy governs the specific act of placing cookies or accessing device storage.' },
+  { term:'SCCs', full:'Standard Contractual Clauses', def:'Pre-approved contract clauses issued by the European Commission for transferring personal data from the EU to countries without an adequacy decision. One of the main legal mechanisms for EU-to-US data transfers post-Schrems II.' },
+  { term:'LIA', full:'Legitimate Interest Assessment', def:'A three-part test used to assess whether legitimate interest can serve as the lawful basis for processing personal data under GDPR. The three parts: purpose test (is the interest legitimate?), necessity test (is processing necessary?), balancing test (do the individual\'s interests override?).' },
+  { term:'TIA', full:'Transfer Impact Assessment', def:'An analysis required when using SCCs for international data transfers. Assesses whether the legal framework of the destination country provides adequate protection for the transferred data, particularly whether government authorities can access it.' },
+  { term:'Data Controller', full:'Data Controller', def:'The entity that determines the purposes and means of processing personal data. Typically the organisation that decides what data to collect and why. Carries the primary compliance obligations under GDPR.' },
+  { term:'Data Processor', full:'Data Processor', def:'An entity that processes personal data on behalf of a controller, following the controller\'s instructions. Must have a DPA in place with the controller. Common examples: cloud hosting providers, payroll systems, CRM vendors.' },
+  { term:'Sub-processor', full:'Sub-processor', def:'A third party engaged by a processor to carry out processing on behalf of the original controller. The processor remains liable to the controller for the sub-processor\'s actions. Sub-processor lists are often required in DPAs and must be kept current.' },
+  { term:'Redline', full:'Redline / Tracked Changes', def:'A version of a contract or document showing proposed changes — deletions struck through, additions underlined or highlighted. The term comes from the practice of marking up physical documents in red ink. In negotiation, sending a redline means proposing specific edits to the other party\'s draft.' },
+  { term:'Adequacy Decision', full:'Adequacy Decision', def:'A formal determination by the European Commission that a non-EU country provides an equivalent level of data protection to the EU. Transfers to adequate countries do not require SCCs or other safeguards. Current examples include the UK (under its own regime post-Brexit), Canada (partial), and Japan.' },
+  { term:'ISO 27001', full:'ISO/IEC 27001', def:'The international standard for information security management systems (ISMS). Organisations can become certified by demonstrating they have a structured approach to managing information security risks. Often required by enterprise clients as a condition of doing business or sharing data.' },
+  { term:'App Store Compliance', full:'App Store Privacy Compliance', def:'Requirements set by Apple (App Store) and Google (Play Store) for apps that collect personal data. Includes privacy nutrition labels, App Tracking Transparency (ATT) prompts on iOS, and data safety declarations on Android. Non-compliance can result in app rejection or removal.' },
+  { term:'Lawful Basis', full:'Lawful Basis for Processing', def:'Under GDPR, every processing activity must have one of six legal justifications: consent, contract, legal obligation, vital interests, public task, or legitimate interest. Choosing and documenting the correct basis is a foundational compliance step — the basis affects what rights individuals have and what you can do with the data.' },
+  { term:'Runtime Cookie Drops', full:'Runtime Cookie Drops', def:'Cookies or tracking technologies that fire during a browsing session, as opposed to those set on page load. Reviewing runtime drops involves observing what technologies activate in response to user actions (scrolling, clicking, playing video) or when a consent state changes — often revealing non-compliant pre-consent firing.' },
+  { term:'Dark Patterns', full:'Dark Patterns in Consent UIs', def:'Interface design choices that manipulate users into consenting to data collection. Examples: making "Accept all" prominent and "Reject all" hidden, pre-ticking consent boxes, requiring multiple clicks to opt out vs. one click to accept. Explicitly prohibited by GDPR guidance and increasingly enforced by regulators.' },
+  { term:'Opt-in / Opt-out', full:'Opt-in vs. Opt-out Consent', def:'Opt-in means the user must take an active step to agree (e.g. ticking an unchecked box). Opt-out means consent is assumed unless the user actively withdraws it. GDPR requires opt-in for most processing based on consent. CCPA uses an opt-out model for data sales.' },
+];
+
+function showGlossary(){
+  S.cur = -1;
+  document.querySelectorAll('.mod-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('mi-glossary').classList.add('active');
+  document.getElementById('sb').classList.remove('open');
+  document.getElementById('sb-overlay').classList.remove('show');
+
+  // hide tabs, show glossary directly
+  document.getElementById('tabs').style.display = 'none';
+  const c = document.getElementById('content');
+  c.innerHTML = `
+    <div style="max-width:760px">
+      <div class="mod-hero">
+        <div class="ch">Reference</div>
+        <h1>Terms and Definitions</h1>
+        <p>Key terms used throughout this tutorial — privacy regulations, legal concepts, tools, and technical vocabulary.</p>
+      </div>
+      <input type="text" id="gloss-search" placeholder="Search terms..." oninput="filterGloss()"
+        style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-size:14px;font-family:inherit;outline:none;margin-bottom:24px;">
+      <div id="gloss-list">
+        ${GLOSSARY.map(g=>`
+          <div class="gloss-entry" data-term="${g.term.toLowerCase()} ${g.full.toLowerCase()}">
+            <div class="gloss-term">${g.term} <span class="gloss-full">${g.full !== g.term ? '— '+g.full : ''}</span></div>
+            <div class="gloss-def">${g.def}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  c.scrollTop = 0;
+}
+
+function filterGloss(){
+  const q = document.getElementById('gloss-search').value.toLowerCase();
+  document.querySelectorAll('.gloss-entry').forEach(el => {
+    el.style.display = el.dataset.term.includes(q) || el.querySelector('.gloss-def').textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function selMod(i){
+  document.getElementById('tabs').style.display = '';
+  S.cur=i; S.tab='learn';
+  document.querySelectorAll('.mod-item').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  document.getElementById('sb').classList.remove('open');
+  document.getElementById('sb-overlay').classList.remove('show');
+  render();
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('open');
+  document.getElementById('sb-overlay').classList.toggle('show');
+}
+
+init();
+</script>
+</body>
+</html>
