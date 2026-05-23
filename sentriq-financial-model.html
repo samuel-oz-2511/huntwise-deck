@@ -709,74 +709,228 @@ function checkPass() {
     <!-- UNIT ECONOMICS -->
     <div class="section">
         <div class="section-label">Unit Economics</div>
-        <div class="section-title">Best-in-Class for Enterprise HR SaaS</div>
-        <div class="section-sub">Metrics calculated on blended retainer floor per customer ($58K, 78% gross margin, actual Q4 2027 trigger-point mix: 30% Growth / 40% Scale / 20% Mid-Market / 10% Enterprise). Actual revenue per logo exceeds retainer as consumption accrues above tier floor. Comparable category: Greenhouse, Gem, Lever, Ashby.</div>
+        <div class="section-title">Unit Economics Strengthen as Enterprise Share Grows</div>
+        <div class="section-sub">Seed-period figures are modeled at the Q4 2027 trigger mix. Years 2 and 3 are illustrative, based on a defined mix shift toward Enterprise and Mid-Market. Every metric in the table improves as Enterprise share increases: higher ACV, faster payback, stronger LTV:CAC.</div>
 
-        <div class="ue-grid">
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--primary);">$58K</div>
-                <div class="ue-label">Blended ACV</div>
-                <div class="ue-bench">$4,840 MRR per customer. Actual trigger mix: 30/40/20/10 Growth/Scale/Mid-Market/Enterprise.</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--green);">78%</div>
-                <div class="ue-label">Gross Margin</div>
-                <div class="ue-bench">At Series A scale. Includes Integrity Manager COGS. Growth tier has no Layer 3. Margin on that tier is 88%+.</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--white);">$8K</div>
-                <div class="ue-label">Estimated CAC</div>
-                <div class="ue-bench">Blended by tier at trigger mix: 6 Growth (~$1K, self-serve via marketplace) + 8 Scale (~$10K) + 4 Mid-Market (~$12K) + 2 Enterprise (~$15K) = $164K total sales investment / 20 logos = $8.2K blended.</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--green);">$118K</div>
-                <div class="ue-label">LTV</div>
-                <div class="ue-bench">3-yr cap: $58K blended ACV × 78% margin, 15%/10% churn applied per year</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--green);">15x</div>
-                <div class="ue-label">LTV:CAC Ratio</div>
-                <div class="ue-bench">$118K LTV / $8K CAC. Benchmark: &gt;3x is strong</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--green);">2 mo</div>
-                <div class="ue-label">CAC Payback</div>
-                <div class="ue-bench">Blended 2 mo. Mid-Market: $12K CAC / ($7K MRR × 78%) = 2.2 mo. Scale: 4 mo. Enterprise: &lt;1 mo.</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--white);">115%</div>
-                <div class="ue-label">Target NDR</div>
-                <div class="ue-bench">Consumption expansion above tier floor as hiring volume grows, plus scope expansion across business units</div>
-            </div>
-            <div class="ue-box">
-                <div class="ue-val" style="color:var(--white);">90%+</div>
-                <div class="ue-label">Gross Retention</div>
-                <div class="ue-bench">Series A investor requirement</div>
-            </div>
-        </div>
-
-        <div class="callout blue" style="margin-top:20px;">
-            <div class="callout-label" style="color:var(--primary);">Why the Unit Economics Hold</div>
-            <p><strong>The LTV:CAC of 15x holds across both buyer paths.</strong> LTV is calculated on the actual trigger-point customer mix (30% Growth / 40% Scale / 20% Mid-Market / 10% Enterprise), giving a $58K blended ACV. 3-year gross profit: Year 1 $45,240 + Year 2 $38,454 + Year 3 $34,609 = $118,303. LTV:CAC = $118K / $8K = 15x. This is calculated on the conservative side: the blended ACV at steady state (once more Mid-Market and Enterprise logos are added post-Series A) returns to the $86K blended figure modeled in the pricing section. CAC is blended lower ($8K) because Growth tier customers are self-serve: no AE cost, no multi-month sales cycle. Scale CAC is ~$10K; Enterprise CAC is ~$15K, with longer sales cycles reflected in the blended figure. <strong>CAC payback is 2 months blended</strong> ($8K / ($58K × 78% / 12)); at Mid-Market tier ($84K ACV, $12K CAC) it drops to 2.2 months; at Enterprise Anchor ($240K ACV) it falls below 1 month. The 5-month enterprise sales cycle is time to close, not time to recover CAC. <strong>On churn:</strong> 15% first-year churn is modeled conservatively. The 90%+ gross retention target is Year 2+ steady state, supported by ATS workflow embedding, EU AI Act compliance dependency, and consumption-based auto-expansion. NDR of 115% is structurally supported by hiring volume growth (more candidates = more challenges, no upsell call) and scope expansion across business units. Retainer floors ($9.6K, $36K, $84K, $240K) are minimums: actual revenue per logo runs 15-30% above retainer at steady state for Scale and above. <strong>On the $58K ACV vs $82K/mo revenue model:</strong> the $58K blended ACV is the retainer floor per logo at the trigger-point customer mix. The $82K/mo in the burn table is the quarterly average MRR for Q4 2027, not the December exit rate: 6 of the 20 logos close during Q4 (not all on Oct 1), so the quarter-average is below the end-of-quarter run rate. December 2027 exit MRR = 20 logos × $58K / 12 = $96.7K/mo = ~$1.16M ARR run rate. The $984K figure ($82K × 12) is the conservative presentation; the actual Series A raise opens from a higher ARR exit rate.</p>
-        </div>
-
-        <div style="margin-top:20px;">
-            <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.7); margin-bottom:12px;">Pricing Comparables - HR and TA SaaS</div>
+        <!-- 1. Customer Mix Evolution -->
+        <div style="margin-bottom:36px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">1. Customer Mix and ARR by Stage</div>
             <table class="ft">
-                <thead><tr><th>Company</th><th>Category</th><th class="right">Approx. ACV (mid-market)</th><th class="right">Gross Margin</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th style="width:22%;">Tier</th>
+                        <th class="center" style="color:rgba(255,255,255,0.38); font-size:10px; white-space:nowrap;">Q4 2026<br><span style="font-weight:400; text-transform:none; letter-spacing:0;">Commercial Launch</span></th>
+                        <th class="center" style="color:rgba(255,255,255,0.38); font-size:10px;">Q1 2027</th>
+                        <th class="center" style="background:rgba(37,99,235,0.1); border-bottom:2px solid var(--primary); white-space:nowrap;">Q4 2027<br><span style="font-size:10px; font-weight:400; text-transform:none; letter-spacing:0;">Series A Trigger</span></th>
+                        <th class="center" style="color:rgba(255,255,255,0.38); font-size:10px; white-space:nowrap;">Year 2<br><span style="font-style:italic; font-weight:400;">(Illustrative)</span></th>
+                        <th class="center" style="color:rgba(255,255,255,0.38); font-size:10px; white-space:nowrap;">Year 3<br><span style="font-style:italic; font-weight:400;">(Illustrative)</span></th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr><td>Greenhouse</td><td>Applicant tracking</td><td class="right">$10K&ndash;$50K</td><td class="right">~80%</td></tr>
-                    <tr><td>Lever</td><td>Applicant tracking</td><td class="right">$20K&ndash;$40K</td><td class="right">~78%</td></tr>
-                    <tr><td>Gem</td><td>Talent CRM + analytics</td><td class="right">$30K&ndash;$60K</td><td class="right">~80%</td></tr>
-                    <tr><td>Ashby</td><td>Applicant tracking</td><td class="right">$20K&ndash;$50K</td><td class="right">~82%</td></tr>
-                    <tr><td>Checkr</td><td>Background screening</td><td class="right">$12K&ndash;$60K</td><td class="right">~65%</td></tr>
-                    <tr class="highlight"><td><strong>Sentriq (target)</strong></td><td>Hiring integrity layer</td><td class="right green"><strong>$9.6K&ndash;$240K (blended $86K)</strong></td><td class="right green"><strong>78&ndash;88%</strong></td></tr>
+                    <tr>
+                        <td>Enterprise <span class="muted" style="font-size:10px;">$240K/yr</span></td>
+                        <td class="center muted">0</td>
+                        <td class="center muted">0</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05); color:var(--green); font-weight:700;">2 <span style="font-size:10px; font-weight:400; color:rgba(255,255,255,0.35);">(10%)</span></td>
+                        <td class="center" style="color:var(--green);">5 <span style="font-size:10px; color:rgba(255,255,255,0.35);">(17%)</span></td>
+                        <td class="center" style="color:var(--green); font-weight:700;">12 <span style="font-size:10px; font-weight:400; color:rgba(255,255,255,0.35);">(27%)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mid-Market <span class="muted" style="font-size:10px;">$84K/yr</span></td>
+                        <td class="center muted">0</td>
+                        <td class="center muted">0</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05); font-weight:600;">4 <span style="font-size:10px; font-weight:400; color:rgba(255,255,255,0.35);">(20%)</span></td>
+                        <td class="center">8 <span style="font-size:10px; color:rgba(255,255,255,0.35);">(27%)</span></td>
+                        <td class="center" style="font-weight:700;">15 <span style="font-size:10px; font-weight:400; color:rgba(255,255,255,0.35);">(33%)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Scale <span class="muted" style="font-size:10px;">$36K/yr</span></td>
+                        <td class="center">3</td>
+                        <td class="center">5</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05);">8 <span style="font-size:10px; color:rgba(255,255,255,0.35);">(40%)</span></td>
+                        <td class="center">10 <span style="font-size:10px; color:rgba(255,255,255,0.35);">(33%)</span></td>
+                        <td class="center">10 <span style="font-size:10px; color:rgba(255,255,255,0.35);">(22%)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color:rgba(255,255,255,0.5);">Growth <span class="muted" style="font-size:10px;">$9.6K/yr</span></td>
+                        <td class="center" style="color:rgba(255,255,255,0.5);">1</td>
+                        <td class="center" style="color:rgba(255,255,255,0.5);">2</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05); color:rgba(255,255,255,0.5);">6 <span style="font-size:10px;">(30%)</span></td>
+                        <td class="center" style="color:rgba(255,255,255,0.5);">7 <span style="font-size:10px;">(23%)</span></td>
+                        <td class="center" style="color:rgba(255,255,255,0.5);">8 <span style="font-size:10px;">(18%)</span></td>
+                    </tr>
+                    <tr class="total">
+                        <td><strong>Total Logos</strong></td>
+                        <td class="center"><strong>4</strong></td>
+                        <td class="center"><strong>7</strong></td>
+                        <td class="center" style="background:rgba(37,99,235,0.12);"><strong>20</strong></td>
+                        <td class="center"><strong>30</strong></td>
+                        <td class="center"><strong>45</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blended ACV</strong></td>
+                        <td class="center" style="color:var(--primary); font-weight:600;">$29,000</td>
+                        <td class="center" style="color:var(--primary); font-weight:600;">$29,000</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05); color:var(--primary); font-weight:700;">$58,000</td>
+                        <td class="center" style="color:var(--primary); font-weight:700;">$77,000</td>
+                        <td class="center" style="color:var(--green); font-weight:700;">$102,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ARR Run Rate</strong></td>
+                        <td class="center">$117K</td>
+                        <td class="center">$199K</td>
+                        <td class="center" style="background:rgba(37,99,235,0.05); color:var(--green); font-weight:700;">$1.16M</td>
+                        <td class="center" style="color:var(--green); font-weight:600;">~$2.3M</td>
+                        <td class="center" style="color:var(--green); font-weight:700;">~$4.6M</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Enterprise + MM % of ARR</strong></td>
+                        <td class="center muted">0%</td>
+                        <td class="center muted">0%</td>
+                        <td class="center" style="background:rgba(37,99,235,0.08); color:var(--orange); font-weight:700;">71%</td>
+                        <td class="center" style="color:var(--orange); font-weight:600;">82%</td>
+                        <td class="center" style="color:var(--green); font-weight:700;">90%</td>
+                    </tr>
                 </tbody>
             </table>
+            <div style="font-size:10px; color:rgba(255,255,255,0.25); margin-top:7px; line-height:1.6;">Seed period (Q4 2026 through Q4 2027): modeled. Years 2&ndash;3: illustrative mix shift to Enterprise/Mid-Market. Blended ACV = total ARR / total logos. Ent + MM % = combined ARR from top two tiers.</div>
         </div>
 
-        <div style="margin-top:28px;">
-            <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.7); margin-bottom:16px;">Market Opportunity</div>
+        <!-- 2. Unit Economics by Stage -->
+        <div style="margin-bottom:36px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">2. Unit Economics by Stage</div>
+            <table class="ft">
+                <thead>
+                    <tr>
+                        <th style="width:26%;">Metric</th>
+                        <th class="right" style="background:rgba(37,99,235,0.1); border-bottom:2px solid var(--primary); white-space:nowrap;">Q4 2027<br><span style="font-size:10px; font-weight:400; text-transform:none; letter-spacing:0;">Series A Trigger</span></th>
+                        <th class="right" style="color:rgba(255,255,255,0.38); font-size:10px; white-space:nowrap;">Year 2<br><span style="font-style:italic; font-weight:400;">(Illustrative)</span></th>
+                        <th class="right" style="color:rgba(255,255,255,0.38); font-size:10px; white-space:nowrap;">Year 3<br><span style="font-style:italic; font-weight:400;">(Illustrative)</span></th>
+                        <th style="width:28%;">Investor Benchmark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Blended ACV</td>
+                        <td class="right" style="background:rgba(37,99,235,0.05); font-weight:700; color:var(--primary);">$58,000</td>
+                        <td class="right" style="color:var(--primary);">$77,000</td>
+                        <td class="right" style="color:var(--green); font-weight:600;">$102,000</td>
+                        <td class="muted">Grows as Enterprise mix increases</td>
+                    </tr>
+                    <tr>
+                        <td>Gross Margin</td>
+                        <td class="right green" style="background:rgba(37,99,235,0.05); font-weight:700;">78%</td>
+                        <td class="right green">79%</td>
+                        <td class="right green" style="font-weight:600;">80%</td>
+                        <td class="muted">70%+ for SaaS Series A</td>
+                    </tr>
+                    <tr>
+                        <td>LTV (3-year gross profit)</td>
+                        <td class="right" style="background:rgba(37,99,235,0.05); font-weight:700;">$118,000</td>
+                        <td class="right">$159,000</td>
+                        <td class="right" style="color:var(--green); font-weight:600;">$213,000</td>
+                        <td class="muted">Higher ACV + improving retention</td>
+                    </tr>
+                    <tr>
+                        <td>Blended CAC</td>
+                        <td class="right" style="background:rgba(37,99,235,0.05); font-weight:700;">$8,200</td>
+                        <td class="right">$9,300</td>
+                        <td class="right">$10,400</td>
+                        <td class="muted">Stays low: Growth tier is self-serve</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>LTV : CAC</strong></td>
+                        <td class="right" style="background:rgba(37,99,235,0.08); font-weight:700; color:var(--green);">15x</td>
+                        <td class="right" style="color:var(--green); font-weight:700;">17x</td>
+                        <td class="right" style="color:var(--green); font-weight:700;">20x</td>
+                        <td class="muted">3x strong &nbsp;&middot;&nbsp; 10x+ exceptional</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>CAC Payback (blended)</strong></td>
+                        <td class="right" style="background:rgba(37,99,235,0.08); font-weight:700; color:var(--green);">2 months</td>
+                        <td class="right" style="color:var(--green); font-weight:600;">2 months</td>
+                        <td class="right" style="color:var(--green); font-weight:700;">1.5 months</td>
+                        <td class="muted">&lt;12 months is strong for B2B SaaS</td>
+                    </tr>
+                    <tr>
+                        <td>Net Revenue Retention (target)</td>
+                        <td class="right" style="background:rgba(37,99,235,0.05); font-weight:700;">115%</td>
+                        <td class="right">120%</td>
+                        <td class="right" style="color:var(--green); font-weight:600;">125%</td>
+                        <td class="muted">100%+ good &nbsp;&middot;&nbsp; 120%+ exceptional</td>
+                    </tr>
+                    <tr>
+                        <td>Gross Retention</td>
+                        <td class="right" style="background:rgba(37,99,235,0.05); font-weight:700;">90%+</td>
+                        <td class="right">93%+</td>
+                        <td class="right" style="color:var(--green); font-weight:600;">95%+</td>
+                        <td class="muted">85%+ Year 1 &nbsp;&middot;&nbsp; 90%+ Series A</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="font-size:10px; color:rgba(255,255,255,0.25); margin-top:7px; line-height:1.6;">LTV: 3-year gross profit cap. Churn: 15% Year 1 / 10% Year 2+. CAC: fully-loaded cost per logo at given mix (Growth $1K self-serve, Scale $10K, Mid-Market $12K, Enterprise $15K). Years 2&ndash;3 computed at the illustrative mix shown above.</div>
+        </div>
+
+        <!-- 3. Pricing Tier Structure -->
+        <div style="margin-bottom:36px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">3. Pricing Tier Structure</div>
+            <table class="ft">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th class="right">Annual Retainer</th>
+                        <th class="right">Monthly</th>
+                        <th>Segment</th>
+                        <th class="right">CAC</th>
+                        <th class="right">Payback</th>
+                        <th class="right">Gross Margin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Growth</td>
+                        <td class="right">$9,600</td>
+                        <td class="right">$800</td>
+                        <td>50 &ndash; 500 employees</td>
+                        <td class="right">$1,000</td>
+                        <td class="right green">~1.5 mo</td>
+                        <td class="right green">88%+</td>
+                    </tr>
+                    <tr>
+                        <td>Scale</td>
+                        <td class="right">$36,000</td>
+                        <td class="right">$3,000</td>
+                        <td>500 &ndash; 2,500 employees</td>
+                        <td class="right">$10,000</td>
+                        <td class="right green">4.3 mo</td>
+                        <td class="right green">78%</td>
+                    </tr>
+                    <tr>
+                        <td>Mid-Market</td>
+                        <td class="right">$84,000</td>
+                        <td class="right">$7,000</td>
+                        <td>2,500 &ndash; 10,000 employees</td>
+                        <td class="right">$12,000</td>
+                        <td class="right green">2.2 mo</td>
+                        <td class="right green">78%</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>Enterprise Anchor</strong></td>
+                        <td class="right"><strong>$240,000</strong></td>
+                        <td class="right"><strong>$20,000</strong></td>
+                        <td>10,000+ employees</td>
+                        <td class="right"><strong>$15,000</strong></td>
+                        <td class="right green"><strong>&lt;1 mo</strong></td>
+                        <td class="right green"><strong>78%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="font-size:10px; color:rgba(255,255,255,0.25); margin-top:7px; line-height:1.6;">All tiers: base retainer plus consumption above tier floor. Actual ACV runs 15&ndash;30% above retainer at steady state for Scale and above. Growth tier: self-serve via ATS marketplace, no Layer 3. Comparables: Greenhouse $10&ndash;50K (80% GM), Gem $30&ndash;60K (80%), Lever $20&ndash;40K (78%), Checkr $12&ndash;60K (65%). Sentriq targets at or above comparable ACV with structurally superior margins.</div>
+        </div>
+
+        <!-- 4. Market Opportunity -->
+        <div style="margin-bottom:8px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">4. Market Opportunity</div>
             <div class="ue-grid" style="grid-template-columns:repeat(4,1fr);">
                 <div class="ue-box" style="background:rgba(37,99,235,0.08); border-color:rgba(37,99,235,0.25);">
                     <div class="ue-val" style="color:var(--primary);">$12B</div>
