@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Adapter — Setup Guide</title>
+<style>
+  :root {
+    --bg:       #09090f;
+    --surface:  #13131a;
+    --border:   #2a2a3a;
+    --accent:   #4f8ef7;
+    --accent2:  #7c5cf6;
+    --success:  #22c55e;
+    --warning:  #f59e0b;
+    --text:     #e8e8f0;
+    --muted:    #8888a8;
+    --code-bg:  #1a1a2e;
+    --radius:   10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1b35 0%, #1a0d35 100%);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(79,142,247,0.15);
+    border: 1px solid rgba(79,142,247,0.3);
+    border-radius: 20px;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #6ab0ff, #b08aff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.6rem;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 1.8rem;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+  }
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.15rem;
+    min-width: 560px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .progress-step {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--muted);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .progress-step:hover { color: var(--text); }
+  .progress-step.active { background: rgba(79,142,247,0.15); color: var(--accent); border-color: rgba(79,142,247,0.4); }
+  .progress-step.done   { color: var(--success); }
+  .progress-step .num {
+    width: 19px; height: 19px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.68rem;
+    flex-shrink: 0;
+  }
+  .progress-step.active .num { background: var(--accent);  color: #fff; }
+  .progress-step.done   .num { background: var(--success); color: #fff; }
+
+  /* PLATFORM TOGGLE */
+  .platform-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.6rem 0 0;
+  }
+  .platform-btn {
+    padding: 0.38rem 1.3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.18s;
+    font-family: inherit;
+  }
+  .platform-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  /* STEP CARDS */
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .step-card.active { border-color: rgba(79,142,247,0.5); }
+  .step-card.done   { border-color: rgba(34,197,94,0.3); opacity: 0.82; }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.3rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .step-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .step-card.active .step-num  { background: var(--accent);  color: #fff; }
+  .step-card.done   .step-num  { background: var(--success); color: #fff; }
+  .step-title { flex: 1; font-weight: 600; font-size: 0.97rem; }
+  .step-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .tag-once { background: rgba(34,197,94,0.12); color: var(--success); border: 1px solid rgba(34,197,94,0.2); }
+  .tag-every { background: rgba(245,158,11,0.12); color: var(--warning); border: 1px solid rgba(245,158,11,0.2); }
+  .step-chevron { color: var(--muted); font-size: 1rem; transition: transform 0.2s; }
+  .step-card.open .step-chevron { transform: rotate(180deg); }
+
+  .step-body { padding: 0 1.3rem 1.3rem; display: none; }
+  .step-card.open .step-body { display: block; }
+
+  p  { margin-bottom: 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+  ol { padding-left: 1.4rem; margin-bottom: 0.85rem; }
+  ol li { margin-bottom: 0.45rem; }
+  ul { padding-left: 1.4rem; margin-bottom: 0.85rem; }
+  ul li { margin-bottom: 0.3rem; }
+  strong { color: var(--text); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* CALLOUTS */
+  .note {
+    background: rgba(79,142,247,0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 0.65rem 0.95rem;
+    margin: 0.75rem 0;
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+  .warn {
+    background: rgba(245,158,11,0.08);
+    border-left: 3px solid var(--warning);
+    border-radius: 0 6px 6px 0;
+    padding: 0.65rem 0.95rem;
+    margin: 0.75rem 0;
+    font-size: 0.86rem;
+    color: #fcd34d;
+  }
+  .success-note {
+    background: rgba(34,197,94,0.08);
+    border-left: 3px solid var(--success);
+    border-radius: 0 6px 6px 0;
+    padding: 0.65rem 0.95rem;
+    margin: 0.75rem 0;
+    font-size: 0.86rem;
+    color: #86efac;
+  }
+
+  /* CODE BLOCKS */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 0.75rem 0;
+    overflow: hidden;
+  }
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0.85rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.025);
+  }
+  .code-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+  .copy-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    padding: 0.18rem 0.55rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .copy-btn:hover  { border-color: var(--accent); color: var(--accent); }
+  .copy-btn.copied { border-color: var(--success); color: var(--success); }
+  pre {
+    padding: 0.85rem 1rem;
+    font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+    font-size: 0.84rem;
+    color: #c8d3f5;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.1em 0.38em;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.84em;
+    color: #c8d3f5;
+  }
+
+  /* PLATFORM VISIBILITY */
+  .mac-only     { display: none; }
+  .windows-only { display: none; }
+  body.mac     .mac-only     { display: block; }
+  body.windows .windows-only { display: block; }
+
+  /* INLINE PLATFORM */
+  .mac-inline     { display: none; }
+  .windows-inline { display: none; }
+  body.mac     .mac-inline     { display: inline; }
+  body.windows .windows-inline { display: inline; }
+
+  /* MARK DONE */
+  .mark-done-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+    padding: 0.45rem 1.1rem;
+    background: transparent;
+    border: 1px solid var(--success);
+    border-radius: 20px;
+    color: var(--success);
+    cursor: pointer;
+    font-size: 0.83rem;
+    font-weight: 600;
+    transition: all 0.18s;
+    font-family: inherit;
+  }
+  .mark-done-btn:hover { background: rgba(34,197,94,0.1); }
+
+  /* SUCCESS BANNER */
+  .success-banner {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(79,142,247,0.08));
+    border: 1px solid rgba(34,197,94,0.4);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .success-banner .checkmark { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .success-banner h2 { color: var(--success); margin-bottom: 0.5rem; font-size: 1.4rem; }
+  .success-banner p  { color: var(--muted); margin-bottom: 0; max-width: 420px; margin-left: auto; margin-right: auto; }
+
+  /* FAQ */
+  .faq-item { margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .faq-q { font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+  .faq-a { color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 2rem 1.2rem 1.5rem; }
+    .hero h1 { font-size: 1.65rem; }
+    .hero p  { font-size: 0.9rem; }
+    .hero-badge { font-size: 0.7rem; }
+    .platform-btn { padding: 0.32rem 1rem; font-size: 0.8rem; }
+
+    .progress-wrap { padding-bottom: 0.5rem; }
+    .progress-bar { min-width: 560px; }
+
+    .container { padding: 1.2rem 0.9rem 4rem; }
+
+    .step-header { padding: 0.85rem 1rem; gap: 0.75rem; }
+    .step-num { width: 26px; height: 26px; font-size: 0.76rem; }
+    .step-title { font-size: 0.9rem; }
+    .step-tag { display: none; }
+    .step-body { padding: 0 1rem 1.1rem; }
+
+    pre { font-size: 0.76rem; padding: 0.75rem 0.85rem; }
+    .code-header { padding: 0.38rem 0.75rem; }
+
+    .mark-done-btn { width: 100%; justify-content: center; margin-top: 1rem; }
+
+    .faq-q { font-size: 0.9rem; }
+    .faq-a { font-size: 0.84rem; }
+
+    .success-banner { padding: 1.4rem 1rem; }
+    .success-banner h2 { font-size: 1.2rem; }
+    .success-banner p  { font-size: 0.87rem; }
+
+    ol li, ul li { font-size: 0.9rem; }
+    p { font-size: 0.9rem; }
+    .note, .warn, .success-note { font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body class="mac">
+
+<div class="hero">
+  <div class="hero-badge">Step-by-step setup guide</div>
+  <h1>CV Adapter</h1>
+  <p>ATS-optimized CVs powered by Claude. You are on this page because someone shared it with you. Follow the steps below and you will have a working app in about 10 minutes.</p>
+
+  <div class="platform-toggle">
+    <button class="platform-btn active" onclick="setPlatform('mac')">&#63743; Mac</button>
+    <button class="platform-btn"        onclick="setPlatform('windows')">&#10064; Windows</button>
+  </div>
+
+  <div class="progress-wrap" style="margin-top: 1.5rem;">
+    <div class="progress-bar" id="progressBar">
+      <div class="progress-step active" onclick="goToStep(0)" id="ps0"><span class="num">1</span> GitHub access</div>
+      <div class="progress-step"        onclick="goToStep(1)" id="ps1"><span class="num">2</span> Prerequisites</div>
+      <div class="progress-step"        onclick="goToStep(2)" id="ps2"><span class="num">3</span> Clone repo</div>
+      <div class="progress-step"        onclick="goToStep(3)" id="ps3"><span class="num">4</span> API key</div>
+      <div class="progress-step"        onclick="goToStep(4)" id="ps4"><span class="num">5</span> Install</div>
+      <div class="progress-step"        onclick="goToStep(5)" id="ps5"><span class="num">6</span> Launch</div>
+      <div class="progress-step"        onclick="goToStep(6)" id="ps6"><span class="num">7</span> First CV</div>
+      <div class="progress-step"        onclick="goToStep(7)" id="ps7"><span class="num">8</span> Done</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── STEP 1 — GITHUB ACCESS ───────────────────────── -->
+  <div class="step-card active open" id="step-0">
+    <div class="step-header" onclick="toggleStep(0)">
+      <div class="step-num">1</div>
+      <div class="step-title">Accept your GitHub invitation</div>
+      <span class="step-tag tag-once">One time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>The code lives in a <strong>private repository</strong> on GitHub. You need a GitHub account and an invitation before you can download it.</p>
+
+      <p><strong>If you do not have a GitHub account yet:</strong></p>
+      <ol>
+        <li>Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> and create a free account.</li>
+        <li>Verify your email address.</li>
+        <li>Send your GitHub username back to whoever shared this link with you so they can invite you.</li>
+      </ol>
+
+      <p><strong>Once you have been invited:</strong></p>
+      <ol>
+        <li>Check your email for a message from GitHub with the subject <em>"You have been invited to collaborate on samuel-oz-2511/cv-adapt-engine"</em>.</li>
+        <li>Click <strong>View invitation</strong> in that email.</li>
+        <li>On the GitHub page that opens, click <strong>Accept invitation</strong>.</li>
+      </ol>
+
+      <div class="success-note">You will see the repo at <a href="https://github.com/samuel-oz-2511/cv-adapt-engine" target="_blank">github.com/samuel-oz-2511/cv-adapt-engine</a> once your invite is accepted.</div>
+
+      <button class="mark-done-btn" onclick="markDone(0)">&#10003; I have access to the repo</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2 — PREREQUISITES ────────────────────────── -->
+  <div class="step-card" id="step-1">
+    <div class="step-header" onclick="toggleStep(1)">
+      <div class="step-num">2</div>
+      <div class="step-title">Install Git and Python</div>
+      <span class="step-tag tag-once">One time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>You need two things: <strong>Git</strong> (to download the repo) and <strong>Python 3.10+</strong> (to run the app).</p>
+
+      <p><strong>Check if you already have them:</strong></p>
+
+      <div class="mac-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Terminal &mdash; open with Cmd+Space, type Terminal, press Enter</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>git --version && python3 --version</pre>
+        </div>
+        <p>If both print version numbers (e.g. <code>git version 2.x</code> and <code>Python 3.11.x</code>), you are ready. Skip to step 3.</p>
+
+        <p><strong>Install Git (if missing):</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Terminal</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>xcode-select --install</pre>
+        </div>
+        <p>A dialog will appear — click <strong>Install</strong>. This takes a few minutes.</p>
+        <p>Or download Git directly: <a href="https://git-scm.com/downloads/mac" target="_blank">git-scm.com/downloads/mac</a></p>
+
+        <p><strong>Install Python 3.10+ (if missing):</strong><br>
+        Download the macOS installer from <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a> and run it.</p>
+        <div class="note">Homebrew users: <code>brew install python3</code></div>
+      </div>
+
+      <div class="windows-only">
+        <p>Open <strong>Command Prompt</strong>: press <code>Win+R</code>, type <code>cmd</code>, press Enter.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Command Prompt</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>git --version && python --version</pre>
+        </div>
+        <p>If both print version numbers, skip to step 3.</p>
+
+        <p><strong>Install Git:</strong> Download from <a href="https://git-scm.com/downloads/win" target="_blank">git-scm.com/downloads/win</a>. Run the installer, keep all defaults.</p>
+
+        <p><strong>Install Python:</strong> Download from <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a>.</p>
+        <div class="warn"><strong>Critical:</strong> On the first screen of the Python installer, check <strong>"Add Python to PATH"</strong>. The app will not run without this.</div>
+
+        <p>After installing both, close Command Prompt and open a new one, then re-run the version check above.</p>
+      </div>
+
+      <button class="mark-done-btn" onclick="markDone(1)">&#10003; Git and Python are installed</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3 — CLONE ────────────────────────────────── -->
+  <div class="step-card" id="step-2">
+    <div class="step-header" onclick="toggleStep(2)">
+      <div class="step-num">3</div>
+      <div class="step-title">Download the repository</div>
+      <span class="step-tag tag-once">One time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>Clone (download) the repo to your Desktop. Open a terminal or command prompt and run:</p>
+
+      <div class="mac-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Terminal</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd ~/Desktop
+git clone https://github.com/samuel-oz-2511/cv-adapt-engine.git
+cd cv-adapt-engine</pre>
+        </div>
+      </div>
+
+      <div class="windows-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Command Prompt</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd %USERPROFILE%\Desktop
+git clone https://github.com/samuel-oz-2511/cv-adapt-engine.git
+cd cv-adapt-engine</pre>
+        </div>
+      </div>
+
+      <p>Git will ask for your GitHub username and password. For the password, use a <strong>Personal Access Token</strong> — not your GitHub account password. Here is how to get one in 60 seconds:</p>
+
+      <ol>
+        <li>Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a></li>
+        <li>Give it a name like "cv-adapter"</li>
+        <li>Set expiration to 90 days or No expiration</li>
+        <li>Check the <strong>repo</strong> checkbox (first option under "Select scopes")</li>
+        <li>Click <strong>Generate token</strong> at the bottom</li>
+        <li>Copy the token — paste it as your password when Git asks</li>
+      </ol>
+
+      <div class="warn">GitHub no longer accepts your account password for git clone. The token is required.</div>
+
+      <p>After cloning, confirm you see a folder called <code>cv-adapt-engine</code> on your Desktop with <code>app.py</code> and <code>install.sh</code> (or <code>install.bat</code>) inside.</p>
+
+      <button class="mark-done-btn" onclick="markDone(2)">&#10003; Repo is on my Desktop</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4 — API KEY ──────────────────────────────── -->
+  <div class="step-card" id="step-3">
+    <div class="step-header" onclick="toggleStep(3)">
+      <div class="step-num">4</div>
+      <div class="step-title">Get your Anthropic API key</div>
+      <span class="step-tag tag-once">One time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>The app calls Claude (by Anthropic) to adapt your CV. You need your own API key. It is free to start.</p>
+
+      <ol>
+        <li>Go to <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
+        <li>Sign up with your email and verify your phone number</li>
+        <li>In the left sidebar, click <strong>API Keys</strong></li>
+        <li>Click <strong>Create Key</strong>, name it anything (e.g. "cv-adapter")</li>
+        <li>Copy the key — it starts with <code>sk-ant-api03...</code></li>
+      </ol>
+
+      <div class="warn"><strong>Save the key now.</strong> Anthropic only shows it once. If you lose it, just create a new one.</div>
+
+      <p><strong>Cost:</strong> Each CV generation costs roughly $0.02-0.05. New accounts receive $5 in free credits — enough for 100+ CVs.</p>
+
+      <p>You will paste this key into the app's sidebar when it opens. You can also save it so you do not have to paste it every time — there is an optional step for that in Step 6.</p>
+
+      <button class="mark-done-btn" onclick="markDone(3)">&#10003; API key is ready</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5 — INSTALL ──────────────────────────────── -->
+  <div class="step-card" id="step-4">
+    <div class="step-header" onclick="toggleStep(4)">
+      <div class="step-num">5</div>
+      <div class="step-title">Install dependencies</div>
+      <span class="step-tag tag-once">One time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>This installs all the Python packages the app needs. You only do this once.</p>
+
+      <div class="mac-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Terminal — make sure you are inside the cv-adapt-engine folder</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd ~/Desktop/cv-adapt-engine
+chmod +x install.sh run.sh
+./install.sh</pre>
+        </div>
+        <p>You will see packages downloading. It takes 1-3 minutes. When you see <em>"Installation complete."</em> you are done.</p>
+      </div>
+
+      <div class="windows-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Command Prompt</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd %USERPROFILE%\Desktop\cv-adapt-engine
+install.bat</pre>
+        </div>
+        <p>Windows may show a security dialog — click <strong>Run anyway</strong>. Wait for <em>"Installation complete."</em></p>
+      </div>
+
+      <div class="note">If you see errors about <code>python3 -m venv</code> or <code>pip</code>, re-check that Python was installed correctly (Step 2) and try again.</div>
+
+      <button class="mark-done-btn" onclick="markDone(4)">&#10003; Install complete</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 6 — LAUNCH ───────────────────────────────── -->
+  <div class="step-card" id="step-5">
+    <div class="step-header" onclick="toggleStep(5)">
+      <div class="step-num">6</div>
+      <div class="step-title">Launch the app</div>
+      <span class="step-tag tag-every">Every time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <p>Every time you want to use CV Adapter, run this command:</p>
+
+      <div class="mac-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Terminal</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd ~/Desktop/cv-adapt-engine && ./run.sh</pre>
+        </div>
+      </div>
+
+      <div class="windows-only">
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-label">Command Prompt</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cd %USERPROFILE%\Desktop\cv-adapt-engine && run.bat</pre>
+        </div>
+      </div>
+
+      <p>The terminal will print:</p>
+      <div class="code-block">
+        <div class="code-header"><span class="code-label">Output</span></div>
+        <pre>Starting CV Adapter at http://localhost:8501</pre>
+      </div>
+      <p>Your browser should open automatically. If not, open it manually and go to <a href="http://localhost:8501" target="_blank">http://localhost:8501</a>.</p>
+
+      <p><strong>Optional: save your API key so you do not paste it every time.</strong><br>
+      Create a file named <code>.env</code> inside the <code>cv-adapt-engine</code> folder with this one line:</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-label">.env (create with any text editor — Notepad, TextEdit, VS Code)</span>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre>ANTHROPIC_API_KEY=sk-ant-api03-your-key-here</pre>
+      </div>
+      <p>Replace the value with your actual key. The app loads it automatically on next launch.</p>
+
+      <p>Press <code>Ctrl+C</code> in the terminal to stop the app when you are done.</p>
+
+      <button class="mark-done-btn" onclick="markDone(5)">&#10003; App is running in my browser</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 7 — FIRST CV ─────────────────────────────── -->
+  <div class="step-card" id="step-6">
+    <div class="step-header" onclick="toggleStep(6)">
+      <div class="step-num">7</div>
+      <div class="step-title">Generate your first adapted CV</div>
+      <span class="step-tag tag-every">Every time</span>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <ol>
+        <li><strong>Enter your API key</strong> in the sidebar field on the left of the app. The Generate button will activate.</li>
+        <li><strong>Upload your CV</strong> (PDF or plain text file) — or paste the text directly into the "Your CV" tab.</li>
+        <li><strong>Add a job description</strong> — upload or paste any job posting you want to target.</li>
+        <li><strong>Fill in your contact info:</strong> name and email are required. Phone, LinkedIn, city, and country are optional but appear in the CV header.</li>
+        <li><strong>Select the ATS platform</strong> if you know which system the company uses (Greenhouse, Ashby, Workday, etc.). If unsure, leave "Auto-detect".</li>
+        <li><strong>Click "Generate Adapted CV".</strong> Wait 15-30 seconds.</li>
+        <li><strong>Review the results:</strong> you will see an estimated ATS match score and a gap breakdown.</li>
+        <li><strong>Download the PDF</strong> and open it to review. It should be 1-2 clean pages.</li>
+      </ol>
+
+      <div class="note">
+        <strong>The app has two modes depending on the role:</strong>
+        <ul style="margin-top: 0.4rem; margin-bottom: 0;">
+          <li><strong>Technical roles</strong> (engineering, data, DevOps): rewrites bullets aggressively to match ATS keyword patterns.</li>
+          <li><strong>Non-technical roles</strong> (operations, HR, finance, marketing): preserves your original language and tone, only adjusts specific keywords. This is intentional — AI-based ATS systems penalize over-optimized prose in non-technical roles.</li>
+        </ul>
+      </div>
+
+      <button class="mark-done-btn" onclick="markDone(6)">&#10003; First CV downloaded</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 8 — DONE ─────────────────────────────────── -->
+  <div class="step-card" id="step-7">
+    <div class="step-header" onclick="toggleStep(7)">
+      <div class="step-num">8</div>
+      <div class="step-title">You are all set</div>
+      <div class="step-chevron">&#9660;</div>
+    </div>
+    <div class="step-body">
+      <div class="success-banner">
+        <div class="checkmark">&#10003;</div>
+        <h2>Setup complete</h2>
+        <p>Every time you need an adapted CV, open a terminal, run <code class="mac-inline">./run.sh</code><code class="windows-inline">run.bat</code>, and go to <a href="http://localhost:8501" target="_blank">localhost:8501</a>.</p>
+      </div>
+
+      <p style="margin-top: 1.4rem;"><strong>Common questions:</strong></p>
+      <div class="faq-item">
+        <div class="faq-q">How do I stop the app?</div>
+        <div class="faq-a">Press <code>Ctrl+C</code> in the terminal window that is running the app.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my data private?</div>
+        <div class="faq-a">Your CV and JD text are sent to Anthropic's API to generate the output. Nothing is stored by this app locally beyond the session. Anthropic's <a href="https://www.anthropic.com/legal/privacy" target="_blank">privacy policy</a> applies.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much does it cost?</div>
+        <div class="faq-a">About $0.02-0.05 per CV. New Anthropic accounts get $5 free credits, which is enough for 100+ CVs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">The PDF came out as 3 pages — how do I fix it?</div>
+        <div class="faq-a">Your CV text is very long. Try pasting a shorter version — remove very old roles or shorten bullet points. The app works best with CVs that are already roughly 2 pages of content.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I get updates when new versions are released?</div>
+        <div class="faq-a">Inside the <code>cv-adapt-engine</code> folder, run: <code>git pull</code>. That fetches the latest version.</div>
+      </div>
+
+      <button class="mark-done-btn" onclick="markDone(7)">&#10003; All done</button>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+  var doneSteps = JSON.parse(localStorage.getItem('cva-done') || '[]');
+  var TOTAL = 8;
+
+  function setPlatform(p) {
+    document.body.className = p;
+    document.querySelectorAll('.platform-btn').forEach(function(b) {
+      b.classList.toggle('active', b.textContent.trim().toLowerCase().indexOf(p) > -1);
+    });
+    localStorage.setItem('cva-platform', p);
+  }
+
+  (function() {
+    var saved = localStorage.getItem('cva-platform');
+    if (saved) setPlatform(saved);
+    else {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('win') > -1) setPlatform('windows');
+      else setPlatform('mac');
+    }
+  })();
+
+  function toggleStep(n) {
+    var card = document.getElementById('step-' + n);
+    card.classList.toggle('open');
+  }
+
+  function goToStep(n) {
+    document.querySelectorAll('.step-card').forEach(function(c) {
+      c.classList.remove('open');
+    });
+    var card = document.getElementById('step-' + n);
+    card.classList.add('open');
+    setTimeout(function() {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+    updateProgress();
+  }
+
+  function markDone(n) {
+    if (!doneSteps.includes(n)) doneSteps.push(n);
+    localStorage.setItem('cva-done', JSON.stringify(doneSteps));
+    updateProgress();
+    var next = n + 1;
+    if (next < TOTAL) {
+      document.getElementById('step-' + n).classList.remove('open');
+      var nextCard = document.getElementById('step-' + next);
+      nextCard.classList.add('open');
+      setTimeout(function() {
+        nextCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+  }
+
+  function updateProgress() {
+    for (var i = 0; i < TOTAL; i++) {
+      var ps = document.getElementById('ps' + i);
+      var card = document.getElementById('step-' + i);
+      ps.classList.remove('done', 'active');
+      card.classList.remove('active', 'done');
+
+      if (doneSteps.includes(i)) {
+        ps.classList.add('done');
+        ps.querySelector('.num').textContent = '✓';
+        card.classList.add('done');
+      }
+    }
+    var next = 0;
+    for (var j = 0; j < TOTAL; j++) {
+      if (!doneSteps.includes(j)) { next = j; break; }
+      if (j === TOTAL - 1) next = TOTAL - 1;
+    }
+    document.getElementById('ps' + next).classList.add('active');
+    document.getElementById('step-' + next).classList.add('active');
+  }
+
+  function copyCode(btn) {
+    var pre = btn.closest('.code-block').querySelector('pre');
+    var text = pre.textContent.trim();
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  }
+
+  updateProgress();
+  var firstOpen = 0;
+  for (var k = 0; k < TOTAL; k++) {
+    if (!doneSteps.includes(k)) { firstOpen = k; break; }
+    if (k === TOTAL - 1 && doneSteps.includes(k)) firstOpen = TOTAL - 1;
+  }
+  document.getElementById('step-' + firstOpen).classList.add('open');
+</script>
+</body>
+</html>
